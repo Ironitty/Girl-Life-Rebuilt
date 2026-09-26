@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).dynamicCommand ?? 0) === '') {
       return;
     }
-    qspFunc(s, 'dynamicCommand');
+    dynamicGoto(s, String((s as any).dynamicCommand || ''));
     (s as any).dynamicCommand = undefined;
   }
   if (((s as any).selobj ?? 0) === '<center>Toggle Debug Variables</center>') {

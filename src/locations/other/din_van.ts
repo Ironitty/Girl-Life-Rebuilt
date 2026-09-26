@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -1641,7 +1639,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBteeth(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTampon(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { alert(/u0027<center>Your weight is ${(((s as any).pcs_weight ?? 0)?.[0] ?? '')}.${(((s as any).pcs_weight ?? 0)?.[1] ?? '')} kg<br>Your body mass index (BMI) is ${(((s as any).pcs_bmi ?? 0)?.[0] ?? '')}.${(((s as any).pcs_bmi ?? 0)?.[1] ?? '')}.<br>${qspUntranslated(s, "bodyVars[\\u0027bmi_desc\\u0027]", { location: "din_van" })}</center>/u0027); return s; }); return false;">Check weight on the scales</a>`);
+  scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { alert(/u0027<center>Your weight is /u0027 + /u0027__qspDyn/u0027 + /u0027./u0027 + /u0027__qspDyn/u0027 + /u0027 kg<br>Your body mass index (BMI) is /u0027 + /u0027__qspDyn/u0027 + /u0027./u0027 + /u0027__qspDyn/u0027 + /u0027.<br>/u0027 + String((s as any).bodyVars?./u0027bmi_desc/u0027 ?? /u0027/u0027) + /u0027</center>/u0027); return s; }); return false;">Check weight on the scales</a>`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrvtPee(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBasin(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrit(s, scene); (s as any).locArgs = __savedLocArgs; }

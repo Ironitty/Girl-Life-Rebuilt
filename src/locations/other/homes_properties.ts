@@ -921,7 +921,7 @@ function enterRenovateProperty(s: GameState, scene: SceneBuilder): void {
 
 function enterGoHome(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'is_homeless')  ||  ((s as any).home ?? 0)?.['region'] !== ((s as any).region ?? 0)) {
-    // TODO-QSP: dynamic($train_station[$region])
+    dynamicGoto(s, String(((s as any).train_station ?? {})[String((s as any).region ?? '')] || ''));
   } else {
     if (hasLocation(((s as any).home ?? 0)?.['location'])) {
       dynamicGoto(s, (((s as any).home ?? {}))['location'], (((s as any).home ?? {}))['location_arg']);
@@ -935,7 +935,7 @@ function enterGoHome(s: GameState, scene: SceneBuilder): void {
 
 function enterGoStraightHome(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'is_homeless')  ||  ((s as any).home ?? 0)?.['region'] !== ((s as any).region ?? 0)) {
-    // TODO-QSP: dynamic($train_station[$region])
+    dynamicGoto(s, String(((s as any).train_station ?? {})[String((s as any).region ?? '')] || ''));
   } else {
     if (hasLocation(((s as any).home ?? 0)?.['entrance'])) {
       dynamicGoto(s, (((s as any).home ?? {}))['entrance'], (((s as any).home ?? {}))['entrance_arg']);

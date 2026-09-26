@@ -66,7 +66,7 @@ function enterClotQualPrefTmp(s: GameState, scene: SceneBuilder): void {
     } else {
       ((s as any).temp_text = (s as any).temp_text ?? {})[0] = 'cheap';
     }
-    (s as any).meetQualPref = '' + ((s as any).npcdesc ?? 0) + ' says ' + ((s as any).Xe ?? 0) + ' loves the quality of your clothes and ' + ((s as any).Xe ?? 0) + ' is glad you don\'t wear \' + $temp_text[0] + \' clothing."';
+    (s as any).meetQualPref = '' + ((s as any).npcdesc ?? 0) + ' says ' + ((s as any).Xe ?? 0) + ' loves the quality of your clothes and ' + ((s as any).Xe ?? 0) + ' is glad you don\'t wear ' + (((s as any).temp_text ?? 0)?.[0] ?? 0) + ' clothing."';
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
       if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -85,7 +85,7 @@ function enterClotQualPrefTmp(s: GameState, scene: SceneBuilder): void {
         ((s as any).temp_text = (s as any).temp_text ?? {})[0] = 'low';
         ((s as any).temp_text = (s as any).temp_text ?? {})[1] = 'cheap';
       }
-      (s as any).meetQualPref = '' + ((s as any).npcdesc ?? 0) + ' says that ' + ((s as any).Xe ?? 0) + ' thinks your clothing quality is way too \' + $temp_text[0] + \' and ' + ((s as any).Xe ?? 0) + ' likes girls that wear clothing that is \' + $temp_text[1] + \'."';
+      (s as any).meetQualPref = '' + ((s as any).npcdesc ?? 0) + ' says that ' + ((s as any).Xe ?? 0) + ' thinks your clothing quality is way too ' + (((s as any).temp_text ?? 0)?.[0] ?? 0) + ' and ' + ((s as any).Xe ?? 0) + ' likes girls that wear clothing that is ' + (((s as any).temp_text ?? 0)?.[1] ?? 0) + '."';
     }
   }
   (s as any).ngpPrefResult = undefined;

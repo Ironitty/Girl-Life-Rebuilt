@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You give the guy a condom and he puts it on in silence.');
     }
   }
-  qspFunc(s, 'vagstart2');
+  dynamicGoto(s, String((s as any).vagstart2 || ''));
   (s as any).vagstart2 = qspUntranslated(s, "{", { location: "dinsexFX" });
   // TODO-QSP: !need $boy, dick and silavag
   (s as any).frost = 0;
@@ -141,7 +141,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 2) + 0) === 0  ||  ((s as any).pose ?? 0) === 3) {
       qspCall(s, 'cum_manage', '');
       scene.text(`${((s as any).boydesc ?? '')} groans and you feel a jet of sperm fill your pussy.`);
-      qspFunc(s, 'veneracheck');
+      dynamicGoto(s, String((s as any).veneracheck || ''));
       if ((!((s as any).protect ?? 0))) {
         qspCall(s, 'mood', 'lower', 'medium');
         qspCall(s, 'cuminsidereact', '');
@@ -165,7 +165,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).prezrand = (Math.floor(Math.random() * 101) + 0);
     if (((s as any).Sexcontra ?? 0) === 4) {
       scene.text(`Pulling out of you and looking at his dick, ${((s as any).boydesc ?? '')} said "Hmm, condom burst"`);
-      qspFunc(s, 'veneracheck');
+      dynamicGoto(s, String((s as any).veneracheck || ''));
       (s as any).Sexcontra = 0;
     }
   }

@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -702,7 +702,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspFunc(s, 'displaytag');
+  dynamicGoto(s, String((s as any).displaytag || ''));
   if (((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] > 1  ||  (((s as any).pfilmNOPAY ?? 0) === 0  &&  ((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] > 0)) {
     scene.actions([
       { label: 'Cancel a contract', handler: (st: GameState) => {
@@ -1100,9 +1100,9 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).film ?? 0) === 1) {
     ((s as any).porntitle = (s as any).porntitle ?? {})[String((s as any).film ?? 0)] = 'Girls Jerk Guys #36 - ' + ((s as any).pfname ?? 0) + '';
     if (((s as any).tits ?? 0) >= 4) {
-      ((s as any).pornfilmstory = (s as any).pornfilmstory ?? {})[String((s as any).film ?? 0)] = '' + ((s as any).pfname ?? 0) + '\'s debut into the world of porn. Watch as she gives silver fox Egor Kluyev a titfuck and ends up with his cum all over her big \'+iif(age < 20, \'teen\', \')+\' tits.';
+      ((s as any).pornfilmstory = (s as any).pornfilmstory ?? {})[String((s as any).film ?? 0)] = '' + ((s as any).pfname ?? 0) + '\'s debut into the world of porn. Watch as she gives silver fox Egor Kluyev a titfuck and ends up with his cum all over her big ' + ((((s as any).age ?? 0) < 20) ? ('teen') : ('')) + ' tits.';
     } else {
-      ((s as any).pornfilmstory = (s as any).pornfilmstory ?? {})[String((s as any).film ?? 0)] = '' + ((s as any).pfname ?? 0) + '\'s debut into the world of porn. Watch as she jerks silver fox Egor Kluyev off and ends up with his cum all over her \'+iif(age < 20, \'teen\', \')+\' tits.';
+      ((s as any).pornfilmstory = (s as any).pornfilmstory ?? {})[String((s as any).film ?? 0)] = '' + ((s as any).pfname ?? 0) + '\'s debut into the world of porn. Watch as she jerks silver fox Egor Kluyev off and ends up with his cum all over her ' + ((((s as any).age ?? 0) < 20) ? ('teen') : ('')) + ' tits.';
     }
   } else {
     if (((s as any).pstory ?? 0) === ''  &&  ((s as any).cheatVars ?? 0)?.['rename_porn'] === 1) {

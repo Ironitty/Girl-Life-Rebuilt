@@ -105,7 +105,7 @@ function enterQuicktime(s: GameState, scene: SceneBuilder): void {
 function enterDynamic(s: GameState, scene: SceneBuilder): void {
   (s as any).dynamicCommand = window.prompt("Enter command to execute.") ?? '';
   if (((s as any).dynamicCommand ?? 0) !== '') {
-    qspFunc(s, 'dynamicCommand');
+    dynamicGoto(s, String((s as any).dynamicCommand || ''));
   }
   (s as any).dynamicCommand = undefined;
   ((s as any).cheatmenu = (s as any).cheatmenu ?? {})['vartracker'] = 'gt \'cheatmenu_din\', \'vartracker\'';
@@ -543,7 +543,7 @@ function enterState(s: GameState, scene: SceneBuilder): void {
     scene.text('<b>You need to open a bank account before getting access to change money in the bank</b>');
   }
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027std_cure\u0027 & gs \u0027stat\u0027); return false;">Cure all stds</a>');
-  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.vgape = 0; s.agape = 0; s.nippain = 0; s.painpub = 0; s.pirs_pain_ton = 0; s.mesec = 0; s.spanked = 0; (s.drugVars ??= {})\u0027heroin_need\u0027 = 0; (s.drugVars ??= {})\u0027cocaine_addict\u0027 = 0; (s.drugVars ??= {})\u0027heroin_high\u0027 = 0; (s.drugVars ??= {})\u0027heroin_used\u0027 = 0; (s.drugVars ??= {})\u0027heroin_hours_addicted\u0027 = 0; (s.drugVars ??= {})\u0027heroin_taper\u0027 = 0; (s.drugVars ??= {})\u0027cocaine_system\u0027 = 0; s.fingal = 0; s.mosol = 0; s.frost = 0; s.sick = 0; s.hypnoWithdrawal = 0; /* TODO-QSP: killvar \u0027pain\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027std_cure\u0027 & killvar \u0027pain\u0027 & gs \u0027pain\u0027, \u0027calc\u0027 & gs \u0027stat\u0027); return false;">Cure all ailments.</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.vgape = 0; s.agape = 0; s.nippain = 0; s.painpub = 0; s.pirs_pain_ton = 0; s.mesec = 0; s.spanked = 0; (s.drugVars ??= {})\u0027heroin_need\u0027 = 0; (s.drugVars ??= {})\u0027cocaine_addict\u0027 = 0; (s.drugVars ??= {})\u0027heroin_high\u0027 = 0; (s.drugVars ??= {})\u0027heroin_used\u0027 = 0; (s.drugVars ??= {})\u0027heroin_hours_addicted\u0027 = 0; (s.drugVars ??= {})\u0027heroin_taper\u0027 = 0; (s.drugVars ??= {})\u0027cocaine_system\u0027 = 0; s.fingal = 0; s.mosol = 0; s.frost = 0; s.sick = 0; s.hypnoWithdrawal = 0; delete (s as any)[\u0027pain\u0027]; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027std_cure\u0027 & killvar \u0027pain\u0027 & gs \u0027pain\u0027, \u0027calc\u0027 & gs \u0027stat\u0027); return false;">Cure all ailments.</a>');
   if ((!((s as any).preg ?? 0))) {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027force_preg\u0027 & gs \u0027stat\u0027 & gt \u0027cheatmenu_din\u0027, \u0027state\u0027); return false;">Force random pregnancy</a>');
     if (((s as any).cycle ?? 0) !== 5) {
@@ -934,10 +934,10 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
   }
   scene.text(`When gaped your vagina will reduce each stage (up to 4 for maximum gape) every ${(((s as any).vgape ?? 0)?.[5] ?? '')} minutes.`);
   if (((s as any).vgape ?? 0)[4] < 60) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: vgape[4] += 5 */ return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027looks\u0027); return false;">Increase time by 5 minutes (before traits)</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.vgape ??= {})4 +=5; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027looks\u0027); return false;">Increase time by 5 minutes (before traits)</a>');
   }
   if (((s as any).vgape ?? 0)[4] > 5) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: vgape[4] -= 5 */ return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027looks\u0027); return false;">Reduce time by 5 minutes</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.vgape ??= {})4 -=5; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027looks\u0027); return false;">Reduce time by 5 minutes</a>');
   }
   scene.text(`${((s as any).pcs_ass_txt ?? '')}`);
   if (((s as any).pcs_ass ?? 0) <= 25) {
@@ -961,10 +961,10 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
   }
   scene.text(`When gaped your anus will reduce each stage (up to 4 for maximum gape) every ${(((s as any).agape ?? 0)?.[5] ?? '')} minutes.`);
   if (((s as any).agape ?? 0)[4] < 60) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: agape[4] += 5 */ return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027looks\u0027); return false;">Increase time by 5 minutes (before traits)</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.agape ??= {})4 +=5; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027looks\u0027); return false;">Increase time by 5 minutes (before traits)</a>');
   }
   if (((s as any).agape ?? 0)[4] > 5) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: agape[4] -= 5 */ return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027looks\u0027); return false;">Reduce time by 5 minutes</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.agape ??= {})4 -=5; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027looks\u0027); return false;">Reduce time by 5 minutes</a>');
   }
   scene.text('</td><td width="33%" valign="top">');
   if ((!((s as any).dounspell ?? 0))) {
@@ -1845,21 +1845,21 @@ function enterLoverMenu(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).npc_gentle ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 1) {
-        scene.text(`Change lover's personality: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_gentle ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 = 0; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Gentle</a>`);
+        scene.text(`Change lover's personality: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_gentle ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) = 0; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Gentle</a>`);
       } else {
         if (((s as any).npc_rough ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 0) {
-          scene.text(`Change lover's personality: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_rough ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 = 1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Normal</a>`);
+          scene.text(`Change lover's personality: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_rough ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) = 1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Normal</a>`);
         } else {
-          scene.text(`Change lover's personality: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_rough ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 = 0; (s.npc_gentle ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 = 1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Rough</a>`);
+          scene.text(`Change lover's personality: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_rough ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) = 0; (s.npc_gentle ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) = 1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Rough</a>`);
         }
       }
       if (((s as any).npc_pervert ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 0) {
-        scene.text(`Change lover's perversion: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_pervert ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 = 1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Not perverted</a>`);
+        scene.text(`Change lover's perversion: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_pervert ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) = 1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Not perverted</a>`);
       } else {
-        scene.text(`Change lover's perversion: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_pervert ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 = 0; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Perverted</a>`);
+        scene.text(`Change lover's perversion: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_pervert ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) = 0; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Perverted</a>`);
       }
       scene.text(`Relationship: ${(((s as any).npc_rel ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, String((s as any).cmd_temp_npcid ?? /u0027/u0027)); return false;">+10</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, String((s as any).cmd_temp_npcid ?? /u0027/u0027)); return false;">-10</a>`);
-      scene.text(`You've been on ${(((s as any).npc_dates ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')} dates. <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_dates ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 +=5; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">+5</a> <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_dates ??= {})/u0027${((s as any).cmd_temp_npcid ?? '')}/u0027 -=5; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">-5</a>`);
+      scene.text(`You've been on ${(((s as any).npc_dates ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')} dates. <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_dates ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) +=5; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">+5</a> <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_dates ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) -=5; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">-5</a>`);
       (s as any).temp_cmd_i = ((s as any).temp_cmd_i ?? 0) + (1);
       break;
     }
@@ -2065,7 +2065,7 @@ function enterTime(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_text = ((s as any).temp_text ?? '') + '  <a href="#" onclick="window.__gameStore.setState((s) => { s.temp_minut +=15; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027time\u0027); return false;">+15</a>';
   }
   scene.text('Minute: ' + ((s as any).temp_text ?? ''));
-  scene.text('Weather: <a href="#" onclick="window.__gameStore.setState((s) => { s.sunWeather = iif(sunWeather=0,1,0); /* TODO-QSP: sunWeather[1] = totminut+180 */ return s; }); window.__gameStore.getState().doGoto(\u0027outdoors\u0027, \u0027weather\u0027 & gt \u0027cheatmenu_din\u0027, \u0027time\u0027); return false;">' + ((((s as any).sunWeather ?? 0)===0) ? ('Rain') : ('Sunny')) + '</a>');
+  scene.text('Weather: <a href="#" onclick="window.__gameStore.setState((s) => { s.sunWeather = iif(sunWeather=0,1,0); (s.sunWeather ??= {})1 = totminut+180; return s; }); window.__gameStore.getState().doGoto(\u0027outdoors\u0027, \u0027weather\u0027 & gt \u0027cheatmenu_din\u0027, \u0027time\u0027); return false;">' + ((((s as any).sunWeather ?? 0)===0) ? ('Rain') : ('Sunny')) + '</a>');
   scene.text(`Temperature = ${((s as any).temperature ?? '')}`);
   if (((s as any).temper ?? 0) > -21) {
     (s as any).temp_text = '  <a href="#" onclick="window.__gameStore.setState((s) => { s.weatherTemper -=50; return s; }); window.__gameStore.getState().doGoto(\u0027outdoors\u0027, \u0027weather\u0027 & gt \u0027cheatmenu_din\u0027, \u0027time\u0027); return false;">-5</a>';
@@ -2333,7 +2333,7 @@ function enterPain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Pain']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - Pain Management</h1></center>');
-  scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \u0027pain\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027pain\u0027); return false;">No pain</a></center>');
+  scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any)[\u0027pain\u0027]; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027pain\u0027); return false;">No pain</a></center>');
   scene.text(String(qspFunc(s, 'cheatmenu', 'table_start') || ''));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'head', 'head']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hair', 'hair']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -2569,7 +2569,7 @@ function enterItems(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheatPainRow(s: GameState, scene: SceneBuilder): void {
-  scene.text(`pain[${((s as any).locArgs?.[2] ?? '')}] = ${(((s as any).pain ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { (s.pain ??= {})/u0027${((s as any).locArgs?.[1] ?? '')}/u0027 -=10; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027pain/u0027); return false;">-10</a> <a href="#" onclick="window.__gameStore.setState((s) => { (s.pain ??= {})/u0027${((s as any).locArgs?.[1] ?? '')}/u0027 +=10; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027pain/u0027); return false;">+10</a>`);
+  scene.text(`pain[${((s as any).locArgs?.[2] ?? '')}] = ${(((s as any).pain ?? 0)?.[((s as any).locArgs?.[1] ?? '')] ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { (s.pain ??= {})/u0027__qspDyn/u0027 -=10; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027pain/u0027); return false;">-10</a> <a href="#" onclick="window.__gameStore.setState((s) => { (s.pain ??= {})/u0027__qspDyn/u0027 +=10; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027pain/u0027); return false;">+10</a>`);
   scene.build();
 }
 
@@ -2626,7 +2626,7 @@ function enterCheatGradeRow(s: GameState, scene: SceneBuilder): void {
 function enterCheatBoolRow(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_cheat_on = ((String((s as any).locArgs?.[3] ?? '') === '') ? ('Enabled') : (((s as any).locArgs?.[3] ?? 0)));
   (s as any).temp_cheat_off = ((String((s as any).locArgs?.[4] ?? '') === '') ? ('Disabled') : (((s as any).locArgs?.[4] ?? 0)));
-  scene.text(`${((s as any).locArgs?.[2] ?? '')}: <a href="#" onclick="window.__gameStore.setState((s) => { (s.cheatVars ??= {})/u0027${((s as any).locArgs?.[1] ?? '')}/u0027 = iif(cheatVars[/u0027${((s as any).locArgs?.[1] ?? '')}/u0027], 0, 1); return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, (((s as any).cheatmenu ?? 0)?.[/u0027this_menu/u0027] ?? /u0027/u0027)); return false;">${((((s as any).cheatVars ?? 0)[String((s as any).locArgs?.[1] ?? '')]) ? (((s as any).temp_cheat_on ?? '')) : (((s as any).temp_cheat_off ?? '')))}</a>`);
+  scene.text(`${((s as any).locArgs?.[2] ?? '')}: <a href="#" onclick="window.__gameStore.setState((s) => { (s.cheatVars ??= {})/u0027__qspDyn/u0027 = iif(cheatVars[/u0027${((s as any).locArgs?.[1] ?? '')}/u0027], 0, 1); return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, (((s as any).cheatmenu ?? 0)?.[/u0027this_menu/u0027] ?? /u0027/u0027)); return false;">${((((s as any).cheatVars ?? 0)[String((s as any).locArgs?.[1] ?? '')]) ? (((s as any).temp_cheat_on ?? '')) : (((s as any).temp_cheat_off ?? '')))}</a>`);
   (s as any).temp_cheat_on = undefined;
   (s as any).temp_cheat_off = undefined;
   scene.build();
@@ -2670,11 +2670,11 @@ function enterTraitsCheats(s: GameState, scene: SceneBuilder): void {
     (s as any).cheat_tp_title = (String((String(((s as any).cheat_tp_t ?? 0)).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) + (String(((s as any).cheat_tp_t ?? 0)).slice((2)-1));
     (s as any).cheat_tp_k = ((s as any).cheat_tp_t ?? 0) + '_points';
     scene.text(`<b>${((s as any).cheat_tp_title ?? '')}</b> (${(((s as any).arch_vars ?? 0)?.[String((s as any).cheat_tp_k ?? 0)] ?? '')}): `);
-    scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})/u0027${((s as any).cheat_tp_k ?? '')}/u0027 +=10000; { const _t = String((s as any).cheat_tp_refresh || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027archetypes/u0027, /u0027clamp/u0027, /u0027//u0027/u0027 + String((s as any).cheat_tp_t ?? /u0027/u0027) + /u0027//u0027 & /u0027 + String((s as any).cheat_tp_refresh ?? /u0027/u0027)); return false;">+10k</a>`);
-    scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})/u0027${((s as any).cheat_tp_k ?? '')}/u0027 +=1000; { const _t = String((s as any).cheat_tp_refresh || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027archetypes/u0027, /u0027clamp/u0027, /u0027//u0027/u0027 + String((s as any).cheat_tp_t ?? /u0027/u0027) + /u0027//u0027 & /u0027 + String((s as any).cheat_tp_refresh ?? /u0027/u0027)); return false;">+1k</a>`);
-    scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})/u0027${((s as any).cheat_tp_k ?? '')}/u0027 -=1000; { const _t = String((s as any).cheat_tp_refresh || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027archetypes/u0027, /u0027clamp/u0027, /u0027//u0027/u0027 + String((s as any).cheat_tp_t ?? /u0027/u0027) + /u0027//u0027 & /u0027 + String((s as any).cheat_tp_refresh ?? /u0027/u0027)); return false;">-1k</a>`);
-    scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})/u0027${((s as any).cheat_tp_k ?? '')}/u0027 -=10000; { const _t = String((s as any).cheat_tp_refresh || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027archetypes/u0027, /u0027clamp/u0027, /u0027//u0027/u0027 + String((s as any).cheat_tp_t ?? /u0027/u0027) + /u0027//u0027 & /u0027 + String((s as any).cheat_tp_refresh ?? /u0027/u0027)); return false;">-10k</a>`);
-    scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})/u0027${((s as any).cheat_tp_k ?? '')}/u0027 = 0; { const _t = String((s as any).cheat_tp_refresh || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); return false;">Zero</a>`);
+    scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})String((s as any).cheat_tp_k ?? /u0027/u0027) +=10000; { const _t = String((s as any).cheat_tp_refresh || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027archetypes/u0027, /u0027clamp/u0027, /u0027//u0027/u0027 + String((s as any).cheat_tp_t ?? /u0027/u0027) + /u0027//u0027 & /u0027 + String((s as any).cheat_tp_refresh ?? /u0027/u0027)); return false;">+10k</a>`);
+    scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})String((s as any).cheat_tp_k ?? /u0027/u0027) +=1000; { const _t = String((s as any).cheat_tp_refresh || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027archetypes/u0027, /u0027clamp/u0027, /u0027//u0027/u0027 + String((s as any).cheat_tp_t ?? /u0027/u0027) + /u0027//u0027 & /u0027 + String((s as any).cheat_tp_refresh ?? /u0027/u0027)); return false;">+1k</a>`);
+    scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})String((s as any).cheat_tp_k ?? /u0027/u0027) -=1000; { const _t = String((s as any).cheat_tp_refresh || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027archetypes/u0027, /u0027clamp/u0027, /u0027//u0027/u0027 + String((s as any).cheat_tp_t ?? /u0027/u0027) + /u0027//u0027 & /u0027 + String((s as any).cheat_tp_refresh ?? /u0027/u0027)); return false;">-1k</a>`);
+    scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})String((s as any).cheat_tp_k ?? /u0027/u0027) -=10000; { const _t = String((s as any).cheat_tp_refresh || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027archetypes/u0027, /u0027clamp/u0027, /u0027//u0027/u0027 + String((s as any).cheat_tp_t ?? /u0027/u0027) + /u0027//u0027 & /u0027 + String((s as any).cheat_tp_refresh ?? /u0027/u0027)); return false;">-10k</a>`);
+    scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})String((s as any).cheat_tp_k ?? /u0027/u0027) = 0; { const _t = String((s as any).cheat_tp_refresh || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); return false;">Zero</a>`);
     (s as any).cheat_tp_i = ((s as any).cheat_tp_i ?? 0) + (1);
     (s as any).cheat_arch = undefined;
     (s as any).cheat_tp_t = undefined;

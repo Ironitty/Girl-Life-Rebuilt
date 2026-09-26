@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -102,7 +102,7 @@ function enterDressTalk(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 2) + 1) === 1  &&  Object.keys((s as any).sex_ev_dress_topics ?? {}).length > 0) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: dynamic $sex_ev_dress_topics[rand(0, arrsize('sex_ev_dress_t...
+    dynamicGoto(st, String(((st as any).sex_ev_dress_topics ?? {})[String((st as any).rand(0, arrsize('sex_ev_dress_topics')-1) ?? '')] || ''));
   } },
     ]);
   }

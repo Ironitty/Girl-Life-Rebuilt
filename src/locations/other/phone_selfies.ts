@@ -743,7 +743,7 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
   do {
     if (((s as any).npc_selfieon ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 7) {
       (s as any).count1 = ((s as any).count1 ?? 0) + (1);
-      (s as any).textgrup = ((s as any).textgrup ?? 0) + ('\' + \'<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>\' + $func(\'phone_selfies\', \'get_npc_selfie\', \'A' + ((s as any).i ?? 0) + '\') + \'</td>');
+      (s as any).textgrup = ((s as any).textgrup ?? 0) + ('' + '<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>' + qspFunc(s, 'phone_selfies', 'get_npc_selfie', 'A' + ((s as any).i ?? 0) + '') + '</td>');
       if (((s as any).count1 ?? 0) === 6) {
         (s as any).textgrup = ((s as any).textgrup ?? 0) + ('</tr><tr>');
         (s as any).count1 = 0;
@@ -770,7 +770,7 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
   do {
     if (((s as any).npc_selfieon ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 1  ||  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 2  ||  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 3  ||  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 4  ||  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 5)) {
       (s as any).count1 = ((s as any).count1 ?? 0) + (1);
-      (s as any).textgrup = ((s as any).textgrup ?? 0) + ('\' + \'<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>\' + $func(\'phone_selfies\', \'get_npc_selfie\', \'A' + ((s as any).i ?? 0) + '\') + \'</td>');
+      (s as any).textgrup = ((s as any).textgrup ?? 0) + ('' + '<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>' + qspFunc(s, 'phone_selfies', 'get_npc_selfie', 'A' + ((s as any).i ?? 0) + '') + '</td>');
       if (((s as any).count1 ?? 0) === 6) {
         (s as any).textgrup = ((s as any).textgrup ?? 0) + ('</tr><tr>');
         (s as any).count1 = 0;
@@ -797,7 +797,7 @@ function enterTeacher(s: GameState, scene: SceneBuilder): void {
   do {
     if (((s as any).npc_selfieon ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 6) {
       (s as any).count1 = ((s as any).count1 ?? 0) + (1);
-      (s as any).textgrup = ((s as any).textgrup ?? 0) + ('\' + \'<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>\' + $func(\'phone_selfies\', \'get_npc_selfie\', \'A' + ((s as any).i ?? 0) + '\') + \'</td>');
+      (s as any).textgrup = ((s as any).textgrup ?? 0) + ('' + '<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>' + qspFunc(s, 'phone_selfies', 'get_npc_selfie', 'A' + ((s as any).i ?? 0) + '') + '</td>');
       if (((s as any).count1 ?? 0) === 6) {
         (s as any).textgrup = ((s as any).textgrup ?? 0) + ('</tr><tr>');
         (s as any).count1 = 0;
@@ -824,7 +824,7 @@ function enterPavlovsk(s: GameState, scene: SceneBuilder): void {
   do {
     if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 8  &&  ((s as any).npc_selfieon ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
       (s as any).count1 = ((s as any).count1 ?? 0) + (1);
-      (s as any).textgrup = ((s as any).textgrup ?? 0) + ('\' + \'<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>\' + $func(\'phone_selfies\', \'get_npc_selfie\', \'A' + ((s as any).i ?? 0) + '\') + \'</td>');
+      (s as any).textgrup = ((s as any).textgrup ?? 0) + ('' + '<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>' + qspFunc(s, 'phone_selfies', 'get_npc_selfie', 'A' + ((s as any).i ?? 0) + '') + '</td>');
       if (((s as any).count1 ?? 0) === 6) {
         (s as any).textgrup = ((s as any).textgrup ?? 0) + ('</tr><tr>');
         (s as any).count1 = 0;

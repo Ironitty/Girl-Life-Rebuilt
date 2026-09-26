@@ -72,7 +72,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     while (true) {
       ((s as any).kidid = (s as any).kidid ?? {})[String((s as any).j ?? 0)] = ((s as any).j ?? 0);
       if (((s as any).patpack ?? 0)?.[String((s as any).j ?? 0)] === 1) {
-        scene.text('    <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: testresDay[kidid[j]] = daystart+rand(5,7) */ /* TODO-QSP: patpack[kidid[j]] = 0 */ s.used_pattest -=1; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().20000 ?? \u0027\u0027)); return false;">$kidname[j]</a>');
+        scene.text('    <a href="#" onclick="window.__gameStore.setState((s) => { (s.testresDay ??= {})kidid[j] = daystart+rand(5,7); (s.patpack ??= {})kidid[j] = 0; s.used_pattest -=1; return s; }); window.__gameStore.getState().doGoto(\u0027money\u0027, \u0027pay\u0027, String(window.__gameStore.getState().20000 ?? \u0027\u0027)); return false;">$kidname[j]</a>');
       }
       if (((s as any).j ?? 0) < ((s as any).kid ?? 0) - 1) {
         (s as any).j = ((s as any).j ?? 0) + (1);

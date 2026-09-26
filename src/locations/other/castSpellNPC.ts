@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).casterMana ?? 0) >= ((s as any).manaCost ?? 0)) {
       scene.text('' + ((s as any).locArgs?.[3] ?? 0) + '_mana[' + ((s as any).locArgs?.[4] ?? 0) + '] -= ' + ((s as any).manaCost ?? 0) + '');
       (s as any).SpellExec = 'gs \'spell\', \'' + ((s as any).SpellID ?? 0) + '\', \'' + ((s as any).spellSuccess ?? 0) + '\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\', ' + ((s as any).locArgs?.[2] ?? 0) + ', ' + ((s as any).locArgs?.[4] ?? 0) + '' + ((s as any).SpellArgs ?? 0) + '';
-      qspFunc(s, 'SpellExec');
+      dynamicGoto(s, String((s as any).SpellExec || ''));
     } else {
       scene.text('Not enough mana to cast the spell.');
     }

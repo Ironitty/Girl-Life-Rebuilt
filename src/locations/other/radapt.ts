@@ -662,7 +662,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/holodpusto.jpg"></center><br><font color = red>empty shelves.</font>';
   }
   if (((s as any).radbeer_count ?? 0) > 0  &&  ((s as any).radvodka_count ?? 0) > 0  &&  ((s as any).radsup_count ?? 0) > 0) {
-    (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/holod\'+rand(1, 3)+\'.jpg"></center>';
+    (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/holod' + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>';
   }
   scene.text(`You open the fridge and see:${((s as any).rad_vodka ?? '')}${((s as any).rad_beer ?? '')}${((s as any).rad_sup ?? '')}${((s as any).r_pusto ?? '')}`);
   if (((s as any).radbeer_count ?? 0) > 0) {

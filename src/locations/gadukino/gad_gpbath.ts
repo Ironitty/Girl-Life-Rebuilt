@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -19,7 +17,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/gp_dacha/bana.jpg');
   scene.text('A small room with a low, smoky ceiling, a small stove, a couple of stainless steel water tanks, and a blackened wooden shelf.');
   scene.text('Grandma\'s enema bulb is hidden behind some stuff on the shelf.');
-  scene.text(`You can check your weight on your grandma's old mechanical <a href="#" onclick="window.__gameStore.setState((s) => { alert(/u0027<center>Your weight is ${(((s as any).pcs_weight ?? 0)?.[0] ?? '')}.${(((s as any).pcs_weight ?? 0)?.[1] ?? '')} kg<br>Your body mass index (BMI) is ${(((s as any).pcs_bmi ?? 0)?.[0] ?? '')}.${(((s as any).pcs_bmi ?? 0)?.[1] ?? '')}.<br>${qspUntranslated(s, "bodyVars[\\u0027bmi_desc\\u0027]", { location: "gad_gpbath" })}</center>/u0027); return s; }); return false;">scales</a>.`);
+  scene.text(`You can check your weight on your grandma's old mechanical <a href="#" onclick="window.__gameStore.setState((s) => { alert(/u0027<center>Your weight is /u0027 + /u0027__qspDyn/u0027 + /u0027./u0027 + /u0027__qspDyn/u0027 + /u0027 kg<br>Your body mass index (BMI) is /u0027 + /u0027__qspDyn/u0027 + /u0027./u0027 + /u0027__qspDyn/u0027 + /u0027.<br>/u0027 + String((s as any).bodyVars?./u0027bmi_desc/u0027 ?? /u0027/u0027) + /u0027</center>/u0027); return s; }); return false;">scales</a>.`);
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetLeaveActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {

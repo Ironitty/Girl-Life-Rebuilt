@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -132,7 +132,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     scene.text('The boys leave to the bathroom to freshen up, leaving you by yourself.');
-    qspFunc(s, 'd_dozdat');
+    dynamicGoto(st, String((st as any).d_dozdat || ''));
     scene.actions([
       { label: 'Peek at your friend', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -143,7 +143,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'end');
     }
     scene.text('You pull the door closed, realizing you shouldn\'t be peeking on your friend. Instead, you just sit back on the bed and patiently wait for your friend to be done.');
-    qspFunc(s, 'd_dozdat');
+    dynamicGoto(st, String((st as any).d_dozdat || ''));
   } },
     ]);
   } },
@@ -172,7 +172,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     scene.text('The guy crashes down next to you and almost immediately falls asleep. Within minutes his snoring fills the room, and you\'re not quite sure… should you feel flattered for exhausting him so effectively, or insulted that he\'s no longer paying any attention to you?');
-    qspFunc(s, 'd_dozdat');
+    dynamicGoto(st, String((st as any).d_dozdat || ''));
     scene.actions([
       { label: 'Peek at your friend', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -183,7 +183,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'end');
     }
     scene.text('You pull the door closed, realizing you shouldn\'t be peeking on your friend. Instead, you just sit back on the bed and patiently wait for your friend to be done.');
-    qspFunc(s, 'd_dozdat');
+    dynamicGoto(st, String((st as any).d_dozdat || ''));
   } },
     ]);
   } },
@@ -213,7 +213,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You take his cock in your mouth, and start to pleasure him. It doesn\'t take long before his cum fills your throat.');
       qspCall(st, 'arousal', 'bj', 5, 'sub');
       qspCall(st, 'arousal', 'end');
-      qspFunc(s, 'd_girlfrend_end2');
+      dynamicGoto(st, String((st as any).d_girlfrend_end2 || ''));
     } else {
       if (((st as any).tipsexrand ?? 0) === 1) {
         scene.img('images/locations/pavlovsk/park/sex/bj.jpg');
@@ -226,7 +226,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile up at him with his cock still in your mouth, and redouble your efforts to give him the best blowjob you can come up with.');
     qspCall(st, 'arousal', 'bj', 5, 'sub');
     qspCall(st, 'arousal', 'end');
-    qspFunc(s, 'd_girlfrend_end2');
+    dynamicGoto(st, String((st as any).d_girlfrend_end2 || ''));
   } },
           { label: 'Lie on your back', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -234,7 +234,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You lie down on your back and the guy quickly spreads your legs, and slams his cock inside your snatch before you can change your mind. While he fucks you vigorously, a second comes up out of nowhere and puts his cock in front of your mouth. Not giving it another thought, you open your mouth and close your lips around it.');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub');
     qspCall(st, 'arousal', 'end');
-    qspFunc(s, 'd_girlfrend_end2');
+    dynamicGoto(st, String((st as any).d_girlfrend_end2 || ''));
   } },
           { label: 'Offer him your ass', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -245,7 +245,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'striptease', 5);
     qspCall(st, 'arousal', 'anal', 5, 'sub');
     qspCall(st, 'arousal', 'end');
-    qspFunc(s, 'd_girlfrend_end2');
+    dynamicGoto(st, String((st as any).d_girlfrend_end2 || ''));
   } },
         ]);
       }
@@ -296,7 +296,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'bj', 5, 'sub', 'group', 'deepthroat');
       qspCall(st, 'arousal', 'vaginal', (-5), 'sub', 'group');
       qspCall(st, 'stat', '');
-      qspFunc(s, 'd_girlfrend_end');
+      dynamicGoto(st, String((st as any).d_girlfrend_end || ''));
     } else {
       if (((st as any).sexrand ?? 0) === 1) {
         scene.text('Suddenly, the guys decide to change places.');
@@ -313,7 +313,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'group', 'deepthroat');
     qspCall(st, 'arousal', 'vaginal', (-5), 'sub', 'group');
     qspCall(st, 'arousal', 'end');
-    qspFunc(s, 'd_girlfrend_end');
+    dynamicGoto(st, String((st as any).d_girlfrend_end || ''));
   } },
         ]);
       }
@@ -345,7 +345,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'bj', 5, 'sub', 'group', 'deepthroat');
       qspCall(st, 'arousal', 'anal', (-5), 'sub', 'group');
       qspCall(st, 'stat', '');
-      qspFunc(s, 'd_girlfrend_end');
+      dynamicGoto(st, String((st as any).d_girlfrend_end || ''));
     } else {
       if (((st as any).sexrand ?? 0) === 1) {
         scene.actions([
@@ -359,7 +359,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'group', 'deepthroat');
     qspCall(st, 'arousal', 'anal', (-5), 'sub', 'group');
     qspCall(st, 'arousal', 'end');
-    qspFunc(s, 'd_girlfrend_end');
+    dynamicGoto(st, String((st as any).d_girlfrend_end || ''));
   } },
         ]);
       }
@@ -383,7 +383,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'group', 'deepthroat');
     qspCall(st, 'arousal', 'vaginal', (-5), 'sub', 'group');
     qspCall(st, 'arousal', 'end');
-    qspFunc(s, 'd_girlfrend_end');
+    dynamicGoto(st, String((st as any).d_girlfrend_end || ''));
   } },
     ]);
   } },

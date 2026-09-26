@@ -38,7 +38,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 75) {
     scene.actions([
       { label: 'Masturbate (0:15)', handler: (st: GameState) => {
-    // TODO-QSP: dynamic $divmastr
+    dynamicGoto(st, String((st as any).divmastr || ''));
   } },
     ]);
   }
@@ -83,7 +83,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 75) {
     scene.actions([
       { label: 'Masturbate (0:15)', handler: (st: GameState) => {
-    // TODO-QSP: dynamic $divmastr
+    dynamicGoto(st, String((st as any).divmastr || ''));
   } },
     ]);
   }

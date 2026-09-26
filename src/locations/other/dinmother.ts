@@ -86,7 +86,7 @@ function enterDMother3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDMother4(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/posuda\'+rand(1, 3)+\'.jpg"></center><br>Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mother\u0027, \u0027\u0027); return false;">' + (((s as any).npc_nickname ?? 0)?.['A29']) + '</a> stands near the sink, washing dishes.';
+  (s as any).result = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/posuda' + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center><br>Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mother\u0027, \u0027\u0027); return false;">' + (((s as any).npc_nickname ?? 0)?.['A29']) + '</a> stands near the sink, washing dishes.';
   scene.build();
 }
 
@@ -101,12 +101,12 @@ function enterDMother6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDMother7(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/prost\'+rand(1, 11)+\'.jpg"></center><br>Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mother\u0027, \u0027\u0027); return false;">' + (((s as any).npc_nickname ?? 0)?.['A29']) + '</a> is busy in the kitchen and unaware of your presence.';
+  (s as any).result = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/prost' + (Math.floor(Math.random() * 11) + 1) + '.jpg"></center><br>Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mother\u0027, \u0027\u0027); return false;">' + (((s as any).npc_nickname ?? 0)?.['A29']) + '</a> is busy in the kitchen and unaware of your presence.';
   scene.build();
 }
 
 function enterDMother8(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/uborka\'+rand(1, 3)+\'.jpg"></center><br>Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mother\u0027, \u0027\u0027); return false;">' + (((s as any).npc_nickname ?? 0)?.['A29']) + '</a> is cleaning with a broom in her hand.';
+  (s as any).result = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/characters/pavlovsk/resident/mom/uborka' + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center><br>Your <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027mother\u0027, \u0027\u0027); return false;">' + (((s as any).npc_nickname ?? 0)?.['A29']) + '</a> is cleaning with a broom in her hand.';
   scene.build();
 }
 

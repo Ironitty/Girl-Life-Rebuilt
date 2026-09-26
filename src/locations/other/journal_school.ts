@@ -138,7 +138,7 @@ function enterCreateGrid(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 1;
   do {
     if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).temp_grid_grouptipe ?? 0)  &&  ((s as any).schoolenable ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
-      (s as any).grid_text = ((s as any).grid_text ?? 0) + ('<td><table bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + '><tr><td align="center"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal_school\u0027, \u0027\u0027 + $temp_grid_groupname + \u0027\u0027); return false;"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"></a></td></tr><tr><td align="center">' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '</td></tr></table>\' + \'</td>');
+      (s as any).grid_text = ((s as any).grid_text ?? 0) + ('<td><table bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + '><tr><td align="center"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027journal_school\u0027, \u0027\u0027 + $temp_grid_groupname + \u0027\u0027); return false;"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"></a></td></tr><tr><td align="center">' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '</td></tr></table>' + '</td>');
       (s as any).grid_count = ((s as any).grid_count ?? 0) + (1);
       if (((s as any).grid_count ?? 0) === 6  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).temp_grid_grouptipe ?? 0)) {
         (s as any).grid_text = ((s as any).grid_text ?? 0) + ('</tr><tr>');

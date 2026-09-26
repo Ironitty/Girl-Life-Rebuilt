@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -324,7 +324,7 @@ function enterImport(s: GameState, scene: SceneBuilder): void {
     if (((st as any).initext ?? 0) === '') {
       return;
     }
-    qspFunc(s, 'initext');
+    dynamicGoto(st, String((st as any).initext || ''));
     (st as any).initext = undefined;
     qspCall(st, 'themes', 'set_theme', (((st as any).theme ?? 0)?.['name']), (((st as any).theme ?? 0)?.['type']));
     if (((st as any).calendar_show ?? 0)?.['disco_party'] === 1) {

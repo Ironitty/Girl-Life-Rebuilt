@@ -377,7 +377,7 @@ function enterHolodil(s: GameState, scene: SceneBuilder): void {
   if (((s as any).guavacoco_count ?? 0) === 0  &&  ((s as any).kvass_count ?? 0) === 0  &&  (!((s as any).sup_count ?? 0))) {
     (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/holodpusto.jpg"></center><br>You open the fridge and see:<br><font color = red>empty shelves.</font>';
   } else {
-    (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/aptrolan/kitch/selfservice\' + rand(0, 8) + \'.jpg"></center><br>You open the fridge and see:';
+    (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/aptrolan/kitch/selfservice' + (Math.floor(Math.random() * 9) + 0) + '.jpg"></center><br>You open the fridge and see:';
   }
   scene.text(`${((s as any).r_pusto ?? '')}<br>${((s as any).r_kvass ?? '')}${((s as any).r_guavacoco ?? '')}${((s as any).r_sup ?? '')}`);
   if (((s as any).guavacoco_count ?? 0) > 0) {

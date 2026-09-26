@@ -1937,7 +1937,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
             (s as any).strip_img_temp = 1;
           }
         }
-        qspFunc(s, 'clothingdin_sofa');
+        dynamicGoto(s, String((s as any).clothingdin_sofa || ''));
         qspCall(s, 'arousal', 'flash', 3, 'incest');
         qspCall(s, 'brother_disc', 'arousal');
         qspCall(s, 'stat', '');
@@ -2048,7 +2048,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
               } else {
                 scene.text('"Come on I\'m at least going to be comfortable." you say to him as you sit on the sofa and grab a controller.');
               }
-              qspFunc(s, 'clothingdin_sofa');
+              dynamicGoto(s, String((s as any).clothingdin_sofa || ''));
               qspCall(s, 'arousal', 'bj', 5, 'incest');
               qspCall(s, 'stat', '');
               qspCall(s, 'dinsex', 'bj_random');
@@ -2144,7 +2144,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Further', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'foreplay', 2, 'incest');
-    qspFunc(s, 'clothingdin_sofa');
+    dynamicGoto(st, String((st as any).clothingdin_sofa || ''));
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/sex/reluctant.mp4');
     scene.text(`He ignores you and says "Come on ${((st as any).pcs_nickname ?? '')} you lost…" as he pulls at your panties.`);
@@ -2414,7 +2414,7 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).brother ?? 0)?.['but_rub'] === 3) {
           qspCall(s, 'arousal', 'foreplay', 2, 'incest');
-          qspFunc(s, 'clothingdin_sofa');
+          dynamicGoto(s, String((s as any).clothingdin_sofa || ''));
           qspCall(s, 'stat', '');
           scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/sex/reluctant.mp4');
           scene.text(`"Come on ${((s as any).pcs_nickname ?? '')} you lost… take off everything this time!" as he pulls at your panties.`);
@@ -2455,7 +2455,7 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).brother ?? 0)?.['but_rub'] >= 4  &&  ((s as any).pantyworntype ?? 0) !== 'none'  &&  (Math.floor(Math.random() * 3) + 1) === 2) {
             qspCall(s, 'arousal', 'foreplay', 2, 'incest');
-            qspFunc(s, 'clothingdin_sofa');
+            dynamicGoto(s, String((s as any).clothingdin_sofa || ''));
             qspCall(s, 'stat', '');
             scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/sex/reluctant.mp4');
             scene.text('Laying down, you get yourself comfortable while glancing at your brother. He seams a bit nervous but also at the same time eager. Looking at him you see that he is sporting a large bulging boner. He gives it a few tugs to adjust him self, thinking you arn\'t looking, as he moves closer to you.');

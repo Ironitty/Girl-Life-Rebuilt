@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -1671,12 +1671,12 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_fun_2_8_4.jpg');
       scene.text('Strong desire clouds your mind, and you grab ' + (((!((st as any).rex_love ?? 0))) ? ('the guy\'s') : ('Rex\'s')) + ' member in full view of all the girls. You gently masturbate it with your hand, then take it in your mouth and begin to suck on its head.');
       scene.text((((!((st as any).rex_love ?? 0))) ? ('The guy') : ('Rex')) + ' can\'t resist for long and starts…');
-      qspFunc(s, 'party_suck');
+      dynamicGoto(st, String((st as any).party_suck || ''));
     } else {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_fun_2_8_5.jpg');
       scene.text('One of the girls takes the dick in front of her in her mouth. Feeling encouraged you take ' + (((!((st as any).rex_love ?? 0))) ? ('the guy\'s') : ('Rex\'s')) + ' dick and gently masturbate it with your hand. Soon you put it in your mouth and begin to suck on its head, watching the other girl giving head at the same time.');
       scene.text((((!((st as any).rex_love ?? 0))) ? ('The guy') : ('Rex')) + ' can\'t resist for long and starts…');
-      qspFunc(s, 'party_suck');
+      dynamicGoto(st, String((st as any).party_suck || ''));
     }
     scene.actions([
       { label: 'Make him cum', handler: (st: GameState) => {

@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -280,7 +280,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
       { label: '', labelFn: (s: GameState) => String('Send paternity test (' + qspFunc(s, 'money', 'string_price', 20000) + ')' ?? ''), handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 20000) === 1) {
       qspCall(st, 'money', 'pay', 20000);
-      qspFunc(s, 'send_test');
+      dynamicGoto(st, String((st as any).send_test || ''));
       qspCall(st, 'stat', '');
       scene.text('You pay the fee for the testing, then mail your used paternity test to the lab in Saint Petersburg with the copy of your receipt of payment. You will get answer by SMS within a week.');
     } else {

@@ -688,10 +688,10 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).subscription ?? 0)[((s as any).home ?? 0)?.['current']] === 1) {
         (s as any).temp_home = '' + (((s as any).home ?? 0)?.['current']) + '-date';
-        (s as any).line = '<tr><td align="center">You have an active internet subscription at ' + (((s as any).home ?? 0)?.['display']) + ' that will renew next month on day ' + (((s as any).subscription ?? 0)?.[String((s as any).temp_home ?? 0)] ?? 0) + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>';
+        (s as any).line = '<tr><td align="center">You have an active internet subscription at ' + (((s as any).home ?? 0)?.['display']) + ' that will renew next month on day ' + (((s as any).subscription ?? 0)?.[String((s as any).temp_home ?? 0)] ?? 0) + ' for ' + qspFunc(s, 'money', 'string_price', ((s as any).price ?? 0)) + '</td></tr>';
         (s as any).temp_home = undefined;
       } else {
-        (s as any).line = '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly internet subscription for \' + $func(\'money\', \'string_price\', price) + \' at your ' + (((s as any).home ?? 0)?.['display']) + '. Automatically renews every month</td>';
+        (s as any).line = '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly internet subscription for ' + qspFunc(s, 'money', 'string_price', ((s as any).price ?? 0)) + ' at your ' + (((s as any).home ?? 0)?.['display']) + '. Automatically renews every month</td>';
         if ((!((s as any).bankAccount ?? 0))) {
           (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">No bank account</td></tr>');
         } else {
@@ -717,7 +717,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
           (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="center">You have rented out the ' + qspUntranslated(s, "LCASE(property_name[i])", { location: "shop" }) + ' and you don\'t have to buy internet for our tenants.</td></tr>');
         } else {
           if (((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).i ?? 0)]] === 0) {
-            (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly internet subscription for \' + $func(\'money\', \'string_price\', price) + \' at ' + qspUntranslated(s, "LCASE(property_name[i])", { location: "shop" }) + '. Automatically renews every month</td>');
+            (s as any).line = ((s as any).line ?? 0) + ('<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly internet subscription for ' + qspFunc(s, 'money', 'string_price', ((s as any).price ?? 0)) + ' at ' + qspUntranslated(s, "LCASE(property_name[i])", { location: "shop" }) + '. Automatically renews every month</td>');
             if ((!((s as any).bankAccount ?? 0))) {
               (s as any).line = ((s as any).line ?? 0) + ('<td style="padding-left: 10px; padding-right: 10px;">No bank account</td></tr>');
             } else {
@@ -729,7 +729,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).subscription ?? 0)[((s as any).property_code ?? 0)?.[String((s as any).i ?? 0)]] > 0) {
-              (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="center">You have an active internet subscription for the ' + qspUntranslated(s, "LCASE(property_name[i])", { location: "shop" }) + ' that will renew next month on day ' + (((s as any).subscription ?? 0)?.[String((((s as any).property_code ?? 0)?.[String((s as any).i ?? 0)] ?? 0)) + '-date']) + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>');
+              (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="center">You have an active internet subscription for the ' + qspUntranslated(s, "LCASE(property_name[i])", { location: "shop" }) + ' that will renew next month on day ' + (((s as any).subscription ?? 0)?.[String((((s as any).property_code ?? 0)?.[String((s as any).i ?? 0)] ?? 0)) + '-date']) + ' for ' + qspFunc(s, 'money', 'string_price', ((s as any).price ?? 0)) + '</td></tr>');
             }
           }
         }
@@ -749,7 +749,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
   (s as any).title = '<center><h4>Mobile Internet Subscription</h4></center>';
   (s as any).price = 1200;
   if (((s as any).subscription ?? 0)?.['mobile'] === 1) {
-    (s as any).line = '<tr><td align="center">You have an active mobile internet subscription that will renew next month on day ' + (((s as any).subscription ?? 0)?.['mobile-date']) + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>';
+    (s as any).line = '<tr><td align="center">You have an active mobile internet subscription that will renew next month on day ' + (((s as any).subscription ?? 0)?.['mobile-date']) + ' for ' + qspFunc(s, 'money', 'string_price', ((s as any).price ?? 0)) + '</td></tr>';
   } else {
     if (((s as any).subscription ?? 0)?.['metered_mobile'] > 0) {
       (s as any).discount = (((s as any).subscription ?? {})?.['metered_mobile'] ?? 0) / 12;
@@ -810,7 +810,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
   (s as any).title = '<center><h4>Mobile Calls and Texts</h4></center>';
   (s as any).price = 800;
   if (((s as any).subscription ?? 0)?.['monthly_calls'] === 1) {
-    (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="center">You have an active mobile subscription that will renew next month on day ' + (((s as any).subscription ?? 0)?.['monthly_calls-date']) + ' for \' + $func(\'money\', \'string_price\', price) + \'</td></tr>');
+    (s as any).line = ((s as any).line ?? 0) + ('<tr><td align="center">You have an active mobile subscription that will renew next month on day ' + (((s as any).subscription ?? 0)?.['monthly_calls-date']) + ' for ' + qspFunc(s, 'money', 'string_price', ((s as any).price ?? 0)) + '</td></tr>');
   } else {
     if (((s as any).subscription ?? 0)?.['metered_calls'] > 0) {
       (s as any).discount = (((s as any).subscription ?? {})?.['metered_calls'] ?? 0) / 2;

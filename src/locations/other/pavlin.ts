@@ -1001,7 +1001,7 @@ function enterSexmmf(s: GameState, scene: SceneBuilder): void {
     scene.text(`It doesn't take long before ${(((st as any).npcdesc ?? 0)?.[1] ?? '')} pulls you to your feet and guides you onto the bed. "Time to fuck that pussy of yours."`);
     if (((st as any).mmfcond ?? 0) === 1) {
       if (((st as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-        qspCall(st, 'dinsex', 'boy_puts_condom', '' + (((st as any).npcdesc ?? 0)?.[1] ?? 0) + ' takes your \'+iif(preziktype = 2, \'sabotaged \', \')+ \'condom and puts it on his ' + (((st as any).dick_length ?? 0)?.[1] ?? 0) + 'cm ' + (((st as any).dick_girth ?? 0)?.[1] ?? 0) + ' dick.');
+        qspCall(st, 'dinsex', 'boy_puts_condom', '' + (((st as any).npcdesc ?? 0)?.[1] ?? 0) + ' takes your ' + ((((st as any).preziktype ?? 0) === 2) ? ('sabotaged ') : ('')) + 'condom and puts it on his ' + (((st as any).dick_length ?? 0)?.[1] ?? 0) + 'cm ' + (((st as any).dick_girth ?? 0)?.[1] ?? 0) + ' dick.');
       } else {
         qspCall(st, 'dinsex', 'boy_puts_his_condom', '' + (((st as any).npcdesc ?? 0)?.[1] ?? 0) + '');
       }

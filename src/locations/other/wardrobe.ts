@@ -148,7 +148,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/system/icons/clothing/default.png');
   if (((s as any).wardrobeDefaultPagePref ?? 0) === 'currentOutfit') {
-    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \u0027$wardrobeDefaultPagePref\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove saved default wardrobe page</a>';
+    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any).wardrobeDefaultPagePref; return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove saved default wardrobe page</a>';
   } else {
     (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = \u0027currentOutfit\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027main\u0027); return false;">Set here as default wardrobe page</a>';
   }
@@ -414,7 +414,7 @@ function enterDefaultTemplate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/system/icons/clothing/clothes.png');
   if (((s as any).wardrobeDefaultPagePref ?? 0) === ((s as any).wloc ?? 0)) {
-    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \u0027$wardrobeDefaultPagePref\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, String((s as any).wloc ?? \u0027\u0027)); return false;">Remove saved default wardrobe page</a>';
+    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any).wardrobeDefaultPagePref; return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, String((s as any).wloc ?? \u0027\u0027)); return false;">Remove saved default wardrobe page</a>';
   } else {
     (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = $wloc */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, String((s as any).wloc ?? \u0027\u0027)); return false;">Set here as default wardrobe page</a>';
   }
@@ -531,7 +531,7 @@ function enterDefaultActionsWear(s: GameState, scene: SceneBuilder): void {
   do {
     if ((0 as any) !== 0) {
       (s as any).var_default_actions_wear = 0;
-      qspFunc(s, 'var_default_actions_wear');
+      dynamicGoto(s, String((s as any).var_default_actions_wear || ''));
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     (s as any).i = undefined;

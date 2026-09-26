@@ -554,7 +554,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   } else {
     if (qspFunc(s, 'money', 'can_afford', 720)) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => String('Buy the outfit (Kats #' + ((s as any).temp_pussycats_index ?? '') + ' \' + $func(\'money\', \'string_price\', 720) + \')' ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Buy the outfit (Kats #' + ((s as any).temp_pussycats_index ?? '') + ' ' + qspFunc(s, 'money', 'string_price', 720) + ')' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', 720);
     qspCall(st, 'clothing', 'add_item', 'cats_outfits', ((st as any).temp_pussycats_index ?? 0));
     qspCall(st, 'clothing', 'decrease_strength', 'cats_outfits', ((st as any).temp_pussycats_index ?? 0), 40);

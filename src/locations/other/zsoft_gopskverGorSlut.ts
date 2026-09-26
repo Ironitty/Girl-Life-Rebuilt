@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -848,7 +848,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/park/gop/piss` + (Math.floor(Math.random() * 6) + 1) + '.jpg"></center>');
   (s as any).ranadpercent = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).ranadpercent ?? 0)<=30) {
-    qspFunc(s, 'rand_event_piss');
+    dynamicGoto(s, String((s as any).rand_event_piss || ''));
     return;
   }
   (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);

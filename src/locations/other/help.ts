@@ -296,7 +296,7 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
           (s as any).rt_has_kids = ((((s as any).rt_kids ?? 0) !== '') ? (1) : (0));
           if (((s as any).rt_has_kids ?? 0)) {
             (s as any).rt_tri = ((((s as any).rt_open ?? 0)) ? ('&#9660;') : ('&#9654;'));
-            (s as any).rt_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})\u0027' + ((s as any).rt_key ?? 0) + '\u0027 = 1 - help_toc_open[\u0027' + ((s as any).rt_key ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">\' + $rt_tri + \'</a> ';
+            (s as any).rt_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})String((s as any).rt_key ?? \u0027\u0027) = 1 - help_toc_open[\u0027' + ((s as any).rt_key ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">' + ((s as any).rt_tri ?? 0) + '</a> ';
           } else {
             (s as any).rt_toggle = '&nbsp;&nbsp; ';
           }
@@ -309,7 +309,7 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
             (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.getState().doGoto(String((s as any).rt_loc ?? \u0027\u0027), String((s as any).rt_page ?? \u0027\u0027)); return false;">' + ((s as any).rt_label ?? 0) + '</a>';
           } else {
             if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_key ?? 0)]) {
-              (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})\u0027' + ((s as any).rt_key ?? 0) + '\u0027 = 1 - help_toc_open[\u0027' + ((s as any).rt_key ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">\' + $rt_label + \'</a>';
+              (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})String((s as any).rt_key ?? \u0027\u0027) = 1 - help_toc_open[\u0027' + ((s as any).rt_key ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">' + ((s as any).rt_label ?? 0) + '</a>';
             } else {
               (s as any).rt_lnk = ((s as any).rt_label ?? 0);
             }
@@ -330,8 +330,8 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_ck ?? 0)]) {
                   (s as any).rt_cg_open = (((s as any).help_toc_open ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
                   (s as any).rt_cg_tri = ((((s as any).rt_cg_open ?? 0)) ? ('&#9660;') : ('&#9654;'));
-                  (s as any).rt_cg_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})\u0027' + ((s as any).rt_ck ?? 0) + '\u0027 = 1 - help_toc_open[\u0027' + ((s as any).rt_ck ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">\' + $rt_cg_tri + \'</a> ';
-                  (s as any).rt_cg_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})\u0027' + ((s as any).rt_ck ?? 0) + '\u0027 = 1 - help_toc_open[\u0027' + ((s as any).rt_ck ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">\' + $help_toc_label[$rt_ck] + \'</a>';
+                  (s as any).rt_cg_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})String((s as any).rt_ck ?? \u0027\u0027) = 1 - help_toc_open[\u0027' + ((s as any).rt_ck ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">' + ((s as any).rt_cg_tri ?? 0) + '</a> ';
+                  (s as any).rt_cg_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})String((s as any).rt_ck ?? \u0027\u0027) = 1 - help_toc_open[\u0027' + ((s as any).rt_ck ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">' + (((s as any).help_toc_label ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0) + '</a>';
                   (s as any).rt_html = ((s as any).rt_html ?? 0) + ('<div style="margin:3px 0 1px 0;padding-left:14px;font-style:italic;font-size:0.88em;opacity:0.75">' + ((s as any).rt_cg_toggle ?? 0) + ((s as any).rt_cg_lnk ?? 0) + '</div>');
                   if (((s as any).rt_cg_open ?? 0)  &&  ((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ck ?? 0)] !== '') {
                     (s as any).rt_gc_rem = (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);

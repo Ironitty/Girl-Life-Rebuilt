@@ -625,7 +625,7 @@ function enterPhoneMenu(s: GameState, scene: SceneBuilder): void {
       if (((s as any).menu_off ?? 0) === 1) {
         ((s as any).telefon = (s as any).telefon ?? {})['body'] = ((s as any).telefon['body'] ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027obj_din\u0027, \u0027menu_disabled\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_settings.png"></a><br>');
       } else {
-        ((s as any).telefon = (s as any).telefon ?? {})['body'] = ((s as any).telefon['body'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \u0027menu_page\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027$menu_settings\u0027, \u0027\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_settings.png"></a><br>');
+        ((s as any).telefon = (s as any).telefon ?? {})['body'] = ((s as any).telefon['body'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any)[\u0027menu_page\u0027]; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_settings\u0027, \u0027\u0027); return false;"><img height="80" width="80" src="images/system/phone/theme/' + (((s as any).phonetheme_name ?? 0)?.[String((s as any).pcs_phonetheme ?? 0)] ?? 0) + '/icon_settings.png"></a><br>');
       }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'main']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
     }

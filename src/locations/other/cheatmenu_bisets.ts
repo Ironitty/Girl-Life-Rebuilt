@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -711,9 +711,9 @@ function enterCsCopyClassMenu(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).cmd_copy_class ?? 0)?.[String((s as any).cmbs_class_str ?? 0)] === 1) {
             ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['counter'] = ((s as any).cmd_copy_class['counter'] ?? 0) + (1);
-            (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><i><a href="#" onclick="window.__gameStore.setState((s) => { (s.cmd_copy_class ??= {})\u0027' + ((s as any).cmbs_class_str ?? 0) + '\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_menu\u0027); return false;">' + ((s as any).cmbs_class_str ?? 0) + '</a></i></td>');
+            (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><i><a href="#" onclick="window.__gameStore.setState((s) => { (s.cmd_copy_class ??= {})String((s as any).cmbs_class_str ?? \u0027\u0027) = 0; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_menu\u0027); return false;">' + ((s as any).cmbs_class_str ?? 0) + '</a></i></td>');
           } else {
-            (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><a href="#" onclick="window.__gameStore.setState((s) => { (s.cmd_copy_class ??= {})\u0027' + ((s as any).cmbs_class_str ?? 0) + '\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_menu\u0027); return false;">' + ((s as any).cmbs_class_str ?? 0) + '</a></td>');
+            (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><a href="#" onclick="window.__gameStore.setState((s) => { (s.cmd_copy_class ??= {})String((s as any).cmbs_class_str ?? \u0027\u0027) = 1; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_menu\u0027); return false;">' + ((s as any).cmbs_class_str ?? 0) + '</a></td>');
           }
         }
         (s as any).cmd_adv_bmi_i = ((s as any).cmd_adv_bmi_i ?? 0) + (1);
@@ -869,7 +869,7 @@ function enterCsOverwriteClass(s: GameState, scene: SceneBuilder): void {
 function enterAddSet(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Body Image Set Addition</b></center>');
   scene.text(String(qspFunc(s, 'cheatmenu', 'table_start') || ''));
-  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \u0027klsetask\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027main\u0027); return false;"><b>Go Back</b></a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any)[\u0027klsetask\u0027]; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027main\u0027); return false;"><b>Go Back</b></a>');
   scene.text('This is where you can add a new image set to a game.');
   scene.text('To add an image set, create a folder in images/pc/body/shape/ and name it anything you want (shorter will be easier to remember). Then put in it any images you want. Once you have done that, click the link below and put in your folder name to add that set.');
   scene.text('Note: This will only be for this instance/save of the game and you will have to redo the click the link step if you want to add the same folder to a different instance/save.');
@@ -930,7 +930,7 @@ function enterImportSet(s: GameState, scene: SceneBuilder): void {
   (s as any).fix_bod_set = undefined;
   scene.text('<center><b>Body Image Set Import</b></center>');
   scene.text(String(qspFunc(s, 'cheatmenu', 'table_start') || ''));
-  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \u0027klsetask\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027main\u0027); return false;"><b>Go Back</b></a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any)[\u0027klsetask\u0027]; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027main\u0027); return false;"><b>Go Back</b></a>');
   scene.text('This is where you can import a new image set to a game.');
   (s as any).cs_new_index = qspFunc(s, 'cheatmenu_bisets', 'get_new_set_index');
   if (((s as any).cs_new_index ?? 0) >= 0) {
@@ -959,7 +959,7 @@ function enterImportSetDirect(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_import_text ?? 0) !== '') {
     (s as any).temp_conform_text = window.prompt("Do you want to continue? (y/n)") ?? '';
     if ((String((String(((s as any).temp_conform_text ?? 0)).toLowerCase())).slice((1)-1, ((1)-1)+(1))) === 'y') {
-      qspFunc(s, 'temp_import_text');
+      dynamicGoto(s, String((s as any).temp_import_text || ''));
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).cmbs_import_set ?? 0)]; enterImportCustomSet(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
@@ -1306,7 +1306,7 @@ function enterCsSetDefaultDescAdv(s: GameState, scene: SceneBuilder): void {
 function enterCsDeleteSet(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Body Image Set Removal</b></center>');
   scene.text(String(qspFunc(s, 'cheatmenu', 'table_start') || ''));
-  scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar /u0027klsetask/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_main/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;"><b>Go Back</b></a>`);
+  scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any)[/u0027klsetask/u0027]; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_main/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;"><b>Go Back</b></a>`);
   scene.text('This is where you remove a body image set from use, please note it does not delete anything, it just clears the custom set from this game instance/save.');
   if (((s as any).klsetask ?? 0) === 1) {
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.klsetask = 2; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_delete_set/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;"><b>Are you sure you want to remove set ${(((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_folder'] ?? '')}?</b></a>`);

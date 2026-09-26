@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -705,8 +705,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('As you enter the kitchen, you notice that whilst it isn\'t large, it\'s very tastefully done and has everything needed. It also has a dining table adjacent to it for family meals. There is also a set of french doors leading into a back yard.');
   }
-  qspFunc(s, 'fill_bottle');
-  qspFunc(s, 'driwater');
+  dynamicGoto(s, String((s as any).fill_bottle || ''));
+  dynamicGoto(s, String((s as any).driwater || ''));
   scene.actions([
     { label: 'Go to the hallway', goto: ['soniahome', 'hallway'] },
     { label: 'Go to the backyard', goto: ['soniahome', 'backyard'] },

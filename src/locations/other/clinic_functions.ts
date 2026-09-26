@@ -869,7 +869,7 @@ function enterBuyLaserCorrection(s: GameState, scene: SceneBuilder): void {
 function enterSetStdHerpesShotAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).GerpesNapr ?? 0) > 0  &&  ((s as any).GerpesUkolDay ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String('Get herpes shot\' + $func(\'money\', \'get_cost_string\', 450) + \' You need ' + ((s as any).GerpesNapr ?? '') + ' more injections to complete the treatment' ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String('Get herpes shot' + qspFunc(s, 'money', 'get_cost_string', 450) + ' You need ' + ((s as any).GerpesNapr ?? '') + ' more injections to complete the treatment' ?? ''), handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 450) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
@@ -884,7 +884,7 @@ function enterSetStdHerpesShotAct(s: GameState, scene: SceneBuilder): void {
 function enterSetStdGonorrheaShotAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).TriperNapr ?? 0) > 0  &&  ((s as any).TriperUkolDay ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String('Get gonorrhea shot\' + $func(\'money\', \'get_cost_string\', 750) + \' You need ' + ((s as any).TriperNapr ?? '') + ' more injections to complete the treatment' ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String('Get gonorrhea shot' + qspFunc(s, 'money', 'get_cost_string', 750) + ' You need ' + ((s as any).TriperNapr ?? '') + ' more injections to complete the treatment' ?? ''), handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 750) === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {

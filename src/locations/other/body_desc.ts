@@ -566,7 +566,7 @@ function enterLips(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['lip'] = 'You have ' + ((s as any).pcs_lipSize ?? 0) + ', ' + (((s as any).pc_desc ?? 0)?.['lip gloss']) + ' \' + iif(pcs_lip = 4, \'suggestively full \', \') + \'lips. ' + (((s as any).pcs_piercings ?? 0)?.['lip_desc']) + ' ' + (((s as any).pcs_piercings ?? 0)?.['tongue_desc']) + '';
+  ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['lip'] = 'You have ' + ((s as any).pcs_lipSize ?? 0) + ', ' + (((s as any).pc_desc ?? 0)?.['lip gloss']) + ' ' + ((((s as any).pcs_lip ?? 0) === 4) ? ('suggestively full ') : ('')) + 'lips. ' + (((s as any).pcs_piercings ?? 0)?.['lip_desc']) + ' ' + (((s as any).pcs_piercings ?? 0)?.['tongue_desc']) + '';
   ((s as any).pc_desc = (s as any).pc_desc ?? {})['lips'] = '' + (((s as any).pc_desc ?? 0)?.['lip size']) + ' ' + (((s as any).pc_desc ?? 0)?.['lip gloss']) + '';
   ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['lips'] = '' + (((s as any).pc_desc ?? 0)?.['lip gloss']) + ', ' + (((s as any).pc_descWordy ?? 0)?.['lip size']) + '';
   return;

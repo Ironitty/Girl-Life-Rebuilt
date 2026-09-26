@@ -148,7 +148,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).grid_count = 0;
     (s as any).grid_text = '<center><table cellspacing="3">';
     do {
-      (s as any).grid_text = ((s as any).grid_text ?? 0) + ('<td><table bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + '<tr><td align="center"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pushkin_ballet_evt\u0027, \u0027intro_\u0027 + String((s as any).i_ballet ?? \u0027\u0027)); return false;"><img height="100" src="' + (((s as any).npc_img_path ?? 0)?.['A' + String(((s as any).i_ballet ?? 0))]) + '/' + ((s as any).i_ballet ?? 0) + '_profile.jpg"></a></td></tr><tr><td align="center">' + (((s as any).npc_firstname ?? 0)?.['A' + String(((s as any).i_ballet ?? 0))]) + '</td></tr></table>\' + \'</td>');
+      (s as any).grid_text = ((s as any).grid_text ?? 0) + ('<td><table bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + '<tr><td align="center"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pushkin_ballet_evt\u0027, \u0027intro_\u0027 + String((s as any).i_ballet ?? \u0027\u0027)); return false;"><img height="100" src="' + (((s as any).npc_img_path ?? 0)?.['A' + String(((s as any).i_ballet ?? 0))]) + '/' + ((s as any).i_ballet ?? 0) + '_profile.jpg"></a></td></tr><tr><td align="center">' + (((s as any).npc_firstname ?? 0)?.['A' + String(((s as any).i_ballet ?? 0))]) + '</td></tr></table>' + '</td>');
       (s as any).grid_count = ((s as any).grid_count ?? 0) + (1);
       if (((s as any).grid_count ?? 0) === 5) {
         (s as any).grid_text = ((s as any).grid_text ?? 0) + ('</tr><tr>');

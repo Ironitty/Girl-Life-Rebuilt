@@ -360,9 +360,9 @@ function enterCheatmenu(s: GameState, scene: SceneBuilder): void {
     return;
   }
   scene.text('<b>Blackmailer:</b>');
-  scene.text('    Purge the "Blackmailer" questline: <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[\u0027this_menu\u0027]] */ return s; }); window.__gameStore.getState().doGoto(\u0027blackmailer\u0027, \u0027\u0027purge_all\u0027 & dynamic $cheatmenu[$cheatmenu[\u0027this_menu\u0027]]\u0027); return false;">Permanently reset the entire questline!</a>');
+  scene.text('    Purge the "Blackmailer" questline: <a href="#" onclick="window.__gameStore.setState((s) => { dynamicGoto(s, String(((s as any).cheatmenu ?? {})[String((s as any).cheatmenu[\u0027this_menu\u0027] ?? \u0027\u0027)] || \u0027\u0027)); return s; }); window.__gameStore.getState().doGoto(\u0027blackmailer\u0027, \u0027\u0027purge_all\u0027 & dynamic $cheatmenu[$cheatmenu[\u0027this_menu\u0027]]\u0027); return false;">Permanently reset the entire questline!</a>');
   if (((s as any).daystart ?? 0) < ((s as any).blackmailQW ?? 0)?.['dreamday']) {
-    scene.text(`    Minimum days to next dream: ${(((s as any).blackmailQW ?? {})?.['dreamday'] ?? 0) - ((s as any).daystart ?? '')}.  <a href="#" onclick="window.__gameStore.setState((s) => { (s.blackmailQW ??= {})/u0027dreamday/u0027 = s.daystart; /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[/u0027this_menu/u0027]] */ return s; }); return false;">Set to 0</a>`);
+    scene.text(`    Minimum days to next dream: ${(((s as any).blackmailQW ?? {})?.['dreamday'] ?? 0) - ((s as any).daystart ?? '')}.  <a href="#" onclick="window.__gameStore.setState((s) => { (s.blackmailQW ??= {})/u0027dreamday/u0027 = s.daystart; dynamicGoto(s, String(((s as any).cheatmenu ?? {})[String((s as any).cheatmenu[/u0027this_menu/u0027] ?? /u0027/u0027)] || /u0027/u0027)); return s; }); return false;">Set to 0</a>`);
   } else {
     scene.text('    Minimum days to next dream: 0');
   }
@@ -371,12 +371,12 @@ function enterCheatmenu(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_index ?? 0) >= 0) {
       (s as any).temp_ISMSCode = (((s as any).contactISMSCode ?? 0)?.[String((s as any).temp_index ?? 0)] ?? 0);
       if (((s as any).temp_ISMSCode ?? 0) !== "") {
-        scene.text('    Blackmailer will contact you today.  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[\u0027this_menu\u0027]] */ return s; }); window.__gameStore.getState().doGoto(\u0027blackmailer\u0027, \u0027\u0027cheatmenu_force_sendsms\u0027 & dynamic $cheatmenu[$cheatmenu[\u0027this_menu\u0027]]\u0027); return false;">Force sms now</a>');
+        scene.text('    Blackmailer will contact you today.  <a href="#" onclick="window.__gameStore.setState((s) => { dynamicGoto(s, String(((s as any).cheatmenu ?? {})[String((s as any).cheatmenu[\u0027this_menu\u0027] ?? \u0027\u0027)] || \u0027\u0027)); return s; }); window.__gameStore.getState().doGoto(\u0027blackmailer\u0027, \u0027\u0027cheatmenu_force_sendsms\u0027 & dynamic $cheatmenu[$cheatmenu[\u0027this_menu\u0027]]\u0027); return false;">Force sms now</a>');
       } else {
         if (((s as any).blackmailQW ?? 0)?.['smsday'] === 0) {
-          scene.text('    Blackmailer will decide when to contact you tomorrow.  <a href="#" onclick="window.__gameStore.setState((s) => { (s.blackmailQW ??= {})\u0027smsday\u0027 = s.daystart; /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[\u0027this_menu\u0027]] */ return s; }); return false;">Force next sms tomorrow</a>');
+          scene.text('    Blackmailer will decide when to contact you tomorrow.  <a href="#" onclick="window.__gameStore.setState((s) => { (s.blackmailQW ??= {})\u0027smsday\u0027 = s.daystart; dynamicGoto(s, String(((s as any).cheatmenu ?? {})[String((s as any).cheatmenu[\u0027this_menu\u0027] ?? \u0027\u0027)] || \u0027\u0027)); return s; }); return false;">Force next sms tomorrow</a>');
         } else {
-          scene.text(`    Days to next sms: ${Math.max(1, (((s as any).blackmailQW ?? {})?.['smsday'] ?? 0)-((s as any).daystart ?? '')+1)}.  <a href="#" onclick="window.__gameStore.setState((s) => { (s.blackmailQW ??= {})/u0027smsday/u0027 = daystart-1; /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[/u0027this_menu/u0027]] */ return s; }); window.__gameStore.getState().doGoto(/u0027blackmailer/u0027, /u0027/u0027cikl_set_sms/u0027 & dynamic $cheatmenu[$cheatmenu[/u0027this_menu/u0027]]/u0027); return false;">Force next sms today</a>`);
+          scene.text(`    Days to next sms: ${Math.max(1, (((s as any).blackmailQW ?? {})?.['smsday'] ?? 0)-((s as any).daystart ?? '')+1)}.  <a href="#" onclick="window.__gameStore.setState((s) => { (s.blackmailQW ??= {})/u0027smsday/u0027 = daystart-1; dynamicGoto(s, String(((s as any).cheatmenu ?? {})[String((s as any).cheatmenu[/u0027this_menu/u0027] ?? /u0027/u0027)] || /u0027/u0027)); return s; }); window.__gameStore.getState().doGoto(/u0027blackmailer/u0027, /u0027/u0027cikl_set_sms/u0027 & dynamic $cheatmenu[$cheatmenu[/u0027this_menu/u0027]]/u0027); return false;">Force next sms today</a>`);
         }
       }
       if (((s as any).blackmailQW ?? 0)?.['next_payment'] > 0) {
@@ -392,7 +392,7 @@ function enterCheatmenuForceSendsms(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_index ?? 0) >= 0) {
     (s as any).temp_ISMSCode = (((s as any).contactISMSCode ?? 0)?.[String((s as any).temp_index ?? 0)] ?? 0);
     if (((s as any).temp_ISMSCode ?? 0) !== "") {
-      qspFunc(s, 'temp_ISMSCode');
+      dynamicGoto(s, String((s as any).temp_ISMSCode || ''));
     }
   }
   (s as any).temp_ISMSCode = undefined;
@@ -1229,7 +1229,7 @@ function enterPolice1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => String('Tell them that somebody caught you flashing your ' + (((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '') + '\' + iif($blackmailQW[\'init_flashloc_desc\'] = \', \', \' ' + (((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] ?? '') + '\') + \' and has been demanding money.' ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String('Tell them that somebody caught you flashing your ' + (((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '') + '' + ((((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] === '') ? ('') : (' ' + (((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] ?? '') + '')) + ' and has been demanding money.' ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/police/interrogation2.jpg');
@@ -1849,7 +1849,7 @@ function enterAdd_SMSReminder(s: GameState, scene: SceneBuilder): void {
     if (((s as any).blackmailQW ?? 0)?.['escape'] === -1) {
       ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['escape'] = 0;
     }
-    ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = '' + ((s as any).pcs_firstname ?? 0) + ' don\'t forget, if you don\'t leave \' + $func(\'money\', \'string_price\', blackmailQW[\'next_payment\']) + \' beneath the fourth park bench, you will regret it';
+    ((s as any).SMSTree = (s as any).SMSTree ?? {})['0'] = '' + ((s as any).pcs_firstname ?? 0) + ' don\'t forget, if you don\'t leave ' + qspFunc(s, 'money', 'string_price', (((s as any).blackmailQW ?? 0)?.['next_payment'])) + ' beneath the fourth park bench, you will regret it';
     qspCall(s, 'SMStext_builder', 'start');
     qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
     qspCall(s, 'SMSText_builder', 'receive_img', (((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen']));

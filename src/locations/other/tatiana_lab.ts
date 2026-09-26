@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -139,7 +139,7 @@ function enterBodyModActuate(s: GameState, scene: SceneBuilder): void {
   (s as any).bodyModPain = ((s as any).locArgs?.[7] ?? 0);
   (s as any).bodyModExtra = ((s as any).locArgs?.[8] ?? 0);
   if (((s as any).pcs_mana ?? 0) >= ((s as any).bodyModMana ?? 0)) {
-    qspFunc(s, 'bodyModExtra');
+    dynamicGoto(s, String((s as any).bodyModExtra || ''));
   }
   scene.build();
 }

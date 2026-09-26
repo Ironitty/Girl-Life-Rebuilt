@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).t = (String(((s as any).initext ?? 0)).slice((1)-1, ((1)-1)+(((String(((s as any).initext ?? 0)).indexOf(String('/n'))) + 1) - 1)));
     (s as any).inittext = [...((s as any).inittext ?? []), ((s as any).t ?? 0)];
     s.scene = { ...s.scene, mainText: String((s as any).t || ''), curActs: [] };
-    qspFunc(s, 't');
+    dynamicGoto(s, String((s as any).t || ''));
     (s as any).initext = (String(((s as any).initext ?? 0)).slice((((String(((s as any).initext ?? 0)).indexOf(String('/n'))) + 1) + 1)-1));
     if (((String(((s as any).initext ?? 0)).indexOf(String('/n'))) + 1) < 4) {
       (s as any).initext = (String(((s as any).initext ?? 0)).slice((((String(((s as any).initext ?? 0)).indexOf(String('/n'))) + 1) + 1)-1));
@@ -23,7 +23,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).t = ((s as any).initext ?? 0);
     (s as any).inittext = [...((s as any).inittext ?? []), ((s as any).t ?? 0)];
     s.scene = { ...s.scene, mainText: String((s as any).t || ''), curActs: [] };
-    qspFunc(s, 't');
+    dynamicGoto(s, String((s as any).t || ''));
     (s as any).t = undefined;
     qspCall(s, 'stat', '');
     dynamicGoto(s, 'menu_settings');

@@ -30,8 +30,8 @@ function enterAssignIndex(s: GameState, scene: SceneBuilder): void {
   } else {
     do {
       (s as any).ngc_scheck = 0;
-      (s as any).npclastgenerated = 'C\' + \'' + ((s as any).carraynumber ?? 0) + '';
-      ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['npcID'] = 'C\' + \'' + ((s as any).carraynumber ?? 0)-1 + '';
+      (s as any).npclastgenerated = 'C' + '' + ((s as any).carraynumber ?? 0) + '';
+      ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['npcID'] = 'C' + '' + ((s as any).carraynumber ?? 0)-1 + '';
       if (((s as any).npc_perstype ?? 0)[((s as any).npcgeneratecVars ?? 0)?.['npcID']] === ''  &&  ((s as any).carraynumber ?? 0) > 0) {
         (s as any).carraynumber = ((s as any).carraynumber ?? 0) - (1);
         (s as any).ngc_scheck = 1;

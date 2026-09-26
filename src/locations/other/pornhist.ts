@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspFunc } from '../_shared/qspBridge';
+import { qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -32,7 +32,7 @@ function enterShort(s: GameState, scene: SceneBuilder): void {
       (s as any).pfilmhistory = ((s as any).pfilmhistory ?? 0) + ('● <b>' + ((s as any).i ?? 0) + '. Movie</b><br><font size=2></font><br>');
     } else {
       if (((s as any).i ?? 0) === 1) {
-        (s as any).pfilmhistory = ((s as any).pfilmhistory ?? 0) + ('● <b>\'+$porntitle[i]+\'' + ((s as any).pfname ?? 0) + '</b><br><font size=2>\'+$pfilmtext+\'</font><br>');
+        (s as any).pfilmhistory = ((s as any).pfilmhistory ?? 0) + ('● <b>' + (((s as any).porntitle ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '' + ((s as any).pfname ?? 0) + '</b><br><font size=2>' + ((s as any).pfilmtext ?? 0) + '</font><br>');
       } else {
         (s as any).pfilmhistory = ((s as any).pfilmhistory ?? 0) + ('● <b>' + (((s as any).porntitle ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '</b><br><font size=2>' + ((s as any).pfilmtext ?? 0) + '</font><br>');
       }
@@ -356,7 +356,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspFunc(s, 'porntag');
+    dynamicGoto(s, String((s as any).porntag || ''));
     (s as any).porntag = qspUntranslated(s, "{", { location: "pornhist" });
     if (((s as any).pornfilmAppAge ?? 0)?.[String((s as any).i ?? 0)] < 20) {
       (s as any).pfilmtags = 'teen';

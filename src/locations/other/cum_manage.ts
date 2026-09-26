@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -239,7 +239,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                     ((s as any).stat = (s as any).stat ?? {})['cum_vagina_ml'] = ((s as any).stat['cum_vagina_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
                     ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0);
                     ((s as any).sparrslc = (s as any).sparrslc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
-                    qspFunc(s, 'ferteggfather');
+                    dynamicGoto(s, String((s as any).ferteggfather || ''));
                   }
                 } else {
                   if (((s as any).sexcontra ?? 0) === 7) {
@@ -265,7 +265,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                       ((s as any).stat = (s as any).stat ?? {})['cum_vagina_ml'] = ((s as any).stat['cum_vagina_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
                       ((s as any).sparridt = (s as any).sparridt ?? {})[String((s as any).sparrtemp ?? 0)] = (((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)] ?? 0);
                       ((s as any).sparrslc = (s as any).sparrslc ?? {})[String((s as any).sparrtemp ?? 0)] = 0;
-                      qspFunc(s, 'ferteggfather');
+                      dynamicGoto(s, String((s as any).ferteggfather || ''));
                     }
                     qspCall(s, 'dina', 'ferteggfather');
                   }
@@ -808,9 +808,9 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
                   }
                   ((s as any).sd_cum = (s as any).sd_cum ?? {})['k'] = ((s as any).sd_cum['k'] ?? 0) + (1);
                   if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] === 'stranger') {
-                    ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (' and \' + $npc_firstname[$cumowner[\'' + (((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k']) + '\']] + \' ');
+                    // TODO-QSP: $sd_cum['person'] += ' and ' + $npc_firstname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']] + ' '
                   } else {
-                    ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (' and \' + $npc_usedname[$cumowner[\'' + (((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k']) + '\']] + \' ');
+                    // TODO-QSP: $sd_cum['person'] += ' and ' + $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']] + ' '
                   }
                 }
               }

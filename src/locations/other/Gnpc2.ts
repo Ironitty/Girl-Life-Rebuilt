@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).gdeystboyrand = (Math.floor(Math.random() * 2) + 0);
     if ((!((s as any).gdeystboyrand ?? 0))) {
       scene.text(`${((s as any).boydesc ?? '')} invites you to his home.`);
-      qspFunc(s, 'din_gboy_go_to_boyhome');
+      dynamicGoto(s, String((s as any).din_gboy_go_to_boyhome || ''));
       qspCall(s, 'willpower', 'sex', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
       scene.text(`${((s as any).boydesc ?? '')} invites you to his home.`);
-      qspFunc(s, 'din_gboy_go_to_boyhome');
+      dynamicGoto(s, String((s as any).din_gboy_go_to_boyhome || ''));
       qspCall(s, 'willpower', 'sex', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
@@ -127,7 +127,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/kiss/kiss.jpg');
     scene.text(`You turn your head to the guy and your lips meet. ${((st as any).boydesc ?? '')} starts to passionately caress your body with his hands as he kisses you.`);
-    qspFunc(s, 'din_gboy_tits');
+    dynamicGoto(st, String((st as any).din_gboy_tits || ''));
   } },
       ]);
     }
@@ -148,7 +148,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).gdeystboyrand = (Math.floor(Math.random() * 2) + 0);
         if ((!((s as any).gdeystboyrand ?? 0))) {
           scene.text(`${((s as any).boydesc ?? '')} suggested that you two go to his home.`);
-          qspFunc(s, 'din_gboy_go_to_boyhome');
+          dynamicGoto(s, String((s as any).din_gboy_go_to_boyhome || ''));
           qspCall(s, 'willpower', 'sex', 'resist', 'easy');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
@@ -175,7 +175,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
           scene.text(`${((s as any).boydesc ?? '')} suggested that you two go to his home.`);
-          qspFunc(s, 'din_gboy_go_to_boyhome');
+          dynamicGoto(s, String((s as any).din_gboy_go_to_boyhome || ''));
           qspCall(s, 'willpower', 'sex', 'resist', 'easy');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
@@ -206,7 +206,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).tipgbrand = (Math.floor(Math.random() * 2) + 0);
           if ((!((s as any).tipgbrand ?? 0))) {
             scene.text(`${((s as any).boydesc ?? '')} suggested going to the disco.`);
-            qspFunc(s, 'din_gboy_go_to_disco');
+            dynamicGoto(s, String((s as any).din_gboy_go_to_disco || ''));
             qspCall(s, 'willpower', 'misc', 'resist', 'easy');
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
@@ -225,7 +225,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).tipgbrand ?? 0) === 1) {
               scene.text(`${((s as any).boydesc ?? '')} offered to go to his home.`);
-              qspFunc(s, 'din_gboy_go_to_boyhome');
+              dynamicGoto(s, String((s as any).din_gboy_go_to_boyhome || ''));
               scene.actions([
                 { label: 'Refuse and go home', handler: (st: GameState) => {
     (st as any).otnBoyFrend[String((st as any).numnpc ?? '')] = ((st as any).otnBoyFrend[String((st as any).numnpc ?? '')] ?? 0) - (10);
@@ -238,7 +238,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).gdeystboyrand = (Math.floor(Math.random() * 2) + 0);
             if ((!((s as any).gdeystboyrand ?? 0))) {
               scene.text(`${((s as any).boydesc ?? '')} offered to go to his home.`);
-              qspFunc(s, 'din_gboy_go_to_boyhome');
+              dynamicGoto(s, String((s as any).din_gboy_go_to_boyhome || ''));
               scene.actions([
                 { label: 'Refuse and go home', handler: (st: GameState) => {
     (st as any).otnBoyFrend[String((st as any).numnpc ?? '')] = ((st as any).otnBoyFrend[String((st as any).numnpc ?? '')] ?? 0) - (10);
@@ -247,7 +247,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).gdeystboyrand ?? 0) === 1) {
                 scene.text(`${((s as any).boydesc ?? '')} offered to go to the disco.`);
-                qspFunc(s, 'din_gboy_go_to_disco');
+                dynamicGoto(s, String((s as any).din_gboy_go_to_disco || ''));
                 qspCall(s, 'willpower', 'misc', 'resist', 'easy');
                 if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                   scene.actions([
@@ -636,7 +636,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`You suggest to your ${(((st as any).bfTitle ?? 0)?.[String((st as any).numnpc ?? 0)] ?? '')} to leave the club. ${((st as any).boydesc ?? '')} shrugs and you both walk out to the exit.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -682,7 +682,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`You politely refuse his invitation. The guy looks dejected but leaves without making any fuss. A few minutes later ${((st as any).boydesc ?? '')} returns to the dance floor, a beer in his hand. You have a fun time dancing with your ${(((st as any).bfTitle ?? 0)?.[String((st as any).numnpc ?? 0)] ?? '')} and soon after he finishes his beer he suggests to leave.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -743,7 +743,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You got his hard and hot cock out of his pants and wrapped your hand around it. You started kissing him at the same time you masturbate his penis. Finally the guy groaned and you watch his cock shoot off his sperm.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -771,7 +771,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'dinsex', 'bj_swallow_random');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -784,7 +784,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You remove his member from your mouth just as a stream of hot sperm hits your face, then another and another and finally he stopped dumping his thick cum on your face.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -796,7 +796,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'foreplay', (-1));
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
         { label: 'Let him', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'foreplay', 3);
@@ -835,7 +835,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You take his hand out of your pants, and he shakes his head, not understanding.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -873,7 +873,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Finally the guy finishes and you feel something warm fill your ass.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -899,7 +899,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'dinsex', 'sexcum');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -924,7 +924,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You remove his hands from your exposed breasts, and he looks puzzled, not sure why.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -960,7 +960,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You got his hard and hot cock out of his pants and hold it in your hand. You start kissing him at the same time you stroke his penis. Finally the guy lets out a groan and you watch as loads of cum shoot out of his cock.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -991,7 +991,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'dinsex', 'bj_swallow_random');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -1004,7 +1004,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You remove his member from your mouth and then a stream of hot sperm hits your face, then another and another and finally your guy stops shooting his thick cum on your face.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -1023,7 +1023,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave the club', handler: (st: GameState) => {
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     ]);
   } },
@@ -1043,7 +1043,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((st as any).kissBoyFrend ?? 0)?.[String((st as any).numnpc ?? 0)] === 0) {
       }
     }
-    qspFunc(s, 'din_gboy_end_to_disco');
+    dynamicGoto(st, String((st as any).din_gboy_end_to_disco || ''));
   } },
     { label: 'Let him', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'foreplay', 3);
@@ -1313,7 +1313,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/kiss/kiss.jpg');
     scene.text(`You turn your head to the guy and your lips meet. ${((st as any).boydesc ?? '')} starts to passionately caress your body with his hands as he kisses you.`);
-    qspFunc(s, 'din_gboy_tits');
+    dynamicGoto(st, String((st as any).din_gboy_tits || ''));
   } },
     { label: 'Pretend that nothing is happening', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'foreplay', 5);
@@ -1342,7 +1342,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    qspFunc(s, 'din_gboy_kiss');
+    dynamicGoto(st, String((st as any).din_gboy_kiss || ''));
   } },
     { label: 'Go to his home', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -1386,7 +1386,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/boyfriend/groped.jpg');
     scene.text(`You continue watching the porn and what you saw was gradually exciting you. You feel ${((st as any).boydesc ?? '')} put his hand on your knee and began to stroke it.`);
-    qspFunc(s, 'din_gboy_knee');
+    dynamicGoto(st, String((st as any).din_gboy_knee || ''));
   } },
       ]);
     } else {
@@ -1417,7 +1417,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           }
-          qspFunc(s, 'din_gboy_knee');
+          dynamicGoto(st, String((st as any).din_gboy_knee || ''));
         } else {
           if (((st as any).pcs_horny ?? 0) >= 75) {
             qspCall(st, 'willpower', 'sex', 'self', 'easy');
@@ -1434,7 +1434,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'kiss', 5);
     qspCall(st, 'stat', '');
     scene.text(`You turn your head to the guy and your lips meet. ${((st as any).boydesc ?? '')} starts to passionately caress your body with his hands as he kisses you.`);
-    qspFunc(s, 'din_gboy_tits');
+    dynamicGoto(st, String((st as any).din_gboy_tits || ''));
   } },
               ]);
             }
@@ -1451,12 +1451,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((st as any).boyhouserand ?? 0) === 1) {
         scene.img('images/characters/shared/boyfriend/groped.jpg');
         scene.text('There was no one else at home and he suggested that you both go to his room. In his room, he sat next to you and started stroking your knee.');
-        qspFunc(s, 'din_gboy_knee');
+        dynamicGoto(st, String((st as any).din_gboy_knee || ''));
       } else {
         if (((st as any).boyhouserand ?? 0) === 2) {
           scene.img('images/characters/shared/boyfriend/groped.jpg');
           scene.text('When you went inside his home, he realizes that his parents were home and he quickly walks you to his room. In his room, he sat next to you and started stroking your knee.');
-          qspFunc(s, 'din_gboy_knee');
+          dynamicGoto(st, String((st as any).din_gboy_knee || ''));
         }
       }
     }

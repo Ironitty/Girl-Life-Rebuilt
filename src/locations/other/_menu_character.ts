@@ -1135,7 +1135,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
                     (s as any).table = ((s as any).table ?? 0) + (' who raped you.');
                   }
                 }
-                (s as any).table = ((s as any).table ?? 0) + (' \' + iif(virgin_stats[\'shemale\'] = 1, \'Her\', \'His\') + \' cock was ' + (((s as any).virgin_stats ?? 0)?.['cock_desc']) + '.');
+                (s as any).table = ((s as any).table ?? 0) + (' ' + ((((s as any).virgin_stats ?? 0)?.['shemale'] === 1) ? ('Her') : ('His')) + ' cock was ' + (((s as any).virgin_stats ?? 0)?.['cock_desc']) + '.');
               } else {
                 if (((s as any).virgin_stats ?? 0)?.['lost_cause'] === 'strapon') {
                   (s as any).table = ((s as any).table ?? 0) + ('to ' + (((s as any).virgin_stats ?? 0)?.['virgin_taker']) + ', ');

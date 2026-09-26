@@ -240,7 +240,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027breastcream/u0027 & gs /u0027din_bad/u0027, /u0027d_bag/u0027); return false;">Apply breast cream.</a> You have <b>${(((s as any).mc_inventory ?? 0)?.['breastcream'] ?? '')}</b> cream left in your purse.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['aphrodisiac'] > 0) {
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *pl $drugVars[/u0027aphrodisiac_msg/u0027] */ /* TODO-QSP: *pl $min_arousal_msg */ /* TODO-QSP: killvar /u0027$min_arousal_msg/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027aphrodisiac/u0027 & gs /u0027din_bad/u0027, /u0027d_bag/u0027 & *pl $drugVars[/u0027aphrodisiac_msg/u0027] & *pl $min_arousal_msg & killvar /u0027$min_arousal_msg/u0027); return false;">Chew aphrodisiac gum.</a> You have <b>${(((s as any).mc_inventory ?? 0)?.['aphrodisiac'] ?? '')}</b> gum left in your purse.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: *pl $drugVars[/u0027aphrodisiac_msg/u0027] */ /* TODO-QSP: *pl $min_arousal_msg */ delete (s as any).min_arousal_msg; return s; }); window.__gameStore.getState().doGoto(/u0027drugs/u0027, /u0027aphrodisiac/u0027 & gs /u0027din_bad/u0027, /u0027d_bag/u0027 & *pl $drugVars[/u0027aphrodisiac_msg/u0027] & *pl $min_arousal_msg & killvar /u0027$min_arousal_msg/u0027); return false;">Chew aphrodisiac gum.</a> You have <b>${(((s as any).mc_inventory ?? 0)?.['aphrodisiac'] ?? '')}</b> gum left in your purse.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['refill_bottle_water'] === 4  &&  ((s as any).mc_inventory ?? 0)?.['refill_bottle'] >= 1) {
     scene.text('You carry your sports water bottle in your purse. It\'s still completely full. <a href="#" onclick="window.__gameStore.setState((s) => { (s.mc_inventory ??= {})\u0027refill_bottle_water\u0027 = 3; s.pcs_hydra +=75; s.cumspclnt = 2; return s; }); window.__gameStore.getState().doGoto(\u0027cum_cleanup\u0027 & gs \u0027stat\u0027 & gs \u0027din_bad\u0027, \u0027d_bag\u0027); return false;">Drink</a>');
@@ -287,7 +287,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     scene.text(`You have <b>${((s as any).pattest ?? '')}</b> unused paternity test` + ((((s as any).pattest ?? 0) > 1) ? ('s ') : (' ')) + 'in your purse.');
   }
   if (((s as any).used_pattest ?? 0) > 0) {
-    scene.text(`You have <b>${((s as any).used_pattest ?? '')}</b> <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $test_purse */ return s; }); return false;">used</a> paternity test` + ((((s as any).used_pattest ?? 0) > 1) ? ('s ') : (' ')) + 'in your purse.');
+    scene.text(`You have <b>${((s as any).used_pattest ?? '')}</b> <a href="#" onclick="window.__gameStore.setState((s) => { dynamicGoto(s, String((s as any).test_purse || /u0027/u0027)); return s; }); return false;">used</a> paternity test` + ((((s as any).used_pattest ?? 0) > 1) ? ('s ') : (' ')) + 'in your purse.');
   }
   if (((s as any).pursepantytype ?? 0) !== ''  ||  ((s as any).pursebratype ?? 0) !== '') {
     scene.text('You also have ' + ((((s as any).pursepantytype ?? 0) !== '') ? ('<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027__qspDyn\u0027; return s; }); return false;">a pair of panties</a>') : ('')) + ((((s as any).pursepantytype ?? 0) !== ''  &&  ((s as any).pursebratype ?? 0) !== '') ? (' and ') : ('')) + ((((s as any).pursebratype ?? 0) !== '') ? ('<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027__qspDyn\u0027; return s; }); return false;">a bra</a>') : ('')) + ' in your purse, which you can put on in the nearest bathroom.');
@@ -1688,7 +1688,7 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   if (((s as any).thinkpreg ?? 0) === 0  &&  ((s as any).knowpreg ?? 0) === 0  &&  ((s as any).cycle ?? 0) !== 6  &&  ((s as any).pillcon2 ?? 0) <= 30000  &&  ((s as any).succubusflag ?? 0) !== 1  &&  ((s as any).cheatVars ?? 0)?.['no_periods'] === 0  &&  ((s as any).abortionbirthdate ?? 0) === 0  &&  ((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0) > 28) {
     ((s as any).temp = (s as any).temp ?? {})[1] = ((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0) - 28;
     if (((s as any).temp ?? 0)[1] <= 7) {
-      ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'Your period is ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' \' + iif(temp[1] = 1, \'day\', \'days\') + \' late.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'Your period is ' + (((s as any).temp ?? 0)?.[1] ?? 0) + ' ' + ((((s as any).temp ?? 0)[1] === 1) ? ('day') : ('days')) + ' late.';
     } else {
       if (((s as any).temp ?? 0)[1] <= 14) {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = 'Your period is over a week late.';

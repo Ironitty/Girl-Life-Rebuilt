@@ -66,7 +66,7 @@ function enterChecks(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).drugVars ?? 0)?.['heroin_high'] > 20  &&  (!((s as any).narkossister ?? 0))) {
       if ((Math.floor(Math.random() * 100) + 1) >= 90) {
-        qspFunc(s, 'narkosisterspalila');
+        dynamicGoto(s, String((s as any).narkosisterspalila || ''));
         return;
       }
     }

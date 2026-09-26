@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -83,7 +83,7 @@ function enter1_2ndPart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mish_rand1 ?? 0) > 60) {
     scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/misha/sex/misha1,${(Math.floor(Math.random() * 4) + 0)}.mp4"></video></center>`);
   }
-  qspFunc(s, 'temp');
+  dynamicGoto(s, String((s as any).temp || ''));
   (s as any).temp = undefined;
   qspCall(s, 'dinsex', 'vaginal_sex', 10, 'sub');
   qspCall(s, 'stat', '');

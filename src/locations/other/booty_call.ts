@@ -154,7 +154,7 @@ function enterBlockBootyCalls(s: GameState, scene: SceneBuilder): void {
 
 function enterGenerateHomeLink(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_residence ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).loc ?? 0)  &&  ((s as any).npc_residence ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== 'uni_grounds') {
-    // TODO-QSP: dynamic(' ''<a href="exec: minut += 2 & gt ''''sex_ev_start'''', ''''initiate_pre'''', ''''<<$ARGS[1...
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
   }
   scene.build();
 }
@@ -178,7 +178,7 @@ function enterHotelLinks(s: GameState, scene: SceneBuilder): void {
 
 function enterGenerateHotelLink(s: GameState, scene: SceneBuilder): void {
   if (((s as any).booty_call_hotel ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).region ?? 0)  &&  ((s as any).booty_call_invite ?? 0)[String((s as any).locArgs?.[1] ?? '')] === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: dynamic(' ''<a href="exec: minut += 2 & gt ''''sex_ev_start'''', ''''initiate_pre'''', ''''<<$ARGS[1...
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
   }
   scene.build();
 }

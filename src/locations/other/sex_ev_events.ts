@@ -22,7 +22,7 @@ function enterRandEvCheck(s: GameState, scene: SceneBuilder): void {
     if (Object.keys((s as any).sex_ev_sex_events ?? {}).length > 0) {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: dynamic $sex_ev_sex_events[rand(0, arrsize('sex_ev_sex_event...
+    dynamicGoto(st, String(((st as any).sex_ev_sex_events ?? {})[String((st as any).rand(0, arrsize('sex_ev_sex_events')-1) ?? '')] || ''));
   } },
       ]);
     }

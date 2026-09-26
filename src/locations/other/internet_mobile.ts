@@ -137,7 +137,7 @@ function enterRenewSubscription(s: GameState, scene: SceneBuilder): void {
     if (((s as any).app_discount ?? 0) > 0) {
       (s as any).discounttext = ' and you had ' + qspFunc(s, 'money', 'string_price', ((s as any).acc_discount ?? 0)) + ' left on your account. After applying ' + qspFunc(s, 'money', 'string_price', ((s as any).app_discount ?? 0)) + ' to your monthly fee, your final payable was ' + qspFunc(s, 'money', 'string_price', ((s as any).finalfee ?? 0)) + ' and you were left with ' + qspFunc(s, 'money', 'string_price', ((s as any).rem_discount ?? 0)) + ' on your account.';
     }
-    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-contract_message'] = 'Your monthly fee was ' + qspFunc(s, 'money', 'string_price', ((s as any).renewfee ?? 0)) + ((((s as any).app_discount ?? 0) > 0) ? (((s as any).discounttext ?? 0)) : (', unfortunately your payment was declined. We will try to take the payment over the next \' + $func(\'wrap\', \'neg b\', \'' + ((s as any).remainingday ?? 0) + ' days\') + \' before suspending services.'));
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-contract_message'] = 'Your monthly fee was ' + qspFunc(s, 'money', 'string_price', ((s as any).renewfee ?? 0)) + ((((s as any).app_discount ?? 0) > 0) ? (((s as any).discounttext ?? 0)) : (', unfortunately your payment was declined. We will try to take the payment over the next ' + qspFunc(s, 'wrap', 'neg b', '' + ((s as any).remainingday ?? 0) + ' days') + ' before suspending services.'));
   }
   (s as any).renewfee = undefined;
   (s as any).acc_discount = undefined;

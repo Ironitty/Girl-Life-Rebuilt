@@ -319,7 +319,7 @@ function enterMarcusWait(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/virgin/marcuswait2.jpg');
     scene.text('"Come in, the door is open!" you shout. After hearing the door close, you shout "We\'re in here!"');
     scene.text('Marcus enters the room and when he sees you and Katja in your underwear on the bed looking at him, ' + ((((st as any).katjaQW ?? 0)?.['marcus_pussy'] === 0) ? ('he is momentarily stunned. The biggest smile you\'ve ever seen on him appears on his face.') : (' his face breaks out in a huge smile.')));
-    scene.text(((((st as any).katjaQW ?? 0)?.['marcus_pussy'] === 0) ? ('"You could have told me that you were offering me the \'+iif( pcs_haircol ! 2, \'hottest\', \'other extremely hot\')+\' redhead in Pav, ' + ((st as any).pcs_nickname ?? '') + ',"') : ('"I see that you\'ve kept her warm for me,"')) + ' he says with a huge grin.');
+    scene.text(((((st as any).katjaQW ?? 0)?.['marcus_pussy'] === 0) ? ('"You could have told me that you were offering me the ' + ((((st as any).pcs_haircol ?? 0) !== 2) ? ('hottest') : ('other extremely hot')) + ' redhead in Pav, ' + ((st as any).pcs_nickname ?? '') + ',"') : ('"I see that you\'ve kept her warm for me,"')) + ' he says with a huge grin.');
     scene.actions([
       { label: 'Tell him to join you', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/virgin/katvirg1.jpg');

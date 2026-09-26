@@ -389,8 +389,8 @@ function enterRenderAlldaySection(s: GameState, scene: SceneBuilder): void {
   do {
     (s as any).result = ((s as any).result ?? 0) + ('<tr class="allday-row">');
     if ((!((s as any).temp_ad_row ?? 0))) {
-      (s as any).result = ((s as any).result ?? 0) + ('<td class="time-cell allday-label" rowspan="' + String(((s as any).temp_ad_max_rows ?? 0)) + '" style="vertical-align: middle; text-align: center; background-color: \' + $temp_ad_empty_bg + \';">All Day</td>');
-      (s as any).result = ((s as any).result ?? 0) + ('<td rowspan="' + String(((s as any).temp_ad_max_rows ?? 0)) + '" style="width: 20px; border: 1; background-color: \' + $temp_ad_empty_bg + \';"></td>');
+      (s as any).result = ((s as any).result ?? 0) + ('<td class="time-cell allday-label" rowspan="' + String(((s as any).temp_ad_max_rows ?? 0)) + '" style="vertical-align: middle; text-align: center; background-color: ' + ((s as any).temp_ad_empty_bg ?? 0) + ';">All Day</td>');
+      (s as any).result = ((s as any).result ?? 0) + ('<td rowspan="' + String(((s as any).temp_ad_max_rows ?? 0)) + '" style="width: 20px; border: 1; background-color: ' + ((s as any).temp_ad_empty_bg ?? 0) + ';"></td>');
     }
     (s as any).temp_ad_d = 1;
     do {

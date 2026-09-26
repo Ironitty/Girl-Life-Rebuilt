@@ -143,7 +143,7 @@ function enterPornTypeSelector(s: GameState, scene: SceneBuilder): void {
       if (((s as any).type_i ?? 0) === ((s as any).pornplan ?? 0)[(((s as any).temp_edit_day ?? 0)) + ',' + (((s as any).temp_edit_session ?? 0))]) {
         (s as any).selector_html = '<b><font color="yellow">';
       }
-      (s as any).selector_html = ((s as any).selector_html ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.pornplan ??= {})\u0027' + ((s as any).temp_edit_day ?? 0) + ',' + ((s as any).temp_edit_session ?? 0) + '\u0027 = ' + ((s as any).type_i ?? 0) + '; /* TODO-QSP: killvar \u0027temp_edit_day\u0027 */ /* TODO-QSP: killvar \u0027temp_edit_session\u0027 */ /* TODO-QSP: *clr */ /* TODO-QSP: cla */ return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & *clr & cla &gs \u0027pornschedule\u0027, \u0027contracting\u0027); return false;">' + (((s as any).porndesc ?? 0)?.[String((s as any).type_i ?? 0)] ?? 0) + '</a>');
+      (s as any).selector_html = ((s as any).selector_html ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.pornplan ??= {})(String((s as any).temp_edit_day ?? \u0027\u0027) + \u0027,\u0027 + String((s as any).temp_edit_session ?? \u0027\u0027)) = ' + ((s as any).type_i ?? 0) + '; delete (s as any)[\u0027temp_edit_day\u0027]; delete (s as any)[\u0027temp_edit_session\u0027]; /* TODO-QSP: *clr */ /* TODO-QSP: cla */ return s; }); window.__gameStore.getState().doGoto(\u0027stat\u0027 & *clr & cla &gs \u0027pornschedule\u0027, \u0027contracting\u0027); return false;">' + (((s as any).porndesc ?? 0)?.[String((s as any).type_i ?? 0)] ?? 0) + '</a>');
       if (((s as any).type_i ?? 0) === ((s as any).pornplan ?? 0)[(((s as any).temp_edit_day ?? 0)) + ',' + (((s as any).temp_edit_session ?? 0))]) {
         (s as any).selector_html = ((s as any).selector_html ?? 0) + (' (Current)</font></b>');
       }
@@ -388,7 +388,7 @@ function enterDisplaynum(s: GameState, scene: SceneBuilder): void {
   }
   scene.text(`<table border=0 cellspacing=10><tr><th>${((s as any).pp1 ?? '')}</th><th>${((s as any).pp2 ?? '')}</th><th>${((s as any).pp3 ?? '')}</th><th>${((s as any).pp4 ?? '')}</th><th>${((s as any).pp5 ?? '')}</th></tr>`);
   scene.text('');
-  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \u0027ppnum\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027displaynum\u0027); return false;">Clear participant limitations</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any)[\u0027ppnum\u0027]; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027displaynum\u0027); return false;">Clear participant limitations</a>');
   scene.build();
 }
 
@@ -485,7 +485,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
           if (((s as any).datefilter ?? 0)[(((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)])] === 1  ||  (((s as any).weekdayfilter ?? 0) === 1  &&  ((s as any).w1 ?? 0) < 6)  ||  (((s as any).weekendfilter ?? 0) === 1  &&  ((s as any).w1 ?? 0) >= 6)) {
             (s as any).option = '<font color="grey"><del>' + ((s as any).d1 ?? 0) + '</del></font>';
           } else {
-            (s as any).option = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.datefilter ??= {})\u0027' + (((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)] ?? 0) + '\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">' + ((s as any).d1 ?? 0) + '</a>';
+            (s as any).option = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.datefilter ??= {})\u0027__qspDyn\u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">' + ((s as any).d1 ?? 0) + '</a>';
           }
         }
       }
@@ -533,7 +533,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
         (s as any).weekendfilter_link = '<a href="#" onclick="window.__gameStore.setState((s) => { s.weekendfilter = 0; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Restore weekends</a>';
       }
       scene.text(`${((s as any).weekdayfilter_link ?? '')} ${((s as any).weekendfilter_link ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { s.inversefilter = 1; return s; }); window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027selection/u0027); return false;">Inverse selection</a><br>`);
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \u0027datefilter\u0027 */ /* TODO-QSP: killvar \u0027selected\u0027 */ s.weekdayfilter = 0; s.weekendfilter = 0; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Clear date filters</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any)[\u0027datefilter\u0027]; delete (s as any)[\u0027selected\u0027]; s.weekdayfilter = 0; s.weekendfilter = 0; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Clear date filters</a>');
     }
   }
   scene.build();

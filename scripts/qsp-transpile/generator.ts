@@ -451,6 +451,7 @@ function generateSceneBody(
       }
       case 'assign': {
         if (node.var === 'menu_off' || node.var === 'loc' || node.var === 'loc2') break;
+
         const varName = node.var.replace(/^\$/, '');
         const lhs = translateAssignLhs(varName, stateReads);
           const val = translateValue(node.value, stateReads, todos);
@@ -720,6 +721,19 @@ function generateSceneBody(
               }
             }
           }
+        const dynParenNested = node.raw.match(/^dynamic\(\s*\$(\w+)\[\$(\w+)\]\s*\)$/);
+        if (dynParenNested) {
+          const varName = dynParenNested[1];
+          const keyVar = dynParenNested[2];
+          out.push(`dynamicGoto(s, String(((s as any).${varName} ?? {})[String((s as any).${keyVar} ?? '')] || ''));`);
+          break;
+        }
+        const dynBareVar = node.raw.match(/^dynamic\s+\$(\w+)\s*$/);
+        if (dynBareVar) {
+          const varName = dynBareVar[1];
+          out.push(`dynamicGoto(s, String((s as any).${varName} || ''));`);
+          break;
+        }
         const dynDollar = node.raw.match(/^dynamic\s+(\$\w+(?:\['[^']*'\]|\[\$\w+\]|\[\d+\])?(?:\s*,\s*.+)?)\s*$/);
         if (dynDollar) {
           const expr = dynDollar[1].trim();
@@ -730,6 +744,7 @@ function generateSceneBody(
           out.push(`qspFunc(s, ${funcNameJs}${funcArgs.length ? `, ${funcArgs.join(', ')}` : ''});`);
         }
         const varAssign = node.raw.match(/^\$(\w+)\s*(\+=|-=|=)\s*([\s\S]+)$/);
+
         if (varAssign) {
           const varName = varAssign[1];
           const op = varAssign[2];
@@ -1362,6 +1377,27 @@ function translateInlineAct(
       }
       continue;
     }
+    const dynBareVarInline = part.match(/^dynamic\s+\$(\w+)\s*$/);
+    if (dynBareVarInline) {
+      const varName = dynBareVarInline[1];
+      handlerBits.push(`dynamicGoto(st, String((st as any).${varName} || ''));`);
+      continue;
+    }
+    const dynArrVarInline = part.match(/^dynamic\s+\$(\w+)\[(.+)\]\s*$/);
+    if (dynArrVarInline) {
+      const varName = dynArrVarInline[1];
+      const keyExpr = dynArrVarInline[2].trim();
+      const keyJs = /^\d+$/.test(keyExpr) ? keyExpr : `String((st as any).${keyExpr.replace(/^\$/, '')} ?? '')`;
+      handlerBits.push(`dynamicGoto(st, String(((st as any).${varName} ?? {})[${keyJs}] || ''));`);
+      continue;
+    }
+    const dynNestedVarInline = part.match(/^dynamic\s+\$(\w+)\[\$(\w+)\]\s*$/);
+    if (dynNestedVarInline) {
+      const varName = dynNestedVarInline[1];
+      const keyVar = dynNestedVarInline[2];
+      handlerBits.push(`dynamicGoto(st, String(((st as any).${varName} ?? {})[String((st as any).${keyVar} ?? '')] || ''));`);
+      continue;
+    }
     handlerBits.push(`// TODO-QSP: ${truncate(part, 60)}`);
   }
 
@@ -1880,8 +1916,10 @@ function translateAssignLhs(varName: string, stateReads: string[], stateVar: str
 
 function translateValue(val: string, stateReads: string[], todos: string[], stateVar: string = 's', textContext: boolean = false): string {
   let v = val.trim();
+
   if (/^\u0000\d+\u0000$/.test(v)) return v;
   v = convertExecLinks(v, stateReads, todos, stateVar);
+
   const exprPhs: [string, string][] = [];
   // QSP & !! or & ! trailing comment (non-numeric values)
   const ampComment = v.match(/^(.*?)\s*&\s*!+/);
@@ -1919,7 +1957,24 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
   }
   // Pre-pass: handle <<expr>> inside single-quoted strings BEFORE unescapeDoubled
   // (so '' escapes are still visible for correct string boundary detection)
-  if (v.startsWith("'") && v.endsWith("'") && v.includes('<<') && v.includes('>>')) {
+  // Skip if the value is a string concatenation (has + outside quotes)
+  let _hasConcatPlus = false;
+  {
+    let _inStr = false, _strCh = '';
+    for (let _ci = 0; _ci < v.length; _ci++) {
+      const _ch = v[_ci];
+      if (_inStr) {
+        if (_ch === _strCh) {
+          if (v[_ci + 1] === _strCh) { _ci++; }
+          else _inStr = false;
+        }
+      } else {
+        if (_ch === "'" || _ch === '"') { _inStr = true; _strCh = _ch; }
+        else if (_ch === '+') { _hasConcatPlus = true; break; }
+      }
+    }
+  }
+  if (v.startsWith("'") && v.endsWith("'") && v.includes('<<') && v.includes('>>') && !_hasConcatPlus) {
     const content = v.slice(1, -1);
     const dynIdx = content.indexOf('<<');
     if (dynIdx !== -1) {
@@ -1958,7 +2013,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     }
   }
   // Pre-pass: handle <<expr>> inside double-quoted strings with "" escapes
-  if (v.startsWith('"') && v.endsWith('"') && v.includes('<<') && v.includes('>>')) {
+  if (v.startsWith('"') && v.endsWith('"') && v.includes('<<') && v.includes('>>') && !_hasConcatPlus) {
     const content = v.slice(1, -1);
     // Find << that is inside the double-quoted string (not after a closing ")
     let inStr = true, strCh = '"';
@@ -2013,9 +2068,13 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
         }
       } else {
         if (ch === "'" || ch === '"') { inStr = true; strCh = ch; }
-        else if (/-|[*\/%]/.test(ch)) { hasOtherArith = true; break; }
+        else if (/-|[*\/%]/.test(ch)) {
+
+          hasOtherArith = true; break;
+        }
       }
     }
+
   }
   if (hasArith && v.includes('+') && !hasOtherArith) {
     const parts: string[] = [];
@@ -3038,13 +3097,35 @@ function convertExecLinks(s: string, stateReads?: string[], todos?: string[], st
     const arg2Js = argParts[2] !== undefined ? execArgToJs(argParts[2], stateReads, todos, stateVar) : null;
     const stmts = clean.split('&').map((st: string) => st.trim()).filter((st: string) => st && !st.startsWith('gt') && !st.startsWith('gs'));
     const stmtCode = stmts.map((st: string) => {
-      const setMatch = st.match(/^(\w+)\[('[^']*')\]\s*([+\-]?=)\s*(.+)$/);
+      const setMatch = st.match(/^(?:<<(.+?)>>|(\w+))\[(.+?)\]\s*([+\-]?=)\s*(.+)$/);
       if (setMatch) {
-        const obj = setMatch[1];
-        const key = setMatch[2];
-        const op = setMatch[3];
-        const val = execValToJs(setMatch[4]);
-        return op === '=' ? `(s.${obj} ??= {})${key} = ${val};` : `(s.${obj} ??= {})${key} ${op}${val};`;
+        const dynObj = setMatch[1];
+        const obj = setMatch[2];
+        const keyRaw = setMatch[3];
+        const op = setMatch[4];
+        const val = execValToJs(setMatch[5]);
+        let keyJs: string;
+        const keyDynMatch = keyRaw.match(/^'(.+)'$/);
+        if (keyDynMatch && keyDynMatch[1].includes('<<')) {
+          const keyInner = keyDynMatch[1];
+          const keyParts = keyInner.split(/(<<.+?>>)/g).filter((p: string) => p);
+          const keyJsParts = keyParts.map((p: string) => {
+            const m = p.match(/^<<(.+?)>>$/);
+            if (m) {
+              const e = m[1].trim();
+              const km = e.match(/^\$(\w+)\[('[^']*')\]$/);
+              if (km) return `(s as any).${km[1]}${km[2]}`;
+              if (/^\$?\w+$/.test(e)) return `String((s as any).${e.replace(/^\$/, '')} ?? '')`;
+              return `'__qspDyn'`;
+            }
+            return `'${p.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
+          });
+          keyJs = keyJsParts.length === 1 ? keyJsParts[0] : `(${keyJsParts.join(' + ')})`;
+        } else {
+          keyJs = keyRaw.replace(/''/g, "'");
+        }
+        const objJs = dynObj ? `((s as any)[String((s as any).${dynObj.replace(/^\$/, '')} ?? '')] ??= {})` : `(s.${obj} ??= {})`;
+        return op === '=' ? `${objJs}${keyJs} = ${val};` : `${objJs}${keyJs} ${op}${val};`;
       }
       const dollarSetMatch = st.match(/^\$(\w+)\[('[^']*')\]\s*([+\-]?=)\s*(.+)$/);
       if (dollarSetMatch) {
@@ -3065,6 +3146,23 @@ function convertExecLinks(s: string, stateReads?: string[], todos?: string[], st
       if (msgMatch) {
         let expr = msgMatch[1].trim();
         expr = expr.replace(/func\(([^)]+)\)/g, (_m: string, args: string) => `qspFunc(s, ${args})`);
+        const qMatch = expr.match(/^'(.*)'$/);
+        if (qMatch && qMatch[1].includes('<<')) {
+          const inner = qMatch[1];
+          const parts = inner.split(/(<<.+?>>)/g).filter((p: string) => p);
+          const jsParts = parts.map((p: string) => {
+            const m = p.match(/^<<(.+?)>>$/);
+            if (m) {
+              const e = m[1].trim();
+              const km = e.match(/^\$(\w+)\[('[^']*')\]$/);
+              if (km) return `String((s as any).${km[1]}?.${km[2]} ?? '')`;
+              if (/^\$?\w+$/.test(e)) return `String((s as any).${e.replace(/^\$/, '')} ?? '')`;
+              return `'__qspDyn'`;
+            }
+            return `'${p.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
+          });
+          expr = jsParts.join(' + ');
+        }
         return `alert(${expr});`;
       }
       const plMatch = st.match(/^pl\s*(.+)$/);
@@ -3132,10 +3230,65 @@ function convertExecLinks(s: string, stateReads?: string[], todos?: string[], st
         });
         return `qspFunc(s, (s.${obj} ?? {})${key}, ${argsJs.join(', ')});`;
       }
+      const killvarMatch = st.match(/^killvar\s+'(.+)'$/);
+      if (killvarMatch) {
+        const varExpr = killvarMatch[1];
+        const dynMatch = varExpr.match(/^<<(.+?)>>$/);
+        if (dynMatch) {
+          const e = dynMatch[1].trim();
+          if (/^\$?\w+$/.test(e)) return `delete (s as any).${e.replace(/^\$/, '')};`;
+          return `delete (s as any)[String((s as any).${e.replace(/^\$/, '')} ?? '')];`;
+        }
+        const dollarMatch = varExpr.match(/^\$(\w+)$/);
+        if (dollarMatch) return `delete (s as any).${dollarMatch[1]};`;
+        return `delete (s as any)['${varExpr.replace(/^\$/, '')}'];`;
+      }
       const dynVarMatch = st.match(/^<<\$(\w+)>>$/);
       if (dynVarMatch) {
         const varName = dynVarMatch[1];
         return `{ const _t = String((s as any).${varName} || ''); const _tp = _t.split(' '); if (_tp.length >= 3 && _tp[1] === '=') (s as any)[_tp[0]] = Number(_tp[2]); }`;
+      }
+      const dynBareVar = st.match(/^dynamic\s+\$(\w+)$/);
+      if (dynBareVar) {
+        const varName = dynBareVar[1];
+        return `dynamicGoto(s, String((s as any).${varName} || ''));`;
+      }
+      const dynArrVar = st.match(/^dynamic\s+\$(\w+)\[(.+)\]$/);
+      if (dynArrVar) {
+        const varName = dynArrVar[1];
+        const keyExpr = dynArrVar[2].trim();
+        const keyJs = /^\d+$/.test(keyExpr) ? keyExpr : `String((s as any).${keyExpr.replace(/^\$/, '')} ?? '')`;
+        return `dynamicGoto(s, String(((s as any).${varName} ?? {})[${keyJs}] || ''));`;
+      }
+      const dynNestedVar = st.match(/^dynamic\s+\$(\w+)\[\$(\w+)\]$/);
+      if (dynNestedVar) {
+        const varName = dynNestedVar[1];
+        const keyVar = dynNestedVar[2];
+        return `dynamicGoto(s, String(((s as any).${varName} ?? {})[String((s as any).${keyVar} ?? '')] || ''));`;
+      }
+      const dynParenNested = st.match(/^dynamic\(\s*\$(\w+)\[\$(\w+)\]\s*\)$/);
+      if (dynParenNested) {
+        const varName = dynParenNested[1];
+        const keyVar = dynParenNested[2];
+        return `dynamicGoto(s, String(((s as any).${varName} ?? {})[String((s as any).${keyVar} ?? '')] || ''));`;
+      }
+      const dynStrMatch = st.match(/^dynamic\s+'(.+)'$/);
+      if (dynStrMatch) {
+        const inner = dynStrMatch[1];
+        if (inner.includes('<<')) {
+          const parts = inner.split(/(<<.+?>>)/g).filter((p: string) => p);
+          const jsParts = parts.map((p: string) => {
+            const m = p.match(/^<<(.+?)>>$/);
+            if (m) {
+              const e = m[1].trim();
+              if (/^\$?\w+$/.test(e)) return `String((s as any).${e.replace(/^\$/, '')} ?? '')`;
+              return `String((s as any).${e.replace(/^\$/, '')} ?? '')`;
+            }
+            return `'${p.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
+          });
+          return `dynamicGoto(s, ${jsParts.join(' + ')});`;
+        }
+        return `dynamicGoto(s, '${inner.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}');`;
       }
       return `/* TODO-QSP: ${st.replace(/</g, '\\u003c')} */`;
     }).join(' ');

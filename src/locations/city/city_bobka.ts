@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -223,7 +223,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'mouth', 'A47', 1);
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
     qspCall(s, 'dinSex', 'std_trigger_oral');
-    qspFunc(s, 'bobkabj');
+    dynamicGoto(s, String((s as any).bobkabj || ''));
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Inject yourself with the drugs', goto: ['city_bobka', 'inject'] },
@@ -232,7 +232,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[0] ?? '') === 1) {
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
     qspCall(s, 'dinSex', 'std_trigger_oral');
-    qspFunc(s, 'bobkabj');
+    dynamicGoto(s, String((s as any).bobkabj || ''));
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Drop down into a doggystyle position', handler: (st: GameState) => {
@@ -255,7 +255,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[0] ?? '') === 2) {
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
     qspCall(s, 'dinSex', 'std_trigger');
-    qspFunc(s, 'bobkabj');
+    dynamicGoto(s, String((s as any).bobkabj || ''));
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Drop down into a doggystyle position', handler: (st: GameState) => {

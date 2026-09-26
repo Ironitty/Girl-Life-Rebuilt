@@ -1326,7 +1326,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       (s as any).rnd_telogg_text = '"Poor girl, ' + ((s as any).gop_sextext2 ?? 0) + ' at every corner."';
     }
     if (((s as any).temp_rand ?? 0) === 7) {
-      (s as any).rnd_telogg_text = '"' + ((s as any).pcs_nickname ?? 0) + ' unfailing \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \'!"';
+      (s as any).rnd_telogg_text = '"' + ((s as any).pcs_nickname ?? 0) + ' unfailing ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + '!"';
     }
     if (((s as any).temp_rand ?? 0) === 8) {
       (s as any).rnd_telogg_text = '"Poor ' + ((s as any).pcs_nickname ?? 0) + ', they probably fuck up all her holes."';
@@ -1347,7 +1347,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       (s as any).rnd_telogg_text = '"How can you shamelessly expose your holes right, left and center, ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + '?"';
     }
     if (((s as any).temp_rand ?? 0) === 14) {
-      (s as any).rnd_telogg_text = '"' + ((s as any).pcs_nickname ?? 0) + ', you are so shameless, \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \'!"';
+      (s as any).rnd_telogg_text = '"' + ((s as any).pcs_nickname ?? 0) + ', you are so shameless, ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + '!"';
     }
     if (((s as any).temp_rand ?? 0) === 15) {
       (s as any).rnd_telogg_text = '"Oh, ' + ((s as any).pcs_nickname ?? 0) + ', aren\'t you sorry for yourself?"';
@@ -1375,19 +1375,19 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', if you\'ll serve anywhere and anybody, you\'ll wear out your slit, and you\'ll be out of work!"';
     }
     if (((s as any).temp_rand ?? 0) === 8) {
-      (s as any).rnd_telogg2_text = '"Who do I see, ' + ((s as any).pcs_nickname ?? 0) + '? You sell your body again! I\'m surprised you are such a natural \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \'!"';
+      (s as any).rnd_telogg2_text = '"Who do I see, ' + ((s as any).pcs_nickname ?? 0) + '? You sell your body again! I\'m surprised you are such a natural ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + '!"';
     }
     if (((s as any).temp_rand ?? 0) === 9) {
-      (s as any).rnd_telogg2_text = '"You sell your body, so you are a \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \'. ' + ((s as any).pcs_nickname ?? 0) + '. I can\'t understand after whom."';
+      (s as any).rnd_telogg2_text = '"You sell your body, so you are a ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + '. ' + ((s as any).pcs_nickname ?? 0) + '. I can\'t understand after whom."';
     }
     if (((s as any).temp_rand ?? 0) === 10) {
       (s as any).rnd_telogg2_text = '"You are giving yourself to anybody for a hundred bucks again. Doesn\'t it bother you?"';
     }
     if (((s as any).temp_rand ?? 0) === 11) {
-      (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', even a \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \' takes a day off!"';
+      (s as any).rnd_telogg2_text = '"' + ((s as any).pcs_nickname ?? 0) + ', even a ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + ' takes a day off!"';
     }
     if (((s as any).temp_rand ?? 0) === 12) {
-      (s as any).rnd_telogg2_text = '"Well, you are a \' + func(\'gopsex\', \'hide\', \'gop_gg_name2\') + \' ' + ((s as any).pcs_nickname ?? 0) + '. If I don\'t pass by, you sell your pussy…"';
+      (s as any).rnd_telogg2_text = '"Well, you are a ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + ' ' + ((s as any).pcs_nickname ?? 0) + '. If I don\'t pass by, you sell your pussy…"';
     }
     if (((s as any).temp_rand ?? 0) === 13) {
       (s as any).rnd_telogg2_text = '"Complete ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name2') + ', she was lost to shame, she is giving to in underpass…"';
@@ -1594,10 +1594,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': ' + ((s as any).rnd_telogg2_text ?? 0) + '';
     }
     if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-      (s as any).rnd_caught_othernpc = 'Passing by, \' + func(\'gopsex\', \'hide\', \'Shulga_var_name\') + \' sees me being \' + func(\'gopsex\', \'hide\', \'gop_sextext2\') + \'. He shows a thumbs-up to the boys and says: ' + ((s as any).rnd_telogg_text ?? 0) + ' and he went on about his business.';
+      (s as any).rnd_caught_othernpc = 'Passing by, ' + qspFunc(s, 'gopsex', 'hide', 'Shulga_var_name') + ' sees me being ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext2') + '. He shows a thumbs-up to the boys and says: ' + ((s as any).rnd_telogg_text ?? 0) + ' and he went on about his business.';
     }
     if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-      (s as any).rnd_caught_othernpc = 'Passing by, \' + func(\'gopsex\', \'hide\', \'Shulga_var_name\') + \' sees me being \' + func(\'gopsex\', \'hide\', \'gop_sextext2\') + \'. He shows a thumbs-up to the boys and without hiding a smile he tells you: ' + ((s as any).rnd_telogg2_text ?? 0) + ' and went on about his business';
+      (s as any).rnd_caught_othernpc = 'Passing by, ' + qspFunc(s, 'gopsex', 'hide', 'Shulga_var_name') + ' sees me being ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext2') + '. He shows a thumbs-up to the boys and without hiding a smile he tells you: ' + ((s as any).rnd_telogg2_text ?? 0) + ' and went on about his business';
     }
     if (((s as any).temp_rand ?? 0) === 3  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
       (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ' aunt Luda, ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': - ' + ((s as any).rnd_telogg_text ?? 0) + '';
@@ -1624,7 +1624,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "Oh dear! What kind of people! Like mother, like daughter! Exactly the same! Boobs exposed, legs apart. And the eyes are so cunning… Come to me then, we need to talk."';
     }
     if (((s as any).temp_rand ?? 0) === 7  &&  ((s as any).evgenQW ?? 0) >= 4) {
-      (s as any).rnd_caught_othernpc = 'Your brother\'s football buddies notice you, when they are walking past you. They stop and start talking about you intensively: "Oh, my fuck, we treat her like a princess: only in her mouth… thank you… please… see you! It turns out that she is quite a prostitute. Oh shit, if we had known it then, we would have \' + func(\'gopsex\', \'hide\', \'gop_sextext2\') + \' that ripper in one gate all three of us, as we had wanted always. Well… Svetochka… It isn\'t hard for you to help us, is it…? After all, you are Kolya\'s sister… moreover older. Cavaliers, fuck… Now we get all. After all, they don\'t ask whores, they bang them right with their cocks, do they? Am I right, ' + ((s as any).pcs_nickname ?? 0) + '?"… "Hurrah, she nodded! Oooh, you\'re such our sweetie! Fuck yeah! We\'re lucky: We have got our cum dumpster now. See you soon, fuckhole! Prepare your butt hole! Let\'s delight Kolya. He has been always jacking off dreaming about her… I call dibs on her ass!" "Can she hold three at once in her mouth? We should try it long ago. Fuck, we were too shy to suggest it, frigging gentlemen!"';
+      (s as any).rnd_caught_othernpc = 'Your brother\'s football buddies notice you, when they are walking past you. They stop and start talking about you intensively: "Oh, my fuck, we treat her like a princess: only in her mouth… thank you… please… see you! It turns out that she is quite a prostitute. Oh shit, if we had known it then, we would have ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext2') + ' that ripper in one gate all three of us, as we had wanted always. Well… Svetochka… It isn\'t hard for you to help us, is it…? After all, you are Kolya\'s sister… moreover older. Cavaliers, fuck… Now we get all. After all, they don\'t ask whores, they bang them right with their cocks, do they? Am I right, ' + ((s as any).pcs_nickname ?? 0) + '?"… "Hurrah, she nodded! Oooh, you\'re such our sweetie! Fuck yeah! We\'re lucky: We have got our cum dumpster now. See you soon, fuckhole! Prepare your butt hole! Let\'s delight Kolya. He has been always jacking off dreaming about her… I call dibs on her ass!" "Can she hold three at once in her mouth? We should try it long ago. Fuck, we were too shy to suggest it, frigging gentlemen!"';
     }
     if (((s as any).temp_rand ?? 0) === 8) {
       (s as any).rnd_caught_othernpc = 'You are approached by a charwoman in the stairwell: "Well boys, step back and let your toy have a rest for a while. Don\'t throw away bottle, just put them on window sill when you\'re done. I\'ll take them away. Don\'t make a mess with scumbags everywhere! I gather up after you on half a bucket each day! Better, don\'t use them at all: it will be much pleasurable for you and your smasher without them or stack them neatly into her purse: she can take her trophies home with her, when she is done. Oi! Oi!!! Fuckbunny! Swallow, don\'t spit on the floor! Did you understand? Washing the floor after every whore, I would ruin my health. Don\'t drain your pussy onto the floor otherwise I\'ll make you lick all the scum!"';
@@ -1636,10 +1636,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', a mother with her little daughter notice you. The mother takes daughter by the hand and tells her: "Turn away and don\'t watch! This girl just did not obey her mama and that\'s why she\'s punished. Do you hear her calling her mama now? Obey mama and you\'ll never end up like her!" She turns to you: "Couldn\'t you wait, until you get home, slut? Do you have to shake buttocks just here? By the way, children walk here."';
     }
     if (((s as any).temp_rand ?? 0) === 11  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', \' + func(\'gopsex\', \'hide\', \'Shulga_var_name\') + \' notices you and stops. He asked you: "' + ((s as any).pcs_nickname ?? 0) + ', why do you go with these tadpoles?" You smirks and reply: "Frankly, I go with everybody."';
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', ' + qspFunc(s, 'gopsex', 'hide', 'Shulga_var_name') + ' notices you and stops. He asked you: "' + ((s as any).pcs_nickname ?? 0) + ', why do you go with these tadpoles?" You smirks and reply: "Frankly, I go with everybody."';
     }
     if (((s as any).temp_rand ?? 0) === 11  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', \' + func(\'gopsex\', \'hide\', \'Shulga_var_name\') + \' notices you and stops. He asks you: -"' + ((s as any).pcs_nickname ?? 0) + ', do you have a session of beneficence today, or something?" You are taken aback and you reply: "Why on earth? I don\'t go with strangers for free."';
+      (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', ' + qspFunc(s, 'gopsex', 'hide', 'Shulga_var_name') + ' notices you and stops. He asks you: -"' + ((s as any).pcs_nickname ?? 0) + ', do you have a session of beneficence today, or something?" You are taken aback and you reply: "Why on earth? I don\'t go with strangers for free."';
     }
     if (((s as any).temp_rand ?? 0) === 12  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
       (s as any).rnd_caught_othernpc = '' + ((s as any).rnd_rodnya_text ?? 0) + ', uncle Misha ' + ((s as any).rnd_viewgg_text ?? 0) + ' and ' + ((s as any).rnd_talkgg_text ?? 0) + ' ' + ((s as any).rnd_talkgg2_text ?? 0) + ': "' + ((s as any).pcs_nickname ?? 0) + ', you are already hyped up, could you gratify the old boy?" You smile at him and reply: "Uncle Misha, as soon as I\'ve finished it here, I\'ll drop by you."';
@@ -2078,22 +2078,22 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       (s as any).dummy = '"' + ((s as any).pcs_nickname ?? 0) + ', stop drinking! Come on. Get up and serve us."';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
-      (s as any).dummy = '"Fuck you ' + ((s as any).pcs_nickname ?? 0) + '-drunkard, no more drink, you are almost dopey. Get up, let\'s \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' you!"';
+      (s as any).dummy = '"Fuck you ' + ((s as any).pcs_nickname ?? 0) + '-drunkard, no more drink, you are almost dopey. Get up, let\'s ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext1') + ' you!"';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
       (s as any).dummy = '"Are you drunk? It\'s time to work off: Get up, prepare your box!"';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
-      (s as any).dummy = '"Well ' + ((s as any).pcs_nickname ?? 0) + '. You drank all the beer, \' + func(\'gopsex\', \'hide\', \'gop_gg_name\') + \'! Get up, it\'s time to \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' you!"';
+      (s as any).dummy = '"Well ' + ((s as any).pcs_nickname ?? 0) + '. You drank all the beer, ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + '! Get up, it\'s time to ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext1') + ' you!"';
     }
     if (((s as any).temp_rand ?? 0) === 6) {
-      (s as any).dummy = '"Well ' + ((s as any).pcs_nickname ?? 0) + ', freebies ran out. Get up, let\'s \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' you!"';
+      (s as any).dummy = '"Well ' + ((s as any).pcs_nickname ?? 0) + ', freebies ran out. Get up, let\'s ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext1') + ' you!"';
     }
     if (((s as any).temp_rand ?? 0) === 7) {
       (s as any).dummy = '"You aren\'t ruined yet, ' + ((s as any).pcs_nickname ?? 0) + '? So no more drink! You roped in beer us, now get up and work off the treat!"';
     }
     if (((s as any).temp_rand ?? 0) === 8) {
-      (s as any).dummy = '"At this rate, we would fuck a rubber doll, and I don\'t like it so. \' + func(\'gopsex\', \'hide\', \'gop_text_npcr\') + \', don\'t pour her glass more! Come on, ' + ((s as any).pcs_nickname ?? 0) + '! Get up and show off your box!"';
+      (s as any).dummy = '"At this rate, we would fuck a rubber doll, and I don\'t like it so. ' + qspFunc(s, 'gopsex', 'hide', 'gop_text_npcr') + ', don\'t pour her glass more! Come on, ' + ((s as any).pcs_nickname ?? 0) + '! Get up and show off your box!"';
     }
     (s as any).result = ((s as any).dummy ?? 0);
     (s as any).dummy = undefined;
@@ -2515,10 +2515,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       (s as any).group_sex_text = qspFunc(s, 'gopsex', 'hide', 'gop_family_npc') + ' tells you: "' + ((s as any).pcs_nickname ?? 0) + ', you\'re our ' + qspFunc(s, 'gopsex', 'hide', 'gop_gg_name') + ', Let\'s get into all your holes!"';
     }
     if (((s as any).temp_rand ?? 0) === 7) {
-      (s as any).group_sex_text = 'You wink at the guys and say: "Boys, yours ' + ((s as any).pcs_nickname ?? 0) + ' is ready for anything. How do you want to \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' me?"';
+      (s as any).group_sex_text = 'You wink at the guys and say: "Boys, yours ' + ((s as any).pcs_nickname ?? 0) + ' is ready for anything. How do you want to ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext1') + ' me?"';
     }
     if (((s as any).temp_rand ?? 0) === 8) {
-      (s as any).group_sex_text = 'You smile wickedly and say: "Yours ' + ((s as any).pcs_nickname ?? 0) + ' wants some jizz. How do you\'ll be \' + func(\'gopsex\', \'hide\', \'gop_sextext3\') + \' me?"';
+      (s as any).group_sex_text = 'You smile wickedly and say: "Yours ' + ((s as any).pcs_nickname ?? 0) + ' wants some jizz. How do you\'ll be ' + qspFunc(s, 'gopsex', 'hide', 'gop_sextext3') + ' me?"';
     }
     (s as any).group_sex_text = undefined;
   }

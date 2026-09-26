@@ -691,7 +691,7 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
     scene.text('exer_stam' + ((s as any).locArgs?.[1] ?? 0) + '[' + ((s as any).stamindx ?? 0) + '] = 0');
     scene.text('<td>Selected</td>');
   } else {
-    scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027exer_rout/u003c/u003cARGS[1]>>[stamindx] = 0/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
+    scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { dynamicGoto(s, /u0027exer_rout/u0027 + String((s as any).ARGS[1] ?? /u0027/u0027) + /u0027[stamindx] = 0/u0027); return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
   }
   if ((0 as any) === 1) {
     if (String((s as any).locArgs?.[3] ?? '') === 1) {
@@ -711,7 +711,7 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('<td>Selected</td>');
   } else {
-    scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027exer_rout/u003c/u003cARGS[1]>>[stamindx] = 1/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
+    scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { dynamicGoto(s, /u0027exer_rout/u0027 + String((s as any).ARGS[1] ?? /u0027/u0027) + /u0027[stamindx] = 1/u0027); return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
   }
   if ((0 as any) === 2) {
     if (String((s as any).locArgs?.[3] ?? '') === 1) {
@@ -731,7 +731,7 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('<td>Selected</td>');
   } else {
-    scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027exer_rout/u003c/u003cARGS[1]>>[stamindx] = 2/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
+    scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { dynamicGoto(s, /u0027exer_rout/u0027 + String((s as any).ARGS[1] ?? /u0027/u0027) + /u0027[stamindx] = 2/u0027); return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
   }
   if ((0 as any) === 3) {
     if (String((s as any).locArgs?.[3] ?? '') === 1) {
@@ -751,7 +751,7 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('<td>Selected</td>');
   } else {
-    scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027exer_rout/u003c/u003cARGS[1]>>[stamindx] = 3/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
+    scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { dynamicGoto(s, /u0027exer_rout/u0027 + String((s as any).ARGS[1] ?? /u0027/u0027) + /u0027[stamindx] = 3/u0027); return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
   }
   if ((0 as any) === 4) {
     if (String((s as any).locArgs?.[3] ?? '') === 1) {
@@ -771,7 +771,7 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('<td>Selected</td>');
   } else {
-    scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027exer_rout/u003c/u003cARGS[1]>>[stamindx] = 4/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
+    scene.text(`<td><a href="#" onclick="window.__gameStore.setState((s) => { dynamicGoto(s, /u0027exer_rout/u0027 + String((s as any).ARGS[1] ?? /u0027/u0027) + /u0027[stamindx] = 4/u0027); return s; }); window.__gameStore.getState().doGoto(/u0027exercise/u0027, /u0027matrix/u0027); return false;">Select</a></td>`);
   }
   ((s as any).exer_stam = (s as any).exer_stam ?? {})[String((s as any).stamindx ?? 0)] = (((s as any).exer_stam0 ?? 0)?.[String((s as any).stamindx ?? 0)] ?? 0) + (((s as any).exer_stam1 ?? 0)?.[String((s as any).stamindx ?? 0)] ?? 0) + (((s as any).exer_stam2 ?? 0)?.[String((s as any).stamindx ?? 0)] ?? 0) + (((s as any).exer_stam3 ?? 0)?.[String((s as any).stamindx ?? 0)] ?? 0) + (((s as any).exer_stam4 ?? 0)?.[String((s as any).stamindx ?? 0)] ?? 0) + (((s as any).exer_stam5 ?? 0)?.[String((s as any).stamindx ?? 0)] ?? 0);
   scene.build();

@@ -90,13 +90,13 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     (s as any).adv_Text = ((s as any).adv_Text ?? 0) + ('There is no advert today. Maybe I should come back next week?<br>');
   } else {
     if (((s as any).adv_unknownCount ?? 0) > 0  &&  ((s as any).adv_knownCount ?? 0) > 0) {
-      (s as any).adv_Text = ((s as any).adv_Text ?? 0) + ('You see ' + ((s as any).adv_unknownCount ?? 0) + ' new and ' + ((s as any).adv_knownCount ?? 0) + ' known \' + iif((adv_knownCount + adv_unknownCount) = 1, \'advert\', \'adverts\') + \'.<br>');
+      (s as any).adv_Text = ((s as any).adv_Text ?? 0) + ('You see ' + ((s as any).adv_unknownCount ?? 0) + ' new and ' + ((s as any).adv_knownCount ?? 0) + ' known ' + (((((s as any).adv_knownCount ?? 0) + ((s as any).adv_unknownCount ?? 0)) === 1) ? ('advert') : ('adverts')) + '.<br>');
     } else {
       if (((s as any).adv_unknownCount ?? 0) > 0) {
-        (s as any).adv_Text = ((s as any).adv_Text ?? 0) + ('You see ' + ((s as any).adv_unknownCount ?? 0) + ' new \' + iif(adv_unknownCount = 1, \'advert\', \'adverts\') + \'.<br>');
+        (s as any).adv_Text = ((s as any).adv_Text ?? 0) + ('You see ' + ((s as any).adv_unknownCount ?? 0) + ' new ' + ((((s as any).adv_unknownCount ?? 0) === 1) ? ('advert') : ('adverts')) + '.<br>');
       } else {
         if (((s as any).adv_knownCount ?? 0) > 0) {
-          (s as any).adv_Text = ((s as any).adv_Text ?? 0) + ('You see ' + ((s as any).adv_knownCount ?? 0) + ' known \' + iif(adv_knownCount = 1, \'advert\', \'adverts\') + \'.<br>');
+          (s as any).adv_Text = ((s as any).adv_Text ?? 0) + ('You see ' + ((s as any).adv_knownCount ?? 0) + ' known ' + ((((s as any).adv_knownCount ?? 0) === 1) ? ('advert') : ('adverts')) + '.<br>');
         }
       }
     }

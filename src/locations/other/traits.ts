@@ -1681,7 +1681,7 @@ function enterBookworm(s: GameState, scene: SceneBuilder): void {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Bookworm</b>.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 0;
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Reading EXP: ' + (((s as any).trait_vars ?? 0)?.['bookworm_exp']) + '. Last read: \' + iif(daystart = lastreadday, \'today\', iif(daystart = lastreadday + 1, \'yesterday\', \'' + ((s as any).daystart ?? 0) - ((s as any).lastreadday ?? 0) + ' days ago\')) + \'. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Reading EXP: ' + (((s as any).trait_vars ?? 0)?.['bookworm_exp']) + '. Last read: ' + ((((s as any).daystart ?? 0) === ((s as any).lastreadday ?? 0)) ? ('today') : (((((s as any).daystart ?? 0) === ((s as any).lastreadday ?? 0) + 1) ? ('yesterday') : ('' + ((s as any).daystart ?? 0) - ((s as any).lastreadday ?? 0) + ' days ago')))) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('EXP drops rapidly if you go more than 2 days without reading.');
     }
   }

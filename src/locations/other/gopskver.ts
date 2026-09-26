@@ -1281,9 +1281,9 @@ function enterDanBlowjob(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A10');
     (st as any).pose = 1;
     scene.img('images/shared/sex/vag/doggy/kotovsex10.mp4');
-    qspFunc(s, 'vagstart');
+    dynamicGoto(st, String((st as any).vagstart || ''));
     scene.text('You bend over seductively and pull your clothes aside to give Dan easier access. He doesn\'t require any further invitation and immediately pulls his already hard cock out of his sweatpants, and eases it in before he begins to fuck you.');
-    qspFunc(s, 'vagend');
+    dynamicGoto(st, String((st as any).vagend || ''));
     scene.actions([
       { label: 'Go home', goto: ['pav_complex', 'start'] },
     ]);

@@ -16,9 +16,9 @@ function enterHelperBar(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).locArgs?.[2] ?? 0) + ': ' + qspFunc(s, 'progressbar', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), '', ((s as any).locArgs?.[8] ?? 0), (((s as any).sd_hb ?? 0)?.['rm']));
   } else {
     if (((s as any).sd ?? 0)?.['name_side'] === 1) {
-      (s as any).result = '<tr><td nowrap style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">&nbsp;\' + $ARGS[2] + \'&nbsp;</td><td>\' + $func(\'progressbar\', $ARGS[1], ARGS[3], ARGS[4], ARGS[5], ARGS[6], $ARGS[7], \', $ARGS[8], sd_hb[\'rm\']) + \'</td></tr>';
+      (s as any).result = '<tr><td nowrap style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">&nbsp;' + ((s as any).locArgs?.[2] ?? 0) + '&nbsp;</td><td>' + qspFunc(s, 'progressbar', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), '', ((s as any).locArgs?.[8] ?? 0), (((s as any).sd_hb ?? 0)?.['rm'])) + '</td></tr>';
     } else {
-      (s as any).result = '<tr><td>\' + $func(\'progressbar\', $ARGS[1], ARGS[3], ARGS[4], ARGS[5], ARGS[6], $ARGS[7], \', $ARGS[8], sd_hb[\'rm\']) + \'</td><td nowrap style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">&nbsp;\' + $ARGS[2] + \'</td></tr>';
+      (s as any).result = '<tr><td>' + qspFunc(s, 'progressbar', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), '', ((s as any).locArgs?.[8] ?? 0), (((s as any).sd_hb ?? 0)?.['rm'])) + '</td><td nowrap style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">&nbsp;' + ((s as any).locArgs?.[2] ?? 0) + '</td></tr>';
     }
   }
   (s as any).sd_hb = undefined;
@@ -29,9 +29,9 @@ function enterHelperBar(s: GameState, scene: SceneBuilder): void {
 function enterHelperBarCell(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_bc = (s as any).sd_bc ?? {})['bar'] = qspFunc(s, 'progressbar', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), '', ((s as any).locArgs?.[8] ?? 0), (((s as any).sd ?? {})?.['render_mode'] ?? 0) + 1);
   if (((s as any).sd ?? 0)?.['name_side'] === 1) {
-    (s as any).result = '<td nowrap style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">&nbsp;\' + $ARGS[2] + \'&nbsp;</td><td>\' + $sd_bc[\'bar\'] + \'</td>';
+    (s as any).result = '<td nowrap style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">&nbsp;' + ((s as any).locArgs?.[2] ?? 0) + '&nbsp;</td><td>' + (((s as any).sd_bc ?? 0)?.['bar']) + '</td>';
   } else {
-    (s as any).result = '<td>\' + $sd_bc[\'bar\'] + \'</td><td nowrap style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">&nbsp;\' + $ARGS[2] + \'</td>';
+    (s as any).result = '<td>' + (((s as any).sd_bc ?? 0)?.['bar']) + '</td><td nowrap style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">&nbsp;' + ((s as any).locArgs?.[2] ?? 0) + '</td>';
   }
   (s as any).sd_bc = undefined;
   return;
@@ -53,7 +53,7 @@ function enterHelperSkillEntry(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[3] ?? '') % ((s as any).sd_se ?? 0)?.['cols'] === 0) {
       (s as any).result = '<tr>';
     }
-    (s as any).result = ((s as any).result ?? 0) + ('<td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">\' + $str(ARGS[2]) + \' \' + $sd_se[\'name\'] + \'</td>');
+    (s as any).result = ((s as any).result ?? 0) + ('<td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">' + String(((s as any).locArgs?.[2] ?? 0)) + ' ' + (((s as any).sd_se ?? 0)?.['name']) + '</td>');
     if (String((s as any).locArgs?.[3] ?? '') % ((s as any).sd_se ?? 0)?.['cols'] === (((s as any).sd_se ?? 0)?.['cols'] - 1)) {
       (s as any).result = ((s as any).result ?? '') + '</tr>';
     }
@@ -84,9 +84,9 @@ function enterHelperRelEntry(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).stat_cfg ?? 0)?.['rel_color_mode'] === 1) {
       ((s as any).sd_re = (s as any).sd_re ?? {})['color'] = qspFunc(s, 'progressbar', 'color', 'smooth_positive', ((s as any).locArgs?.[2] ?? 0), '10,35,60,80');
-      (s as any).result = ((s as any).result ?? 0) + ('<td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;"><font color="\' + $sd_re[\'color\'] + \'">\' + $sd_re[\'dname\'] + \': \' + $str(ARGS[2]) + \'</font></td>');
+      (s as any).result = ((s as any).result ?? 0) + ('<td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;"><font color="' + (((s as any).sd_re ?? 0)?.['color']) + '">' + (((s as any).sd_re ?? 0)?.['dname']) + ': ' + String(((s as any).locArgs?.[2] ?? 0)) + '</font></td>');
     } else {
-      (s as any).result = ((s as any).result ?? 0) + ('<td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">\' + $sd_re[\'dname\'] + \': \' + $str(ARGS[2]) + \'</td>');
+      (s as any).result = ((s as any).result ?? 0) + ('<td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">' + (((s as any).sd_re ?? 0)?.['dname']) + ': ' + String(((s as any).locArgs?.[2] ?? 0)) + '</td>');
     }
     if (String((s as any).locArgs?.[3] ?? '') % ((s as any).sd_re ?? 0)?.['cols'] === (((s as any).sd_re ?? 0)?.['cols'] - 1)) {
       (s as any).result = ((s as any).result ?? '') + '</tr>';
@@ -99,9 +99,9 @@ function enterHelperRelEntry(s: GameState, scene: SceneBuilder): void {
 
 function enterHelperToggle(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_hide ?? 0)[String((s as any).locArgs?.[1] ?? '')] === 0) {
-    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide[\u0027\u0027 + $ARGS[1] + \u0027\u0027] = 1 */ return s; }); window.__gameStore.getState().doGoto(\u0027$menu_obnovit\u0027, \u0027\u0027); return false;">▲' + ((s as any).locArgs?.[2] ?? 0) + '</a>';
+    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.stat_hide ??= {})\u0027 + $ARGS[1] + \u0027 = 1; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_obnovit\u0027, \u0027\u0027); return false;">▲' + ((s as any).locArgs?.[2] ?? 0) + '</a>';
   } else {
-    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide[\u0027\u0027 + $ARGS[1] + \u0027\u0027] = 0 */ return s; }); window.__gameStore.getState().doGoto(\u0027$menu_obnovit\u0027, \u0027\u0027); return false;">▽' + ((s as any).locArgs?.[2] ?? 0) + '</a>';
+    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.stat_hide ??= {})\u0027 + $ARGS[1] + \u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027$menu_obnovit\u0027, \u0027\u0027); return false;">▽' + ((s as any).locArgs?.[2] ?? 0) + '</a>';
   }
   return;
   scene.build();
@@ -198,7 +198,7 @@ function enterHelperAlignWrap(s: GameState, scene: SceneBuilder): void {
 
 function enterHelperFontWrap(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sd_font_pct ?? 0) !== 100  &&  String((s as any).locArgs?.[1] ?? '') !== '') {
-    (s as any).result = '<div style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">\' + $ARGS[1] + \'</div>';
+    (s as any).result = '<div style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">' + ((s as any).locArgs?.[1] ?? 0) + '</div>';
   } else {
     (s as any).result = ((s as any).locArgs?.[1] ?? 0);
   }
@@ -275,10 +275,10 @@ function enterSecWeather(s: GameState, scene: SceneBuilder): void {
       }
     }
     ((s as any).sd_w = (s as any).sd_w ?? {})['safe_weather'] = (String(((s as any).weather ?? 0)).split('"').join('&quot;'));
-    ((s as any).sd_w = (s as any).sd_w ?? {})['visual'] = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027' + qspUntranslated(s, "sd_w[\\u0027safe_weather\\u0027]", { location: "stat_display" }) + '\u0027); return s; }); return false;">\' + $func(\'wrap\', $sd_w[\'theme\'], $mid($osadki, 1, len($osadki) - 1)) + \'</a>';
+    ((s as any).sd_w = (s as any).sd_w ?? {})['visual'] = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(String((s as any).sd_w?.\u0027safe_weather\u0027 ?? \u0027\u0027)); return s; }); return false;">\' + $func(\'wrap\', $sd_w[\'theme\'], $mid($osadki, 1, len($osadki) - 1)) + \'</a>';
   } else {
     ((s as any).sd_w = (s as any).sd_w ?? {})['safe_weather'] = (String(((s as any).weather ?? 0)).split('"').join('&quot;'));
-    ((s as any).sd_w = (s as any).sd_w ?? {})['visual'] = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027' + qspUntranslated(s, "sd_w[\\u0027safe_weather\\u0027]", { location: "stat_display" }) + '\u0027); return s; }); return false;">\' + $weatherImage + \'</a>';
+    ((s as any).sd_w = (s as any).sd_w ?? {})['visual'] = '<a href="#" onclick="window.__gameStore.setState((s) => { alert(String((s as any).sd_w?.\u0027safe_weather\u0027 ?? \u0027\u0027)); return s; }); return false;">' + ((s as any).weatherImage ?? 0) + '</a>';
   }
   ((s as any).sd_w = (s as any).sd_w ?? {})['center'] = qspFunc(s, 'stat_display', 'helper_resolve_align', 'weather');
   ((s as any).sd_w = (s as any).sd_w ?? {})['align_attr'] = ((((s as any).sd_w ?? 0)?.['center'] === 1) ? (' align="center"') : (((((s as any).sd_w ?? 0)?.['center'] === 2) ? (' align="right"') : (''))));
@@ -289,9 +289,9 @@ function enterSecWeather(s: GameState, scene: SceneBuilder): void {
       (s as any).result = (((s as any).sd_w ?? 0)?.['temp']) + '<br>' + (((s as any).sd_w ?? 0)?.['visual']);
     } else {
       if (((s as any).stat_cfg ?? 0)?.['temp_pos'] === 3) {
-        (s as any).result = '<table\' + $sd_w[\'align_attr\'] + \'><tr><td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">\' + $sd_w[\'temp\'] + \'</td><td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">\' + $sd_w[\'visual\'] + \'</td></tr></table>';
+        (s as any).result = '<table' + (((s as any).sd_w ?? 0)?.['align_attr']) + '><tr><td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">' + (((s as any).sd_w ?? 0)?.['temp']) + '</td><td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">' + (((s as any).sd_w ?? 0)?.['visual']) + '</td></tr></table>';
       } else {
-        (s as any).result = '<table\' + $sd_w[\'align_attr\'] + \'><tr><td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">\' + $sd_w[\'visual\'] + \'</td><td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">\' + $sd_w[\'temp\'] + \'</td></tr></table>';
+        (s as any).result = '<table' + (((s as any).sd_w ?? 0)?.['align_attr']) + '><tr><td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">' + (((s as any).sd_w ?? 0)?.['visual']) + '</td><td style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">' + (((s as any).sd_w ?? 0)?.['temp']) + '</td></tr></table>';
       }
     }
   }
@@ -779,7 +779,7 @@ function enterSecAlerts(s: GameState, scene: SceneBuilder): void {
     do {
       if (((s as any).sd_alerts ?? 0)[((s as any).sd_mt ?? 0)?.['i']] !== '') {
         if (((s as any).sd ?? 0)?.['sep_alert'] === '<br>') {
-          (s as any).result = ((s as any).result ?? 0) + ('<div style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;"><b>\' + $sd_alerts[sd_mt[\'i\']] + \'</b></div>');
+          (s as any).result = ((s as any).result ?? 0) + ('<div style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;"><b>' + qspUntranslated(s, "sd_alerts[sd_mt['i']]", { location: "stat_display" }) + '</b></div>');
         } else {
           (s as any).result = ((s as any).result ?? 0) + (((((s as any).result ?? 0) !== '') ? ((((s as any).sd ?? 0)?.['sep_alert'])) : ('')) + ((s as any).sd_font_wrap_o ?? 0) + '<b>' + qspUntranslated(s, "sd_alerts[sd_mt['i']]", { location: "stat_display" }) + '</b>' + ((s as any).sd_font_wrap_c ?? 0));
         }
@@ -1092,7 +1092,7 @@ function enterSecTexts(s: GameState, scene: SceneBuilder): void {
     do {
       if (((s as any).sd_texts ?? 0)[((s as any).sd_mt ?? 0)?.['i']] !== '') {
         if (((s as any).sd ?? 0)?.['sep_text'] === '<br>') {
-          (s as any).result = ((s as any).result ?? 0) + ('<div style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">\' + $sd_texts[sd_mt[\'i\']] + \'</div>');
+          (s as any).result = ((s as any).result ?? 0) + ('<div style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">' + qspUntranslated(s, "sd_texts[sd_mt['i']]", { location: "stat_display" }) + '</div>');
         } else {
           (s as any).result = ((s as any).result ?? 0) + ('TODO');
         }
@@ -1258,8 +1258,8 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_si = (s as any).sd_si ?? {})['ann'] = ((s as any).sd_si['ann'] ?? 0) + ('<small>' + (((s as any).sd_si ?? 0)?.['cond']) + '</small>');
     }
     ((s as any).sd_si = (s as any).sd_si ?? {})['img'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027__qspDyn\u0027; return s; }); return false;"><img ' + (((s as any).sd_si ?? 0)?.['size']) + ' src="' + (((s as any).sd_si ?? 0)?.['url']) + '"></a>';
-    ((s as any).sd_si = (s as any).sd_si ?? {})['img_cells'] = ((s as any).sd_si['img_cells'] ?? 0) + ('<td valign="middle" align="center"' + (((s as any).sd_si ?? 0)?.['td_width']) + '>\' + $sd_si[\'img\'] + \'</td>');
-    ((s as any).sd_si = (s as any).sd_si ?? {})['ann_cells'] = ((s as any).sd_si['ann_cells'] ?? 0) + ('<td valign="top"    align="center"' + (((s as any).sd_si ?? 0)?.['td_width']) + '>\' + $sd_font_wrap_o + $sd_si[\'ann\'] + $sd_font_wrap_c + \'</td>');
+    ((s as any).sd_si = (s as any).sd_si ?? {})['img_cells'] = ((s as any).sd_si['img_cells'] ?? 0) + ('<td valign="middle" align="center"' + (((s as any).sd_si ?? 0)?.['td_width']) + '>' + (((s as any).sd_si ?? 0)?.['img']) + '</td>');
+    ((s as any).sd_si = (s as any).sd_si ?? {})['ann_cells'] = ((s as any).sd_si['ann_cells'] ?? 0) + ('<td valign="top"    align="center"' + (((s as any).sd_si ?? 0)?.['td_width']) + '>' + ((s as any).sd_font_wrap_o ?? 0) + (((s as any).sd_si ?? 0)?.['ann']) + ((s as any).sd_font_wrap_c ?? 0) + '</td>');
     if (((s as any).sd_si ?? 0)?.['ann'] !== '') {
       ((s as any).sd_si = (s as any).sd_si ?? {})['has_ann'] = 1;
     }
@@ -1310,7 +1310,7 @@ function enterDebugTrace(s: GameState, scene: SceneBuilder): void {
     scene.text('<hr>');
     if (Object.keys((s as any).trace_locations ?? {}).length > 0) {
       scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027debug_tools\u0027, \u0027trace_list_locs\u0027); return false;">list locations</a>&nbsp;|&nbsp;');
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \u0027$trace_locations\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">clear</a>');
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any).trace_locations; return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">clear</a>');
     } else {
       scene.text('list locations&nbsp;|&nbsp;');
       scene.text('clear');

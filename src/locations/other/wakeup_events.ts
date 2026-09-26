@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -126,7 +126,7 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
     (s as any).sleep_events = undefined;
   }
   (s as any).temp_slev_id = undefined;
-  qspFunc(s, 'temp_sleep_event_chosen');
+  dynamicGoto(s, String((s as any).temp_sleep_event_chosen || ''));
   qspGoto(s, 'wakeup_events', 'event_end');
   scene.build();
 }

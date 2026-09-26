@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -201,14 +201,14 @@ function enterEv13(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 3;
   (s as any).picrand = (Math.floor(Math.random() * 3) + 7);
   scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand ?? '')}.jpg`);
-  qspFunc(s, 'vagstart2');
+  dynamicGoto(s, String((s as any).vagstart2 || ''));
   scene.text('Jora fucks you in your pussy.');
   qspCall(s, 'arousal', 'vaginal', 30, ((s as any).npcID ?? 0), 'sub');
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/pc/body/cum/creampie/cumpussy3.jpg');
-    qspFunc(s, 'vagend');
+    dynamicGoto(st, String((st as any).vagend || ''));
     scene.text('You get dressed and get ready to go home.');
     scene.text('Jora hands you money, "Earned yourself a crumb."');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
@@ -292,14 +292,14 @@ function enterEv16(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 3;
   (s as any).picrand = (Math.floor(Math.random() * 3) + 7);
   scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand ?? '')}.jpg`);
-  qspFunc(s, 'vagstart2');
+  dynamicGoto(s, String((s as any).vagstart2 || ''));
   scene.text('Semyon fucks you in your pussy.');
   qspCall(s, 'arousal', 'vaginal', 30, ((s as any).npcID1 ?? 0), 'sub');
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/pc/body/cum/creampie/cumpussy3.jpg');
-    qspFunc(s, 'vagend');
+    dynamicGoto(st, String((st as any).vagend || ''));
     scene.text('You get dressed and get ready to go home.');
     scene.text('Seymon hands you money, "Earned yourself a crumb."');
     (st as any).guy = ((st as any).guy ?? 0) + (1);
@@ -1381,7 +1381,7 @@ function enterEv58(s: GameState, scene: SceneBuilder): void {
 function enterEv60(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 3;
   (s as any).guy = ((s as any).guy ?? 0) + (1);
-  qspFunc(s, 'vagstart2');
+  dynamicGoto(s, String((s as any).vagstart2 || ''));
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/jora/sex/bas 27.jpg');
   scene.text('You obediently follow Jora to a small platform where he sits down, you don\'t need further instruction and sit on his lap take his member inside as you do so.');
@@ -1397,7 +1397,7 @@ function enterEv60(s: GameState, scene: SceneBuilder): void {
 function enterEv61(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
   scene.img('images/characters/city/jora/sex/bas22.jpg');
-  qspFunc(s, 'vagend');
+  dynamicGoto(s, String((s as any).vagend || ''));
   qspCall(s, 'stat', '');
   scene.text('Jora gets up and goes to the showers saying to the crowd, "This bitch is all yours."');
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');

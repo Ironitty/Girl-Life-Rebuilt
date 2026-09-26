@@ -28,7 +28,7 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
       (s as any).item_line = ((s as any).item_line ?? 0) + ('<td align="left">' + (((s as any).item_curr_aisle ?? 0)?.[String(((s as any).i ?? 0))]) + '</td>');
       (s as any).item_line = ((s as any).item_line ?? 0) + ('<td>' + (((s as any).mc_inventory ?? 0)?.[String((s as any).cart_tmp ?? 0)] ?? 0) + '</td>');
       (s as any).item_line = ((s as any).item_line ?? 0) + ('<td>' + (((s as any).quantity_curr_aisle ?? 0)?.[String(((s as any).i ?? 0))]) + '</td>');
-      (s as any).item_line = ((s as any).item_line ?? 0) + ('<td>\' + $func(\'money\', \'string_price\', cost_curr_aisle[\'' + ((s as any).i ?? 0) + '\']) + \'</td>');
+      (s as any).item_line = ((s as any).item_line ?? 0) + ('<td>' + qspFunc(s, 'money', 'string_price', (((s as any).cost_curr_aisle ?? 0)?.[String(((s as any).i ?? 0))])) + '</td>');
       if (((s as any).cart_curr_quantity ?? 0)[(((s as any).i ?? 0))] > 0) {
         (s as any).item_line = ((s as any).item_line ?? 0) + ('<td valign="center" align="center" width="6%"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027item_cart\u0027, \u0027remove\u0027, String((s as any).i ?? \u0027\u0027)); return false;"><img src="images/system/ui/less' + ((s as any).icon_selector ?? 0) + '.png" height="' + ((s as any).icon_height ?? 0) + '"></a></td>');
         (s as any).item_line = ((s as any).item_line ?? 0) + ('<td valign="center" align="center" width="6%"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027item_cart\u0027, \u0027remove\u0027, String((s as any).i ?? \u0027\u0027)); return false;"><img src="images/system/ui/less' + ((s as any).icon_selector ?? 0) + '.png" height="' + ((s as any).icon_height ?? 0) + '"></a></td>');

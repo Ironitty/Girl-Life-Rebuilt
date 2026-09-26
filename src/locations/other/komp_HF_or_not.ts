@@ -87,7 +87,7 @@ function enterFuckornotList(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_hotcat ?? 0) === ((s as any).j ?? 0)  &&  (!((s as any).hotcat_rating_set ?? 0))) {
         (s as any).hotcat_rating_set = 1;
         (s as any).fu_text = ((s as any).fu_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="' + qspFunc(s, '$face_image', '') + '"><br>');
-        (s as any).fu_text = ((s as any).fu_text ?? 0) + ('' + ((s as any).pcs_nickname ?? 0) + ', ' + ((s as any).pcs_hotcat ?? 0) + '/10\' + \'</td>');
+        (s as any).fu_text = ((s as any).fu_text ?? 0) + ('' + ((s as any).pcs_nickname ?? 0) + ', ' + ((s as any).pcs_hotcat ?? 0) + '/10' + '</td>');
         (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
         if (((s as any).fu_count ?? 0) === 6) {
           (s as any).fu_text = ((s as any).fu_text ?? 0) + ('</tr><tr>');
@@ -95,7 +95,7 @@ function enterFuckornotList(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] > 0  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] < 6)) {
-          (s as any).fu_text = ((s as any).fu_text ?? 0) + ('\' + \'<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>\' + \'' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + ', ' + (((s as any).npc_hotcat ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '/10\' + \'</td>');
+          (s as any).fu_text = ((s as any).fu_text ?? 0) + ('' + '<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>' + '' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + ', ' + (((s as any).npc_hotcat ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '/10' + '</td>');
           (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
           if (((s as any).fu_count ?? 0) === 6) {
             (s as any).fu_text = ((s as any).fu_text ?? 0) + ('</tr><tr>');
@@ -123,7 +123,7 @@ function enterHotornotList(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     do {
       if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 0  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] > 0  &&  ((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] < 6)) {
-        (s as any).ho_text = ((s as any).ho_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>\' + \'' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + ', ' + (((s as any).npc_hotcat ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '/10\' + \'</td>');
+        (s as any).ho_text = ((s as any).ho_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>' + '' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + ', ' + (((s as any).npc_hotcat ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '/10' + '</td>');
         (s as any).ho_count = ((s as any).ho_count ?? 0) + (1);
         if (((s as any).ho_count ?? 0) === 6) {
           (s as any).ho_text = ((s as any).ho_text ?? 0) + ('</tr><tr>');
@@ -194,7 +194,7 @@ function enterFuckornotUniList(s: GameState, scene: SceneBuilder): void {
         (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
         (s as any).hotcat_rating_set = 1;
         (s as any).fu_text = ((s as any).fu_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="' + qspFunc(s, '$face_image', '') + '"><br>');
-        (s as any).fu_text = ((s as any).fu_text ?? 0) + ('' + ((s as any).pcs_nickname ?? 0) + ', ' + ((s as any).pcs_hotcat ?? 0) + '/10\' + \'</td>');
+        (s as any).fu_text = ((s as any).fu_text ?? 0) + ('' + ((s as any).pcs_nickname ?? 0) + ', ' + ((s as any).pcs_hotcat ?? 0) + '/10' + '</td>');
         if (((s as any).fu_count ?? 0) === 6) {
           (s as any).fu_text = ((s as any).fu_text ?? 0) + ('</tr><tr>');
           (s as any).fu_count = 0;
@@ -202,7 +202,7 @@ function enterFuckornotUniList(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  ((s as any).npc_uni_active ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_uni_eduType ?? 0)['A' + (((s as any).i ?? 0))] !== 'professor') {
         (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
-        (s as any).fu_text = ((s as any).fu_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>\' + \'' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + ', ' + (((s as any).npc_hotcat ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '/10\' + \'</td>');
+        (s as any).fu_text = ((s as any).fu_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>' + '' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + ', ' + (((s as any).npc_hotcat ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '/10' + '</td>');
         if (((s as any).fu_count ?? 0) === 6) {
           (s as any).fu_text = ((s as any).fu_text ?? 0) + ('</tr><tr>');
           (s as any).fu_count = 0;
@@ -229,7 +229,7 @@ function enterHotornotUniList(s: GameState, scene: SceneBuilder): void {
     do {
       if (((s as any).npc_gender ?? 0)['A' + (((s as any).i ?? 0))] === 0  &&  ((s as any).npc_hotcat ?? 0)['A' + (((s as any).i ?? 0))] === ((s as any).j ?? 0)  &&  ((s as any).npc_uni_active ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).npc_uni_eduType ?? 0)['A' + (((s as any).i ?? 0))] !== 'professor') {
         (s as any).ho_count = ((s as any).ho_count ?? 0) + (1);
-        (s as any).ho_text = ((s as any).ho_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>\' + \'' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + ', ' + (((s as any).npc_hotcat ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '/10\' + \'</td>');
+        (s as any).ho_text = ((s as any).ho_text ?? 0) + ('<td bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + ' align="center"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"><br>' + '' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + ', ' + (((s as any).npc_hotcat ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '/10' + '</td>');
         if (((s as any).ho_count ?? 0) === 6) {
           (s as any).ho_text = ((s as any).ho_text ?? 0) + ('</tr><tr>');
           (s as any).ho_count = 0;

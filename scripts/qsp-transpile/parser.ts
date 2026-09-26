@@ -1043,6 +1043,7 @@ interface ParseResult {
       trimmed.startsWith('clr &') ||
       trimmed.startsWith('$no') ||
       trimmed.startsWith('dynamic $') ||
+      trimmed.startsWith('dynamic(') ||
       trimmed.startsWith('PLAY ') ||
       trimmed.startsWith('play ') ||
       trimmed.startsWith('killvar ') ||
@@ -2147,6 +2148,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     trimmed.startsWith('clr &') ||
     trimmed.startsWith('$no') ||
     trimmed.startsWith('dynamic $') ||
+    trimmed.startsWith('dynamic(') ||
     trimmed.startsWith('PLAY ') ||
     trimmed.startsWith('play ') ||
     trimmed.startsWith('killvar ') ||

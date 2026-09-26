@@ -301,16 +301,16 @@ function enterClothesThinnes(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_reaction_daily = (s as any).npc_reaction_daily ?? {})[((s as any).locArgs?.[1] ?? 0) + '_clothes_thinnes'] = 1;
   if (((s as any).npc_nr_pref_values ?? 0)?.['clothes_thin'] > 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['clothes_thinnes'] === 1) {
     if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
-      (s as any).result = '"Wow, you look amazing in that thin \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\'! You always know how to dress to impress." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+      (s as any).result = '"Wow, you look amazing in that thin ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('outfit')) + '! You always know how to dress to impress." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
     } else {
       if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 60  ||  String((s as any).locArgs?.[2] ?? '') === 'like') {
-        (s as any).result = '"Nice \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\'! You have a great sense of style." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+        (s as any).result = '"Nice ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('outfit')) + '! You have a great sense of style." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
       } else {
         if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 40  ||  String((s as any).locArgs?.[2] ?? '') === 'indifferent') {
-          (s as any).result = '"I see you\'re wearing a thin \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\'today." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+          (s as any).result = '"I see you\'re wearing a thin ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('outfit')) + 'today." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
         } else {
           if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 20  ||  String((s as any).locArgs?.[2] ?? '') === 'dislike') {
-            (s as any).result = '"That \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\' is a bit too revealing for my taste, but I suppose it\'s your choice." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+            (s as any).result = '"That ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('outfit')) + ' is a bit too revealing for my taste, but I suppose it\'s your choice." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
           } else {
             (s as any).result = '"What were you thinking wearing something so revealing in public?" ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
           }
@@ -320,36 +320,36 @@ function enterClothesThinnes(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).npc_nr_pref_values ?? 0)?.['clothes_thin'] < 0  ||  ((s as any).npc_reactions_temp_preferences ?? 0)?.['clothes_thinnes'] === -1) {
       if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
-        (s as any).result = '"Oh, I see you\'re wearing a thin \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\' today! I love you regardless of what you wear." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+        (s as any).result = '"Oh, I see you\'re wearing a thin ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('outfit')) + ' today! I love you regardless of what you wear." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
       } else {
         if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 60  ||  String((s as any).locArgs?.[2] ?? '') === 'like') {
-          (s as any).result = '"You look nice in that thin \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\', but I always thought you looked great no matter what." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+          (s as any).result = '"You look nice in that thin ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('outfit')) + ', but I always thought you looked great no matter what." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
         } else {
           if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 40  ||  String((s as any).locArgs?.[2] ?? '') === 'indifferent') {
-            (s as any).result = '"The thin \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\' is interesting. It doesn\'t really impact my opinion of you." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+            (s as any).result = '"The thin ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('outfit')) + ' is interesting. It doesn\'t really impact my opinion of you." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
           } else {
             if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 20  ||  String((s as any).locArgs?.[2] ?? '') === 'dislike') {
-              (s as any).result = '"I\'m not a fan of thin \'+iif(PCloDress = 1, \'dresses\', \'skirts\')+\', but it\'s not my place to judge what you wear." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+              (s as any).result = '"I\'m not a fan of thin ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dresses') : ('skirts')) + ', but it\'s not my place to judge what you wear." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
             } else {
-              (s as any).result = '"I can\'t stand seeing you in that thin \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\'. It\'s disrespectful and shows poor judgement." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+              (s as any).result = '"I can\'t stand seeing you in that thin ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('outfit')) + '. It\'s disrespectful and shows poor judgement." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
             }
           }
         }
       }
     } else {
       if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 80  ||  String((s as any).locArgs?.[2] ?? '') === 'love') {
-        (s as any).result = '"Oh, they look nice and comfortable in that \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\'. I adore them." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+        (s as any).result = '"Oh, they look nice and comfortable in that ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('outfit')) + '. I adore them." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
       } else {
         if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 60  ||  String((s as any).locArgs?.[2] ?? '') === 'like') {
-          (s as any).result = '"The \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\' suits them well, I like it." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+          (s as any).result = '"The ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('outfit')) + ' suits them well, I like it." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
         } else {
           if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 40  ||  String((s as any).locArgs?.[2] ?? '') === 'indifferent') {
-            (s as any).result = '"It\'s just a \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\', doesn\'t affect my opinion of them." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+            (s as any).result = '"It\'s just a ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('outfit')) + ', doesn\'t affect my opinion of them." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
           } else {
             if (((s as any).npc_rel ?? 0)[String((s as any).locArgs?.[1] ?? '')] > 20  ||  String((s as any).locArgs?.[2] ?? '') === 'dislike') {
               (s as any).result = '"I personally prefer more coverage, but to each their own." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
             } else {
-              (s as any).result = '"I can\'t stand how revealing that \'+iif(PCloDress = 1, \'dress\', \'outfit\')+\' is, it\'s disrespectful." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
+              (s as any).result = '"I can\'t stand how revealing that ' + ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : ('outfit')) + ' is, it\'s disrespectful." ' + ((s as any).nr_temp_npc_name ?? 0) + ' says';
             }
           }
         }

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -804,7 +804,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Accept and go with him', handler: (st: GameState) => {
-    // TODO-QSP: dynamic $goto_rnd_client_event
+    dynamicGoto(st, String((st as any).goto_rnd_client_event || ''));
   } },
     ]);
   }

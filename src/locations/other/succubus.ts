@@ -1144,7 +1144,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
       { label: 'Look around to see where you are', handler: (st: GameState) => {
     if (((st as any).sccarflag ?? 0) === 1) {
       (st as any).sccarflag = undefined;
-      qspFunc(s, 'enddrive');
+      dynamicGoto(st, String((st as any).enddrive || ''));
     } else {
       dynamicGoto(st, 'sucgoloc', 'sucgometka');
     }

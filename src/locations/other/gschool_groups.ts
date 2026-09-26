@@ -114,7 +114,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
   do {
     if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 4  &&  ((s as any).schoolenable ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
       (s as any).lcase_gop = (String((((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))])).toLowerCase());
-      (s as any).gop_text = ((s as any).gop_text ?? 0) + ('<td><table bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + '><tr><td align="center"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gschool_gopnik_chats\u0027, String((s as any).lcase_gop ?? \u0027\u0027)); return false;"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"></a></td></tr><tr><td align="center">' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '</td></tr></table>\' + \'</td>');
+      (s as any).gop_text = ((s as any).gop_text ?? 0) + ('<td><table bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + '><tr><td align="center"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gschool_gopnik_chats\u0027, String((s as any).lcase_gop ?? \u0027\u0027)); return false;"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"></a></td></tr><tr><td align="center">' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '</td></tr></table>' + '</td>');
       (s as any).gop_count = ((s as any).gop_count ?? 0) + (1);
       if (((s as any).gop_count ?? 0) === 6) {
         (s as any).gop_text = ((s as any).gop_text ?? 0) + ('</tr><tr>');
@@ -140,7 +140,7 @@ function enterOutcasts(s: GameState, scene: SceneBuilder): void {
   do {
     if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 5  &&  ((s as any).schoolenable ?? 0)['A' + (((s as any).i ?? 0))] === 1) {
       (s as any).lcase_oc = (String((((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))])).toLowerCase());
-      (s as any).oc_text = ((s as any).oc_text ?? 0) + ('<td><table bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + '><tr><td align="center"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gschool_outcast_chats\u0027, String((s as any).lcase_oc ?? \u0027\u0027)); return false;"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"></a></td></tr><tr><td align="center">' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '</td></tr></table>\' + \'</td>');
+      (s as any).oc_text = ((s as any).oc_text ?? 0) + ('<td><table bgcolor=' + (((s as any).theme ?? 0)?.['table_bg_alt']) + '><tr><td align="center"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gschool_outcast_chats\u0027, String((s as any).lcase_oc ?? \u0027\u0027)); return false;"><img height="100" src="images/characters/shared/headshots_main/' + ((s as any).i ?? 0) + '.jpg"></a></td></tr><tr><td align="center">' + (((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))]) + '</td></tr></table>' + '</td>');
       (s as any).oc_count = ((s as any).oc_count ?? 0) + (1);
       if (((s as any).oc_count ?? 0) === 6) {
         (s as any).oc_text = ((s as any).oc_text ?? 0) + ('</tr><tr>');
