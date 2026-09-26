@@ -2114,7 +2114,6 @@ function enterMagicTable(s: GameState, scene: SceneBuilder): void {
       break;
     }
     (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + '\n</table>\n</center>';
-    // TODO-QSP: </center>"
     (s as any).i = undefined;
     (s as any).ThisSpellName = undefined;
     (s as any).ThisArrName = undefined;
@@ -2209,7 +2208,6 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
       break;
     }
     (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + '\n</table>\n</center>';
-    // TODO-QSP: </center>"
     scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));
     (s as any).i = undefined;
     (s as any).ThisLocation = undefined;

@@ -257,7 +257,6 @@ function enterPrintStats(s: GameState, scene: SceneBuilder): void {
     ((s as any).fightPStats = (s as any).fightPStats ?? {})['Image'] = (((s as any).pcs_image ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
   }
   (s as any).fightStatRowText = '\n<tr>\n<td rowspan=4 align=right valign=center>\n<img HEIGHT=70 src=\'' + (((s as any).fightPStats ?? 0)?.['Image']) + '\'>\n<br> <b>' + (((s as any).fightPStats ?? 0)?.['Name']) + '</b>\n</td>\n<td align=right> Life </td>\n<td align=right> <b><font color = red>' + (((s as any).fightPStats ?? 0)?.['Health']) + '</font></b> </td>\n<td rowspan=4 align=left valign=center>';
-  // TODO-QSP: <td rowspan=4 align=left valign=center>"
   if (((s as any).fightPStats ?? 0)?.['Shield'] > 0) {
     (s as any).fightStatRowText = ((s as any).fightStatRowText ?? '') + '<b><font color = purple>Protection ' + (((s as any).fightPStats ?? 0)?.['Shield']) + ' units</font></b><br>';
   }
@@ -280,7 +279,6 @@ function enterPrintStats(s: GameState, scene: SceneBuilder): void {
 
 function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
   (s as any).fightStatText = '\n<table border=1><th colspan=4><b><font size=12>Opponents</font></b></th>\n';
-  scene.text('');
   (s as any).j = 0;
   while (true) {
     if (((s as any).j ?? 0) < Object.keys((s as any).opp_health ?? {}).length) {
@@ -290,7 +288,6 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).fightStatText = ((s as any).fightStatText ?? 0) + ('</table>');
     (s as any).fightStatText = '\n<table border=1><th colspan=4><b><font size=12>Opponents</font></b></th>\n';
-    scene.text('');
     (s as any).j = 0;
     while (true) {
       if (((s as any).j ?? 0) < Object.keys((s as any).pcs_health ?? {}).length) {

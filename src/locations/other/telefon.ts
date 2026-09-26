@@ -479,7 +479,6 @@ function enterNpcSendListSms(s: GameState, scene: SceneBuilder): void {
 function enterGetSmsSendRow(s: GameState, scene: SceneBuilder): void {
   ((s as any).telefon = (s as any).telefon ?? {})['ContactNPCcode'] = qspUntranslated(s, "SMSSendContact[ARGS[1]]", { location: "telefon" });
   (s as any).result = '\n<tr>\n<td>' + (((s as any).npc_nickname ?? 0)?.[(((s as any).telefon ?? 0)?.['ContactNPCcode'])] ?? 0) + '</td>\n<td><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027telefon\u0027, \u0027smsSendMessage\u0027, ((s as any).locArgs?.[0] ?? \u0027\u0027)); return false;">' + qspUntranslated(s, "SMSSendMessage[ARGS[0]]", { location: "telefon" }) + '</a></td>\n</tr>';
-  // TODO-QSP: </tr>'
   return;
   scene.build();
 }

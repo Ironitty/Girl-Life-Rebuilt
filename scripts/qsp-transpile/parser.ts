@@ -977,7 +977,7 @@ interface ParseResult {
             }
               next++;
             }
-            i = next - 1;
+            i = next;
           }
         }
       }
@@ -1253,7 +1253,41 @@ interface ParseResult {
     // Dollar variable assignment: $var = val, $var += val, $var -= val
     const dollarVarMatch = trimmed.match(/^\$(\w+)\s*(\+=|-=|\/=|\*=|=)\s*(.+)$/);
     if (dollarVarMatch) {
-      nodes.push({ kind: 'assign', var: `$${dollarVarMatch[1]}`, op: dollarVarMatch[2] as '=' | '+=' | '-=', value: dollarVarMatch[3].trim() });
+      const valPart = dollarVarMatch[3].trim();
+      // Check for unclosed quote in value (multi-line string in concatenation)
+      const qch = valPart.match(/["']/)?.[0] || '';
+      let quoteCount = 0;
+      if (qch) {
+        for (let qi = 0; qi < valPart.length; qi++) {
+          if (valPart[qi] === qch) {
+            if (valPart[qi + 1] === qch) { qi++; continue; }
+            quoteCount++;
+          }
+        }
+      }
+      if (quoteCount % 2 === 1) {
+        // Multi-line string: consume subsequent lines until quote is closed
+        let fullVal = valPart;
+        let consumedLines = 0;
+        while (true) {
+          const next = lines[i + 1 + consumedLines];
+          if (next === undefined) break;
+          fullVal += '\n' + next.trim();
+          consumedLines++;
+          let qc = 0;
+          for (let qi = 0; qi < fullVal.length; qi++) {
+            if (fullVal[qi] === qch) {
+              if (fullVal[qi + 1] === qch) { qi++; continue; }
+              qc++;
+            }
+          }
+          if (qc % 2 === 0) break;
+        }
+        nodes.push({ kind: 'assign', var: `$${dollarVarMatch[1]}`, op: dollarVarMatch[2] as '=' | '+=' | '-=', value: fullVal });
+        i += 1 + consumedLines;
+        continue;
+      }
+      nodes.push({ kind: 'assign', var: `$${dollarVarMatch[1]}`, op: dollarVarMatch[2] as '=' | '+=' | '-=', value: valPart });
       i++;
       continue;
     }
