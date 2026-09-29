@@ -39,11 +39,7 @@ function enterCockReact(s: GameState, scene: SceneBuilder): void {
 
 function enterBedStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['start_time'] = ((s as any).totminut ?? 0);
-  // TODO-QSP: ! gs 'sex_ev_start', 'undress_function'
-  // TODO-QSP: ! $sex_ev['bed_room']
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    // TODO-QSP: ! player wins initiative
-    // TODO-QSP: ! 'You both tear your clothes off, getting naked as fast as possible, you finishing just before he d...
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterForeplayChoose(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.actions([
@@ -2828,7 +2824,6 @@ function enterTransition1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTransition2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: --- sex_ev_foreplay ---------------------------------
   scene.actions([
     { label: 'End it there', handler: (st: GameState) => {
     scene.text(String(qspFunc(s, 'sex_ev', 'bed_room') || ''));

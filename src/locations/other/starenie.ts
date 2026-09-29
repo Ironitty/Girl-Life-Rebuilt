@@ -10,7 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enter_Dynamic__(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)]((s as any)._w ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-    // TODO-QSP: <<$loc_clothestypes[j]>>_w[i] = 0
+    (s as any)[String(((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)] ?? '') + '_w'] = (s as any)[String(((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)] ?? '') + '_w'] ?? {};
+    (s as any)[String(((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)] ?? '') + '_w'][String((s as any).i ?? 0)] = 0;
     qspCall(s, 'clothing', 'decrease_strength', (((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)] ?? 0), ((s as any).i ?? 0), 1);
   }
   scene.build();

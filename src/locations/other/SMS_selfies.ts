@@ -37,21 +37,18 @@ function enterSendSelfie(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_return_string = '';
   ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['n_args'] = 0;
   ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['i'] = 3;
-  while (true) {
-    if (((s as any).SMSSelfieVars ?? 0)?.['i'] < ((s as any).SMSSelfieVars ?? 0)?.['n_args']) {
-      if (((s as any).ARGS ?? 0)[((s as any).SMSSelfieVars ?? 0)?.['i']] === '') {
-        (s as any).temp_return_string = ((s as any).temp_return_string ?? 0) + ('' + qspUntranslated(s, "ARGS[SMSSelfieVars['i']]", { location: "SMS_selfies" }) + ', ');
-      } else {
-        (s as any).temp_return_string = ((s as any).temp_return_string ?? 0) + ('\'' + qspUntranslated(s, "ARGS[SMSSelfieVars['i']]", { location: "SMS_selfies" }) + '\', ');
-      }
-      ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['i'] = ((s as any).SMSSelfieVars['i'] ?? 0) + (1);
-      break;
+  while (((s as any).SMSSelfieVars ?? 0)?.['i'] < ((s as any).SMSSelfieVars ?? 0)?.['n_args']) {
+    if (((s as any).ARGS ?? 0)[((s as any).SMSSelfieVars ?? 0)?.['i']] === '') {
+      (s as any).temp_return_string = ((s as any).temp_return_string ?? 0) + ('' + qspUntranslated(s, "ARGS[SMSSelfieVars['i']]", { location: "SMS_selfies" }) + ', ');
+    } else {
+      (s as any).temp_return_string = ((s as any).temp_return_string ?? 0) + ('\'' + qspUntranslated(s, "ARGS[SMSSelfieVars['i']]", { location: "SMS_selfies" }) + '\', ');
     }
-    (s as any).temp_return_string = (String(((s as any).temp_return_string ?? 0)).slice((1)-1, ((1)-1)+((String(((s as any).temp_return_string ?? 0)).length) - 2)));
-    ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['return_string'] = ((s as any).temp_return_string ?? 0);
-    (s as any).temp_return_string = undefined;
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSelfieMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['i'] = ((s as any).SMSSelfieVars['i'] ?? 0) + (1);
   }
+  (s as any).temp_return_string = (String(((s as any).temp_return_string ?? 0)).slice((1)-1, ((1)-1)+((String(((s as any).temp_return_string ?? 0)).length) - 2)));
+  ((s as any).SMSSelfieVars = (s as any).SMSSelfieVars ?? {})['return_string'] = ((s as any).temp_return_string ?? 0);
+  (s as any).temp_return_string = undefined;
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSelfieMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 

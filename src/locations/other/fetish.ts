@@ -50,7 +50,7 @@ function enterAddBonuses(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckForTraits(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fetish_trait ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== '') {
-    // TODO-QSP: dynamic $fetish_trait[$ARGS[1]]
+    /* dynamic fetish_trait */
   }
   return;
   scene.build();

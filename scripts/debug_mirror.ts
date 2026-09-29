@@ -41,7 +41,7 @@ async function setupPage(p: any): Promise<void> {
 
 async function main() {
   await new Promise<void>((r) => server.listen(4174, r));
-  const browser = await chromium.launch({ executablePath: '/snap/bin/chromium', args: ['--no-sandbox'] });
+  const browser = await chromium.launch({ executablePath: '/usr/bin/google-chrome', args: ['--no-sandbox'] });
   const page = await browser.newPage();
   const errors: string[] = [];
   const logs: string[] = [];

@@ -701,7 +701,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[0] ?? '') !== 'no_image') {
       scene.text('<center>Please place your order</center><br><br>');
     }
-    // TODO-QSP: +$_str
+    scene.text(String((s as any)._str ?? ''));
     (s as any)._str = undefined;
     (s as any).food_loop = undefined;
     (s as any).temp_bcolor = undefined;

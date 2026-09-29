@@ -257,7 +257,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).overview_show_document_options ?? 0) === 1) {
     scene.text('<tr>');
     scene.text(String((s as any).temp_cell_td_3 ?? ''));
-    // TODO-QSP: *P      $func('intro_overview', 'get_passport_setter')
+    scene.text(qspFunc(s, 'intro_overview', 'get_passport_setter'));
     scene.text(String((s as any).temp_cell_td_3_end ?? ''));
     scene.text(String((s as any).temp_cell_td_3 ?? ''));
     scene.text(qspFunc(s, 'intro_overview', 'get_secretary_licence_setter'));

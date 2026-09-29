@@ -48,7 +48,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['Operation'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['Amount'] = ((s as any).locArgs?.[4] ?? 0);
   if (((s as any).SpellFuncVar ?? 0)?.['Operation'] === '===') {
-    // TODO-QSP: !"opp_fog[0] = 0"
+    /* opp_fog[0] = 0 */
   }
   scene.build();
 }

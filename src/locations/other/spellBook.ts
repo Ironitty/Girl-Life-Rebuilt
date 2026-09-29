@@ -27,11 +27,8 @@ function enter_Dynamic__(s: GameState, scene: SceneBuilder): void {
       ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['RowCode'] = qspUntranslated(s, "{", { location: "spellBook" });
       if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 1) {
         if (((s as any).spellOptDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === '') {
-          // TODO-QSP: ! If the spell has no Options, we jsut list it out for casting
           (s as any).tmpHTMLCode = '\n<tr>\n<td align=\'left\'><a href="EXEC: gs \'castSpell\', \'' + ((s as any).ThisSpellName ?? 0) + '\'& ' + (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell']) + '">' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</a></td>\n<td align=\'right\'>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'left\'>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n</tr>';
         } else {
-          // TODO-QSP: ! If the spell does have options, we make a row for spell info, and loop through additional rows
-          // TODO-QSP: !  with options for the user to pick
           (s as any).tmpHTMLCode = '\n<tr>\n<td align=\'left\'>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'right\'>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'left\'>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n</tr>';
           (s as any).n = 0;
           while (true) {
@@ -95,11 +92,8 @@ function enter_Dynamic__(s: GameState, scene: SceneBuilder): void {
         ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['RowCode'] = qspUntranslated(s, "{", { location: "spellBook" });
         if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 1) {
           if (((s as any).spellOptDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === '') {
-            // TODO-QSP: ! If the spell has no Options, we jsut list it out for casting
             (s as any).tmpHTMLCode = '\n<tr>\n<td align=\'left\'>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'right\'>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'left\'>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n</tr>';
           } else {
-            // TODO-QSP: ! If the spell does have options, we make a row for spell info, and loop through additional rows
-            // TODO-QSP: !  with options for the user to pick
             (s as any).tmpHTMLCode = '\n<tr>\n<td align=\'left\'>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'right\'>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'left\'>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n</tr>';
             (s as any).n = 0;
             while (true) {

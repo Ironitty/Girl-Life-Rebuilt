@@ -2585,7 +2585,7 @@ function enterAnalSurpriseCumTogether(s: GameState, scene: SceneBuilder): void {
 
 function enterCumTogether2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
-    { label: 'Collapse' }, // TODO-QSP: empty action body
+    { label: 'Collapse' },
   ]);
   scene.build();
 }

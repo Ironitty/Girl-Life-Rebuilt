@@ -149,7 +149,7 @@ async function setupPage(p: any): Promise<void> {
 async function main() {
   const srv = startServer();
   await sleep(500);
-  let browser = await chromium.launch({ headless: true, executablePath: '/snap/bin/chromium' });
+  let browser = await chromium.launch({ headless: true, executablePath: '/usr/bin/google-chrome' });
   let page = await browser.newPage();
 
   const errors: string[] = [];
@@ -226,7 +226,7 @@ async function main() {
           newPage = await browser.newPage();
         } catch {
           await browser.close().catch(() => {});
-          browser = await chromium.launch({ headless: true, executablePath: '/snap/bin/chromium' });
+          browser = await chromium.launch({ headless: true, executablePath: '/usr/bin/google-chrome' });
           newPage = await browser.newPage();
         }
         newPage.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));

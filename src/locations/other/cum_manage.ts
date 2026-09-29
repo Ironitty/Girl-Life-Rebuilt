@@ -786,9 +786,9 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
           if (((s as any).cumcount ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] === ((s as any).knownguy ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])]) {
             if (((s as any).knownguy ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] === 1) {
               if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':0']] === 'stranger') {
-                // TODO-QSP: $sd_cum['person'] = $npc_firstname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:0']] + ' '
+                ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).npc_firstname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':0']] + ' ';
               } else {
-                // TODO-QSP: $sd_cum['person'] = $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:0']] + ' '
+                ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':0']] + ' ';
               }
             } else {
               ((s as any).sd_cum = (s as any).sd_cum ?? {})['kmax'] = 0;
@@ -800,7 +800,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
                 ((s as any).sd_cum = (s as any).sd_cum ?? {})['kmax'] = ((s as any).sd_cum['kmax'] ?? 0) - (1);
                 ((s as any).sd_cum = (s as any).sd_cum ?? {})['k'] = 0;
                 while (true) {
-                  // TODO-QSP: $sd_cum['person'] += $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']]
+                  ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] ?? '');
                   if (((s as any).sd_cum ?? 0)?.['k'] < ((s as any).sd_cum ?? 0)?.['kmax'] - 1) {
                     ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (', ');
                     ((s as any).sd_cum = (s as any).sd_cum ?? {})['k'] = ((s as any).sd_cum['k'] ?? 0) + (1);
@@ -808,9 +808,9 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
                   }
                   ((s as any).sd_cum = (s as any).sd_cum ?? {})['k'] = ((s as any).sd_cum['k'] ?? 0) + (1);
                   if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] === 'stranger') {
-                    // TODO-QSP: $sd_cum['person'] += ' and ' + $npc_firstname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']] + ' '
+                    ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + ' and ' + (((s as any).npc_firstname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] ?? '') + ' ';
                   } else {
-                    // TODO-QSP: $sd_cum['person'] += ' and ' + $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']] + ' '
+                    ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + ' and ' + (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] ?? '') + ' ';
                   }
                 }
               }
@@ -825,9 +825,9 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).knownguy ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j'])] === 1) {
                 if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] === 'stranger') {
-                  // TODO-QSP: $sd_cum['person'] = $npc_firstname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:0']] + ' and some guy'
+                  ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).npc_firstname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':0']] + ' and some guy';
                 } else {
-                  // TODO-QSP: $sd_cum['person'] = $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:0']] + ' and some guy'
+                  ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':0']] + ' and some guy';
                 }
               } else {
                 ((s as any).sd_cum = (s as any).sd_cum ?? {})['kmax'] = 0;
@@ -840,9 +840,9 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
                   ((s as any).sd_cum = (s as any).sd_cum ?? {})['k'] = 0;
                   while (true) {
                     if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] === 'stranger') {
-                      // TODO-QSP: $sd_cum['person'] += $npc_firstname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']] + ', '
+                      ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (((s as any).npc_firstname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] ?? '') + ', ';
                     } else {
-                      // TODO-QSP: $sd_cum['person'] += $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']] + ', '
+                      ((s as any).sd_cum = (s as any).sd_cum ?? {})['person'] = ((s as any).sd_cum['person'] ?? 0) + (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[(((s as any).sd_cum ?? 0)?.['i']) + ':' + (((s as any).sd_cum ?? 0)?.['j']) + ':' + (((s as any).sd_cum ?? 0)?.['k'])]] ?? '') + ', ';
                     }
                     if (((s as any).sd_cum ?? 0)?.['k'] < ((s as any).sd_cum ?? 0)?.['kmax']) {
                       ((s as any).sd_cum = (s as any).sd_cum ?? {})['k'] = ((s as any).sd_cum['k'] ?? 0) + (1);

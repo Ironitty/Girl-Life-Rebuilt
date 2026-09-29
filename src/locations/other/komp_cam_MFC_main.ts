@@ -139,13 +139,13 @@ function enterWaitclients(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'komp_cam_functions', 'print_status');
   if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 10) {
-    // TODO-QSP: act $func('wrap', 'neg', 'Dance'): $func('wrap', 'neg', '<br>You don''t have enough stamina to do th...
+    scene.action({ label: String(qspFunc(s, 'komp_cam_MFC_main', 'wrap', 'neg', 'Dance')) });
   } else {
     if (((s as any).pcs_hydra ?? 0) < 5) {
-      // TODO-QSP: act $func('wrap', 'neg', 'Dance'): $func('wrap', 'neg', '<br>You are too thirsty to do this.')
+      scene.action({ label: String(qspFunc(s, 'komp_cam_MFC_main', 'wrap', 'neg', 'Dance')) });
     } else {
       if (((s as any).pcs_energy ?? 0) < 5) {
-        // TODO-QSP: act $func('wrap', 'neg', 'Dance'): $func('wrap', 'neg', '<br>You are too hungry to do this.')
+        scene.action({ label: String(qspFunc(s, 'komp_cam_MFC_main', 'wrap', 'neg', 'Dance')) });
       } else {
         scene.actions([
           { label: 'Dance', goto: ['komp_cam_MFC_main', 'dance'] },

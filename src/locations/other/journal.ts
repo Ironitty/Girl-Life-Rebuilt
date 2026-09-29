@@ -1097,11 +1097,11 @@ function enterNotestab(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Notes</h2></center>');
   scene.text('Create notes to keep track of any information you need.');
-  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $zapis[] = input(\u0027What do you want to record?\u0027) */ return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027notestab\u0027); return false;">Make a note</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* zapis input */ return s; }); window.__gameStore.getState().doGoto(\u0027journal\u0027, \u0027notestab\u0027); return false;">Make a note</a>');
   (s as any).jur_temp = 0;
   while (true) {
     if (((s as any).jur_temp ?? 0) < Object.keys((s as any).zapis ?? {}).length) {
-      scene.text(`${(((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027killvar/u0027/u0027$zapis/u0027/u0027,/u003c/u003cjur_temp>> */ return s; }); window.__gameStore.getState().doGoto(/u0027/u0027journal/u0027/u0027, /u0027/u0027notestab/u0027/u0027/u0027); return false;">Delete</a>`);
+      scene.text(`${(((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { /* killvar zapis */ return s; }); window.__gameStore.getState().doGoto(/u0027/u0027journal/u0027/u0027, /u0027/u0027notestab/u0027/u0027/u0027); return false;">Delete</a>`);
       (s as any).jur_temp = ((s as any).jur_temp ?? 0) + (1);
       break;
     }

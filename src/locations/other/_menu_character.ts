@@ -645,7 +645,7 @@ function enterSkillFormatFunc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp ?? 0)?.['skl_popup'] === '') {
     (s as any).result = ((s as any).result ?? 0) + ('' + (((s as any).temp ?? 0)?.['skl_desc']) + '');
   } else {
-    // TODO-QSP: $result += '<a href="exec:msg ''<<$temp["skl_popup"]>>''"><<$temp[''skl_desc'']>></a>'
+    (s as any).result = ((s as any).result ?? '') + '<a href="exec:msg \'' + String(((s as any).temp ?? 0)?.['skl_popup'] ?? '') + '\">' + String(((s as any).temp ?? 0)?.['skl_desc'] ?? '') + '</a>';
   }
   (s as any).result = ((s as any).result ?? 0) + ('</td><td>-</td>');
   (s as any).result = ((s as any).result ?? 0) + ('<td align="center">');

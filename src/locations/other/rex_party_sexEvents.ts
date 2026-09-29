@@ -309,11 +309,11 @@ function enterRexSex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rex_love ?? 0) === 1) {
     scene.text('Rex gently grabbed you by the hair and began to move his penis to your mouth.\ncaress it, my love, he asked with a smile.');
   }
-  // TODO-QSP: caress it, my love, he asked with a smile.'
+  /* caress it, my love */
   if ((!((s as any).rex_love ?? 0))) {
     scene.text('Entering the room, Rex grabbed you by the hair and began to move his penis to your mouth.\nstroke it, bitch, he asked with a vicious smile.');
   }
-  // TODO-QSP: stroke it, bitch, he asked with a vicious smile.'
+  /* stroke it, bitch */
   scene.text('You took his head into your mouth and started sucking, after a few moments Rex started pushing his penis forcing you to swallow it even deeper. You were almost choking on his dick.');
   scene.text('You keep sucking his dick. ' + (((!((s as any).rex_love ?? 0))) ? ('Rex') : ('Your lover')) + ' looks at you and you can see in his eyes that he is ready for the next step.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');

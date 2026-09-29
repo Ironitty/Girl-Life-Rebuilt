@@ -286,7 +286,7 @@ function enterAttendAppointment(s: GameState, scene: SceneBuilder): void {
   (s as any).appt_attend_wait = ((s as any).locArgs?.[2] ?? 0);
   (s as any).appt_attend_recur = ((s as any).locArgs?.[3] ?? 0);
   (s as any).appt_attend_desc = qspFunc(s, 'clinic_functions', '_category_desc', ((s as any).locArgs?.[1] ?? 0));
-  // TODO-QSP: act "Go to your appointment with <<$appt_attend_desc>>":
+  scene.action({ label: 'Go to your appointment with ' + String((s as any).appt_attend_desc ?? '') });
   if (((s as any).appt_attend_wait ?? 0) < -4) {
     scene.text(`"You are late!" the nurse says, looking unimpressed. "Let me see if ${((s as any).appt_attend_desc ?? '')} can still fit you in."`);
     (s as any).appt_attend_outcome = qspFunc(s, 'appointments', 'check_in', ((s as any).appt_attend_category ?? 0), ((s as any).appt_attend_recur ?? 0));
@@ -1223,7 +1223,7 @@ function enterSetDrainStringBreastImplantAct(s: GameState, scene: SceneBuilder):
     return;
   }
   if (qspFunc(s, 'money', 'can_afford', 2000)) {
-    scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: xgt \u0027clinic_functions\u0027, \u0027bImplantB\u0027, \u0027drain\u0027 */ return s; }); return false;">Drain string implant</a> - \' + $func(\'money\', \'string_price\', 2000)');
+    scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { /* xgt clinic_functions,bImplantB,drain */ return s; }); return false;">Drain string implant</a> - \' + $func(\'money\', \'string_price\', 2000)');
   } else {
     scene.text('Drain string implant - ' + qspFunc(s, 'money', 'string_price', 2000));
   }
@@ -1237,7 +1237,7 @@ function enterSetBuySiliconeBagAct(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (qspFunc(s, 'money', 'can_afford', 500)) {
-    scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: xgt \u0027clinic_functions\u0027, \u0027bImplantB\u0027, \u0027bag\u0027 */ return s; }); return false;">Buy silicone bag</a> - \' + $func(\'money\', \'string_price\', 500)');
+    scene.text('\'<a href="#" onclick="window.__gameStore.setState((s) => { /* xgt clinic_functions,bImplantB,bag */ return s; }); return false;">Buy silicone bag</a> - \' + $func(\'money\', \'string_price\', 500)');
   } else {
     scene.text('Buy silicone bag - ' + qspFunc(s, 'money', 'string_price', 500));
   }

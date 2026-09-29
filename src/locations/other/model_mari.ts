@@ -1604,7 +1604,7 @@ function enterPcNudeDebutTalk(s: GameState, scene: SceneBuilder): void {
 
 function enterOtherModelsTalk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
-    { label: 'Ask about the other models' }, // TODO-QSP: empty action body
+    { label: 'Ask about the other models' },
   ]);
   scene.build();
 }

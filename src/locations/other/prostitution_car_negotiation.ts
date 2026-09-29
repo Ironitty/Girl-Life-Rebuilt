@@ -476,32 +476,29 @@ function enterNegotiationStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'prostitution', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Blowjob') {
-          // TODO-QSP: act 'Decline and offer him a blowjob instead' + $func('willpower', 'get_willcost_string'): $noWillpo...
+          qspGoto(s, 'prostitution_car_negotiation', 'noWillpower');
         }
         if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Anal') {
-          // TODO-QSP: act 'Decline and offer him your ass instead' + $func('willpower', 'get_willcost_string'): $noWillpow...
+          qspGoto(s, 'prostitution_car_negotiation', 'noWillpower');
         }
         if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Vaginal') {
-          // TODO-QSP: act 'Decline and offer him your pussy instead' + $func('willpower', 'get_willcost_string'): $noWillp...
+          qspGoto(s, 'prostitution_car_negotiation', 'noWillpower');
         }
       } else {
         if ((Math.floor(Math.random() * 10) + 1) < 9) {
           if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Blowjob') {
-            // TODO-QSP: act 'Decline and offer him a blowjob instead' + $func('willpower', 'get_willcost_string'): prostitut...
             qspCall(s, 'willpower', 'pay', 'resist');
             ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Blowjob';
             ((s as any).prostitute = (s as any).prostitute ?? {})['propose'] = 1;
             qspGoto(s, 'prostitution_car_negotiation', 'negotiation_start');
           }
           if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Anal') {
-            // TODO-QSP: act 'Decline and offer him your ass instead' + $func('willpower', 'get_willcost_string'): prostitute...
             qspCall(s, 'willpower', 'pay', 'resist');
             ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Anal';
             ((s as any).prostitute = (s as any).prostitute ?? {})['propose'] = 1;
             qspGoto(s, 'prostitution_car_negotiation', 'negotiation_start');
           }
           if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Vaginal') {
-            // TODO-QSP: act 'Decline and offer him your pussy instead' + $func('willpower', 'get_willcost_string'): prostitu...
             qspCall(s, 'willpower', 'pay', 'resist');
             ((s as any).prostitute = (s as any).prostitute ?? {})['client_scene'] = 'Vaginal';
             ((s as any).prostitute = (s as any).prostitute ?? {})['propose'] = 1;
@@ -509,15 +506,12 @@ function enterNegotiationStart(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Blowjob') {
-            // TODO-QSP: act 'Decline and offer him a blowjob instead' + $func('willpower', 'get_willcost_string'): gs 'willp...
             qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
           }
           if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Anal') {
-            // TODO-QSP: act 'Decline and offer him your ass instead' + $func('willpower', 'get_willcost_string'): gs 'willpo...
             qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
           }
           if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Vaginal') {
-            // TODO-QSP: act 'Decline and offer him your pussy instead' + $func('willpower', 'get_willcost_string'): gs 'will...
             qspGoto(s, 'prostitution_car_negotiation', 'negotiation_fail');
           }
         }

@@ -105,7 +105,7 @@ function scanText(text: string): { pattern: string; severity: string; context: s
 async function main() {
   const srv = startServer();
   await sleep(500);
-  const browser = await chromium.launch({ headless: true, executablePath: '/snap/bin/chromium' });
+  const browser = await chromium.launch({ headless: true, executablePath: '/usr/bin/google-chrome' });
   const page = await browser.newPage();
 
   try {

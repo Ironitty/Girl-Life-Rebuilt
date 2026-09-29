@@ -1751,10 +1751,10 @@ function enterPornRepeat2(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   scene.actions([
-    { label: 'I quit' }, // TODO-QSP: empty action body
-    { label: 'Still doing porn' }, // TODO-QSP: empty action body
-    { label: 'Getting pretty famous' }, // TODO-QSP: empty action body
-    { label: 'Thinking about quitting' }, // TODO-QSP: empty action body
+    { label: 'I quit' },
+    { label: 'Still doing porn' },
+    { label: 'Getting pretty famous' },
+    { label: 'Thinking about quitting' },
   ]);
   scene.build();
 }

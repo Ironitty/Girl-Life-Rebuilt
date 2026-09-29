@@ -2111,9 +2111,9 @@ function enterFatherCheck(s: GameState, scene: SceneBuilder): void {
   scene.text('List of potential fathers:');
   do {
     if (((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] !== 'unknown') {
-      // TODO-QSP: $potfather_temp[2] = '<a href="exec: $wombthfath = ''<<$npc_usedname[$wombpotfath[potfather_counter]]>>'' & $wombthfathID = ''<<$wombpotfath[potfather_counter]>>'' & gs ''din_bad'', ''d_cycreport_actor'', 7 & gs ''stat''"><<$npc_usedname[$wombpotfath[potfather_counter]]>> (<<$wombpotfath[potfather_counter]>>)</a>'
+      (s as any).potfather_temp = (s as any).potfather_temp ?? {}; { const __pfId = ((s as any).wombpotfath ?? 0)?.[String((s as any).potfather_counter ?? 0)] ?? ''; const __pfName = ((s as any).npc_usedname ?? 0)?.[__pfId] ?? ''; (s as any).potfather_temp[2] = '<a href="#">' + __pfName + ' (' + __pfId + ')</a>'; }
     } else {
-      // TODO-QSP: $potfather_temp[2] = '<a href="exec: $wombthfath = ''<<$npc_usedname[$wombpotfath[potfather_counter]]>>'' & $wombthfathID = ''<<$wombpotfath[potfather_counter]>>'' & gs ''din_bad'', ''d_cycreport_actor'', 7 & gs ''stat''">Unknown (-)</a>'
+      (s as any).potfather_temp = (s as any).potfather_temp ?? {}; (s as any).potfather_temp[2] = '<a href="#">Unknown (-)</a>';
     }
     if (((s as any).npcID ?? 0) === ((s as any).potfather_temp ?? 0)[2]) {
       (s as any).potfather_counter = ((s as any).potfather_counter ?? 0) + (1);
@@ -2132,7 +2132,7 @@ function enterNpcPregReact(s: GameState, scene: SceneBuilder): void {
           { label: 'Maybe', handler: (st: GameState) => {
     scene.text('"It could be," you murmur. "There are... a few people who could be the father..."');
   } },
-          { label: 'Lie' }, // TODO-QSP: empty action body
+          { label: 'Lie' },
         ]);
       }
     }

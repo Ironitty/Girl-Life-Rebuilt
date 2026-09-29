@@ -1,4 +1,4 @@
-import { qspFunc } from '../_shared/qspBridge';
+import { qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -156,7 +156,7 @@ function enterLongAdd(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).result = qspFunc(s, 'math', 'long_sub', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[1] ?? 0));
     }
-    // TODO-QSP: jump 'long_add_cleanup'
+    qspGoto(s, 'math', 'long_add_cleanup');
   } else {
     if (((s as any).temp_add_sign ?? 0)[1] === 1) {
       ((s as any).temp_add_sign = (s as any).temp_add_sign ?? {})[0] = 1;
@@ -217,7 +217,7 @@ function enterLongSub(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_sub_sign ?? 0)[1] === 0) {
     if (((s as any).temp_sub_sign ?? 0)[2] === 1) {
       (s as any).result = qspFunc(s, 'math', 'long_add', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
-      // TODO-QSP: jump 'long_sub_cleanup'
+      qspGoto(s, 'math', 'long_sub_cleanup');
     }
   } else {
     if (((s as any).temp_sub_sign ?? 0)[2] === 0) {
@@ -226,7 +226,7 @@ function enterLongSub(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).result = qspFunc(s, 'math', 'long_sub', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[1] ?? 0));
     }
-    // TODO-QSP: jump 'long_sub_cleanup'
+    qspGoto(s, 'math', 'long_sub_cleanup');
   }
   (s as any).temp_flip_know = undefined;
   if ((String(((s as any).locArgs?.[1] ?? 0)).length) < (String(((s as any).locArgs?.[2] ?? 0)).length)) {
@@ -363,7 +363,7 @@ function enterLongDiv(s: GameState, scene: SceneBuilder): void {
   (s as any).div_mult = '1';
   if (((s as any).temp_n ?? 0) < 0) {
     (s as any).result = '0';
-    // TODO-QSP: jump 'long_div_cleanup'
+    qspGoto(s, 'math', 'long_div_cleanup');
   } else {
     if (((s as any).temp_n ?? 0) > 0) {
       do {

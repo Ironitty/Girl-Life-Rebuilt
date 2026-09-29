@@ -300,7 +300,7 @@ function enterPartDressCheck(s: GameState, scene: SceneBuilder): void {
       scene.text('Katja just whiffs her nose. "You need to shower first," she says. "You can use the shower on our floor. Here is a towel and some supplies," Katja adds, handing you a towel and a not-so-small bag of shower utilities.');
       scene.actions([
         { label: 'Go take a shower', handler: (st: GameState) => {
-    // TODO-QSP: noshampoo + 1
+    (st as any).noshampoo = ((st as any).noshampoo ?? 0) + 1;
     qspCall(st, 'din_van', 'showerdin');
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     scene.img('images/shared/home/bathroom/dush.mp4');

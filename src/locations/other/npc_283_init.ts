@@ -23,9 +23,9 @@ function enterExamInterview(s: GameState, scene: SceneBuilder): void {
     scene.text('“Give her to me”, a chilling voice from behind you says. The voices\' tone paralyses you as they seep into your very bones.');
     if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 1) {
       scene.text('“No, you will leave her alone. I know you like your prey to be virgins but it is too soon to antagonise the council, and you know how much of a pain Reinhold is and it would be far too messy to cover up her rape.”');
-      // TODO-QSP: Else
+      /* Else */
       scene.text('“Leave her alone, she has Reinhold\'s smell all over her. It is too early to antagonise the council. I know you like ravishing young girls but it would cause too many questions at this time. We also don\'t know what kind of power was imbued into that amulet.”');
-      // TODO-QSP: End
+      /* End */
       scene.text('“Fuck the council Rudolph, they are weak and effeminate, fallen far from the Elder council.”');
       scene.text('“Do not underestimate the Council, even as it is. They still hold a lot of artefacts and power and so far you have failed to acquire the least of them.”, there is an animalistic snarling behind you and you are blinded by a flash of light. ');
       scene.text('“Behave, I don\'t want to report you. You have been useful to me, but do not mistake that for anything else.”, the person behind you is panting as if in pain and unable to speak. You feel a pressure building in the air before it suddenly vanishes.');

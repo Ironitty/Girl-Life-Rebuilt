@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 (async () => {
-  const browser = await chromium.launch({ headless: true, executablePath: '/snap/bin/chromium' });
+  const browser = await chromium.launch({ headless: true, executablePath: '/usr/bin/google-chrome' });
   const page = await browser.newPage();
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));

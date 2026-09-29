@@ -205,7 +205,7 @@ function enterGetAccess(s: GameState, scene: SceneBuilder): void {
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('nocamshow') : -1) > 1) {
       ((s as any).access = (s as any).access ?? {})['nocamshow'] = 'You can\'t do a cam show in this place';
     }
-    // TODO-QSP: ! if arrpos('$ARGS', 'general') > 1: $access['general'] = 'Naughty sites are forbidden'
+    /* if arrpos general > 1 */
   }
   (s as any).subsname = undefined;
   scene.build();

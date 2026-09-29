@@ -1273,11 +1273,11 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
     scene.text('You and Mira head over to the vast wardrobe where your clothes are and spend an hour trying on different dresses and underwear.');
     scene.actions([
       { label: 'Mira and you raid the kitchen for a late night snack (0:15)', handler: (st: GameState) => {
-    // TODO-QSP: 'You and Mira head to the kitchen to make a quick snack'
+    /* You and Mira head to the kitchen */
     qspCall(st, 'food', '');
   } },
       { label: 'Go to sleep', handler: (st: GameState) => {
-    // TODO-QSP: 'You''re feeling tired. You and Mira head to your bed and cr...
+    /* You're feeling tired */
   }, goto: ['bed2', ''] },
       { label: 'Finish', handler: (st: GameState) => {
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['guest'] = 0;

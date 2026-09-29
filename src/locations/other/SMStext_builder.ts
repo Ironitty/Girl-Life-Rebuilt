@@ -126,22 +126,19 @@ function enterAddReply(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_reply_str = '[Reply] <a href="exec: gs ';
   (s as any).stb_n_args = 0;
   (s as any).stb_i = 2;
-  while (true) {
-    if (((s as any).stb_i ?? 0) < ((s as any).stb_n_args ?? 0)) {
-      if (((s as any).ARGS ?? 0)?.[String((s as any).stb_i ?? 0)] === '') {
-        (s as any).temp_reply_str = ((s as any).temp_reply_str ?? 0) + ('' + (((s as any).ARGS ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0) + ', ');
-      } else {
-        (s as any).temp_reply_str = ((s as any).temp_reply_str ?? 0) + ('\'' + (((s as any).ARGS ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0) + '\', ');
-      }
-      (s as any).stb_i = ((s as any).stb_i ?? 0) + (1);
-      break;
+  while (((s as any).stb_i ?? 0) < ((s as any).stb_n_args ?? 0)) {
+    if (((s as any).ARGS ?? 0)?.[String((s as any).stb_i ?? 0)] === '') {
+      (s as any).temp_reply_str = ((s as any).temp_reply_str ?? 0) + ('' + (((s as any).ARGS ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0) + ', ');
+    } else {
+      (s as any).temp_reply_str = ((s as any).temp_reply_str ?? 0) + ('\'' + (((s as any).ARGS ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0) + '\', ');
     }
-    (s as any).temp_reply_str = ((s as any).temp_reply_str ?? 0) + ('telefon[\'SMSIndex\']">' + ((s as any).locArgs?.[1] ?? 0) + '</a>');
-    (s as any).SMSBuilderReplies = [...((s as any).SMSBuilderReplies ?? []), ((s as any).temp_reply_str ?? 0)];
-    (s as any).temp_reply_str = undefined;
-    (s as any).stb_i = undefined;
-    (s as any).stb_n_args = undefined;
+    (s as any).stb_i = ((s as any).stb_i ?? 0) + (1);
   }
+  (s as any).temp_reply_str = ((s as any).temp_reply_str ?? 0) + ('telefon[\'SMSIndex\']">' + ((s as any).locArgs?.[1] ?? 0) + '</a>');
+  (s as any).SMSBuilderReplies = [...((s as any).SMSBuilderReplies ?? []), ((s as any).temp_reply_str ?? 0)];
+  (s as any).temp_reply_str = undefined;
+  (s as any).stb_i = undefined;
+  (s as any).stb_n_args = undefined;
   scene.build();
 }
 
@@ -164,22 +161,19 @@ function enterSendSelfie(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_reply_str = '[Selfie] <a href="exec: gs \'SMS_selfies\', \'send_selfie\', \'' + (String(((s as any).locArgs?.[2] ?? 0)).toLowerCase()) + '\', telefon[\'SMSIndex\']';
   (s as any).stb_n_args = 0;
   (s as any).stb_i = 3;
-  while (true) {
-    if (((s as any).stb_i ?? 0) < ((s as any).stb_n_args ?? 0)) {
-      if (((s as any).ARGS ?? 0)?.[String((s as any).stb_i ?? 0)] === '') {
-        (s as any).temp_reply_str = ((s as any).temp_reply_str ?? 0) + (', ' + (((s as any).ARGS ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0) + '');
-      } else {
-        (s as any).temp_reply_str = ((s as any).temp_reply_str ?? 0) + (', \'' + (((s as any).ARGS ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0) + '\'');
-      }
-      (s as any).stb_i = ((s as any).stb_i ?? 0) + (1);
-      break;
+  while (((s as any).stb_i ?? 0) < ((s as any).stb_n_args ?? 0)) {
+    if (((s as any).ARGS ?? 0)?.[String((s as any).stb_i ?? 0)] === '') {
+      (s as any).temp_reply_str = ((s as any).temp_reply_str ?? 0) + (', ' + (((s as any).ARGS ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0) + '');
+    } else {
+      (s as any).temp_reply_str = ((s as any).temp_reply_str ?? 0) + (', \'' + (((s as any).ARGS ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0) + '\'');
     }
-    (s as any).temp_reply_str = ((s as any).temp_reply_str ?? 0) + ('">' + ((s as any).locArgs?.[1] ?? 0) + '</a>');
-    (s as any).SMSBuilderReplies = [...((s as any).SMSBuilderReplies ?? []), ((s as any).temp_reply_str ?? 0)];
-    (s as any).temp_reply_str = undefined;
-    (s as any).stb_i = undefined;
-    (s as any).stb_n_args = undefined;
+    (s as any).stb_i = ((s as any).stb_i ?? 0) + (1);
   }
+  (s as any).temp_reply_str = ((s as any).temp_reply_str ?? 0) + ('">' + ((s as any).locArgs?.[1] ?? 0) + '</a>');
+  (s as any).SMSBuilderReplies = [...((s as any).SMSBuilderReplies ?? []), ((s as any).temp_reply_str ?? 0)];
+  (s as any).temp_reply_str = undefined;
+  (s as any).stb_i = undefined;
+  (s as any).stb_n_args = undefined;
   scene.build();
 }
 
@@ -204,29 +198,26 @@ function enterAddEndImg(s: GameState, scene: SceneBuilder): void {
 
 function enterPrivateSetEndImg(s: GameState, scene: SceneBuilder): void {
   (s as any).stb_i = 0;
-  while (true) {
-    if (((s as any).stb_i ?? 0) < Object.keys((s as any).SMSBuilderImages ?? {}).length) {
-      if (((s as any).SMSPicture1 ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
-        ((s as any).SMSPicture1 = (s as any).SMSPicture1 ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).SMSBuilderImages ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0);
+  while (((s as any).stb_i ?? 0) < Object.keys((s as any).SMSBuilderImages ?? {}).length) {
+    if (((s as any).SMSPicture1 ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
+      ((s as any).SMSPicture1 = (s as any).SMSPicture1 ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).SMSBuilderImages ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0);
+    } else {
+      if (((s as any).SMSPicture2 ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
+        ((s as any).SMSPicture2 = (s as any).SMSPicture2 ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).SMSBuilderImages ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0);
       } else {
-        if (((s as any).SMSPicture2 ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
-          ((s as any).SMSPicture2 = (s as any).SMSPicture2 ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).SMSBuilderImages ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0);
+        if (((s as any).SMSPicture3 ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
+          ((s as any).SMSPicture3 = (s as any).SMSPicture3 ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).SMSBuilderImages ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0);
         } else {
-          if (((s as any).SMSPicture3 ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
-            ((s as any).SMSPicture3 = (s as any).SMSPicture3 ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).SMSBuilderImages ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0);
-          } else {
-            if (((s as any).SMSPicture4 ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
-              ((s as any).SMSPicture4 = (s as any).SMSPicture4 ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).SMSBuilderImages ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0);
-            }
+          if (((s as any).SMSPicture4 ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
+            ((s as any).SMSPicture4 = (s as any).SMSPicture4 ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).SMSBuilderImages ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0);
           }
         }
       }
-      (s as any).stb_i = ((s as any).stb_i ?? 0) + (1);
-      break;
     }
-    (s as any).stb_i = undefined;
-    (s as any).SMSBuilderImages = undefined;
+    (s as any).stb_i = ((s as any).stb_i ?? 0) + (1);
   }
+  (s as any).stb_i = undefined;
+  (s as any).SMSBuilderImages = undefined;
   scene.build();
 }
 

@@ -1433,7 +1433,7 @@ function enterArtemDisco(s: GameState, scene: SceneBuilder): void {
   scene.text('You stand around and listen to the music before Artem finally shows up.');
   scene.text('He smiles and waves when he sees you before walking over and giving you a hug.');
   scene.text('"Not really my place, but if my girl wants to dance, then let\'s dance," he says as he leads you out onto the dance floor.');
-  // TODO-QSP: --- pav_disco ---------------------------------
+  /* pav_disco */
   scene.actions([
     { label: 'Dance with him', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A2', 'like');

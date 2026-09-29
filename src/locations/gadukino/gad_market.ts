@@ -34,7 +34,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_market', 'your_stand'] },
       ]);
     }
-    // TODO-QSP: act $func('wrap', 'neg', 'Return'): *nl $func('wrap', 'neg', 'You can''t leave while your stand is s...
+    /* act Return */
     scene.actions([
       { label: 'Breakdown your stand (0:30)', goto: ['gad_market', 'breakdown_stand'] },
     ]);

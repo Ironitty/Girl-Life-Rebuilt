@@ -366,14 +366,12 @@ function enterSection1Pick(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).brothel_vars ?? 0)?.['master_decision'] === 2) {
-      // TODO-QSP: dynamic text: 'The client grabs a box full of smaller tools from a shelf and fetches a few woo...
       scene.text('The client grabs a box full of smaller tools from a shelf and fetches a few wooden sticks. ' + 0);
       scene.actions([
         { label: 'Begin the session', goto: ['brothel_section1', 'section1_tits_main'] },
       ]);
     } else {
       if (((s as any).brothel_vars ?? 0)?.['master_decision'] === 3) {
-        // TODO-QSP: dynamic text: 'The client grabs a box full of smaller tools from a shelf, with several ropes h...
         scene.text('The client grabs a box full of smaller tools from a shelf, with several ropes hanging out of it. ' + 0);
         scene.actions([
           { label: 'Begin the session', goto: ['brothel_section1', 'section1_tied_main'] },
@@ -585,7 +583,6 @@ function enterSection1ElectroRod(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/shockanus.mp4');
   scene.text('You have obviously annoyed the Client by what you did.');
-  // TODO-QSP: dynamic text: 'He takes a long rod: ' + $func('wrap', 'neg', '"Now where''s the fucking button...
   scene.text('He takes a long rod: ' + 0);
   scene.text('A shiver runs through your spine and soon you know why! He puts the rod on your anus, electrocuting your sensitive hole!"');
   scene.text('<center><b>"Owwwwwwwwwwwwwwwwww!"</b></center>');
@@ -1675,7 +1672,6 @@ function enterSection1EndMouth(s: GameState, scene: SceneBuilder): void {
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 1) {
       scene.img('images/locations/shared/brothel/fuckfacetied.mp4');
-      // TODO-QSP: dynamic text: 'As you were afraid of, the Client takes his cock and thrusts it in your mouth: ...
       scene.text('As you were afraid of, the Client takes his cock and thrusts it in your mouth: ' + 0);
       scene.text('Unable to even react or moan, you are plugged with his meat, choking and dribbling all around…');
       scene.actions([
@@ -1712,7 +1708,6 @@ function enterSection1EndFace(s: GameState, scene: SceneBuilder): void {
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 1) {
       scene.img('images/locations/shared/brothel/fuckfacetied.mp4');
-      // TODO-QSP: dynamic text: 'As you were afraid of, the Client takes his cock and thrusts it in your mouth: ...
       scene.text('As you were afraid of, the Client takes his cock and thrusts it in your mouth: ' + 0);
       scene.text('Unable to even react or moan, you are plugged with his meat, choking and dribbling all around…');
       scene.actions([

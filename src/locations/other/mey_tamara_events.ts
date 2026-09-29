@@ -337,12 +337,12 @@ function enterLearning1(s: GameState, scene: SceneBuilder): void {
         alert('ERROR: formal cloth loop > 1000');
       } else {
         if (((st as any).newdress_id ?? 0) === 6) {
-          // TODO-QSP: jump 'looptamaraschool'
+          qspGoto(st, 'mey_tamara_events', 'looptamaraschool');
         }
         if (qspFunc(s, 'clothing', 'is_owned', 'gm_school', ((st as any).newdress_id ?? 0)) === 0) {
           qspCall(st, 'clothing_attributes', 'gm_school', ((st as any).newdress_id ?? 0));
           if (((st as any).CloInhibit ?? 0) < 30) {
-            // TODO-QSP: jump 'looptamaraschool'
+            qspGoto(st, 'mey_tamara_events', 'looptamaraschool');
           }
           qspCall(st, 'clothing', 'add_item', 'gm_school', ((st as any).newdress_id ?? 0));
           scene.img(`images/pc/items/gm/school/${((st as any).newdress_id ?? '')}.jpg`);

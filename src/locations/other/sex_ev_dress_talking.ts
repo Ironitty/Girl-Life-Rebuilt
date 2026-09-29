@@ -495,7 +495,7 @@ function enterWhenDoYouGetOff(s: GameState, scene: SceneBuilder): void {
 function enterRuinedPanties(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cum_loc ?? 0)?.['vagina'] > 0  &&  ((s as any).sex_ev ?? 0)?.['ruin_my_panties'] === 0  &&  ((s as any).lastwornpantytype ?? 0) !== 'none'  &&  ((s as any).sex_ev ?? 0)?.['panty_wear'] !== 1) {
     scene.actions([
-      { label: '' }, // TODO-QSP: empty action body
+      { label: '' },
     ]);
   }
   scene.build();
@@ -1328,7 +1328,7 @@ function enterGrabThingsLeave(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/misc/depart_annoyed1.mp4');
   scene.text('"This just isn\'t going to work," you say, cutting him off. "We\'re done."');
   scene.text('And with that, you head out the door.');
-  // TODO-QSP: --- sex_ev_dress_talking ---------------------------------
+  /* sex_ev_dress_talking */
   scene.actions([
     { label: 'Leave', goto: ['sex_ev_leave', 'break_up'] },
   ]);

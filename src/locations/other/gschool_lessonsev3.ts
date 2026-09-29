@@ -767,7 +767,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
               }
               scene.actions([
                 { label: 'Do nothing', handler: (st: GameState) => {
-    // TODO-QSP: act 'Wait for the end of the lesson': gt 'gschool_lessons', ...
+    /* act Wait for the end of the lesson */
   } },
                 { label: 'Mock her', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A141', (-1));

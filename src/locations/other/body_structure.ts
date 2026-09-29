@@ -661,17 +661,17 @@ function enterCustomBodyImg(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).locArgs?.[1] ?? 0) / 100;
     (s as any).temp_img_name = qspUntranslated(s, "cheatVars['fix_biset_<<cheatVars['fix_bi_set']>>_img_<<ARGS[1]>>']", { location: "body_structure" });
     (s as any).temp_base_folder = ((s as any).DEFAULT_PATH ?? 0);
-    // TODO-QSP: $temp_base_folder += '/' + $cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_folder']
+    (s as any).temp_base_folder = ((s as any).temp_base_folder ?? '') + '/' + (String(((s as any).cheatVars ?? 0)?.['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_folder'] ?? ''));
   } else {
     (s as any).cbi_class = (String(10000+((s as any).locArgs?.[1] ?? 0)).slice((2)-1));
-    // TODO-QSP: bs_imgnum = rand(0, cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_imgnums_<<$cbi_class>>']-1)
+    (s as any).bs_imgnum = Math.floor(Math.random() * (Number(((s as any).cheatVars ?? 0)?.['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_imgnums_' + String((s as any).cbi_class ?? 0)] ?? 0) || 1));
     (s as any).temp_img_name = (((s as any).cheatVars ?? 0)?.['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_img_' + ((s as any).cbi_class ?? 0) + '_' + ((s as any).bs_imgnum ?? 0) + ''] ?? 0);
     (s as any).bs_imgnum = undefined;
     (s as any).temp_base_folder = qspUntranslated(s, "cheatVars['fix_biset_<<cheatVars['fix_bi_set']>>_path']", { location: "body_structure" });
     if (((s as any).temp_base_folder ?? 0) === '') {
       (s as any).temp_base_folder = ((s as any).DEFAULT_PATH ?? 0);
     }
-    // TODO-QSP: $temp_base_folder += '/' + $cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_folder']
+    (s as any).temp_base_folder = ((s as any).temp_base_folder ?? '') + '/' + (String(((s as any).cheatVars ?? 0)?.['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_folder'] ?? ''));
     if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_path_' + (((s as any).cbi_class ?? 0))] !== '') {
       (s as any).temp_base_folder = ((s as any).temp_base_folder ?? 0) + ('/' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + (((s as any).cheatVars ?? 0)?.['fix_bi_set']) + '_path_' + ((s as any).cbi_class ?? 0) + ''] ?? 0));
     }

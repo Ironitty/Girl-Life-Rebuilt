@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -66,7 +66,7 @@ function enterPornactor(s: GameState, scene: SceneBuilder): void {
         (s as any).num2 = ((s as any).pfactor ?? 0);
         do {
           if (((s as any).pactor ?? 0)?.[String((s as any).num ?? 0)] === ((s as any).pactor ?? 0)?.[String((s as any).num2 ?? 0)]) {
-            // TODO-QSP: jump 'actorloop'
+            qspGoto(s, 'pornfilm', 'actorloop');
           }
           (s as any).num2 = ((s as any).num2 ?? 0) - (1);
         } while (((s as any).num2 ?? 0) > ((s as any).num ?? 0));
@@ -120,7 +120,7 @@ function enterPornactress(s: GameState, scene: SceneBuilder): void {
         (s as any).num2 = ((s as any).pfactor ?? 0);
         do {
           if (((s as any).pactress ?? 0)?.[String((s as any).num ?? 0)] === ((s as any).pactress ?? 0)?.[String((s as any).num2 ?? 0)]) {
-            // TODO-QSP: jump 'actressloop'
+            qspGoto(s, 'pornfilm', 'actressloop');
           }
           (s as any).num2 = ((s as any).num2 ?? 0) - (1);
         } while (((s as any).num2 ?? 0) > ((s as any).num ?? 0));

@@ -37,7 +37,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Check out your strapon harness', handler: (st: GameState) => {
-    // TODO-QSP: '<br>You don''t have any dildos to attach to your strapon ha...
+    scene.text('<br>You don\'t have any dildos to attach to your strapon harness.');
   } },
       ]);
     }
@@ -59,7 +59,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stolcigarettes ?? 0)[(((s as any).loc ?? 0))] > 0) {
     scene.actions([
       { label: 'Take some cigarettes from your drawer', handler: (st: GameState) => {
-    // TODO-QSP: cigOUT = input ("How many cigarettes do you want to put in your purse? (There are <<stolcigarettes['<<$loc>>']>> cigarettes here.)")
+    (st as any).cigOUT = window.prompt("How many cigarettes do you want to put in your purse? (There are " + (((st as any).stolcigarettes ?? 0)[String((st as any).loc ?? 0)] ?? 0) + " cigarettes here.)") ?? '';
     if (((st as any).cigOUT ?? 0) <= 0  ||  ((st as any).cigOUT ?? 0) > ((st as any).stolcigarettes ?? 0)[(((st as any).loc ?? 0))]) {
       scene.text('You can\'t take this amount from your drawer.');
     } else {

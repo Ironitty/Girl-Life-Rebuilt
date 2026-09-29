@@ -550,7 +550,7 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/therapist/sex2.jpg');
     scene.text(`You say and he climbs on top of you and pushes inside you again. "Anything for you," he says and starts to have sex with you. This continues for the night. ${qspFunc(s, 'wrap', 'hypno', '"My dear, you want my cum inside you, right? You love my cum in your body,"')} he explains.`);
     scene.text('"Yes, I love your cum inside me, I love how it feels inside me." and with that he cums hard inside you.');
-    // TODO-QSP: dynamic text: <<$func(''wrap'', ''hypno'', """Good Girl, I''ll keep cumming inside you until y...
+    /* dynamic text */
     scene.text(`${0} he says and you say nothing. ${qspFunc(s, 'wrap', 'hypno', '"My Dear, tell me, You want my babies inside you, correct?"')}`);
     scene.text('"Yes, Sir" you say and he kisses you again.');
     scene.text('"Good, but for now, let\'s sleep. In the morning we will have more of this before you leave," he says and your eyes close and you fall into a deep sleep.');

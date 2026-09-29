@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'camera', 'check_location');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 22) {
     scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027uni_shop\u0027, \u0027start\u0027); return false;">supermarket</a> is not far from here.');
-    scene.text('You can see a <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = \u0027city_island\u0027 */ s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a> selling cigarettes and magazines.');
+    scene.text('You can see a <a href="#" onclick="window.__gameStore.setState((s) => { /* loc=city_island */ s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a> selling cigarettes and magazines.');
   } else {
     scene.text('\'The local convenience store is closed. It will reopen at 8:00.\'');
     scene.text('\'You can see a closed kiosk. It\'s open between 8:00 and 23:00.\'');

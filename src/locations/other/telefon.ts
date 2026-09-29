@@ -268,7 +268,7 @@ function enterIncomingCall(s: GameState, scene: SceneBuilder): void {
   ((s as any).telefonIncC = (s as any).telefonIncC ?? {})['Code'] = ((s as any).locArgs?.[3] ?? 0);
   if (((s as any).sound_settings ?? 0)?.['menu_off'] === 0) {
   }
-  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>' + (((s as any).telefonIncC ?? 0)?.['Name']) + ' calling</font><br>\n<img width="200" src="' + (((s as any).telefonIncC ?? 0)?.['Icon']) + '"><br>\n<br>\n<br>\n<br>\n<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: /u003c/u003c$telefonIncC[ */ return s; }); return false;"><img src="images/system/phone/call_accept.png"></a>\n<a href="#" onclick="window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;"><img src="images/system/phone/decline.png"></a><br>\n<b><font color="red">Your phone is ringing</font></b><br>';
+  ((s as any).telefon = (s as any).telefon ?? {})['body'] = '\n<font size=6>' + (((s as any).telefonIncC ?? 0)?.['Name']) + ' calling</font><br>\n<img width="200" src="' + (((s as any).telefonIncC ?? 0)?.['Icon']) + '"><br>\n<br>\n<br>\n<br>\n<a href="#" onclick="window.__gameStore.setState((s) => { /* <<$telefonIncC[ */ return s; }); return false;"><img src="images/system/phone/call_accept.png"></a>\n<a href="#" onclick="window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;"><img src="images/system/phone/decline.png"></a><br>\n<b><font color="red">Your phone is ringing</font></b><br>';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).telefonIncC = undefined;
   scene.build();
@@ -603,7 +603,7 @@ function enterGetFooterString(s: GameState, scene: SceneBuilder): void {
   if (((s as any).telefon ?? 0)?.['backButton'] === '') {
     ((s as any).telefon = (s as any).telefon ?? {})['backButton'] = 'gs \'telefon\', \'Phone_menu\' ';
   }
-  (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: /u003c/u003c$telefon[\u0027backButton\u0027]>> */ return s; }); return false;"><img src="images/system/icons/back.png"></a>';
+  (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* telefon backButton */ return s; }); return false;"><img src="images/system/icons/back.png"></a>';
   (s as any).result = ((s as any).result ?? 0) + ('<br><br>');
   (s as any).result = ((s as any).result ?? 0) + ('<a href="exec:gs\'stat\'">Put Phone Away.</a>');
   (s as any).result = ((s as any).result ?? 0) + ('<br>');
@@ -906,7 +906,7 @@ function enterFormatContactString(s: GameState, scene: SceneBuilder): void {
   if (((s as any).subscription ?? 0)?.['monthly_calls'] === 0  &&  ((s as any).subscription ?? 0)?.['metered_calls'] < 4) {
     (s as any).result = ((s as any).result ?? 0) + ('<td align="right"><b>Call</b></td>');
   } else {
-    // TODO-QSP: $result += '<td align="right"><b><a href="exec:$callerid = ''<<$telefon[''ContactIcon'']>>'' & <<$telefon[''ContactCallCode'']>>">Call</a></b></td>'
+    (s as any).result = ((s as any).result ?? 0) + ('<td align="right"><b><a href="#">Call</a></b></td>');
   }
   (s as any).result = ((s as any).result ?? 0) + ('</tr>');
   scene.build();

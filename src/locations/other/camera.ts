@@ -19,7 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).location_count ?? 0) > 0) {
     do {
       if (((s as any).camera_found ?? 0)?.[String((s as any).camera_event ?? 0)] !== 1) {
-        // TODO-QSP: $camera_description
+        scene.text(String((s as any).camera_description ?? ''));
       }
       (s as any).iterator = ((s as any).iterator ?? 0) + (1);
     } while (((s as any).iterator ?? 0) < ((s as any).location_count ?? 0));
@@ -29,7 +29,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).people_count ?? 0) > 0) {
     do {
       if (((s as any).camera_found ?? 0)?.[String((s as any).camera_event ?? 0)] !== 1  &&  ((s as any).camera_requirement ?? 0)) {
-        // TODO-QSP: $camera_description
+        scene.text(String((s as any).camera_description ?? ''));
       }
       (s as any).iterator = ((s as any).iterator ?? 0) + (1);
     } while (((s as any).iterator ?? 0) < ((s as any).people_count ?? 0));

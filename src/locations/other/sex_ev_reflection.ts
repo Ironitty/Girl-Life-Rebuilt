@@ -463,7 +463,7 @@ function enterPregnancyWorries(s: GameState, scene: SceneBuilder): void {
 
 function enterPregnancyDaydream(s: GameState, scene: SceneBuilder): void {
   scene.text('Thoughts drift into daydreams about what might happen for you if motherhood is imminent...');
-  // TODO-QSP: --- sex_ev_reflection ---------------------------------
+  /* sex_ev_reflection */
   scene.actions([
     { label: 'Boy or girl?', handler: (st: GameState) => {
     scene.text('<i>Would I want it to be a boy or a girl?</i>');

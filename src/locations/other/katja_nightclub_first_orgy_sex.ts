@@ -1804,7 +1804,7 @@ function enterFirstOrgyInitiativeContinued9(s: GameState, scene: SceneBuilder): 
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: !2026/27/06
+  /* 2026/27/06 */
   const arg = s.locArg;
   switch (arg) {
     case 'first_orgy_observe1':

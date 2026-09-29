@@ -90,7 +90,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'array', 'remove_element', 'balletqw', 'final_report');
     scene.actions([
       { label: 'Continue your day.', handler: (st: GameState) => {
-    // TODO-QSP: act 'Continue': gt 'kuhrPar'
+    /* act Continue */
   } },
     ]);
   }

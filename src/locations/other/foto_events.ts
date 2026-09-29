@@ -1266,7 +1266,7 @@ function enterList(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027foto_events2\u0027, \u0027kickboxing_documentary\u0027); return false;">Kickboxing documentary</a>');
   }
   if (((s as any).specialjob8 ?? 0) > 95  &&  ((s as any).fame ?? 0)?.['city_running'] >=100  &&  ((s as any).pcs_inhib ?? 0) >= 50  &&  ((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <=8) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: _field_documentary\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027foto_events2\u0027, \u0027track_&_field_documentary\u0027); return false;">Track & Field documentary</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* field_documentary */ return s; }); window.__gameStore.getState().doGoto(\u0027foto_events2\u0027, \u0027track_&_field_documentary\u0027); return false;">Track & Field documentary</a>');
   }
   scene.actions([
     { label: 'Nothing interesting', handler: (st: GameState) => {

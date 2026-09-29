@@ -91,7 +91,7 @@ function enterDormChats(s: GameState, scene: SceneBuilder): void {
     if (((s as any).PCloSkirt ?? 0) <= 2  &&  ((s as any).PCloPants ?? 0) <= 4  &&  ((s as any).PCloPanties ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'salacious_dress'  &&  ((s as any).clothingworntype ?? 0) !== 'salacious_outfits') {
       scene.actions([
         { label: 'Go to the nightclub with Natasha  [+$func(\'wrap\', \'neg\', \'(Wear a nice dress...]', handler: (st: GameState) => {
-    // TODO-QSP: *pl $func('wrap', 'neg', '<br>You should wear a nice dress f...
+    /* dynamic text */
   } },
       ]);
     } else {

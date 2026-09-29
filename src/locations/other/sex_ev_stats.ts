@@ -227,7 +227,7 @@ function enterNoBirthControlKnow(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_know_bc_not_effective = (s as any).npc_know_bc_not_effective ?? {})[String((s as any).npcID ?? 0)] = 0;
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['bc_tell'] = 1;
   if (String((s as any).locArgs?.[2] ?? '') === 'catholic') {
-    // TODO-QSP: npc_know_catholic[$npcID]
+    (s as any).npc_know_catholic = (s as any).npc_know_catholic ?? {}; (s as any).npc_know_catholic[String((s as any).npcID ?? 0)] = 1;
   }
   scene.build();
 }

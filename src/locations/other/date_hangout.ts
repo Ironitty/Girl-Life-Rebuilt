@@ -679,7 +679,7 @@ function enterGoToSex(s: GameState, scene: SceneBuilder): void {
 
 function enterDateEndStats(s: GameState, scene: SceneBuilder): void {
   ((s as any).date_count_hangout = (s as any).date_count_hangout ?? {})[String((s as any).npcID ?? 0)] = ((s as any).date_count_hangout[String((s as any).npcID ?? 0)] ?? 0) + (1);
-  // TODO-QSP: --- date_hangout ---------------------------------
+  /* date_hangout */
   scene.build();
 }
 

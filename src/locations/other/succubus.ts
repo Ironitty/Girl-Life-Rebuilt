@@ -793,7 +793,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).scpckrnd ?? 0) > 0) {
             if (((s as any).scclocatcnt ?? 0) <= 10) {
-              // TODO-QSP: jump 'randpoploop_bimbo_outer'
+              qspGoto(s, 'succubus', 'randpoploop_bimbo_outer');
             }
           }
           if (((s as any).z ?? 0) < 1) {
@@ -814,14 +814,14 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
                 }
                 if (((s as any).scpckrnd ?? 0) > 0) {
                   if (((s as any).scclocatcnt ?? 0) <= 10) {
-                    // TODO-QSP: jump 'randpoploop_full_outer'
+                    qspGoto(s, 'succubus', 'randpoploop_full_outer');
                   }
                   if (((s as any).z ?? 0) < 1) {
                     (s as any).scpckrnd = 2;
                   }
                   if (((s as any).scpckrnd ?? 0) > 1) {
                     if (((s as any).scclocatcnt ?? 0) <= Object.keys((s as any).succlocat ?? {}).length) {
-                      // TODO-QSP: jump 'randpoploop_full_outer'
+                      qspGoto(s, 'succubus', 'randpoploop_full_outer');
                     }
                   }
                 }

@@ -425,7 +425,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   scene.text('<h3>Brothel Reception</h3>');
   scene.img('images/locations/shared/brothel/receptionist.jpg');
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    // TODO-QSP: dynamic text: 'The Receptionist looks up from his desk and gazes upon you: ' + $func('wrap', '...
+    /* dynamic text */
     scene.text('The Receptionist looks up from his desk and gazes upon you: ' + 0);
     scene.text('It takes you few seconds to realize that you are naked! ' + qspFunc(s, 'wrap', 'bimbo', '"Oops… let me get my clothes first, I guess…"'));
     if (((s as any).pantyworntype ?? 0) !== 'none') {
@@ -638,7 +638,7 @@ function enterBrothelDressingroom(s: GameState, scene: SceneBuilder): void {
 function enterSection2Warning(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/brothel/receptionist.jpg');
   (s as any).section_warn = 1;
-  // TODO-QSP: dynamic text: 'As you walk toward the second Section, the receptionist suddenly speaks up: ' +...
+  /* dynamic text */
   scene.text('As you walk toward the second Section, the receptionist suddenly speaks up: ' + 0);
   scene.text('You stop, looking at him and shake your head. ' + qspFunc(s, 'wrap', 'bimbo', '"No, so far not. Anything I should know?"'));
   scene.text('"Yes, clients in there are usually very rich and have their own ideas of fun. So, if you want to get paid well, do what they order you to do. That also means you are on your own if anything… problematic happens to you. We have our rules, but with those clients, management is much more accommodating."');

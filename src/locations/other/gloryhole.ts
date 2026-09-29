@@ -480,7 +480,7 @@ function enterGhsex(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).stat ?? 0)?.['vaginal'] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-      // TODO-QSP: act "Use a condom": gt 'gloryhole', 'condom'
+      /* act Use a condom */
     }
     qspCall(s, 'willpower', 'sex', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {

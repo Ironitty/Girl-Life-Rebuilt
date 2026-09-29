@@ -911,7 +911,7 @@ function enterFirstOrgyDrinkAlone2(s: GameState, scene: SceneBuilder): void {
             if (String((st as any).locArgs?.[1] ?? '') === 'third') {
               scene.actions([
                 { label: 'Finish your drink and look for some action', handler: (st: GameState) => {
-    // TODO-QSP: act 'Go dance': gt 'katja_nightclub_first_orgy_sex', 'first_...
+    /* act Go dance */
   } },
               ]);
             } else {
@@ -1636,7 +1636,7 @@ function enterFirstOrgyWalkHome(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: !2026/01/02
+  /* 2026/01/02 */
   const arg = s.locArg;
   switch (arg) {
     case 'first_orgy_invite':

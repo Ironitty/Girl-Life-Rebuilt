@@ -29,7 +29,7 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
 { label: 'Further', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     s.scene = { ...s.scene, mainText: String((st as any).ImageNeededPlacholder || ''), curActs: [] };
-    // TODO-QSP: ! WD: IMAGE NEEDED
+    /* WD: IMAGE NEEDED */
     scene.text('');
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal_strap', 20, 'lesbian', 'sub');
@@ -52,7 +52,7 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
 { label: 'Further', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     s.scene = { ...s.scene, mainText: String((st as any).ImageNeededPlacholder || ''), curActs: [] };
-    // TODO-QSP: ! WD: IMAGE NEEDED
+    /* WD: IMAGE NEEDED */
     scene.text('');
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal_strap', 20, 'lesbian', 'sub');

@@ -1265,11 +1265,11 @@ function enterNoCondom2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Woah! What the fuck?!" you exclaim, snapping your legs closed and pulling back from him. "If you\'re not gonna use a condom, there\'s no way I\'m letting you fuck me!"');
     scene.text('"Don\'t be such a bitch about it! Come on! Let\'s just do this!"');
     scene.actions([
-      { label: 'Stand firm' }, // TODO-QSP: empty action body
-      { label: 'Let him pressure you' }, // TODO-QSP: empty action body
+      { label: 'Stand firm' },
+      { label: 'Let him pressure you' },
     ]);
   } },
-    { label: 'Maybe it\'s okay?' }, // TODO-QSP: empty action body
+    { label: 'Maybe it\'s okay?' },
     { label: 'What the fuck?!', handler: (st: GameState) => {
     scene.text(String(qspFunc(s, 'sex_ev', 'bed_room') || ''));
     scene.text('"What the fuck?!" you exclaim, snapping your legs closed and pulling back from him. "You don\'t use condoms?"');
@@ -2862,7 +2862,6 @@ function enterBigCockVirgin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKissTurnHead(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: --- sex_ev_virgin ---------------------------------
   scene.actions([
     { label: 'Turn your head', handler: (st: GameState) => {
     scene.text('You turn your head quickly, moving your lips away from his.');

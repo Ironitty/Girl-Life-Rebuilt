@@ -37,7 +37,7 @@ function enterBoyTalk(s: GameState, scene: SceneBuilder): void {
       (s as any).sex_ev_boy_topics = [...((s as any).sex_ev_boy_topics ?? []), 'xgt \'sex_ev_boy_pillow_talk\', \'bodycount_ask\''];
     }
     if (((s as any).sex_ev ?? 0)?.['no_kids'] === 1  &&  ((s as any).npc_know_no_kids ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['no_kids_talk'] === 0) {
-      // TODO-QSP: $sex_ev_boy_topics[] = "xgt 'sex_ev_boy_pillow_talk', 'boy_no_kids' "
+      (s as any).sex_ev_boy_topics = [...((s as any).sex_ev_boy_topics ?? []), 'xgt \'sex_ev_boy_pillow_talk\', \'boy_no_kids\''];
     }
     if (((s as any).sex_ev ?? 0)?.['drink_fluid'] === 0  &&  (((s as any).sex_ev ?? 0)?.['loc'] === 'npc_home'  ||  (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room'))  &&  (!((s as any).npc_selfish ?? 0))) {
       (s as any).sex_ev_boy_topics = [...((s as any).sex_ev_boy_topics ?? []), 'xgt \'sex_ev_boy_pillow_talk\', \'boy_drink_offer\''];
@@ -1307,13 +1307,13 @@ function enterHowManyFb(s: GameState, scene: SceneBuilder): void {
   scene.text(`"So how many fuckbuddies do you have?" ${((s as any).npcdesc ?? '')} asks.`);
   if (Object.keys((s as any).fuckbuddy ?? {}).length === 1  &&  ((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'fuckbuddy') {
     scene.actions([
-      { label: '"Just you"' }, // TODO-QSP: empty action body
+      { label: '"Just you"' },
     ]);
   } else {
     scene.actions([
-      { label: 'Tell him' }, // TODO-QSP: empty action body
-      { label: 'Lie (half)' }, // TODO-QSP: empty action body
-      { label: 'Lie' }, // TODO-QSP: empty action body
+      { label: 'Tell him' },
+      { label: 'Lie (half)' },
+      { label: 'Lie' },
     ]);
   }
   scene.build();
@@ -2196,7 +2196,6 @@ function enterBunnyNickname2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: --- sex_ev_boy_pillow_talk ---------------------------------
   scene.build();
 }
 

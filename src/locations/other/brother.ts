@@ -1476,7 +1476,7 @@ function enterBrotherknows6(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('If you see this text, report it please as a bug and remember a few variables:');
         scene.text(`arrposkolka = ${qspUntranslated(s, "arrpos('ChildThFath','A34')", { location: "brother" })}`);
-        // TODO-QSP: dynamic text: arrsizeChild = <<arrsize(''$ChildThFath'')-1>>
+        /* dynamic text */
         scene.text(`arrsizeChild = ${0}`);
         scene.text(`momKnowsKolka = ${((s as any).momKnowsKolka ?? '')}`);
         scene.text(`brotherBlackmail = ${((s as any).brotherBlackmail ?? '')}`);

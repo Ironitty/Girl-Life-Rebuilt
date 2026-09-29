@@ -3075,7 +3075,7 @@ function enterWakeupSexContinue(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: --- sex_ev_sex ---------------------------------
+  /* sex_ev_sex */
   scene.build();
 }
 

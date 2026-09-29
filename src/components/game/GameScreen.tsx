@@ -25,8 +25,39 @@ export default function GameScreen() {
   const [showSettings, setShowSettings] = useState(false);
   const [showDebug, setShowDebug] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+  const [bgUrl, setBgUrl] = useState('');
+  const bgUrlRef = useRef('');
 
   useEffect(() => { rootRef.current?.focus(); }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    const prevUrl = bgUrlRef.current;
+    if (scene.backimage) {
+      fetch(scene.backimage)
+        .then(r => r.blob())
+        .then(blob => {
+          if (cancelled) return;
+          const url = URL.createObjectURL(blob);
+          bgUrlRef.current = url;
+          setBgUrl(url);
+          if (prevUrl) URL.revokeObjectURL(prevUrl);
+        })
+        .catch(() => {
+          if (cancelled) return;
+          bgUrlRef.current = scene.backimage;
+          setBgUrl(scene.backimage);
+          if (prevUrl) URL.revokeObjectURL(prevUrl);
+        });
+    } else {
+      bgUrlRef.current = '';
+      setBgUrl('');
+      if (prevUrl) URL.revokeObjectURL(prevUrl);
+    }
+    return () => { cancelled = true; };
+  }, [scene.backimage]);
+
+  useEffect(() => () => { if (bgUrlRef.current) URL.revokeObjectURL(bgUrlRef.current); }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'F9') { e.preventDefault(); setShowDebug(v => !v); return; }
@@ -97,9 +128,17 @@ export default function GameScreen() {
 
       <div className="flex flex-1 overflow-hidden">
         <main
-          className="flex-1 p-4 overflow-y-auto"
-          style={{ background: scene.backimage ? `url(${scene.backimage}) center/cover` : 'var(--gl-bg)' }}
+          className="flex-1 relative overflow-hidden"
+          style={{ background: 'var(--gl-bg)' }}
         >
+          {bgUrl && (
+            <img
+              src={bgUrl}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            />
+          )}
+          <div className="absolute inset-0 overflow-y-auto p-4">
           {(() => {
             const locDef = getLocation(loc);
             if (locDef?.component) {
@@ -143,6 +182,7 @@ export default function GameScreen() {
               </div>
             );
           })()}
+          </div>
         </main>
 
         <StatusBar />

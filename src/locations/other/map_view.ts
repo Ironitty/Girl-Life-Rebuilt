@@ -127,7 +127,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                     (s as any).map_title = 'Highway';
                                                     (s as any).map_img = 'road.png';
                                                     (s as any).map_nav = '<center><b>You are here: ' + ((s as any).locArgs?.[0] ?? 0) + '</b><br><b>Areas:</b> <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027map_view\u0027, \u0027bus\u0027); return false;">Bus</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027map_view\u0027, \u0027gadukino\u0027); return false;">Gadukino</a><br><br><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027map_view\u0027, \u0027world\u0027, \u0027\u0027 + $ARGS[0] + \u0027\u0027); return false;">&lt;- World Map</a> | <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027 + $ARGS[0] + \u0027\u0027, \u0027start\u0027); return false;">&lt;- Back</a></center>';
-                                                    // TODO-QSP: else:
+                                                    /* else */
                                                     (s as any).map_title = 'World Map';
                                                     (s as any).map_img = 'world_klein_russia_areas_labeled.png';
                                                     (s as any).map_nav = '<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027\u0027 + $ARGS[0] + \u0027\u0027, \u0027\u0027); return false;">&lt;- Back</a></center>';

@@ -18,7 +18,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['fix_bodyimg'] === 1) {
     (s as any).temp_text = 'You are currently using set: ';
     if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] < 10) {
-      // TODO-QSP: $temp_text += $cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_folder']
+      (s as any).temp_text = ((s as any).temp_text ?? '') + String(((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cheatVars ?? 0)?.['fix_bi_set'] ?? '') + '_folder'] ?? '');
     } else {
       (s as any).temp_text = ((s as any).temp_text ?? 0) + ('default ');
       if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] % 10 === 0) {
@@ -852,7 +852,7 @@ function enterCsOverwriteClass(s: GameState, scene: SceneBuilder): void {
   ((s as any).cheatVars = (s as any).cheatVars ?? {})[(((s as any).cmd_copy_class ?? 0)?.['string']) + 'desc_' + ((s as any).locArgs?.[1] ?? 0) + ''] = (((s as any).cmd_copy_class ?? 0)?.['desc']);
   ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['i'] = 0;
   do {
-    // TODO-QSP: $cheatVars[$cmd_copy_class['string'] + 'img_<<$ARGS[1]>>_<<cmd_copy_class[''i'']>>'] = $cmd_copy_class['img_<<cmd_copy_class[''i'']>>']
+    (s as any).cheatVars = (s as any).cheatVars ?? {}; (s as any).cheatVars[String(((s as any).cmd_copy_class ?? 0)?.['string'] ?? '') + 'img_' + String((s as any).locArgs?.[1] ?? '') + '_' + String(((s as any).cmd_copy_class ?? 0)?.['i'] ?? '')] = ((s as any).cmd_copy_class ?? 0)?.['img_' + String(((s as any).cmd_copy_class ?? 0)?.['i'] ?? '')];
     ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['i'] = ((s as any).cmd_copy_class['i'] ?? 0) + (1);
     if (((s as any).cheatVars ?? 0)[((s as any).cmd_copy_class ?? 0)?.['string'] + 'imgnums_' + (String((s as any).locArgs?.[1] ?? ''))] > ((s as any).cmd_copy_class ?? 0)?.['imgnums']) {
       ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['i'] = (((s as any).cmd_copy_class ?? 0)?.['imgnums']);

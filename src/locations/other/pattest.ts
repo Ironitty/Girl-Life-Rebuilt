@@ -17,7 +17,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ((s as any).kidid = (s as any).kidid ?? {})[String((s as any).j ?? 0)] = ((s as any).j ?? 0);
         (s as any).value = (((s as any).kidid ?? 0)?.[String((s as any).j ?? 0)] ?? 0);
         if (((s as any).surefather ?? 0)?.[String((s as any).j ?? 0)] === 0) {
-          scene.text(`    <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: func(/u0027pattest/u0027, value, 1) */ s.pattest -=1; return s; }); window.__gameStore.getState().doGoto(/u0027stat/u0027, /u0027/u0027); return false;">${(((s as any).kidname ?? 0)?.[String((s as any).j ?? 0)] ?? '')}</a>`);
+          scene.text(`    <a href="#" onclick="window.__gameStore.setState((s) => { /* pattest func */ s.pattest -=1; return s; }); window.__gameStore.getState().doGoto(/u0027stat/u0027, /u0027/u0027); return false;">${(((s as any).kidname ?? 0)?.[String((s as any).j ?? 0)] ?? '')}</a>`);
         }
         if (((s as any).j ?? 0) < ((s as any).kid ?? 0)-1) {
           (s as any).j = ((s as any).j ?? 0) + (1);

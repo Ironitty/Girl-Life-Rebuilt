@@ -32,7 +32,7 @@ function startServer(): Server {
 async function main() {
   const srv = startServer();
   await sleep(500);
-  const browser = await chromium.launch({ headless: true, executablePath: '/snap/bin/chromium' });
+  const browser = await chromium.launch({ headless: true, executablePath: '/usr/bin/google-chrome' });
   const page = await browser.newPage();
   const errors: string[] = [];
   let passed = 0;

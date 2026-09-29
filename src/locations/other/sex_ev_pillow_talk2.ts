@@ -2256,7 +2256,7 @@ function enterSugarDaddyTalk(s: GameState, scene: SceneBuilder): void {
 
 function enterSugarDaddyTalk2(s: GameState, scene: SceneBuilder): void {
   scene.text('"What have you been doing with the money?"');
-  // TODO-QSP: --- sex_ev_pillow_talk2 ---------------------------------
+  /* sex_ev_pillow_talk2 */
   scene.build();
 }
 

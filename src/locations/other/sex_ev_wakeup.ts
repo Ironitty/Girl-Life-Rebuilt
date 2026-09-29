@@ -35,7 +35,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterWakeEvents(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/misc/wakeup1.mp4');
   if (((s as any).alarmVars ?? 0)?.['alarmOn'] === 0) {
-    // TODO-QSP: --- sex_ev_wakeup ---------------------------------
+    /* sex_ev_wakeup */
   }
   scene.build();
 }

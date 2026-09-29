@@ -908,7 +908,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
   }
   scene.text(`${((s as any).pcs_vag_txt ?? '')}`);
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_vag = 20; /* TODO-QSP: killvar\u0027virgin_stats\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027looks\u0027); return false;">Reinstate virginity</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_vag = 20; delete s.virgin_stats; return s; }); window.__gameStore.getState().doGoto(\'cheatmenu_din\', \'looks\'); return false;">Reinstate virginity</a>');
   }
   if (((s as any).stat ?? 0)?.['think_virgin'] < 1) {
     scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.stat ??= {})/u0027vaginal/u0027 = 0; (s.stat ??= {})/u0027vaginal_fist/u0027 = 0; (s.stat ??= {})/u0027vaginal_dildo/u0027 = 0; (s.stat ??= {})/u0027vaginal_strap/u0027 = 0; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027looks/u0027); return false;">Make ${((s as any).pcs_nickname ?? '')} believe she is a virgin again (resets the related sex stats)</a>`);
@@ -1378,10 +1378,8 @@ function enterSetSkills(s: GameState, scene: SceneBuilder): void {
 
 function enterPrintStatLinks(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[3] ?? '') === 0) {
-    // TODO-QSP: dynamic text: "<<$ARGS[2]>> (<<dyneval('result = <<$ARGS[1]>>_lvl')>>) - Total (<<dyneval('res...
     scene.text(`"${((s as any).locArgs?.[2] ?? '')} (${0}) - Total (${0}): "`);
   } else {
-    // TODO-QSP: dynamic text: "<<$ARGS[2]>> (<<dyneval('result = <<$ARGS[1]>>_lvl')>>): "
     scene.text(`"${((s as any).locArgs?.[2] ?? '')} (${0}): "`);
   }
   scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { qspFunc(s, (s.cheatmenu ?? {})/u0027setStat/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027, 0); return s; }); return false;">Min</a> `);
@@ -1398,10 +1396,8 @@ function enterPrintStatLinks(s: GameState, scene: SceneBuilder): void {
 
 function enterPrintStatLinksInverted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[3] ?? '') === 0) {
-    // TODO-QSP: dynamic text: "<<$ARGS[2]>> (<<dyneval('result = 100 - <<$ARGS[1]>>_lvl')>>) - Total (<<dyneva...
     scene.text(`"${((s as any).locArgs?.[2] ?? '')} (${0}) - Total (${0}): "`);
   } else {
-    // TODO-QSP: dynamic text: "<<$ARGS[2]>> (<<dyneval('result = 100 - <<$ARGS[1]>>_lvl')>>): "
     scene.text(`"${((s as any).locArgs?.[2] ?? '')} (${0}): "`);
   }
   scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { qspFunc(s, (s.cheatmenu ?? {})/u0027setStat/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027, 100); return s; }); return false;">Min</a> `);
@@ -2644,7 +2640,7 @@ function enterCheatNpcRel(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheatVarRow(s: GameState, scene: SceneBuilder): void {
-  scene.text('$ARGS[2]+\': \'+dyneval(\'result = \' + $ARGS[1])+\'  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: /u003c/u003c$ARGS[1]>> += 10 */ return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, ((s as any).locArgs?.[3] ?? \u0027\u0027)); return false;">+10</a> <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: /u003c/u003c$ARGS[1]>> -= 10 */ return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, ((s as any).locArgs?.[3] ?? \u0027\u0027)); return false;">-10</a>\'');
+  scene.text(`'${((s as any).locArgs?.[2] ?? '')}': '${((s as any).locArgs?.[1] ?? '')}  <a href="#" onclick="window.__gameStore.setState((s) => { s['${((s as any).locArgs?.[1] ?? '')}'] = (s['${((s as any).locArgs?.[1] ?? '')}'] ?? 0) + 10; return s; }); window.__gameStore.getState().doGoto('cheatmenu_din', '${((s as any).locArgs?.[3] ?? '')}'); return false;">+10</a> <a href="#" onclick="window.__gameStore.setState((s) => { s['${((s as any).locArgs?.[1] ?? '')}'] = (s['${((s as any).locArgs?.[1] ?? '')}'] ?? 0) - 10; return s; }); window.__gameStore.getState().doGoto('cheatmenu_din', '${((s as any).locArgs?.[3] ?? '')}'); return false;">-10</a>'`);
   ((s as any).cheatmenu = (s as any).cheatmenu ?? {})['traits_cheats'] = 'gt \'cheatmenu_din\', \'traits_cheats\'';
   scene.build();
 }

@@ -52,9 +52,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).tmpVal = window.prompt("Enter a value for " + (((s as any).tmpVar ?? 0))) ?? '';
     if (((s as any).tmpVal ?? 0) !== '') {
       if (((String(((s as any).tmpVar ?? 0)).indexOf(String('$'))) + 1) === 1) {
-        // TODO-QSP: dyneval('<<$tmpVar>> = "<<$tmpVal>>"')
+        (s as any)[String((s as any).tmpVar ?? '')] = String((s as any).tmpVal ?? '');
       } else {
-        // TODO-QSP: dyneval('<<$tmpVar>> = <<VAL($tmpVal)>>')
+        (s as any)[String((s as any).tmpVar ?? '')] = Number((s as any).tmpVal ?? 0);
       }
     }
     qspCall(s, 'stat', '');
@@ -86,7 +86,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
     }
   }
-  // TODO-QSP: unselect
+  /* unselect */
   scene.build();
 }
 

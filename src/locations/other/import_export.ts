@@ -304,7 +304,7 @@ function enterExport(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     (st as any).usehtml = 1;
-    // TODO-QSP: showstat 1
+    (st as any).showstat = 1;
     qspCall(st, '$menu_settings', '');
   } },
     ]);

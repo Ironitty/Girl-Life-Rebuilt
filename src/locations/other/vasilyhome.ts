@@ -331,7 +331,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Sleep for a few hours', handler: (st: GameState) => {
     if (((st as any).pcs_sleep ?? 0) < 90) {
-      // TODO-QSP: sleepVars['no_health']
+      (st as any).sleepVars = (st as any).sleepVars ?? {}; (st as any).sleepVars['no_health'] = 1;
       (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (5);
       qspCall(st, 'sleep_simple', 'forced', 240);
       scene.text('You sleep for about four hours.');

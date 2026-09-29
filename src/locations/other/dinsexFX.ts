@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).vagstart = qspUntranslated(s, "{", { location: "dinsexFX" });
-  // TODO-QSP: !condom check, to skip just use 2
+  /* condom check, to skip just use 2 */
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
     qspCall(s, 'dina', 'prezik');
     (s as any).protect = 1;
@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   dynamicGoto(s, String((s as any).vagstart2 || ''));
   (s as any).vagstart2 = qspUntranslated(s, "{", { location: "dinsexFX" });
-  // TODO-QSP: !need $boy, dick and silavag
+  /* need boy, dick and silavag */
   (s as any).frost = 0;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).minut = ((s as any).minut ?? 0) + 10;

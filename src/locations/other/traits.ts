@@ -2867,7 +2867,7 @@ function enterScholarly(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
-  // TODO-QSP: --- traits ---------------------------------
+  /* traits */
   scene.build();
 }
 

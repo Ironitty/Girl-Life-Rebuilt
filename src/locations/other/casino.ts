@@ -135,16 +135,7 @@ function enterRoulette(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Shake your head and move away', goto: ['casino', 'roulette'] },
       { label: 'Ask rules', handler: (st: GameState) => {
-    alert(qspUntranslated(s, "'The rules are very simple.", { location: "casino" }));
-    // TODO-QSP: First you choose the amount you want to bet.
-    // TODO-QSP: Then you choose where to put your chips. There are six different types of bets:
-    // TODO-QSP: 1. Red/Black (Payout: 1 to 1)
-    // TODO-QSP: 2. Even/Odd (Payout: 1 to 1)
-    // TODO-QSP: 3. Small/Large (Payout: 1 to 1)
-    // TODO-QSP: 4. Dozen (Payout: 1 to 3)
-    // TODO-QSP: 5. Series (Payout: 1 to 3)
-    // TODO-QSP: 6. Number (Payout: 1 to 36)
-    // TODO-QSP: And the rest depends on your luck.'
+    scene.text('The rules are very simple.\nFirst you choose the amount you want to bet.\nThen you choose where to put your chips. There are six different types of bets:\n1. Red/Black (Payout: 1 to 1)\n2. Even/Odd (Payout: 1 to 1)\n3. Small/Large (Payout: 1 to 1)\n4. Dozen (Payout: 1 to 3)\n5. Series (Payout: 1 to 3)\n6. Number (Payout: 1 to 36)\nAnd the rest depends on your luck.');
     qspGoto(st, 'casino', 'roulette');
   } },
     ]);
@@ -656,18 +647,7 @@ function enterCardsCw(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move away from the dealer', goto: ['casino', 'cards_cw'] },
       { label: 'Ask for the rules', handler: (st: GameState) => {
-    alert(qspUntranslated(s, "'The rules are very simple.", { location: "casino" }));
-    // TODO-QSP: First you choose how much you want to wager.
-    // TODO-QSP: After that, you can either continue with your bet, or bet on a draw (which costs your bet a second t...
-    // TODO-QSP: Regular:
-    // TODO-QSP: Everyone is dealt a card. Face cards have different values.
-    // TODO-QSP: Highest card wins. Payout is 1 to 1.
-    // TODO-QSP: If both have the same card, choose between continuing (doubles bet), or end the round and return you...
-    // TODO-QSP: If you win the second round you get a payout of 2 to 1. If it is another draw you get a payout of 1....
-    // TODO-QSP: Bet on draw:
-    // TODO-QSP: When betting on a draw and winning, you get your bet back.
-    // TODO-QSP: However, if it is a draw, the payout will be 10 to 1.
-    // TODO-QSP: That''s it. Enjoy the game.'
+    scene.text('The rules are very simple.\nFirst you choose how much you want to wager.\nAfter that, you can either continue with your bet, or bet on a draw (which costs your bet a second time), for a larger payout.\n\nRegular:\nEveryone is dealt a card. Face cards have different values.\nHighest card wins. Payout is 1 to 1.\nIf both have the same card, choose between continuing (doubles bet), or end the round and return your bet.\nIf you win the second round you get a payout of 2 to 1. If it is another draw you get a payout of 1.5 to 1.\n\nBet on draw:\nWhen betting on a draw and winning, you get your bet back.\nHowever, if it is a draw, the payout will be 10 to 1.\n\nThat\'s it. Enjoy the game.');
     qspGoto(st, 'casino', 'cards_cw');
   } },
     ]);

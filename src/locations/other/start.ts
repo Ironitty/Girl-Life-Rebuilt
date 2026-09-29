@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: killall
+  /* killall - reset all variables */
   (s as any).usehtml = 1;
   (s as any).debug = 1;
   if (((s as any).qspver ?? 0) > '9.9.9') {

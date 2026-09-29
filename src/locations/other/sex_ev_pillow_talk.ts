@@ -695,12 +695,12 @@ function enterRoughSexTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['rough_pillow_talk'] === 0) {
     if (((s as any).sex_ev ?? 0)?.['rough_enjoy'] === 1) {
       scene.actions([
-        { label: 'I loved it when you got rough' }, // TODO-QSP: empty action body
+        { label: 'I loved it when you got rough' },
       ]);
     } else {
       if (((s as any).sex_ev ?? 0)?.['rough_hurt'] === 1) {
         scene.actions([
-          { label: 'Did you have to get so rough?' }, // TODO-QSP: empty action body
+          { label: 'Did you have to get so rough?' },
         ]);
       }
     }

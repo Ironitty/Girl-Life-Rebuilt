@@ -355,12 +355,12 @@ function enterSecLoadsave(s: GameState, scene: SceneBuilder): void {
     (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { qspSave(0, s); s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;">Quick Save</a>';
     (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { qspSave(1, s); return s; }); return false;">Save</a>');
     (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { qspLoad(1, s); return s; }); return false;">Load</a>');
-    (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) /u003c> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;">Quick Load</a>');
+    (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="if(prompt(\'Input Anything to confirm Quick Load\')===null){window.__gameStore.setState((s)=>{qspLoad(0,s);return s;});}return false;">Quick Load</a>');
   } else {
     (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { qspSave(0, s); s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;"><img src="images/system/icons/stat_qsave.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>';
     (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { qspSave(1, s); return s; }); return false;"><img src="images/system/icons/stat_save.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
     (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { qspLoad(1, s); return s; }); return false;"><img src="images/system/icons/stat_load.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
-    (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) /u003c> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;"><img src="images/system/icons/stat_qload.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
+    (s as any).result = ((s as any).result ?? 0) + ('  <a href="#" onclick="if(prompt(\'Input Anything to confirm Quick Load\')===null){window.__gameStore.setState((s)=>{qspLoad(0,s);return s;});}return false;"><img src="images/system/icons/stat_qload.png" height="' + (((s as any).stat_cfg ?? 0)?.['menu_icon_height']) + '"></a>');
   }
   (s as any).result = qspFunc(s, 'stat_display', 'helper_font_wrap', ((s as any).result ?? 0));
   (s as any).result = qspFunc(s, 'stat_display', 'helper_align_wrap', 'loadsave', ((s as any).result ?? 0));
@@ -436,7 +436,7 @@ function enterSecMenuBar(s: GameState, scene: SceneBuilder): void {
       } else {
         ((s as any).sd_mb = (s as any).sd_mb ?? {})['act'] = (((s as any).sd_mb ?? 0)?.[(((s as any).sd_mb ?? 0)?.['key']) + '_url'] ?? 0);
       }
-      ((s as any).sd_mb = (s as any).sd_mb ?? {})['cell'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: \u0027 + $sd_mb[\u0027act\u0027] + \u0027 */ return s; }); return false;"><img title="' + (((s as any).sd_mb ?? 0)?.[(((s as any).sd_mb ?? 0)?.['key']) + '_tip'] ?? 0) + '" ' + (((s as any).sd ?? 0)?.['micon']) + (((s as any).sd_mb ?? 0)?.[(((s as any).sd_mb ?? 0)?.['key']) + '_ico'] ?? 0) + '"></a>';
+      ((s as any).sd_mb = (s as any).sd_mb ?? {})['cell'] = '<a href="#" onclick="window.__gameStore.setState((s) => { qspCall(s, \'\', \'\'); return s; }); return false;"><img title="' + (((s as any).sd_mb ?? 0)?.[(((s as any).sd_mb ?? 0)?.['key']) + '_tip'] ?? 0) + '" ' + (((s as any).sd ?? 0)?.['micon']) + (((s as any).sd_mb ?? 0)?.[(((s as any).sd_mb ?? 0)?.['key']) + '_ico'] ?? 0) + '"></a>';
       ((s as any).sd_mb = (s as any).sd_mb ?? {})['cells'] = ((s as any).sd_mb['cells'] ?? 0) + ('<span style="display:inline-block; vertical-align:middle;">' + (((s as any).sd_mb ?? 0)?.['cell']) + '</span>');
     }
     ((s as any).sd_mb = (s as any).sd_mb ?? {})['i'] = ((s as any).sd_mb['i'] ?? 0) + (1);
@@ -1305,8 +1305,8 @@ function enterDebugTrace(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.debug ??= {})\u0027call_trace_selector\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">loc change</a>&nbsp;|&nbsp;');
     scene.text('direct');
     scene.text('<hr>');
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $trace_locations[] = $input(\u0027location name\u0027) */ return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">add by name</a>&nbsp;|&nbsp;');
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $trace_locations[] = $curloc */ return s; }); window.__gameStore.getState().doGoto(\u0027stat_display\u0027, \u0027\u0027); return false;">add $curloc</a>');
+    scene.text('<a href="#" onclick="var n=prompt(\'location name\');if(n!==null){window.__gameStore.setState((s)=>{s.trace_locations=(s.trace_locations||[]).concat(n);return s;});}window.__gameStore.getState().doGoto(\'stat_display\',\'\');return false;">add by name</a>&nbsp;|&nbsp;');
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s)=>{s.trace_locations=(s.trace_locations||[]).concat(s.curloc||\'\');return s;});window.__gameStore.getState().doGoto(\'stat_display\',\'\');return false;">add $curloc</a>');
     scene.text('<hr>');
     if (Object.keys((s as any).trace_locations ?? {}).length > 0) {
       scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027debug_tools\u0027, \u0027trace_list_locs\u0027); return false;">list locations</a>&nbsp;|&nbsp;');
@@ -1677,7 +1677,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterFinalize(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['android']) {
-    (s as any).sd_android = ((s as any).sd_android ?? 0) + (' <a href="#" onclick="window.__gameStore.setState((s) => { qspSave(0, s); s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;">Q.S</a>  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: if input(\u0027Input Anything to confirm Quick Load\u0027) /u003c> \u0027\u0027: opengame \u0027quicksave.sav\u0027 */ return s; }); return false;">Q.L</a>');
+    (s as any).sd_android = ((s as any).sd_android ?? 0) + (' <a href="#" onclick="window.__gameStore.setState((s) => { qspSave(0, s); s.scene = { ...s.scene, mainText: \u0027Quicksave Done\u0027, curActs: [] }; return s; }); return false;">Q.S</a>  <a href="#" onclick="if(prompt(\'Input Anything to confirm Quick Load\')===null){window.__gameStore.setState((s)=>{qspLoad(0,s);return s;});}return false;">Q.L</a>');
     (s as any).sd_android = qspFunc(s, 'stat_display', 'helper_font_wrap', ((s as any).sd_android ?? 0));
   }
   (s as any).sd_font_wrap_o = undefined;
@@ -1701,7 +1701,7 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).stat_cfg ?? 0)?.['android'] === 0) {
-    // TODO-QSP: clear
+    scene.mainText = '';
   }
   (s as any).sd_android = '<b>' + qspFunc(s, 'time', 'get_time_string') + '</b>';
   (s as any).sd_android = ((s as any).sd_android ?? 0) + ('' + ((s as any).weekName ?? 0) + ' ' + ((s as any).day ?? 0) + '/' + ((s as any).month ?? 0) + ', ' + qspFunc(s, 'money', 'format', ((s as any).money ?? 0)) + ', <a href="#" onclick="window.__gameStore.setState((s) => {  s.scene = { ...s.scene, mainText: $sd_android, curActs: [] }; return s; }); return false;">Status</a>');

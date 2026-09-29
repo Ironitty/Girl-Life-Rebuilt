@@ -81,9 +81,9 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sd_qm ?? 0)?.['icon'] !== ''  &&  (((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 0  ||  ((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 1)) {
     if (((s as any).sd_qm ?? 0)?.['bg_color'] !== '') {
-      // TODO-QSP: $sd_qm['final_icon'] = '<a href="exec: <<$sd_qm[''action'']>>"><span style="display:inline-block;background:<<$sd_qm[''bg_color'']>>;border-radius:12px;width:<<stat_cfg[''icon_height'']>>px;height:<<stat_cfg[''icon_height'']>>px;padding:5%;box-sizing:border-box;"><img src="images/system/icons/<<$sd_qm[''icon'']>>.png" title="<<$sd_qm[''title'']>>" style="width:100%;height:100%;display:block;"></span></a>'
+      (s as any).sd_qm = (s as any).sd_qm ?? {}; (s as any).sd_qm['final_icon'] = '<a href="#"><span style="display:inline-block;background:' + String(((s as any).sd_qm ?? 0)?.['bg_color'] ?? '') + ';border-radius:12px;width:' + String(((s as any).stat_cfg ?? 0)?.['icon_height'] ?? 0) + 'px;height:' + String(((s as any).stat_cfg ?? 0)?.['icon_height'] ?? 0) + 'px;padding:5%;box-sizing:border-box;"><img src="images/system/icons/' + String(((s as any).sd_qm ?? 0)?.['icon'] ?? '') + '.png" title="' + String(((s as any).sd_qm ?? 0)?.['title'] ?? '') + '" style="width:100%;height:100%;display:block;"></span></a>';
     } else {
-      // TODO-QSP: $sd_qm['final_icon'] = '<a href="exec: <<$sd_qm[''action'']>>"><img src="images/system/icons/<<$sd_qm[''icon'']>>.png" title="<<$sd_qm[''title'']>>" height="<<stat_cfg[''icon_height'']>>"></a>'
+      (s as any).sd_qm = (s as any).sd_qm ?? {}; (s as any).sd_qm['final_icon'] = '<a href="#"><img src="images/system/icons/' + String(((s as any).sd_qm ?? 0)?.['icon'] ?? '') + '.png" title="' + String(((s as any).sd_qm ?? 0)?.['title'] ?? '') + '" height="' + String(((s as any).stat_cfg ?? 0)?.['icon_height'] ?? 0) + '"></a>';
     }
     if (((s as any).sd_qm ?? 0)?.['row_arg'] === 1) {
       (s as any).sd_icons_1 = [...((s as any).sd_icons_1 ?? []), (((s as any).sd_qm ?? 0)?.['final_icon'])];

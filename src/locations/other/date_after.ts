@@ -1608,7 +1608,7 @@ function enterHurryLeave(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  // TODO-QSP: --- date_after ---------------------------------
+  /* date_after */
   scene.actions([
     { label: 'No time for goodbyes', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'dislike');

@@ -667,7 +667,7 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_booking_debt ?? 0)?.['city_pornstudio_actress'] > 0) {
     scene.actions([
       { label: 'Ask about your debt', handler: (st: GameState) => {
-    // TODO-QSP: '"Of course. Your current debt to the company is <<job_booki...
+    scene.text('"Of course. Your current debt to the company is ' + String(((st as any).job_booking_debt ?? 0)?.['city_pornstudio_actress'] ?? '') + ' <b>₽</b>."');
   } },
     ]);
   }

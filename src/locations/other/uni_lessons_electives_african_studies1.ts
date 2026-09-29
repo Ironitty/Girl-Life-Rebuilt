@@ -714,7 +714,7 @@ function enterAfricanStudies_102TalkErmias_2(s: GameState, scene: SceneBuilder):
         }
       }
     } else {
-      // TODO-QSP: ! pcs_hotcat >= 7
+      /* pcs_hotcat >= 7 */
       ((s as any).ErmiasQW = (s as any).ErmiasQW ?? {})['invite'] = 1;
       scene.text('You sit next to Ermias and spend most of the class quietly talking with him, although he seems far more interested in flirting with you than chatting.');
       if (((s as any).pcs_hotcat ?? 0) < 8) {

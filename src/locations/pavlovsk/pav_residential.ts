@@ -129,7 +129,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked in the street.`);
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 22) {
-    scene.text('<br>At the end of the street is a small <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = \u0027pav_residential\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a> selling a variety of items such as cigarettes, magazines, snacks, drinks and even themes for your phone.');
+    scene.text('<br>At the end of the street is a small <a href="#" onclick="window.__gameStore.setState((s) => { /* $loc=pav_residential */ return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a> selling a variety of items such as cigarettes, magazines, snacks, drinks and even themes for your phone.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -374,7 +374,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${(((s as any).car ?? 0)?.['name'] ?? '')}</a> is parked in the street.`);
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 22) {
-    scene.text('<br>At the end of the street is a small <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = \u0027pav_residential\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a> selling a variety of items such as cigarettes, magazines, snacks, drinks and even themes for your phone.');
+    scene.text('<br>At the end of the street is a small <a href="#" onclick="window.__gameStore.setState((s) => { /* $loc=pav_residential */ return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a> selling a variety of items such as cigarettes, magazines, snacks, drinks and even themes for your phone.');
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     (s as any).minut = ((s as any).minut ?? 0) + 2;

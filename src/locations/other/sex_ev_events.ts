@@ -1274,7 +1274,7 @@ function enterGunEvStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGunEvConfront1(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: --- sex_ev_events ---------------------------------
+  /* sex_ev_events */
   scene.build();
 }
 

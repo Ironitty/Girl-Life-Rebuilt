@@ -203,14 +203,14 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
     if (((s as any).lactation ?? 0)?.['active'] > 0) {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Breast Feed ' + String((((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '') ?? ''), handler: (st: GameState) => {
-    // TODO-QSP: dyneval($breastfeed)
+    qspCall(st, 'kid', 'breastfeed');
   } },
       ]);
     }
     if (((s as any).babyloc ?? 0) === 'onto the blanket') {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Play with ' + String((((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '') ?? '') + ' (0:20)', handler: (st: GameState) => {
-    // TODO-QSP: dyneval($playWithKid)
+    qspCall(st, 'kid', 'playWithKid');
   } },
       ]);
     }
@@ -219,14 +219,14 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
     if (((s as any).totloc ?? 0) === 'playing with toys on the floor') {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Play with ' + String((((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '') ?? '') + '(0:30)', handler: (st: GameState) => {
-    // TODO-QSP: dyneval($totplay)
+    qspCall(st, 'kid', 'totplay');
   } },
       ]);
     } else {
       if (((s as any).totloc ?? 0) === 'watching tv') {
         scene.actions([
           { label: '', labelFn: (s: GameState) => 'Watch TV with ' + String((((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '') ?? '') + '(1:00)', handler: (st: GameState) => {
-    // TODO-QSP: dyneval($tottv)
+    qspCall(st, 'kid', 'tottv');
   } },
         ]);
       }
@@ -236,14 +236,14 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
     if (((s as any).kidloc ?? 0) === 'watching TV') {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Watch TV with ' + String((((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '') ?? '') + ' (1:00)', handler: (st: GameState) => {
-    // TODO-QSP: dyneval($kidtv)
+    qspCall(st, 'kid', 'kidtv');
   } },
       ]);
     } else {
       if (((s as any).kidloc ?? 0) === 'working on homework') {
         scene.actions([
           { label: '', labelFn: (s: GameState) => 'Help ' + String((((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '') ?? '') + ' with homework.', handler: (st: GameState) => {
-    // TODO-QSP: dyneval($homework)
+    qspCall(st, 'kid', 'homework');
   } },
         ]);
       }

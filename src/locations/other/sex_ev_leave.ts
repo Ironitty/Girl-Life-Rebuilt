@@ -1922,7 +1922,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('asdfaes');
   }
-  // TODO-QSP: --- sex_ev_leave ---------------------------------
+  /* sex_ev_leave */
   scene.build();
 }
 

@@ -675,7 +675,7 @@ function enterHypno(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'No, <i>Master</i>', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/clinic/therapist/waiting${(Math.floor(Math.random() * 2) + 1)}.jpg`);
-    // TODO-QSP: dynamic text: "No, Master, It belongs to (Brother/Fedor/Boyfriend) "That''s upsetting." he say...
+    /* dynamic text */
     scene.text(`"No, Master, It belongs to (Brother/Fedor/Boyfriend) "That's upsetting." he says. "Since you did allow someone else to get you pregnant, I must punish you" he says and bends you over his desk, takes off his belt and starts to whip your bare ass with it. ${0}`);
     qspCall(st, 'mood', 'lower', 'min');
     scene.actions([
@@ -2122,20 +2122,20 @@ function enterHypnoEnd(s: GameState, scene: SceneBuilder): void {
     { label: 'Wake up', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/clinic/therapist/room.jpg');
     if (((st as any).hypnoTxt0 ?? 0) !== '') {
-      // TODO-QSP: $hypnoTxt0
+      scene.text((st as any).hypnoTxt0 ?? '');
     }
     if (((st as any).hypnoTxt1 ?? 0) !== '') {
-      // TODO-QSP: $hypnoTxt1
+      scene.text((st as any).hypnoTxt1 ?? '');
     }
     if (((st as any).hypnoKissGoodbye ?? 0) === 1) {
       scene.actions([
         { label: 'Kiss Dr. Pavlov goodbye', handler: (st: GameState) => {
     scene.img(`images/shared/sex/kiss/oldKissTongue${(Math.floor(Math.random() * 4) + 1)}.jpg`);
     if (((st as any).hypnoTxt2 ?? 0) !== '') {
-      // TODO-QSP: $hypnoTxt2
+      scene.text((st as any).hypnoTxt2 ?? '');
     }
     if (((st as any).hypnoTxt3 ?? 0) !== '') {
-      // TODO-QSP: $hypnoTxt3
+      scene.text((st as any).hypnoTxt3 ?? '');
     }
     if (((st as any).therapistFuckedPussy ?? 0) > 0  &&  (Math.floor(Math.random() * 2) + 1) === 1) {
       scene.text('A bit of cum dribbles from your well fucked cunt. You involuntarily clench your pussy; your body trying to keep more from leaking out.');
@@ -2149,7 +2149,7 @@ function enterHypnoEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((st as any).hypnoTxt3 ?? 0) !== '') {
-        // TODO-QSP: $hypnoTxt3
+        scene.text((st as any).hypnoTxt3 ?? '');
       }
       if (((st as any).therapistFuckedPussy ?? 0) > 0  &&  (Math.floor(Math.random() * 2) + 1) === 1) {
         scene.text('A bit of cum dribbles from your well fucked cunt. You involuntarily clench your pussy; your body trying to keep more from leaking out.');
@@ -2424,7 +2424,7 @@ function enterHypnoRandom(s: GameState, scene: SceneBuilder): void {
                             qspCall(s, 'traits', 'level', 'sensitivity', (-2));
                             (s as any).hypnoRandomCounter = 0;
                             scene.img('images/locations/pavlovsk/clinic/therapist/sittingClothed.jpg');
-                            // TODO-QSP: dynamic text: <<$func(''wrap'', ''hypno'', """From now on, you will have difficulty orgasming ...
+                            /* dynamic text */
                             scene.text(`${0} Understand, <i>Cunt</i>?"`);
                             scene.text('"Yes, <i>Master</i>."');
                             scene.actions([
@@ -2873,13 +2873,13 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
     scene.text('I heard you the first time. Do you know what you are asking me?');
     scene.actions([
       { label: '"Yes."', handler: (st: GameState) => {
-    // TODO-QSP: jump 'hypnoProstGuy2Start1'
+    qspGoto(st, 'therapist', 'hypnoProstGuy2Start1');
   } },
       { label: '"Yes, sir."', handler: (st: GameState) => {
-    // TODO-QSP: jump 'hypnoProstGuy2Start1'
+    qspGoto(st, 'therapist', 'hypnoProstGuy2Start1');
   } },
       { label: 'Nod', handler: (st: GameState) => {
-    // TODO-QSP: jump 'hypnoProstGuy2Start1'
+    qspGoto(st, 'therapist', 'hypnoProstGuy2Start1');
   } },
     ]);
   } },
@@ -2898,7 +2898,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
     scene.text('He leads you to his car and opens the door for you before he gets into the front and starts to drive you somewhere secluded. Before you\'ve even come to a stop, he\'s exploring your vagina with his fingers. He does this for some time before telling you to strip.');
     scene.actions([
       { label: 'Strip', handler: (st: GameState) => {
-    // TODO-QSP: jump 'hypnoProstSex2'
+    qspGoto(st, 'therapist', 'hypnoProstSex2');
   } },
     ]);
   } },
@@ -2923,7 +2923,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
     scene.text('"Fuck you?" he repeats. "Yea I wanna fuck you!" He grabs you by the arm and pulls you over by the dumpster, practically dragging you.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: jump 'hypnoProstGuy3Start1'
+    qspGoto(st, 'therapist', 'hypnoProstGuy3Start1');
   } },
     ]);
   } },
@@ -2999,15 +2999,15 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
     scene.text('Shoving you aggressively against the garbage bin, the homeless man pulls his cock out and says he\'s going to fuck you.');
     scene.actions([
       { label: '"Yes sir. How would you like to fuck me?"', handler: (st: GameState) => {
-    // TODO-QSP: jump 'hypnoProstGuy3Start1'
+    qspGoto(st, 'therapist', 'hypnoProstGuy3Start1');
   } },
       { label: 'Place your hands against the dumpster and spread your legs.', handler: (st: GameState) => {
     scene.text('You place your hands against the dumpster and spread your legs, ready to take his cock.');
-    // TODO-QSP: jump 'hypnoProstGuy3Start1'
+    qspGoto(st, 'therapist', 'hypnoProstGuy3Start1');
   } },
       { label: 'Get down on your hands and knees and offer him your pussy.', handler: (st: GameState) => {
     scene.text('You get down on your hands and knees, ready to take his cock.');
-    // TODO-QSP: jump 'hypnoProstGuy3Start1'
+    qspGoto(st, 'therapist', 'hypnoProstGuy3Start1');
   } },
     ]);
   } },
@@ -3300,7 +3300,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
       scene.text('"Ah, I feel bad. So here, take this at least." He hands you a coin.');
       scene.text('Looking down, you see that he\'s handed you a 10 ruble coin.');
       scene.actions([
-        { label: 'Thank him' }, // TODO-QSP: empty action body
+        { label: 'Thank him' },
         { label: '"It\'s not much"', handler: (st: GameState) => {
     scene.text('As soon as the words leave your lips, the man slaps you hard across the face. The force of his slap causes some of the cum in your pussy to jetison out onto the pavement.');
     scene.text('"It\'s not much because that\'s all you\'re worth you stupid bitch."');
@@ -3334,7 +3334,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
       scene.text('"Great," he says before he gets in his car and drives off, leaving you alone with cum dripping from your cunt.');
     }
   } },
-        { label: 'Agree, but ask for payment' }, // TODO-QSP: empty action body
+        { label: 'Agree, but ask for payment' },
       ]);
     } else {
       if (((st as any).randomResponse ?? 0) === 2) {

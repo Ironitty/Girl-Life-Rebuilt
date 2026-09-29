@@ -947,7 +947,7 @@ function enterModrelSetup2(s: GameState, scene: SceneBuilder): void {
   scene.text('if ' + ((s as any).locArgs?.[1] ?? 0) + ' < 0: ' + ((s as any).locArgs?.[1] ?? 0) + ' = 0');
   scene.text('if ' + ((s as any).locArgs?.[1] ?? 0) + ' > 100: ' + ((s as any).locArgs?.[1] ?? 0) + ' = 100');
   scene.text('x = ' + ((s as any).locArgs?.[1] ?? 0) + '');
-  // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td><<$ARGS[2]>> (<<x>>/100)</td><td><a href="exec:<<$ARGS[1]>> = 0 & gt ''intro_character_custom'', $locM_arg">zero</a></td><td bgcolor=#ff9999><a href="exec:<<$ARGS[1]>> -= 10 & gt ''intro_character_custom'', $locM_arg">minus 10</a></td><td bgcolor=#ff9999><a href="exec:<<$ARGS[1]>> -= 5 & gt ''intro_character_custom'', $locM_arg">minus 5</a></td><td bgcolor=#99ff99><a href="exec:<<$ARGS[1]>> += 5 & gt ''intro_character_custom'', $locM_arg">plus 5</a></td><td bgcolor=#99ff99><a href="exec:<<$ARGS[1]>> += 10 & gt ''intro_character_custom'', $locM_arg">plus 10</a></td><td><a href="exec:<<$ARGS[1]>> = 100 & gt ''intro_character_custom'', $locM_arg">100</a></td>'
+  (s as any).table_display = ((s as any).table_display ?? '') + '<tr><td>' + String((s as any).ARGS?.[2] ?? '') + ' (0/100)</td><td><a href="#">zero</a></td><td><a href="#">-10</a></td><td><a href="#">-5</a></td><td><a href="#">+5</a></td><td><a href="#">+10</a></td><td><a href="#">100</a></td></tr>';
   scene.build();
 }
 
@@ -955,7 +955,7 @@ function enterModrelSetup3(s: GameState, scene: SceneBuilder): void {
   scene.text('if ' + ((s as any).locArgs?.[1] ?? 0) + ' < 50: ' + ((s as any).locArgs?.[1] ?? 0) + ' = 50');
   scene.text('if ' + ((s as any).locArgs?.[1] ?? 0) + ' > 200: ' + ((s as any).locArgs?.[1] ?? 0) + ' = 200');
   scene.text('x = ' + ((s as any).locArgs?.[1] ?? 0) + '');
-  // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td><<$ARGS[2]>> (<<x>>/200)</td><td><a href="exec:<<$ARGS[1]>> = 0 & gt ''intro_character_custom'', $locM_arg">zero</a></td><td bgcolor=#ff9999><a href="exec:<<$ARGS[1]>> -= 10 & gt ''intro_character_custom'', $locM_arg">minus 10</a></td><td bgcolor=#ff9999><a href="exec:<<$ARGS[1]>> -= 5 & gt ''intro_character_custom'', $locM_arg">minus 5</a></td><td bgcolor=#99ff99><a href="exec:<<$ARGS[1]>> += 5 & gt ''intro_character_custom'', $locM_arg">plus 5</a></td><td bgcolor=#99ff99><a href="exec:<<$ARGS[1]>> += 10 & gt ''intro_character_custom'', $locM_arg">plus 10</a></td><td><a href="exec:<<$ARGS[1]>> = 200 & gt ''intro_character_custom'', $locM_arg">200</a></td>'
+  (s as any).table_display = ((s as any).table_display ?? '') + '<tr><td>' + String((s as any).ARGS?.[2] ?? '') + ' (0/200)</td><td><a href="#">zero</a></td><td><a href="#">-10</a></td><td><a href="#">-5</a></td><td><a href="#">+5</a></td><td><a href="#">+10</a></td><td><a href="#">200</a></td></tr>';
   scene.build();
 }
 
@@ -963,7 +963,7 @@ function enterModrelSetup4(s: GameState, scene: SceneBuilder): void {
   scene.text('if ' + ((s as any).locArgs?.[1] ?? 0) + ' < 0: ' + ((s as any).locArgs?.[1] ?? 0) + ' = 0');
   scene.text('if ' + ((s as any).locArgs?.[1] ?? 0) + ' > 100: ' + ((s as any).locArgs?.[1] ?? 0) + ' = 100');
   scene.text('x = 100-' + ((s as any).locArgs?.[1] ?? 0) + '');
-  // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td><<$ARGS[2]>> (<<x>>/100)</td><td><a href="exec:<<$ARGS[1]>> = 100 & gt ''intro_character_custom'', $locM_arg">zero</a></td><td bgcolor=#ff9999><a href="exec:<<$ARGS[1]>> += 10 & gt ''intro_character_custom'', $locM_arg">minus 10</a></td><td bgcolor=#ff9999><a href="exec:<<$ARGS[1]>> += 5 & gt ''intro_character_custom'', $locM_arg">minus 5</a></td><td bgcolor=#99ff99><a href="exec:<<$ARGS[1]>> -= 5 & gt ''intro_character_custom'', $locM_arg">plus 5</a></td><td bgcolor=#99ff99><a href="exec:<<$ARGS[1]>> -= 10 & gt ''intro_character_custom'', $locM_arg">plus 10</a></td><td><a href="exec:<<$ARGS[1]>> = 0 & gt ''intro_character_custom'', $locM_arg">100</a></td>'
+  (s as any).table_display = ((s as any).table_display ?? '') + '<tr><td>' + String((s as any).ARGS?.[2] ?? '') + ' (100/100)</td><td><a href="#">zero</a></td><td><a href="#">+10</a></td><td><a href="#">+5</a></td><td><a href="#">-5</a></td><td><a href="#">-10</a></td><td><a href="#">0</a></td></tr>';
   scene.build();
 }
 

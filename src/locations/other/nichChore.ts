@@ -356,7 +356,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
   (s as any).nichTimeNormal = ((s as any).nichTimeBNormal ?? 0) * ((s as any).nichChoreTimeF ?? 0);
   (s as any).nichTimeDiligent = ((s as any).nichTimeBDiligent ?? 0) * ((s as any).nichChoreTimeF ?? 0);
   if (String((s as any).locArgs?.[2] ?? '') === 1) {
-    // TODO-QSP: jump 'nichChoreSkipInspect'
+    qspGoto(s, 'nichChore', 'nichChoreSkipInspect');
   }
   scene.actions([
     { label: '', labelFn: (s: GameState) => String(((s as any).nichChoreActCaption ?? '') ?? ''), handler: (st: GameState) => {

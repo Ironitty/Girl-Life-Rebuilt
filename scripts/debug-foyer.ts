@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 
 (async () => {
-  const browser = await chromium.launch({ executablePath: '/snap/bin/chromium', args: ['--no-sandbox'] });
+  const browser = await chromium.launch({ executablePath: '/usr/bin/google-chrome', args: ['--no-sandbox'] });
   const page = await browser.newPage({ viewport: { width: 1400, height: 900 } });
   const logs: string[] = [];
   page.on('console', (msg) => logs.push(msg.text()));

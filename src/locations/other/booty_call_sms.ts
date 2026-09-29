@@ -511,7 +511,7 @@ function enterNewRouting2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'end');
   if (0) {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      // TODO-QSP: wait 250
+      /* wait 250ms */
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'a', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[5] ?? 0)]; enterSexting1(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }

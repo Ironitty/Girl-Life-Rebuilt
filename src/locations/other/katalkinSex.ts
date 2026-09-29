@@ -104,7 +104,7 @@ function enterSexgo(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Take his load on your face', handler: (st: GameState) => {
-    // TODO-QSP: Katalkin
+    /* Katalkin label */
     qspCall(st, 'cum_call', 'face', ((st as any).boy ?? 0), 1);
     scene.img('images/pc/body/cum/cumface/black/13.jpg');
     scene.text('When he\'s about to orgasm, you release his cock from your mouth and give it a few quick jerks with your fingers as you aim it over your face, closing your eyes in anticipation.');

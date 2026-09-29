@@ -608,7 +608,7 @@ function enterPornstarTalk4_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornstarTalk4_5(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: cla  & *nl
+  /* cla & nl */
   scene.text('She opens her mouth like she\'s about to say something, but it dies in her throat and she looks away, seemingly ashamed. She chews on her lip for a few seconds while avoiding eye contact with you.');
   scene.text(`"Sorry..." she mumbles. "I shouldn't be so quick to judge you. I just... You're my friend, ${((s as any).pcs_nickname ?? '')}, and I don't want to see you getting hurt is all."`);
   scene.text('"I know, but I can look after myself. It\'s sweet that you care, though. It\'s good to know you have my back if something ever did go wrong."');

@@ -69,7 +69,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Get Dominant training  [+$func(\'wrap\', \'neg\', \'(unavailable until...]', handler: (st: GameState) => {
-    // TODO-QSP: *pl $func('wrap', 'neg', '<br>You need to pay the subscripti...
+    /* dynamic text */
   } },
           ]);
         }

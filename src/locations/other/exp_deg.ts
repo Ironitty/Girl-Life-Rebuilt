@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter_Dynamic__(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: <<$expdegVars['statName']>>_deg -= expdegVars['deg_loss_mult']
+  (s as any)[String(((s as any).expdegVars ?? 0)?.['statName'] ?? '') + '_deg'] = ((s as any)[String(((s as any).expdegVars ?? 0)?.['statName'] ?? '') + '_deg'] ?? 0) - Number(((s as any).expdegVars ?? 0)?.['deg_loss_mult'] ?? 0);
   scene.build();
 }
 

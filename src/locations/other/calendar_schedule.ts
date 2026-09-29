@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -76,7 +76,7 @@ function enterCollectEventsForWeek(s: GameState, scene: SceneBuilder): void {
               ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', orig_end'] = (((s as any).event_vars ?? 0)?.['window_end_ts']);
               ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', duration'] = (((s as any).event_vars ?? 0)?.['duration_ts']);
               ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', priority'] = (((s as any).event_vars ?? 0)?.['priority']);
-              // TODO-QSP: dyneval('$flexible_events_day_<<temp_d>>[<<temp_flex_count>>] = $temp_evt_id')
+              (s as any)['flexible_events_day_' + String((s as any).temp_d ?? 0)] = (s as any)['flexible_events_day_' + String((s as any).temp_d ?? 0)] ?? []; ((s as any)['flexible_events_day_' + String((s as any).temp_d ?? 0)])[String((s as any).temp_flex_count ?? 0)] = (s as any).temp_evt_id;
               (s as any).temp_flex_count = ((s as any).temp_flex_count ?? 0) + (1);
             } else {
               (s as any).temp_start = (((s as any).event_vars ?? 0)?.['start_ts']);
@@ -88,7 +88,7 @@ function enterCollectEventsForWeek(s: GameState, scene: SceneBuilder): void {
               ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', end'] = ((s as any).temp_end ?? 0);
               ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', duration'] = ((s as any).temp_end ?? 0) - ((s as any).temp_start ?? 0) + 1;
               ((s as any).event_range_cache = (s as any).event_range_cache ?? {})[String(((s as any).temp_evt_id ?? 0)) + ', priority'] = (((s as any).event_vars ?? 0)?.['priority']);
-              // TODO-QSP: dyneval('$static_events_day_<<temp_d>>[<<temp_static_count>>] = $temp_evt_id')
+              (s as any)['static_events_day_' + String((s as any).temp_d ?? 0)] = (s as any)['static_events_day_' + String((s as any).temp_d ?? 0)] ?? []; ((s as any)['static_events_day_' + String((s as any).temp_d ?? 0)])[String((s as any).temp_static_count ?? 0)] = (s as any).temp_evt_id;
               (s as any).temp_static_count = ((s as any).temp_static_count ?? 0) + (1);
             }
           }
@@ -270,7 +270,7 @@ function enterPlaceStaticEvents(s: GameState, scene: SceneBuilder): void {
               (s as any).temp_start_ts = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', start']);
               (s as any).temp_end_ts = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', end']);
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_start_ts ?? 0), ((s as any).temp_evt_id ?? 0)]; enterAddEventToSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
-              // TODO-QSP: temp_this_event_index = week_schedule['days=<<temp_d>>, timeslots=<<temp_start_ts>>, event_count'] - 1
+              (s as any).temp_this_event_index = (((s as any).week_schedule ?? 0)?.[String('days=' + String((s as any).temp_d ?? 0) + ', timeslots=' + String((s as any).temp_start_ts ?? 0) + ', event_count')] ?? 0) - 1;
               (s as any).temp_check_t = ((s as any).temp_end_ts ?? 0);
               while (true) {
                 if (((s as any).temp_check_t ?? 0) >= 0) {
@@ -603,7 +603,7 @@ function enterAddEventToSchedule(s: GameState, scene: SceneBuilder): void {
 
 function enterChangeBusyTimeslots(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_mb_ts = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).locArgs?.[1] ?? 0)) + ', timeslots=' + String(((s as any).locArgs?.[2] ?? 0)) + ', events=' + String(((s as any).locArgs?.[3] ?? 0)) + ', start_ts']);
-  // TODO-QSP: temp_mb_end = temp_mb_ts + week_schedule['days=<<ARGS[1]>>, timeslots=<<ARGS[2]>>, events=<<ARGS[3]>>, span'] - 1
+  (s as any).temp_mb_end = (s as any).temp_mb_ts + (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).locArgs?.[1] ?? 0)) + ', timeslots=' + String(((s as any).locArgs?.[2] ?? 0)) + ', events=' + String(((s as any).locArgs?.[3] ?? 0)) + ', span'] ?? 0) - 1;
   while (true) {
     if (((s as any).temp_mb_ts ?? 0) <= ((s as any).temp_mb_end ?? 0)  &&  ((s as any).temp_mb_ts ?? 0) < 96) {
       ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).locArgs?.[1] ?? 0)) + ', timeslots=' + String(((s as any).temp_mb_ts ?? 0)) + ', busy_count'] = ((s as any).week_schedule['days=' + String(((s as any).locArgs?.[1] ?? 0)) + ', timeslots=' + String(((s as any).temp_mb_ts ?? 0)) + ', busy_count'] ?? 0) + (((s as any).locArgs?.[4] ?? 0));
@@ -666,7 +666,7 @@ function enterAssignDayColumns(s: GameState, scene: SceneBuilder): void {
                   while (true) {
                     if (((s as any).temp_col ?? 0) >= 4) {
                       (s as any).temp_col = 3;
-                      // TODO-QSP: jump 'assign_column'
+                      qspGoto(s, 'calendar_schedule', 'assign_column');
                     }
                     if (((s as any).column_end_slot ?? 0)?.[String((s as any).temp_col ?? 0)] < ((s as any).temp_t ?? 0)) {
                       // LABEL: assign_column

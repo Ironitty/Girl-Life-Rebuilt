@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -41,12 +41,12 @@ function enterTimeCheatFix(s: GameState, scene: SceneBuilder): void {
   if (((s as any).minut ?? 0) < 0) {
     (s as any).hour = ((s as any).hour ?? 0) - (1);
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    // TODO-QSP: jump 'time_time_loop'
+    qspGoto(s, 'time', 'time_time_loop');
   }
   if (((s as any).hour ?? 0) < 0) {
     (s as any).daystart = ((s as any).daystart ?? 0) - (1);
     (s as any).hour = ((s as any).hour ?? 0) + (24);
-    // TODO-QSP: jump 'time_time_loop'
+    qspGoto(s, 'time', 'time_time_loop');
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateDate(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;

@@ -615,14 +615,14 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
     scene.text('"Here is a little competition. The first one who reaches the end of her rope gets a reward. And you really don\'t want to disappoint me."');
     scene.text('"Three, two, one, <b>start</b>!"');
     scene.actions([
-      { label: 'Move forward' }, // TODO-QSP: empty action body
+      { label: 'Move forward' },
       { label: 'Don\'t move', handler: (st: GameState) => {
     scene.img('images/characters/city/taras/rope1a.jpg');
     scene.text(`You notice that ${((st as any).nichKatinkaName ?? '')} started to move forward. But you have no interest in participating in this humiliating race.`);
     scene.text(`${((st as any).nichKatinkaNameUC ?? '')} has advanced two knots when Taras comes over to you.`);
     scene.text('"You don\'t want to get me angry, slut. Get moving or you will regret it."');
     scene.actions([
-      { label: 'Move forward' }, // TODO-QSP: empty action body
+      { label: 'Move forward' },
       { label: 'Stand still', handler: (st: GameState) => {
     scene.img('images/characters/city/taras/rope1a.jpg');
     scene.text(`You decide that you won't let his threat impress you. You watch as ${((st as any).nichKatinkaName ?? '')} slowly approaches the end of her rope knot by knot.`);

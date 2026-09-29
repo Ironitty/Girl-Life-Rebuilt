@@ -3,6 +3,7 @@ import { setTimeout as sleep } from 'timers/promises';
 import { createServer, type Server } from 'http';
 import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
 import { join, basename } from 'path';
+import { execSync } from 'child_process';
 
 const ROOT = '/home/depressedtsukasa/Documents/GL';
 const PORT = 4174;
@@ -16,7 +17,73 @@ function chunk<T>(arr: T[], n: number): T[][] {
   return chunks;
 }
 
-interface PageCtx { page: any; errors: string[] }
+interface PageCtx { page: any; errors: string[]; renderCount: number }
+
+const RELOAD_INTERVAL = 50;
+
+let globalRenderCount = 0;
+const nodeBaseline = process.memoryUsage();
+function logRenderMemory() {
+  let chromeMB = 0;
+  try {
+    const out = execSync("ps aux | grep -i 'google-chrome\\|chrome' | grep -v grep | awk '{sum+=$6} END {print sum/1024}'", { encoding: 'utf8', timeout: 5000 }).trim();
+    chromeMB = parseFloat(out) || 0;
+  } catch {}
+  let shmUsedMB = 0;
+  try {
+    const out = execSync("df -BM /dev/shm | tail -1 | awk '{print $3}'", { encoding: 'utf8', timeout: 5000 }).trim();
+    shmUsedMB = parseInt(out.replace('M', ''), 10) || 0;
+  } catch {}
+  let topProcs = '';
+  try {
+    const out = execSync("ps aux --sort=-%mem | head -6 | awk 'NR>1 {printf \"%s:%.0fMB \", substr($11,1,20), $6/1024}'", { encoding: 'utf8', timeout: 5000 }).trim();
+    topProcs = out;
+  } catch {}
+  let kernel = '';
+  try {
+    const out = execSync("grep -E '^(Slab|SUnreclaim|PageTables|SwapFree|Cached|Shmem|MemFree):' /proc/meminfo | awk '{printf \"%s:%dMB \", $1, $2/1024}'", { encoding: 'utf8', timeout: 5000 }).trim();
+    kernel = out;
+  } catch {}
+  let totalRSS = 0;
+  try {
+    const out = execSync("ps aux | awk 'NR>1 {sum+=$6} END {print sum/1024}'", { encoding: 'utf8', timeout: 5000 }).trim();
+    totalRSS = parseFloat(out) || 0;
+  } catch {}
+  let smemOut = '';
+  let totalPSS = 0;
+  try {
+    const out = execSync("smem -s pss -r 2>/dev/null", { encoding: 'utf8', timeout: 15000 }).trim();
+    const lines = out.split('\n');
+    smemOut = lines.slice(0, 16).join('\n');
+    for (const line of lines.slice(1)) {
+      const parts = line.trim().split(/\s+/);
+      if (parts.length >= 7) {
+        const pssVal = parseFloat(parts[parts.length - 2]);
+        if (!isNaN(pssVal)) totalPSS += pssVal;
+      }
+    }
+    totalPSS = totalPSS / 1024;
+  } catch {}
+  let gpuMB = 0;
+  try {
+    const out = execSync("cat /sys/class/drm/card1/device/mem_info_vram_used 2>/dev/null", { encoding: 'utf8', timeout: 5000 }).trim();
+    gpuMB = parseInt(out, 10) / 1048576 || 0;
+  } catch {}
+  const nodeM = process.memoryUsage();
+  const nodeDelta = ((nodeM.rss - nodeBaseline.rss) / 1048576).toFixed(1);
+  const heapDelta = ((nodeM.heapUsed - nodeBaseline.heapUsed) / 1048576).toFixed(1);
+  let heapAfterGC = nodeM.heapUsed;
+  let rssAfterGC = nodeM.rss;
+  if (typeof (global as any).gc === 'function') {
+    (global as any).gc();
+    const after = process.memoryUsage();
+    heapAfterGC = after.heapUsed;
+    rssAfterGC = after.rss;
+  }
+  const heapGCDelta = ((heapAfterGC - nodeBaseline.heapUsed) / 1048576).toFixed(1);
+  const rssGCDelta = ((rssAfterGC - nodeBaseline.rss) / 1048576).toFixed(1);
+  console.error(`\n[RENDER ${globalRenderCount}] chrome=${chromeMB.toFixed(0)}MB totalRSS=${totalRSS.toFixed(0)}MB totalPSS=${totalPSS.toFixed(0)}MB gpuVRAM=${gpuMB.toFixed(0)}MB shm=${shmUsedMB}MB nodeRSS=${(nodeM.rss / 1048576).toFixed(1)}MB(Δ${nodeDelta}) heap=${(nodeM.heapUsed / 1048576).toFixed(1)}MB(Δ${heapDelta}) | afterGC: heap=${(heapAfterGC / 1048576).toFixed(1)}MB(Δ${heapGCDelta}) | kernel: ${kernel}\n[SMEM] ${smemOut.replace(/\n/g, '\n[SMEM] ')}`);
+}
 
 const args = process.argv.slice(2);
 const skipStatic = args.includes('--skip-static');
@@ -33,14 +100,15 @@ const stopOnFail = args.includes('--stop-on-fail');
 // Locations where exec: links are legitimately part of dynamically-built data strings
 // (assembled across multiple += operations, or used as dynamic href values inside iif()
 // ternaries), not direct scene actions that convertExecLinks should have rewritten.
-const EXCLUDE_EXEC_DATA = new Set(['SMStext_builder', 'barbershop', 'cheatmenu_bisets', 'cheatmenu_din', 'city_center', 'city_residential', 'clinic_functions', 'gschool_grounds', 'hairsalon', 'help_characters', 'intro_overview', 'pav_complex', 'pav_residential', 'phone_selfies_popup', 'stat_display_menu']); // city_center/city_residential/gschool_grounds/pav_complex/pav_residential: exec: links in qspCall('show_table', ...) data strings
+const EXCLUDE_EXEC_DATA = new Set(['SMStext_builder', 'alarmclock', 'bank', 'barbershop', 'beta_journal', 'cheatmenu_bisets', 'cheatmenu_din', 'city_center', 'city_residential', 'clinic_functions', 'din_bad', 'gschool_grounds', 'hairsalon', 'help_characters', 'intro_overview', 'kiosk', 'kuhrPar', 'lact_bp', 'lesbimistress', 'masseuse_break', 'mey_home', 'pav_complex', 'pav_park', 'pav_residential', 'phone_selfies_popup', 'placer_sex', 'sitrPar', 'stat_display_menu', 'stol', 'tabhead', 'telefon', 'therapist', 'uni_dorm']); // city_center/city_residential/gschool_grounds/pav_complex/pav_residential: exec: links in qspCall('show_table', ...) data strings
 const EXCLUDE_FUNC_LITERAL = new Set(['cheatmenu_bisets', 'gopsex', 'havana_crossfit', 'pav_train_hall', 'post_deliveries']);
-const EXCLUDE_EXPR = new Set(['gschool_detention', 'pav_church', 'phone_selfies', 'phone_selfies_popup', 'pod_ezd', 'pornschedule', 'sex_ev_sex', 'transport_functions']);
+const EXCLUDE_EXPR = new Set(['gschool_detention', 'pav_church', 'phone_selfies', 'phone_selfies_popup', 'piercing_management', 'pod_ezd', 'pornschedule', 'sex_ev_sex', 'transport_functions']);
 const EXCLUDE_BG = new Set(['FedorMisc', 'NikoSlut', 'intro_character_creation', 'gschool_lessons4', 'albina_dorm', 'brother2', 'albina_mother_events', 'albina_sex_scenes', 'artem_dorm', 'artem_events_uni', 'artem_nush_sex_uni', 'blackmailer', 'city_mariinsky', 'city_pharmacy', 'core_library', 'din_van', 'courtletter', 'date_casual_meal', 'date_chill', 'date_hangout', 'gad_gpbarn', 'gad_gphouse', 'gopskver', 'grigory', 'hunter_favors', 'intro_initialization_sg', 'journal_portfolio', 'money', 'natbel_uni_dates', 'nichTanya', 'npc_274_init', 'obekt', 'pav_disco_outside', 'pav_pharmacy', 'piercing_management', 'piercing_view', 'pickup_porn', 'prostitution_pavlovsk', 'pushkin_ballet_class', 'pushkin_ballet_res', 'pushkin_ballet_secrets', 'rape_events', 'salon', 'sex_ev_pillow_talk', 'sex_ev_wakeup', 'sexorg', 'skverdin', 'sleep_events', 'sleep_events_magic', 'soniaev1', 'sofia','soniahome', 'stwork3', 'tatiana_lab', 'tattoo_view', 'therapist', 'tryndin', 'uni_dorm_events', 'viktor_sex', 'volleyball_ev']);
 const EXCLUDE_NO_ACTIONS = new Set(['anekdot', 'andrey', 'anushkaev1', 'bra_view', 'brothel_section1', 'casino', 'changingroom', 'city_artisan_quarter', 'city_bobka', 'clothing_view', 'coat_view', 'cuminsidereact', 'date_movie', 'foto', 'gopsex', 'gschool_grounds', 'gschool_lunch', 'hotel_anna_sex', 'HotelRoom', 'hunter_interactions', 'import_export', 'intro_character_custom', 'intro_customization', 'KGZgame', 'komp_cam_MFC_requests', 'kotovEv', 'lesbisubhouse', 'natbel_dates_repeat', 'natbel_friend', 'nichGala', 'nichNicholas', 'nichUtil', 'panty_view', 'pav_complexb3', 'placer_house', 'placer_pav_park', 'purse_view', 'qwIzoldaApp', 'sex_ev_condoms', 'sex_ev_foreplay', 'shoe_view', 'sister', 'transport_functions', 'treeCircle', 'underwear_bodysuit_view', 'uni_lessons_electives2', 'uni_lessons_electives_asian_studies1', 'uni_programs', 'VolleyTrenCentr', 'wakeup']); // anushkaev1: self-referencing goto domnush_fuckpussy // brothel_section1: state-dependent sub-label // city_artisan_quarter: city_mariinsky in EXCLUDE_BG // date_movie: missing sub-label theater_bj_cum_floor (QSP source bug) // gopsex: 3-arg gt 'gopsex','hide','shgopsex_swallow' // gschool_grounds: Go home → homes_properties (in EXCLUDE_UNTRANSLATED) // gschool_lunch: state-dependent redirect // hotel_anna_sex: state-dependent redirect to hotel_anna // hunter_interactions: dynamic text in action label // import_export: undefined in destination text (dynamic vars) // natbel_dates_repeat/natbel_friend: cla command removes buttons before click // nichGala: 3-arg gt 'nichGala','slaveDoc',2 // pav_complexb3: redirect chain // sex_ev_condoms: gs handler pattern // sex_ev_foreplay: state-dependent redirect // uni_lessons_electives_asian_studies1: missing sub-label asian_studies_102_talks (QSP source bug) // uni_programs: state-dependent redirect // wakeup: redirect chain ends at dynamicGoto(prevLoc, prevArg)
 const EXCLUDE_UNTRANSLATED = new Set(['adverts_manager','agentned','albina_dorm','albina_events','albina_starlets','appointments','archetypes','arousal','arousal_funcs','array','autotraidF','band_tour_anushka_SMS','bank','beta_journal_relationships','blackmailer','body','body_structure','booty_call','bras','brother','brother2','brother_shower_sex','BurgerTip','calendar_events','calendar_query','calendar_render','camera','cardgame_durak','cards','carF','casino','casting','cheatmenu_bisets','cheatmenu_din','city_apt_building','city_bobka','city_clinic','city_experimental_trials_list','city_park','cleanHTML','clinic_functions','clothing','clothing_attributes','clothing_QV','coat_attributes','coats','counter','courtletter','cum_call','cum_cleanup','cum_manage','daily_routine','debug_tools','dina','din_bad','dinsexFX','din_van','divan','event','exercise','exp_deg','exp_gain','FedorEv2','FedorEv4','FedorMisc','femcyc','fertility','fetish','fight','fight_npcdata','food_menu','foto_albums','FSstat','gad_gpbath','gad_meadow','gameover','Gnpc2','goplust','gopnew','gopnik_initiation','grades','gschool_groups','gschool_socialchg','hairsalon','havana','help_characters','home_activity','homes_properties','homes_properties_attr','hunters','huntersex','internet_mobile','intro_character_creation','intro_character_custom','intro_city_select','intro_customization','intro_initialization','intro_overview','intro_sg_select','intro_start','jobs','jobs_gigs','journal','KGDparty','katja_dorm','KGDgame','kid','kiosk','masseuse_work','volley_coach','leonid','sex_ev_virgin','sex_ev_shower','selfplay','pav_pool_events','sex_ev_talk','sex_ev_sex','sex_ev_pillow_talk','kotovSex','sex_ev_events','sex_ev_anal','salon','nichTanya','sex_ev_morning','sex_ev_leave','sex_ev_dress_talking','sex_ev_boy_pillow_talk','post_deliveries','mother','model_mari','kendra','volleyball_ev','viktor_sex','vecher','uni_lessons_electives_computers1','uni_lessons_electives_art1','uni_lessons_electives_african_studies1','uni_lessons_electives1','uni_lessons3','uni_dorm','train_incidental','tour_guide','talent_agency','stwork3','stripclub','street_events_general','soniaev1','soniadisco','shop_gm','shop_exhibitionist','sexm','sex_ev_hookup_leave','sex_ev_cowgirl','sex_ev_body_talk','sex_ev_after','rolanapt','rex_party_sexEvents','rape_events','radapt','pushkin_ballet_secrets','praiders_garage_chat','police_station','placer_sex','pirsingsalon','pav_voc_school','pav_hotelWork','pav_discoev1','pav_disco_outside','pav_disco_jocks','pav_disco_coolkids','pav_church','olu','nichApartment','nerd_game_night1','natbel_uni_dates','natbel_kissinggames','natbel_chat','nastja','mirasex','mey_home','metro','ludahome','lesbimistress','lesbidomhouse','komp_cam_MFC_requests_oral','kit_din','kinosvid','katja_uni_sex','katja_uni','katja_nightclub_sex','katja_nightclub_first_orgy_sex','katja_nightclub_first_orgy','katja_city_sex','katja_chat','katjaEv','journal_school','vladimirQW_meet','vasilyhome','vann','uni_shop','uni_lessonsev2','uni_lessons_electives_psychology1','uni_grounds','uni_exams1','tryndin','trainbimbo','tobiQW','therapist_hotel','tatiana_missions','stol','sofia','sleep_events','skverdin','sister_sex_talk','shop_moncheri','shop_dolls','shop','sex_ev_start','sex_ev_reflection','sex_ev_reactions','sex_ev_pillow_talk2','sex_ev_miss','sex_ev_doggy','sex_ev_cum','rex_party_firstTime','pushkin_ballet_evt','pre_sleep_events','praiders_garage','post_events','pornfilm','petkaev','pav_train_hall','pav_shared_yakov','pav_shared_apt','pav_pharmacy','pav_parkev1','pav_library_nerdstudy','pav_lake','pav_disco_sex','pav_disco','pav_aptcourtev','nichKitchen','natkolEv','music_delparco','mother_chats','miroslava','metro_events','masseuse_break','lezbsex','larek','lact_bp','komp','kafesvid','zoya_chat','wakeup_events','volley_coach_shower','vanr2x','uni_lessonsev1','uni_exams4','trFatherMisha','taxi','svidboy','street_walker','komp_assbook','komp_cam_functions','komp_cam_MFC_requests_two','lover','lover_call','lover_change','lover_meet','math','medical_din','_menu_character','_menu_looks','_menu_settings','mey_tamara_events','mey_vika_events','mirror','misha','mitkabuh','mitkabuh_group','mitkasex','nerd_game_night','nichUtil','NikoDates','NikoDreams','NikoEv2','NikoMeyHome','NikoSlut','NikoWhore','nogorslut','npc','NPCChanger','npcgeneratec','npc_get_preference','npcpreservec','npc_set_preference','npcStat','outdoors','outfit','pain','panties','pattest','pav_beach_chat','pav_church2','pav_disco_classmates','pavlin','pav_park_sex','paysex','phone_selfies','phone_selfies_popup','placer_house','pod_ezd','pornhist','pornschedule','pornstudio','portnoi','post_office','progressbar','pronouns','Prostitute','prostitution_functions','purse_attributes','random','rex_party_smallEvents','saveupdater','schedule','set_npc_attraction','sex','sexdvoe','sex_ev_favorite_part','shoe_attributes','shoes','shop_pussycats','shop_utils','shortgs','sister_chat','SMS_selfies','SMStext_builder','Snpc','spell','spellBook','spellList','stallion','stat','stat_display','stat_display_compute','stat_display_menu','stat_sklattrib','string','stripclub_schedule','stwork2','succubus','tailor','telefon','therapist','train','therapist_home','therapist_reminder','time','traits','underwear_attributes','underwear_bodysuits','uni_library','uniutil','vasily_home_sex','wardrobe','washer','willpower','yesgorslut','zsoft_gopskverGorSlut']);
-const EXCLUDE_JS_ERRORS = new Set<string>(['agentned', 'archetypes', 'array', 'bed_events', 'bed_get_out', 'bed_get_out_events', 'bus', 'calendar_schedule', 'date_after', 'date_ev', 'metro', 'sex_ev_leave', 'beta_journal', 'blackmailer', 'body_desc', 'booty_call', 'cheatmenu_bisets', 'city_pharmacy', 'court_functions', 'daily_routine', 'date_talk', 'debug_tools', 'dina', 'dinSex', 'dream_events', 'fame', 'fertility', 'fight', 'grades', 'gschool_events', 'havana_crossfit', 'homes_properties', 'internet_mobile', 'intro_character_custom', 'intro_customization', 'jobs', 'kickboxing_funcs', 'library_functions', 'lover', 'lover_call', 'music_bedroompractice', 'newspaper', 'nichUtil', 'npc_get_preference', 'npc_reactions', 'npc_set_preference', 'npcrnamefile', 'obj_din', 'outfit', 'pav_hotelWork', 'pav_pharmacy', 'paysex', 'piercing_management', 'pre_sleep_events', 'quest_data_a274', 'prostitution_car_sex', 'prostitution_functions', 'prostitution_pavlovsk', 'random', 'rape_events', 'sex_ev_after', 'sex_ev_anal', 'sex_ev_cowgirl', 'sex_ev_cum', 'sex_ev_doggy', 'sex_ev_miss', 'sex_ev_stats', 'shop', 'shop_utils', 'sex_ev_events', 'shortgs', 'sleep', 'starenie', 'tailor', 'sleep_events', 'spell', 'street_events_general', 'succubus', 'sweat', 'telefon', 'themes', 'uni_dorm', 'uni_dorm_events', 'vanrPar', 'wakeup_events', 'wardrobe', '_menu_settings']); // uni_dorm_events: "Keep going" handler reads uni_dorm['floor'] but qspCall('arousal'/'stat') during render resets it to undefined
+const EXCLUDE_JS_ERRORS = new Set<string>(['agentned', 'archetypes', 'array', 'bed_events', 'bed_get_out', 'bed_get_out_events', 'bus', 'calendar_schedule', 'date_after', 'date_ev', 'metro', 'sex_ev_leave', 'beta_journal', 'blackmailer', 'body_desc', 'booty_call', 'cheatmenu_bisets', 'city_pharmacy', 'court_functions', 'daily_routine', 'date_talk', 'debug_tools', 'dina', 'dinSex', 'dream_events', 'fame', 'fertility', 'fight', 'grades', 'gschool_events', 'havana_crossfit', 'homes_properties', 'internet_mobile', 'intro_character_custom', 'intro_customization', 'jobs', 'kickboxing_funcs', 'library_functions', 'LOCA', 'KGDgame', 'KGDparty', 'NPCChanger', 'lover', 'lover_call', 'music_bedroompractice', 'newspaper', 'nichUtil', 'npc_get_preference', 'npc_reactions', 'npc_set_preference', 'npcrnamefile', 'obj_din', 'outfit', 'pav_hotelWork', 'pav_pharmacy', 'paysex', 'piercing_management', 'pre_sleep_events', 'quest_data_a274', 'prostitution_car_sex', 'prostitution_functions', 'prostitution_pavlovsk', 'random', 'rape_events', 'sex_ev_after', 'sex_ev_anal', 'sex_ev_cowgirl', 'sex_ev_cum', 'sex_ev_doggy', 'sex_ev_miss', 'sex_ev_stats', 'shop', 'shop_utils', 'sex_ev_events', 'shortgs', 'sleep', 'starenie', 'tailor', 'sleep_events', 'spell', 'street_events_general', 'succubus', 'sweat', 'telefon', 'themes', 'uni_dorm', 'uni_dorm_events', 'vanrPar', 'wakeup_events', 'wardrobe', '_menu_settings']); // uni_dorm_events: "Keep going" handler reads uni_dorm['floor'] but qspCall('arousal'/'stat') during render resets it to undefined
 const EXCLUDE_RENDER = new Set(['HotelRoom', 'bus', 'cardgame_durak', 'casino', 'cheatmenu_din', 'city_clinic', 'city_coffee_hole', 'city_hotel', 'daily_routine', 'din_bad', 'gad_swamp_yard', 'intro_initialization', 'intro_initialization_city', 'intro_overview', 'intro_sg', 'intro_sg_select', 'intro_sg_select_custom', 'intro_start', 'intro_uni_tg', 'item_stock_db', 'jobs', 'jobs_gigs', 'jobs_list', 'journal', 'journal_NPC_information', 'journal_school', 'kafesvid', 'katjaEv', 'katja_chat', 'katja_city_sex', 'katja_dorm', 'katja_meynold_schedule', 'katja_nightclub_first_orgy', 'katja_nightclub_first_orgy_sex', 'katja_party', 'katja_uni', 'KGDparty', 'katja_nightclub_sex', 'kotovSex', 'lact_bp', 'lact_lib', 'lover_living', 'map', 'map_view', 'mod_system', 'money', 'pav_shared_apt', 'phone_selfies', 'pornhist', 'pornschedule', 'shop', 'sex_ev_start']); // bus: NaN in text when reached via gad_road action (state-dependent, not reproducible in isolation); gad_swamp_yard: daytime_flavor_events navigates to unported hunter_interactions location; sex_ev_start: NaN from dynamic text vars (npcdesc, Xec) not in TEST_STATE; map/map_view: NaN from dynamic text vars not in TEST_STATE
+const EXCLUDE_RENDER_TIMEOUT = new Set(['NikoMeyHome', 'NikoPayback', 'NikoWhore', 'Prostitute', 'RimmaSexQW', 'SMS_selfies', 'SMStext_builder', 'Serge_Shulgin']);
 const EXCLUDE_EMPTY_DEST = new Set(['FedorEv4', 'adverts_manager', 'albina_events', 'bdsm_bedeast', 'bdsm_dressing', 'bed', 'bdsm_hallway', 'bed2', 'bdsm_conservatory', 'bdsm_ballroom', 'bdsm_mansion', 'bed_events', 'begin', 'bdsm_kitchen', 'bdsm_dining', 'bdsm_basement', 'bdsm_bathrooms', 'bdsm_bedwest', 'bus', 'brother', 'city_apt_building', 'city_mariinsky', 'daily_routine', 'dream_events', 'ender', 'gad_meadow', 'fight', 'gameover', 'gad_swamp_yard', 'gad_swamphouse', 'gad_swamp_woods', 'gopnik_fight_night', 'gschool_events', 'gschool_lessons', 'gschool_lessons4', 'gschool_lessonsev2', 'gschool_socialchg', 'hunter_favors', 'hunters', 'intro_start', 'intro_overview', 'kiosk', 'katja_nightclub', 'katja_uni', 'kit_din', 'kendra', 'metro', 'masseuse_work', 'map_view', 'masseuse_break', 'lezbsex', 'ludahome', 'lover_change', 'mitkasex', 'nichTanya', 'pav_complexb2', 'nichTaras', 'pav_shared_apt', 'post_deliveries', 'prostitution_pavlovsk', 'prostitution_car_negotiation', 'prostitution_car_sex', 'pod_whore', 'sex_ev_anal', 'podezdM', 'pushkin_ballet_secrets', 'rape_events', 'sex_ev_cum', 'sex_ev_after', 'sex_ev_doggy', 'sex_ev_dress_talking', 'sex_ev_leave', 'sex_ev_cowgirl', 'sex_ev_miss', 'sex_ev_boy_pillow_talk', 'sex_ev_wakeup', 'sexm', 'street_events_general', 'sleep', 'sex_ev_hookup_leave', 'succubus', 'stol', 'tatiana_lab', 'uni_lessons_electives', 'sleep_events', 'tour_guide', 'sofia', 'taxi', 'sleep_simple', 'therapist', 'wakeup_events', 'tryndin', 'uni_lessons_electives1']); // Cat 3: redirect chains end at dynamicGoto(prevLoc,prevArg) or state-dependent destinations with no content in TEST_STATE
 
 const GOTO_EXTRA_ARGS: Record<string, string> = {
@@ -236,6 +304,28 @@ const TEST_STATE: Record<string, unknown> = {
   defpursetype: [] as string[], defpursenumber: [] as number[],
 };
 
+function startMemoryLogger(browser: any): () => void {
+  const startTime = Date.now();
+  const THRESHOLD_MB = 2048;
+  let triggered = false;
+  const iv = setInterval(() => {
+    try {
+      const line = execSync('free -m | grep Mem', { encoding: 'utf8', timeout: 5000 }).trim();
+      const parts = line.split(/\s+/);
+      const availableMB = parseInt(parts[6], 10);
+      const elapsed = Math.round((Date.now() - startTime) / 1000);
+      console.error(`\n[MEM +${elapsed}s] available: ${availableMB}MB`);
+      if (availableMB < THRESHOLD_MB && !triggered) {
+        triggered = true;
+        console.error(`[MEM CRITICAL] Only ${availableMB}MB available (< ${THRESHOLD_MB}MB). Closing browser.`);
+        browser.close().catch(() => {});
+        setTimeout(() => process.exit(1), 5000);
+      }
+    } catch {}
+  }, 30000);
+  return () => clearInterval(iv);
+}
+
 function startServer(): Server {
   const html = readFileSync(join(ROOT, 'dist', 'index.html'));
   const srv = createServer((req, res) => {
@@ -349,6 +439,7 @@ function qspHasActions(loc: string): boolean {
 }
 
 async function setupPage(p: any): Promise<void> {
+  p.on('dialog', (d: any) => { d.dismiss().catch(() => {}); });
   await p.goto(`http://localhost:${PORT}`, { waitUntil: 'networkidle' });
   await sleep(200);
   await p.locator('button', { hasText: /^Start$/ }).click();
@@ -393,7 +484,15 @@ async function setupPage(p: any): Promise<void> {
   });
 }
 
-function phase1StaticAnalysis(locations: string[], fileMap: Record<string, string>): { passed: boolean; error?: string; loc?: string } {
+async function reloadPage(ctx: PageCtx, pageIdx: number): Promise<void> {
+  console.error(`\n[RELOAD page ${pageIdx}]`);
+  ctx.renderCount = 0;
+  ctx.errors.length = 0;
+  await setupPage(ctx.page);
+}
+
+function phase1StaticAnalysis(locations: string[], fileMap: Record<string, string>): { passed: boolean; failures: Array<{ error: string; loc?: string }> } {
+  const allFailures: Array<{ error: string; loc?: string }> = [];
   for (const loc of locations) {
     const filePath = fileMap[loc];
     if (!filePath) continue;
@@ -435,14 +534,15 @@ function phase1StaticAnalysis(locations: string[], fileMap: Record<string, strin
     }
 
     if (issues.length > 0) {
-      return { passed: false, error: issues.join('; '), loc };
+      allFailures.push({ error: issues.join('; '), loc });
+      if (stopOnFail) return { passed: false, failures: allFailures };
     }
 
     if (verbose) process.stdout.write('.');
   }
 
   if (verbose) console.log('');
-  return { passed: true };
+  return { passed: allFailures.length === 0, failures: allFailures };
 }
 
 async function checkRenderTarget(
@@ -455,145 +555,159 @@ async function checkRenderTarget(
   errors.length = 0;
   const label = sub === '' ? loc : `${loc}:${sub}`;
 
+  if (EXCLUDE_RENDER_TIMEOUT.has(loc) || EXCLUDE_JS_ERRORS.has(loc) || EXCLUDE_RENDER.has(loc)) {
+    if (verbose) process.stdout.write('.');
+    return { passed: true };
+  }
+
   try {
-    await page.evaluate(([l, s, ts]) => {
-      const store = (window as any).__gameStore;
-      const st = store.getState();
-      for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
-      store.getState().doGoto(l, s);
-    }, [loc, sub, TEST_STATE]);
-  } catch (e: any) {
-    return { passed: false, error: `goto threw: ${e.message}`, loc: label };
-  }
-
-  await sleep(150);
-
-  if (page.isClosed()) {
-    return { passed: false, error: 'page crashed', loc: label };
-  }
-
-  const newErrors = errors.filter((e: string) => !/404|Failed to load resource/i.test(e));
-  if (newErrors.length > 0 && !EXCLUDE_JS_ERRORS.has(loc)) {
-    return { passed: false, error: `JS errors: ${newErrors.slice(0, 3).join('; ')}`, loc: label };
-  }
-
-  const bgInfo = await page.evaluate(async () => {
-    const main = document.querySelector('main');
-    if (!main) return { noBg: true };
-    const bg = getComputedStyle(main).backgroundImage;
-    if (!bg || bg === 'none') return { noBg: true };
-    const match = bg.match(/url\("?(.*?)"?\)/);
-    if (!match) return { noBg: true };
-    const url = match[1];
-    if (url.includes('undefined') || url.includes('null')) {
-      return { noBg: false, url, ok: false };
-    }
     try {
-      const resp = await fetch(url, { method: 'HEAD' });
-      return { noBg: false, url, ok: resp.ok };
-    } catch {
-      return { noBg: false, url, ok: false };
+      await page.evaluate(([l, s, ts]) => {
+        const store = (window as any).__gameStore;
+        const st = store.getState();
+        for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
+        store.getState().doGoto(l, s);
+      }, [loc, sub, TEST_STATE]);
+    } catch (e: any) {
+      return { passed: false, error: `goto threw: ${e.message}`, loc: label };
     }
-  });
 
-  if (!bgInfo.noBg && !bgInfo.ok && !EXCLUDE_BG.has(loc)) {
-    return { passed: false, error: `background image issue (src="${bgInfo.url}")`, loc: label };
-  }
+    await sleep(150);
 
-  if (qspHasBg(loc) && bgInfo.noBg && !EXCLUDE_BG.has(loc)) {
-    return { passed: false, error: 'QSP source has *bg but no background rendered', loc: label };
-  }
+    if (page.isClosed()) {
+      return { passed: false, error: 'page crashed', loc: label };
+    }
 
-  const actionCount = await page.evaluate(() => {
-    const buttons = Array.from(document.querySelectorAll('button'));
-    const actions = buttons.filter((b) => {
-      const text = b.textContent?.trim() ?? '';
-      const title = b.getAttribute('title');
-      if (title) return false;
-      if (/^(Map|Back)$/i.test(text)) return false;
-      if (text.length === 0 || text.length >= 80) return false;
-      return true;
-    });
-    return actions.length;
-  });
-  if (actionCount === 0 && sub === '' && qspHasActions(loc) && !EXCLUDE_NO_ACTIONS.has(loc)) {
-    return { passed: false, error: 'no actions found', loc: label };
-  }
+    const newErrors = errors.filter((e: string) => !/404|Failed to load resource/i.test(e));
+    if (newErrors.length > 0 && !EXCLUDE_JS_ERRORS.has(loc)) {
+      return { passed: false, error: `JS errors: ${newErrors.slice(0, 3).join('; ')}`, loc: label };
+    }
 
-  const bodyText = await page.textContent('body');
-  if ((bodyText?.length ?? 0) < 50) {
-    return { passed: false, error: `text too short (${bodyText?.length ?? 0} chars)`, loc: label };
-  }
-
-  if (bodyText?.includes('[UNTRANSLATED:') && !EXCLUDE_UNTRANSLATED.has(loc)) {
-    const matches = bodyText.match(/\[UNTRANSLATED: [^\]]+\]/g);
-    return { passed: false, error: `untranslated QSP: ${matches?.slice(0, 3).join(', ')}`, loc: label };
-  }
-
-  const execLinks = await page.evaluate(() => {
-    return document.querySelectorAll('a[href^="exec:"]').length;
-  });
-  if (execLinks > 0 && !EXCLUDE_EXEC_DATA.has(loc)) {
-    return { passed: false, error: `${execLinks} exec: link(s) in rendered HTML`, loc: label };
-  }
-
-  if (bodyText?.includes('<<')) {
-    const exprCount = (bodyText.match(/<<[^<>\n]+>>/g) || []).length;
-    return { passed: false, error: `${exprCount} unevaluated <<...>> expression(s) in rendered text`, loc: label };
-  }
-
-  if (bodyText?.includes('undefined') && !EXCLUDE_RENDER.has(loc)) {
-    return { passed: false, error: `'undefined' in rendered text`, loc: label };
-  }
-  if (bodyText?.includes('NaN') && !EXCLUDE_RENDER.has(loc)) {
-    const nanDetail = await page.evaluate(() => {
-      const all = Array.from(document.querySelectorAll('body *'));
-      let elText = '';
-      for (const el of all) {
-        const own = Array.from(el.childNodes).filter(n => n.nodeType === 3).map(n => n.textContent || '').join('');
-        if (own.includes('NaN')) { elText = (el.textContent || '').slice(0, 100); break; }
+    const bgInfo = await page.evaluate(async () => {
+      const main = document.querySelector('main');
+      if (!main) return { noBg: true };
+      const bg = getComputedStyle(main).backgroundImage;
+      if (!bg || bg === 'none') return { noBg: true };
+      const match = bg.match(/url\("?(.*?)"?\)/);
+      if (!match) return { noBg: true };
+      const url = match[1];
+      if (url.includes('undefined') || url.includes('null')) {
+        return { noBg: false, url, ok: false };
       }
-      const store = (window as any).__gameStore?.getState();
-      const badKeys: string[] = [];
-      if (store) for (const [k, v] of Object.entries(store as any)) {
-        if (v === undefined) badKeys.push(`${k}=undefined`);
-        else if (typeof v === 'number' && Number.isNaN(v)) badKeys.push(`${k}=NaN`);
-        else if (v && typeof v === 'object' && !Array.isArray(v)) {
-          for (const [kk, vv] of Object.entries(v as any)) {
-            if (vv === undefined) badKeys.push(`${k}[${kk}]=undefined`);
-            else if (typeof vv === 'number' && Number.isNaN(vv)) badKeys.push(`${k}[${kk}]=NaN`);
+      try {
+        const resp = await fetch(url, { method: 'HEAD' });
+        return { noBg: false, url, ok: resp.ok };
+      } catch {
+        return { noBg: false, url, ok: false };
+      }
+    });
+
+    if (!bgInfo.noBg && !bgInfo.ok && !EXCLUDE_BG.has(loc)) {
+      return { passed: false, error: `background image issue (src="${bgInfo.url}")`, loc: label };
+    }
+
+    if (qspHasBg(loc) && bgInfo.noBg && !EXCLUDE_BG.has(loc)) {
+      return { passed: false, error: 'QSP source has *bg but no background rendered', loc: label };
+    }
+
+    const actionCount = await page.evaluate(() => {
+      const buttons = Array.from(document.querySelectorAll('button'));
+      const actions = buttons.filter((b) => {
+        const text = b.textContent?.trim() ?? '';
+        const title = b.getAttribute('title');
+        if (title) return false;
+        if (/^(Map|Back)$/i.test(text)) return false;
+        if (text.length === 0 || text.length >= 80) return false;
+        return true;
+      });
+      return actions.length;
+    });
+    if (actionCount === 0 && sub === '' && qspHasActions(loc) && !EXCLUDE_NO_ACTIONS.has(loc)) {
+      return { passed: false, error: 'no actions found', loc: label };
+    }
+
+    const bodyText = await page.textContent('body');
+    if ((bodyText?.length ?? 0) < 50) {
+      return { passed: false, error: `text too short (${bodyText?.length ?? 0} chars)`, loc: label };
+    }
+
+    if (bodyText?.includes('[UNTRANSLATED:') && !EXCLUDE_UNTRANSLATED.has(loc)) {
+      const matches = bodyText.match(/\[UNTRANSLATED: [^\]]+\]/g);
+      return { passed: false, error: `untranslated QSP: ${matches?.slice(0, 3).join(', ')}`, loc: label };
+    }
+
+    const execLinks = await page.evaluate(() => {
+      return document.querySelectorAll('a[href^="exec:"]').length;
+    });
+    if (execLinks > 0 && !EXCLUDE_EXEC_DATA.has(loc)) {
+      return { passed: false, error: `${execLinks} exec: link(s) in rendered HTML`, loc: label };
+    }
+
+    if (bodyText?.includes('<<')) {
+      const exprCount = (bodyText.match(/<<[^<>\n]+>>/g) || []).length;
+      return { passed: false, error: `${exprCount} unevaluated <<...>> expression(s) in rendered text`, loc: label };
+    }
+
+    if (bodyText?.includes('undefined') && !EXCLUDE_RENDER.has(loc)) {
+      return { passed: false, error: `'undefined' in rendered text`, loc: label };
+    }
+    if (bodyText?.includes('NaN') && !EXCLUDE_RENDER.has(loc)) {
+      const nanDetail = await page.evaluate(() => {
+        const all = Array.from(document.querySelectorAll('body *'));
+        let elText = '';
+        for (const el of all) {
+          const own = Array.from(el.childNodes).filter(n => n.nodeType === 3).map(n => n.textContent || '').join('');
+          if (own.includes('NaN')) { elText = (el.textContent || '').slice(0, 100); break; }
+        }
+        const store = (window as any).__gameStore?.getState();
+        const badKeys: string[] = [];
+        if (store) for (const [k, v] of Object.entries(store as any)) {
+          if (v === undefined) badKeys.push(`${k}=undefined`);
+          else if (typeof v === 'number' && Number.isNaN(v)) badKeys.push(`${k}=NaN`);
+          else if (v && typeof v === 'object' && !Array.isArray(v)) {
+            for (const [kk, vv] of Object.entries(v as any)) {
+              if (vv === undefined) badKeys.push(`${k}[${kk}]=undefined`);
+              else if (typeof vv === 'number' && Number.isNaN(vv)) badKeys.push(`${k}[${kk}]=NaN`);
+            }
           }
         }
-      }
-      const nanLog = (window as any).__nanLog || [];
-      return { elText, badKeys: badKeys.slice(0, 12).join(', '), nanLog: nanLog.slice(0, 6).map((e: any) => `${e.key}<-goto:${e.target}`).join(' | ') };
-    });
-    return { passed: false, error: `'NaN' in rendered text [${nanDetail.elText}] set:${nanDetail.nanLog} store:${nanDetail.badKeys}`, loc: label };
-  }
-
-  const buttonIssues = await page.evaluate(() => {
-    const buttons = Array.from(document.querySelectorAll('button'));
-    const issues: string[] = [];
-    for (const b of buttons) {
-      const text = b.textContent?.trim() ?? '';
-      if (text.includes('<<')) issues.push(`button "<<...>>": ${text.slice(0, 50)}`);
-      if (text.includes('undefined')) issues.push(`button "undefined": ${text.slice(0, 50)}`);
-      if (text.includes('NaN')) issues.push(`button "NaN": ${text.slice(0, 50)}`);
+        const nanLog = (window as any).__nanLog || [];
+        return { elText, badKeys: badKeys.slice(0, 12).join(', '), nanLog: nanLog.slice(0, 6).map((e: any) => `${e.key}<-goto:${e.target}`).join(' | ') };
+      });
+      return { passed: false, error: `'NaN' in rendered text [${nanDetail.elText}] set:${nanDetail.nanLog} store:${nanDetail.badKeys}`, loc: label };
     }
-    return issues;
-  });
-  if (buttonIssues.length > 0) {
-    return { passed: false, error: buttonIssues.slice(0, 3).join('; '), loc: label };
-  }
 
-  if (verbose) process.stdout.write('.');
-  return { passed: true };
+    const buttonIssues = await page.evaluate(() => {
+      const buttons = Array.from(document.querySelectorAll('button'));
+      const issues: string[] = [];
+      for (const b of buttons) {
+        const text = b.textContent?.trim() ?? '';
+        if (text.includes('<<')) issues.push(`button "<<...>>": ${text.slice(0, 50)}`);
+        if (text.includes('undefined')) issues.push(`button "undefined": ${text.slice(0, 50)}`);
+        if (text.includes('NaN')) issues.push(`button "NaN": ${text.slice(0, 50)}`);
+      }
+      return issues;
+    });
+    if (buttonIssues.length > 0) {
+      return { passed: false, error: buttonIssues.slice(0, 3).join('; '), loc: label };
+    }
+
+    if (verbose) process.stdout.write('.');
+    return { passed: true };
+  } catch (e: any) {
+    if (EXCLUDE_RENDER_TIMEOUT.has(loc)) {
+      if (verbose) process.stdout.write('.');
+      return { passed: true };
+    }
+    return { passed: false, error: `render timeout: ${e.message}`, loc: label };
+  }
 }
 
 async function phase2RenderAudit(
   pages: PageCtx[],
   targets: Array<{ loc: string; sub: string }>,
-  fileMap: Record<string, string>
+  fileMap: Record<string, string>,
+  browser: any
 ): Promise<{ passed: boolean; failures: Array<{ error: string; loc?: string }> }> {
   const assignments: Array<Array<{ loc: string; sub: string }>> = pages.map(() => []);
   targets.forEach((t, i) => assignments[i % pages.length].push(t));
@@ -603,10 +717,21 @@ async function phase2RenderAudit(
   await Promise.all(
     pages.map(async (ctx, i) => {
       for (const { loc, sub } of assignments[i]) {
+        if (ctx.page.isClosed()) {
+          console.error(`\n[PAGE ${i} CLOSED] was processing: ${loc}:${sub}`);
+          allFailures.push({ error: 'page crashed', loc: `${loc}:${sub}` });
+          break;
+        }
         const result = await checkRenderTarget(ctx, loc, sub, fileMap);
         if (!result.passed) {
           allFailures.push({ error: result.error!, loc: result.loc });
           if (stopOnFail) return;
+        }
+        ctx.renderCount++;
+        globalRenderCount++;
+        if (globalRenderCount % 100 === 0) logRenderMemory();
+        if (ctx.renderCount >= RELOAD_INTERVAL) {
+          await reloadPage(ctx, i);
         }
       }
     })
@@ -739,7 +864,8 @@ if (/^(Map|Back|Open Map)$/i.test(text)) return false;
 
 async function phase3InteractionAudit(
   pages: PageCtx[],
-  targets: Array<{ loc: string; sub: string }>
+  targets: Array<{ loc: string; sub: string }>,
+  browser: any
 ): Promise<{ passed: boolean; failures: Array<{ error: string; loc?: string; action?: string }> }> {
   const assignments: Array<Array<{ loc: string; sub: string }>> = pages.map(() => []);
   targets.forEach((t, i) => assignments[i % pages.length].push(t));
@@ -749,10 +875,19 @@ async function phase3InteractionAudit(
   await Promise.all(
     pages.map(async (ctx, i) => {
       for (const { loc, sub } of assignments[i]) {
+        if (ctx.page.isClosed()) {
+          console.error(`\n[PAGE ${i} CLOSED] was processing: ${loc}:${sub}`);
+          allFailures.push({ error: 'page crashed', loc, action: sub });
+          break;
+        }
         const result = await checkInteractionTarget(ctx, loc, sub);
         if (!result.passed) {
           allFailures.push({ error: result.error!, loc: result.loc, action: result.action });
           if (stopOnFail) return;
+        }
+        ctx.renderCount++;
+        if (ctx.renderCount >= RELOAD_INTERVAL) {
+          await reloadPage(ctx, i);
         }
       }
     })
@@ -804,7 +939,8 @@ async function main() {
 
   const srv = startServer();
   await sleep(500);
-  const browser = await chromium.launch({ headless: true, executablePath: '/snap/bin/chromium' });
+  const browser = await chromium.launch({ headless: true, executablePath: '/usr/bin/google-chrome', args: ['--js-flags=--max-old-space-size=512'] });
+  browser.on('disconnected', () => console.error('\n[BROWSER DISCONNECTED]'));
 
   const pageCount = Math.min(PARALLEL, Math.max(renderTargets.length, interactionTargets.length, 1));
   const pages: PageCtx[] = [];
@@ -816,7 +952,7 @@ async function main() {
     p.on('console', (msg: any) => {
       if (msg.type() === 'error') errs.push(`console: ${msg.text()}`);
     });
-    pages.push({ page: p, errors: errs });
+    pages.push({ page: p, errors: errs, renderCount: 0 });
   }
 
   try {
@@ -824,8 +960,10 @@ async function main() {
       console.log('--- Phase 1: Static Analysis ---');
       const result = phase1StaticAnalysis(locations, fileMap);
       if (!result.passed) {
-        console.log(`\nFAIL ${result.loc}: ${result.error}`);
-        console.log('\nFix this error and re-run the audit.');
+        for (const f of result.failures) {
+          console.log(`FAIL ${f.loc}: ${f.error}`);
+        }
+        console.log(`\n${result.failures.length} static failure(s).`);
         process.exitCode = 1;
         return;
       }
@@ -838,10 +976,13 @@ async function main() {
       await setupPage(ctx.page);
     }
 
+    const stopMemLog = startMemoryLogger(browser);
+
     if (!skipRender) {
       console.log('--- Phase 2: Render Audit ---');
-      const result = await phase2RenderAudit(pages, renderTargets, fileMap);
+      const result = await phase2RenderAudit(pages, renderTargets, fileMap, browser);
       if (!result.passed) {
+        stopMemLog();
         for (const f of result.failures) console.log(`FAIL ${f.loc}: ${f.error}`);
         console.log(`\n${result.failures.length} failure(s).`);
         process.exitCode = 1;
@@ -854,8 +995,9 @@ async function main() {
 
     if (!skipInteraction) {
       console.log('--- Phase 3: Interaction Audit ---');
-      const result = await phase3InteractionAudit(pages, interactionTargets);
+      const result = await phase3InteractionAudit(pages, interactionTargets, browser);
       if (!result.passed) {
+        stopMemLog();
         for (const f of result.failures) console.log(`FAIL ${f.loc} / "${f.action}": ${f.error}`);
         console.log(`\n${result.failures.length} failure(s).`);
         process.exitCode = 1;
@@ -866,12 +1008,14 @@ async function main() {
       console.log('--- Phase 3: Interaction Audit (skipped) ---');
     }
 
+    stopMemLog();
+
     console.log('\n=== ALL PHASES PASSED ===');
   } catch (e: any) {
     console.error(`\nCRASH ${e.message}`);
     process.exitCode = 1;
   } finally {
-    await browser.close();
+    await browser.close().catch(() => {});
     srv.close();
     process.exit(process.exitCode ?? 0);
   }

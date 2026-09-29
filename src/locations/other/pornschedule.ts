@@ -280,15 +280,15 @@ function enterContracting(s: GameState, scene: SceneBuilder): void {
                   }
                 } else {
                   if (((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] < ((s as any).job_booking_max_concurrent ?? 0)?.['city_pornstudio_actress']  &&  ((s as any).temp_ps_conflict ?? 0) === 0  &&  (!((s as any).temp_ps_gap ?? 0))) {
-                    // TODO-QSP: $pornofday += '<<$temp_hour>>: <a href="exec:gs ''pornschedule'', ''do_contract'', <<ps_i>>, <<porns>>"><<$porndesc[pornplan[''<<ps_i>>,<<porns>>'']]>></a><<$edit_button>><br>'
+                    (s as any).pornofday = ((s as any).pornofday ?? '') + String((s as any).temp_hour ?? 0) + ': <a href="#">' + (((s as any).porndesc ?? 0)?.[String(((s as any).pornplan ?? 0)?.[String(String((s as any).ps_i ?? 0) + ',' + String((s as any).porns ?? 0))] ?? 0)] ?? '') + '</a>' + ((s as any).edit_button ?? '') + '<br>';
                   } else {
                     if (((s as any).temp_ps_gap ?? 0) === 1) {
-                      // TODO-QSP: $pornofday += '<<$temp_hour>>: <font color="grey"><<$porndesc[pornplan[''<<ps_i>>,<<porns>>'']]>> - <i>Too close to another shoot</i><<$edit_button>><<$cheat_force>></font><br>'
+                      (s as any).pornofday = ((s as any).pornofday ?? '') + String((s as any).temp_hour ?? 0) + ': <font color="grey">' + (((s as any).porndesc ?? 0)?.[String(((s as any).pornplan ?? 0)?.[String(String((s as any).ps_i ?? 0) + ',' + String((s as any).porns ?? 0))] ?? 0)] ?? '') + ' - <i>Too close to another shoot</i>' + ((s as any).edit_button ?? '') + ((s as any).cheat_force ?? '') + '</font><br>';
                     } else {
                       if (((s as any).temp_ps_conflict ?? 0) === 1) {
-                        // TODO-QSP: $pornofday += '<<$temp_hour>>: <font color="grey"><<$porndesc[pornplan[''<<ps_i>>,<<porns>>'']]>> - <i>Schedule conflict</i><<$edit_button>></font><br>'
+                        (s as any).pornofday = ((s as any).pornofday ?? '') + String((s as any).temp_hour ?? 0) + ': <font color="grey">' + (((s as any).porndesc ?? 0)?.[String(((s as any).pornplan ?? 0)?.[String(String((s as any).ps_i ?? 0) + ',' + String((s as any).porns ?? 0))] ?? 0)] ?? '') + ' - <i>Schedule conflict</i>' + ((s as any).edit_button ?? '') + '</font><br>';
                       } else {
-                        // TODO-QSP: $pornofday += '<<$temp_hour>>: <font color="grey"><<$porndesc[pornplan[''<<ps_i>>,<<porns>>'']]>><<$edit_button>><<$cheat_steal>></font><br>'
+                        (s as any).pornofday = ((s as any).pornofday ?? '') + String((s as any).temp_hour ?? 0) + ': <font color="grey">' + (((s as any).porndesc ?? 0)?.[String(((s as any).pornplan ?? 0)?.[String(String((s as any).ps_i ?? 0) + ',' + String((s as any).porns ?? 0))] ?? 0)] ?? '') + '' + ((s as any).edit_button ?? '') + ((s as any).cheat_steal ?? '') + '</font><br>';
                       }
                     }
                   }

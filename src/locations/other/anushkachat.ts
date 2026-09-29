@@ -828,21 +828,18 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       (st as any).i = 0;
-      while (true) {
-        if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
-          (st as any).temp_npcid = (((st as any).lover ?? 0)?.[String((st as any).i ?? 0)] ?? 0);
-          if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
-            scene.text('act \'Get married to ' + (((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))]) + '\': gt \'anushkachat\', \'telling_marrige_dreams\', $npc_usedname["' + ((st as any).temp_npcid ?? 0) + '"]');
-            scene.actions([
-              { label: '', labelFn: (s: GameState) => String(qspUntranslated(s, "Get married to <<npc_usedname[\"<<temp_npcid>>\"]>>", { location: "anushkachat" }) ?? ''), handler: (st: GameState) => { qspGoto(st, 'anushkachat', 'telling_marrige_dreams', (((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))])); } },
-            ]);
-          }
-          (st as any).temp_npcid = undefined;
-          (st as any).i = ((st as any).i ?? 0) + (1);
-          break;
+      while (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
+        (st as any).temp_npcid = (((st as any).lover ?? 0)?.[String((st as any).i ?? 0)] ?? 0);
+        if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
+          scene.text('act \'Get married to ' + (((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))]) + '\': gt \'anushkachat\', \'telling_marrige_dreams\', $npc_usedname["' + ((st as any).temp_npcid ?? 0) + '"]');
+          scene.actions([
+            { label: '', labelFn: (s: GameState) => String(qspUntranslated(s, "Get married to <<npc_usedname[\"<<temp_npcid>>\"]>>", { location: "anushkachat" }) ?? ''), handler: (st: GameState) => { qspGoto(st, 'anushkachat', 'telling_marrige_dreams', (((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))])); } },
+          ]);
         }
-        (st as any).i = undefined;
+        (st as any).temp_npcid = undefined;
+        (st as any).i = ((st as any).i ?? 0) + (1);
       }
+      (st as any).i = undefined;
     } else {
       scene.actions([
         { label: 'Get married', handler: (st: GameState) => {
@@ -1186,21 +1183,18 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   (s as any).i = 0;
-  while (true) {
-    if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
-      (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
-      if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
-        scene.text('act \'' + (((s as any).npc_usedname ?? 0)?.[String(((s as any).temp_npcid ?? 0))]) + '\': gt \'anushkachat\', \'tell_about_generic_boyfriend\', $npc_usedname["' + ((s as any).temp_npcid ?? 0) + '"]');
-        scene.actions([
-          { label: '', labelFn: (s: GameState) => String((((s as any).npc_usedname ?? 0)?.[String(((s as any).temp_npcid ?? 0))] ?? '') ?? ''), handler: (st: GameState) => { qspGoto(st, 'anushkachat', 'tell_about_generic_boyfriend', (((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))])); } },
-        ]);
-      }
-      (s as any).temp_npcid = undefined;
-      (s as any).i = ((s as any).i ?? 0) + (1);
-      break;
+  while (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
+    (s as any).temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+    if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
+      scene.text('act \'' + (((s as any).npc_usedname ?? 0)?.[String(((s as any).temp_npcid ?? 0))]) + '\': gt \'anushkachat\', \'tell_about_generic_boyfriend\', $npc_usedname["' + ((s as any).temp_npcid ?? 0) + '"]');
+      scene.actions([
+        { label: '', labelFn: (s: GameState) => String((((s as any).npc_usedname ?? 0)?.[String(((s as any).temp_npcid ?? 0))] ?? '') ?? ''), handler: (st: GameState) => { qspGoto(st, 'anushkachat', 'tell_about_generic_boyfriend', (((st as any).npc_usedname ?? 0)?.[String(((st as any).temp_npcid ?? 0))])); } },
+      ]);
     }
-    (s as any).i = undefined;
+    (s as any).temp_npcid = undefined;
+    (s as any).i = ((s as any).i ?? 0) + (1);
   }
+  (s as any).i = undefined;
   scene.build();
 }
 

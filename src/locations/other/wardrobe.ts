@@ -150,7 +150,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).wardrobeDefaultPagePref ?? 0) === 'currentOutfit') {
     (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any).wardrobeDefaultPagePref; return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove saved default wardrobe page</a>';
   } else {
-    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = \u0027currentOutfit\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027main\u0027); return false;">Set here as default wardrobe page</a>';
+    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* wardrobeDefaultPagePref=currentOutfit */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027main\u0027); return false;">Set here as default wardrobe page</a>';
   }
   scene.text(`<center>${((s as any).wardrobeSetDefault ?? '')}</center>`);
   (s as any).wardrobeSetDefault = undefined;
@@ -416,7 +416,7 @@ function enterDefaultTemplate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).wardrobeDefaultPagePref ?? 0) === ((s as any).wloc ?? 0)) {
     (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any).wardrobeDefaultPagePref; return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, String((s as any).wloc ?? \u0027\u0027)); return false;">Remove saved default wardrobe page</a>';
   } else {
-    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = $wloc */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, String((s as any).wloc ?? \u0027\u0027)); return false;">Set here as default wardrobe page</a>';
+    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* wardrobeDefaultPagePref=wloc */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, String((s as any).wloc ?? \u0027\u0027)); return false;">Set here as default wardrobe page</a>';
   }
   scene.text(`<center>${((s as any).wardrobeSetDefault ?? '')}</center>`);
   (s as any).wardrobeSetDefault = undefined;

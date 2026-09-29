@@ -20,9 +20,9 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     scene.text('Most events only directly affect your mood, but some may also alter your disposition directly.');
     scene.text('Disposition can be shown as a fully separate status bar (or text, in text mode), or as an overlay on top of the mood bar. Toggle this in the status window tab of the settings page.');
     scene.text('<center><table cellpadding="10"><tr>');
-    // TODO-QSP: dynamic text: <td valign="top" align="center"><b>Separate bars</b><br><table cellpadding="1" c...
+    /* dynamic text: Separate bars */
     scene.text(`<td valign="top" align="center"><b>Separate bars</b><br><table cellpadding="1" cellspacing="0">${qspFunc(s, 'stat_display', 'helper_bar', 'smooth_positive', 'Mood', 75)}${0}</table></td>`);
-    // TODO-QSP: dynamic text: <td valign="top" align="center"><b>Overlay mode</b><br><table cellpadding="1" ce...
+    /* dynamic text: Overlay mode */
     scene.text(`<td valign="top" align="center"><b>Overlay mode</b><br><table cellpadding="1" cellspacing="0">${0}</table></td>`);
     scene.text('</tr></table></center>');
     scene.text('<center><b>Calendar</b></center>');

@@ -565,8 +565,8 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'willpower', 'misc', 'self', ((st as any).loverResist ?? 0));
     ((st as any).lover_meet = (st as any).lover_meet ?? {})['ChangeActions'] = qspUntranslated(s, "{", { location: "lover_meet" });
-    // TODO-QSP: !$ARGS[0] = name of thing being changed
-    // TODO-QSP: !$ARGS[1] = Parameter for lover_change procedure
+    /* ARGS[0] = name of thing being changed */
+    /* ARGS[1] = Parameter for lover_change procedure */
     ((st as any).lover_meet = (st as any).lover_meet ?? {})['ChangeName'] = ((st as any).locArgs?.[0] ?? 0);
     ((st as any).lover_meet = (st as any).lover_meet ?? {})['ChangeParamName'] = ((st as any).locArgs?.[1] ?? 0);
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {

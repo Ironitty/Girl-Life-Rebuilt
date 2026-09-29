@@ -68,7 +68,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) + (((s as any).cost_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] * ((s as any).locArgs?.[2] ?? 0));
   ((s as any).cart_curr_quantity = (s as any).cart_curr_quantity ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).cart_curr_quantity[String(((s as any).locArgs?.[1] ?? 0))] ?? 0) + (((s as any).locArgs?.[2] ?? 0));
   if (((s as any).event_curr_aisle ?? 0)[(String((s as any).locArgs?.[1] ?? ''))] !== '') {
-    // TODO-QSP: dynamic "<<$event_curr_aisle['<<ARGS[1]>>']>>"
+    /* dynamic event_curr_aisle */
   }
   dynamicGoto(s, 'loc_s', 'args_s');
   scene.build();

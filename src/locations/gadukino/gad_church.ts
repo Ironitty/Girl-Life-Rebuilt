@@ -259,7 +259,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
               (st as any).church_moral = ((st as any).church_moral ?? 0) + (1);
               (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 31) + 30));
               if (((st as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                // TODO-QSP: 3 * drugVars['cocaine_system'] = drugVars['cocaine_system'] / 4
+                (st as any).drugVars['cocaine_system'] = Number(((st as any).drugVars ?? 0)?.['cocaine_system'] ?? 0) / 4;
               }
               scene.text('The Nave is lit only with small candles, leaving your surroundings in darkness, but you find it comforting. You get the urge to pray very intensely, and before you know it, an hour has passed, and you feel cleansed.');
             } else {

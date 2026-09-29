@@ -665,9 +665,9 @@ function enterViewListsList(s: GameState, scene: SceneBuilder): void {
     (s as any).ward_list_page = 'wardrobe';
     scene.img('images/system/icons/clothing/clothes.png');
     if (((s as any).wardrobeDefaultPagePref ?? 0) === 'viewClothing') {
-      (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = \u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027clothing_view\u0027, \u0027view_lists_list\u0027, \u0027wardrobe\u0027); return false;">Unset as default wardrobe page</a>';
+      (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* wardrobeDefaultPagePref */ return s; }); window.__gameStore.getState().doGoto(\u0027clothing_view\u0027, \u0027view_lists_list\u0027, \u0027wardrobe\u0027); return false;">Unset as default wardrobe page</a>';
     } else {
-      (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = \u0027viewClothing\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027clothing_view\u0027, \u0027view_lists_list\u0027, \u0027wardrobe\u0027); return false;">Set here as default wardrobe page</a>';
+      (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* wardrobeDefaultPagePref=viewClothing */ return s; }); window.__gameStore.getState().doGoto(\u0027clothing_view\u0027, \u0027view_lists_list\u0027, \u0027wardrobe\u0027); return false;">Set here as default wardrobe page</a>';
     }
     scene.text(`<center>${((s as any).wardrobeSetDefault ?? '')}</center>`);
     (s as any).wardrobeSetDefault = undefined;
@@ -1142,7 +1142,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     scene.text('(dirty ' + Math.min(Math.max(0, ((s as any).CloDirt ?? '') / 24), 100) + ', strength ' + ((s as any).CloStrength ?? ''));
     if (((s as any).CloSport ?? 0) === 0  &&  ((s as any).CloStyle ?? 0) !== 5) {
-      // TODO-QSP: dynamic text: ', hip size ' + $dyneval("$result = <<$shop_utils_view['type']>>_b[<<shop_utils_...
+      /* dynamic text: hip size */
       scene.text(', hip size ' + 0);
     }
   }

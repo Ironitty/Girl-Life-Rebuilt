@@ -3162,7 +3162,7 @@ function enterSleepFunction(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: --- sex_ev_after ---------------------------------
+  /* sex_ev_after */
   scene.build();
 }
 

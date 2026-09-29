@@ -91,7 +91,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs_gigs', 'disp_evt', 3);
   qspCall(s, 'taxi', '');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 23) {
-    scene.text('You can see the <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = \u0027city_residential\u0027 */ s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a> selling cigarettes and magazines.');
+    scene.text('You can see the <a href="#" onclick="window.__gameStore.setState((s) => { /* $loc=city_residential */ s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a> selling cigarettes and magazines.');
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22) {
     scene.text('<br>The local <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027city_laundromat\u0027, \u0027\u0027); return false;">laundromat</a> is open. The advertisement says: "You can wash your clothes here."');
@@ -189,7 +189,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('The city\'s large <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=20; return s; }); window.__gameStore.getState().doGoto(\u0027city_park\u0027, \u0027start\u0027); return false;">central park</a> is a 20 minute walk away.');
   scene.text('The city\'s only <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=40; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027start\u0027); return false;">lake</a> is a 40 minute walk away.');
-  scene.text('A 24 hour <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = \u0027city_residential\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027city_pharmacy\u0027, \u0027start\u0027); return false;">pharmacy</a> is located nearby.');
+  scene.text('A 24 hour <a href="#" onclick="window.__gameStore.setState((s) => { /* $loc=city_residential */ return s; }); window.__gameStore.getState().doGoto(\u0027city_pharmacy\u0027, \u0027start\u0027); return false;">pharmacy</a> is located nearby.');
   if (((s as any).cfg_vars ?? 0)?.['tablemap'] === 0) {
     if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).lesbiQW ?? 0) === 1) {
       scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027lesbidomhouse\u0027, \u0027start\u0027); return false;">Natalya Petrovna\'s</a> apartment.');
@@ -317,7 +317,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs_gigs', 'disp_evt', 3);
   qspCall(s, 'taxi', '');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 23) {
-    scene.text('You can see the <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = \u0027city_residential\u0027 */ s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a> selling cigarettes and magazines.');
+    scene.text('You can see the <a href="#" onclick="window.__gameStore.setState((s) => { /* $loc=city_residential */ s.minut +=1; return s; }); window.__gameStore.getState().doGoto(\u0027kiosk\u0027, \u0027start\u0027); return false;">kiosk</a> selling cigarettes and magazines.');
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22) {
     scene.text('<br>The local <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=3; return s; }); window.__gameStore.getState().doGoto(\u0027city_laundromat\u0027, \u0027\u0027); return false;">laundromat</a> is open. The advertisement says: "You can wash your clothes here."');
@@ -415,7 +415,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('The city\'s large <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=20; return s; }); window.__gameStore.getState().doGoto(\u0027city_park\u0027, \u0027start\u0027); return false;">central park</a> is a 20 minute walk away.');
   scene.text('The city\'s only <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=40; return s; }); window.__gameStore.getState().doGoto(\u0027city_lake\u0027, \u0027start\u0027); return false;">lake</a> is a 40 minute walk away.');
-  scene.text('A 24 hour <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = \u0027city_residential\u0027 */ return s; }); window.__gameStore.getState().doGoto(\u0027city_pharmacy\u0027, \u0027start\u0027); return false;">pharmacy</a> is located nearby.');
+  scene.text('A 24 hour <a href="#" onclick="window.__gameStore.setState((s) => { /* $loc=city_residential */ return s; }); window.__gameStore.getState().doGoto(\u0027city_pharmacy\u0027, \u0027start\u0027); return false;">pharmacy</a> is located nearby.');
   if (((s as any).cfg_vars ?? 0)?.['tablemap'] === 0) {
     if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 22  &&  ((s as any).lesbiQW ?? 0) === 1) {
       scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027lesbidomhouse\u0027, \u0027start\u0027); return false;">Natalya Petrovna\'s</a> apartment.');

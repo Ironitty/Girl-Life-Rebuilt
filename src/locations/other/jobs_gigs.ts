@@ -113,7 +113,7 @@ function enterSaveEvtEvent(s: GameState, scene: SceneBuilder): void {
   (s as any).evt_content_code = [...((s as any).evt_content_code ?? []), (((s as any).evt_transient ?? 0)?.['code'])];
   (s as any).evt_desc = [...((s as any).evt_desc ?? []), (((s as any).evt_transient ?? 0)?.['desc'])];
   if (((s as any).evt_transient ?? 0)?.['verbose'] === 1) {
-    // TODO-QSP: dynamic text: 'Job accepted, you currently have ' + arrsize('evt_event') + ' jobs assigned to ...
+    /* dynamic text */
     scene.text('Job accepted, you currently have ' + 0 + ' jobs assigned to you. Please look at your journal for more information.');
     (s as any).evt_transient = undefined;
     scene.actions([

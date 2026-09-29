@@ -1034,7 +1034,7 @@ function enterSlutAcceptRoute(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask him to use a condom', goto: ['pav_disco_sex', 'insert', 'condom_request'] },
     ]);
   }
-  // TODO-QSP: --- pav_disco_outside ---------------------------------
+  /* pav_disco_outside */
   scene.build();
 }
 

@@ -970,7 +970,7 @@ function enterGirlfriendSurprise1(s: GameState, scene: SceneBuilder): void {
   scene.text('You knock on the door and you hear the latch unlock and the door swings open.');
   if (((s as any).drunk ?? 0) === 1) {
     scene.actions([
-      { label: 'Guess who\'s drunk!' }, // TODO-QSP: empty action body
+      { label: 'Guess who\'s drunk!' },
     ]);
   }
   scene.actions([
@@ -1239,7 +1239,7 @@ function enterMeyKatjaSpot(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Well I don't want to get in your way. Make sure you pork her good!" Vicky says, winking at ${((s as any).npcdesc ?? '')}. "She deserves it. If you don't I'm gonna make sure I hear all about it later!"`);
     scene.text('And with that, she and Vayna continue on to some other part of the house.');
   }
-  // TODO-QSP: --- sex_ev_start ---------------------------------
+  /* sex_ev_start */
   scene.build();
 }
 

@@ -97,6 +97,33 @@ Exclusion sets at top of file: `EXCLUDE_EXEC_DATA`, `EXCLUDE_FUNC_LITERAL`, `EXC
 - Only exclude as Cat 3 when QSP source is genuinely broken/deprecated or the asset never existed.
 - The exclusion comment must cite specific evidence ("deprecated in QSP source", "no act commands"), not just restate the symptom.
 
+## Evidence Before Action
+
+For any non-trivial debugging, coding, configuration, architecture, or project-state
+task, do not immediately modify files or execute a proposed fix.
+
+Before the first write/change action:
+
+1. Inspect the relevant existing implementation.
+2. Inspect any directly related code, configuration, logs, or runtime state needed
+   to establish the current behavior.
+3. Determine what is already implemented so completed work is not repeated.
+4. Identify the observed evidence for the actual problem or missing behavior.
+5. Form a concrete plan based on that evidence.
+6. Only then modify the project.
+
+A plausible explanation is not sufficient evidence.
+
+Do not make a change merely because it seems likely to work. When the environment
+can answer the question, inspect the environment first.
+
+After making a change, verify the result using the appropriate source of truth:
+tests, compiler output, runtime behavior, logs, generated output, or direct
+inspection.
+
+For non-trivial tasks, a rapid conclusion without inspecting the relevant project
+state is a failure to follow these instructions.
+
 ## Project: Girl Life QSP (Original)
 - **Edit** `.qsps` files in `GL QSP/locations/` (one per location).
 - **Build**: `node GL QSP/build.js` → `GL QSP/Girl_Life_0.9.9.1_patched.qsp`.

@@ -361,7 +361,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     ((s as any).location_type = (s as any).location_type ?? {})['is_outdoors'] = 1;
     qspCall(s, 'themes', 'outdoors');
     if (((s as any).sunWeather ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['umbrella'] === 0) {
-      // TODO-QSP: *NL 'It is raining and you do not have an umbrella.'
+      scene.text('It is raining and you do not have an umbrella.');
       if (((s as any).pcs_makeup ?? 0) > ((s as any).cosmetic_tattoo ?? 0) + 1) {
         (s as any).pcs_makeup = 0;
         scene.text(' The rain has ruined your makeup.');

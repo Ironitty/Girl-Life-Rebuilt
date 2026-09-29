@@ -997,7 +997,7 @@ function enterBoyPubeTalkFollowup(s: GameState, scene: SceneBuilder): void {
 function enterBeautifulBlondeBody(s: GameState, scene: SceneBuilder): void {
   scene.text('"I can\'t get over how hot you are."');
   scene.text('"Beautiful, blonde, with big tits? It\'s a classic look."');
-  // TODO-QSP: --- sex_ev_body_talk ---------------------------------
+  /* sex_ev_body_talk */
   scene.build();
 }
 

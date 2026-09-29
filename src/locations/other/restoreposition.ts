@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $MWindow[]
+  /* MWindow reset */
   (s as any).MWindow = undefined;
   (s as any).AWindow = undefined;
   scene.build();

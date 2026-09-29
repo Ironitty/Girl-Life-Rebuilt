@@ -35,7 +35,7 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
           ((s as any).npc_nsp_pref_values = (s as any).npc_nsp_pref_values ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).temp_nsprefVars ?? 0)?.['value']);
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRebuildPreferences(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          // TODO-QSP: $temp_nsprefVars['pref_string'] = "$npc_pref_traits[] = '<<$ARGS[1]>>'
+          (s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {}; (s as any).temp_nsprefVars['pref_string'] = "$npc_pref_traits[] = '" + String((s as any).ARGS?.[1] ?? '') + "'";
           ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = (((s as any).temp_nsprefVars ?? 0)?.['value']);
           scene.text('');
           ((s as any).npc_preferences = (s as any).npc_preferences ?? {})[((s as any).locArgs?.[0] ?? 0)] = ((s as any).npc_preferences[((s as any).locArgs?.[0] ?? 0)] ?? 0) + ((String((((s as any).temp_nsprefVars ?? 0)?.['pref_string'])).split('  ').join('')));
@@ -63,7 +63,7 @@ function enterRebuildPreferences(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['max_i'] = 0;
   do {
     ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['trait'] = qspUntranslated(s, "npc_nsp_pref_traits[temp_nsprefVars['i']]", { location: "npc_set_preference" });
-    // TODO-QSP: $temp_nsprefVars['pref_string'] += "$npc_pref_traits[] = '<<$temp_nsprefVars['trait']>>'
+    (s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {}; (s as any).temp_nsprefVars['pref_string'] = ((s as any).temp_nsprefVars?.['pref_string'] ?? '') + "$npc_pref_traits[] = '" + String(((s as any).temp_nsprefVars ?? 0)?.['trait'] ?? '') + "'";
     ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})[String((((s as any).temp_nsprefVars ?? 0)?.['trait']))] = qspUntranslated(s, "npc_nsp_pref_values[temp_nsprefVars['i']]", { location: "npc_set_preference" });
     scene.text('');
     ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['i'] = ((s as any).temp_nsprefVars['i'] ?? 0) + (1);
