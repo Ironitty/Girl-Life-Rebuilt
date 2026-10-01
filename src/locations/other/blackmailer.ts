@@ -510,10 +510,10 @@ function enterChoosePackage(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).temp_i2 = ((s as any).temp_i2 ?? 0) + (1);
-    ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package'] = ((s as any).temp_i ?? 0);
-    (s as any).temp_i = undefined;
-    (s as any).temp_i2 = undefined;
   } while (((s as any).temp_i2 ?? 0) < 100  &&  ((String(((s as any).blackmailQW ?? 0)?.['packages_opened']).indexOf(String(';' + ((String(100 + ((s as any).temp_i ?? 0)).slice((2)-1))) + ';'))) + 1) >= 0);
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['package'] = ((s as any).temp_i ?? 0);
+  (s as any).temp_i = undefined;
+  (s as any).temp_i2 = undefined;
   scene.build();
 }
 
