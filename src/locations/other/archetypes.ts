@@ -1035,31 +1035,27 @@ function enterApplyEffects(s: GameState, scene: SceneBuilder): void {
 
 function enterDailySnapshot(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_ds_i = 0;
-  do {
+  while (((s as any).temp_ds_i ?? 0) < 5) {
     (s as any).temp_ds_archetype = qspFunc(s, 'archetypes', 'get_archetype', ((s as any).temp_ds_i ?? 0));
     (s as any).temp_ds_j = 6;
-    while (true) {
-      if (((s as any).temp_ds_j ?? 0) > 0) {
-        ((s as any).arch_vars = (s as any).arch_vars ?? {})[String(((s as any).temp_ds_archetype ?? 0)) + '_history_' + String(((s as any).temp_ds_j ?? 0))] = (((s as any).arch_vars ?? 0)?.[((s as any).temp_ds_archetype ?? 0) + '_history_' + (((s as any).temp_ds_j ?? 0) - 1)] ?? 0);
-        (s as any).temp_ds_j = ((s as any).temp_ds_j ?? 0) - (1);
-        break;
-      }
-      ((s as any).arch_vars = (s as any).arch_vars ?? {})[String(((s as any).temp_ds_archetype ?? 0)) + '_history_0'] = (((s as any).arch_vars ?? 0)?.[((s as any).temp_ds_archetype ?? 0) + '_points'] ?? 0);
-      (s as any).temp_ds_sum = 0;
-      (s as any).temp_ds_j = 0;
-      do {
-        (s as any).temp_ds_sum = ((s as any).temp_ds_sum ?? 0) + ((((s as any).arch_vars ?? 0)?.[((s as any).temp_ds_archetype ?? 0) + '_history_' + ((s as any).temp_ds_j ?? 0)] ?? 0));
-        (s as any).temp_ds_j = ((s as any).temp_ds_j ?? 0) + (1);
-        ((s as any).arch_vars = (s as any).arch_vars ?? {})[String(((s as any).temp_ds_archetype ?? 0)) + '_avg'] = ((s as any).temp_ds_sum ?? 0) / 7;
-        (s as any).temp_ds_i = ((s as any).temp_ds_i ?? 0) + (1);
-        (s as any).temp_ds_i = undefined;
-        (s as any).temp_ds_j = undefined;
-        (s as any).temp_ds_sum = undefined;
-        (s as any).temp_ds_archetype = undefined;
-        return;
-      } while (((s as any).temp_ds_j ?? 0) < 7);
+    while (((s as any).temp_ds_j ?? 0) > 0) {
+      ((s as any).arch_vars = (s as any).arch_vars ?? {})[String(((s as any).temp_ds_archetype ?? 0)) + '_history_' + String(((s as any).temp_ds_j ?? 0))] = (((s as any).arch_vars ?? 0)?.[((s as any).temp_ds_archetype ?? 0) + '_history_' + (((s as any).temp_ds_j ?? 0) - 1)] ?? 0);
+      (s as any).temp_ds_j = ((s as any).temp_ds_j ?? 0) - (1);
     }
-  } while (((s as any).temp_ds_i ?? 0) < 5);
+    ((s as any).arch_vars = (s as any).arch_vars ?? {})[String(((s as any).temp_ds_archetype ?? 0)) + '_history_0'] = (((s as any).arch_vars ?? 0)?.[((s as any).temp_ds_archetype ?? 0) + '_points'] ?? 0);
+    (s as any).temp_ds_sum = 0;
+    (s as any).temp_ds_j = 0;
+    while (((s as any).temp_ds_j ?? 0) < 7) {
+      (s as any).temp_ds_sum = ((s as any).temp_ds_sum ?? 0) + ((((s as any).arch_vars ?? 0)?.[((s as any).temp_ds_archetype ?? 0) + '_history_' + ((s as any).temp_ds_j ?? 0)] ?? 0));
+      (s as any).temp_ds_j = ((s as any).temp_ds_j ?? 0) + (1);
+    }
+    ((s as any).arch_vars = (s as any).arch_vars ?? {})[String(((s as any).temp_ds_archetype ?? 0)) + '_avg'] = ((s as any).temp_ds_sum ?? 0) / 7;
+    (s as any).temp_ds_i = ((s as any).temp_ds_i ?? 0) + (1);
+  }
+  (s as any).temp_ds_i = undefined;
+  (s as any).temp_ds_j = undefined;
+  (s as any).temp_ds_sum = undefined;
+  (s as any).temp_ds_archetype = undefined;
   scene.build();
 }
 
@@ -2662,66 +2658,58 @@ function enterNotifyPopup(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_np_cat_disp = (s as any).temp_np_cat_disp ?? {})['drugs'] = 'Drugs & alcohol';
   ((s as any).temp_np_cat_disp = (s as any).temp_np_cat_disp ?? {})['chastity'] = 'Chastity';
   ((s as any).temp_np = (s as any).temp_np ?? {})['i'] = 0;
-  while (true) {
-    if (((s as any).temp_np ?? 0)?.['i'] < Object.keys((s as any).arch_log_minut ?? {}).length) {
-      if (((s as any).arch_log_archetype ?? 0)[((s as any).temp_np ?? 0)?.['i']] === ((s as any).temp_np ?? 0)?.['archetype']) {
-        if (((s as any).arch_log_minut ?? 0)[((s as any).temp_np ?? 0)?.['i']] >= ((s as any).tnotif_popup_start ?? 0)  &&  ((s as any).arch_log_minut ?? 0)[((s as any).temp_np ?? 0)?.['i']] <= ((s as any).tnotif_popup_end ?? 0)) {
-          ((s as any).temp_np = (s as any).temp_np ?? {})['cat'] = qspUntranslated(s, "arch_log_cat[temp_np['i']]", { location: "archetypes" });
-          if (((s as any).temp_np ?? 0)?.['cat'] === 'story') {
-            ((s as any).temp_np = (s as any).temp_np ?? {})['lbl'] = ((((s as any).arch_log_label ?? 0)[((s as any).temp_np ?? 0)?.['i']] !== '') ? (qspUntranslated(s, "arch_log_label[temp_np['i']]", { location: "archetypes" })) : ('(unlabelled)'));
-            if ((Array.isArray((s as any).temp_np_labels) ? ((s as any).temp_np_labels as any[]).indexOf(((s as any).temp_np ?? 0)?.['lbl']) : -1) < 0) {
-              (s as any).temp_np_labels = [...((s as any).temp_np_labels ?? []), (((s as any).temp_np ?? 0)?.['lbl'])];
-            }
-            ((s as any).temp_np_lbl_delta = (s as any).temp_np_lbl_delta ?? {})[(((s as any).temp_np ?? 0)?.['lbl'])] = ((s as any).temp_np_lbl_delta[(((s as any).temp_np ?? 0)?.['lbl'])] ?? 0) + (qspUntranslated(s, "arch_log_delta[temp_np['i']]", { location: "archetypes" }));
-          } else {
-            ((s as any).temp_np_cat_delta = (s as any).temp_np_cat_delta ?? {})[(((s as any).temp_np ?? 0)?.['cat'])] = ((s as any).temp_np_cat_delta[(((s as any).temp_np ?? 0)?.['cat'])] ?? 0) + (qspUntranslated(s, "arch_log_delta[temp_np['i']]", { location: "archetypes" }));
+  while (((s as any).temp_np ?? 0)?.['i'] < Object.keys((s as any).arch_log_minut ?? {}).length) {
+    if (((s as any).arch_log_archetype ?? 0)[((s as any).temp_np ?? 0)?.['i']] === ((s as any).temp_np ?? 0)?.['archetype']) {
+      if (((s as any).arch_log_minut ?? 0)[((s as any).temp_np ?? 0)?.['i']] >= ((s as any).tnotif_popup_start ?? 0)  &&  ((s as any).arch_log_minut ?? 0)[((s as any).temp_np ?? 0)?.['i']] <= ((s as any).tnotif_popup_end ?? 0)) {
+        ((s as any).temp_np = (s as any).temp_np ?? {})['cat'] = ((s as any).arch_log_cat ?? 0)[((s as any).temp_np ?? 0)?.['i']];
+        if (((s as any).temp_np ?? 0)?.['cat'] === 'story') {
+          const _np_lbl_val = ((s as any).arch_log_label ?? 0)[((s as any).temp_np ?? 0)?.['i']] ?? '';
+          ((s as any).temp_np = (s as any).temp_np ?? {})['lbl'] = (_np_lbl_val !== '') ? _np_lbl_val : ('(unlabelled)');
+          if ((Array.isArray((s as any).temp_np_labels) ? ((s as any).temp_np_labels as any[]).indexOf(((s as any).temp_np ?? 0)?.['lbl']) : -1) < 0) {
+            (s as any).temp_np_labels = [...((s as any).temp_np_labels ?? []), (((s as any).temp_np ?? 0)?.['lbl'])];
           }
-          ((s as any).temp_np = (s as any).temp_np ?? {})['total'] = ((s as any).temp_np['total'] ?? 0) + (qspUntranslated(s, "arch_log_delta[temp_np['i']]", { location: "archetypes" }));
+          ((s as any).temp_np_lbl_delta = (s as any).temp_np_lbl_delta ?? {})[(((s as any).temp_np ?? 0)?.['lbl'])] = ((s as any).temp_np_lbl_delta[(((s as any).temp_np ?? 0)?.['lbl'])] ?? 0) + (((s as any).arch_log_delta ?? 0)[((s as any).temp_np ?? 0)?.['i']] ?? 0);
+        } else {
+          ((s as any).temp_np_cat_delta = (s as any).temp_np_cat_delta ?? {})[(((s as any).temp_np ?? 0)?.['cat'])] = ((s as any).temp_np_cat_delta[(((s as any).temp_np ?? 0)?.['cat'])] ?? 0) + (((s as any).arch_log_delta ?? 0)[((s as any).temp_np ?? 0)?.['i']] ?? 0);
         }
+        ((s as any).temp_np = (s as any).temp_np ?? {})['total'] = ((s as any).temp_np['total'] ?? 0) + (((s as any).arch_log_delta ?? 0)[((s as any).temp_np ?? 0)?.['i']] ?? 0);
       }
-      ((s as any).temp_np = (s as any).temp_np ?? {})['i'] = ((s as any).temp_np['i'] ?? 0) + (1);
-      break;
     }
-    ((s as any).temp_np = (s as any).temp_np ?? {})['out'] = '<font color="' + (((s as any).theme_hex ?? 0)?.[(((s as any).temp_np ?? 0)?.['archetype'])] ?? 0) + '"><b>' + (((s as any).temp_np ?? 0)?.['disp']) + '</b></font> ' + qspFunc(s, 'archetypes', 'fmt_pts', (((s as any).temp_np ?? 0)?.['total']), 'fine') + ' this update<br><br>';
-    ((s as any).temp_np = (s as any).temp_np ?? {})['ci'] = 0;
-    while (true) {
-      if (((s as any).temp_np ?? 0)?.['ci'] < 9) {
-        ((s as any).temp_np = (s as any).temp_np ?? {})['ck'] = qspUntranslated(s, "temp_np_cats[temp_np['ci']]", { location: "archetypes" });
-        if (((s as any).temp_np_cat_delta ?? 0)[((s as any).temp_np ?? 0)?.['ck']] !== 0) {
-          ((s as any).temp_np = (s as any).temp_np ?? {})['out'] = ((s as any).temp_np['out'] ?? 0) + ('&nbsp;&nbsp;' + (((s as any).temp_np_cat_disp ?? 0)?.[(((s as any).temp_np ?? 0)?.['ck'])] ?? 0) + ': ' + qspFunc(s, 'archetypes', 'fmt_pts', (((s as any).temp_np_cat_delta ?? 0)?.[(((s as any).temp_np ?? 0)?.['ck'])] ?? 0), 'fine') + '<br>');
-        }
-        ((s as any).temp_np = (s as any).temp_np ?? {})['ci'] = ((s as any).temp_np['ci'] ?? 0) + (1);
-        break;
-      }
-      if (((s as any).temp_np_cat_delta ?? 0)?.['decay'] !== 0) {
-        ((s as any).temp_np = (s as any).temp_np ?? {})['out'] = ((s as any).temp_np['out'] ?? 0) + ('&nbsp;&nbsp;Passive decay: ' + qspFunc(s, 'archetypes', 'fmt_pts', (((s as any).temp_np_cat_delta ?? 0)?.['decay']), 'fine') + '<br>');
-      }
-      if (((s as any).temp_np_cat_delta ?? 0)?.['opposition'] !== 0) {
-        ((s as any).temp_np = (s as any).temp_np ?? {})['out'] = ((s as any).temp_np['out'] ?? 0) + ('&nbsp;&nbsp;Opposition: ' + qspFunc(s, 'archetypes', 'fmt_pts', (((s as any).temp_np_cat_delta ?? 0)?.['opposition']), 'fine') + '<br>');
-      }
-      if (Object.keys((s as any).temp_np_labels ?? {}).length > 0) {
-        ((s as any).temp_np = (s as any).temp_np ?? {})['out'] = ((s as any).temp_np['out'] ?? 0) + ('<br>');
-        ((s as any).temp_np = (s as any).temp_np ?? {})['li'] = 0;
-        while (true) {
-          if (((s as any).temp_np ?? 0)?.['li'] < Object.keys((s as any).temp_np_labels ?? {}).length) {
-            ((s as any).temp_np = (s as any).temp_np ?? {})['lbl'] = qspUntranslated(s, "temp_np_labels[temp_np['li']]", { location: "archetypes" });
-            ((s as any).temp_np = (s as any).temp_np ?? {})['out'] = ((s as any).temp_np['out'] ?? 0) + ('&nbsp;&nbsp;' + (((s as any).temp_np ?? 0)?.['lbl']) + ': ' + qspFunc(s, 'archetypes', 'fmt_pts', (((s as any).temp_np_lbl_delta ?? 0)?.[(((s as any).temp_np ?? 0)?.['lbl'])] ?? 0), 'fine') + '<br>');
-            ((s as any).temp_np = (s as any).temp_np ?? {})['li'] = ((s as any).temp_np['li'] ?? 0) + (1);
-            break;
-          }
-        }
-      }
-      alert((((s as any).temp_np ?? 0)?.['out']));
-      (s as any).temp_np = undefined;
-      (s as any).temp_np_cats = undefined;
-      (s as any).temp_np_cat_disp = undefined;
-      (s as any).temp_np_cat_delta = undefined;
-      (s as any).temp_np_labels = undefined;
-      (s as any).temp_np_lbl_delta = undefined;
-      return;
-      alert('bad archetype function, this line shouldn\'t be reached: \'' + ((s as any).locArgs?.[0] ?? 0) + '\'');
+    ((s as any).temp_np = (s as any).temp_np ?? {})['i'] = ((s as any).temp_np['i'] ?? 0) + (1);
+  }
+  ((s as any).temp_np = (s as any).temp_np ?? {})['out'] = '<font color="' + (((s as any).theme_hex ?? 0)?.[(((s as any).temp_np ?? 0)?.['archetype'])] ?? 0) + '"><b>' + (((s as any).temp_np ?? 0)?.['disp']) + '</b></font> ' + qspFunc(s, 'archetypes', 'fmt_pts', (((s as any).temp_np ?? 0)?.['total']), 'fine') + ' this update<br><br>';
+  ((s as any).temp_np = (s as any).temp_np ?? {})['ci'] = 0;
+  while (((s as any).temp_np ?? 0)?.['ci'] < 9) {
+    ((s as any).temp_np = (s as any).temp_np ?? {})['ck'] = ((s as any).temp_np_cats ?? 0)[((s as any).temp_np ?? 0)?.['ci']];
+    if (((s as any).temp_np_cat_delta ?? 0)[((s as any).temp_np ?? 0)?.['ck']] !== 0) {
+      ((s as any).temp_np = (s as any).temp_np ?? {})['out'] = ((s as any).temp_np['out'] ?? 0) + ('&nbsp;&nbsp;' + (((s as any).temp_np_cat_disp ?? 0)?.[(((s as any).temp_np ?? 0)?.['ck'])] ?? 0) + ': ' + qspFunc(s, 'archetypes', 'fmt_pts', (((s as any).temp_np_cat_delta ?? 0)?.[(((s as any).temp_np ?? 0)?.['ck'])] ?? 0), 'fine') + '<br>');
+    }
+    ((s as any).temp_np = (s as any).temp_np ?? {})['ci'] = ((s as any).temp_np['ci'] ?? 0) + (1);
+  }
+  if (((s as any).temp_np_cat_delta ?? 0)?.['decay'] !== 0) {
+    ((s as any).temp_np = (s as any).temp_np ?? {})['out'] = ((s as any).temp_np['out'] ?? 0) + ('&nbsp;&nbsp;Passive decay: ' + qspFunc(s, 'archetypes', 'fmt_pts', (((s as any).temp_np_cat_delta ?? 0)?.['decay']), 'fine') + '<br>');
+  }
+  if (((s as any).temp_np_cat_delta ?? 0)?.['opposition'] !== 0) {
+    ((s as any).temp_np = (s as any).temp_np ?? {})['out'] = ((s as any).temp_np['out'] ?? 0) + ('&nbsp;&nbsp;Opposition: ' + qspFunc(s, 'archetypes', 'fmt_pts', (((s as any).temp_np_cat_delta ?? 0)?.['opposition']), 'fine') + '<br>');
+  }
+  if (Object.keys((s as any).temp_np_labels ?? {}).length > 0) {
+    ((s as any).temp_np = (s as any).temp_np ?? {})['out'] = ((s as any).temp_np['out'] ?? 0) + ('<br>');
+    ((s as any).temp_np = (s as any).temp_np ?? {})['li'] = 0;
+    while (((s as any).temp_np ?? 0)?.['li'] < Object.keys((s as any).temp_np_labels ?? {}).length) {
+      ((s as any).temp_np = (s as any).temp_np ?? {})['lbl'] = ((s as any).temp_np_labels ?? 0)[((s as any).temp_np ?? 0)?.['li']];
+      ((s as any).temp_np = (s as any).temp_np ?? {})['out'] = ((s as any).temp_np['out'] ?? 0) + ('&nbsp;&nbsp;' + (((s as any).temp_np ?? 0)?.['lbl']) + ': ' + qspFunc(s, 'archetypes', 'fmt_pts', (((s as any).temp_np_lbl_delta ?? 0)?.[(((s as any).temp_np ?? 0)?.['lbl'])] ?? 0), 'fine') + '<br>');
+      ((s as any).temp_np = (s as any).temp_np ?? {})['li'] = ((s as any).temp_np['li'] ?? 0) + (1);
     }
   }
+  alert((((s as any).temp_np ?? 0)?.['out']));
+  (s as any).temp_np = undefined;
+  (s as any).temp_np_cats = undefined;
+  (s as any).temp_np_cat_disp = undefined;
+  (s as any).temp_np_cat_delta = undefined;
+  (s as any).temp_np_labels = undefined;
+  (s as any).temp_np_lbl_delta = undefined;
+  return;
+  alert('bad archetype function, this line shouldn\'t be reached: \'' + ((s as any).locArgs?.[0] ?? 0) + '\'');
   scene.build();
 }
 

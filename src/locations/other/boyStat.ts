@@ -5,11 +5,9 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') !== '') {
-    qspCall(s, 'npcStat', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0));
-  } else {
-    qspCall(s, 'npcStat', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0));
-  }
+  const id = String((s as any).locArgs?.[0] ?? '');
+  const index = String((s as any).locArgs?.[1] ?? '') === '' ? '0' : String((s as any).locArgs?.[1] ?? '');
+  qspCall(s, 'npcStat', id, index);
   scene.build();
 }
 

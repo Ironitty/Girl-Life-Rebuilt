@@ -155,19 +155,19 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
         (s as any).grid_count = 0;
       }
       (s as any).i_ballet = ((s as any).i_ballet ?? 0) + (1);
-      (s as any).grid_text = ((s as any).grid_text ?? 0) + ('</table></center>');
-      scene.text(`${((s as any).grid_text ?? '')}`);
-      (s as any).i_ballet = undefined;
-      (s as any).i_npc_end = undefined;
-      (s as any).grid_count = undefined;
-      (s as any).grid_text = undefined;
-      ((s as any).balletqw = (s as any).balletqw ?? {})['res_mg'] = 1;
-      scene.actions([
-        { label: 'Leave communal room', handler: (st: GameState) => {
+    } while (((s as any).i_ballet ?? 0) <= ((s as any).i_npc_end ?? 0));
+    (s as any).grid_text = ((s as any).grid_text ?? 0) + ('</table></center>');
+    scene.text(`${((s as any).grid_text ?? '')}`);
+    (s as any).i_ballet = undefined;
+    (s as any).i_npc_end = undefined;
+    (s as any).grid_count = undefined;
+    (s as any).grid_text = undefined;
+    ((s as any).balletqw = (s as any).balletqw ?? {})['res_mg'] = 1;
+    scene.actions([
+      { label: 'Leave communal room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['pushkin_ballet_res', 'hallway'] },
-      ]);
-    } while (((s as any).i_ballet ?? 0) <= ((s as any).i_npc_end ?? 0));
+    ]);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'kitchen_birthday') {
     ((s as any).birthday_party = (s as any).birthday_party ?? {})['events'] = 2;

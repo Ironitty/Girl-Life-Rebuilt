@@ -26,6 +26,7 @@ function getDB(): Promise<IDBDatabase> {
 }
 
 export async function saveGame(slot: number, state: GameState): Promise<void> {
+  if (!Number.isFinite(slot)) return;
   const db = await getDB();
   const json = serializeSave(state, slot);
 
@@ -38,6 +39,7 @@ export async function saveGame(slot: number, state: GameState): Promise<void> {
 }
 
 export async function loadGame(slot: number): Promise<Partial<GameState> | null> {
+  if (!Number.isFinite(slot)) return null;
   const db = await getDB();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(STORE_NAME, 'readonly');
@@ -80,6 +82,7 @@ export async function listSaves(): Promise<{ slot: number; savedAt: number; loc:
 }
 
 export async function deleteSave(slot: number): Promise<void> {
+  if (!Number.isFinite(slot)) return;
   const db = await getDB();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(STORE_NAME, 'readwrite');

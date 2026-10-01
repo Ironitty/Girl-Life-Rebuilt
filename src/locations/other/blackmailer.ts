@@ -467,19 +467,20 @@ function enterAddBlackmailSelfie(s: GameState, scene: SceneBuilder): void {
       if (((s as any).blackmailQW ?? 0)['selfie_image_' + (((s as any).temp_i ?? 0))] !== '') {
         (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
         if (((s as any).temp_i ?? 0) < 10) {
-          break;
+          continue;
         }
         (s as any).temp_i = (Math.floor(Math.random() * 10) + 0);
       }
     }
-    ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_image_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[1] ?? 0);
-    ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_location_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[2] ?? 0);
-    ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_dress_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[3] ?? 0);
-    ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_LocIndex_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[4] ?? 0);
-    ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_number_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[5] ?? 0);
-    ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['total_material'] = ((s as any).blackmailQW['total_material'] ?? 0) + (1);
-    (s as any).temp_i = undefined;
+    break;
   }
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_image_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_location_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_dress_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[3] ?? 0);
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_LocIndex_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[4] ?? 0);
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_number_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[5] ?? 0);
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['total_material'] = ((s as any).blackmailQW['total_material'] ?? 0) + (1);
+  (s as any).temp_i = undefined;
   scene.build();
 }
 
@@ -692,7 +693,7 @@ function enterChooseRandomCosplayUsed(s: GameState, scene: SceneBuilder): void {
     if ((!((String(((s as any).blackmailQW ?? 0)?.['cosplays_used']).indexOf(String(';' + ((String(100 + ((s as any).temp_rand ?? 0)).slice((2)-1))) + ';'))) + 1))) {
       (s as any).temp_tries = ((s as any).temp_tries ?? 0) + (1);
       if (((s as any).temp_tries ?? 0) < 1000) {
-        break;
+        continue;
       } else {
         (s as any).temp_rand = 7;
       }

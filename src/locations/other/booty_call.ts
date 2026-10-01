@@ -43,10 +43,11 @@ function enterBootyCallScheduler(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).temp_bc_i = ((s as any).temp_bc_i ?? 0) + (1);
-      break;
+      continue;
     }
     (s as any).temp_bc_i = undefined;
     (s as any).temp_bc_id = undefined;
+    break;
   }
   scene.build();
 }
@@ -168,10 +169,11 @@ function enterHotelLinks(s: GameState, scene: SceneBuilder): void {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).lover ?? 0)?.[String((s as any).temp_bc_i ?? 0)] ?? 0)]; enterGenerateHotelLink(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       (s as any).temp_bc_i = ((s as any).temp_bc_i ?? 0) + (1);
-      break;
+      continue;
     }
     (s as any).temp_bc_i = undefined;
     (s as any).temp_bc_id = undefined;
+    break;
   }
   scene.build();
 }
@@ -484,10 +486,11 @@ function enterSMSRaiser(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).temp_bc_i = ((s as any).temp_bc_i ?? 0) + (1);
-      break;
+      continue;
     }
     (s as any).temp_bc_i = undefined;
     (s as any).temp_bc_id = undefined;
+    break;
   }
   scene.build();
 }

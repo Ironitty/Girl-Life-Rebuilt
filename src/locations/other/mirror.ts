@@ -396,21 +396,40 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).temp_routine_index = ((s as any).temp_routine_index ?? 0) + (1);
-    qspCall(s, 'stat', '');
-    (s as any).serv = undefined;
-    (s as any).temp_routine_index = undefined;
-    (s as any).temp_max_cosmetic_routines = undefined;
-    scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((((s as any).newstylemirror ?? 0)) ? ('Change to the old style mirror') : ('Change to the new style mirror')) ?? ''), handler: (st: GameState) => {
+  } while (((s as any).temp_routine_index ?? 0) <= ((s as any).temp_max_cosmetic_routines ?? 0));
+  qspCall(s, 'stat', '');
+  (s as any).serv = undefined;
+  scene.actions([
+    { label: '', labelFn: (s: GameState) => String(((((s as any).newstylemirror ?? 0)) ? ('Change to the old style mirror') : ('Change to the new style mirror')) ?? ''), handler: (st: GameState) => {
     (st as any).newstylemirror = ((((st as any).newstylemirror ?? 0)) ? (0) : (1));
   }, goto: ['mirror', 'start'] },
-    ]);
-  } while (((s as any).temp_routine_index ?? 0) <= ((s as any).temp_max_cosmetic_routines ?? 0));
+  ]);
+  (s as any).temp_routine_index = undefined;
+  (s as any).temp_max_cosmetic_routines = undefined;
   scene.actions([
     { label: 'Move away from the mirror', goto: ['mirror', 'fin'] },
     { label: 'Manage your custom make-up routines', handler: (st: GameState) => {
     qspCall(st, 'mirror', '');
   } },
+  ]);
+  scene.build();
+}
+
+function enterBrush(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_off = 1;
+  (s as any).minut = ((s as any).minut ?? 0) + Math.min(15, Math.max(1, ((s as any).pcs_hairlng ?? 0) / 80));
+  (s as any).pcs_hairbsh = 1;
+  const backTarget = (((s as any).mirrorloc ?? '') === 'mirror') ? 'start' : 'fin';
+  if (((s as any).newstylemirror ?? 0) === 1) {
+    const avatar = `<img ${((s as any).set_imgh ?? '')} src="${qspFunc(s, '$face_image', '')}">`;
+    const back = `<a href="#" onclick="window.__gameStore.getState().doGoto('mirror', '${backTarget}'); return false;"><img src="images/system/icons/action/back.png"></a>`;
+    scene.text(`<center><table align=center cellspacing=0 cellpadding=0><tr><td align=center colspan=15><center>${avatar}</center></td></tr><tr><td colspan=15><hr></td></tr><tr><td colspan=10></td><td>${back}</td><td colspan=4></td></tr></table></center>`);
+  } else {
+    scene.img(`${qspFunc(s, '$face_image', '')}`);
+    scene.text('You brush your hair.');
+  }
+  scene.actions([
+    { label: 'Finish', goto: ['mirror', backTarget] },
   ]);
   scene.build();
 }
@@ -460,6 +479,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   switch (arg) {
     case 'start':
       enterStart(s, scene);
+      break;
+    case 'brush':
+      enterBrush(s, scene);
       break;
     case 'get_max_cosmetic_routines':
       enterGetMaxCosmeticRoutines(s, scene);

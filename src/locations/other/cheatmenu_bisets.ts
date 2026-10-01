@@ -490,7 +490,7 @@ function enterCsMainAdvanced2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_cmd_path ?? 0) === '') {
     (s as any).temp_cmd_path = 'images/pc/body/shape';
   }
-  (s as any).temp_cmd_path = ((s as any).temp_cmd_path ?? 0) + ('/\' + $cheatVars[\'fix_biset_' + ((s as any).cmbs_set ?? 0) + '_folder\'');
+  (s as any).temp_cmd_path = ((s as any).temp_cmd_path ?? 0) + ('/' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_folder']));
   (s as any).temp_cmd_subpath = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_path_' + String(((s as any).cmdbs_class_str ?? 0))]);
   if (((s as any).temp_cmd_subpath ?? 0) === '') {
     (s as any).temp_cmd_subpath = qspFunc(s, 'cheatmenu_bisets', 'cs_get_default_subpath', ((s as any).cmbs_set ?? 0), ((s as any).cmbs_class ?? 0));
@@ -594,7 +594,7 @@ function enterGetPregsetLink(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_cmd_path ?? 0) === '') {
     (s as any).temp_cmd_path = 'images/pc/body/shape';
   }
-  (s as any).temp_cmd_path = ((s as any).temp_cmd_path ?? 0) + ('/\' + $cheatVars[\'fix_biset_' + ((s as any).cmbs_set ?? 0) + '_folder\'');
+  (s as any).temp_cmd_path = ((s as any).temp_cmd_path ?? 0) + ('/' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_folder']));
   (s as any).temp_cmd_subpath = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_pregpath_' + String(((s as any).preg_set ?? 0))]);
   if (((s as any).temp_cmd_subpath ?? 0) === '') {
     (s as any).temp_cmd_subpath = 'preg/0';
@@ -612,11 +612,11 @@ function enterGetPregsetLink(s: GameState, scene: SceneBuilder): void {
   do {
     (s as any).temp_table = ((s as any).temp_table ?? 0) + (qspFunc(s, 'cheatmenu_bisets', 'get_custom_pregimg', ((s as any).temp_set ?? 0), ((s as any).preg_set ?? 0), ((s as any).cmd_preg_img ?? 0)));
     (s as any).cmd_preg_img = ((s as any).cmd_preg_img ?? 0) + (1);
-    (s as any).cmd_preg_img = undefined;
-    scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));
-    (s as any).temp_set = undefined;
-    (s as any).preg_set = undefined;
   } while (((s as any).cmd_preg_img ?? 0) < 9);
+  (s as any).cmd_preg_img = undefined;
+  scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));
+  (s as any).temp_set = undefined;
+  (s as any).preg_set = undefined;
   scene.actions([
     { label: 'Go Back', handler: (st: GameState) => {
     qspCall(st, 'cheatmenu_bisets', '');
@@ -914,15 +914,16 @@ function enterGetNewSetIndex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).temp_set_index ?? 0)) + '_folder'] !== '') {
       (s as any).temp_set_index = ((s as any).temp_set_index ?? 0) + (1);
       if (((s as any).temp_set_index ?? 0) <= 9) {
-        break;
+        continue;
       } else {
         (s as any).result = (-1);
       }
     } else {
       (s as any).result = ((s as any).temp_set_index ?? 0);
     }
-    (s as any).temp_set_index = undefined;
+    break;
   }
+  (s as any).temp_set_index = undefined;
   scene.build();
 }
 
@@ -981,9 +982,9 @@ function enterImportSetMod(s: GameState, scene: SceneBuilder): void {
       scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027import_set_mod2/u0027, String((s as any).cmbs_import_set ?? /u0027/u0027)); return false;">${(((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] ?? '')}</a>`);
     }
     (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
-    (s as any).mod_i = undefined;
-    scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));
   } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length);
+  (s as any).mod_i = undefined;
+  scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));
   scene.build();
 }
 
@@ -1077,13 +1078,13 @@ function enterCsInitAdvanced(s: GameState, scene: SceneBuilder): void {
       (s as any).cmd_bs_class_str = (String(10000 + ((s as any).cmd_bs_class ?? 0)).slice((2)-1));
       ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).locArgs?.[1] ?? 0)) + '_imgnums_' + String(((s as any).cmd_bs_class_str ?? 0))] = 1;
       (s as any).cmd_adv_str_i = ((s as any).cmd_adv_str_i ?? 0) + (1);
-      (s as any).cmd_adv_bmi_i = ((s as any).cmd_adv_bmi_i ?? 0) + (1);
-      (s as any).cmd_bs_class = undefined;
-      (s as any).cmd_bs_class_str = undefined;
-      (s as any).cmd_adv_bmi_i = undefined;
-      (s as any).cmd_adv_str_i = undefined;
     } while (((s as any).cmd_adv_str_i ?? 0) < 18);
+    (s as any).cmd_adv_bmi_i = ((s as any).cmd_adv_bmi_i ?? 0) + (1);
   } while (((s as any).cmd_adv_bmi_i ?? 0) < 9);
+  (s as any).cmd_bs_class = undefined;
+  (s as any).cmd_bs_class_str = undefined;
+  (s as any).cmd_adv_bmi_i = undefined;
+  (s as any).cmd_adv_str_i = undefined;
   scene.build();
 }
 
@@ -1266,10 +1267,11 @@ function enterCsRemoveImg(s: GameState, scene: SceneBuilder): void {
       if (((s as any).cmd_new_index ?? 0) + 1 < ((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).temp_set ?? 0)) + '_imgnums_' + (((s as any).temp_class_str ?? 0))]) {
         ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_img_' + String(((s as any).temp_class_str ?? 0)) + '_' + String(((s as any).cmd_new_index ?? 0))] = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_img_' + String(((s as any).temp_class_str ?? 0)) + '_' + String(((s as any).cmd_new_index ?? 0)+1)]);
         (s as any).cmd_new_index = ((s as any).cmd_new_index ?? 0) + (1);
-        break;
+        continue;
       }
       qspCall(s, 'array', 'remove_element', '$cheatVars', 'fix_biset_' + ((s as any).temp_set ?? 0) + '_img_' + ((s as any).temp_class_str ?? 0) + '_' + ((s as any).cmd_new_index ?? 0) + '');
       ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_imgnums_' + String(((s as any).temp_class_str ?? 0))] = ((s as any).cheatVars['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_imgnums_' + String(((s as any).temp_class_str ?? 0))] ?? 0) - (1);
+      break;
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_set ?? 0), ((s as any).temp_class ?? 0)]; enterCsMainAdvanced2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1330,36 +1332,37 @@ function enterCsDeleteSet(s: GameState, scene: SceneBuilder): void {
 function enterCsDeleteSet2(s: GameState, scene: SceneBuilder): void {
   (s as any).cmbs_text = 'fix_biset_' + ((s as any).locArgs?.[1] ?? 0) + '_';
   (s as any).cmbs_bmi_i = 0;
+  (s as any).cmbs_i = 0;
   do {
     qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'img_' + ((s as any).cmbs_i ?? 0) + '');
     qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'desc_' + ((s as any).cmbs_i ?? 0) + '');
     (s as any).cmbs_i = ((s as any).cmbs_i ?? 0) + (1);
-    (s as any).cmbs_bmi = 0;
-    do {
-      (s as any).cmbs_stren = 0;
-      do {
-        (s as any).cmbs_class_str = (String(10000 + ((s as any).cmbs_bmi ?? 0) * 100 + ((s as any).cmbs_stren ?? 0)).slice((2)-1));
-        qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'desc_' + ((s as any).cmbs_class_str ?? 0) + '');
-        qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'path_' + ((s as any).cmbs_class_str ?? 0) + '');
-        (s as any).cmbs_i = 0;
-        do {
-          qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'img_' + ((s as any).cmbs_class_str ?? 0) + '_' + ((s as any).cmbs_i ?? 0) + '');
-          (s as any).cmbs_i = ((s as any).cmbs_i ?? 0) + (1);
-          qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'imgnums_' + ((s as any).cmbs_class_str ?? 0) + '');
-          (s as any).cmbs_stren = ((s as any).cmbs_stren ?? 0) + (1);
-          (s as any).cmbs_bmi = ((s as any).cmbs_bmi ?? 0) + (1);
-          qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'folder');
-          qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'path');
-          qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'name');
-          (s as any).cmbs_bmi = undefined;
-          (s as any).cmbs_stren = undefined;
-          (s as any).cmbs_i = undefined;
-          (s as any).cmbs_class_str = undefined;
-          (s as any).cmbs_text = undefined;
-        } while (((s as any).cmbs_i ?? 0) < ((s as any).cheatVars ?? 0)[((s as any).cmbs_text ?? 0) + 'imgnums_' + (((s as any).cmbs_class_str ?? 0))]);
-      } while (((s as any).cmbs_stren ?? 0) < 18);
-    } while (((s as any).cmbs_bmi ?? 0) < 9);
   } while (((s as any).cmbs_i ?? 0) < 9);
+  (s as any).cmbs_bmi = 0;
+  do {
+    (s as any).cmbs_stren = 0;
+    do {
+      (s as any).cmbs_class_str = (String(10000 + ((s as any).cmbs_bmi ?? 0) * 100 + ((s as any).cmbs_stren ?? 0)).slice((2)-1));
+      qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'desc_' + ((s as any).cmbs_class_str ?? 0) + '');
+      qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'path_' + ((s as any).cmbs_class_str ?? 0) + '');
+      (s as any).cmbs_i = 0;
+      do {
+        qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'img_' + ((s as any).cmbs_class_str ?? 0) + '_' + ((s as any).cmbs_i ?? 0) + '');
+        (s as any).cmbs_i = ((s as any).cmbs_i ?? 0) + (1);
+      } while (((s as any).cmbs_i ?? 0) < ((s as any).cheatVars ?? 0)[((s as any).cmbs_text ?? 0) + 'imgnums_' + (((s as any).cmbs_class_str ?? 0))]);
+      qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'imgnums_' + ((s as any).cmbs_class_str ?? 0) + '');
+      (s as any).cmbs_stren = ((s as any).cmbs_stren ?? 0) + (1);
+    } while (((s as any).cmbs_stren ?? 0) < 18);
+    (s as any).cmbs_bmi = ((s as any).cmbs_bmi ?? 0) + (1);
+  } while (((s as any).cmbs_bmi ?? 0) < 9);
+  qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'folder');
+  qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'path');
+  qspCall(s, 'array', 'remove_element', 'cheatVars', ((s as any).cmbs_text ?? 0) + 'name');
+  (s as any).cmbs_bmi = undefined;
+  (s as any).cmbs_stren = undefined;
+  (s as any).cmbs_i = undefined;
+  (s as any).cmbs_class_str = undefined;
+  (s as any).cmbs_text = undefined;
   scene.build();
 }
 

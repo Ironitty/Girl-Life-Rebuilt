@@ -1202,23 +1202,18 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      while (true) {
-        if (((s as any).dealerPoints ?? 0) > 21  &&  ((s as any).numAces ?? 0) > 0) {
-          (s as any).dealerPoints = ((s as any).dealerPoints ?? 0) - (10);
-          (s as any).numAces = ((s as any).numAces ?? 0) - (1);
-          break;
-        }
-        if (((s as any).dealerPoints ?? 0) > 21) {
-          scene.text('<br>BUST!');
-        } else {
-          if (((s as any).dealerPoints ?? 0) === 21  &&  ((s as any).temp_dealer_hand ?? 0)[2] === 0) {
-            scene.text('<br>BLACKJACK!');
-          } else {
-            scene.text(`<br>${((s as any).dealerPoints ?? '')} points`);
-          }
-        }
-      }
     } while (((s as any).temp_dealer_hand ?? 0)?.[String((s as any).i ?? 0)] !== 0);
+    while (((s as any).dealerPoints ?? 0) > 21 && ((s as any).numAces ?? 0) > 0) {
+      (s as any).dealerPoints = ((s as any).dealerPoints ?? 0) - (10);
+      (s as any).numAces = ((s as any).numAces ?? 0) - (1);
+    }
+    if (((s as any).dealerPoints ?? 0) > 21) {
+      scene.text('<br>BUST!');
+    } else if (((s as any).dealerPoints ?? 0) === 21 && ((s as any).temp_dealer_hand ?? 0)[2] === 0) {
+      scene.text('<br>BLACKJACK!');
+    } else {
+      scene.text(`<br>${((s as any).dealerPoints ?? '')} points`);
+    }
   }
   (s as any).i = 0;
   do {
@@ -1228,41 +1223,33 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
       scene.text(`l 'Hand #${((s as any).i ?? '') + 1}:'`);
     }
     (s as any).j = 0;
-    while (true) {
-      if (((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)] !== 0) {
-        scene.img(`${(((s as any).deckImg ?? 0)?.[(((s as any).temp_player_hand ?? 0)?.[((s as any).i ?? '') * 16 + ((s as any).j ?? '')] ?? '')] ?? '')}`);
-        if (((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]] === 1) {
-          ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + (11);
-          (s as any).numAces = ((s as any).numAces ?? 0) + (1);
+    while (((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)] !== 0) {
+      scene.img(`${(((s as any).deckImg ?? 0)?.[(((s as any).temp_player_hand ?? 0)?.[((s as any).i ?? '') * 16 + ((s as any).j ?? '')] ?? '')] ?? '')}`);
+      if (((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]] === 1) {
+        ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + (11);
+        (s as any).numAces = ((s as any).numAces ?? 0) + (1);
+      } else {
+        if (((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]] > 9) {
+          ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + (10);
         } else {
-          if (((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]] > 9) {
-            ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + (10);
-          } else {
-            ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + ((((s as any).deckFace ?? 0)?.[(((s as any).temp_player_hand ?? 0)?.[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)] ?? 0)] ?? 0));
-          }
+          ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + ((((s as any).deckFace ?? 0)?.[(((s as any).temp_player_hand ?? 0)?.[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)] ?? 0)] ?? 0));
         }
-        (s as any).j = ((s as any).j ?? 0) + (1);
-        break;
       }
-      while (true) {
-        if (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] > 21  &&  ((s as any).numAces ?? 0) > 0) {
-          ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) - (10);
-          (s as any).numAces = ((s as any).numAces ?? 0) - (1);
-          break;
-        }
-        if (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] > 21) {
-          scene.text('<br>BUST!');
-        } else {
-          if (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] === 21  &&  ((s as any).temp_player_hand ?? 0)[2] === 0  &&  ((s as any).numHands ?? 0) === 1) {
-            scene.text('<br>BLACKJACK!');
-          } else {
-            scene.text(`<br>${(((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] ?? '')} points |`);
-          }
-        }
-        scene.text(` Bet = ${(((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)] ?? '')} chips<br><br>`);
-        (s as any).i = ((s as any).i ?? 0) + (1);
-      }
+      (s as any).j = ((s as any).j ?? 0) + (1);
     }
+    while (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] > 21 && ((s as any).numAces ?? 0) > 0) {
+      ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) - (10);
+      (s as any).numAces = ((s as any).numAces ?? 0) - (1);
+    }
+    if (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] > 21) {
+      scene.text('<br>BUST!');
+    } else if (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] === 21 && ((s as any).temp_player_hand ?? 0)[2] === 0 && ((s as any).numHands ?? 0) === 1) {
+      scene.text('<br>BLACKJACK!');
+    } else {
+      scene.text(`<br>${(((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] ?? '')} points |`);
+    }
+    scene.text(` Bet = ${(((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)] ?? '')} chips<br><br>`);
+    (s as any).i = ((s as any).i ?? 0) + (1);
   } while (((s as any).i ?? 0) < ((s as any).numHands ?? 0));
   scene.build();
 }

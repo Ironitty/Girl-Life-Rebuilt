@@ -117,13 +117,13 @@ function enterTableGen(s: GameState, scene: SceneBuilder): void {
   (s as any).entry_counter_i = 1;
   (s as any).entry_counter_j = 1;
   (s as any).table_counter = 0;
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     (s as any).table_columns = 3;
   } else {
-    (s as any).table_columns = ((s as any).locArgs?.[1] ?? 0);
+    (s as any).table_columns = Number((s as any).locArgs?.[1] ?? 3);
   }
   (s as any).bjq_temp_table = '<center><table cellspacing="3" bgcolor="' + (((s as any).theme ?? 0)?.['table_bg_alt']) + '" width="80%" align="center">';
-  do {
+  while (((s as any).entry_counter_i ?? 0) < ((s as any).table_gen_max ?? 0)) {
     (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<tr width="100px">');
     do {
       (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<td align="left">');
@@ -132,30 +132,30 @@ function enterTableGen(s: GameState, scene: SceneBuilder): void {
       (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</a>');
       (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</td>');
       (s as any).entry_counter_i = ((s as any).entry_counter_i ?? 0) + (1);
-      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</tr>');
-      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<tr width="100px">');
-      do {
-        (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<td align="left">');
-        (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ((((s as any).loc_name ?? 0)?.[String((s as any).entry_counter_j ?? 0)] ?? 0));
-        (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</td>');
-        (s as any).entry_counter_j = ((s as any).entry_counter_j ?? 0) + (1);
-        (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</tr>');
-        (s as any).table_counter = ((s as any).table_counter ?? 0) + (1);
-        if (((s as any).table_counter ?? 0) === 5) {
-          (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<tr></tr>');
-          (s as any).table_counter = 0;
-        }
-        (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</table></center>');
-        scene.text(`${((s as any).bjq_temp_table ?? '')}`);
-        (s as any).bjq_temp_table = undefined;
-        (s as any).entry_counter_i = undefined;
-        (s as any).entry_counter_j = undefined;
-        (s as any).table_columns = undefined;
-        (s as any).table_counter = undefined;
-        (s as any).table_gen_max = undefined;
-      } while (((s as any).entry_counter_j ?? 0) <= ((s as any).table_gen_max ?? 0)  &&  (((s as any).entry_counter_j ?? 0) % ((s as any).table_columns ?? 0)) !== 0);
-    } while (((s as any).entry_counter_i ?? 0) <= ((s as any).table_gen_max ?? 0)  &&  (((s as any).entry_counter_i ?? 0) % ((s as any).table_columns ?? 0)) !== 0);
-  } while (((s as any).entry_counter_i ?? 0) < ((s as any).table_gen_max ?? 0));
+    } while (((s as any).entry_counter_i ?? 0) <= ((s as any).table_gen_max ?? 0) && (((s as any).entry_counter_i ?? 0) % ((s as any).table_columns ?? 0)) !== 0);
+    (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</tr>');
+    (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<tr width="100px">');
+    do {
+      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<td align="left">');
+      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ((((s as any).loc_name ?? 0)?.[String((s as any).entry_counter_j ?? 0)] ?? 0));
+      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</td>');
+      (s as any).entry_counter_j = ((s as any).entry_counter_j ?? 0) + (1);
+    } while (((s as any).entry_counter_j ?? 0) <= ((s as any).table_gen_max ?? 0) && (((s as any).entry_counter_j ?? 0) % ((s as any).table_columns ?? 0)) !== 0);
+    (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</tr>');
+    (s as any).table_counter = ((s as any).table_counter ?? 0) + (1);
+    if (((s as any).table_counter ?? 0) === 5) {
+      (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('<tr></tr>');
+      (s as any).table_counter = 0;
+    }
+  }
+  (s as any).bjq_temp_table = ((s as any).bjq_temp_table ?? 0) + ('</table></center>');
+  scene.text(`${((s as any).bjq_temp_table ?? '')}`);
+  (s as any).bjq_temp_table = undefined;
+  (s as any).entry_counter_i = undefined;
+  (s as any).entry_counter_j = undefined;
+  (s as any).table_columns = undefined;
+  (s as any).table_counter = undefined;
+  (s as any).table_gen_max = undefined;
   scene.build();
 }
 

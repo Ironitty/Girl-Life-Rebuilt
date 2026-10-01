@@ -677,9 +677,10 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).temp_npcid = undefined;
       (s as any).i = ((s as any).i ?? 0) + (1);
+    } else {
+      (s as any).i = undefined;
       break;
     }
-    (s as any).i = undefined;
   }
   scene.build();
 }

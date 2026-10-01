@@ -1,9 +1,7 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
-import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { GameState, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
@@ -663,49 +661,54 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any)._str = '<center><table border="0" width="800" cellpadding="0" cellspacing="1">';
-  (s as any).food_loop = 0;
+  const __foodMenuParts: string[] = [];
+  let __foodLoop = 0;
+  const __foodMenuRows = Math.floor(Object.keys((s as any)._drink ?? {}).length / 3);
   do {
     (s as any).temp_bcolor = qspFunc(s, 'themes', 'alt_color', ((s as any).temp_bcolor ?? 0));
-    (s as any)._str = ((s as any)._str ?? 0) + ('<tr>');
-    if (((s as any)._eat ?? 0)[(((s as any).food_loop ?? 0)) + ',name'] === '') {
-      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="40%" align="center"></td>');
-      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="right"></td>');
+    __foodMenuParts.push('<tr>');
+    const __eatName = String(((s as any)._eat ?? {})[String(__foodLoop) + ',name'] ?? '');
+    if (__eatName === '') {
+      __foodMenuParts.push('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="40%" align="center"></td>');
+      __foodMenuParts.push('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="right"></td>');
     } else {
-      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="40%" align="center">' + (((s as any)._eat ?? 0)?.[String(((s as any).food_loop ?? 0)) + ',name']) + '</td>');
-      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="center">');
-      if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "_eat[\u00000\u0000]", { location: "food_menu" })) === 1) {
-        (s as any)._str = ((s as any)._str ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_ate +=1; return s; }); window.__gameStore.getState().doGoto(\u0027food\u0027, \u0027$_eat[/\u0027\u0027 + String((s as any).food_loop ?? \u0027\u0027), \u0027type\u0027]\u0027); return false;">' + qspFunc(s, 'money', 'string_price', (((s as any)._eat ?? 0)?.[String(((s as any).food_loop ?? 0)) + ',price'])) + '</a>');
+      const __eatPrice = ((s as any)._eat ?? {})[String(__foodLoop) + ',price'] ?? 0;
+      const __eatType = String(((s as any)._eat ?? {})[String(__foodLoop) + ',type'] ?? '');
+      __foodMenuParts.push('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="40%" align="center">' + __eatName + '</td>');
+      __foodMenuParts.push('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="center">');
+      if (qspFunc(s, 'money', 'can_afford', __eatPrice) === 1) {
+        __foodMenuParts.push('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_ate +=1; return s; }); window.__gameStore.getState().doGoto(\'food\', \'' + __eatType + '\'); return false;">' + qspFunc(s, 'money', 'string_price', __eatPrice) + '</a>');
       } else {
-        (s as any)._str = ((s as any)._str ?? 0) + (qspFunc(s, 'money', 'string_price', (((s as any)._eat ?? 0)?.[String(((s as any).food_loop ?? 0)) + ',price'])));
+        __foodMenuParts.push(String(qspFunc(s, 'money', 'string_price', __eatPrice)));
       }
-      (s as any)._str = ((s as any)._str ?? 0) + ('</td>');
+      __foodMenuParts.push('</td>');
     }
-    (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor ?? 0)) + ' border="0" width="50" cellpadding="0" cellspacing="0"></td>');
-    if (((s as any)._drink ?? 0)[(((s as any).food_loop ?? 0)) + ',name'] === '') {
-      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="40%" align="center"></td>');
-      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="right"></td>');
+    __foodMenuParts.push('<td bgcolor=' + qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor ?? 0)) + ' border="0" width="50" cellpadding="0" cellspacing="0"></td>');
+    const __drinkName = String(((s as any)._drink ?? {})[String(__foodLoop) + ',name'] ?? '');
+    if (__drinkName === '') {
+      __foodMenuParts.push('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="40%" align="center"></td>');
+      __foodMenuParts.push('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="right"></td>');
     } else {
-      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="40%" align="center">' + (((s as any)._drink ?? 0)?.[String(((s as any).food_loop ?? 0)) + ',name']) + '</td>');
-      (s as any)._str = ((s as any)._str ?? 0) + ('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="center">');
-      if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "_drink[\u00000\u0000]", { location: "food_menu" })) === 1) {
-        (s as any)._str = ((s as any)._str ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_drank +=1; return s; }); window.__gameStore.getState().doGoto(\u0027beverage\u0027, \u0027$_drink[/\u0027\u0027 + String((s as any).food_loop ?? \u0027\u0027), \u0027type\u0027]\u0027); return false;">' + qspFunc(s, 'money', 'string_price', (((s as any)._drink ?? 0)?.[String(((s as any).food_loop ?? 0)) + ',price'])) + '</a>');
+      const __drinkPrice = ((s as any)._drink ?? {})[String(__foodLoop) + ',price'] ?? 0;
+      const __drinkType = String(((s as any)._drink ?? {})[String(__foodLoop) + ',type'] ?? '');
+      __foodMenuParts.push('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="40%" align="center">' + __drinkName + '</td>');
+      __foodMenuParts.push('<td bgcolor=' + ((s as any).temp_bcolor ?? 0) + ' height="30" width="10%" align="center">');
+      if (qspFunc(s, 'money', 'can_afford', __drinkPrice) === 1) {
+        __foodMenuParts.push('<a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_drank +=1; return s; }); window.__gameStore.getState().doGoto(\'beverage\', \'' + __drinkType + '\'); return false;">' + qspFunc(s, 'money', 'string_price', __drinkPrice) + '</a>');
       } else {
-        (s as any)._str = ((s as any)._str ?? 0) + (qspFunc(s, 'money', 'string_price', (((s as any)._drink ?? 0)?.[String(((s as any).food_loop ?? 0)) + ',price'])));
+        __foodMenuParts.push(String(qspFunc(s, 'money', 'string_price', __drinkPrice)));
       }
-      (s as any)._str = ((s as any)._str ?? 0) + ('</td>');
+      __foodMenuParts.push('</td>');
     }
-    (s as any)._str = ((s as any)._str ?? 0) + ('</tr>');
-    (s as any).food_loop = ((s as any).food_loop ?? 0) + (1);
-    (s as any)._str = ((s as any)._str ?? 0) + ('</table></center>');
-    if (String((s as any).locArgs?.[0] ?? '') !== 'no_image') {
-      scene.text('<center>Please place your order</center><br><br>');
-    }
-    scene.text(String((s as any)._str ?? ''));
-    (s as any)._str = undefined;
-    (s as any).food_loop = undefined;
-    (s as any).temp_bcolor = undefined;
-  } while (((s as any).food_loop ?? 0) < Object.keys((s as any)._drink ?? {}).length/3);
+    __foodMenuParts.push('</tr>');
+    __foodLoop += 1;
+  } while (__foodLoop < __foodMenuRows);
+  __foodMenuParts.push('</table></center>');
+  if (String((s as any).locArgs?.[0] ?? '') !== 'no_image') {
+    scene.text('<center>Please place your order</center><br><br>');
+  }
+  scene.text(__foodMenuParts.join(''));
+  (s as any).temp_bcolor = undefined;
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any)._drink = undefined;

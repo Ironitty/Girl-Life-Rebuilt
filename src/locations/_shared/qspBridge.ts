@@ -68,8 +68,31 @@ export function hasLocation(name: string): boolean {
   return getLocation(name) != null;
 }
 
+function resolveQspVar(s: GameState, value: unknown): string {
+  const raw = str(value);
+  if (raw.startsWith('$')) {
+    return str((s as any)[raw.slice(1)] ?? raw);
+  }
+  return raw;
+}
+
+function callNpcStat(s: GameState, id: unknown, index: unknown, extra?: unknown): void {
+  const savedLocArgs = (s as any).locArgs;
+  (s as any).locArgs = [resolveQspVar(s, id), resolveQspVar(s, index), extra === undefined ? '' : resolveQspVar(s, extra)];
+  invoke(s, 'npcStat', resolveQspVar(s, id));
+  (s as any).locArgs = savedLocArgs;
+}
+
 export function qspCall(s: GameState, module: string, func: string, ...args: unknown[]): void {
   switch (module) {
+    case 'boyStat': {
+      callNpcStat(s, func, args[0] ?? '0', args[1]);
+      return;
+    }
+    case 'npcStat': {
+      callNpcStat(s, func, args[0] ?? '0', args[1]);
+      return;
+    }
     case 'arousal': {
       if (func === 'end') {
         arousalStatsEnd(s, str(args[1]));
@@ -1040,6 +1063,16 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
       }
       warn(module, func, args);
       return 0;
+    }
+    case 'cleanHTML': {
+      let result = str(args[0]).trim();
+      result = result.split('\n').join('');
+      result = result.split('  ').join('');
+      if (num(args[1] ?? 0) === 0) {
+        result = result.split('<tr></tr>').join('');
+        result = result.split('<td></td>').join('');
+      }
+      return result;
     }
     default:
       warn(module, func, args);

@@ -9,16 +9,30 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModelPortraits(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[1] = 'Anastasia P.\'    &  $temp_base_ranking_link[1] = \'anastasia';
-  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[2] = 'Katherine A.\'    &  $temp_base_ranking_link[2] = \'katherine';
-  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[3] = 'Emily R.\'      &  $temp_base_ranking_link[3] = \'emily';
-  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[4] = 'Jeff M.\'      &  $temp_base_ranking_link[4] = \'jeff';
-  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[5] = 'Miranda K.\'    &  $temp_base_ranking_link[5] = \'miranda';
-  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[6] = 'Lily I.\'      &  $temp_base_ranking_link[6] = \'lily';
-  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[7] = 'Mila A.\'      &  $temp_base_ranking_link[7] = \'mila';
-  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[8] = 'Mari E.\'      &  $temp_base_ranking_link[8] = \'mari';
-  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[9] = 'Anushka K.\'    &  $temp_base_ranking_link[9] = \'anushka';
-  ((s as any).temp_base_ranking_name = (s as any).temp_base_ranking_name ?? {})[10] = 'Olga K.\'      &  $temp_base_ranking_link[10] = \'olga';
+  (s as any).temp_base_ranking_name = {
+    1: 'Anastasia P.',
+    2: 'Katherine A.',
+    3: 'Emily R.',
+    4: 'Jeff M.',
+    5: 'Miranda K.',
+    6: 'Lily I.',
+    7: 'Mila A.',
+    8: 'Mari E.',
+    9: 'Anushka K.',
+    10: 'Olga K.',
+  };
+  (s as any).temp_base_ranking_link = {
+    1: 'anastasia',
+    2: 'katherine',
+    3: 'emily',
+    4: 'jeff',
+    5: 'miranda',
+    6: 'lily',
+    7: 'mila',
+    8: 'mari',
+    9: 'anushka',
+    10: 'olga',
+  };
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).model ?? 0)?.['rank'])]; enterSetAlbumText(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).model_i = 1;
@@ -29,10 +43,10 @@ function enterModelPortraits(s: GameState, scene: SceneBuilder): void {
       scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, (((s as any).temp_base_ranking_link ?? 0)?.[String((s as any).model_i ?? 0)] ?? /u0027/u0027)); return false;">${((s as any).model_i ?? '')}. ${(((s as any).temp_base_ranking_name ?? 0)?.[String((s as any).model_i ?? 0)] ?? '')}</a>`);
     }
     (s as any).model_i = ((s as any).model_i ?? 0) + (1);
-    (s as any).temp_base_ranking_name = undefined;
-    (s as any).temp_base_ranking_link = undefined;
-    (s as any).model_i = undefined;
   } while (((s as any).model_i ?? 0) < 11);
+  (s as any).temp_base_ranking_name = undefined;
+  (s as any).temp_base_ranking_link = undefined;
+  (s as any).model_i = undefined;
   scene.actions([
     { label: 'Move away', goto: ['foto', 'studio'] },
   ]);

@@ -368,7 +368,7 @@ async function main() {
       }
       if (crashed) {
         console.log(`CRASH at [${i + 1}/${targets.length}] ${label}: ${e.message}`);
-        if (consecutiveFailures >= 5) {
+        if (consecutiveFailures >= 50) {
           const nodeM = process.memoryUsage();
           console.log(`nodeRSS=${(nodeM.rss / 1048576).toFixed(1)}MB(Δ${((nodeM.rss - nodeBaseline.rss) / 1048576).toFixed(1)})`);
           break;

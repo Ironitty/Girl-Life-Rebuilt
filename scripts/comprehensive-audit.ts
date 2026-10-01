@@ -1,13 +1,13 @@
 import { chromium } from 'playwright';
 import { setTimeout as sleep } from 'timers/promises';
 import { createServer, type Server } from 'http';
-import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
+import { readFileSync, readdirSync, statSync, existsSync, createReadStream } from 'fs';
 import { join, basename } from 'path';
 import { execSync } from 'child_process';
 
 const ROOT = '/home/depressedtsukasa/Documents/GL';
 const PORT = 4174;
-const PARALLEL = 28;
+let PARALLEL = 6;
 
 function chunk<T>(arr: T[], n: number): T[][] {
   const chunks: T[][] = [];
@@ -17,9 +17,12 @@ function chunk<T>(arr: T[], n: number): T[][] {
   return chunks;
 }
 
-interface PageCtx { page: any; errors: string[]; renderCount: number }
+interface PageCtx { context: any; page: any; errors: string[]; renderCount: number }
 
-const RELOAD_INTERVAL = 50;
+const RELOAD_INTERVAL = 25;
+// Hard lifetime for a whole browser instance: after this many targets, close the browser
+// and launch a fresh one (proactive recycle, not a timer). Bounds Chromium memory growth.
+const GEN_BATCH_SIZE = 500;
 
 let globalRenderCount = 0;
 const nodeBaseline = process.memoryUsage();
@@ -85,6 +88,16 @@ function logRenderMemory() {
   console.error(`\n[RENDER ${globalRenderCount}] chrome=${chromeMB.toFixed(0)}MB totalRSS=${totalRSS.toFixed(0)}MB totalPSS=${totalPSS.toFixed(0)}MB gpuVRAM=${gpuMB.toFixed(0)}MB shm=${shmUsedMB}MB nodeRSS=${(nodeM.rss / 1048576).toFixed(1)}MB(Δ${nodeDelta}) heap=${(nodeM.heapUsed / 1048576).toFixed(1)}MB(Δ${heapDelta}) | afterGC: heap=${(heapAfterGC / 1048576).toFixed(1)}MB(Δ${heapGCDelta}) | kernel: ${kernel}\n[SMEM] ${smemOut.replace(/\n/g, '\n[SMEM] ')}`);
 }
 
+function evalT(page: any, fn: any, arg?: any, ms = 15000): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error(`eval timeout ${ms}ms`)), ms);
+    page.evaluate(fn, arg).then(
+      (val: any) => { clearTimeout(timer); resolve(val); },
+      (err: any) => { clearTimeout(timer); reject(err); }
+    );
+  });
+}
+
 const args = process.argv.slice(2);
 const skipStatic = args.includes('--skip-static');
 const skipRender = args.includes('--skip-render');
@@ -96,6 +109,8 @@ const startAfterIdx = args.indexOf('--start-after');
 const startAfter = startAfterIdx !== -1 ? args[startAfterIdx + 1] : null;
 const verbose = args.includes('--verbose');
 const stopOnFail = args.includes('--stop-on-fail');
+const parallelIdx = args.indexOf('--parallel');
+if (parallelIdx !== -1) PARALLEL = Math.max(1, parseInt(args[parallelIdx + 1], 10) || PARALLEL);
 
 // Locations where exec: links are legitimately part of dynamically-built data strings
 // (assembled across multiple += operations, or used as dynamic href values inside iif()
@@ -104,7 +119,7 @@ const EXCLUDE_EXEC_DATA = new Set(['SMStext_builder', 'alarmclock', 'bank', 'bar
 const EXCLUDE_FUNC_LITERAL = new Set(['cheatmenu_bisets', 'gopsex', 'havana_crossfit', 'pav_train_hall', 'post_deliveries']);
 const EXCLUDE_EXPR = new Set(['gschool_detention', 'pav_church', 'phone_selfies', 'phone_selfies_popup', 'piercing_management', 'pod_ezd', 'pornschedule', 'sex_ev_sex', 'transport_functions']);
 const EXCLUDE_BG = new Set(['FedorMisc', 'NikoSlut', 'intro_character_creation', 'gschool_lessons4', 'albina_dorm', 'brother2', 'albina_mother_events', 'albina_sex_scenes', 'artem_dorm', 'artem_events_uni', 'artem_nush_sex_uni', 'blackmailer', 'city_mariinsky', 'city_pharmacy', 'core_library', 'din_van', 'courtletter', 'date_casual_meal', 'date_chill', 'date_hangout', 'gad_gpbarn', 'gad_gphouse', 'gopskver', 'grigory', 'hunter_favors', 'intro_initialization_sg', 'journal_portfolio', 'money', 'natbel_uni_dates', 'nichTanya', 'npc_274_init', 'obekt', 'pav_disco_outside', 'pav_pharmacy', 'piercing_management', 'piercing_view', 'pickup_porn', 'prostitution_pavlovsk', 'pushkin_ballet_class', 'pushkin_ballet_res', 'pushkin_ballet_secrets', 'rape_events', 'salon', 'sex_ev_pillow_talk', 'sex_ev_wakeup', 'sexorg', 'skverdin', 'sleep_events', 'sleep_events_magic', 'soniaev1', 'sofia','soniahome', 'stwork3', 'tatiana_lab', 'tattoo_view', 'therapist', 'tryndin', 'uni_dorm_events', 'viktor_sex', 'volleyball_ev']);
-const EXCLUDE_NO_ACTIONS = new Set(['anekdot', 'andrey', 'anushkaev1', 'bra_view', 'brothel_section1', 'casino', 'changingroom', 'city_artisan_quarter', 'city_bobka', 'clothing_view', 'coat_view', 'cuminsidereact', 'date_movie', 'foto', 'gopsex', 'gschool_grounds', 'gschool_lunch', 'hotel_anna_sex', 'HotelRoom', 'hunter_interactions', 'import_export', 'intro_character_custom', 'intro_customization', 'KGZgame', 'komp_cam_MFC_requests', 'kotovEv', 'lesbisubhouse', 'natbel_dates_repeat', 'natbel_friend', 'nichGala', 'nichNicholas', 'nichUtil', 'panty_view', 'pav_complexb3', 'placer_house', 'placer_pav_park', 'purse_view', 'qwIzoldaApp', 'sex_ev_condoms', 'sex_ev_foreplay', 'shoe_view', 'sister', 'transport_functions', 'treeCircle', 'underwear_bodysuit_view', 'uni_lessons_electives2', 'uni_lessons_electives_asian_studies1', 'uni_programs', 'VolleyTrenCentr', 'wakeup']); // anushkaev1: self-referencing goto domnush_fuckpussy // brothel_section1: state-dependent sub-label // city_artisan_quarter: city_mariinsky in EXCLUDE_BG // date_movie: missing sub-label theater_bj_cum_floor (QSP source bug) // gopsex: 3-arg gt 'gopsex','hide','shgopsex_swallow' // gschool_grounds: Go home → homes_properties (in EXCLUDE_UNTRANSLATED) // gschool_lunch: state-dependent redirect // hotel_anna_sex: state-dependent redirect to hotel_anna // hunter_interactions: dynamic text in action label // import_export: undefined in destination text (dynamic vars) // natbel_dates_repeat/natbel_friend: cla command removes buttons before click // nichGala: 3-arg gt 'nichGala','slaveDoc',2 // pav_complexb3: redirect chain // sex_ev_condoms: gs handler pattern // sex_ev_foreplay: state-dependent redirect // uni_lessons_electives_asian_studies1: missing sub-label asian_studies_102_talks (QSP source bug) // uni_programs: state-dependent redirect // wakeup: redirect chain ends at dynamicGoto(prevLoc, prevArg)
+const EXCLUDE_NO_ACTIONS = new Set(['anekdot', 'andrey', 'anushkaev1', 'bra_view', 'brothel_section1', 'casino', 'changingroom', 'city_artisan_quarter', 'city_bobka', 'clothing_view', 'coat_view', 'cuminsidereact', 'date_movie', 'fight_npcdata', 'foto', 'gopsex', 'gschool_grounds', 'gschool_lunch', 'hotel_anna_sex', 'HotelRoom', 'hunter_interactions', 'import_export', 'intro_character_custom', 'intro_customization', 'KGZgame', 'komp_cam_MFC_requests', 'kotovEv', 'lesbisubhouse', 'natbel_dates_repeat', 'natbel_friend', 'nichGala', 'nichNicholas', 'nichUtil', 'panty_view', 'pav_complexb3', 'placer_house', 'placer_pav_park', 'purse_view', 'qwIzoldaApp', 'sex_ev_condoms', 'sex_ev_foreplay', 'shoe_view', 'sister', 'transport_functions', 'treeCircle', 'underwear_bodysuit_view', 'uni_lessons_electives2', 'uni_lessons_electives_asian_studies1', 'uni_programs', 'VolleyTrenCentr', 'wakeup']); // anushkaev1: self-referencing goto domnush_fuckpussy // brothel_section1: state-dependent sub-label // city_artisan_quarter: city_mariinsky in EXCLUDE_BG // date_movie: missing sub-label theater_bj_cum_floor (QSP source bug) // gopsex: 3-arg gt 'gopsex','hide','shgopsex_swallow' // gschool_grounds: Go home → homes_properties (in EXCLUDE_UNTRANSLATED) // gschool_lunch: state-dependent redirect // hotel_anna_sex: state-dependent redirect to hotel_anna // hunter_interactions: dynamic text in action label // import_export: undefined in destination text (dynamic vars) // natbel_dates_repeat/natbel_friend: cla command removes buttons before click // nichGala: 3-arg gt 'nichGala','slaveDoc',2 // pav_complexb3: redirect chain // sex_ev_condoms: gs handler pattern // sex_ev_foreplay: state-dependent redirect // uni_lessons_electives_asian_studies1: missing sub-label asian_studies_102_talks (QSP source bug) // uni_programs: state-dependent redirect // wakeup: redirect chain ends at dynamicGoto(prevLoc, prevArg) // fight_npcdata: data-only helper, no act/text commands in QSP source
 const EXCLUDE_UNTRANSLATED = new Set(['adverts_manager','agentned','albina_dorm','albina_events','albina_starlets','appointments','archetypes','arousal','arousal_funcs','array','autotraidF','band_tour_anushka_SMS','bank','beta_journal_relationships','blackmailer','body','body_structure','booty_call','bras','brother','brother2','brother_shower_sex','BurgerTip','calendar_events','calendar_query','calendar_render','camera','cardgame_durak','cards','carF','casino','casting','cheatmenu_bisets','cheatmenu_din','city_apt_building','city_bobka','city_clinic','city_experimental_trials_list','city_park','cleanHTML','clinic_functions','clothing','clothing_attributes','clothing_QV','coat_attributes','coats','counter','courtletter','cum_call','cum_cleanup','cum_manage','daily_routine','debug_tools','dina','din_bad','dinsexFX','din_van','divan','event','exercise','exp_deg','exp_gain','FedorEv2','FedorEv4','FedorMisc','femcyc','fertility','fetish','fight','fight_npcdata','food_menu','foto_albums','FSstat','gad_gpbath','gad_meadow','gameover','Gnpc2','goplust','gopnew','gopnik_initiation','grades','gschool_groups','gschool_socialchg','hairsalon','havana','help_characters','home_activity','homes_properties','homes_properties_attr','hunters','huntersex','internet_mobile','intro_character_creation','intro_character_custom','intro_city_select','intro_customization','intro_initialization','intro_overview','intro_sg_select','intro_start','jobs','jobs_gigs','journal','KGDparty','katja_dorm','KGDgame','kid','kiosk','masseuse_work','volley_coach','leonid','sex_ev_virgin','sex_ev_shower','selfplay','pav_pool_events','sex_ev_talk','sex_ev_sex','sex_ev_pillow_talk','kotovSex','sex_ev_events','sex_ev_anal','salon','nichTanya','sex_ev_morning','sex_ev_leave','sex_ev_dress_talking','sex_ev_boy_pillow_talk','post_deliveries','mother','model_mari','kendra','volleyball_ev','viktor_sex','vecher','uni_lessons_electives_computers1','uni_lessons_electives_art1','uni_lessons_electives_african_studies1','uni_lessons_electives1','uni_lessons3','uni_dorm','train_incidental','tour_guide','talent_agency','stwork3','stripclub','street_events_general','soniaev1','soniadisco','shop_gm','shop_exhibitionist','sexm','sex_ev_hookup_leave','sex_ev_cowgirl','sex_ev_body_talk','sex_ev_after','rolanapt','rex_party_sexEvents','rape_events','radapt','pushkin_ballet_secrets','praiders_garage_chat','police_station','placer_sex','pirsingsalon','pav_voc_school','pav_hotelWork','pav_discoev1','pav_disco_outside','pav_disco_jocks','pav_disco_coolkids','pav_church','olu','nichApartment','nerd_game_night1','natbel_uni_dates','natbel_kissinggames','natbel_chat','nastja','mirasex','mey_home','metro','ludahome','lesbimistress','lesbidomhouse','komp_cam_MFC_requests_oral','kit_din','kinosvid','katja_uni_sex','katja_uni','katja_nightclub_sex','katja_nightclub_first_orgy_sex','katja_nightclub_first_orgy','katja_city_sex','katja_chat','katjaEv','journal_school','vladimirQW_meet','vasilyhome','vann','uni_shop','uni_lessonsev2','uni_lessons_electives_psychology1','uni_grounds','uni_exams1','tryndin','trainbimbo','tobiQW','therapist_hotel','tatiana_missions','stol','sofia','sleep_events','skverdin','sister_sex_talk','shop_moncheri','shop_dolls','shop','sex_ev_start','sex_ev_reflection','sex_ev_reactions','sex_ev_pillow_talk2','sex_ev_miss','sex_ev_doggy','sex_ev_cum','rex_party_firstTime','pushkin_ballet_evt','pre_sleep_events','praiders_garage','post_events','pornfilm','petkaev','pav_train_hall','pav_shared_yakov','pav_shared_apt','pav_pharmacy','pav_parkev1','pav_library_nerdstudy','pav_lake','pav_disco_sex','pav_disco','pav_aptcourtev','nichKitchen','natkolEv','music_delparco','mother_chats','miroslava','metro_events','masseuse_break','lezbsex','larek','lact_bp','komp','kafesvid','zoya_chat','wakeup_events','volley_coach_shower','vanr2x','uni_lessonsev1','uni_exams4','trFatherMisha','taxi','svidboy','street_walker','komp_assbook','komp_cam_functions','komp_cam_MFC_requests_two','lover','lover_call','lover_change','lover_meet','math','medical_din','_menu_character','_menu_looks','_menu_settings','mey_tamara_events','mey_vika_events','mirror','misha','mitkabuh','mitkabuh_group','mitkasex','nerd_game_night','nichUtil','NikoDates','NikoDreams','NikoEv2','NikoMeyHome','NikoSlut','NikoWhore','nogorslut','npc','NPCChanger','npcgeneratec','npc_get_preference','npcpreservec','npc_set_preference','npcStat','outdoors','outfit','pain','panties','pattest','pav_beach_chat','pav_church2','pav_disco_classmates','pavlin','pav_park_sex','paysex','phone_selfies','phone_selfies_popup','placer_house','pod_ezd','pornhist','pornschedule','pornstudio','portnoi','post_office','progressbar','pronouns','Prostitute','prostitution_functions','purse_attributes','random','rex_party_smallEvents','saveupdater','schedule','set_npc_attraction','sex','sexdvoe','sex_ev_favorite_part','shoe_attributes','shoes','shop_pussycats','shop_utils','shortgs','sister_chat','SMS_selfies','SMStext_builder','Snpc','spell','spellBook','spellList','stallion','stat','stat_display','stat_display_compute','stat_display_menu','stat_sklattrib','string','stripclub_schedule','stwork2','succubus','tailor','telefon','therapist','train','therapist_home','therapist_reminder','time','traits','underwear_attributes','underwear_bodysuits','uni_library','uniutil','vasily_home_sex','wardrobe','washer','willpower','yesgorslut','zsoft_gopskverGorSlut']);
 const EXCLUDE_JS_ERRORS = new Set<string>(['agentned', 'archetypes', 'array', 'bed_events', 'bed_get_out', 'bed_get_out_events', 'bus', 'calendar_schedule', 'date_after', 'date_ev', 'metro', 'sex_ev_leave', 'beta_journal', 'blackmailer', 'body_desc', 'booty_call', 'cheatmenu_bisets', 'city_pharmacy', 'court_functions', 'daily_routine', 'date_talk', 'debug_tools', 'dina', 'dinSex', 'dream_events', 'fame', 'fertility', 'fight', 'grades', 'gschool_events', 'havana_crossfit', 'homes_properties', 'internet_mobile', 'intro_character_custom', 'intro_customization', 'jobs', 'kickboxing_funcs', 'library_functions', 'LOCA', 'KGDgame', 'KGDparty', 'NPCChanger', 'lover', 'lover_call', 'music_bedroompractice', 'newspaper', 'nichUtil', 'npc_get_preference', 'npc_reactions', 'npc_set_preference', 'npcrnamefile', 'obj_din', 'outfit', 'pav_hotelWork', 'pav_pharmacy', 'paysex', 'piercing_management', 'pre_sleep_events', 'quest_data_a274', 'prostitution_car_sex', 'prostitution_functions', 'prostitution_pavlovsk', 'random', 'rape_events', 'sex_ev_after', 'sex_ev_anal', 'sex_ev_cowgirl', 'sex_ev_cum', 'sex_ev_doggy', 'sex_ev_miss', 'sex_ev_stats', 'shop', 'shop_utils', 'sex_ev_events', 'shortgs', 'sleep', 'starenie', 'tailor', 'sleep_events', 'spell', 'street_events_general', 'succubus', 'sweat', 'telefon', 'themes', 'uni_dorm', 'uni_dorm_events', 'vanrPar', 'wakeup_events', 'wardrobe', '_menu_settings']); // uni_dorm_events: "Keep going" handler reads uni_dorm['floor'] but qspCall('arousal'/'stat') during render resets it to undefined
 const EXCLUDE_RENDER = new Set(['HotelRoom', 'bus', 'cardgame_durak', 'casino', 'cheatmenu_din', 'city_clinic', 'city_coffee_hole', 'city_hotel', 'daily_routine', 'din_bad', 'gad_swamp_yard', 'intro_initialization', 'intro_initialization_city', 'intro_overview', 'intro_sg', 'intro_sg_select', 'intro_sg_select_custom', 'intro_start', 'intro_uni_tg', 'item_stock_db', 'jobs', 'jobs_gigs', 'jobs_list', 'journal', 'journal_NPC_information', 'journal_school', 'kafesvid', 'katjaEv', 'katja_chat', 'katja_city_sex', 'katja_dorm', 'katja_meynold_schedule', 'katja_nightclub_first_orgy', 'katja_nightclub_first_orgy_sex', 'katja_party', 'katja_uni', 'KGDparty', 'katja_nightclub_sex', 'kotovSex', 'lact_bp', 'lact_lib', 'lover_living', 'map', 'map_view', 'mod_system', 'money', 'pav_shared_apt', 'phone_selfies', 'pornhist', 'pornschedule', 'shop', 'sex_ev_start']); // bus: NaN in text when reached via gad_road action (state-dependent, not reproducible in isolation); gad_swamp_yard: daytime_flavor_events navigates to unported hunter_interactions location; sex_ev_start: NaN from dynamic text vars (npcdesc, Xec) not in TEST_STATE; map/map_view: NaN from dynamic text vars not in TEST_STATE
@@ -304,10 +319,51 @@ const TEST_STATE: Record<string, unknown> = {
   defpursetype: [] as string[], defpursenumber: [] as number[],
 };
 
-function startMemoryLogger(browser: any): () => void {
+function getMemoryStats() {
+  const nodeM = process.memoryUsage();
+  let chromeMB = 0;
+  try {
+    chromeMB = parseFloat(execSync("ps aux | grep -i 'chrome' | grep -v grep | awk '{sum+=$6} END {print sum/1024}'", { encoding: 'utf8', timeout: 5000 }).trim()) || 0;
+  } catch {}
+  let memAvailMB = 0;
+  let swapUsedMB = 0;
+  try {
+    const out = execSync('free -m | grep -E "Mem|Swap"', { encoding: 'utf8', timeout: 5000 }).trim();
+    for (const l of out.split('\n')) {
+      const parts = l.split(/\s+/);
+      if (l.startsWith('Mem')) memAvailMB = parseInt(parts[6], 10) || 0;
+      if (l.startsWith('Swap')) swapUsedMB = (parseInt(parts[1], 10) || 0) - (parseInt(parts[3], 10) || 0);
+    }
+  } catch {}
+  return {
+    nodeRSS: (nodeM.rss / 1048576).toFixed(1),
+    heap: (nodeM.heapUsed / 1048576).toFixed(1),
+    ext: (nodeM.external / 1048576).toFixed(1),
+    arrBuf: (nodeM.arrayBuffers / 1048576).toFixed(1),
+    chrome: chromeMB.toFixed(0),
+    memAvail: memAvailMB,
+    swapUsed: swapUsedMB,
+  };
+}
+
+function logGenerationStart(gen: number, completed: number, total: number, workers: number) {
+  const s = getMemoryStats();
+  console.error(`\n[GEN ${gen}] start: completed=${completed}/${total} workers=${workers} nodeRSS=${s.nodeRSS}MB heap=${s.heap}MB ext=${s.ext}MB arrBuf=${s.arrBuf}MB chrome=${s.chrome}MB memAvail=${s.memAvail}MB swapUsed=${s.swapUsed}MB`);
+}
+
+function logGenerationEnd(gen: number, completed: number, total: number) {
+  const s = getMemoryStats();
+  console.error(`[GEN ${gen}] end: completed=${completed}/${total} nodeRSS=${s.nodeRSS}MB heap=${s.heap}MB chrome=${s.chrome}MB memAvail=${s.memAvail}MB swapUsed=${s.swapUsed}MB`);
+}
+
+// Graceful backpressure: at ~5GB available, request a coordinated browser recycle (workers
+// stop accepting new targets, then the generation ends cleanly). At ~2GB, hard-kill as a
+// last resort (workers detect the death and the generation restarts fresh).
+function startMemoryLogger(browser: any, onWarning: () => void): () => void {
   const startTime = Date.now();
-  const THRESHOLD_MB = 2048;
-  let triggered = false;
+  const WARN_MB = 5120;
+  const CRITICAL_MB = 2048;
+  let warned = false;
   const iv = setInterval(() => {
     try {
       const line = execSync('free -m | grep Mem', { encoding: 'utf8', timeout: 5000 }).trim();
@@ -315,11 +371,14 @@ function startMemoryLogger(browser: any): () => void {
       const availableMB = parseInt(parts[6], 10);
       const elapsed = Math.round((Date.now() - startTime) / 1000);
       console.error(`\n[MEM +${elapsed}s] available: ${availableMB}MB`);
-      if (availableMB < THRESHOLD_MB && !triggered) {
-        triggered = true;
-        console.error(`[MEM CRITICAL] Only ${availableMB}MB available (< ${THRESHOLD_MB}MB). Closing browser.`);
+      if (availableMB < WARN_MB && !warned) {
+        warned = true;
+        console.error(`[MEM WARNING] Only ${availableMB}MB available (< ${WARN_MB}MB). Requesting coordinated browser recycle.`);
+        onWarning();
+      }
+      if (availableMB < CRITICAL_MB) {
+        console.error(`[MEM CRITICAL] Only ${availableMB}MB available (< ${CRITICAL_MB}MB). Hard-killing browser.`);
         browser.close().catch(() => {});
-        setTimeout(() => process.exit(1), 5000);
       }
     } catch {}
   }, 30000);
@@ -327,22 +386,35 @@ function startMemoryLogger(browser: any): () => void {
 }
 
 function startServer(): Server {
+  // Keep the single inlined index.html buffered (one small file). Stream every other asset
+  // so a large image/mp3 is never fully copied into Node heap. HEAD uses statSync only
+  // (no body) so the background-image probe doesn't pull a full asset into memory.
   const html = readFileSync(join(ROOT, 'dist', 'index.html'));
   const srv = createServer((req, res) => {
-    if (req.url === '/' || req.url === '/index.html') {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(html);
-    } else {
-      try {
-        const data = readFileSync(join(ROOT, 'public', req.url!));
-        const ext = req.url!.split('.').pop();
-        const ct = ext === 'jpg' || ext === 'png' ? 'image/*' : ext === 'mp3' ? 'audio/mpeg' : 'application/octet-stream';
-        res.writeHead(200, { 'Content-Type': ct });
-        res.end(data);
-      } catch {
-        res.writeHead(404);
-        res.end('Not found');
+    const url = req.url || '/';
+    if (url === '/' || url === '/index.html') {
+      res.writeHead(200, { 'Content-Type': 'text/html', 'Content-Length': html.length });
+      if (req.method === 'HEAD') res.end();
+      else res.end(html);
+      return;
+    }
+    const filePath = join(ROOT, 'public', url);
+    try {
+      const st = statSync(filePath);
+      if (!st.isFile()) throw new Error('not a file');
+      const ext = url.split('.').pop();
+      const ct = ext === 'jpg' || ext === 'png' ? 'image/*' : ext === 'mp3' ? 'audio/mpeg' : 'application/octet-stream';
+      res.writeHead(200, { 'Content-Type': ct, 'Content-Length': st.size });
+      if (req.method === 'HEAD') {
+        res.end();
+      } else {
+        const stream = createReadStream(filePath);
+        stream.on('error', () => { if (!res.headersSent) res.writeHead(500); res.end(); });
+        stream.pipe(res);
       }
+    } catch {
+      if (!res.headersSent) res.writeHead(404);
+      res.end('Not found');
     }
   });
   srv.listen(PORT);
@@ -484,11 +556,55 @@ async function setupPage(p: any): Promise<void> {
   });
 }
 
-async function reloadPage(ctx: PageCtx, pageIdx: number): Promise<void> {
-  console.error(`\n[RELOAD page ${pageIdx}]`);
-  ctx.renderCount = 0;
-  ctx.errors.length = 0;
-  await setupPage(ctx.page);
+async function createPageCtx(browser: any): Promise<PageCtx> {
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  page.setDefaultTimeout(15000);
+  const errors: string[] = [];
+  page.on('pageerror', (e: any) => errors.push(`pageerror: ${e.message}`));
+  page.on('console', (msg: any) => {
+    if (msg.type() === 'error') errors.push(`console: ${msg.text()}`);
+  });
+  return { context, page, errors, renderCount: 0 };
+}
+
+async function recyclePage(ctx: PageCtx, browser: any, pageIdx: number): Promise<void> {
+  console.error(`\n[RECYCLE page ${pageIdx}]`);
+  try {
+    // A navigation keeps the same browser context and can retain Chromium caches,
+    // decoded images, renderer allocations, and other per-context state. Destroying
+    // the context gives Chrome a hard lifetime boundary for each batch of targets.
+    await ctx.context.close().catch(() => {});
+    const fresh = await createPageCtx(browser);
+    ctx.context = fresh.context;
+    ctx.page = fresh.page;
+    ctx.errors = fresh.errors;
+    ctx.renderCount = 0;
+    await setupPage(ctx.page);
+  } catch (e: any) {
+    console.error(`\n[RECYCLE page ${pageIdx} FAILED] ${e.message}`);
+    await ctx.context?.close().catch(() => {});
+  }
+}
+
+// A timed-out page.evaluate() keeps running inside the renderer even after evalT rejects.
+// Poison the page: close its context (kills the stuck eval) and create a fresh one before
+// the worker processes another target.
+async function poisonPage(ctx: PageCtx): Promise<void> {
+  console.error(`\n[POISON page]`);
+  try {
+    const browser = ctx.context?.browser?.();
+    await ctx.context.close().catch(() => {});
+    const fresh = await createPageCtx(browser);
+    ctx.context = fresh.context;
+    ctx.page = fresh.page;
+    ctx.errors = fresh.errors;
+    ctx.renderCount = 0;
+    await setupPage(ctx.page);
+  } catch (e: any) {
+    console.error(`\n[POISON page FAILED] ${e.message}`);
+    await ctx.context?.close().catch(() => {});
+  }
 }
 
 function phase1StaticAnalysis(locations: string[], fileMap: Record<string, string>): { passed: boolean; failures: Array<{ error: string; loc?: string }> } {
@@ -562,13 +678,14 @@ async function checkRenderTarget(
 
   try {
     try {
-      await page.evaluate(([l, s, ts]) => {
+      await evalT(page, ([l, s, ts]) => {
         const store = (window as any).__gameStore;
         const st = store.getState();
         for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
         store.getState().doGoto(l, s);
       }, [loc, sub, TEST_STATE]);
     } catch (e: any) {
+      await poisonPage(ctx);
       return { passed: false, error: `goto threw: ${e.message}`, loc: label };
     }
 
@@ -583,7 +700,7 @@ async function checkRenderTarget(
       return { passed: false, error: `JS errors: ${newErrors.slice(0, 3).join('; ')}`, loc: label };
     }
 
-    const bgInfo = await page.evaluate(async () => {
+    const bgInfo = await evalT(page, async () => {
       const main = document.querySelector('main');
       if (!main) return { noBg: true };
       const bg = getComputedStyle(main).backgroundImage;
@@ -610,7 +727,7 @@ async function checkRenderTarget(
       return { passed: false, error: 'QSP source has *bg but no background rendered', loc: label };
     }
 
-    const actionCount = await page.evaluate(() => {
+    const actionCount = await evalT(page, () => {
       const buttons = Array.from(document.querySelectorAll('button'));
       const actions = buttons.filter((b) => {
         const text = b.textContent?.trim() ?? '';
@@ -636,7 +753,7 @@ async function checkRenderTarget(
       return { passed: false, error: `untranslated QSP: ${matches?.slice(0, 3).join(', ')}`, loc: label };
     }
 
-    const execLinks = await page.evaluate(() => {
+    const execLinks = await evalT(page, () => {
       return document.querySelectorAll('a[href^="exec:"]').length;
     });
     if (execLinks > 0 && !EXCLUDE_EXEC_DATA.has(loc)) {
@@ -652,7 +769,7 @@ async function checkRenderTarget(
       return { passed: false, error: `'undefined' in rendered text`, loc: label };
     }
     if (bodyText?.includes('NaN') && !EXCLUDE_RENDER.has(loc)) {
-      const nanDetail = await page.evaluate(() => {
+      const nanDetail = await evalT(page, () => {
         const all = Array.from(document.querySelectorAll('body *'));
         let elText = '';
         for (const el of all) {
@@ -677,7 +794,7 @@ async function checkRenderTarget(
       return { passed: false, error: `'NaN' in rendered text [${nanDetail.elText}] set:${nanDetail.nanLog} store:${nanDetail.badKeys}`, loc: label };
     }
 
-    const buttonIssues = await page.evaluate(() => {
+    const buttonIssues = await evalT(page, () => {
       const buttons = Array.from(document.querySelectorAll('button'));
       const issues: string[] = [];
       for (const b of buttons) {
@@ -695,6 +812,9 @@ async function checkRenderTarget(
     if (verbose) process.stdout.write('.');
     return { passed: true };
   } catch (e: any) {
+    // A timed-out (or otherwise failed) eval can leave a stuck page.evaluate running in the
+    // renderer. Poison the page so the next target starts from a clean context.
+    await poisonPage(ctx);
     if (EXCLUDE_RENDER_TIMEOUT.has(loc)) {
       if (verbose) process.stdout.write('.');
       return { passed: true };
@@ -703,39 +823,134 @@ async function checkRenderTarget(
   }
 }
 
+async function launchBrowser(pageCount: number): Promise<{ browser: any; pages: PageCtx[] }> {
+  // No --max-old-space-size cap (let each renderer grow as needed). --disable-gpu forces
+  // SwiftShader software rendering so the audit doesn't claim significant Radeon VRAM.
+  const browser = await chromium.launch({ headless: true, executablePath: '/usr/bin/google-chrome', args: ['--disable-gpu', '--disable-gpu-compositing', '--disable-dev-shm-usage'] });
+  browser.on('disconnected', () => console.error('\n[BROWSER DISCONNECTED]'));
+  const pages: PageCtx[] = [];
+  for (let i = 0; i < pageCount; i++) {
+    pages.push(await createPageCtx(browser));
+  }
+  return { browser, pages };
+}
+
 async function phase2RenderAudit(
-  pages: PageCtx[],
   targets: Array<{ loc: string; sub: string }>,
   fileMap: Record<string, string>,
-  browser: any
+  completed: Set<number>,
+  failuresOut: Array<{ error: string; loc?: string }>
 ): Promise<{ passed: boolean; failures: Array<{ error: string; loc?: string }> }> {
-  const assignments: Array<Array<{ loc: string; sub: string }>> = pages.map(() => []);
-  targets.forEach((t, i) => assignments[i % pages.length].push(t));
-
   const allFailures: Array<{ error: string; loc?: string }> = [];
+  let generation = 0;
 
-  await Promise.all(
-    pages.map(async (ctx, i) => {
-      for (const { loc, sub } of assignments[i]) {
-        if (ctx.page.isClosed()) {
-          console.error(`\n[PAGE ${i} CLOSED] was processing: ${loc}:${sub}`);
-          allFailures.push({ error: 'page crashed', loc: `${loc}:${sub}` });
+  // Each generation = one browser instance that processes at most GEN_BATCH_SIZE targets,
+  // then is closed and replaced by a fresh browser (proactive recycle bounds Chromium memory).
+  while (true) {
+    const remaining = targets.length - completed.size;
+    if (remaining <= 0) break;
+
+    generation++;
+    logGenerationStart(generation, completed.size, targets.length, PARALLEL);
+
+    const { browser, pages } = await launchBrowser(PARALLEL);
+    const cancelled = { value: false };
+    const stopMemLog = startMemoryLogger(browser, () => { cancelled.value = true; });
+
+    let setupOk = true;
+    for (let i = 0; i < pages.length; i++) {
+      if (!browser.isConnected()) { setupOk = false; break; }
+      try {
+        await setupPage(pages[i].page);
+      } catch (e: any) {
+        console.error(`\n[SETUP page ${i} FAILED] ${e.message}`);
+        setupOk = false;
+        break;
+      }
+    }
+    if (!setupOk) {
+      stopMemLog();
+      await browser.close().catch(() => {});
+      continue;
+    }
+
+    const assignments: Array<Array<{ loc: string; sub: string; idx: number }>> = pages.map(() => []);
+    let batchCount = 0;
+    for (let i = 0; i < targets.length && batchCount < GEN_BATCH_SIZE; i++) {
+      if (completed.has(i)) continue;
+      assignments[i % pages.length].push({ ...targets[i], idx: i });
+      batchCount++;
+    }
+
+    const workerPromises = pages.map(async (ctx, i) => {
+      for (const { loc, sub, idx } of assignments[i]) {
+        if (cancelled.value) break;
+        if (ctx.page.isClosed() || !browser.isConnected()) {
+          console.error(`\n[PAGE ${i} DEAD] was processing: ${loc}:${sub}`);
+          allFailures.push({ error: 'browser died', loc: `${loc}:${sub}` });
           break;
         }
         const result = await checkRenderTarget(ctx, loc, sub, fileMap);
+        completed.add(idx);
         if (!result.passed) {
-          allFailures.push({ error: result.error!, loc: result.loc });
-          if (stopOnFail) return;
+          const f = { error: result.error!, loc: result.loc };
+          allFailures.push(f);
+          failuresOut.push(f);
+          if (stopOnFail) cancelled.value = true;
         }
         ctx.renderCount++;
         globalRenderCount++;
-        if (globalRenderCount % 100 === 0) logRenderMemory();
+        if (verbose && globalRenderCount % 100 === 0) logRenderMemory();
         if (ctx.renderCount >= RELOAD_INTERVAL) {
-          await reloadPage(ctx, i);
+          await recyclePage(ctx, browser, i);
         }
       }
-    })
-  );
+    });
+
+    // Stall detector: cancel if no RENDER progress for 120s (catches hanging evals/recycles
+    // that the per-eval 15s timeout doesn't surface).
+    let stallTimer: any = null;
+    const stallPromise = new Promise((_, reject) => {
+      let lastProgress = globalRenderCount;
+      let lastProgressTime = Date.now();
+      stallTimer = setInterval(() => {
+        if (globalRenderCount > lastProgress) {
+          lastProgress = globalRenderCount;
+          lastProgressTime = Date.now();
+        } else if (Date.now() - lastProgressTime > 120000) {
+          clearInterval(stallTimer);
+          cancelled.value = true;
+          reject(new Error(`phase stalled (no RENDER progress for 120s, last=${lastProgress})`));
+        }
+      }, 10000);
+    });
+
+    let stalled = false;
+    try {
+      await Promise.race([
+        Promise.all(workerPromises),
+        stallPromise
+      ]);
+    } catch (e: any) {
+      stalled = true;
+      console.error(`\n[STALL DETECTED] ${e.message}`);
+    } finally {
+      if (stallTimer) clearInterval(stallTimer);
+    }
+
+    // Coordinated shutdown: cancel workers, close stuck contexts (unstick hanging evals),
+    // wait for ALL workers to settle, then close the browser.
+    cancelled.value = true;
+    for (const ctx of pages) await ctx.context.close().catch(() => {});
+    await Promise.allSettled(workerPromises);
+
+    stopMemLog();
+    await browser.close().catch(() => {});
+    logGenerationEnd(generation, completed.size, targets.length);
+
+    if (stalled) allFailures.push({ error: 'phase stalled (no progress for 120s)' });
+    if (stopOnFail && allFailures.length > 0) break;
+  }
 
   if (verbose) console.log('');
   return { passed: allFailures.length === 0, failures: allFailures };
@@ -752,146 +967,233 @@ async function checkInteractionTarget(
   const label = sub === '' ? loc : `${loc}:${sub}`;
 
   try {
-    const extraArg = GOTO_EXTRA_ARGS[label] ?? '';
-    await page.evaluate(([l, s, ts, ea]) => {
-      const store = (window as any).__gameStore;
-      const st = store.getState();
-      for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
-      const origRandom = Math.random;
-      Math.random = () => 0;
-      store.getState().doGoto(l, s, ea || undefined);
-      Math.random = origRandom;
-    }, [loc, sub, TEST_STATE, extraArg]);
-  } catch (e: any) {
-    return { passed: false, error: `goto threw: ${e.message}`, loc: label };
-  }
-
-  await sleep(150);
-
-  const actions = await page.evaluate(() => {
-    const buttons = Array.from(document.querySelectorAll('button'));
-    return buttons
-      .filter((b) => {
-        const text = b.textContent?.trim() ?? '';
-        const title = b.getAttribute('title');
-        if (title) return false;
-        if (b.offsetParent === null) return false;
-if (/^(Map|Back|Open Map)$/i.test(text)) return false;
-        if (text.length === 0 || text.length >= 80) return false;
-        return true;
-      })
-      .map((b) => b.textContent?.trim() ?? '');
-  });
-
-  for (const actionText of actions) {
-    errors.length = 0;
-
     try {
-      await page.evaluate(() => {
-        (window as any).__origRandom = (window as any).__origRandom ?? Math.random;
+      const extraArg = GOTO_EXTRA_ARGS[label] ?? '';
+      await evalT(page, ([l, s, ts, ea]) => {
+        const store = (window as any).__gameStore;
+        const st = store.getState();
+        for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
+        const origRandom = Math.random;
         Math.random = () => 0;
-      });
-      await page.locator('button', { hasText: actionText }).first().click();
-      await page.evaluate(() => {
-        if ((window as any).__origRandom) Math.random = (window as any).__origRandom;
-      });
+        store.getState().doGoto(l, s, ea || undefined);
+        Math.random = origRandom;
+      }, [loc, sub, TEST_STATE, extraArg]);
     } catch (e: any) {
-      return { passed: false, error: `click failed: ${e.message}`, loc: label, action: actionText };
+      return { passed: false, error: `goto threw: ${e.message}`, loc: label };
     }
 
     await sleep(150);
 
-    if (page.isClosed()) {
-      return { passed: false, error: 'page crashed', loc: label, action: actionText };
-    }
-
-    const newErrors = errors.filter((e: string) => !/404|Failed to load resource/i.test(e));
-    if (newErrors.length > 0 && !EXCLUDE_JS_ERRORS.has(loc)) {
-      return { passed: false, error: `JS errors after click: ${newErrors.slice(0, 3).join('; ')}`, loc: label, action: actionText };
-    }
-
-    const destCheck = await page.evaluate(() => {
-      const bodyText = document.body.textContent ?? '';
-      const execLinks = document.querySelectorAll('a[href^="exec:"]').length;
-      const exprCount = (bodyText.match(/<<[^<>\n]+>>/g) || []).length;
-      const hasUndefined = bodyText.includes('undefined');
-      const hasNaN = bodyText.includes('NaN');
-      const hasNoContent = bodyText.includes('No content for this location.');
-      let nanContext = '';
-      if (hasNaN) {
-        const idx = bodyText.indexOf('NaN');
-        nanContext = bodyText.slice(Math.max(0, idx - 100), idx + 100);
-      }
-      return { execLinks, exprCount, hasUndefined, hasNaN, hasNoContent, nanContext };
+    const actions = await evalT(page, () => {
+      const buttons = Array.from(document.querySelectorAll('button'));
+      return buttons
+        .filter((b) => {
+          const text = b.textContent?.trim() ?? '';
+          const title = b.getAttribute('title');
+          if (title) return false;
+          if (b.offsetParent === null) return false;
+          if (/^(Map|Back|Open Map)$/i.test(text)) return false;
+          if (text.length === 0 || text.length >= 80) return false;
+          return true;
+        })
+        .map((b) => b.textContent?.trim() ?? '');
     });
 
-    if (destCheck.execLinks > 0 && !EXCLUDE_EXEC_DATA.has(loc)) {
-      return { passed: false, error: `${destCheck.execLinks} exec: link(s) in destination`, loc: label, action: actionText };
-    }
-    if (destCheck.exprCount > 0) {
-      return { passed: false, error: `${destCheck.exprCount} unevaluated <<...>> in destination`, loc: label, action: actionText };
-    }
-    if (destCheck.hasUndefined && !EXCLUDE_UNTRANSLATED.has(loc)) {
-      return { passed: false, error: `'undefined' in destination text`, loc: label, action: actionText };
-    }
-    if (destCheck.hasNaN && !EXCLUDE_UNTRANSLATED.has(loc)) {
-      return { passed: false, error: `'NaN' in destination text [${destCheck.nanContext}]`, loc: label, action: actionText };
-    }
-    if (destCheck.hasNoContent && !EXCLUDE_EMPTY_DEST.has(loc)) {
-      return { passed: false, error: `empty destination (No content for this location)`, loc: label, action: actionText };
-    }
+    for (const actionText of actions) {
+      errors.length = 0;
 
-  try {
-    await page.evaluate(([l, s, ts]) => {
-      const store = (window as any).__gameStore;
-      const st = store.getState();
-      for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
-      const origRandom = Math.random;
-      Math.random = () => 0;
-      store.getState().doGoto(l, s);
-      Math.random = origRandom;
-    }, [loc, sub, TEST_STATE]);
+      try {
+        await evalT(page, () => {
+          (window as any).__origRandom = (window as any).__origRandom ?? Math.random;
+          Math.random = () => 0;
+        });
+        await page.locator('button', { hasText: actionText }).first().click();
+        await evalT(page, () => {
+          if ((window as any).__origRandom) Math.random = (window as any).__origRandom;
+        });
+      } catch (e: any) {
+        return { passed: false, error: `click failed: ${e.message}`, loc: label, action: actionText };
+      }
+
+      await sleep(150);
+
+      if (page.isClosed()) {
+        return { passed: false, error: 'page crashed', loc: label, action: actionText };
+      }
+
+      const newErrors = errors.filter((e: string) => !/404|Failed to load resource/i.test(e));
+      if (newErrors.length > 0 && !EXCLUDE_JS_ERRORS.has(loc)) {
+        return { passed: false, error: `JS errors after click: ${newErrors.slice(0, 3).join('; ')}`, loc: label, action: actionText };
+      }
+
+      const destCheck = await evalT(page, () => {
+        const bodyText = document.body.textContent ?? '';
+        const execLinks = document.querySelectorAll('a[href^="exec:"]').length;
+        const exprCount = (bodyText.match(/<<[^<>\n]+>>/g) || []).length;
+        const hasUndefined = bodyText.includes('undefined');
+        const hasNaN = bodyText.includes('NaN');
+        const hasNoContent = bodyText.includes('No content for this location.');
+        let nanContext = '';
+        if (hasNaN) {
+          const idx = bodyText.indexOf('NaN');
+          nanContext = bodyText.slice(Math.max(0, idx - 100), idx + 100);
+        }
+        return { execLinks, exprCount, hasUndefined, hasNaN, hasNoContent, nanContext };
+      });
+
+      if (destCheck.execLinks > 0 && !EXCLUDE_EXEC_DATA.has(loc)) {
+        return { passed: false, error: `${destCheck.execLinks} exec: link(s) in destination`, loc: label, action: actionText };
+      }
+      if (destCheck.exprCount > 0) {
+        return { passed: false, error: `${destCheck.exprCount} unevaluated <<...>> in destination`, loc: label, action: actionText };
+      }
+      if (destCheck.hasUndefined && !EXCLUDE_UNTRANSLATED.has(loc)) {
+        return { passed: false, error: `'undefined' in destination text`, loc: label, action: actionText };
+      }
+      if (destCheck.hasNaN && !EXCLUDE_UNTRANSLATED.has(loc)) {
+        return { passed: false, error: `'NaN' in destination text [${destCheck.nanContext}]`, loc: label, action: actionText };
+      }
+      if (destCheck.hasNoContent && !EXCLUDE_EMPTY_DEST.has(loc)) {
+        return { passed: false, error: `empty destination (No content for this location)`, loc: label, action: actionText };
+      }
+
+      try {
+        await evalT(page, ([l, s, ts]) => {
+          const store = (window as any).__gameStore;
+          const st = store.getState();
+          for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
+          const origRandom = Math.random;
+          Math.random = () => 0;
+          store.getState().doGoto(l, s);
+          Math.random = origRandom;
+        }, [loc, sub, TEST_STATE]);
+      } catch (e: any) {
+        return { passed: false, error: `goto threw: ${e.message}`, loc: label };
+      }
+
+      await sleep(150);
+
+      if (verbose) process.stdout.write('.');
+    }
+    return { passed: true };
   } catch (e: any) {
-    return { passed: false, error: `goto threw: ${e.message}`, loc: label };
+    // A timed-out eval can leave a stuck page.evaluate running in the renderer. Poison the
+    // page so the next target starts from a clean context.
+    await poisonPage(ctx);
+    return { passed: false, error: `interaction timeout: ${e.message}`, loc: label };
   }
-
-    await sleep(150);
-
-    if (verbose) process.stdout.write('.');
-  }
-  return { passed: true };
 }
 
 async function phase3InteractionAudit(
-  pages: PageCtx[],
   targets: Array<{ loc: string; sub: string }>,
-  browser: any
+  completed: Set<number>,
+  failuresOut: Array<{ error: string; loc?: string; action?: string }>
 ): Promise<{ passed: boolean; failures: Array<{ error: string; loc?: string; action?: string }> }> {
-  const assignments: Array<Array<{ loc: string; sub: string }>> = pages.map(() => []);
-  targets.forEach((t, i) => assignments[i % pages.length].push(t));
-
   const allFailures: Array<{ error: string; loc?: string; action?: string }> = [];
+  let generation = 0;
 
-  await Promise.all(
-    pages.map(async (ctx, i) => {
-      for (const { loc, sub } of assignments[i]) {
-        if (ctx.page.isClosed()) {
-          console.error(`\n[PAGE ${i} CLOSED] was processing: ${loc}:${sub}`);
-          allFailures.push({ error: 'page crashed', loc, action: sub });
+  while (true) {
+    const remaining = targets.length - completed.size;
+    if (remaining <= 0) break;
+
+    generation++;
+    logGenerationStart(generation, completed.size, targets.length, PARALLEL);
+
+    const { browser, pages } = await launchBrowser(PARALLEL);
+    const cancelled = { value: false };
+    const stopMemLog = startMemoryLogger(browser, () => { cancelled.value = true; });
+
+    let setupOk = true;
+    for (let i = 0; i < pages.length; i++) {
+      if (!browser.isConnected()) { setupOk = false; break; }
+      try {
+        await setupPage(pages[i].page);
+      } catch (e: any) {
+        console.error(`\n[SETUP page ${i} FAILED] ${e.message}`);
+        setupOk = false;
+        break;
+      }
+    }
+    if (!setupOk) {
+      stopMemLog();
+      await browser.close().catch(() => {});
+      continue;
+    }
+
+    const assignments: Array<Array<{ loc: string; sub: string; idx: number }>> = pages.map(() => []);
+    let batchCount = 0;
+    for (let i = 0; i < targets.length && batchCount < GEN_BATCH_SIZE; i++) {
+      if (completed.has(i)) continue;
+      assignments[i % pages.length].push({ ...targets[i], idx: i });
+      batchCount++;
+    }
+
+    const workerPromises = pages.map(async (ctx, i) => {
+      for (const { loc, sub, idx } of assignments[i]) {
+        if (cancelled.value) break;
+        if (ctx.page.isClosed() || !browser.isConnected()) {
+          console.error(`\n[PAGE ${i} DEAD] was processing: ${loc}:${sub}`);
+          allFailures.push({ error: 'browser died', loc, action: sub });
           break;
         }
         const result = await checkInteractionTarget(ctx, loc, sub);
+        completed.add(idx);
         if (!result.passed) {
-          allFailures.push({ error: result.error!, loc: result.loc, action: result.action });
-          if (stopOnFail) return;
+          const f = { error: result.error!, loc: result.loc, action: result.action };
+          allFailures.push(f);
+          failuresOut.push(f);
+          if (stopOnFail) cancelled.value = true;
         }
         ctx.renderCount++;
         if (ctx.renderCount >= RELOAD_INTERVAL) {
-          await reloadPage(ctx, i);
+          await recyclePage(ctx, browser, i);
         }
       }
-    })
-  );
+    });
+
+    // Stall detector: cancel if no progress for 120s (catches hanging evals/recycles).
+    let stallTimer: any = null;
+    const stallPromise = new Promise((_, reject) => {
+      let lastProgress = completed.size;
+      let lastProgressTime = Date.now();
+      stallTimer = setInterval(() => {
+        if (completed.size > lastProgress) {
+          lastProgress = completed.size;
+          lastProgressTime = Date.now();
+        } else if (Date.now() - lastProgressTime > 120000) {
+          clearInterval(stallTimer);
+          cancelled.value = true;
+          reject(new Error(`phase stalled (no progress for 120s, last=${lastProgress})`));
+        }
+      }, 10000);
+    });
+
+    let stalled = false;
+    try {
+      await Promise.race([
+        Promise.all(workerPromises),
+        stallPromise
+      ]);
+    } catch (e: any) {
+      stalled = true;
+      console.error(`\n[STALL DETECTED] ${e.message}`);
+    } finally {
+      if (stallTimer) clearInterval(stallTimer);
+    }
+
+    // Coordinated shutdown: cancel workers, close stuck contexts, wait for ALL workers to
+    // settle, then close the browser.
+    cancelled.value = true;
+    for (const ctx of pages) await ctx.context.close().catch(() => {});
+    await Promise.allSettled(workerPromises);
+
+    stopMemLog();
+    await browser.close().catch(() => {});
+    logGenerationEnd(generation, completed.size, targets.length);
+
+    if (stalled) allFailures.push({ error: 'phase stalled (no progress for 120s)' });
+    if (stopOnFail && allFailures.length > 0) break;
+  }
 
   if (verbose) console.log('');
   return { passed: allFailures.length === 0, failures: allFailures };
@@ -939,21 +1241,6 @@ async function main() {
 
   const srv = startServer();
   await sleep(500);
-  const browser = await chromium.launch({ headless: true, executablePath: '/usr/bin/google-chrome', args: ['--js-flags=--max-old-space-size=512'] });
-  browser.on('disconnected', () => console.error('\n[BROWSER DISCONNECTED]'));
-
-  const pageCount = Math.min(PARALLEL, Math.max(renderTargets.length, interactionTargets.length, 1));
-  const pages: PageCtx[] = [];
-  for (let i = 0; i < pageCount; i++) {
-    const p = await browser.newPage();
-    p.setDefaultTimeout(15000);
-    const errs: string[] = [];
-    p.on('pageerror', (e: any) => errs.push(`pageerror: ${e.message}`));
-    p.on('console', (msg: any) => {
-      if (msg.type() === 'error') errs.push(`console: ${msg.text()}`);
-    });
-    pages.push({ page: p, errors: errs, renderCount: 0 });
-  }
 
   try {
     if (!skipStatic) {
@@ -972,50 +1259,47 @@ async function main() {
       console.log('--- Phase 1: Static Analysis (skipped) ---');
     }
 
-    for (const ctx of pages) {
-      await setupPage(ctx.page);
-    }
-
-    const stopMemLog = startMemoryLogger(browser);
+    const completedRender = new Set<number>();
+    const completedInteraction = new Set<number>();
+    const renderFailures: Array<{ error: string; loc?: string }> = [];
+    const interactionFailures: Array<{ error: string; loc?: string; action?: string }> = [];
 
     if (!skipRender) {
       console.log('--- Phase 2: Render Audit ---');
-      const result = await phase2RenderAudit(pages, renderTargets, fileMap, browser);
-      if (!result.passed) {
-        stopMemLog();
-        for (const f of result.failures) console.log(`FAIL ${f.loc}: ${f.error}`);
-        console.log(`\n${result.failures.length} failure(s).`);
-        process.exitCode = 1;
-        return;
+      const result = await phase2RenderAudit(renderTargets, fileMap, completedRender, renderFailures);
+      if (result.passed) {
+        console.log('PASS All locations render clean');
+      } else {
+        console.log(`Phase 2 complete: ${renderFailures.length} failure(s).`);
       }
-      console.log('PASS All locations render clean');
     } else {
       console.log('--- Phase 2: Render Audit (skipped) ---');
     }
 
     if (!skipInteraction) {
       console.log('--- Phase 3: Interaction Audit ---');
-      const result = await phase3InteractionAudit(pages, interactionTargets, browser);
-      if (!result.passed) {
-        stopMemLog();
-        for (const f of result.failures) console.log(`FAIL ${f.loc} / "${f.action}": ${f.error}`);
-        console.log(`\n${result.failures.length} failure(s).`);
-        process.exitCode = 1;
-        return;
+      const result = await phase3InteractionAudit(interactionTargets, completedInteraction, interactionFailures);
+      if (result.passed) {
+        console.log('PASS All actions work clean');
+      } else {
+        console.log(`Phase 3 complete: ${interactionFailures.length} failure(s).`);
       }
-      console.log('PASS All actions work clean');
     } else {
       console.log('--- Phase 3: Interaction Audit (skipped) ---');
     }
 
-    stopMemLog();
-
-    console.log('\n=== ALL PHASES PASSED ===');
+    if (renderFailures.length > 0 || interactionFailures.length > 0) {
+      for (const f of renderFailures) console.log(`FAIL ${f.loc}: ${f.error}`);
+      for (const f of interactionFailures) console.log(`FAIL ${f.loc} / "${f.action}": ${f.error}`);
+      console.log(`\n${renderFailures.length + interactionFailures.length} failure(s).`);
+      process.exitCode = 1;
+    } else {
+      console.log('\n=== ALL PHASES PASSED ===');
+    }
   } catch (e: any) {
     console.error(`\nCRASH ${e.message}`);
     process.exitCode = 1;
   } finally {
-    await browser.close().catch(() => {});
     srv.close();
     process.exit(process.exitCode ?? 0);
   }

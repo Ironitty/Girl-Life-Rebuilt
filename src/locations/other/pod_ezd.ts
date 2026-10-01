@@ -1139,7 +1139,8 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A' + (Math.floor(Math.random() * 5) + 122) + '', 1);
   do {
     qspCall(s, 'boyStat', 'A' + (Math.floor(Math.random() * 5) + 122) + '', 2);
-    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/smokeboys.jpg');
+  } while (((s as any).boy ?? 0)[1] === ((s as any).boy ?? 0)[2]);
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/smokeboys.jpg');
     scene.text('The guys greet you, having seen you around before, and offer you a cigarette.');
     scene.actions([
       { label: 'Decline and leave', handler: (st: GameState) => { qspGoto(st, 'pod_ezd', ((st as any).smoke_loc ?? '')); } },
@@ -1289,7 +1290,6 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
     }
   } },
     ]);
-  } while (((s as any).boy ?? 0)[1] === ((s as any).boy ?? 0)[2]);
   scene.build();
 }
 

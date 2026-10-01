@@ -146,10 +146,10 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).anushkaQW ?? 0)?.['first_visit'] === 0  &&  ((s as any).npc_rel ?? 0)?.['A144'] > 50  &&  (Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).anushka_met ?? 0) !== ((s as any).daystart ?? 0)  &&  (((s as any).locat ?? 0)?.['A144'] === 23  ||  ((s as any).locat ?? 0)?.['A144'] === 22)) {
       if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
-        break;
+        continue;
       }
       if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) < 8) {
-        break;
+        continue;
       }
       (s as any).anushka_met = ((s as any).daystart ?? 0);
       scene.img('images/characters/shared/headshots_main/big144.jpg');
@@ -185,7 +185,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).events ?? 0) === 2) {
             if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
-              break;
+              continue;
             }
             (s as any).minut = ((s as any).minut ?? 0) + 3;
             scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/apartment/events/evggkiss` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
@@ -250,7 +250,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                       } else {
                         if (((s as any).events ?? 0) === 9) {
                           if (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  ||  ((s as any).locat ?? 0)?.['A144'] < 22  ||  ((s as any).locat ?? 0)?.['A144'] > 23) {
-                            break;
+                            continue;
                           }
                           qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
                           scene.img('images/locations/pavlovsk/resident/apartment/events/eatu.jpg');
@@ -278,7 +278,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                             } else {
                               if (((s as any).events ?? 0) === 12) {
                                 if (((s as any).temper ?? 0) < 10) {
-                                  break;
+                                  continue;
                                 }
                                 if (((s as any).month ?? 0) >= 11  &&  ((s as any).month ?? 0) <= 12  ||  ((s as any).month ?? 0) >= 1  &&  ((s as any).month ?? 0) <= 3) {
                                   scene.img('images/locations/pavlovsk/resident/apartment/events/waterw.jpg');
@@ -323,7 +323,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                                   } else {
                                     if (((s as any).events ?? 0) === 15) {
                                       if (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  ||  (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) < 14)) {
-                                        break;
+                                        continue;
                                       }
                                       qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
                                       (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -343,7 +343,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                                     } else {
                                       if (((s as any).events ?? 0) === 16) {
                                         if (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  ||  ((s as any).locat ?? 0)?.['A144'] < 22  ||  ((s as any).locat ?? 0)?.['A144'] > 23) {
-                                          break;
+                                          continue;
                                         }
                                         scene.img('images/locations/pavlovsk/resident/apartment/events/nushbench.jpg');
                                         scene.text('As you walk through the courtyard, you see Anushka sitting on one of the benches. She hasn\'t noticed you yet.');
@@ -677,6 +677,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    break;
   }
   scene.build();
 }
@@ -743,15 +744,21 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   qspCall(s, 'anushka_konstantinov_schedule', '');
+  let __rerolls2 = 0;
   while (true) {
-    if (((s as any).pavComplex_met_dealer ?? 0) < 3) {
-      (s as any).nightevents = (Math.floor(Math.random() * 14) + 1);
+    __rerolls2++;
+    if (__rerolls2 <= 100) {
+      if (((s as any).pavComplex_met_dealer ?? 0) < 3) {
+        (s as any).nightevents = (Math.floor(Math.random() * 14) + 1);
+      } else {
+        (s as any).nightevents = (Math.floor(Math.random() * 12) + 1);
+      }
     } else {
-      (s as any).nightevents = (Math.floor(Math.random() * 12) + 1);
+      (s as any).nightevents = 2;
     }
     if (((s as any).nightevents ?? 0) === 1) {
       if ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) > 3)  ||  ((s as any).hour ?? 0) > 6) {
-        break;
+        continue;
       }
       qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
       (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -808,7 +815,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).nightevents ?? 0) === 5) {
               if (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) > 3)  ||  ((s as any).hour ?? 0) > 6) {
-                break;
+                continue;
               }
               qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
               (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -843,7 +850,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).nightevents ?? 0) === 8) {
                     if (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) > 3)  ||  ((s as any).hour ?? 0) > 6) {
-                      break;
+                      continue;
                     }
                     if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
                       scene.img('images/locations/pavlovsk/resident/apartment/events/3stoogesw.jpg');
@@ -960,7 +967,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).nightevents ?? 0) === 9) {
                       if (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  ||  ((s as any).locat ?? 0)?.['A144'] < 20  ||  ((s as any).locat ?? 0)?.['A144'] === 21  ||  ((s as any).locat ?? 0)?.['A144'] > 23  ||  ((((s as any).week ?? 0) < 5  ||  ((s as any).week ?? 0) === 7)  &&  ((s as any).hour ?? 0) > 3)  ||  ((s as any).hour ?? 0) > 6) {
-                        break;
+                        continue;
                       }
                       scene.img('images/locations/pavlovsk/resident/apartment/events/gopgirls.jpg');
                       scene.text('Lena, Lera, Alyona and Anushka are hanging out on one of the benches, drinking beers and smoking cigarettes and weed while laughing and messing around.');
@@ -1049,7 +1056,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if (((s as any).nightevents ?? 0) === 10) {
                         if (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) > 3)  ||  ((s as any).hour ?? 0) > 6) {
-                          break;
+                          continue;
                         }
                         scene.img('images/locations/pavlovsk/resident/apartment/events/lelepa.jpg');
                         scene.text('Lena, Lera, and Pauline are hanging out on one of the benches, drinking beers and smoking cigarettes while laughing and messing around.');
@@ -1209,6 +1216,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+    break;
   }
   scene.build();
 }

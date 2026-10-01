@@ -713,11 +713,12 @@ function enterAge(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).age ?? 0) < 15) {
       (s as any).pcs_dob = ((s as any).pcs_dob ?? 0) - (10000);
-      break;
+      continue;
     }
-    qspGoto(s, 'cheatmenu_din', 'looks');
-    ((s as any).cheatmenu = (s as any).cheatmenu ?? {})['visualage'] = 'gs \'cheatmenu_din\', \'visualage\'';
+    break;
   }
+  qspGoto(s, 'cheatmenu_din', 'looks');
+  ((s as any).cheatmenu = (s as any).cheatmenu ?? {})['visualage'] = 'gs \'cheatmenu_din\', \'visualage\'';
   scene.build();
 }
 
@@ -1807,63 +1808,63 @@ function enterLoverMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Cheat Menu - Relationships - Lovers</h2></center>');
   scene.text(String(qspFunc(s, 'cheatmenu', 'table_start') || ''));
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027NPCs\u0027); return false;">Go Back</a>');
-  (s as any).temp_cmd_i = 0;
-  (s as any).temp_cmd_max_i = 0;
-  while (true) {
-    if (((s as any).temp_cmd_i ?? 0) < ((s as any).temp_cmd_max_i ?? 0)) {
-      (s as any).cmd_temp_npcid = (((s as any).lover ?? 0)?.[String((s as any).temp_cmd_i ?? 0)] ?? 0);
-      if ((String((((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'ex') {
-        (s as any).temp_cmd_i = ((s as any).temp_cmd_i ?? 0) + (1);
-        break;
-      }
-      if (((s as any).npc_rel ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] < 0) {
-        ((s as any).npc_rel = (s as any).npc_rel ?? {})[String((s as any).cmd_temp_npcid ?? 0)] = 0;
-      }
-      if (((s as any).npc_rel ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] > 100) {
-        ((s as any).npc_rel = (s as any).npc_rel ?? {})[String((s as any).cmd_temp_npcid ?? 0)] = 100;
-      }
-      if (((s as any).npc_dates ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] < 0) {
-        ((s as any).npc_dates = (s as any).npc_dates ?? {})[String((s as any).cmd_temp_npcid ?? 0)] = 0;
-      }
-      if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'boyfriend'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'girlfriend') {
-        scene.text(`You are dating ${(((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')}.`);
+  const loverArr = (s as any).lover;
+  const loverMax = Array.isArray(loverArr) ? loverArr.length : (loverArr ? Object.keys(loverArr).length : 0);
+  (s as any).temp_cmd_max_i = loverMax;
+  let tempCmdI = 0;
+  while (tempCmdI < loverMax) {
+    (s as any).temp_cmd_i = tempCmdI;
+    (s as any).cmd_temp_npcid = String(loverArr[tempCmdI] ?? '');
+    const npcId = String((s as any).cmd_temp_npcid ?? '');
+    if (String((((s as any).npc_rel_type ?? 0)?.[npcId] ?? '')).slice(0, 2) === 'ex') {
+      tempCmdI += 1;
+      continue;
+    }
+    if (((s as any).npc_rel ?? 0)?.[npcId] < 0) {
+      ((s as any).npc_rel = (s as any).npc_rel ?? {})[npcId] = 0;
+    }
+    if (((s as any).npc_rel ?? 0)?.[npcId] > 100) {
+      ((s as any).npc_rel = (s as any).npc_rel ?? {})[npcId] = 100;
+    }
+    if (((s as any).npc_dates ?? 0)?.[npcId] < 0) {
+      ((s as any).npc_dates = (s as any).npc_dates ?? {})[npcId] = 0;
+    }
+    if (((s as any).npc_rel_type ?? 0)?.[npcId] === 'boyfriend'  ||  ((s as any).npc_rel_type ?? 0)?.[npcId] === 'girlfriend') {
+      scene.text(`You are dating ${(((s as any).npc_usedname ?? 0)?.[npcId] ?? '')}.`);
+    } else {
+      if (((s as any).npc_rel_type ?? 0)?.[npcId] === 'husband'  ||  ((s as any).npc_rel_type ?? 0)?.[npcId] === 'wife') {
+        scene.text(`You are married to ${(((s as any).npc_usedname ?? 0)?.[npcId] ?? '')}.`);
       } else {
-        if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'husband'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'wife') {
-          scene.text(`You are married to ${(((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')}.`);
+        if (((s as any).npc_rel_type ?? 0)?.[npcId] === 'fuckbuddy') {
+          scene.text(`You are fuckbuddies with ${(((s as any).npc_usedname ?? 0)?.[npcId] ?? '')}.`);
         } else {
-          if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'fuckbuddy') {
-            scene.text(`You are fuckbuddies with ${(((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')}.`);
-          } else {
-            if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'sugar_daddy') {
-              scene.text(`${(((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')} is your sugar daddy.`);
-            }
+          if (((s as any).npc_rel_type ?? 0)?.[npcId] === 'sugar_daddy') {
+            scene.text(`${(((s as any).npc_usedname ?? 0)?.[npcId] ?? '')} is your sugar daddy.`);
           }
         }
       }
-      if (((s as any).npc_gentle ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 1) {
-        scene.text(`Change lover's personality: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_gentle ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) = 0; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Gentle</a>`);
-      } else {
-        if (((s as any).npc_rough ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 0) {
-          scene.text(`Change lover's personality: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_rough ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) = 1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Normal</a>`);
-        } else {
-          scene.text(`Change lover's personality: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_rough ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) = 0; (s.npc_gentle ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) = 1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Rough</a>`);
-        }
-      }
-      if (((s as any).npc_pervert ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 0) {
-        scene.text(`Change lover's perversion: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_pervert ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) = 1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Not perverted</a>`);
-      } else {
-        scene.text(`Change lover's perversion: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_pervert ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) = 0; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">Perverted</a>`);
-      }
-      scene.text(`Relationship: ${(((s as any).npc_rel ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, String((s as any).cmd_temp_npcid ?? /u0027/u0027)); return false;">+10</a> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, String((s as any).cmd_temp_npcid ?? /u0027/u0027)); return false;">-10</a>`);
-      scene.text(`You've been on ${(((s as any).npc_dates ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? '')} dates. <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_dates ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) +=5; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">+5</a> <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_dates ??= {})String((s as any).cmd_temp_npcid ?? /u0027/u0027) -=5; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027lover_menu/u0027); return false;">-5</a>`);
-      (s as any).temp_cmd_i = ((s as any).temp_cmd_i ?? 0) + (1);
-      break;
     }
-    (s as any).temp_cmd_max_i = undefined;
-    (s as any).temp_cmd_i = undefined;
-    scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));
-    ((s as any).cheatmenu = (s as any).cheatmenu ?? {})['input_time'] = 'gs \'cheatmenu_din\', \'input_time\'';
+    if (((s as any).npc_gentle ?? 0)?.[npcId] === 1) {
+      scene.text(`Change lover's personality: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_gentle ??= {})['${npcId}'] = 0; return s; }); window.__gameStore.getState().doGoto('cheatmenu_din', 'lover_menu'); return false;">Gentle</a>`);
+    } else {
+      if (((s as any).npc_rough ?? 0)?.[npcId] === 0) {
+        scene.text(`Change lover's personality: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_rough ??= {})['${npcId}'] = 1; return s; }); window.__gameStore.getState().doGoto('cheatmenu_din', 'lover_menu'); return false;">Normal</a>`);
+      } else {
+        scene.text(`Change lover's personality: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_rough ??= {})['${npcId}'] = 0; (s.npc_gentle ??= {})['${npcId}'] = 1; return s; }); window.__gameStore.getState().doGoto('cheatmenu_din', 'lover_menu'); return false;">Rough</a>`);
+      }
+    }
+    if (((s as any).npc_pervert ?? 0)?.[npcId] === 0) {
+      scene.text(`Change lover's perversion: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_pervert ??= {})['${npcId}'] = 1; return s; }); window.__gameStore.getState().doGoto('cheatmenu_din', 'lover_menu'); return false;">Not perverted</a>`);
+    } else {
+      scene.text(`Change lover's perversion: <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_pervert ??= {})['${npcId}'] = 0; return s; }); window.__gameStore.getState().doGoto('cheatmenu_din', 'lover_menu'); return false;">Perverted</a>`);
+    }
+    scene.text(`Relationship: ${(((s as any).npc_rel ?? 0)?.[npcId] ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto('npc_relationship', 'modify_exact', '${npcId}', '10'); return false;">+10</a> <a href="#" onclick="window.__gameStore.getState().doGoto('npc_relationship', 'modify_exact', '${npcId}', '-10'); return false;">-10</a>`);
+    scene.text(`You've been on ${(((s as any).npc_dates ?? 0)?.[npcId] ?? '')} dates. <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_dates ??= {})['${npcId}'] += 5; return s; }); window.__gameStore.getState().doGoto('cheatmenu_din', 'lover_menu'); return false;">+5</a> <a href="#" onclick="window.__gameStore.setState((s) => { (s.npc_dates ??= {})['${npcId}'] -= 5; return s; }); window.__gameStore.getState().doGoto('cheatmenu_din', 'lover_menu'); return false;">-5</a>`);
+    tempCmdI += 1;
   }
+  (s as any).temp_cmd_max_i = undefined;
+  (s as any).temp_cmd_i = undefined;
+  scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));
   scene.actions([
     { label: 'Go Back', goto: ['cheatmenu_din', 'npcs'] },
   ]);
@@ -2094,31 +2095,32 @@ function enterTime(s: GameState, scene: SceneBuilder): void {
 function enterMagicTable(s: GameState, scene: SceneBuilder): void {
   (s as any).SpellTabName = ((s as any).locArgs?.[1] ?? 0);
   (s as any).ThisArrName = ((s as any).locArgs?.[2] ?? 0);
-  (s as any).maxArrSizeC = 0;
+  const spellArrName = String((s as any).ThisArrName ?? '').replace(/^\$/, '');
+  const spellArr = (s as any)[spellArrName];
+  const maxArrSizeC = Array.isArray(spellArr) ? spellArr.length : (spellArr ? Object.keys(spellArr).length : 0);
+  (s as any).maxArrSizeC = maxArrSizeC;
   (s as any).SpellListStr = '<center>\n<table width=\'90%\' cellspacing=\'0\' cellpadding=\'5\' valign=\'top\' border=\'1\'>\n<tr><th colspan=\'4\'><b>' + ((s as any).SpellTabName ?? 0) + '</b></th></tr>\n<tr>\n<th></th>\n<th>Spell</th>\n<th>Mana</th>\n<th>Description</th>\n</tr>';
-  (s as any).i = 0;
-  while (true) {
-    (s as any).ThisSpellName = 0;
-    if (((s as any).i ?? 0) < ((s as any).maxArrSizeC ?? 0)) {
-      if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 1) {
-        (s as any).spellFlipper = '<a href="EXEC: spellKnown[\'' + ((s as any).ThisSpellName ?? 0) + '\'] = 0 & gt \'cheatmenu_din\', \'magic\'">[Unlearn]</a>';
-      } else {
-        (s as any).spellFlipper = '<a href="EXEC: spellKnown[\'' + ((s as any).ThisSpellName ?? 0) + '\'] = 1 & gt \'cheatmenu_din\', \'magic\'">[Learn]</a>';
-      }
-      (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + ' <tr><td>' + ((s as any).spellFlipper ?? 0) + '</td><td>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td><td>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td><td>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td></tr>';
-      (s as any).i = ((s as any).i ?? 0) + (1);
-      break;
+  let i = 0;
+  while (i < maxArrSizeC) {
+    (s as any).i = i;
+    (s as any).ThisSpellName = String(spellArr[i] ?? '');
+    if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 1) {
+      (s as any).spellFlipper = '<a href="EXEC: spellKnown[\'' + ((s as any).ThisSpellName ?? 0) + '\'] = 0 & gt \'cheatmenu_din\', \'magic\'">[Unlearn]</a>';
+    } else {
+      (s as any).spellFlipper = '<a href="EXEC: spellKnown[\'' + ((s as any).ThisSpellName ?? 0) + '\'] = 1 & gt \'cheatmenu_din\', \'magic\'">[Learn]</a>';
     }
-    (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + '\n</table>\n</center>';
-    (s as any).i = undefined;
-    (s as any).ThisSpellName = undefined;
-    (s as any).ThisArrName = undefined;
-    (s as any).maxArrSizeC = undefined;
-    (s as any).SpellTabName = undefined;
-    (s as any).spellFlipper = undefined;
-    (s as any).SpellListStr = undefined;
-    ((s as any).cheatmenu = (s as any).cheatmenu ?? {})['sucresetdo'] = 'gs \'cheatmenu_din\', \'sucresetdo\'';
+    (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + ' <tr><td>' + ((s as any).spellFlipper ?? 0) + '</td><td>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td><td>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td><td>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td></tr>';
+    i += 1;
   }
+  (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + '\n</table>\n</center>';
+  scene.text(String(qspFunc(s, 'cleanHTML', ((s as any).SpellListStr ?? '')) || ''));
+  (s as any).i = undefined;
+  (s as any).ThisSpellName = undefined;
+  (s as any).ThisArrName = undefined;
+  (s as any).maxArrSizeC = undefined;
+  (s as any).SpellTabName = undefined;
+  (s as any).spellFlipper = undefined;
+  (s as any).SpellListStr = undefined;
   scene.build();
 }
 
@@ -2179,7 +2181,7 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Magic']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - Magic</h1></center>');
   scene.text(String(qspFunc(s, 'cheatmenu', 'table_start') || ''));
-  scene.text(`<center>Is magical: <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_magik +=1; return s; }); window.__gameStore.getState().doGoto(/u0027cheatmenu_din/u0027, /u0027magic/u0027); return false;">+1${((s as any).pcs_magik ?? '')}</a></center>`);
+  scene.text(`<center>Is magical: <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_magik +=1; return s; }); window.__gameStore.getState().doGoto('cheatmenu_din', 'magic'); return false;">+1${((s as any).pcs_magik ?? '')}</a></center>`);
   if (((s as any).succubusflag ?? 0) === 1) {
     scene.text('<center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027cheatmenu_din\u0027, \u0027succubreset\u0027); return false;"><b>Remove & Reset Succubus status</b></a></center>');
     scene.text('<center><b>WARNING!</b></center>');
@@ -2190,27 +2192,27 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Combat Spells', '$combatSpells']; enterMagicTable(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Non-Combat Spells', '$nonComSpells']; enterMagicTable(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).SpellListStr = '<center>\n<table width=\'90%\' cellspacing=\'0\' cellpadding=\'5\' valign=\'top\' border=\'1\'>\n<tr><th colspan=\'2\'><b>Known Tree Circle Locations</b></th></tr>\n<tr><td><a href="EXEC: spellKnown[\'teleport\']=' + ((((s as any).spellKnown ?? 0)?.['teleport']===1) ? ('0') : ('1')) + ' & gt \'cheatmenu_din\', \'magic\'">' + ((((s as any).spellKnown ?? 0)?.['teleport']===1) ? ('[Unlearn]') : ('[Learn]')) + '</a></td><td>Teleport Spell</td></tr>';
-  (s as any).i = 0;
-  while (true) {
-    (s as any).ThisLocation = (((s as any).tpLocations ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
-    if (((s as any).i ?? 0) < Object.keys((s as any).tpLocations ?? {}).length) {
-      if (((s as any).tpKnown ?? 0)?.[String((s as any).ThisLocation ?? 0)] === 1) {
-        (s as any).spellFlipper = '<a href="EXEC: tpKnown[\'' + ((s as any).ThisLocation ?? 0) + '\'] = 0 & gt \'cheatmenu_din\', \'magic\'">[Unlearn]</a>';
-      } else {
-        (s as any).spellFlipper = '<a href="EXEC: tpKnown[\'' + ((s as any).ThisLocation ?? 0) + '\'] = 1 & gt \'cheatmenu_din\', \'magic\'">[Learn]</a>';
-      }
-      (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + ' <tr><td>' + ((s as any).spellFlipper ?? 0) + '</td><td>' + (((s as any).treeCircName ?? 0)?.[String((s as any).ThisLocation ?? 0)] ?? 0) + '</td></tr>';
-      (s as any).i = ((s as any).i ?? 0) + (1);
-      break;
+  const tpArr = (s as any).tpLocations;
+  const tpMax = Array.isArray(tpArr) ? tpArr.length : (tpArr ? Object.keys(tpArr).length : 0);
+  let i = 0;
+  while (i < tpMax) {
+    (s as any).i = i;
+    (s as any).ThisLocation = String(tpArr[i] ?? '');
+    if (((s as any).tpKnown ?? 0)?.[String((s as any).ThisLocation ?? 0)] === 1) {
+      (s as any).spellFlipper = '<a href="EXEC: tpKnown[\'' + ((s as any).ThisLocation ?? 0) + '\'] = 0 & gt \'cheatmenu_din\', \'magic\'">[Unlearn]</a>';
+    } else {
+      (s as any).spellFlipper = '<a href="EXEC: tpKnown[\'' + ((s as any).ThisLocation ?? 0) + '\'] = 1 & gt \'cheatmenu_din\', \'magic\'">[Learn]</a>';
     }
-    (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + '\n</table>\n</center>';
-    scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));
-    (s as any).i = undefined;
-    (s as any).ThisLocation = undefined;
-    (s as any).spellFlipper = undefined;
-    (s as any).SpellListStr = undefined;
-    ((s as any).cheatmenu = (s as any).cheatmenu ?? {})['pain'] = 'gs \'cheatmenu_din\', \'pain\'';
+    (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + ' <tr><td>' + ((s as any).spellFlipper ?? 0) + '</td><td>' + (((s as any).treeCircName ?? 0)?.[String((s as any).ThisLocation ?? 0)] ?? 0) + '</td></tr>';
+    i += 1;
   }
+  (s as any).SpellListStr = ((s as any).SpellListStr ?? 0) + '\n</table>\n</center>';
+  scene.text(String(qspFunc(s, 'cleanHTML', ((s as any).SpellListStr ?? '')) || ''));
+  scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));
+  (s as any).i = undefined;
+  (s as any).ThisLocation = undefined;
+  (s as any).spellFlipper = undefined;
+  (s as any).SpellListStr = undefined;
   scene.build();
 }
 
