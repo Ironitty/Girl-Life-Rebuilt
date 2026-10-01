@@ -1181,22 +1181,25 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
     scene.text(`You are taking the following elective classes this semester: ${(((s as any).university ?? 0)?.['elective1'] ?? '')}, ${(((s as any).university ?? 0)?.['elective2'] ?? '')}, ${(((s as any).university ?? 0)?.['elective1'] ?? '')}.`);
   }
   (s as any).j = 1;
-  do {
+  while (true) {
     if (((s as any).j ?? 0) <= ((s as any).university ?? 0)?.['semester_passed']) {
       qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + ((s as any).j ?? 0) + '');
       scene.text('You passed the ' + qspFunc(s, 'string', 'parse_number', ((s as any).j ?? ''), 'ordinal') + ' semester with the following grades:');
       (s as any).k = 0;
-      do {
+      while (true) {
         if (((s as any).class_list_institution ?? 0)?.[String((s as any).k ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).j ?? 0))) {
           scene.text(`${(((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? '')}: ${(((s as any).class_grade_desc ?? 0)?.[String((((s as any).class_list_institution ?? 0)?.[String((s as any).k ?? 0)] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? 0)) + '_grade'] ?? '')}`);
         }
         (s as any).k = ((s as any).k ?? 0) + (1);
-        (s as any).k = undefined;
-      } while (((s as any).k ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
+        if (((s as any).k ?? 0) >= Object.keys((s as any).class_list_institution ?? {}).length) break;
+      }
+      (s as any).k = undefined;
     }
     (s as any).j = ((s as any).j ?? 0) + (1);
-    (s as any).j = undefined;
-    if (((s as any).university ?? 0)?.['semester_passed'] === ((s as any).university ?? 0)?.['enrolled_in_semester']  &&  ((s as any).university ?? 0)?.['diploma'] === 0) {
+    if (((s as any).j ?? 0) >= 8) break;
+  }
+  (s as any).j = undefined;
+  if (((s as any).university ?? 0)?.['semester_passed'] === ((s as any).university ?? 0)?.['enrolled_in_semester']  &&  ((s as any).university ?? 0)?.['diploma'] === 0) {
       scene.text('You need to register for your next semester at the university administration building.');
     } else {
       if (((s as any).university ?? 0)?.['break'] === 1) {
@@ -1224,7 +1227,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
           scene.text('<center><h2>Grades</h2></center>');
           qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester']) + '');
           (s as any).j = 0;
-          do {
+          while (true) {
             if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
               if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_grade'] >= (3 * ((s as any).university ?? 0)?.['semester_week'] + 52)) {
                 scene.text(`You think you're doing great in ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} and will probably pass with a top grade if you keep this up.`);
@@ -1302,14 +1305,15 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
               }
             }
             (s as any).j = ((s as any).j ?? 0) + (1);
-            (s as any).j = undefined;
-          } while (((s as any).j ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
+            if (((s as any).j ?? 0) >= Object.keys((s as any).class_list_institution ?? {}).length) break;
+          }
+          (s as any).j = undefined;
         } else {
           if (((s as any).university ?? 0)?.['exam_week'] > 0) {
             scene.text('You are in the ' + ((((s as any).university ?? 0)?.['exam_week'] === 1) ? ('first') : ('second')) + ' of the two weeks of exams. ' + qspFunc(s, 'uni_programs', 'get_exam_schedule'));
             qspCall(s, 'grades', 'assign_grade_description', 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester']) + '');
             (s as any).j = 0;
-            do {
+            while (true) {
               if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + (((s as any).university ?? 0)?.['enrolled_in']) + '_semester_' + (((s as any).university ?? 0)?.['enrolled_in_semester'])) {
                 if (((s as any).class ?? 0)[(((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)]) + '_' + (((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) + '_exam_done'] === 1) {
                   scene.text(`You completed your ${(((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? '')} exam and think you will get an ${(((s as any).class_grade_desc ?? 0)?.[String((((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? 0)) + '_grade'] ?? '')}.`);
@@ -1338,8 +1342,9 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
                 }
               }
               (s as any).j = ((s as any).j ?? 0) + (1);
-              (s as any).j = undefined;
-            } while (((s as any).j ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
+              if (((s as any).j ?? 0) >= Object.keys((s as any).class_list_institution ?? {}).length) break;
+            }
+            (s as any).j = undefined;
           }
         }
       }
@@ -1353,7 +1358,6 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go back', goto: ['journal', 'generaltab'] },
     ]);
-  } while (((s as any).j ?? 0) < 8);
   scene.build();
 }
 
