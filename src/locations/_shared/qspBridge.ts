@@ -1,5 +1,6 @@
 import type { GameState } from '../../core/types';
-import { goto, invoke, getLocation } from '../../core/location';
+import { goto, call, invoke, getLocation } from '../../core/location';
+import { SceneBuilder } from '../../core/scene';
 import { arousal } from '../../core/arousal';
 import { arousalStatsEnd, stretch, setVirginityStats, autoLube, checkEvents } from '../../core/arousal_funcs';
 import {
@@ -85,6 +86,10 @@ function callNpcStat(s: GameState, id: unknown, index: unknown, extra?: unknown)
 
 export function qspCall(s: GameState, module: string, func: string, ...args: unknown[]): void {
   switch (module) {
+    case 'help': {
+      call(s, 'help', func);
+      return;
+    }
     case 'boyStat': {
       callNpcStat(s, func, args[0] ?? '0', args[1]);
       return;
@@ -1073,6 +1078,24 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
         result = result.split('<td></td>').join('');
       }
       return result;
+    }
+    case 'help': {
+      const def = getLocation('help');
+      if (def) {
+        const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+        const savedLocArgs = (s as any).locArgs;
+        s.loc = 'help';
+        s.locArg = func;
+        s.locArg2 = '';
+        s.locArg3 = '';
+        (s as any).locArgs = ['', ...args];
+        def.enter?.(s, new SceneBuilder());
+        s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+        (s as any).locArgs = savedLocArgs;
+        return (s as any).result ?? 0;
+      }
+      warn(module, func, args);
+      return 0;
     }
     default:
       warn(module, func, args);

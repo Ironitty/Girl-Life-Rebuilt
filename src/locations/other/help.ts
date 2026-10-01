@@ -236,150 +236,109 @@ function enterRenderBanner(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).result ?? 0) + (' <small style="opacity:0.4"> [' + ((s as any).help_from_location_type ?? 0) + ']</small>');
   }
   (s as any).result = ((s as any).result ?? 0) + ('</div>');
+  scene.text(String((s as any).result ?? ''));
   scene.build();
 }
 
 function enterRenderToc(s: GameState, scene: SceneBuilder): void {
-  (s as any).rt_ao_i = 0;
-  while (true) {
-    if (((s as any).rt_ao_i ?? 0) < Object.keys((s as any).help_toc_sections ?? {}).length) {
-      (s as any).rt_ao_key = (((s as any).help_toc_sections ?? 0)?.[String((s as any).rt_ao_i ?? 0)] ?? 0);
-      if (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_ao_key ?? 0)] === ((s as any).help_page_key ?? 0)) {
-        ((s as any).help_toc_open = (s as any).help_toc_open ?? {})[String((s as any).rt_ao_key ?? 0)] = 1;
-      } else {
-        if (((String(' ' + (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ao_key ?? 0)] ?? 0) + ' ').indexOf(String(' ' + ((s as any).help_page_key ?? 0) + ' '))) + 1) > 0) {
-          ((s as any).help_toc_open = (s as any).help_toc_open ?? {})[String((s as any).rt_ao_key ?? 0)] = 1;
-        } else {
-          (s as any).rt_ao_grem = (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ao_key ?? 0)] ?? 0);
-          while (true) {
-            if (((s as any).rt_ao_grem ?? 0) !== '') {
-              (s as any).rt_ao_gsp = ((String(((s as any).rt_ao_grem ?? 0)).indexOf(String(' '))) + 1);
-              if (((s as any).rt_ao_gsp ?? 0) > 0) {
-                (s as any).rt_ao_gk = (String(((s as any).rt_ao_grem ?? 0)).slice((1)-1, ((1)-1)+(((s as any).rt_ao_gsp ?? 0) - 1)));
-                (s as any).rt_ao_grem = (String(((s as any).rt_ao_grem ?? 0)).slice((((s as any).rt_ao_gsp ?? 0) + 1)-1));
-              } else {
-                (s as any).rt_ao_gk = ((s as any).rt_ao_grem ?? 0);
-                (s as any).rt_ao_grem = '';
-              }
-              if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_ao_gk ?? 0)]) {
-                if (((String(' ' + (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ao_gk ?? 0)] ?? 0) + ' ').indexOf(String(' ' + ((s as any).help_page_key ?? 0) + ' '))) + 1) > 0) {
-                  ((s as any).help_toc_open = (s as any).help_toc_open ?? {})[String((s as any).rt_ao_key ?? 0)] = 1;
-                  ((s as any).help_toc_open = (s as any).help_toc_open ?? {})[String((s as any).rt_ao_gk ?? 0)] = 1;
-                }
-              }
-              break;
-            }
-          }
-        }
-      }
-      (s as any).rt_ao_i = ((s as any).rt_ao_i ?? 0) + (1);
-      break;
-    }
-    (s as any).rt_ao_i = undefined;
-    (s as any).rt_ao_key = undefined;
-    (s as any).rt_ao_grem = undefined;
-    (s as any).rt_ao_gsp = undefined;
-    (s as any).rt_ao_gk = undefined;
-    (s as any).rt_html = '<div style="font-weight:bold;font-size:0.95em;padding:0 0 6px 0;border-bottom:2px solid;margin-bottom:8px">Contents</div>';
-    if (Object.keys((s as any).help_toc_sections ?? {}).length === 0) {
-      (s as any).rt_html = ((s as any).rt_html ?? 0) + ('<small><i>No topics yet.</i></small>');
-    } else {
-      (s as any).rt_i = 0;
-      while (true) {
-        if (((s as any).rt_i ?? 0) < Object.keys((s as any).help_toc_sections ?? {}).length) {
-          (s as any).rt_key = (((s as any).help_toc_sections ?? 0)?.[String((s as any).rt_i ?? 0)] ?? 0);
-          (s as any).rt_label = (((s as any).help_toc_label ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
-          (s as any).rt_page = (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
-          (s as any).rt_loc = (((s as any).help_toc_loc ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
-          (s as any).rt_kids = (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
-          (s as any).rt_open = (((s as any).help_toc_open ?? 0)?.[String((s as any).rt_key ?? 0)] ?? 0);
-          (s as any).rt_has_kids = ((((s as any).rt_kids ?? 0) !== '') ? (1) : (0));
-          if (((s as any).rt_has_kids ?? 0)) {
-            (s as any).rt_tri = ((((s as any).rt_open ?? 0)) ? ('&#9660;') : ('&#9654;'));
-            (s as any).rt_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})String((s as any).rt_key ?? \u0027\u0027) = 1 - help_toc_open[\u0027' + ((s as any).rt_key ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">' + ((s as any).rt_tri ?? 0) + '</a> ';
-          } else {
-            (s as any).rt_toggle = '&nbsp;&nbsp; ';
-          }
-          if (((s as any).rt_page ?? 0) !== '') {
-            if (((s as any).rt_page ?? 0) === ((s as any).help_page_key ?? 0)) {
-              (s as any).rt_active = ' style="font-weight:bold;border-left:3px solid;padding-left:4px;margin-left:-7px;display:inline-block"';
-            } else {
-              (s as any).rt_active = '';
-            }
-            (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.getState().doGoto(String((s as any).rt_loc ?? \u0027\u0027), String((s as any).rt_page ?? \u0027\u0027)); return false;">' + ((s as any).rt_label ?? 0) + '</a>';
-          } else {
-            if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_key ?? 0)]) {
-              (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})String((s as any).rt_key ?? \u0027\u0027) = 1 - help_toc_open[\u0027' + ((s as any).rt_key ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">' + ((s as any).rt_label ?? 0) + '</a>';
-            } else {
-              (s as any).rt_lnk = ((s as any).rt_label ?? 0);
-            }
-          }
-          (s as any).rt_html = ((s as any).rt_html ?? 0) + ('<div style="margin:4px 0;font-weight:bold;font-size:0.95em">' + ((s as any).rt_toggle ?? 0) + ((s as any).rt_lnk ?? 0) + '</div>');
-          if (((s as any).rt_open ?? 0)  &&  ((s as any).rt_kids ?? 0) !== '') {
-            (s as any).rt_remaining = ((s as any).rt_kids ?? 0);
-            while (true) {
-              if (((s as any).rt_remaining ?? 0) !== '') {
-                (s as any).rt_sp = ((String(((s as any).rt_remaining ?? 0)).indexOf(String(' '))) + 1);
-                if (((s as any).rt_sp ?? 0) > 0) {
-                  (s as any).rt_ck = (String(((s as any).rt_remaining ?? 0)).slice((1)-1, ((1)-1)+(((s as any).rt_sp ?? 0) - 1)));
-                  (s as any).rt_remaining = (String(((s as any).rt_remaining ?? 0)).slice((((s as any).rt_sp ?? 0) + 1)-1));
-                } else {
-                  (s as any).rt_ck = ((s as any).rt_remaining ?? 0);
-                  (s as any).rt_remaining = '';
-                }
-                if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_ck ?? 0)]) {
-                  (s as any).rt_cg_open = (((s as any).help_toc_open ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
-                  (s as any).rt_cg_tri = ((((s as any).rt_cg_open ?? 0)) ? ('&#9660;') : ('&#9654;'));
-                  (s as any).rt_cg_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})String((s as any).rt_ck ?? \u0027\u0027) = 1 - help_toc_open[\u0027' + ((s as any).rt_ck ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">' + ((s as any).rt_cg_tri ?? 0) + '</a> ';
-                  (s as any).rt_cg_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})String((s as any).rt_ck ?? \u0027\u0027) = 1 - help_toc_open[\u0027' + ((s as any).rt_ck ?? 0) + '\u0027]; return s; }); window.__gameStore.getState().doGoto(String((s as any).help_page_loc ?? \u0027\u0027), String((s as any).help_page_key ?? \u0027\u0027)); return false;">' + (((s as any).help_toc_label ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0) + '</a>';
-                  (s as any).rt_html = ((s as any).rt_html ?? 0) + ('<div style="margin:3px 0 1px 0;padding-left:14px;font-style:italic;font-size:0.88em;opacity:0.75">' + ((s as any).rt_cg_toggle ?? 0) + ((s as any).rt_cg_lnk ?? 0) + '</div>');
-                  if (((s as any).rt_cg_open ?? 0)  &&  ((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ck ?? 0)] !== '') {
-                    (s as any).rt_gc_rem = (((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
-                    while (true) {
-                      if (((s as any).rt_gc_rem ?? 0) !== '') {
-                        (s as any).rt_gc_sp = ((String(((s as any).rt_gc_rem ?? 0)).indexOf(String(' '))) + 1);
-                        if (((s as any).rt_gc_sp ?? 0) > 0) {
-                          (s as any).rt_gc_k = (String(((s as any).rt_gc_rem ?? 0)).slice((1)-1, ((1)-1)+(((s as any).rt_gc_sp ?? 0) - 1)));
-                          (s as any).rt_gc_rem = (String(((s as any).rt_gc_rem ?? 0)).slice((((s as any).rt_gc_sp ?? 0) + 1)-1));
-                        } else {
-                          (s as any).rt_gc_k = ((s as any).rt_gc_rem ?? 0);
-                          (s as any).rt_gc_rem = '';
-                        }
-                        (s as any).rt_gc_l = (((s as any).help_toc_label ?? 0)?.[String((s as any).rt_gc_k ?? 0)] ?? 0);
-                        (s as any).rt_gc_p = (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_gc_k ?? 0)] ?? 0);
-                        (s as any).rt_gc_loc = (((s as any).help_toc_loc ?? 0)?.[String((s as any).rt_gc_k ?? 0)] ?? 0);
-                        if (((s as any).rt_gc_p ?? 0) === ((s as any).help_page_key ?? 0)) {
-                          (s as any).rt_gc_act = ' style="font-weight:bold;border-left:3px solid;padding-left:3px;margin-left:-6px;display:inline-block"';
-                        } else {
-                          (s as any).rt_gc_act = '';
-                        }
-                        (s as any).rt_html = ((s as any).rt_html ?? 0) + ('<div style="margin:1px 0;padding-left:28px;font-size:0.88em"><a href="#" onclick="window.__gameStore.getState().doGoto(String((s as any).rt_gc_loc ?? \u0027\u0027), String((s as any).rt_gc_p ?? \u0027\u0027)); return false;">' + ((s as any).rt_gc_l ?? 0) + '</a></div>');
-                        break;
-                      }
-                    }
-                  }
-                } else {
-                  (s as any).rt_cl = (((s as any).help_toc_label ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
-                  (s as any).rt_cp = (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
-                  (s as any).rt_cloc = (((s as any).help_toc_loc ?? 0)?.[String((s as any).rt_ck ?? 0)] ?? 0);
-                  if (((s as any).rt_cp ?? 0) === ((s as any).help_page_key ?? 0)) {
-                    (s as any).rt_cactive = ' style="font-weight:bold;border-left:3px solid;padding-left:4px;margin-left:-7px;display:inline-block"';
-                  } else {
-                    (s as any).rt_cactive = '';
-                  }
-                  (s as any).rt_html = ((s as any).rt_html ?? 0) + ('<div style="margin:2px 0;padding-left:14px"><a href="#" onclick="window.__gameStore.getState().doGoto(String((s as any).rt_cloc ?? \u0027\u0027), String((s as any).rt_cp ?? \u0027\u0027)); return false;">' + ((s as any).rt_cl ?? 0) + '</a></div>');
-                }
-                break;
-              }
-            }
-          }
-          (s as any).rt_i = ((s as any).rt_i ?? 0) + (1);
-          break;
-        }
-      }
-    }
-    (s as any).result = ((s as any).rt_html ?? 0);
+  const st = s as any;
+  if (!Array.isArray(st.help_toc_sections) || st.help_toc_sections.length === 0) {
+    enterTocInit(s, scene);
   }
+  const sections: string[] = Object.keys(st.help_toc_sections ?? {});
+  const pageKey = String(st.help_page_key ?? '');
+  const pageLoc = String(st.help_page_loc ?? '');
+  const contains = (list: unknown, key: string): boolean => (' ' + String(list ?? '') + ' ').indexOf(' ' + key + ' ') > 0;
+  const jsq = (v: unknown): string => String(v ?? '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+  const navJs = (loc: unknown, page: unknown): string => `window.__gameStore.getState().doGoto('${jsq(loc)}', '${jsq(page)}'); return false;`;
+  const toggleJs = (key: unknown): string => `window.__gameStore.setState((s) => { (s.help_toc_open ??= {})['${jsq(key)}'] = 1 - (((s.help_toc_open ?? {})['${jsq(key)}']) ?? 0); return s; }); window.__gameStore.getState().doGoto('${jsq(pageLoc)}', '${jsq(pageKey)}'); return false;`;
+
+  let i = 0;
+  while (i < sections.length) {
+    const key = String(st.help_toc_sections?.[String(i)] ?? '');
+    if (String(st.help_toc_page?.[key] ?? '') === pageKey) {
+      (st.help_toc_open = st.help_toc_open ?? {})[key] = 1;
+    } else if (contains(st.help_toc_children?.[key], pageKey)) {
+      (st.help_toc_open = st.help_toc_open ?? {})[key] = 1;
+    } else {
+      let grem = String(st.help_toc_children?.[key] ?? '');
+      while (grem !== '') {
+        const gsp = grem.indexOf(' ');
+        const gk = gsp >= 0 ? grem.slice(0, gsp) : grem;
+        grem = gsp >= 0 ? grem.slice(gsp + 1) : '';
+        if (st.help_toc_is_group?.[gk] && contains(st.help_toc_children?.[gk], pageKey)) {
+          (st.help_toc_open = st.help_toc_open ?? {})[key] = 1;
+          st.help_toc_open[gk] = 1;
+        }
+      }
+    }
+    i++;
+  }
+
+  let html = '<div style="font-weight:bold;font-size:0.95em;padding:0 0 6px 0;border-bottom:2px solid;margin-bottom:8px">Contents</div>';
+  if (sections.length === 0) {
+    html += '<small><i>No topics yet.</i></small>';
+  } else {
+    i = 0;
+    while (i < sections.length) {
+      const key = String(st.help_toc_sections?.[String(i)] ?? '');
+      const label = String(st.help_toc_label?.[key] ?? '');
+      const page = String(st.help_toc_page?.[key] ?? '');
+      const loc = String(st.help_toc_loc?.[key] ?? '');
+      const kids = String(st.help_toc_children?.[key] ?? '');
+      const open = !!st.help_toc_open?.[key];
+      const hasKids = kids !== '';
+      const tri = open ? '&#9660;' : '&#9654;';
+      const toggle = hasKids ? `<a style="text-decoration:none" href="#" onclick="${toggleJs(key)}">${tri}</a> ` : '&nbsp;&nbsp; ';
+      let lnk: string;
+      if (page !== '') {
+        const active = page === pageKey ? ' style="font-weight:bold;border-left:3px solid;padding-left:4px;margin-left:-7px;display:inline-block"' : '';
+        lnk = `<a href="#" onclick="${navJs(loc, page)}"${active}>${label}</a>`;
+      } else if (st.help_toc_is_group?.[key]) {
+        lnk = `<a style="color:inherit;text-decoration:none;cursor:pointer" href="#" onclick="${toggleJs(key)}">${label}</a>`;
+      } else {
+        lnk = label;
+      }
+      html += `<div style="margin:4px 0;font-weight:bold;font-size:0.95em">${toggle}${lnk}</div>`;
+      if (open && kids !== '') {
+        let rem = kids;
+        while (rem !== '') {
+          const sp = rem.indexOf(' ');
+          const ck = sp >= 0 ? rem.slice(0, sp) : rem;
+          rem = sp >= 0 ? rem.slice(sp + 1) : '';
+          if (st.help_toc_is_group?.[ck]) {
+            const cgOpen = !!st.help_toc_open?.[ck];
+            const cgTri = cgOpen ? '&#9660;' : '&#9654;';
+            const cgToggle = `<a style="text-decoration:none" href="#" onclick="${toggleJs(ck)}">${cgTri}</a> `;
+            const cgLnk = `<a style="color:inherit;text-decoration:none;cursor:pointer" href="#" onclick="${toggleJs(ck)}">${String(st.help_toc_label?.[ck] ?? '')}</a>`;
+            html += `<div style="margin:3px 0 1px 0;padding-left:14px;font-style:italic;font-size:0.88em;opacity:0.75">${cgToggle}${cgLnk}</div>`;
+            if (cgOpen && String(st.help_toc_children?.[ck] ?? '') !== '') {
+              let gcRem = String(st.help_toc_children?.[ck] ?? '');
+              while (gcRem !== '') {
+                const gcSp = gcRem.indexOf(' ');
+                const gcK = gcSp >= 0 ? gcRem.slice(0, gcSp) : gcRem;
+                gcRem = gcSp >= 0 ? gcRem.slice(gcSp + 1) : '';
+                const gcL = String(st.help_toc_label?.[gcK] ?? '');
+                const gcP = String(st.help_toc_page?.[gcK] ?? '');
+                const gcLoc = String(st.help_toc_loc?.[gcK] ?? '');
+                const gcAct = gcP === pageKey ? ' style="font-weight:bold;border-left:3px solid;padding-left:3px;margin-left:-6px;display:inline-block"' : '';
+                html += `<div style="margin:1px 0;padding-left:28px;font-size:0.88em"><a href="#" onclick="${navJs(gcLoc, gcP)}"${gcAct}>${gcL}</a></div>`;
+              }
+            }
+          } else {
+            const cl = String(st.help_toc_label?.[ck] ?? '');
+            const cp = String(st.help_toc_page?.[ck] ?? '');
+            const cloc = String(st.help_toc_loc?.[ck] ?? '');
+            const cactive = cp === pageKey ? ' style="font-weight:bold;border-left:3px solid;padding-left:4px;margin-left:-7px;display:inline-block"' : '';
+            html += `<div style="margin:2px 0;padding-left:14px"><a href="#" onclick="${navJs(cloc, cp)}"${cactive}>${cl}</a></div>`;
+          }
+        }
+      }
+      i++;
+    }
+  }
+  st.result = html;
+  scene.text(html);
   scene.build();
 }
 
@@ -402,7 +361,7 @@ function enterRender(s: GameState, scene: SceneBuilder): void {
   scene.text(String((s as any).help_layout ?? ''));
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
-    qspCall(st, 'help', '');
+    qspCall(st, 'help', 'back');
   } },
   ]);
   scene.build();
