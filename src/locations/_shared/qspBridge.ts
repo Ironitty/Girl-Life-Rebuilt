@@ -525,6 +525,29 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
       if (st.PurseQuality === 0) return;
       return;
     }
+    case 'tattoo_management': {
+      const def = getLocation('tattoo_management');
+      if (def) {
+        const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+        const savedLocArgs = (s as any).locArgs;
+        const savedPrevLoc = (s as any).prevLoc, savedPrevArg = (s as any).prevArg;
+        s.loc = 'tattoo_management';
+        s.locArg = func;
+        s.locArg2 = '';
+        s.locArg3 = '';
+        (s as any).locArgs = ['', ...args];
+        (s as any).prevLoc = savedLoc;
+        (s as any).prevArg = savedArg;
+        def.enter?.(s, new SceneBuilder());
+        s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+        (s as any).locArgs = savedLocArgs;
+        (s as any).prevLoc = savedPrevLoc;
+        (s as any).prevArg = savedPrevArg;
+        return;
+      }
+      warn(module, func, args);
+      return;
+    }
     default:
       warn(module, func, args);
   }
@@ -1085,6 +1108,24 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
         const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
         const savedLocArgs = (s as any).locArgs;
         s.loc = 'help';
+        s.locArg = func;
+        s.locArg2 = '';
+        s.locArg3 = '';
+        (s as any).locArgs = ['', ...args];
+        def.enter?.(s, new SceneBuilder());
+        s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+        (s as any).locArgs = savedLocArgs;
+        return (s as any).result ?? 0;
+      }
+      warn(module, func, args);
+      return 0;
+    }
+    case 'tattoo_management': {
+      const def = getLocation('tattoo_management');
+      if (def) {
+        const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+        const savedLocArgs = (s as any).locArgs;
+        s.loc = 'tattoo_management';
         s.locArg = func;
         s.locArg2 = '';
         s.locArg3 = '';
