@@ -91,19 +91,19 @@ function enterWedgie(s: GameState, scene: SceneBuilder): void {
     if (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).wedgie_counter ?? 0) < 1000) {
       if (((s as any).rand_girl ?? 0) !== 'Pauline'  &&  ((s as any).rand_girl ?? 0) !== 'Lena'  &&  ((s as any).rand_girl ?? 0) !== 'Lera'  &&  ((s as any).rand_girl ?? 0) !== 'Alyona') {
         (s as any).wedgie_counter = ((s as any).wedgie_counter ?? 0) + (1);
-        break;
+        continue;
       }
     } else {
       if (((s as any).grupTipe ?? 0) === 2  &&  ((s as any).wedgie_counter ?? 0) < 1000) {
         if (((s as any).rand_girl ?? 0) !== 'Pauline'  &&  ((s as any).rand_girl ?? 0) !== 'Lena'  &&  ((s as any).rand_girl ?? 0) !== 'Lera'  &&  ((s as any).rand_girl ?? 0) !== 'Alyona'  &&  ((s as any).rand_girl ?? 0) !== 'Christina') {
           (s as any).wedgie_counter = ((s as any).wedgie_counter ?? 0) + (1);
-          break;
+          continue;
         }
       } else {
         if (((s as any).wedgie_counter ?? 0) < 1000) {
           if (((s as any).rand_girl ?? 0) !== 'Pauline'  &&  ((s as any).rand_girl ?? 0) !== 'Lena'  &&  ((s as any).rand_girl ?? 0) !== 'Lera'  &&  ((s as any).rand_girl ?? 0) !== 'Alyona'  &&  ((s as any).rand_girl ?? 0) !== 'Christina'  &&  ((s as any).rand_girl ?? 0) !== 'Lina'  &&  ((s as any).rand_girl ?? 0) !== 'Lariska'  &&  ((s as any).rand_girl ?? 0) !== 'Stasya') {
             (s as any).wedgie_counter = ((s as any).wedgie_counter ?? 0) + (1);
-            break;
+            continue;
           }
         }
       }
@@ -150,6 +150,7 @@ function enterWedgie(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'random']; enterReturnFavor(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
+    break;
   }
   scene.build();
 }
@@ -363,7 +364,7 @@ function enterUpskirt1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
     if ((((s as any).rand_girl ?? 0) === 'Veronika'  ||  ((s as any).rand_girl ?? 0) === 'Katyusha'  ||  ((s as any).rand_girl ?? 0) === 'Anushka')  &&  ((s as any).jump_counter ?? 0) < 1000) {
       (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-      break;
+      continue;
     }
     (s as any).jump_counter = 0;
     scene.img('images/locations/pavlovsk/school/detention/spreadg.jpg');
@@ -392,6 +393,7 @@ function enterUpskirt1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     ]);
+    break;
   }
   scene.build();
 }
@@ -402,7 +404,7 @@ function enterUpskirt2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
     if ((((s as any).rand_girl ?? 0) === 'Veronika'  ||  ((s as any).rand_girl ?? 0) === 'Anushka')  &&  ((s as any).jump_counter ?? 0) < 1000) {
       (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-      break;
+      continue;
     }
     (s as any).jump_counter = 0;
     scene.img('images/locations/pavlovsk/school/detention/upskirt.jpg');
@@ -414,6 +416,7 @@ function enterUpskirt2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go home', goto: ['gschool_detention', 'end'] },
     ]);
+    break;
   }
   scene.build();
 }
@@ -424,7 +427,7 @@ function enterFlashingGirl(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
     if ((((s as any).rand_girl ?? 0) === 'Veronika'  ||  ((s as any).rand_girl ?? 0) === 'Katyusha')  &&  ((s as any).jump_counter ?? 0) < 1000) {
       (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-      break;
+      continue;
     }
     (s as any).jump_counter = 0;
     scene.img('images/locations/pavlovsk/school/detention/detflash1.mp4');
@@ -436,6 +439,7 @@ function enterFlashingGirl(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go home', goto: ['gschool_detention', 'end'] },
     ]);
+    break;
   }
   scene.build();
 }
@@ -446,7 +450,7 @@ function enterTeasingGirl(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 1, 0);
     if ((((s as any).rand_girl ?? 0) === 'Veronika'  ||  ((s as any).rand_girl ?? 0) === 'Katyusha')  &&  ((s as any).jump_counter ?? 0) < 1000) {
       (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-      break;
+      continue;
     }
     (s as any).jump_counter = 0;
     scene.img('images/locations/pavlovsk/school/detention/tease.jpg');
@@ -458,6 +462,7 @@ function enterTeasingGirl(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go home', goto: ['gschool_detention', 'end'] },
     ]);
+    break;
   }
   scene.build();
 }
@@ -469,13 +474,13 @@ function enterHandjob(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'gschool_events', 'rand_boy_arg', 0, 0, 0, 1, 0, 0);
       if (((s as any).rand_boy ?? 0) === 'Niko'  &&  ((s as any).jump_counter ?? 0) < 1000) {
         (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-        break;
+        continue;
       }
     } else {
       qspCall(s, 'gschool_events', 'rand_boy_arg', 1, 1, 0, 0, 0, 0);
       if (((s as any).rand_boy ?? 0) !== 'Dimka'  &&  ((s as any).rand_boy ?? 0) !== 'Andrey'  &&  ((s as any).rand_boy ?? 0) !== 'Ivan'  &&  ((s as any).rand_boy ?? 0) !== 'Lazar'  &&  ((s as any).rand_boy ?? 0) !== 'Svyatoslav'  &&  ((s as any).jump_counter ?? 0) < 1000) {
         (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-        break;
+        continue;
       }
     }
     (s as any).jump_counter = 0;
@@ -489,6 +494,7 @@ function enterHandjob(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go home', goto: ['gschool_detention', 'end'] },
     ]);
+    break;
   }
   scene.build();
 }
@@ -498,7 +504,7 @@ function enterChatWith___randGirl__(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 1, 1, 1, 0);
     if (((s as any).npc_rel ?? 0)['A' + (((s as any).r ?? 0))] < 50  &&  ((s as any).counter_girl ?? 0) < 1000) {
       (s as any).counter_girl = ((s as any).counter_girl ?? 0) + (1);
-      break;
+      continue;
     }
     (s as any).counter_girl = 0;
     qspCall(s, 'npc_relationship', 'modify', 'A' + ((s as any).r ?? 0) + '', 3);
@@ -510,6 +516,7 @@ function enterChatWith___randGirl__(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go home', goto: ['gschool_detention', 'end'] },
     ]);
+    break;
   }
   scene.build();
 }
@@ -519,7 +526,7 @@ function enterChatWith___randBoy__(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gschool_events', 'rand_boy_arg', 1, 1, 1, 1, 1, 0);
     if (((s as any).npc_rel ?? 0)['A' + (((s as any).r ?? 0))] < 50  &&  ((s as any).counter_boy ?? 0) < 1000) {
       (s as any).counter_boy = ((s as any).counter_boy ?? 0) + (1);
-      break;
+      continue;
     }
     (s as any).counter_boy = 0;
     qspCall(s, 'npc_relationship', 'modify', 'A' + ((s as any).r ?? 0) + '', 3);
@@ -531,6 +538,7 @@ function enterChatWith___randBoy__(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go home', goto: ['gschool_detention', 'end'] },
     ]);
+    break;
   }
   scene.build();
 }
