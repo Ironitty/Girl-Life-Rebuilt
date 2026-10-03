@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterAddToEventsList(s: GameState, scene: SceneBuilder): void {
   if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) === -1) {
-    (s as any).events_list = [...((s as any).events_list ?? []), ((s as any).locArgs?.[1] ?? 0)];
+    (s as any).events_list = [...(Array.isArray((s as any).events_list) ? (s as any).events_list : []), ((s as any).locArgs?.[1] ?? 0)];
   }
   return;
   scene.build();
@@ -51,7 +51,7 @@ function enterGetBlockingEvent(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_block_idx ?? 0) < Object.keys((s as any).events_list ?? {}).length) {
       (s as any).temp_block_id = (((s as any).events_list ?? 0)?.[String((s as any).temp_block_idx ?? 0)] ?? 0);
       if (((s as any).temp_block_id ?? 0) !== ''  &&  ((s as any).event_blocking ?? 0)?.[String((s as any).temp_block_id ?? 0)] !== 0) {
-        (s as any).blocking_events_list = [...((s as any).blocking_events_list ?? []), ((s as any).temp_block_id ?? 0)];
+        (s as any).blocking_events_list = [...(Array.isArray((s as any).blocking_events_list) ? (s as any).blocking_events_list : []), ((s as any).temp_block_id ?? 0)];
       }
       (s as any).temp_block_idx = ((s as any).temp_block_idx ?? 0) + (1);
       break;

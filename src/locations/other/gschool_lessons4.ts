@@ -1542,12 +1542,14 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
       scene.text('You pick one of the empty shower heads at random and turn the water on, letting it pour over you and run down your body, caressing you in the relaxing way that is unique to hot showers - after PE, this feels simply great. After spending a few minutes basking in the water, you lather up your body with soap. You barely pay any attention to the other girls showering with you, their conversations mostly drowned out by the sound of the shower.');
       scene.text('As you wash off the soap, you turn to see Albina bending over to let Bella spank her; most of the girls stop what they\'re doing to watch. After several fairly hard smacks that echo into the room, they stop and laugh about it as Albina rubs her ass. You turn back and finish your shower as Bella and Albina giggle at each other.');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
+      break;
     } else {
       if (((s as any).gymshower ?? 0) === 2) {
         scene.img('images/locations/pavlovsk/school/gym/shower/picture.jpg');
         scene.text('You pick one of the empty shower heads at random and turn the water on, letting it pour over you and run down your body, caressing you in the relaxing way that\'s unique to hot showers - after PE, this feels simply great. After spending a few minutes basking in the water, you lather up your body with soap. You barely pay any attention to the other girls showering with you, their conversations mostly drowned out by the sound of the shower.');
         scene.text('As you wash off the soap, you turn just in time to see Christina holding up her phone and taking pictures. All the girls quickly notice. Some laugh and others quickly finish and leave as everyone except Anushka covers up. After a few laughs and some good-natured yelling, Christina stops and everyone goes back to showering.');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
+        break;
       } else {
         if (((s as any).gymshower ?? 0) === 3) {
           scene.img('images/locations/pavlovsk/school/gym/sex/aylnushkiss.jpg');
@@ -1556,6 +1558,7 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
           scene.text('"Stop that, you fucking dykes!" Katyusha scowls. "That\'s fucking disgusting!"');
           scene.text('Anushka looks at Katyusha, makes a V with her fingers and sticks her tongue between them, wiggling it back and forth. Katyusha glares at her, then shakes her head, turns off the water and walks into the locker room. Anushka and Aylona laugh about it before they go back to showering.');
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
+          break;
         } else {
           if (((s as any).gymshower ?? 0) === 4  &&  ((s as any).npc_grupTipe ?? 0)?.['A25'] === 5) {
             scene.img('images/locations/pavlovsk/school/gym/sex/sonia_busted_1.jpg');
@@ -1696,16 +1699,20 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
                 ]);
               }
             }
+            break;
           } else {
             if (((s as any).gymshower ?? 0) >= 5  &&  ((s as any).gymshower ?? 0) <= 7) {
               if (((s as any).pcs_pubes ?? 0) >= 40) {
                 qspGoto(s, 'gschool_lessons4', 'pube_bully');
+                break;
               } else {
                 if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
                   qspGoto(s, 'gschool_lessons4', 'pube_compliment');
+                  break;
                 } else {
                   if (((s as any).pcs_pubes ?? 0) > 25) {
                     qspGoto(s, 'gschool_lessons4', 'pube_bully');
+                    break;
                   } else {
                     break;
                   }
@@ -1715,6 +1722,7 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
               scene.img('images/shared/home/bathroom/dush.mp4');
               scene.text('You pick one of the empty shower heads at random and turn the water on, letting it pour over you, and rinse the sweat from your body. After a tiring gym class, the hot water feels great, soothing your aching muscles and relaxing your mind. After a few minutes of enjoyment, you grab some soap and start lathering yourself up. You quickly become lost in the task, the sound of your scrubbing mixing with the squeak of faucets, the slap of your classmates feet across the tile floor, and the endless white noise of cascading water.');
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
+              break;
             }
           }
         }

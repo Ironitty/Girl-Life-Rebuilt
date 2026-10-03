@@ -1168,7 +1168,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'clothing_view', 'view_item_owned');
   }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display['hub_subloc'] ?? ''), ((st as any).ward_list_store ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display ?? {})['hub_subloc'] ?? '', ((st as any).ward_list_store ?? '')); } },
 ]);
   return;
   scene.build();
@@ -1300,7 +1300,7 @@ function enterViewItemSell(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_cloStrength = undefined;
   scene.actions([
-    { label: 'Keep item', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display['hub_subloc'] ?? ''), ((st as any).ward_list_store ?? '')); } },
+    { label: 'Keep item', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display ?? {})['hub_subloc'] ?? '', ((st as any).ward_list_store ?? '')); } },
   ]);
   scene.build();
 }
@@ -1331,7 +1331,7 @@ function enterViewItemWardrobe(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display['hub_subloc'] ?? ''), ((st as any).ward_list_store ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display ?? {})['hub_subloc'] ?? '', ((st as any).ward_list_store ?? '')); } },
 ]);
   return;
   scene.build();
@@ -1341,7 +1341,7 @@ function enterViewItemStorage(s: GameState, scene: SceneBuilder): void {
   scene.text('These clothes are in storage.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display['hub_subloc'] ?? ''), ((st as any).ward_list_store ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display ?? {})['hub_subloc'] ?? '', ((st as any).ward_list_store ?? '')); } },
 ]);
   return;
   scene.build();
@@ -1351,7 +1351,7 @@ function enterViewItemUnwanted(s: GameState, scene: SceneBuilder): void {
   scene.text('These clothes are unwanted.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display['hub_subloc'] ?? ''), ((st as any).ward_list_store ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display ?? {})['hub_subloc'] ?? '', ((st as any).ward_list_store ?? '')); } },
 ]);
   return;
   scene.build();
@@ -1392,14 +1392,14 @@ function enterViewItemWearStrengthLow(s: GameState, scene: SceneBuilder): void {
       scene.text('Despite your skill with a needle, this outfit has proved beyond repair. All that is left of it is only good for your cloth pile.');
     }
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display['hub_subloc'] ?? ''), ((st as any).ward_list_store ?? '')); } },
+      { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display ?? {})['hub_subloc'] ?? '', ((st as any).ward_list_store ?? '')); } },
     ]);
   } },
       ]);
     }
   }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display['hub_subloc'] ?? ''), ((st as any).ward_list_store ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display ?? {})['hub_subloc'] ?? '', ((st as any).ward_list_store ?? '')); } },
 ]);
   return;
   scene.build();
@@ -1420,7 +1420,7 @@ function enterViewItemWearSizeWrong(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'clothing', 'resize_clothes', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
     scene.text('You spend 30 minutes resizing the outfit.');
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display['hub_subloc'] ?? ''), ((st as any).ward_list_store ?? '')); } },
+      { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display ?? {})['hub_subloc'] ?? '', ((st as any).ward_list_store ?? '')); } },
     ]);
   } },
     ]);
@@ -1437,7 +1437,7 @@ function enterViewItemWearSizeWrong(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'clothing', 'resize_clothes', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
     scene.text('You hand the clothing over to the tailor who takes it into the back. Fifteen minutes later, he presents your clothing back to you, adjusted to fit you perfectly.');
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display['hub_subloc'] ?? ''), ((st as any).ward_list_store ?? '')); } },
+      { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display ?? {})['hub_subloc'] ?? '', ((st as any).ward_list_store ?? '')); } },
     ]);
   } },
         ]);
@@ -1445,7 +1445,7 @@ function enterViewItemWearSizeWrong(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display['hub_subloc'] ?? ''), ((st as any).ward_list_store ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display ?? {})['hub_subloc'] ?? '', ((st as any).ward_list_store ?? '')); } },
 ]);
   return;
   scene.build();

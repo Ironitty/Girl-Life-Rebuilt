@@ -46,6 +46,7 @@ function enterSuck(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     do {
       (st as any).lpp = (Math.floor(Math.random() * 7) + 0);
+      if (((st as any).lastlpp ?? 0) === ((st as any).lpp ?? 0)) continue;
       if ((!((st as any).lpp ?? 0))) {
         scene.text('"Sorry, but I\'ve got a dentist appointment, my tooth hurts a lot!" you say as you rub your jaw, feigning pain.');
       } else {
@@ -82,7 +83,7 @@ function enterSuck(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', goto: ['gschool_grounds', 'main'] },
       ]);
-    } while (((st as any).lastlpp ?? 0) === ((st as any).lpp ?? 0));
+    } while (false);
   } },
       ]);
     }

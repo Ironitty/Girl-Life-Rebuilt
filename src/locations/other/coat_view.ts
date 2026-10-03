@@ -185,7 +185,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'coat_view', 'view_item_unwanted');
   }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'coat_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'coat_view', 'view_grid', ((st as any).shop_utils_view ?? {})['link'] ?? ''); } },
 ]);
   return;
   scene.build();
@@ -239,7 +239,7 @@ function enterViewItemWearing(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'coat_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'coat_view', 'view_grid', ((st as any).shop_utils_view ?? {})['link'] ?? ''); } },
 ]);
   return;
   scene.build();
@@ -248,7 +248,7 @@ function enterViewItemWearing(s: GameState, scene: SceneBuilder): void {
 function enterViewItemWardrobe(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'coat_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'coat_view', 'view_grid', ((st as any).shop_utils_view ?? {})['link'] ?? ''); } },
 { label: 'Wear', handler: (st: GameState) => {
     qspCall(st, 'coats', 'wear', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
     qspCall(st, 'shop_utils', 'cleanup');
@@ -263,7 +263,7 @@ function enterViewItemStorage(s: GameState, scene: SceneBuilder): void {
   scene.text('This coat is in storage.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'coat_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'coat_view', 'view_grid', ((st as any).shop_utils_view ?? {})['link'] ?? ''); } },
 ]);
   return;
   scene.build();
@@ -273,7 +273,7 @@ function enterViewItemUnwanted(s: GameState, scene: SceneBuilder): void {
   scene.text('This coat is unwanted.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'coat_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'coat_view', 'view_grid', ((st as any).shop_utils_view ?? {})['link'] ?? ''); } },
 ]);
   return;
   scene.build();
