@@ -51,6 +51,8 @@ export const initialState = {
   menuArg: '',
   prevLoc: '',
   prevArg: '',
+  loc_s: '',
+  args_s: '',
   locationType: 'public',
   ReturnAdr: '',
   forest_args1: '',
@@ -629,6 +631,11 @@ export const initialState = {
   defcoattype: {} as Record<string, string>,
   defpursenumber: {} as Record<string, number>,
   defpursetype: {} as Record<string, string>,
+
+  npc_pref_traits: [] as string[],
+  mail_region: [] as string[],
+  ARGS: [] as string[],
+  KGD: {} as Record<string, any>,
 };
 
 const GAME_STATE_KEYS = Object.keys(initialState) as (keyof GameState)[];

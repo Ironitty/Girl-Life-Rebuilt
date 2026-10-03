@@ -929,19 +929,19 @@ function enterFuckContinue(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Focus on the sensations', handler: (st: GameState) => {
-    (st as any).sex_ev[dirty_talk] = '';
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['dirty_talk'] = '';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 0;
     dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), String((((st as any).sex_ev ?? {})['position'])) + String((((st as any).sex_ev ?? {})['speed'])) + '.2');
   } },
             { label: 'Moan softly', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['enthusiasm'] = (((st as any).sex_ev = (st as any).sex_ev ?? {})['enthusiasm'] ?? 0) + (1);
-    (st as any).sex_ev[dirty_talk] = '';
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['dirty_talk'] = '';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 1;
     dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), String((((st as any).sex_ev ?? {})['position'])) + String((((st as any).sex_ev ?? {})['speed'])) + '.2');
   } },
             { label: 'Moan loudly', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['enthusiasm'] = (((st as any).sex_ev = (st as any).sex_ev ?? {})['enthusiasm'] ?? 0) + (2);
-    (st as any).sex_ev[dirty_talk] = '';
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['dirty_talk'] = '';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 2;
     dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), String((((st as any).sex_ev ?? {})['position'])) + String((((st as any).sex_ev ?? {})['speed'])) + '.2');
   } },
@@ -1421,19 +1421,19 @@ function enterMoanSelections(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), String((((st as any).sex_ev ?? {})['position'])) + String((((st as any).sex_ev ?? {})['speed'])) + '.2');
   } },
     { label: 'Focus on the sensations', handler: (st: GameState) => {
-    (st as any).sex_ev[dirty_talk] = '';
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['dirty_talk'] = '';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 0;
     dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), String((((st as any).sex_ev ?? {})['position'])) + String((((st as any).sex_ev ?? {})['speed'])) + '.2');
   } },
     { label: 'Moan softly', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['enthusiasm'] = (((st as any).sex_ev = (st as any).sex_ev ?? {})['enthusiasm'] ?? 0) + (1);
-    (st as any).sex_ev[dirty_talk] = '';
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['dirty_talk'] = '';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 1;
     dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), String((((st as any).sex_ev ?? {})['position'])) + String((((st as any).sex_ev ?? {})['speed'])) + '.2');
   } },
     { label: 'Moan loudly', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['enthusiasm'] = (((st as any).sex_ev = (st as any).sex_ev ?? {})['enthusiasm'] ?? 0) + (2);
-    (st as any).sex_ev[dirty_talk] = '';
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})['dirty_talk'] = '';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['moan'] = 2;
     dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), String((((st as any).sex_ev ?? {})['position'])) + String((((st as any).sex_ev ?? {})['speed'])) + '.2');
   } },

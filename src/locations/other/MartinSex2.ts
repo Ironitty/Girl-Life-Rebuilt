@@ -280,6 +280,8 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
       } else {
         (st as any).pic_rand2 = (Math.floor(Math.random() * 2) + 4);
       }
+    } while (((st as any).pic_rand ?? 0) === ((st as any).pic_rand2 ?? 0));
+    {
       if (((st as any).martinpos ?? 0) === 'cowgirl'  ||  ((st as any).martinpos ?? 0) === 'rev_cowgirl') {
         if (((st as any).martinpos ?? 0) === 'cowgirl') {
           scene.img(`images/locations/city/industrial/bar/sex/bar/martin/cowgirl/cowgirl${((st as any).pic_rand2 ?? '')}.jpg`);
@@ -514,7 +516,7 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       ]);
-    } while (((st as any).pic_rand ?? 0) === ((st as any).pic_rand2 ?? 0));
+    }
   } },
   ]);
   scene.build();

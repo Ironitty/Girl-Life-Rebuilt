@@ -216,23 +216,20 @@ function enterOfferDescribe(s: GameState, scene: SceneBuilder): void {
 function enterOfferConflictNote(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_apptConf = (s as any).temp_apptConf ?? {})['idx'] = ((s as any).locArgs?.[1] ?? 0);
   qspCall(s, 'calendar_query', 'get_events_for_time_range', qspUntranslated(s, "appointment_offer_day[temp_apptConf['idx']]", { location: "appointments" }), ((s as any).appointment_offer_window_end ?? 0)[(((s as any).temp_apptConf ?? {})?.['idx'] ?? 0)] - ((s as any).appointment_offer_buffer ?? 0), ((s as any).appointment_offer_buffer ?? 0) + ((s as any).appointment_offer_duration ?? 0));
-  (s as any)[query_events_for_time_range] ? (s as any)[query_events_for_time_range] = { ...(s as any)[temp_apptConf] } : (s as any)[query_events_for_time_range] = { ...(s as any)[temp_apptConf] };
+  (s as any).query_events_for_time_range ? (s as any).query_events_for_time_range = { ...(s as any).temp_apptConf } : (s as any).query_events_for_time_range = { ...(s as any).temp_apptConf };
   if (Object.keys((s as any).temp_apptConf ?? {}).length > 0) {
     (s as any).result = 'Conflicting with: ';
     ((s as any).temp_apptConf = (s as any).temp_apptConf ?? {})['k'] = 0;
-    while (true) {
-      if (((s as any).temp_apptConf ?? 0)?.['k'] < Object.keys((s as any).temp_apptConf ?? {}).length) {
-        if (((s as any).temp_apptConf ?? 0)?.['k'] > 0) {
-          (s as any).result = ((s as any).result ?? '') + ', ';
-        }
-        qspCall(s, 'calendar_query', 'get_event_display_range', qspUntranslated(s, "temp_apptConf[temp_apptConf['k']]", { location: "appointments" }), qspUntranslated(s, "appointment_offer_day[temp_apptConf['idx']]", { location: "appointments" }));
-        (s as any).temp_apptConf_time = qspFunc(s, 'calendar_query', 'ts_to_str', ((s as any).result_start_ts ?? 0)) + '-' + qspFunc(s, 'calendar_query', 'ts_to_str', ((s as any).result_end_ts ?? 0));
-        (s as any).result = ((s as any).result ?? 0) + ((((s as any).event_vars ?? 0)?.['title']) + ': ' + ((s as any).temp_apptConf_time ?? 0));
-        ((s as any).temp_apptConf = (s as any).temp_apptConf ?? {})['k'] = ((s as any).temp_apptConf['k'] ?? 0) + (1);
-        break;
+    while (((s as any).temp_apptConf ?? 0)?.['k'] < Object.keys((s as any).temp_apptConf ?? {}).length) {
+      if (((s as any).temp_apptConf ?? 0)?.['k'] > 0) {
+        (s as any).result = ((s as any).result ?? '') + ', ';
       }
-      (s as any).result = '(' + ((s as any).result ?? 0) + ')';
+      qspCall(s, 'calendar_query', 'get_event_display_range', qspUntranslated(s, "temp_apptConf[temp_apptConf['k']]", { location: "appointments" }), qspUntranslated(s, "appointment_offer_day[temp_apptConf['idx']]", { location: "appointments" }));
+      (s as any).temp_apptConf_time = qspFunc(s, 'calendar_query', 'ts_to_str', ((s as any).result_start_ts ?? 0)) + '-' + qspFunc(s, 'calendar_query', 'ts_to_str', ((s as any).result_end_ts ?? 0));
+      (s as any).result = ((s as any).result ?? 0) + ((((s as any).event_vars ?? 0)?.['title']) + ': ' + ((s as any).temp_apptConf_time ?? 0));
+      ((s as any).temp_apptConf = (s as any).temp_apptConf ?? {})['k'] = ((s as any).temp_apptConf['k'] ?? 0) + (1);
     }
+    (s as any).result = '(' + ((s as any).result ?? 0) + ')';
   }
   (s as any).temp_apptConf = undefined;
   (s as any).temp_apptConf_time = undefined;

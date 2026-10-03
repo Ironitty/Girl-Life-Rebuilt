@@ -2023,7 +2023,7 @@ function enterPeeGive(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any)[ARGS] ? (s as any)[ARGS] = { ...(s as any)[temp_arousal_args] } : (s as any)[ARGS] = { ...(s as any)[temp_arousal_args] };
+  (s as any).ARGS ? (s as any).ARGS = { ...(s as any).temp_arousal_args } : (s as any).ARGS = { ...(s as any).temp_arousal_args };
   qspCall(s, 'arousal_funcs', 'check_events', 'temp_arousal_args');
   (s as any).temp_arousal_args = undefined;
   (s as any).orgasm_txt = undefined;

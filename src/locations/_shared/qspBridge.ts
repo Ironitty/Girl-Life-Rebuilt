@@ -696,6 +696,28 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
       (s as any).locArgs = savedLocArgs;
       return (s as any).result ?? 0;
     }
+    case 'begin': {
+      const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+      const savedLocArgs = (s as any).locArgs;
+      s.loc = 'begin';
+      s.locArg = func;
+      (s as any).locArgs = ['', ...args];
+      invoke(s, 'begin', func);
+      s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+      (s as any).locArgs = savedLocArgs;
+      return (s as any).result ?? 0;
+    }
+    case 'intro_character_creation': {
+      const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+      const savedLocArgs = (s as any).locArgs;
+      s.loc = 'intro_character_creation';
+      s.locArg = func;
+      (s as any).locArgs = ['', ...args];
+      invoke(s, 'intro_character_creation', func);
+      s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+      (s as any).locArgs = savedLocArgs;
+      return (s as any).result ?? 0;
+    }
     case '$shoe_image': {
       const shop = str(args[0]), idx = str(args[1]);
       const valid = ['moncheri','cats','bomba','dolls','eroto','scandalicious','gm','danilovich'];

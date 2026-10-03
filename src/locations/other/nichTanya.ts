@@ -2231,7 +2231,7 @@ function enterShoppingUniform(s: GameState, scene: SceneBuilder): void {
     (s as any).nichRand = (Math.floor(Math.random() * 49) + 1);
     if (((s as any).gm_maid ?? 0)?.[String((s as any).nichRand ?? 0)] === 1  &&  ((s as any).nichLoopAttempt ?? 0) < 100) {
       (s as any).nichLoopAttempt = ((s as any).nichLoopAttempt ?? 0) + (1);
-      break;
+      continue;
     }
     qspCall(s, 'clothing_attributes', 'uniform', ((s as any).nichRand ?? 0));
     (s as any).price = (20 * ((5 * ((s as any).CloQuality ?? 0)) + 100)) * 3 / 2;
@@ -2318,6 +2318,7 @@ function enterShoppingUniform(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     ]);
+    break;
   }
   scene.build();
 }

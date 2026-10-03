@@ -1113,29 +1113,27 @@ function enterPregnantNotice(s: GameState, scene: SceneBuilder): void {
     (s as any).tmpstr = 'I slept with a guy and didn\'t even know his name, but ';
   }
   (s as any).idx = 0;
-  (s as any).sz = 0;
-  while (true) {
-    if (((s as any).idx ?? 0) < ((s as any).sz ?? 0)) {
-      (s as any).fath = (((s as any).npc_usedname ?? 0)?.[(((s as any).wombpotfath ?? 0)?.[String((s as any).idx ?? 0)] ?? 0)] ?? 0);
-      if (((s as any).fath ?? 0) === 'Roma'  ||  ((s as any).fath ?? 0) === 'Kolka'  ||  ((s as any).fath ?? 0) === 'Stepfather'  ||  ((s as any).fath ?? 0) === 'Mikhail, your birthfather') {
-        if (((s as any).fath ?? 0) === 'Mikhail, your birthfather') {
-          (s as any).fath = 'our real father';
-        }
-        ((s as any).specfath = (s as any).specfath ?? {})[0] = ((s as any).fath ?? 0);
-      } else {
-        if (((s as any).fath ?? 0) === 'unknown'  ||  ((s as any).fath ?? 0) === '') {
-          (s as any).fath = 'someone I don\'t know';
-        } else {
-          if (((s as any).tmpstr2 ?? 0) !== '') {
-            (s as any).tmpstr2 = '' + ((s as any).tmpstr2 ?? 0) + ' or ';
-          }
-          (s as any).tmpstr2 = '' + ((s as any).tmpstr2 ?? 0) + '' + ((s as any).fath ?? 0) + '';
-        }
+  (s as any).sz = Object.keys((s as any).wombpotfath ?? {}).length;
+  while (((s as any).idx ?? 0) < ((s as any).sz ?? 0)) {
+    (s as any).fath = (((s as any).npc_usedname ?? 0)?.[(((s as any).wombpotfath ?? 0)?.[String((s as any).idx ?? 0)] ?? 0)] ?? 0);
+    if (((s as any).fath ?? 0) === 'Roma'  ||  ((s as any).fath ?? 0) === 'Kolka'  ||  ((s as any).fath ?? 0) === 'Stepfather'  ||  ((s as any).fath ?? 0) === 'Mikhail, your birthfather') {
+      if (((s as any).fath ?? 0) === 'Mikhail, your birthfather') {
+        (s as any).fath = 'our real father';
       }
-      (s as any).idx = ((s as any).idx ?? 0) + (1);
-      break;
+      ((s as any).specfath = (s as any).specfath ?? {})[0] = ((s as any).fath ?? 0);
+    } else {
+      if (((s as any).fath ?? 0) === 'unknown'  ||  ((s as any).fath ?? 0) === '') {
+        (s as any).fath = 'someone I don\'t know';
+      } else {
+        if (((s as any).tmpstr2 ?? 0) !== '') {
+          (s as any).tmpstr2 = '' + ((s as any).tmpstr2 ?? 0) + ' or ';
+        }
+        (s as any).tmpstr2 = '' + ((s as any).tmpstr2 ?? 0) + '' + ((s as any).fath ?? 0) + '';
+      }
     }
-    if (Object.keys((s as any).specfath ?? {}).length > 0  &&  ((s as any).npc_rel ?? 0)?.['A33'] > 50) {
+    (s as any).idx = ((s as any).idx ?? 0) + (1);
+  }
+  if (Object.keys((s as any).specfath ?? {}).length > 0  &&  ((s as any).npc_rel ?? 0)?.['A33'] > 50) {
       (s as any).tmpa = '';
       if (((s as any).tmpstr2 ?? 0) !== '') {
         (s as any).tmpa = ' You decide to start by telling her the easy news. "' + ((s as any).tmpstr ?? 0) + 'it\'s possible the father is ' + ((s as any).tmpstr2 ?? 0) + '. I think it could also be someone we know."';
@@ -1144,52 +1142,49 @@ function enterPregnantNotice(s: GameState, scene: SceneBuilder): void {
       }
       scene.text(`You realize that telling her who the father is could be difficult.${((s as any).tmpa ?? '')}`);
       (s as any).idx = 0;
-      (s as any).sz = 0;
+      (s as any).sz = Object.keys((s as any).specfath ?? {}).length;
       if (((s as any).sz ?? 0) > 1) {
         (s as any).tmpb = 'begin by telling her ';
       } else {
         (s as any).tmpb = 'tell her ';
       }
       (s as any).tmpc = '';
-      while (true) {
-        if (((s as any).idx ?? 0) < ((s as any).sz ?? 0)) {
-          (s as any).fath = (((s as any).specfath ?? 0)?.[String((s as any).idx ?? 0)] ?? 0);
-          if (((s as any).fath ?? 0) === 'Roma') {
-            scene.text(`You ${((s as any).tmpb ?? '')}the father might ${((s as any).tmpc ?? '')}be Roma.`);
-            scene.text('"You mean [i]my[/i] Roma?"');
-            scene.text('You nod with a forced smile.');
-            scene.text(`"Oh, I'm so sorry, ${((s as any).pcs_nickname ?? '')}! This is probably my fault…" she says and hugs you tightly.`);
-            qspCall(s, 'mood', 'raise', 'large');
+      while (((s as any).idx ?? 0) < ((s as any).sz ?? 0)) {
+        (s as any).fath = (((s as any).specfath ?? 0)?.[String((s as any).idx ?? 0)] ?? 0);
+        if (((s as any).fath ?? 0) === 'Roma') {
+          scene.text(`You ${((s as any).tmpb ?? '')}the father might ${((s as any).tmpc ?? '')}be Roma.`);
+          scene.text('"You mean [i]my[/i] Roma?"');
+          scene.text('You nod with a forced smile.');
+          scene.text(`"Oh, I'm so sorry, ${((s as any).pcs_nickname ?? '')}! This is probably my fault…" she says and hugs you tightly.`);
+          qspCall(s, 'mood', 'raise', 'large');
+        } else {
+          if (((s as any).fath ?? 0) === 'Kolka') {
+            scene.text(`You ${((s as any).tmpb ?? '')}the father could ${((s as any).tmpc ?? '')}be Kolka.`);
+            scene.text('"Seriously?" she asks, sounding shocked. "You had sex with our <i>little brother</i>?! What is the hell is wrong with you!?"');
+            scene.text('You feel yourself blushing. "I don\'t know, it just felt right…" you mumble and she just shakes her head at you.');
           } else {
-            if (((s as any).fath ?? 0) === 'Kolka') {
-              scene.text(`You ${((s as any).tmpb ?? '')}the father could ${((s as any).tmpc ?? '')}be Kolka.`);
-              scene.text('"Seriously?" she asks, sounding shocked. "You had sex with our <i>little brother</i>?! What is the hell is wrong with you!?"');
-              scene.text('You feel yourself blushing. "I don\'t know, it just felt right…" you mumble and she just shakes her head at you.');
+            if (((s as any).fath ?? 0) === 'Stepfather') {
+              scene.text(`You ${((s as any).tmpb ?? '')}the father could ${((s as any).tmpc ?? '')}be your stepfather.`);
+              scene.text('"Oh, what a slut!" she smiles happily. "Do you think he\'ll notice it too?"');
             } else {
-              if (((s as any).fath ?? 0) === 'Stepfather') {
-                scene.text(`You ${((s as any).tmpb ?? '')}the father could ${((s as any).tmpc ?? '')}be your stepfather.`);
-                scene.text('"Oh, what a slut!" she smiles happily. "Do you think he\'ll notice it too?"');
-              } else {
-                if (((s as any).fath ?? 0) === 'our real father') {
-                  scene.text(`You ${((s as any).tmpb ?? '')} the father could conceivably ${((s as any).tmpc ?? '')}be your real father.`);
-                  scene.text(`Your sister looks at you with shock. "What the hell is wrong with you, ${((s as any).pcs_nickname ?? '')}?! How did you even find him?"`);
-                  scene.text('You explain how you tracked him down through the truck drivers and how your relationship quickly grew into something unexpected. "I haven\'t told him," you tell her. "Maybe I should. I don\'t know."');
-                  scene.text(`She listens intently to your story and gives you a hug when you finish. "I don't know either ${((s as any).pcs_nickname ?? '')}, but I hope you take me to meet him some day."`);
-                }
+              if (((s as any).fath ?? 0) === 'our real father') {
+                scene.text(`You ${((s as any).tmpb ?? '')} the father could conceivably ${((s as any).tmpc ?? '')}be your real father.`);
+                scene.text(`Your sister looks at you with shock. "What the hell is wrong with you, ${((s as any).pcs_nickname ?? '')}?! How did you even find him?"`);
+                scene.text('You explain how you tracked him down through the truck drivers and how your relationship quickly grew into something unexpected. "I haven\'t told him," you tell her. "Maybe I should. I don\'t know."');
+                scene.text(`She listens intently to your story and gives you a hug when you finish. "I don't know either ${((s as any).pcs_nickname ?? '')}, but I hope you take me to meet him some day."`);
               }
             }
           }
-          if (((s as any).idx ?? 0) === 0  &&  ((s as any).sz ?? 0) > 1) {
-            (s as any).tmpc = 'also ';
-            (s as any).tmpb = 'continue your confession by telling her ';
-          } else {
-            if (((s as any).sz ?? 0) > 2  &&  ((s as any).idx ?? 0) === ((s as any).sz ?? 0) - 2) {
-              (s as any).tmpb = 'finish your confession by saying that ';
-            }
-          }
-          (s as any).idx = ((s as any).idx ?? 0) + (1);
-          break;
         }
+        if (((s as any).idx ?? 0) === 0  &&  ((s as any).sz ?? 0) > 1) {
+          (s as any).tmpc = 'also ';
+          (s as any).tmpb = 'continue your confession by telling her ';
+        } else {
+          if (((s as any).sz ?? 0) > 2  &&  ((s as any).idx ?? 0) === ((s as any).sz ?? 0) - 2) {
+            (s as any).tmpb = 'finish your confession by saying that ';
+          }
+        }
+        (s as any).idx = ((s as any).idx ?? 0) + (1);
       }
     } else {
       if (Object.keys((s as any).wombpotfath ?? {}).length === 0) {
@@ -1209,7 +1204,6 @@ function enterPregnantNotice(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', goto: ['sister_chat', 'talking'] },
     ]);
-  }
   scene.build();
 }
 

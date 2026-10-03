@@ -27,11 +27,13 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_text = ((s as any).temp_text ?? 0) + ('</td> <td bgcolor="' + ((s as any).temp_bgcolor ?? 0) + '" align="right"><font color="' + qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).fcolor ?? 0)) + '">' + qspFunc(s, 'money', 'string_profit', (((s as any).trial_pays ?? 0)?.[String((s as any).cetl_i ?? 0)] ?? 0)) + '</font></td></tr>');
     scene.text(`${((s as any).temp_text ?? '')}`);
     (s as any).cetl_i = ((s as any).cetl_i ?? 0) + (1);
-    scene.text('</table></center>');
-    (s as any).temp_bgcolor = undefined;
-    (s as any).loop_start = undefined;
-    (s as any).temp_text = undefined;
-    (s as any).cetl_i = undefined;
+  } while (((s as any).cetl_i ?? 0) < Object.keys((s as any).trial_names ?? {}).length);
+  scene.text('</table></center>');
+  (s as any).temp_bgcolor = undefined;
+  (s as any).loop_start = undefined;
+  (s as any).temp_text = undefined;
+  (s as any).cetl_i = undefined;
+  {
     if (String((s as any).locArgs?.[0] ?? '') === ((s as any).trial_sections ?? 0)[0]) {
       qspCall(s, 'core_library', 'setloc', 'city_experimental_trials_list', (((s as any).trial_sections ?? 0)?.[0] ?? 0));
       (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -342,7 +344,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'city_experimental_trials_list', '');
   }, goto: ['city_experimental_trials', 'front_desk'] },
     ]);
-  } while (((s as any).cetl_i ?? 0) < Object.keys((s as any).trial_names ?? {}).length);
+  }
   scene.build();
 }
 

@@ -40,14 +40,14 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hour ?? 0) <= 14) {
     ((s as any).date_ev = (s as any).date_ev ?? {})['type'] = 'lunch_date';
-    (s as any).date_ev = [...((s as any).date_ev ?? []), 'lunch_date'];
+    ((s as any).date_ev = (s as any).date_ev ?? {})[String(Object.keys((s as any).date_ev ?? {}).length)] = 'lunch_date';
   } else {
     if (((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) <= 20) {
       ((s as any).date_ev = (s as any).date_ev ?? {})['type'] = 'dinner_date';
-      (s as any).date_ev = [...((s as any).date_ev ?? []), 'dinner_date'];
+      ((s as any).date_ev = (s as any).date_ev ?? {})[String(Object.keys((s as any).date_ev ?? {}).length)] = 'dinner_date';
     } else {
       ((s as any).date_ev = (s as any).date_ev ?? {})['type'] = 'dinner_date';
-      (s as any).date_ev = [...((s as any).date_ev ?? []), 'dinner_date'];
+      ((s as any).date_ev = (s as any).date_ev ?? {})[String(Object.keys((s as any).date_ev ?? {}).length)] = 'dinner_date';
     }
   }
   ((s as any).date_ev = (s as any).date_ev ?? {})['meal_cost'] = (Math.floor(Math.random() * 251) + 250);

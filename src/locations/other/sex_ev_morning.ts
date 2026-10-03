@@ -444,7 +444,7 @@ function enterWaitForBreakfast1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['find_boy'] = 1;
-  (s as any).sex_ev = [...((s as any).sex_ev ?? []), 'coffee_make'];
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})[String(Object.keys((s as any).sex_ev ?? {}).length)] = 'coffee_make';
   if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
     ((s as any).sex_ev = (s as any).sex_ev ?? {})['room_service_breakfast'] = 1;
     scene.text(String(qspFunc(s, 'sex_ev', 'bed_room') || ''));
@@ -726,7 +726,7 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Yes (2 minutes)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_time'] = ((st as any).sex_ev['cooking_time'] ?? 0) + (2);
-    (st as any).sex_ev = [...((st as any).sex_ev ?? []), 'toast_make'];
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})[String(Object.keys((st as any).sex_ev ?? {}).length)] = 'toast_make';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_total'] = ((st as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('It\'s as simple as throwing it in a toaster. Might as well.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -747,7 +747,7 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Yes (5 minutes)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_time'] = ((st as any).sex_ev['cooking_time'] ?? 0) + (5);
-    (st as any).sex_ev = [...((st as any).sex_ev ?? []), 'eggs_make'];
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})[String(Object.keys((st as any).sex_ev ?? {}).length)] = 'eggs_make';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_total'] = ((st as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('Eggs are basic. Easy as throwing them into a pan. You\'ll do it.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -768,7 +768,7 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Yes (10 minutes)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_time'] = ((st as any).sex_ev['cooking_time'] ?? 0) + (10);
-    (st as any).sex_ev = [...((st as any).sex_ev ?? []), 'kolbasa_make'];
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})[String(Object.keys((st as any).sex_ev ?? {}).length)] = 'kolbasa_make';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_total'] = ((st as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('It\'s quick and simple. Might as well.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -789,7 +789,7 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Yes (15 minutes)', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_time'] = ((st as any).sex_ev['cooking_time'] ?? 0) + (15);
-    (st as any).sex_ev = [...((st as any).sex_ev ?? []), 'pancakes_make'];
+    ((st as any).sex_ev = (st as any).sex_ev ?? {})[String(Object.keys((st as any).sex_ev ?? {}).length)] = 'pancakes_make';
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['cooking_total'] = ((st as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('Who doesn\'t love pancakes in the morning? You <i>have</i> to make them!');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPcMakeBreakfastChoices(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -912,7 +912,7 @@ function enterPcMakeBreakfastDone(s: GameState, scene: SceneBuilder): void {
 
 function enterNpcCoffeMake(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['cooking_total'] = 1;
-  (s as any).sex_ev = [...((s as any).sex_ev ?? []), 'coffee_make'];
+  ((s as any).sex_ev = (s as any).sex_ev ?? {})[String(Object.keys((s as any).sex_ev ?? {}).length)] = 'coffee_make';
   if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
     scene.text(String(qspFunc(s, 'sex_ev', 'bed_room') || ''));
     scene.text(`You wait patiently on the bed as ${((s as any).npcdesc ?? '')} turns on the kettle provided in the hotel room. He dumps in some packets of instant coffee into the two mugs and waits for it to come to a boil before pouring the steaming water in.`);

@@ -264,11 +264,11 @@ function enterName(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (st as any).status[dog] = 'active';
+    ((st as any).status = (st as any).status ?? {})['dog'] = 'active';
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Remove the dog (can be restored later in the cheat menu)', handler: (st: GameState) => {
-    (st as any).status[dog] = 'blocked';
+    ((st as any).status = (st as any).status ?? {})['dog'] = 'blocked';
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);

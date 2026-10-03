@@ -86,36 +86,33 @@ function enterGetEventsForDay(s: GameState, scene: SceneBuilder): void {
 function enterGetEventsForTimeRange(s: GameState, scene: SceneBuilder): void {
   (s as any).query_events_for_time_range = undefined;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetEventsForDay(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any)[query_events_for_day] ? (s as any)[query_events_for_day] = { ...(s as any)[day_events] } : (s as any)[query_events_for_day] = { ...(s as any)[day_events] };
+  (s as any).query_events_for_day ? (s as any).query_events_for_day = { ...(s as any).day_events } : (s as any).query_events_for_day = { ...(s as any).day_events };
   (s as any).temp_count = 0;
   (s as any).temp_i = 0;
   (s as any).temp_timeslot_start = ((s as any).locArgs?.[2] ?? 0);
   (s as any).temp_timeslot_end = ((s as any).locArgs?.[2] ?? 0) + ((s as any).locArgs?.[3] ?? 0);
-  while (true) {
-    if (((s as any).temp_i ?? 0) < Object.keys((s as any).day_events ?? {}).length) {
-      (s as any).temp_event_id = (((s as any).day_events ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
-      if (((s as any).temp_event_id ?? 0) !== '') {
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_event_id ?? 0), ((s as any).locArgs?.[1] ?? 0)]; enterGetEventDisplayRange(s, scene); (s as any).locArgs = __savedLocArgs; }
-        (s as any).temp_range_start = ((s as any).result_start_ts ?? 0);
-        (s as any).temp_range_end = ((s as any).result_end_ts ?? 0);
-        if (((s as any).event_vars ?? 0)?.['all_day'] === 0  &&  ((s as any).temp_timeslot_start ?? 0) <= ((s as any).temp_range_end ?? 0)  &&  ((s as any).temp_timeslot_end ?? 0) >= ((s as any).temp_range_start ?? 0)) {
-          ((s as any).query_events_for_time_range = (s as any).query_events_for_time_range ?? {})[String((s as any).temp_count ?? 0)] = ((s as any).temp_event_id ?? 0);
-          (s as any).temp_count = ((s as any).temp_count ?? 0) + (1);
-        }
+  while (((s as any).temp_i ?? 0) < Object.keys((s as any).day_events ?? {}).length) {
+    (s as any).temp_event_id = (((s as any).day_events ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
+    if (((s as any).temp_event_id ?? 0) !== '') {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_event_id ?? 0), ((s as any).locArgs?.[1] ?? 0)]; enterGetEventDisplayRange(s, scene); (s as any).locArgs = __savedLocArgs; }
+      (s as any).temp_range_start = ((s as any).result_start_ts ?? 0);
+      (s as any).temp_range_end = ((s as any).result_end_ts ?? 0);
+      if (((s as any).event_vars ?? 0)?.['all_day'] === 0  &&  ((s as any).temp_timeslot_start ?? 0) <= ((s as any).temp_range_end ?? 0)  &&  ((s as any).temp_timeslot_end ?? 0) >= ((s as any).temp_range_start ?? 0)) {
+        ((s as any).query_events_for_time_range = (s as any).query_events_for_time_range ?? {})[String((s as any).temp_count ?? 0)] = ((s as any).temp_event_id ?? 0);
+        (s as any).temp_count = ((s as any).temp_count ?? 0) + (1);
       }
-      (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
-      break;
     }
-    (s as any).temp_count = undefined;
-    (s as any).temp_i = undefined;
-    (s as any).temp_event_id = undefined;
-    (s as any).temp_timeslot_start = undefined;
-    (s as any).temp_timeslot_end = undefined;
-    (s as any).temp_range_start = undefined;
-    (s as any).temp_range_end = undefined;
-    (s as any).day_events = undefined;
-    return;
+    (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
   }
+  (s as any).temp_count = undefined;
+  (s as any).temp_i = undefined;
+  (s as any).temp_event_id = undefined;
+  (s as any).temp_timeslot_start = undefined;
+  (s as any).temp_timeslot_end = undefined;
+  (s as any).temp_range_start = undefined;
+  (s as any).temp_range_end = undefined;
+  (s as any).day_events = undefined;
+  return;
   scene.build();
 }
 
@@ -133,47 +130,44 @@ function enterShouldEventBeVisible(s: GameState, scene: SceneBuilder): void {
   (s as any).check_start_ts = ((s as any).result_start_ts ?? 0);
   (s as any).check_end_ts = ((s as any).result_end_ts ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0)]; enterGetEventsForDay(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any)[query_events_for_day] ? (s as any)[query_events_for_day] = { ...(s as any)[day_events] } : (s as any)[query_events_for_day] = { ...(s as any)[day_events] };
+  (s as any).query_events_for_day ? (s as any).query_events_for_day = { ...(s as any).day_events } : (s as any).query_events_for_day = { ...(s as any).day_events };
   (s as any).temp_i = 0;
-  while (true) {
-    if (((s as any).temp_i ?? 0) < Object.keys((s as any).day_events ?? {}).length) {
-      (s as any).other_event_id = (((s as any).day_events ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
-      if (((s as any).other_event_id ?? 0) !== ''  &&  ((s as any).other_event_id ?? 0) !== String((s as any).locArgs?.[1] ?? '')) {
-        qspCall(s, 'calendar_events', 'get_event', ((s as any).other_event_id ?? 0));
-        if (((s as any).event_vars ?? 0)?.['priority'] > ((s as any).check_priority ?? 0)  &&  ((s as any).event_vars ?? 0)?.['all_day'] === 0) {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).other_event_id ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterGetEventDisplayRange(s, scene); (s as any).locArgs = __savedLocArgs; }
-          (s as any).other_start_ts = ((s as any).result_start_ts ?? 0);
-          (s as any).other_end_ts = ((s as any).result_end_ts ?? 0);
-          if (((s as any).other_start_ts ?? 0) <= ((s as any).check_end_ts ?? 0)  &&  ((s as any).other_end_ts ?? 0) >= ((s as any).check_start_ts ?? 0)) {
-            (s as any).result = 0;
-            (s as any).check_priority = undefined;
-            (s as any).check_all_day = undefined;
-            (s as any).check_start_ts = undefined;
-            (s as any).check_end_ts = undefined;
-            (s as any).temp_i = undefined;
-            (s as any).other_event_id = undefined;
-            (s as any).other_start_ts = undefined;
-            (s as any).other_end_ts = undefined;
-            (s as any).day_events = undefined;
-            return;
-          }
+  while (((s as any).temp_i ?? 0) < Object.keys((s as any).day_events ?? {}).length) {
+    (s as any).other_event_id = (((s as any).day_events ?? 0)?.[String((s as any).temp_i ?? 0)] ?? 0);
+    if (((s as any).other_event_id ?? 0) !== ''  &&  ((s as any).other_event_id ?? 0) !== String((s as any).locArgs?.[1] ?? '')) {
+      qspCall(s, 'calendar_events', 'get_event', ((s as any).other_event_id ?? 0));
+      if (((s as any).event_vars ?? 0)?.['priority'] > ((s as any).check_priority ?? 0)  &&  ((s as any).event_vars ?? 0)?.['all_day'] === 0) {
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).other_event_id ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterGetEventDisplayRange(s, scene); (s as any).locArgs = __savedLocArgs; }
+        (s as any).other_start_ts = ((s as any).result_start_ts ?? 0);
+        (s as any).other_end_ts = ((s as any).result_end_ts ?? 0);
+        if (((s as any).other_start_ts ?? 0) <= ((s as any).check_end_ts ?? 0)  &&  ((s as any).other_end_ts ?? 0) >= ((s as any).check_start_ts ?? 0)) {
+          (s as any).result = 0;
+          (s as any).check_priority = undefined;
+          (s as any).check_all_day = undefined;
+          (s as any).check_start_ts = undefined;
+          (s as any).check_end_ts = undefined;
+          (s as any).temp_i = undefined;
+          (s as any).other_event_id = undefined;
+          (s as any).other_start_ts = undefined;
+          (s as any).other_end_ts = undefined;
+          (s as any).day_events = undefined;
+          return;
         }
       }
-      (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
-      break;
     }
-    (s as any).result = 1;
-    (s as any).check_priority = undefined;
-    (s as any).check_all_day = undefined;
-    (s as any).check_start_ts = undefined;
-    (s as any).check_end_ts = undefined;
-    (s as any).temp_i = undefined;
-    (s as any).other_event_id = undefined;
-    (s as any).other_start_ts = undefined;
-    (s as any).other_end_ts = undefined;
-    (s as any).day_events = undefined;
-    return;
+    (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
   }
+  (s as any).result = 1;
+  (s as any).check_priority = undefined;
+  (s as any).check_all_day = undefined;
+  (s as any).check_start_ts = undefined;
+  (s as any).check_end_ts = undefined;
+  (s as any).temp_i = undefined;
+  (s as any).other_event_id = undefined;
+  (s as any).other_start_ts = undefined;
+  (s as any).other_end_ts = undefined;
+  (s as any).day_events = undefined;
+  return;
   scene.build();
 }
 

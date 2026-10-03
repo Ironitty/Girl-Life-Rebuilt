@@ -14,7 +14,7 @@ function enterLoadsave(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Confirm', handler: (st: GameState) => {
     (st as any).KGDsavegame = ((st as any).locArgs?.[1] ?? 0);
-    (st as any)['KGD' + ((st as any).locArgs?.[1] ?? 0) + ''] ? (st as any)['KGD' + ((st as any).locArgs?.[1] ?? 0) + ''] = { ...(st as any)[KGD] } : (st as any)['KGD' + ((st as any).locArgs?.[1] ?? 0) + ''] = { ...(st as any)[KGD] };
+    (st as any)['KGD' + ((st as any).locArgs?.[1] ?? 0) + ''] ? (st as any)['KGD' + ((st as any).locArgs?.[1] ?? 0) + ''] = { ...(st as any).KGD } : (st as any)['KGD' + ((st as any).locArgs?.[1] ?? 0) + ''] = { ...(st as any).KGD };
     qspGoto(st, 'KGDgame', '');
   } },
     { label: 'Cancel', goto: ['KGDstart', ''] },

@@ -177,7 +177,7 @@ function enterGirl1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gschool_events', 'rand_girl_arg', 1, 1, 0, 1, 0, 0);
     if ((((s as any).rand_girl ?? 0) === 'Sonia'  ||  ((s as any).rand_girl ?? 0) === 'Lena'  ||  ((s as any).rand_girl ?? 0) === 'Lera')  &&  ((s as any).jump_counter ?? 0) < 1000) {
       (s as any).jump_counter = ((s as any).jump_counter ?? 0) + (1);
-      break;
+      continue;
     }
     (s as any).jump_counter = 0;
     scene.text('<center><b>Girls bathroom</b></center>');
@@ -187,6 +187,7 @@ function enterGirl1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
+    break;
   }
   scene.build();
 }

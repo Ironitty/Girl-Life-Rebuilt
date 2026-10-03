@@ -48,6 +48,7 @@ export function setloc(s: GameState, loc: string, arg: string, arg2?: string, ar
   s.locArg2 = arg2 ?? '';
   s.locArg3 = arg3 ?? '';
   (s as any).locArgs = [arg, arg2 ?? '', arg3 ?? ''];
+  (s as any).ARGS = [arg, arg2 ?? '', arg3 ?? ''];
   s.menuArg = arg;
 
   const def = getLocation(loc);

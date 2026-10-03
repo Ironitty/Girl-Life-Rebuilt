@@ -386,7 +386,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Apologize and leave', handler: (st: GameState) => {
-    (st as any).otnBoyFrend[String((st as any).numnpc ?? '')] = ((st as any).otnBoyFrend[String((st as any).numnpc ?? '')] ?? 0) - (5);
+    ((st as any).otnBoyFrend = (st as any).otnBoyFrend ?? {})[String((st as any).numnpc ?? '')] = ((st as any).otnBoyFrend[String((st as any).numnpc ?? '')] ?? 0) - (5);
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Take a walk through the park', handler: (st: GameState) => {
@@ -447,7 +447,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text(`${(((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? '')} offers to go to the movies.`);
       scene.actions([
         { label: 'Apologize and leave', handler: (st: GameState) => {
-    (st as any).otnBoyFrend[String((st as any).numnpc ?? '')] = ((st as any).otnBoyFrend[String((st as any).numnpc ?? '')] ?? 0) - (5);
+    ((st as any).otnBoyFrend = (st as any).otnBoyFrend ?? {})[String((st as any).numnpc ?? '')] = ((st as any).otnBoyFrend[String((st as any).numnpc ?? '')] ?? 0) - (5);
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         { label: 'Go to the cinema', goto: ['Gnpc_cinema', ''] },
@@ -457,7 +457,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text(`${(((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? '')} suggests to drink some beers in the park.`);
         scene.actions([
           { label: 'Apologize and leave', handler: (st: GameState) => {
-    (st as any).otnBoyFrend[String((st as any).numnpc ?? '')] = ((st as any).otnBoyFrend[String((st as any).numnpc ?? '')] ?? 0) - (5);
+    ((st as any).otnBoyFrend = (st as any).otnBoyFrend ?? {})[String((st as any).numnpc ?? '')] = ((st as any).otnBoyFrend[String((st as any).numnpc ?? '')] ?? 0) - (5);
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
           { label: 'Go for a beer', handler: (st: GameState) => {

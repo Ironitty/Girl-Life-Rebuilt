@@ -78,8 +78,8 @@ function getStatusIcons(s: any): StatusIcon[] {
 
   if (s.sickstage > 0) icons.push({ icon: 'status/health', text: `Sick (stage ${s.sickstage})`, color: 'text-red-300' });
 
-  if (s.stat['alko'] > 0) {
-    const alko = s.stat['alko'];
+  if ((s.stat?.['alko'] ?? 0) > 0) {
+    const alko = s.stat?.['alko'] ?? 0;
     if (alko > 100) icons.push({ icon: 'status/alko_4', text: 'Wasted', color: 'text-purple-300' });
     else if (alko > 50) icons.push({ icon: 'status/alko_3', text: 'Quite drunk', color: 'text-purple-300' });
     else if (alko > 20) icons.push({ icon: 'status/alko_2', text: 'Tipsy' });

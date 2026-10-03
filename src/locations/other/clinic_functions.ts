@@ -257,23 +257,20 @@ function enterOfferRow(s: GameState, scene: SceneBuilder): void {
 function enterOfferRowConflicts(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_orc_i = ((s as any).locArgs?.[1] ?? 0);
   qspCall(s, 'calendar_query', 'get_events_for_time_range', (((s as any).appointment_offer_day ?? 0)?.[String((s as any).temp_orc_i ?? 0)] ?? 0), (((s as any).appointment_offer_window_end ?? 0)?.[String((s as any).temp_orc_i ?? 0)] ?? 0) - ((s as any).appointment_offer_buffer ?? 0), ((s as any).appointment_offer_buffer ?? 0) + ((s as any).appointment_offer_duration ?? 0));
-  (s as any)[query_events_for_time_range] ? (s as any)[query_events_for_time_range] = { ...(s as any)[temp_orc_events] } : (s as any)[query_events_for_time_range] = { ...(s as any)[temp_orc_events] };
+  (s as any).query_events_for_time_range ? (s as any).query_events_for_time_range = { ...(s as any).temp_orc_events } : (s as any).query_events_for_time_range = { ...(s as any).temp_orc_events };
   (s as any).result = '';
   if (Object.keys((s as any).temp_orc_events ?? {}).length > 0) {
     (s as any).result = 'Conflict: ';
     (s as any).temp_orc_k = 0;
-    while (true) {
-      if (((s as any).temp_orc_k ?? 0) < Object.keys((s as any).temp_orc_events ?? {}).length) {
-        if (((s as any).temp_orc_k ?? 0) > 0) {
-          (s as any).result = ((s as any).result ?? '') + ', ';
-        }
-        qspCall(s, 'calendar_query', 'get_event_display_range', (((s as any).temp_orc_events ?? 0)?.[String((s as any).temp_orc_k ?? 0)] ?? 0), (((s as any).appointment_offer_day ?? 0)?.[String((s as any).temp_orc_i ?? 0)] ?? 0));
-        (s as any).result = ((s as any).result ?? 0) + ((((s as any).event_vars ?? 0)?.['title']) + ' (' + qspFunc(s, 'calendar_query', 'ts_to_str', ((s as any).result_start_ts ?? 0)) + '-' + qspFunc(s, 'calendar_query', 'ts_to_str', ((s as any).result_end_ts ?? 0)) + ')');
-        (s as any).temp_orc_k = ((s as any).temp_orc_k ?? 0) + (1);
-        break;
+    while (((s as any).temp_orc_k ?? 0) < Object.keys((s as any).temp_orc_events ?? {}).length) {
+      if (((s as any).temp_orc_k ?? 0) > 0) {
+        (s as any).result = ((s as any).result ?? '') + ', ';
       }
-      (s as any).temp_orc_k = undefined;
+      qspCall(s, 'calendar_query', 'get_event_display_range', (((s as any).temp_orc_events ?? 0)?.[String((s as any).temp_orc_k ?? 0)] ?? 0), (((s as any).appointment_offer_day ?? 0)?.[String((s as any).temp_orc_i ?? 0)] ?? 0));
+      (s as any).result = ((s as any).result ?? 0) + ((((s as any).event_vars ?? 0)?.['title']) + ' (' + qspFunc(s, 'calendar_query', 'ts_to_str', ((s as any).result_start_ts ?? 0)) + '-' + qspFunc(s, 'calendar_query', 'ts_to_str', ((s as any).result_end_ts ?? 0)) + ')');
+      (s as any).temp_orc_k = ((s as any).temp_orc_k ?? 0) + (1);
     }
+    (s as any).temp_orc_k = undefined;
   }
   (s as any).temp_orc_i = undefined;
   (s as any).temp_orc_events = undefined;
@@ -453,7 +450,6 @@ function enterWaitForAppointmentEnd(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  return;
   scene.build();
 }
 

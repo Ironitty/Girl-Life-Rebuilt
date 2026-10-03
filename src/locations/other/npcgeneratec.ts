@@ -811,7 +811,7 @@ function enterSetOtherVars(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_gon = (s as any).npc_gon ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   ((s as any).npc_thrush = (s as any).npc_thrush ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   (s as any).ngp_pref = undefined;
-  (s as any)[npc_pref_traits] ? (s as any)[npc_pref_traits] = { ...(s as any)[ngp_pref] } : (s as any)[npc_pref_traits] = { ...(s as any)[ngp_pref] };
+  (s as any).npc_pref_traits ? (s as any).npc_pref_traits = { ...(s as any).ngp_pref } : (s as any).npc_pref_traits = { ...(s as any).ngp_pref };
   qspCall(s, 'npc_get_preference', '$ARGS[1]', 'randomPosIndNeg', 'no_clear');
   ((s as any).npc_origin_attract = (s as any).npc_origin_attract ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).ngpPrefResult ?? 0)?.['HasPos']);
   scene.build();

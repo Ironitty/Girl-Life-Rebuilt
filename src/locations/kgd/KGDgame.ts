@@ -92,7 +92,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any)[KGD] ? (s as any)[KGD] = { ...(s as any)['KGD' + ((s as any).KGDsavegame ?? 0) + ''] } : (s as any)[KGD] = { ...(s as any)['KGD' + ((s as any).KGDsavegame ?? 0) + ''] };
+  (s as any).KGD ? (s as any).KGD = { ...(s as any)['KGD' + ((s as any).KGDsavegame ?? 0) + ''] } : (s as any).KGD = { ...(s as any)['KGD' + ((s as any).KGDsavegame ?? 0) + ''] };
   (s as any).KGD = undefined;
   scene.actions([
     { label: 'Back to the main menu', goto: ['komp', 'start'] },

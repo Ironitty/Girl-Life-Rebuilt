@@ -55,24 +55,23 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
     do {
       ((s as any).bm_lnk = (s as any).bm_lnk ?? {})[String((s as any).bm_i ?? 0)] = '<td style="' + ((s as any).bm_td ?? 0) + '"><a href="#" onclick="window.__gameStore.setState((s) => { s.birthmonth = \u0027 + $str(bm_i) + \u0027; return s; }); window.__gameStore.getState().doGoto(\u0027intro_character_creation\u0027, \u0027core_birthday\u0027); return false;">' + (((s as any).monthName ?? 0)?.[String((s as any).bm_i ?? 0)] ?? 0) + '</a></td>';
       (s as any).bm_i = ((s as any).bm_i ?? 0) + (1);
-      (s as any).bm_i = undefined;
-      ((s as any).bm_lnk = (s as any).bm_lnk ?? {})[String((s as any).birthmonth ?? 0)] = '<td style="' + ((s as any).bm_td_sel ?? 0) + '"><b>' + (((s as any).monthName ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? 0) + '</b></td>';
-      scene.text('<center><table style="border:2px solid ' + (((s as any).theme_hex ?? 0)?.['goth'] ?? '') + '; background-color:' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '; border-spacing:4px; margin:6px;" cellpadding="0" cellspacing="0">');
-      scene.text(`<tr>${(((s as any).bm_lnk ?? 0)?.[1] ?? '')}${(((s as any).bm_lnk ?? 0)?.[2] ?? '')}${(((s as any).bm_lnk ?? 0)?.[3] ?? '')}</tr>`);
-      scene.text(`<tr>${(((s as any).bm_lnk ?? 0)?.[4] ?? '')}${(((s as any).bm_lnk ?? 0)?.[5] ?? '')}${(((s as any).bm_lnk ?? 0)?.[6] ?? '')}</tr>`);
-      scene.text(`<tr>${(((s as any).bm_lnk ?? 0)?.[7] ?? '')}${(((s as any).bm_lnk ?? 0)?.[8] ?? '')}${(((s as any).bm_lnk ?? 0)?.[9] ?? '')}</tr>`);
-      scene.text(`<tr>${(((s as any).bm_lnk ?? 0)?.[10] ?? '')}${(((s as any).bm_lnk ?? 0)?.[11] ?? '')}${(((s as any).bm_lnk ?? 0)?.[12] ?? '')}</tr>`);
-      scene.text('</table></center>');
-      (s as any).bm_lnk = undefined;
-      (s as any).bm_td = undefined;
-      (s as any).bm_td_sel = undefined;
-      (s as any).monthdays = undefined;
-      scene.actions([
-        { label: '<b>Done</b>', handler: (st: GameState) => {
-    dynamicGoto(st, 'locM', 'locM_arg');
-  } },
-      ]);
     } while (((s as any).bm_i ?? 0) <= 12);
+    ((s as any).bm_lnk = (s as any).bm_lnk ?? {})[String((s as any).birthmonth ?? 0)] = '<td style="' + ((s as any).bm_td_sel ?? 0) + '"><b>' + (((s as any).monthName ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? 0) + '</b></td>';
+    scene.text('<center><table style="border:2px solid ' + (((s as any).theme_hex ?? 0)?.['goth'] ?? '') + '; background-color:' + (((s as any).theme_hex ?? 0)?.['table_bg'] ?? '') + '; border-spacing:4px; margin:6px;" cellpadding="0" cellspacing="0">');
+    scene.text(`<tr>${(((s as any).bm_lnk ?? 0)?.[1] ?? '')}${(((s as any).bm_lnk ?? 0)?.[2] ?? '')}${(((s as any).bm_lnk ?? 0)?.[3] ?? '')}</tr>`);
+    scene.text(`<tr>${(((s as any).bm_lnk ?? 0)?.[4] ?? '')}${(((s as any).bm_lnk ?? 0)?.[5] ?? '')}${(((s as any).bm_lnk ?? 0)?.[6] ?? '')}</tr>`);
+    scene.text(`<tr>${(((s as any).bm_lnk ?? 0)?.[7] ?? '')}${(((s as any).bm_lnk ?? 0)?.[8] ?? '')}${(((s as any).bm_lnk ?? 0)?.[9] ?? '')}</tr>`);
+    scene.text(`<tr>${(((s as any).bm_lnk ?? 0)?.[10] ?? '')}${(((s as any).bm_lnk ?? 0)?.[11] ?? '')}${(((s as any).bm_lnk ?? 0)?.[12] ?? '')}</tr>`);
+    scene.text('</table></center>');
+    (s as any).bm_lnk = undefined;
+    (s as any).bm_td = undefined;
+    (s as any).bm_td_sel = undefined;
+    (s as any).monthdays = undefined;
+    scene.actions([
+      { label: '<b>Done</b>', handler: (st: GameState) => {
+  dynamicGoto(st, 'locM', 'locM_arg');
+} },
+    ]);
   }
   return;
   scene.build();

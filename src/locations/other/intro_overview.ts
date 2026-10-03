@@ -132,7 +132,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('</colgroup>');
   scene.text('<tr>');
   scene.text(String((s as any).temp_cell_td_1 ?? ''));
-  scene.text(qspFunc(s, 'intro_overview', 'render_cell', 'Advanced Options', '<small>These options may affect game balance or deviate from the intended experience for a start path.<br>'+$func('wrap', 'v_neg', 'We strongly recommend new players avoid changing them. You should probably only touch these if you\'ve already tried every default path that interests you')+'</small>', 2));
+  scene.text(qspFunc(s, 'intro_overview', 'render_cell', 'Advanced Options', '<small>These options may affect game balance or deviate from the intended experience for a start path.<br>'+qspFunc(s, 'wrap', 'v_neg', 'We strongly recommend new players avoid changing them. You should probably only touch these if you\'ve already tried every default path that interests you')+'</small>', 2));
   scene.text(String((s as any).temp_cell_td_1_end ?? ''));
   scene.text('</tr>');
   scene.text('<tr style="height:0; font-size:0; line-height:0; visibility:hidden;">');

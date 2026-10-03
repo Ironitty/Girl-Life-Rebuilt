@@ -24,29 +24,26 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).pain ?? 0)?.['nipples'] > 60) {
     scene.text('You cannot breast feed right now. Your nipples are too sore.');
   }
-  while (true) {
-    if (((s as any).k ?? 0) < ((s as any).kid ?? 0)) {
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKidlist(s, scene); (s as any).locArgs = __savedLocArgs; }
-      (s as any).k = ((s as any).k ?? 0) + (1);
-      break;
-    }
-    scene.text(`Child Selected: ${(((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '')}`);
-    if (((s as any).ks ?? 0) < (((s as any).kid ?? 0) - 1)) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.ks +=1; return s; }); window.__gameStore.getState().doGoto(\u0027kid\u0027, \u0027start\u0027); return false;">Select Next Child</a>');
-      scene.actions([
-        { label: 'Select Next Child', handler: (st: GameState) => {
-    (st as any).ks = ((st as any).ks ?? 0) + (1);
-  }, goto: ['kid', 'start'] },
-      ]);
-    }
-    if (((s as any).ks ?? 0) > 0) {
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.ks -=1; return s; }); window.__gameStore.getState().doGoto(\u0027kid\u0027, \u0027start\u0027); return false;">Select Previous Child</a>');
-      scene.actions([
-        { label: 'Select Previous Child', handler: (st: GameState) => {
-    (st as any).ks = ((st as any).ks ?? 0) - (1);
-  }, goto: ['kid', 'start'] },
-      ]);
-    }
+  while (((s as any).k ?? 0) < ((s as any).kid ?? 0)) {
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKidlist(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (s as any).k = ((s as any).k ?? 0) + (1);
+  }
+  scene.text(`Child Selected: ${(((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? '')}`);
+  if (((s as any).ks ?? 0) < (((s as any).kid ?? 0) - 1)) {
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.ks +=1; return s; }); window.__gameStore.getState().doGoto(\u0027kid\u0027, \u0027start\u0027); return false;">Select Next Child</a>');
+    scene.actions([
+      { label: 'Select Next Child', handler: (st: GameState) => {
+  (st as any).ks = ((st as any).ks ?? 0) + (1);
+}, goto: ['kid', 'start'] },
+    ]);
+  }
+  if (((s as any).ks ?? 0) > 0) {
+    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.ks -=1; return s; }); window.__gameStore.getState().doGoto(\u0027kid\u0027, \u0027start\u0027); return false;">Select Previous Child</a>');
+    scene.actions([
+      { label: 'Select Previous Child', handler: (st: GameState) => {
+  (st as any).ks = ((st as any).ks ?? 0) - (1);
+}, goto: ['kid', 'start'] },
+    ]);
   }
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {

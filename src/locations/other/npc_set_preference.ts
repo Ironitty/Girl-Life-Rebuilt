@@ -207,8 +207,8 @@ function enterBackup(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).npc_pref_traits ?? {}).length > 0) {
     (s as any).npc_backup_traits = undefined;
     (s as any).npc_backup_values = undefined;
-    (s as any)[npc_pref_traits] ? (s as any)[npc_pref_traits] = { ...(s as any)[npc_backup_traits] } : (s as any)[npc_pref_traits] = { ...(s as any)[npc_backup_traits] };
-    (s as any)[npc_pref_values] ? (s as any)[npc_pref_values] = { ...(s as any)[npc_backup_values] } : (s as any)[npc_pref_values] = { ...(s as any)[npc_backup_values] };
+    (s as any).npc_pref_traits ? (s as any).npc_pref_traits = { ...(s as any).npc_backup_traits } : (s as any).npc_pref_traits = { ...(s as any).npc_backup_traits };
+    (s as any).npc_pref_values ? (s as any).npc_pref_values = { ...(s as any).npc_backup_values } : (s as any).npc_pref_values = { ...(s as any).npc_backup_values };
   }
   scene.build();
 }
@@ -217,8 +217,8 @@ function enterRestore(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).npc_backup_traits ?? {}).length > 0) {
     (s as any).npc_pref_traits = undefined;
     (s as any).npc_pref_values = undefined;
-    (s as any)[npc_backup_traits] ? (s as any)[npc_backup_traits] = { ...(s as any)[npc_pref_traits] } : (s as any)[npc_backup_traits] = { ...(s as any)[npc_pref_traits] };
-    (s as any)[npc_backup_values] ? (s as any)[npc_backup_values] = { ...(s as any)[npc_pref_values] } : (s as any)[npc_backup_values] = { ...(s as any)[npc_pref_values] };
+    (s as any).npc_backup_traits ? (s as any).npc_backup_traits = { ...(s as any).npc_pref_traits } : (s as any).npc_backup_traits = { ...(s as any).npc_pref_traits };
+    (s as any).npc_backup_values ? (s as any).npc_backup_values = { ...(s as any).npc_pref_values } : (s as any).npc_backup_values = { ...(s as any).npc_pref_values };
     (s as any).npc_backup_traits = undefined;
     (s as any).npc_backup_values = undefined;
   }

@@ -76,8 +76,8 @@ function getDescriptiveTexts(s: any): { text: string; color?: string }[] {
 
   if (s.pcs_sweat >= 20) texts.push({ text: 'You are drenched in sweat.', color: 'text-cyan-300' });
 
-  if (s.stat['alko'] > 0) {
-    const alko = s.stat['alko'];
+  if ((s.stat?.['alko'] ?? 0) > 0) {
+    const alko = s.stat?.['alko'] ?? 0;
     if (alko > 100) texts.push({ text: 'You are wasted.', color: 'text-purple-300' });
     else if (alko > 50) texts.push({ text: 'You are quite drunk.', color: 'text-purple-300' });
     else if (alko > 20) texts.push({ text: 'You are tipsy.' });

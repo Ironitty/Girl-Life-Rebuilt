@@ -322,9 +322,9 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
 function enterPickupMail(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/postoffice/worker.jpg');
   (s as any).temp_mail_counter = 0;
-  (s as any)[mail_region] ? (s as any)[mail_region] = { ...(s as any)[temp_mail_region] } : (s as any)[mail_region] = { ...(s as any)[temp_mail_region] };
-  (s as any)[mail_code] ? (s as any)[mail_code] = { ...(s as any)[temp_mail_code] } : (s as any)[mail_code] = { ...(s as any)[temp_mail_code] };
-  (s as any)[mail_time] ? (s as any)[mail_time] = { ...(s as any)[temp_mail_time] } : (s as any)[mail_time] = { ...(s as any)[temp_mail_time] };
+  (s as any).mail_region ? (s as any).mail_region = { ...(s as any).temp_mail_region } : (s as any).mail_region = { ...(s as any).temp_mail_region };
+  (s as any).mail_code ? (s as any).mail_code = { ...(s as any).temp_mail_code } : (s as any).mail_code = { ...(s as any).temp_mail_code };
+  (s as any).mail_time ? (s as any).mail_time = { ...(s as any).temp_mail_time } : (s as any).mail_time = { ...(s as any).temp_mail_time };
   (s as any).po_i = 0;
   do {
     if (((s as any).temp_mail_region ?? 0)?.[String((s as any).po_i ?? 0)] === ((s as any).region ?? 0)  ||  ((s as any).temp_mail_region ?? 0)?.[String((s as any).po_i ?? 0)] === 'all') {
