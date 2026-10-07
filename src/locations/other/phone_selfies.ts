@@ -913,11 +913,23 @@ function enterPopulateClothesType(s: GameState, scene: SceneBuilder): void {
   (s as any).CloVar = '' + ((s as any).locArgs?.[2] ?? 0) + '[tmpIndex]';
   (s as any).CloMaxSize = ((s as any).locArgs?.[4] ?? 0);
   (s as any).temp_clocnt = 0;
-  while (true) {
-    scene.text('phone_locval = ' + (((s as any).selfieLoc ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? 0) + '_' + ((s as any).CloTypePrefix ?? 0) + '[' + ((s as any).temp_clocnt ?? 0) + ']');
+  while (((s as any).temp_clocnt ?? 0) <= ((s as any).CloMaxSize ?? 0)) {
+    const locKey = String(((s as any).selfieLoc ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? '');
+    const prefix = String((s as any).CloTypePrefix ?? '');
+    const cnt = String((s as any).temp_clocnt ?? 0);
+    const dynVarName = locKey + '_' + prefix + '[' + cnt + ']';
+    (s as any).phone_locval = (s as any)[dynVarName] ?? 0;
     if (((s as any).phone_locval ?? 0) === 1) {
-      scene.text('tmpIndex = ' + ((s as any).CloArraySize ?? 0) + '');
+      const arrName = String((s as any).locArgs?.[2] ?? '');
+      const arrVal = (s as any)[arrName];
+      (s as any).tmpIndex = arrVal ? Object.keys(arrVal).length : 0;
+      const filePrefix = String(((s as any).selfieFilePrefix ?? 0)?.[String((s as any).temp_locationCnt ?? 0)] ?? '');
+      const folder = String((s as any).CloFolder ?? '');
+      const imgPath = 'images/pc/activities/phone/selfies/' + locKey + '/' + folder + '/' + filePrefix + cnt + '.jpg';
+      const idx = String((s as any).tmpIndex ?? 0);
+      ((s as any)[arrName] = (s as any)[arrName] ?? {})[idx] = imgPath;
     }
+    (s as any).temp_clocnt = ((s as any).temp_clocnt ?? 0) + 1;
   }
   scene.build();
 }

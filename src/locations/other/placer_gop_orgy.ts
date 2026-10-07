@@ -50,17 +50,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'hj', 15, 'group', 'sub');
       qspCall(st, 'arousal', 'vaginal', (-15), 'group', 'sub');
       qspCall(st, 'stat', '');
-      if (((st as any).ciklkm ?? 0) > 0) {
-        qspCall(st, 'npcgeneratec', '0', 'Gopnik from the park', (Math.floor(Math.random() * 11) + 18));
-        qspCall(st, 'boyStat', '$npclastgenerated');
+      if (((st as any).ciklkm ?? 0) <= 0) {
         break;
       }
-      scene.text(`The guys are finally done with the two of you, and you feel a tad embarrassed when you look at ${((st as any).ev_name ?? '')}. You can see she feels the same way, but at the same time… that was so hot! She loved getting treated like a piece of meat, and you certainly enjoyed watching her while they did the same to you. The two of you quickly get dressed and leave the house, exchanging glances.`);
-      qspCall(st, 'arousal', 'end');
-      scene.actions([
-        { label: 'Leave', goto: ['placer_end', ''] },
-      ]);
+      qspCall(st, 'npcgeneratec', '0', 'Gopnik from the park', (Math.floor(Math.random() * 11) + 18));
+      qspCall(st, 'boyStat', '$npclastgenerated');
     }
+    scene.text(`The guys are finally done with the two of you, and you feel a tad embarrassed when you look at ${((st as any).ev_name ?? '')}. You can see she feels the same way, but at the same time… that was so hot! She loved getting treated like a piece of meat, and you certainly enjoyed watching her while they did the same to you. The two of you quickly get dressed and leave the house, exchanging glances.`);
+    qspCall(st, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['placer_end', ''] },
+    ]);
   } },
   ]);
   scene.build();

@@ -566,7 +566,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'add') {
-    qspCall(s, 'clothing_attributes', '$ARGS[2]', ((s as any).locArgs?.[3] ?? 0));
+    qspCall(s, 'clothing_attributes', (s as any).locArgs?.[2] ?? '', ((s as any).locArgs?.[3] ?? 0));
     if ((!((s as any).CloQuality ?? 0))) {
       return;
     }
@@ -587,7 +587,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      qspCall(s, 'clothing_attributes', '$ARGS[4]', ((s as any).locArgs?.[5] ?? 0));
+      qspCall(s, 'clothing_attributes', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
         scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       }
@@ -605,7 +605,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      qspCall(s, 'clothing_attributes', '$ARGS[4]', ((s as any).locArgs?.[5] ?? 0));
+      qspCall(s, 'clothing_attributes', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
         scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       }
@@ -624,7 +624,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      qspCall(s, 'clothing_attributes', '$ARGS[4]', ((s as any).locArgs?.[5] ?? 0));
+      qspCall(s, 'clothing_attributes', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0)]; enterListLine(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
@@ -896,7 +896,7 @@ function enterViewGrid(s: GameState, scene: SceneBuilder): void {
 function enterListLine(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'clothing');
   (s as any).swimwear_description = undefined;
-  qspCall(s, 'clothing_attributes', '$ARGS[2]', ((s as any).locArgs?.[3] ?? 0));
+  qspCall(s, 'clothing_attributes', (s as any).locArgs?.[2] ?? '', ((s as any).locArgs?.[3] ?? 0));
   scene.text('<tr bgcolor=' + ((s as any).temp_bcolor ?? '') + '>');
   scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[2] ?? ''), ((s as any).locArgs?.[3] ?? ''))}`);
   if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0))) {
@@ -1038,7 +1038,7 @@ function enterListLineResize(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterListLineRepair(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'clothing_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   (s as any).temp_rand = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_rand ?? 0) < ((s as any).pcs_sewng ?? 0) / 4) {
@@ -1228,7 +1228,7 @@ function enterViewItemResize(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([
-    { label: 'Leave item alone', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display['hub_loc'] ?? ''), ((st as any).ward_list_page ?? '')); } },
+    { label: 'Leave item alone', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display?.['hub_loc'] ?? ''), ((st as any).ward_list_page ?? '')); } },
   ]);
   scene.build();
 }
@@ -1245,7 +1245,7 @@ function enterViewItemWearing(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', 'view_list', ((st as any).shop_utils_view['link'] ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', 'view_list', ((st as any).shop_utils_view?.['link'] ?? '')); } },
 ]);
   return;
   scene.build();

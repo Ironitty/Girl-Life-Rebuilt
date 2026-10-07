@@ -220,9 +220,9 @@ function enterCoupleGenerator(s: GameState, scene: SceneBuilder): void {
                                                                                                             if (((s as any).couple_rand ?? 0) === 53) {
                                                                                                               (s as any).rand_girl = 'Sonia';
                                                                                                               (s as any).rand_boy = 'Niko';
-                                                                                                            } else {
-                                                                                                              break;
-                                                                                                            }
+                                                                                                             } else {
+                                                                                                               continue;
+                                                                                                             }
                                                                                                           }
                                                                                                         }
                                                                                                       }
@@ -275,8 +275,9 @@ function enterCoupleGenerator(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    (s as any).couple_rand = undefined;
+    break;
   }
+  (s as any).couple_rand = undefined;
   scene.build();
 }
 

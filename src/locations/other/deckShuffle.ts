@@ -34,11 +34,13 @@ function enterSort(s: GameState, scene: SceneBuilder): void {
           (s as any).j = ((s as any).j ?? 0) + (1);
           (s as any).deckFace = [...((s as any).deckFace ?? []), ((s as any).j ?? 0)];
           (s as any).deckImg = [...((s as any).deckImg ?? []), 'images/locations/city/industrial/casino/cards/' + ((s as any).text ?? 0) + '/' + ((s as any).j ?? 0) + '.jpg'];
-          break;
+          continue;
         }
         break;
       }
+      continue;
     }
+    break;
   }
   scene.build();
 }

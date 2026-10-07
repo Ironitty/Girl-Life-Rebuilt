@@ -30,56 +30,58 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
 function enterExit(s: GameState, scene: SceneBuilder): void {
   (s as any).marreturn = undefined;
   qspGoto(s, 'city_artisan_quarter', 'start');
-  if (((s as any).ARGS ?? 0) === 'hall'  ||  String((s as any).locArgs?.[0] ?? '') === 'start') {
-    ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Theatre Foyer';
-    scene.img((((s as any).setloc ?? 0)?.['imagepath']) + 'mariinsky_hall');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hall']; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
-    if (((s as any).mariinskyqw ?? 0)?.['ticket'] === 0) {
-      scene.actions([
-        { label: 'Tickets Booth', goto: ['city_mariinsky', 'tickets'] },
-      ]);
-    }
-    if (((s as any).mariinskyqw ?? 0)?.['ticket'] === 1) {
-      scene.actions([
-        { label: 'Main Stage', goto: ['city_mariinsky', 'main'] },
-      ]);
-    }
-    if (((s as any).hour ?? 0) >= 8) {
-      qspCall(s, 'willpower', 'exhib', 'self');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-        scene.actions([
-          { label: 'Enter the men\'s restroom', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'Enter the men\'s restroom', handler: (st: GameState) => {
-    qspCall(st, 'willpower', 'exhib', 'self');
-    qspCall(st, 'willpower', 'pay', 'self');
-    qspCall(st, 'stat', '');
-    (st as any).marreturn = 'hall';
-    qspGoto(st, 'city_mariinsky', 'toilets_men');
-  } },
-        ]);
-      }
-      scene.actions([
-        { label: 'Enter the women\'s restroom', handler: (st: GameState) => {
-    (st as any).marreturn = 'hall';
-  }, goto: ['city_mariinsky', 'toilets_women'] },
-      ]);
-    }
-    scene.text('You enter the Mariinksy Theatre into the massive open hall with dazzling lights and posters proclaiming the theatre\'s next performances.');
-    if (((s as any).daystage ?? 0) <= 3) {
-      scene.text('The hall is relatively quite at this time of day, with few performances on during the day.');
-    } else {
-      scene.text('The hall is packed, elegantly dressed theatre goers and concert aficionados eagerly discussing the upcoming performances or waiting to enter the building and watch the evening\'s performances.');
-    }
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Theatre Foyer';
+  scene.img((((s as any).setloc ?? 0)?.['imagepath']) + 'mariinsky_hall');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hall']; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  if (((s as any).mariinskyqw ?? 0)?.['ticket'] === 0) {
     scene.actions([
-      { label: 'Stage Door', goto: ['city_mariinsky', 'stage_door'] },
-      { label: 'Exit', goto: ['city_mariinsky', 'exit'] },
+      { label: 'Tickets Booth', goto: ['city_mariinsky', 'tickets'] },
     ]);
   }
+  if (((s as any).mariinskyqw ?? 0)?.['ticket'] === 1) {
+    scene.actions([
+      { label: 'Main Stage', goto: ['city_mariinsky', 'main'] },
+    ]);
+  }
+  if (((s as any).hour ?? 0) >= 8) {
+    qspCall(s, 'willpower', 'exhib', 'self');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Enter the men\'s restroom', handler: (st: GameState) => {
+  st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+} },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Enter the men\'s restroom', handler: (st: GameState) => {
+  qspCall(st, 'willpower', 'exhib', 'self');
+  qspCall(st, 'willpower', 'pay', 'self');
+  qspCall(st, 'stat', '');
+  (st as any).marreturn = 'hall';
+  qspGoto(st, 'city_mariinsky', 'toilets_men');
+} },
+      ]);
+    }
+    scene.actions([
+      { label: 'Enter the women\'s restroom', handler: (st: GameState) => {
+  (st as any).marreturn = 'hall';
+}, goto: ['city_mariinsky', 'toilets_women'] },
+    ]);
+  }
+  scene.text('You enter the Mariinksy Theatre into the massive open hall with dazzling lights and posters proclaiming the theatre\'s next performances.');
+  if (((s as any).daystage ?? 0) <= 3) {
+    scene.text('The hall is relatively quite at this time of day, with few performances on during the day.');
+  } else {
+    scene.text('The hall is packed, elegantly dressed theatre goers and concert aficionados eagerly discussing the upcoming performances or waiting to enter the building and watch the evening\'s performances.');
+  }
+  scene.actions([
+    { label: 'Stage Door', goto: ['city_mariinsky', 'stage_door'] },
+    { label: 'Exit', goto: ['city_mariinsky', 'exit'] },
+  ]);
   scene.build();
 }
 
@@ -220,6 +222,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'exit':
       enterExit(s, scene);
+      break;
+    case 'start':
+    case 'hall':
+      enterStart(s, scene);
       break;
     case 'tickets':
       enterTickets(s, scene);

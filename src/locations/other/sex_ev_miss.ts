@@ -53,11 +53,11 @@ function enterMissGoto(s: GameState, scene: SceneBuilder): void {
                 ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'miss' + (((s as any).sex_ev ?? 0)?.['speed']) + '';
                 if (((s as any).sex_ev ?? 0)?.['mood_type'] === 'romantic'  &&  ((s as any).sex_ev ?? 0)?.['speed'] < 3) {
                   scene.actions([
-                    { label: '', labelFn: (s: GameState) => 'Make love to ' + String(((s as any).npcdesc ?? '') ?? ''), handler: (st: GameState) => { qspGoto(st, 'sex_ev_miss', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+                    { label: '', labelFn: (s: GameState) => 'Make love to ' + String(((s as any).npcdesc ?? '') ?? ''), handler: (st: GameState) => { qspGoto(st, 'sex_ev_miss', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
                   ]);
                 } else {
                   scene.actions([
-                    { label: '', labelFn: (s: GameState) => 'Let ' + String(((s as any).npcdesc ?? '') ?? '') + ' fuck you', handler: (st: GameState) => { qspGoto(st, 'sex_ev_miss', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+                    { label: '', labelFn: (s: GameState) => 'Let ' + String(((s as any).npcdesc ?? '') ?? '') + ' fuck you', handler: (st: GameState) => { qspGoto(st, 'sex_ev_miss', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
                   ]);
                 }
               }

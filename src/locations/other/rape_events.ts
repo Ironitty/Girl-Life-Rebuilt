@@ -15,8 +15,8 @@ function enterRapistGenerate(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcgeneratec', '0', 'rapist', (Math.floor(Math.random() * (((((s as any).temp ?? {})?.['rapist_age'] ?? 0) + 8) - (((s as any).temp ?? 0)?.['rapist_age']) + 1)) + ((((s as any).temp ?? 0)?.['rapist_age']))));
     ((s as any).rapist = (s as any).rapist ?? {})[String((s as any).re_i ?? 0)] = ((s as any).npclastgenerated ?? 0);
     (s as any).re_i = ((s as any).re_i ?? 0) + (1);
-    (s as any).re_i = undefined;
   } while (((s as any).re_i ?? 0) < 3  &&  ((s as any).fight ?? 0)?.['rape_type'] === 'gang');
+  (s as any).re_i = undefined;
   scene.build();
 }
 
@@ -30,10 +30,10 @@ function enterFightInit(s: GameState, scene: SceneBuilder): void {
     ((s as any).rapist = (s as any).rapist ?? {})[String((s as any).re_i ?? 0)] = ((s as any).npclastgenerated ?? 0);
     qspCall(s, 'fight_npcdata', 'rapist');
     (s as any).re_i = ((s as any).re_i ?? 0) + (1);
-    (s as any).re_i = undefined;
-    (s as any).fightEnding = 23;
-    qspGoto(s, 'fight', 'start');
   } while (((s as any).re_i ?? 0) < 3  &&  ((s as any).fight ?? 0)?.['rape_type'] === 'gang');
+  (s as any).re_i = undefined;
+  (s as any).fightEnding = 23;
+  qspGoto(s, 'fight', 'start');
   scene.build();
 }
 

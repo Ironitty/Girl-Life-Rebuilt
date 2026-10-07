@@ -16,11 +16,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).pcs_girlfriends = ((s as any).pcs_girlfriends ?? 0) + (1);
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      (s as any).i = undefined;
-      if (((s as any).analorgasm ?? 0) > 0) {
-        (s as any).orgasm_anal = ((s as any).orgasm_anal ?? 0) + (((s as any).analorgasm ?? 0));
-      }
     } while (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length);
+    (s as any).i = undefined;
+    if (((s as any).analorgasm ?? 0) > 0) {
+      (s as any).orgasm_anal = ((s as any).orgasm_anal ?? 0) + (((s as any).analorgasm ?? 0));
+    }
   }
   if (((s as any).temp_current_save_version ?? 0) < 80403) {
     if (((s as any).meynoldQW ?? 0) === 1  ||  ((s as any).meynoldQW ?? 0) === 2) {
@@ -243,17 +243,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ((s as any).danilovich_outfits_b = (s as any).danilovich_outfits_b ?? {})[String((s as any).i ?? 0)] = (((s as any).danilovich_b ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      (s as any).danilovich = undefined;
-      (s as any).danilovich_s = undefined;
-      (s as any).danilovich_h = undefined;
-      (s as any).danilovich_b = undefined;
-      if (((s as any).agape ?? 0)[4] === 0) {
-        ((s as any).agape = (s as any).agape ?? {})[4] = 10;
-      }
-      if (((s as any).vgape ?? 0)[4] === 0) {
-        ((s as any).vgape = (s as any).vgape ?? {})[4] = 10;
-      }
     } while (((s as any).i ?? 0) <= 170);
+    (s as any).danilovich = undefined;
+    (s as any).danilovich_s = undefined;
+    (s as any).danilovich_h = undefined;
+    (s as any).danilovich_b = undefined;
+    if (((s as any).agape ?? 0)[4] === 0) {
+      ((s as any).agape = (s as any).agape ?? {})[4] = 10;
+    }
+    if (((s as any).vgape ?? 0)[4] === 0) {
+      ((s as any).vgape = (s as any).vgape ?? {})[4] = 10;
+    }
   }
   if (((s as any).temp_current_save_version ?? 0) < 80502) {
     (s as any).i = 0;
@@ -264,16 +264,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ((s as any).npc_index = (s as any).npc_index ?? {})[String((s as any).text ?? 0)] = ((s as any).text ?? 0);
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      (s as any).i = 0;
-      do {
-        (s as any).text = 'B' + String(((s as any).i ?? 0));
-        (s as any).temp1 = qspFunc(s, 'array', 'get_me_index', '$npc_firstname', ((s as any).text ?? 0));
-        if (((s as any).temp1 ?? 0) >= 0) {
-          ((s as any).npc_index = (s as any).npc_index ?? {})[String((s as any).text ?? 0)] = ((s as any).text ?? 0);
-        }
-        (s as any).i = ((s as any).i ?? 0) + (1);
-      } while (((s as any).i ?? 0) < ((s as any).barraynumber ?? 0));
     } while (((s as any).i ?? 0) < ((s as any).carraynumber ?? 0));
+    (s as any).i = 0;
+    do {
+      (s as any).text = 'B' + String(((s as any).i ?? 0));
+      (s as any).temp1 = qspFunc(s, 'array', 'get_me_index', '$npc_firstname', ((s as any).text ?? 0));
+      if (((s as any).temp1 ?? 0) >= 0) {
+        ((s as any).npc_index = (s as any).npc_index ?? {})[String((s as any).text ?? 0)] = ((s as any).text ?? 0);
+      }
+      (s as any).i = ((s as any).i ?? 0) + (1);
+    } while (((s as any).i ?? 0) < ((s as any).barraynumber ?? 0));
   }
   if (((s as any).temp_current_save_version ?? 0) < 80503) {
     (s as any).i = 0;
@@ -298,13 +298,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      if (((s as any).hotelroom1day ?? 0) !== 0) {
-        ((s as any).hotelRoomDays = (s as any).hotelRoomDays ?? {})['pav'] = ((s as any).hotelroom1day ?? 0);
-        ((s as any).HotelRoom = (s as any).HotelRoom ?? {})['pav'] = ((s as any).HotelRoom ?? 0);
-        (s as any).hotelroom1day = undefined;
-        (s as any).HotelRoom = 0;
-      }
     } while (((s as any).i ?? 0) < 250);
+    if (((s as any).hotelroom1day ?? 0) !== 0) {
+      ((s as any).hotelRoomDays = (s as any).hotelRoomDays ?? {})['pav'] = ((s as any).hotelroom1day ?? 0);
+      ((s as any).HotelRoom = (s as any).HotelRoom ?? {})['pav'] = ((s as any).HotelRoom ?? 0);
+      (s as any).hotelroom1day = undefined;
+      (s as any).HotelRoom = 0;
+    }
   }
   if (((s as any).temp_current_save_version ?? 0) < 80504) {
     ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A18'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gschool_jock_chats\u0027, \u0027\u0027 + $lcase($npc_usedname[\u0027A18\u0027]) + \u0027\u0027); return false;">' + (((s as any).npc_usedname ?? 0)?.['A18']) + '</a>';
@@ -346,18 +346,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ((s as any).cats_bras = (s as any).cats_bras ?? {})[String((s as any).i ?? 0)] = (((s as any).kats_bras ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      (s as any).kats_brasS = undefined;
-      (s as any).kats_bras = undefined;
-      (s as any).i = 1;
-      do {
+    } while (((s as any).i ?? 0) <= Object.keys((s as any).kats_bras ?? {}).length);
+    (s as any).kats_brasS = undefined;
+    (s as any).kats_bras = undefined;
+    (s as any).i = 1;
+    do {
         if (((s as any).kats_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
           ((s as any).cats_pantiesS = (s as any).cats_pantiesS ?? {})[String((s as any).i ?? 0)] = (((s as any).kats_pantiesS ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
           ((s as any).cats_panties = (s as any).cats_panties ?? {})[String((s as any).i ?? 0)] = (((s as any).kats_panties ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
         }
         (s as any).i = ((s as any).i ?? 0) + (1);
-        (s as any).kats_pantiesS = undefined;
-        (s as any).kats_panties = undefined;
-        if (((s as any).AvelinaQW ?? 0)?.['encourage'] === 1) {
+      } while (((s as any).i ?? 0) <= Object.keys((s as any).kats_panties ?? {}).length);
+      (s as any).kats_pantiesS = undefined;
+      (s as any).kats_panties = undefined;
+      if (((s as any).AvelinaQW ?? 0)?.['encourage'] === 1) {
           ((s as any).AvelinaQW = (s as any).AvelinaQW ?? {})['encourage'] = 0;
         }
         if (((s as any).lariskaQwestDay ?? 0) < 0  ||  ((s as any).lariskaQwestDay ?? 0) > 0) {
@@ -434,8 +436,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'array', 'remove_element', '' + ((s as any).moisturiser ?? 0) + '', 'time');
         }
         (s as any).hypnoHairStyle = undefined;
-      } while (((s as any).i ?? 0) <= Object.keys((s as any).kats_panties ?? {}).length);
-    } while (((s as any).i ?? 0) <= Object.keys((s as any).kats_bras ?? {}).length);
   }
   if (((s as any).temp_current_save_version ?? 0) < 80800) {
     qspCall(s, 'body', 'Update_Appearance');
@@ -873,93 +873,93 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('lusso_panties[i] = 1');
         scene.text('lusso_pantiesS[i] = boutique_pantiesS[i]');
       }
-      (s as any).boutique_panties = undefined;
-      (s as any).i = 0;
-      do {
-        (s as any).i = ((s as any).i ?? 0) + (1);
-        if (((s as any).boutique_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-          scene.text('lusso_bras[i] = 1');
-          scene.text('lusso_brasS[i] = boutique_brasS[i]');
-        }
-        (s as any).boutique_bras = undefined;
-        (s as any).i = 0;
-        do {
-          (s as any).i = ((s as any).i ?? 0) + (1);
-          if (((s as any).cheap_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-            scene.text('gm_panties[i] = 1');
-            scene.text('gm_pantiesS[i] = cheap_pantiesS[i]');
-          }
-          (s as any).cheap_panties = undefined;
-          (s as any).i = 0;
-          do {
-            (s as any).i = ((s as any).i ?? 0) + (1);
-            if (((s as any).cheap_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-              scene.text('gm_bras[i] = 1');
-              scene.text('gm_brasS[i] = cheap_brasS[i]');
-            }
-            (s as any).cheap_bras = undefined;
-            (s as any).i = 0;
-            do {
-              (s as any).i = ((s as any).i ?? 0) + (1);
-              if (((s as any).exhibitionist_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                scene.text('salacious_panties[i] = 1');
-                scene.text('salacious_pantiesS[i] = exhibitionist_pantiesS[i]');
-              }
-              (s as any).exhibitionist_panties = undefined;
-              (s as any).i = 0;
-              do {
-                (s as any).i = ((s as any).i ?? 0) + (1);
-                if (((s as any).exhibitionist_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                  scene.text('salacious_bras[i] = 1');
-                  scene.text('salacious_brasS[i] = exhibitionist_brasS[i]');
-                }
-                (s as any).exhibitionist_bras = undefined;
-                (s as any).i = 0;
-                do {
-                  (s as any).i = ((s as any).i ?? 0) + (1);
-                  if (((s as any).sexshop_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                    scene.text('eroto_panties[i] = 1');
-                    scene.text('eroto_pantiesS[i] = sexshop_pantiesS[i]');
-                  }
-                  (s as any).sexshop_panties = undefined;
-                  (s as any).i = 0;
-                  do {
-                    (s as any).i = ((s as any).i ?? 0) + (1);
-                    if (((s as any).sexshop_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                      scene.text('eroto_bras[i] = 1');
-                      scene.text('eroto_brasS[i] = sexshop_brasS[i]');
-                    }
-                    (s as any).sexshop_bras = undefined;
-                    (s as any).i = 0;
-                    do {
-                      (s as any).i = ((s as any).i ?? 0) + (1);
-                      if (((s as any).sport_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                        scene.text('danilovich_panties[i] = 1');
-                        scene.text('danilovich_pantiesS[i] = sport_pantiesS[i]');
-                      }
-                      (s as any).sport_panties = undefined;
-                      (s as any).i = 0;
-                      do {
-                        (s as any).i = ((s as any).i ?? 0) + (1);
-                        if (((s as any).sport_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                          scene.text('danilovich_bras[i] = 1');
-                          scene.text('danilovich_brasS[i] = sport_brasS[i]');
-                        }
-                        (s as any).sport_bras = undefined;
-                        if (((s as any).metmira ?? 0) === 1) {
-                          ((s as any).npc_known = (s as any).npc_known ?? {})['A60'] = 1;
-                          (s as any).metmira = undefined;
-                        }
-                      } while (((s as any).i ?? 0) <= Object.keys((s as any).sport_bras ?? {}).length);
-                    } while (((s as any).i ?? 0) <= Object.keys((s as any).sport_panties ?? {}).length);
-                  } while (((s as any).i ?? 0) <= Object.keys((s as any).sexshop_bras ?? {}).length);
-                } while (((s as any).i ?? 0) <= Object.keys((s as any).sexshop_panties ?? {}).length);
-              } while (((s as any).i ?? 0) <= Object.keys((s as any).exhibitionist_bras ?? {}).length);
-            } while (((s as any).i ?? 0) <= Object.keys((s as any).exhibitionist_panties ?? {}).length);
-          } while (((s as any).i ?? 0) <= Object.keys((s as any).cheap_bras ?? {}).length);
-        } while (((s as any).i ?? 0) <= Object.keys((s as any).cheap_panties ?? {}).length);
-      } while (((s as any).i ?? 0) <= Object.keys((s as any).boutique_bras ?? {}).length);
     } while (((s as any).i ?? 0) <= Object.keys((s as any).boutique_panties ?? {}).length);
+    (s as any).boutique_panties = undefined;
+    (s as any).i = 0;
+    do {
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      if (((s as any).boutique_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+        scene.text('lusso_bras[i] = 1');
+        scene.text('lusso_brasS[i] = boutique_brasS[i]');
+      }
+    } while (((s as any).i ?? 0) <= Object.keys((s as any).boutique_bras ?? {}).length);
+    (s as any).boutique_bras = undefined;
+    (s as any).i = 0;
+    do {
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      if (((s as any).cheap_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+        scene.text('gm_panties[i] = 1');
+        scene.text('gm_pantiesS[i] = cheap_pantiesS[i]');
+      }
+    } while (((s as any).i ?? 0) <= Object.keys((s as any).cheap_panties ?? {}).length);
+    (s as any).cheap_panties = undefined;
+    (s as any).i = 0;
+    do {
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      if (((s as any).cheap_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+        scene.text('gm_bras[i] = 1');
+        scene.text('gm_brasS[i] = cheap_brasS[i]');
+      }
+    } while (((s as any).i ?? 0) <= Object.keys((s as any).cheap_bras ?? {}).length);
+    (s as any).cheap_bras = undefined;
+    (s as any).i = 0;
+    do {
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      if (((s as any).exhibitionist_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+        scene.text('salacious_panties[i] = 1');
+        scene.text('salacious_pantiesS[i] = exhibitionist_pantiesS[i]');
+      }
+    } while (((s as any).i ?? 0) <= Object.keys((s as any).exhibitionist_panties ?? {}).length);
+    (s as any).exhibitionist_panties = undefined;
+    (s as any).i = 0;
+    do {
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      if (((s as any).exhibitionist_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+        scene.text('salacious_bras[i] = 1');
+        scene.text('salacious_brasS[i] = exhibitionist_brasS[i]');
+      }
+    } while (((s as any).i ?? 0) <= Object.keys((s as any).exhibitionist_bras ?? {}).length);
+    (s as any).exhibitionist_bras = undefined;
+    (s as any).i = 0;
+    do {
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      if (((s as any).sexshop_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+        scene.text('eroto_panties[i] = 1');
+        scene.text('eroto_pantiesS[i] = sexshop_pantiesS[i]');
+      }
+    } while (((s as any).i ?? 0) <= Object.keys((s as any).sexshop_panties ?? {}).length);
+    (s as any).sexshop_panties = undefined;
+    (s as any).i = 0;
+    do {
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      if (((s as any).sexshop_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+        scene.text('eroto_bras[i] = 1');
+        scene.text('eroto_brasS[i] = sexshop_brasS[i]');
+      }
+    } while (((s as any).i ?? 0) <= Object.keys((s as any).sexshop_bras ?? {}).length);
+    (s as any).sexshop_bras = undefined;
+    (s as any).i = 0;
+    do {
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      if (((s as any).sport_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+        scene.text('danilovich_panties[i] = 1');
+        scene.text('danilovich_pantiesS[i] = sport_pantiesS[i]');
+      }
+    } while (((s as any).i ?? 0) <= Object.keys((s as any).sport_panties ?? {}).length);
+    (s as any).sport_panties = undefined;
+    (s as any).i = 0;
+    do {
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      if (((s as any).sport_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+        scene.text('danilovich_bras[i] = 1');
+        scene.text('danilovich_brasS[i] = sport_brasS[i]');
+      }
+    } while (((s as any).i ?? 0) <= Object.keys((s as any).sport_bras ?? {}).length);
+    (s as any).sport_bras = undefined;
+    if (((s as any).metmira ?? 0) === 1) {
+      ((s as any).npc_known = (s as any).npc_known ?? {})['A60'] = 1;
+      (s as any).metmira = undefined;
+    }
   }
   if (((s as any).temp_current_save_version ?? 0) < 80903) {
     if (((s as any).wardrobeDefaultPagePref ?? 0) === 'savedOutfits') {
@@ -981,22 +981,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ((s as any).npc_rel_type = (s as any).npc_rel_type ?? {})[String((s as any).i ?? 0)] = 'fuckbuddy';
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      if (((s as any).traits ?? 0) > 0  ||  ((s as any).trait ?? 0) > 0) {
-        ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['nerd_status'] = (((s as any).traits ?? 0)?.['nerd_status']);
-        ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['alko_status'] = (((s as any).traits ?? 0)?.['alko_status']);
-        ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['alko_points'] = (((s as any).traits ?? 0)?.['alko_points']);
-        ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['buttslut_lvl'] = (((s as any).traits ?? 0)?.['buttslut_lvl']);
-        ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['buttslut_exp'] = (((s as any).traits ?? 0)?.['buttslut_exp']);
-        ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['nerd_lernHome'] = (((s as any).traits ?? 0)?.['nerd_lernHome']);
-        ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['nerd_points'] = (((s as any).traits ?? 0)?.['nerd_points']);
-        ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['nerd_lessons'] = (((s as any).traits ?? 0)?.['nerd_lessons']);
-        ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['cumeater'] = (((s as any).trait ?? 0)?.['cumeater']);
-        ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['commando_lvl'] = (((s as any).trait ?? 0)?.['commando_lvl']);
-        ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['commando_exp'] = (((s as any).trait ?? 0)?.['commando_exp']);
-        (s as any).traits = undefined;
-        (s as any).trait = undefined;
-      }
     } while (((s as any).i ?? 0) <= Object.keys((s as any).boys ?? {}).length);
+    if (((s as any).traits ?? 0) > 0  ||  ((s as any).trait ?? 0) > 0) {
+      ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['nerd_status'] = (((s as any).traits ?? 0)?.['nerd_status']);
+      ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['alko_status'] = (((s as any).traits ?? 0)?.['alko_status']);
+      ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['alko_points'] = (((s as any).traits ?? 0)?.['alko_points']);
+      ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['buttslut_lvl'] = (((s as any).traits ?? 0)?.['buttslut_lvl']);
+      ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['buttslut_exp'] = (((s as any).traits ?? 0)?.['buttslut_exp']);
+      ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['nerd_lernHome'] = (((s as any).traits ?? 0)?.['nerd_lernHome']);
+      ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['nerd_points'] = (((s as any).traits ?? 0)?.['nerd_points']);
+      ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['nerd_lessons'] = (((s as any).traits ?? 0)?.['nerd_lessons']);
+      ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['cumeater'] = (((s as any).trait ?? 0)?.['cumeater']);
+      ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['commando_lvl'] = (((s as any).trait ?? 0)?.['commando_lvl']);
+      ((s as any).pcs_traits = (s as any).pcs_traits ?? {})['commando_exp'] = (((s as any).trait ?? 0)?.['commando_exp']);
+      (s as any).traits = undefined;
+      (s as any).trait = undefined;
+    }
   }
   if (((s as any).temp_current_save_version ?? 0) < 90000) {
     if (((s as any).photography_job ?? 0) > 0) {
@@ -1009,11 +1009,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any)._fuckbuddies = [...((s as any)._fuckbuddies ?? []), (((s as any).fuckbuddy ?? 0)?.[String((s as any).i_fb ?? 0)] ?? 0)];
         }
         (s as any).i_fb = ((s as any).i_fb ?? 0) + (1);
-        (s as any).fuckbuddy = undefined;
-        (s as any).fuckbuddy = ((s as any)._fuckbuddies ?? 0);
-        (s as any)._fuckbuddies = undefined;
-        (s as any).i_fb = undefined;
       } while (((s as any).i_fb ?? 0) < Object.keys((s as any).fuckbuddy ?? {}).length);
+      (s as any).fuckbuddy = undefined;
+      (s as any).fuckbuddy = ((s as any)._fuckbuddies ?? 0);
+      (s as any)._fuckbuddies = undefined;
+      (s as any).i_fb = undefined;
     }
     if (((s as any).stat ?? 0)?.['virgin'] > 0) {
       ((s as any).stat = (s as any).stat ?? {})['think_virgin'] = (((s as any).stat ?? 0)?.['virgin']);
@@ -1051,10 +1051,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
         delete (s as any)['$routine' + ((s as any).makeup_routine_update_index ?? 0) + 'custname'];
       }
       (s as any).makeup_routine_update_index = ((s as any).makeup_routine_update_index ?? 0) + (1);
-      (s as any).makeup_routine_update_index = undefined;
-      (s as any).temp_makeup_routine = undefined;
-      (s as any).temp_makeup_routine_name = undefined;
-      if (((s as any).kosmetica ?? 0) > 0) {
+    } while (((s as any).makeup_routine_update_index ?? 0) <= 4);
+    (s as any).makeup_routine_update_index = undefined;
+    (s as any).temp_makeup_routine = undefined;
+    (s as any).temp_makeup_routine_name = undefined;
+    if (((s as any).kosmetica ?? 0) > 0) {
         ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).kosmetica ?? 0);
         (s as any).kosmetica = undefined;
       }
@@ -1407,8 +1408,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       do {
         qspCall(s, 'npc_standard_preferences', 'A' + ((s as any).pref_update_index ?? 0) + '');
         (s as any).pref_update_index = ((s as any).pref_update_index ?? 0) + (1);
-        (s as any).pref_update_index = undefined;
-        if (((s as any).shplft_booked ?? 0)    > 0) {
+      } while (((s as any).pref_update_index ?? 0) <= 263);
+      (s as any).pref_update_index = undefined;
+      if (((s as any).shplft_booked ?? 0)    > 0) {
           ((s as any).policeQW = (s as any).policeQW ?? {})['shoplift_booked'] = ((s as any).shplft_booked ?? 0);
           (s as any).shplft_booked = undefined;
         }
@@ -1826,8 +1828,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         } else {
           qspCall(s, 'homes_properties', 'set_home', (((s as any).home ?? 0)?.['current']));
         }
-      } while (((s as any).pref_update_index ?? 0) <= 263);
-    } while (((s as any).makeup_routine_update_index ?? 0) <= 4);
   }
   if (((s as any).temp_current_save_version ?? 0) < 90101) {
     if (((s as any).pornstudio ?? 0) > 1) {
@@ -2099,11 +2099,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ((s as any).fashionista_dress_s = (s as any).fashionista_dress_s ?? {})[String((s as any).i ?? 0)] = (((s as any).fashionista_s ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
         }
         (s as any).i = ((s as any).i ?? 0) + (4);
-        (s as any).fashionista = undefined;
-        (s as any).fashionista_h = undefined;
-        (s as any).fashionista_b = undefined;
-        (s as any).fashionista_s = undefined;
       } while (((s as any).i ?? 0) <= 200);
+      (s as any).fashionista = undefined;
+      (s as any).fashionista_h = undefined;
+      (s as any).fashionista_b = undefined;
+      (s as any).fashionista_s = undefined;
     }
     if (((s as any).Trainpass_day ?? 0) !== 0) {
       ((s as any).transportVars = (s as any).transportVars ?? {})['trainpass_day'] = ((s as any).Trainpass_day ?? 0);
@@ -2147,7 +2147,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).rej_idx = 0;
     (s as any).rej_sz = 0;
-    while (true) {
+    do {
       if (((s as any).rej_idx ?? 0) < ((s as any).rej_sz ?? 0)) {
         if (((s as any).ChildFath ?? 0)?.[String((s as any).rej_idx ?? 0)] === '') {
           (s as any).polkid = undefined;
@@ -2164,16 +2164,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).FertEgg = ((s as any).FertEgg ?? 0) - (1);
         }
         (s as any).rej_idx = ((s as any).rej_idx ?? 0) + (1);
-        break;
-        if (Object.keys((s as any).Babyptype ?? {}).length <= 0) {
-          (s as any).preg = 0;
-          (s as any).pregChem = 0;
-          (s as any).knowpreg = 0;
-        }
       }
-      (s as any).rej_idx = undefined;
-      (s as any).rej_sz = undefined;
-    }
+    } while (((s as any).rej_idx ?? 0) < ((s as any).rej_sz ?? 0));
+    (s as any).rej_idx = undefined;
+    (s as any).rej_sz = undefined;
   }
   if (((s as any).temp_current_save_version ?? 0) < 90202) {
     if (((s as any).BDSMtaxi ?? 0) === 1) {
@@ -2212,32 +2206,33 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).tl = 0;
         do {
           (s as any).tltp = 0;
-          while (true) {
+          do {
             if (((s as any).insdlpflag ?? 0) === 1) {
               (s as any).insdlpflag = 0;
               (s as any).tltp = ((s as any).tltp ?? 0) + (10);
-              break;
+              continue;
             }
-            (s as any).tl = ((s as any).tl ?? 0) + (1);
-            (s as any).tl = undefined;
-            (s as any).tltp = undefined;
-            (s as any).insdlpflag = undefined;
-            if (((s as any).x ?? 0) === 1) {
-              (s as any).attskltmp = (((s as any).att_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
-            } else {
-              (s as any).attskltmp = (((s as any).skl_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
-            }
-            (s as any).expadj = undefined;
-            (s as any).attskltmp = undefined;
-            (s as any).i = ((s as any).i ?? 0) + (1);
-            (s as any).i = 0;
-            (s as any).x = ((s as any).x ?? 0) + (1);
-            (s as any).i = undefined;
-            (s as any).x = undefined;
-          }
+            break;
+          } while (true);
+          (s as any).tl = ((s as any).tl ?? 0) + (1);
         } while (((s as any).tl ?? 0) < Object.keys((s as any).traitattskl ?? {}).length);
+        (s as any).tl = undefined;
+        (s as any).tltp = undefined;
+        (s as any).insdlpflag = undefined;
+        if (((s as any).x ?? 0) === 1) {
+          (s as any).attskltmp = (((s as any).att_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+        } else {
+          (s as any).attskltmp = (((s as any).skl_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+        }
+        (s as any).expadj = undefined;
+        (s as any).attskltmp = undefined;
+        (s as any).i = ((s as any).i ?? 0) + (1);
       } while ((((s as any).x ?? 0) === 1  &&  ((s as any).i ?? 0) < Object.keys((s as any).att_name ?? {}).length)  ||  (((s as any).x ?? 0) === 2  &&  ((s as any).i ?? 0) < Object.keys((s as any).skl_name ?? {}).length));
+      (s as any).i = 0;
+      (s as any).x = ((s as any).x ?? 0) + (1);
     } while (((s as any).x ?? 0) < 3);
+    (s as any).i = undefined;
+    (s as any).x = undefined;
   }
   if (((s as any).temp_current_save_version ?? 0) < 90204) {
     if (((s as any).oleg_hj ?? 0)            > 0) {
@@ -2997,9 +2992,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ((s as any).contactISMSCode = (s as any).contactISMSCode ?? {})[String((s as any).temp_i ?? 0)] = '';
         ((s as any).contactISMSSche = (s as any).contactISMSSche ?? {})[String((s as any).temp_i ?? 0)] = '0';
         (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
-        (s as any).temp_maxi = undefined;
-        (s as any).temp_i = undefined;
       } while (((s as any).temp_i ?? 0) < ((s as any).temp_maxi ?? 0));
+      (s as any).temp_maxi = undefined;
+      (s as any).temp_i = undefined;
     }
     if (((s as any).blackmailQW ?? 0)?.['init_flashloc'] !== ''  &&  ((s as any).blackmailQW ?? 0)?.['init_flashregion'] === '') {
       if (((String(((s as any).blackmailQW ?? 0)?.['init_flashloc']).indexOf(String('city'))) + 1) > 0) {
@@ -3471,9 +3466,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).npc_pref_traits = undefined;
         (s as any).npc_trait_values = undefined;
         (s as any).su_i = ((s as any).su_i ?? 0) + (1);
-        (s as any).npc_pref_values = undefined;
-        (s as any).su_i = undefined;
       } while (((s as any).su_i ?? 0) < 257);
+      (s as any).npc_pref_values = undefined;
+      (s as any).su_i = undefined;
     }
     if (((s as any).mc_inventory ?? 0)?.['chaffing_cream'] > 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['chafing_cream'] = (((s as any).mc_inventory ?? 0)?.['chaffing_cream']);
@@ -3496,8 +3491,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_location_' + String(((s as any).su_i ?? 0))] = (String((((s as any).blackmailQW ?? 0)?.['selfie_location_' + String(((s as any).su_i ?? 0))])).split('zaprF').join('fuelstation'));
         }
         (s as any).su_i = ((s as any).su_i ?? 0) + (1);
-        (s as any).su_i = undefined;
       } while (((s as any).su_i ?? 0) < 10);
+      (s as any).su_i = undefined;
     }
     if (((s as any).f_book ?? 0)    !== 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['fantasy_books'] = ((s as any).f_book ?? 0);
@@ -3692,7 +3687,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).su_i = ((s as any).su_i ?? 0) + (1);
       (s as any).su_i = undefined;
-      (s as any)[hotcat_rating] ? (s as any)[hotcat_rating] = { ...(s as any)[npc_hotcat] } : (s as any)[hotcat_rating] = { ...(s as any)[npc_hotcat] };
+      (s as any).hotcat_rating ? (s as any).hotcat_rating = { ...(s as any).npc_hotcat } : (s as any).hotcat_rating = { ...(s as any).npc_hotcat };
       (s as any).hotcat_rating = undefined;
       if (((s as any).hotcat ?? 0)  !== 0) {
         (s as any).pcs_hotcat = ((s as any).hotcat ?? 0);
@@ -4743,14 +4738,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).igor_qweday ?? 0)      !== 0) {
         (s as any).igor_qweday = undefined;
       }
+    } while (((s as any).su_i ?? 0) < 24);
       if (Object.keys((s as any).npc_pic ?? {}).length > 0) {
-        (s as any)[npc_pic] ? (s as any)[npc_pic] = { ...(s as any)[npc_icon] } : (s as any)[npc_pic] = { ...(s as any)[npc_icon] };
+        (s as any).npc_pic ? (s as any).npc_pic = { ...(s as any).npc_icon } : (s as any).npc_pic = { ...(s as any).npc_icon };
         (s as any).su_i = 0;
+        const __npcPicCount = Object.keys((s as any).npc_pic ?? {}).length;
         do {
-          ((s as any).npc_pic = (s as any).npc_pic ?? {})[String((s as any).su_i ?? 0)] = 'images/characters/shared/headshots_generic/\' + mid($npc_pic[su_i], 8, len($npc_pic[su_i]) - 11) + \'.jpg';
+          { const __npcPicVal = String((s as any).npc_pic[String((s as any).su_i ?? 0)] ?? ''); ((s as any).npc_pic = (s as any).npc_pic ?? {})[String((s as any).su_i ?? 0)] = 'images/characters/shared/headshots_generic/' + __npcPicVal.substring(7, __npcPicVal.length - 11) + '.jpg'; }
           ((s as any).npc_icon = (s as any).npc_icon ?? {})[String((s as any).su_i ?? 0)] = 'images/system/phone/icons/' + (((s as any).npc_icon ?? 0)?.[String((s as any).su_i ?? 0)] ?? 0);
           (s as any).su_i = ((s as any).su_i ?? 0) + (1);
-        } while (((s as any).su_i ?? 0) < Object.keys((s as any).npc_pic ?? {}).length);
+        } while (((s as any).su_i ?? 0) < __npcPicCount);
       }
       (s as any).lover_picture = undefined;
       (s as any).lover_picrand = undefined;
@@ -5369,19 +5366,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
             (s as any).su_i = 0;
             (s as any).su_max_i = 0;
-            while (true) {
+            do {
               if (((s as any).su_i ?? 0) < ((s as any).su_max_i ?? 0)) {
                 qspCall(s, 'npcStat', '', (((s as any).boy ?? 0)?.[String((s as any).su_i ?? 0)] ?? 0), ((s as any).su_i ?? 0));
                 (s as any).su_i = ((s as any).su_i ?? 0) + (1);
-                break;
+                continue;
               }
-              (s as any).su_i = undefined;
-              (s as any).su_max_i = undefined;
-            }
+              break;
+            } while (true);
+            (s as any).su_i = undefined;
+            (s as any).su_max_i = undefined;
           } while (((s as any).su_i ?? 0) < ((s as any).su_max_i ?? 0));
         } while (((s as any).su_i ?? 0) < ((s as any).su_max_i ?? 0));
       } while (((s as any).su_i ?? 0) < ((s as any).su_max_i ?? 0));
-    } while (((s as any).su_i ?? 0) < 24);
   }
   if (((s as any).temp_current_save_version ?? 0) < 90401) {
     if (((s as any).npc_lastname ?? 0)?.['A29'] === '') {
@@ -5414,11 +5411,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).su_i = 0;
     do {
       (s as any).su_i = ((s as any).su_i ?? 0) + (1);
-      (s as any).su_i = 0;
-      do {
-        (s as any).su_i = ((s as any).su_i ?? 0) + (1);
-      } while (((s as any).su_i ?? 0) < 11);
     } while (((s as any).su_i ?? 0) < 41);
+    (s as any).su_i = 0;
+    do {
+      (s as any).su_i = ((s as any).su_i ?? 0) + (1);
+    } while (((s as any).su_i ?? 0) < 11);
   }
   if (((s as any).temp_current_save_version ?? 0) < 90500) {
     if (((s as any).pcs_vag ?? 0) < 20) {

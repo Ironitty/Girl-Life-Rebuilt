@@ -607,7 +607,8 @@ function enterPcSexEvTimeset(s: GameState, scene: SceneBuilder): void {
     { label: 'How about...', handler: (st: GameState) => {
     while (true) {
       ((st as any).npc_booty_call_time = (st as any).npc_booty_call_time ?? {})[String((st as any).npcID ?? 0)] = window.prompt("When do you want to come over again? (Pick an hour 1 - 22.)") ?? '';
-      if (((st as any).npc_booty_call_time ?? 0)?.[String((st as any).npcID ?? 0)] > 22) {
+      const __input = ((st as any).npc_booty_call_time ?? 0)?.[String((st as any).npcID ?? 0)];
+      if (__input === '' || Number(__input) > 22 || Number(__input) < 1) {
         alert('Invalid input. Pick an hour between 1 and 22.');
         break;
       } else {

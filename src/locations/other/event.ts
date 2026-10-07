@@ -809,16 +809,16 @@ function enterDima47(s: GameState, scene: SceneBuilder): void {
     scene.text('It is now a reflex action for you to help him to finish. After you cleaned his cock, he leaves the booth.');
     scene.text('After a few minutes the girl you met at the door comes in, removes your gag and takes you to the lavatory, where you wash your face and rinse your mouth.');
     scene.text('When you are done, she hands you your things, and some cash, adding, "From your friend, for a job well done." You dress.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID1 ?? 0), 'sub', 'rough');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'sub', 'rough');
-    qspCall(s, 'cum_call', 'vagina', ((s as any).npcID1 ?? 0), 1);
-    qspCall(s, 'arousal', 'end');
-    (s as any).dimagh_counter = undefined;
-    scene.actions([
-      { label: 'Get Outside', goto: ['city_industrial', ''] },
-    ]);
   } while (((s as any).dimagh_counter ?? 0) < 9);
+  (s as any).orgasm_or = 'yes';
+  qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID1 ?? 0), 'sub', 'rough');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'sub', 'rough');
+  qspCall(s, 'cum_call', 'vagina', ((s as any).npcID1 ?? 0), 1);
+  qspCall(s, 'arousal', 'end');
+  (s as any).dimagh_counter = undefined;
+  scene.actions([
+    { label: 'Get Outside', goto: ['city_industrial', ''] },
+  ]);
   scene.build();
 }
 
@@ -832,20 +832,20 @@ function enterDima48(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
     ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
     (s as any).dimagh_counter = ((s as any).dimagh_counter ?? 0) + (1);
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/city/residential/street/sex/15933_markdavisdonnaannika_481.jpg');
-    scene.text('It looks like you misunderstood the girl.');
-    scene.text('"You want to do this the hard way? Fine, I can do that."');
-    scene.text('With these words, she forces your head back to the hole.');
-    scene.text('Another cock appears from the hole, she puts it in your mouth, and begins to drive your head. It feels like she\'s fucking the stranger behind the wall with your head.');
-    scene.text('It takes more time, but he finishes in your mouth. She holds your head against the wall, not giving you room to spit anything out. This was repeated several times.');
-    scene.text('When the last "customer" disappeared from the hole, she lets go of your head, and leaves the room. Soon she comes back with your stuff. You dress, and she leads you out.');
-    qspCall(s, 'arousal', 'end');
-    (s as any).dimagh_counter = undefined;
-    scene.actions([
-      { label: 'Get Outside', goto: ['city_industrial', ''] },
-    ]);
   } while (((s as any).dimagh_counter ?? 0) < 9);
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/residential/street/sex/15933_markdavisdonnaannika_481.jpg');
+  scene.text('It looks like you misunderstood the girl.');
+  scene.text('"You want to do this the hard way? Fine, I can do that."');
+  scene.text('With these words, she forces your head back to the hole.');
+  scene.text('Another cock appears from the hole, she puts it in your mouth, and begins to drive your head. It feels like she\'s fucking the stranger behind the wall with your head.');
+  scene.text('It takes more time, but he finishes in your mouth. She holds your head against the wall, not giving you room to spit anything out. This was repeated several times.');
+  scene.text('When the last "customer" disappeared from the hole, she lets go of your head, and leaves the room. Soon she comes back with your stuff. You dress, and she leads you out.');
+  qspCall(s, 'arousal', 'end');
+  (s as any).dimagh_counter = undefined;
+  scene.actions([
+    { label: 'Get Outside', goto: ['city_industrial', ''] },
+  ]);
   scene.build();
 }
 

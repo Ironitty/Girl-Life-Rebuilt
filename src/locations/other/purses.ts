@@ -175,16 +175,14 @@ function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddItem(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === '') {
-    return;
-  }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
-    return;
-  }
-  qspCall(s, 'purse_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
-  if ((!((s as any).PursePrice ?? 0))) {
-    return;
-  }
+  const type = String((s as any).locArgs?.[1] ?? '');
+  const num = (s as any).locArgs?.[2] ?? 0;
+  if (type === '') return;
+  if (num === 0) return;
+  qspCall(s, 'purse_attributes', type, num);
+  if (!((s as any).PursePrice ?? 0)) return;
+  const purseVar = `${type}_purses`;
+  ((s as any)[purseVar] = (s as any)[purseVar] ?? {})[num] = 1;
   return;
   scene.build();
 }
@@ -230,6 +228,67 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
   }
   scene.build();
+}
+
+function enterWear(s: GameState, scene: SceneBuilder): void {
+  let arg1 = String((s as any).locArgs?.[1] ?? '');
+  let arg2 = (s as any).locArgs?.[2] ?? 0;
+  if (arg1 === 'last_worn') {
+    if ((s as any).purselastworntype === '') {
+      (s as any).purselastworntype = 'none';
+      (s as any).purselastwornnumber = 0;
+    }
+    arg1 = String((s as any).purselastworntype ?? '');
+    arg2 = (s as any).purselastwornnumber ?? 0;
+  }
+  if (arg1 === '' || arg1 === 'none') return;
+  qspCall(s, 'purses', 'strip');
+  qspCall(s, 'purse_attributes', arg1, arg2);
+  if (!((s as any).PursePrice ?? 0)) return;
+  if ((s as any).locArgs?.includes('check')) {
+    const tempNotWearReason = qspFunc(s, 'purses', 'not_wear_reason', arg1, arg2, 'attributes_set');
+    if (tempNotWearReason !== '') {
+      return;
+    }
+  }
+  (s as any).currentpursetype = arg1;
+  (s as any).currentpursenumber = arg2;
+  (s as any).bag = 1;
+  (s as any).PPurseQuality = (s as any).PurseQuality;
+  (s as any).PPursePrice = (s as any).PursePrice;
+  qspCall(s, 'outfit', 'set_derived_vars');
+  return;
+  scene.build();
+}
+
+function enterStrip(s: GameState, scene: SceneBuilder): void {
+  if ((s as any).currentpursetype === '') {
+    (s as any).currentpursetype = 'none';
+    (s as any).currentpursenumber = 0;
+  }
+  (s as any).purselastworntype = (s as any).currentpursetype;
+  (s as any).purselastwornnumber = (s as any).currentpursenumber;
+  qspCall(s, 'purses', 'strip_code');
+}
+
+function enterStripCode(s: GameState, scene: SceneBuilder): void {
+  (s as any).currentpursetype = 'none';
+  (s as any).currentpursenumber = 0;
+  qspCall(s, 'purses', 'reset_PurseVars');
+  qspCall(s, 'purses', 'reset_PPurseVars');
+  qspCall(s, 'outfit', 'set_derived_vars');
+}
+
+function enterResetPurseVars(s: GameState, scene: SceneBuilder): void {
+  (s as any).PurseQuality = 0;
+  (s as any).PursePrice = 0;
+  (s as any).PurseStrength = 0;
+}
+
+function enterResetPPurseVars(s: GameState, scene: SceneBuilder): void {
+  (s as any).bag = 0;
+  (s as any).PPurseQuality = 0;
+  (s as any).PPursePrice = 0;
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
@@ -282,6 +341,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'move_to_wardrobe':
       enterMoveToWardrobe(s, scene);
+      break;
+    case 'wear':
+      enterWear(s, scene);
+      break;
+    case 'strip':
+      enterStrip(s, scene);
+      break;
+    case 'strip_code':
+      enterStripCode(s, scene);
+      break;
+    case 'reset_PurseVars':
+      enterResetPurseVars(s, scene);
+      break;
+    case 'reset_PPurseVars':
+      enterResetPPurseVars(s, scene);
       break;
     default:
       enterDefault(s, scene);

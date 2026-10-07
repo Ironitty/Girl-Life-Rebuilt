@@ -109,22 +109,24 @@ function enterMeet(s: GameState, scene: SceneBuilder): void {
           qspCall(st, 'npcgeneratec', '0', 'guy from the park', (Math.floor(Math.random() * 11) + 18));
           qspCall(st, 'boyStat', '$npclastgenerated');
         }
-        break;
+        continue;
       }
-      qspCall(st, 'stat', '');
-      (st as any).endrandom = 0;
-      if ((!((st as any).endrandom ?? 0))) {
-        scene.text(`Finally the last guy spills his seed over your exhausted body, and they all leave the room except for ${((st as any).boydesc2 ?? '')}. He sits down on a different bed, chuckling while he watches you sluggishly brush up. Your legs are shaky from the exhaustion, and the alcohol is also still in your system. Both of those factors make you feel rather disoriented, and you try to ignore ${((st as any).boydesc2 ?? '')}'s smug grin. When you're ready to leave, he waves you goodbye with a smirk on his face: "You were a nice fuck, ${((st as any).pcs_nickname ?? '')}. I see why Pavlovsk girls are so popular… we'll definitely be visiting again."`);
-        qspCall(st, 'arousal', 'end');
-        scene.actions([
-          { label: 'Leave the hostel', handler: (st: GameState) => {
+      break;
+    }
+    qspCall(st, 'stat', '');
+    (st as any).endrandom = 0;
+    if ((!((st as any).endrandom ?? 0))) {
+      scene.text(`Finally the last guy spills his seed over your exhausted body, and they all leave the room except for ${((st as any).boydesc2 ?? '')}. He sits down on a different bed, chuckling while he watches you sluggishly brush up. Your legs are shaky from the exhaustion, and the alcohol is also still in your system. Both of those factors make you feel rather disoriented, and you try to ignore ${((st as any).boydesc2 ?? '')}'s smug grin. When you're ready to leave, he waves you goodbye with a smirk on his face: "You were a nice fuck, ${((st as any).pcs_nickname ?? '')}. I see why Pavlovsk girls are so popular… we'll definitely be visiting again."`);
+      qspCall(st, 'arousal', 'end');
+      scene.actions([
+        { label: 'Leave the hostel', handler: (st: GameState) => {
     (st as any).podvalrape = 0;
   }, goto: ['pav_residential', ''] },
-        ]);
-      } else {
-        if (((st as any).endrandom ?? 0) === 1) {
-          scene.actions([
-            { label: 'Open your eyes', handler: (st: GameState) => {
+      ]);
+    } else {
+      if (((st as any).endrandom ?? 0) === 1) {
+        scene.actions([
+          { label: 'Open your eyes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     (st as any).body_write = 5;
     (st as any).face_write = 1;
@@ -135,13 +137,12 @@ function enterMeet(s: GameState, scene: SceneBuilder): void {
     scene.text('Those bastards! You quickly get dressed and try to cover up the writings as much as you can before leaving the room. Hopefully you can clean that up before anyone sees it on you!');
     qspCall(st, 'arousal', 'end');
     scene.actions([
-      { label: 'Leave the hostel', handler: (st: GameState) => {
+    { label: 'Leave the hostel', handler: (st: GameState) => {
     (st as any).podvalrape = 0;
   }, goto: ['pav_residential', ''] },
     ]);
   } },
-          ]);
-        }
+        ]);
       }
     }
   } },

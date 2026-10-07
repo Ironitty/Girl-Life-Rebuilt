@@ -31,7 +31,7 @@ function enterStatLoopCore1(s: GameState, scene: SceneBuilder): void {
       (s as any).arousal_temp_npcID = 0;
       if ((!(0 as any))) {
         if (String((s as any).locArgs?.[7] ?? '') !== '') {
-          qspCall(s, 'arousal_stats', '$ARGS[7]', ((s as any).arousal_temp_npcID ?? 0));
+          qspCall(s, 'arousal_stats', (s as any).locArgs?.[7] ?? '', ((s as any).arousal_temp_npcID ?? 0));
         }
         if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
           ((s as any).stat = (s as any).stat ?? {})[((s as any).locArgs?.[4] ?? 0)] = ((s as any).stat[((s as any).locArgs?.[4] ?? 0)] ?? 0) + (1);

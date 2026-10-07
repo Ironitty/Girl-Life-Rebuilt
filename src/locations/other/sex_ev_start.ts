@@ -70,7 +70,7 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
 
 function enterNpcstatInit(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') !== '') {
-    qspCall(s, 'npcStat', '$ARGS[1]');
+    qspCall(s, 'npcStat', (s as any).locArgs?.[1] ?? '');
     qspFunc(s, 'npc_preferences[$npcID]');
   }
   scene.build();

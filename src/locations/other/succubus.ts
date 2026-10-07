@@ -899,7 +899,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
   scene.text('You don\'t know what it\'s about, but you think you <b><i>lost</i></b>…');
   (s as any).sucselftmp = undefined;
   (s as any).sucencntrand = (1 + ((s as any).succublvl ?? 0))/2 + (Math.floor(Math.random() * (((s as any).succublvl ?? 0) - 0 + 1)) + (0));
-  (s as any).scfeed = (((s as any).succublvl ?? 0) * ((s as any).sucencntrand ?? 0)) + ((s as any).rand ?? 0)(1, (4 * ((s as any).sucencntrand ?? 0)));
+  (s as any).scfeed = (((s as any).succublvl ?? 0) * ((s as any).sucencntrand ?? 0)) + (Math.floor(Math.random() * (4 * ((s as any).sucencntrand ?? 0) - 1 + 1)) + 1);
   (s as any).minut = ((s as any).minut ?? 0) + (180 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0)));
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5 * (360 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0))));
   (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (15 * ((360 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0))) / 60));
@@ -911,7 +911,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (((s as any).scfeed ?? 0));
   (s as any).succubxp = ((s as any).succubxp ?? 0) + (3 * ((s as any).sucencntrand ?? 0));
   (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (25 * ((s as any).scfeed ?? 0));
-  (s as any).scwalkmon = ((s as any).rand ?? 0) (50, (100 * ((s as any).sucencntrand ?? 0)));
+  (s as any).scwalkmon = (Math.floor(Math.random() * (100 * ((s as any).sucencntrand ?? 0) - 50 + 1)) + 50);
   qspCall(s, 'money', 'earn', ((s as any).scwalkmon ?? 0), 'cash');
   (s as any).sucwalkday = ((s as any).daystart ?? 0) + ((s as any).sucencntrand ?? 0) + (Math.floor(Math.random() * 6) + 0);
   (s as any).sctemp = (Math.floor(Math.random() * 10) + 1);

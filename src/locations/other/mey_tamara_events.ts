@@ -281,29 +281,31 @@ function enterLearning1(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'clothing', 'is_owned', 'cats_dress', ((st as any).newdress_id ?? 0)) === 0) {
         qspCall(st, 'clothing', 'add_item', 'cats_dress', ((st as any).newdress_id ?? 0));
         scene.img(`images/pc/items/cats/dress/${((st as any).newdress_id ?? '')}.jpg`);
+        break;
       } else {
         (st as any).newdress_loop = ((st as any).newdress_loop ?? 0) + (1);
         if (((st as any).newdress_loop ?? 0) > 1000) {
           alert('ERROR: average cloth loop > 1000');
-        } else {
           break;
         }
       }
-      scene.text('</td><td>');
-      while (true) {
-        (st as any).newdress_id = (Math.floor(Math.random() * 80) + 1);
-        if (qspFunc(s, 'clothing', 'is_owned', 'moncheri_dress', ((st as any).newdress_id ?? 0)) === 0) {
-          qspCall(st, 'clothing', 'add_item', 'moncheri_dress', ((st as any).newdress_id ?? 0));
-          scene.img(`images/pc/items/moncheri/dress/${((st as any).newdress_id ?? '')}.jpg`);
-        } else {
-          (st as any).newdress_loop = ((st as any).newdress_loop ?? 0) + (1);
-          if (((st as any).newdress_loop ?? 0) > 1000) {
-            alert('ERROR: formal cloth loop > 1000');
-          } else {
-            break;
-          }
+    }
+    scene.text('</td><td>');
+    while (true) {
+      (st as any).newdress_id = (Math.floor(Math.random() * 80) + 1);
+      if (qspFunc(s, 'clothing', 'is_owned', 'moncheri_dress', ((st as any).newdress_id ?? 0)) === 0) {
+        qspCall(st, 'clothing', 'add_item', 'moncheri_dress', ((st as any).newdress_id ?? 0));
+        scene.img(`images/pc/items/moncheri/dress/${((st as any).newdress_id ?? '')}.jpg`);
+        break;
+      } else {
+        (st as any).newdress_loop = ((st as any).newdress_loop ?? 0) + (1);
+        if (((st as any).newdress_loop ?? 0) > 1000) {
+          alert('ERROR: formal cloth loop > 1000');
+          break;
         }
-        scene.text('</td></tr></table></center>');
+      }
+    }
+    scene.text('</td></tr></table></center>');
         scene.actions([
           { label: 'Buy the clothes', handler: (st: GameState) => {
     scene.text('"This will do, it\'s the first time after all." she says, approaching the counter, pulling out her purse.');
@@ -348,7 +350,8 @@ function enterLearning1(s: GameState, scene: SceneBuilder): void {
           scene.img(`images/pc/items/gm/school/${((st as any).newdress_id ?? '')}.jpg`);
         }
       }
-      if (((st as any).newdress_id ?? 0) > 0) {
+    } while (((st as any).newdress_id ?? 0) === 0  &&  ((st as any).newdress_loop ?? 0) <= 60);
+    if (((st as any).newdress_id ?? 0) > 0) {
         scene.text('"I picked a real sexy outfit, it\'s so sexy that the boys will spontaneously be cumming in their pants." you said smiling.');
         scene.text(`'"Good! Now remember it's only to be used in school. Now lets start training you how to walk elegantly. You can start by getting out of my car and take a walk around the city for a couple hours" Tamara hands you ${qspFunc(s, 'money', 'string_profit', 2000)}. "It's important that you take care of your health so take the money and head over to the clinic and get a health exam, within the next couple weeks. I'll be waiting for you by the Babel restaurant at 21:00, don't be late."'`);
         (st as any).newdress_id = undefined;
@@ -401,19 +404,16 @@ function enterLearning1(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
   }, goto: ['mey_home', 'start'] },
     ]);
-  } },
-          ]);
-        }
-      }
-    } while (((st as any).newdress_id ?? 0) === 0  &&  ((st as any).newdress_loop ?? 0) <= 60);
-  } },
+   } },
+           ]);
+         }
+       }
+   } },
     ]);
   } },
     ]);
   } },
         ]);
-      }
-    }
   } },
   ]);
   scene.build();

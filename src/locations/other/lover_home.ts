@@ -178,7 +178,7 @@ function enterLocMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') !== '') {
-    qspCall(s, 'npcStat', '$ARGS[1]');
+    qspCall(s, 'npcStat', (s as any).locArgs?.[1] ?? '');
   }
   qspCall(s, 'stat', '');
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'fuckbuddy') {

@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event';
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  qspCall(s, 'npcStat', '$ARGS[1]');
+  qspCall(s, 'npcStat', (s as any).locArgs?.[1] ?? '');
   qspFunc(s, 'npc_preferences[$npcID]');
   ((s as any).npc_meetday = (s as any).npc_meetday ?? {})[String((s as any).npcID ?? 0)] = 0;
   ((s as any).npc_dates = (s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);

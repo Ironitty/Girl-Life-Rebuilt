@@ -278,11 +278,11 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] === 3) {
         ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['CloQualPref'] = 2;
-        qspCall(s, 'npc_set_preference', '$ARGS[1]', 'clothes_style_wealthy', 'like');
+        qspCall(s, 'npc_set_preference', (s as any).locArgs?.[1] ?? '', 'clothes_style_wealthy', 'like');
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] === 4) {
           ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['CloQualPref'] = 1;
-          qspCall(s, 'npc_set_preference', '$ARGS[1]', 'clothes_style_fetish', 'like');
+          qspCall(s, 'npc_set_preference', (s as any).locArgs?.[1] ?? '', 'clothes_style_fetish', 'like');
         }
       }
     }
@@ -490,7 +490,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     qspFunc(s, 'prefdin', (((s as any).npcgeneratecVars ?? 0)?.['preftype']), 'shoes_heels_fetish', (((s as any).npcgeneratecVars ?? 0)?.['ShoHeelPref']));
   }
   if ((Math.floor(Math.random() * (2 + 8 * ((s as any).npc_gender ?? 0)[String((s as any).locArgs?.[1] ?? '')] - 0 + 1)) + (0)) === 0  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 3) {
-    qspCall(s, 'npc_set_preference', '$ARGS[1]', 'clothes_style_bimbo', 'like');
+    qspCall(s, 'npc_set_preference', (s as any).locArgs?.[1] ?? '', 'clothes_style_bimbo', 'like');
     ((s as any).npcgeneratec = (s as any).npcgeneratec ?? {})['bimbo_pref'] = 1;
   }
   ((s as any).pref_ids = (s as any).pref_ids ?? {})['cosmetics_piercings_none'] = 1;
@@ -638,7 +638,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'hair_color');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        qspCall(s, 'npc_set_preference', '$ARGS[1]', (((s as any).npcgeneratecVars ?? 0)?.['pref_attr']), (((s as any).npcgeneratecVars ?? 0)?.['attracted']));
+        qspCall(s, 'npc_set_preference', (s as any).locArgs?.[1] ?? '', (((s as any).npcgeneratecVars ?? 0)?.['pref_attr']), (((s as any).npcgeneratecVars ?? 0)?.['attracted']));
       }
     }
   }
@@ -812,7 +812,7 @@ function enterSetOtherVars(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_thrush = (s as any).npc_thrush ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
   (s as any).ngp_pref = undefined;
   (s as any).npc_pref_traits ? (s as any).npc_pref_traits = { ...(s as any).ngp_pref } : (s as any).npc_pref_traits = { ...(s as any).ngp_pref };
-  qspCall(s, 'npc_get_preference', '$ARGS[1]', 'randomPosIndNeg', 'no_clear');
+  qspCall(s, 'npc_get_preference', (s as any).locArgs?.[1] ?? '', 'randomPosIndNeg', 'no_clear');
   ((s as any).npc_origin_attract = (s as any).npc_origin_attract ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).ngpPrefResult ?? 0)?.['HasPos']);
   scene.build();
 }

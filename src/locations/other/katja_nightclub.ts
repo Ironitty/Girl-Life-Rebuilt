@@ -10,12 +10,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterSetWillpower(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['dom'] < 0) {
-    qspCall(s, 'willpower', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0), 'easy');
+    qspCall(s, 'willpower', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0), 'easy');
   } else {
     if (((s as any).katjaQW ?? 0)?.['dom'] <= 30) {
-      qspCall(s, 'willpower', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+      qspCall(s, 'willpower', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
     } else {
-      qspCall(s, 'willpower', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0), 'hard');
+      qspCall(s, 'willpower', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0), 'hard');
     }
   }
   scene.build();

@@ -37,10 +37,10 @@ function enterShort(s: GameState, scene: SceneBuilder): void {
         (s as any).pfilmhistory = ((s as any).pfilmhistory ?? 0) + ('● <b>' + (((s as any).porntitle ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '</b><br><font size=2>' + ((s as any).pfilmtext ?? 0) + '</font><br>');
       }
     }
-    if (((s as any).i ?? 0) < ((s as any).film ?? 0)) {
-      (s as any).i = ((s as any).i ?? 0) + (1);
+    if (((s as any).i ?? 0) >= ((s as any).film ?? 0)) {
       break;
     }
+    (s as any).i = ((s as any).i ?? 0) + (1);
   }
   scene.build();
 }
@@ -139,204 +139,205 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
     if (((s as any).i ?? 0) < ((s as any).film ?? 0)) {
       scene.text('<font color="sienna"><hr></font>');
       (s as any).i = ((s as any).i ?? 0) + (1);
-      break;
+      continue;
     }
-    scene.text('</td></tr></table></center>');
-    (s as any).pornfilmdesc = qspUntranslated(s, "{", { location: "pornhist" });
-    (s as any).film_type = ((s as any).locArgs?.[0] ?? 0);
-    (s as any).pstory = undefined;
+    break;
+  }
+  scene.text('</td></tr></table></center>');
+  (s as any).pornfilmdesc = qspUntranslated(s, "{", { location: "pornhist" });
+  (s as any).film_type = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).pstory = undefined;
+  if (((s as any).tits ?? 0) >= 4) {
+    ((s as any).porndesc = (s as any).porndesc ?? {})[1] = 'Titfuck';
+  } else {
+    ((s as any).porndesc = (s as any).porndesc ?? {})[1] = 'Handjob';
+  }
+  ((s as any).porndesc = (s as any).porndesc ?? {})[2] = 'Blowjob';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[3] = 'Vaginal sex with facial';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[4] = 'Vaginal and anal sex with facial';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[5] = 'Threesome with anal creampie and facial';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[6] = 'Threesome with double penetration, facial and swallowing';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[7] = 'Vaginal sex with creampie';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[8] = 'Double penetration with vaginal creampies';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[9] = 'Spitroast with two guys with creampie and swallowing';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[10] = 'Four guy gangbang with vaginal sex and cumshots';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[11] = 'Four guy gangbang with vaginal sex and creampies';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[12] = 'Four guy gangbang with anal sex and anal creampies';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[13] = 'Two double penetration with four guys, vaginal and anal creampies';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[14] = 'Gangbang with 50 guys';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[15] = 'Anal sex with anal creampie';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[16] = 'Anal sex with cumshot';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[17] = 'Lesbian sex with double dildo';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[18] = 'Lesbian sex with strapon';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[19] = 'Primary role in MFF threesome';
+  ((s as any).porndesc = (s as any).porndesc ?? {})[20] = 'Secondary role in MFF threesome';
+  if (((s as any).film_type ?? 0) === 1) {
+    (s as any).pfType = 0;
+    (s as any).pcash = 20;
+    (s as any).pfactor = 1;
+    (s as any).actbonus = 1;
     if (((s as any).tits ?? 0) >= 4) {
-      ((s as any).porndesc = (s as any).porndesc ?? {})[1] = 'Titfuck';
+      (s as any).tags = 'titjob, handjob, cumshot';
+      (s as any).pfilmtext = 'You gave a guy a titfuck and he came on your tits.';
     } else {
-      ((s as any).porndesc = (s as any).porndesc ?? {})[1] = 'Handjob';
+      (s as any).tags = 'handjob, cumshot';
+      (s as any).pfilmtext = 'You jerked off a guy and he came on your tits.';
     }
-    ((s as any).porndesc = (s as any).porndesc ?? {})[2] = 'Blowjob';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[3] = 'Vaginal sex with facial';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[4] = 'Vaginal and anal sex with facial';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[5] = 'Threesome with anal creampie and facial';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[6] = 'Threesome with double penetration, facial and swallowing';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[7] = 'Vaginal sex with creampie';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[8] = 'Double penetration with vaginal creampies';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[9] = 'Spitroast with two guys with creampie and swallowing';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[10] = 'Four guy gangbang with vaginal sex and cumshots';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[11] = 'Four guy gangbang with vaginal sex and creampies';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[12] = 'Four guy gangbang with anal sex and anal creampies';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[13] = 'Two double penetration with four guys, vaginal and anal creampies';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[14] = 'Gangbang with 50 guys';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[15] = 'Anal sex with anal creampie';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[16] = 'Anal sex with cumshot';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[17] = 'Lesbian sex with double dildo';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[18] = 'Lesbian sex with strapon';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[19] = 'Primary role in MFF threesome';
-    ((s as any).porndesc = (s as any).porndesc ?? {})[20] = 'Secondary role in MFF threesome';
-    if (((s as any).film_type ?? 0) === 1) {
+  } else {
+    if (((s as any).film_type ?? 0) === 2) {
       (s as any).pfType = 0;
-      (s as any).pcash = 20;
+      (s as any).pcash = 30;
       (s as any).pfactor = 1;
       (s as any).actbonus = 1;
-      if (((s as any).tits ?? 0) >= 4) {
-        (s as any).tags = 'titjob, handjob, cumshot';
-        (s as any).pfilmtext = 'You gave a guy a titfuck and he came on your tits.';
-      } else {
-        (s as any).tags = 'handjob, cumshot';
-        (s as any).pfilmtext = 'You jerked off a guy and he came on your tits.';
-      }
+      (s as any).tags = 'blowjob, facial';
+      (s as any).pfilmtext = 'You gave a guy a blowjob and got a facial.';
     } else {
-      if (((s as any).film_type ?? 0) === 2) {
+      if (((s as any).film_type ?? 0) === 3) {
         (s as any).pfType = 0;
-        (s as any).pcash = 30;
+        (s as any).pcash = 50;
         (s as any).pfactor = 1;
-        (s as any).actbonus = 1;
-        (s as any).tags = 'blowjob, facial';
-        (s as any).pfilmtext = 'You gave a guy a blowjob and got a facial.';
+        (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
+        (s as any).tags = 'blowjob, vaginal, facial';
+        (s as any).pfilmtext = 'You gave a guy a blowjob and he fucked you before giving you a facial.';
       } else {
-        if (((s as any).film_type ?? 0) === 3) {
+        if (((s as any).film_type ?? 0) === 4) {
           (s as any).pfType = 0;
-          (s as any).pcash = 50;
+          (s as any).pcash = 60;
           (s as any).pfactor = 1;
           (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
-          (s as any).tags = 'blowjob, vaginal, facial';
-          (s as any).pfilmtext = 'You gave a guy a blowjob and he fucked you before giving you a facial.';
+          (s as any).tags = 'blowjob, facial, vaginal, anal';
+          (s as any).pfilmtext = 'You gave a guy a blowjob and he fucked your pussy and ass before giving you a facial.';
         } else {
-          if (((s as any).film_type ?? 0) === 4) {
+          if (((s as any).film_type ?? 0) === 5) {
             (s as any).pfType = 0;
-            (s as any).pcash = 60;
-            (s as any).pfactor = 1;
-            (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
-            (s as any).tags = 'blowjob, facial, vaginal, anal';
-            (s as any).pfilmtext = 'You gave a guy a blowjob and he fucked your pussy and ass before giving you a facial.';
+            (s as any).pcash = 70;
+            (s as any).pfactor = 2;
+            (s as any).actbonus = (Math.floor(Math.random() * 3) + 1);
+            (s as any).tags = 'facial, vaginal, anal, blowjob, anal creampie';
+            (s as any).pfilmtext = 'A guy fucked your pussy and ass and came in your ass while you sucked off another guy who gave you a facial.';
           } else {
-            if (((s as any).film_type ?? 0) === 5) {
+            if (((s as any).film_type ?? 0) === 6) {
               (s as any).pfType = 0;
-              (s as any).pcash = 70;
+              (s as any).pcash = 90;
               (s as any).pfactor = 2;
               (s as any).actbonus = (Math.floor(Math.random() * 3) + 1);
-              (s as any).tags = 'facial, vaginal, anal, blowjob, anal creampie';
-              (s as any).pfilmtext = 'A guy fucked your pussy and ass and came in your ass while you sucked off another guy who gave you a facial.';
+              (s as any).tags = 'DP, vaginal, anal, blowjob, facial, swallowing';
+              (s as any).pfilmtext = 'A guy fucked your pussy and ass while you sucked off another guy. They then double penetrated you before cumming on your face. You swallowed their loads.';
             } else {
-              if (((s as any).film_type ?? 0) === 6) {
-                (s as any).pfType = 0;
-                (s as any).pcash = 90;
-                (s as any).pfactor = 2;
-                (s as any).actbonus = (Math.floor(Math.random() * 3) + 1);
-                (s as any).tags = 'DP, vaginal, anal, blowjob, facial, swallowing';
-                (s as any).pfilmtext = 'A guy fucked your pussy and ass while you sucked off another guy. They then double penetrated you before cumming on your face. You swallowed their loads.';
+              if (((s as any).film_type ?? 0) === 7) {
+                (s as any).pfType = 1;
+                (s as any).pcash = 80;
+                (s as any).pfactor = 1;
+                (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
+                (s as any).tags = 'vaginal';
+                (s as any).pfilmtext = 'You gave a guy a blowjob before he fucked you and gave you a creampie.';
               } else {
-                if (((s as any).film_type ?? 0) === 7) {
+                if (((s as any).film_type ?? 0) === 8) {
                   (s as any).pfType = 1;
-                  (s as any).pcash = 80;
-                  (s as any).pfactor = 1;
+                  (s as any).pcash = 100;
+                  (s as any).pfactor = 2;
                   (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
-                  (s as any).tags = 'vaginal';
-                  (s as any).pfilmtext = 'You gave a guy a blowjob before he fucked you and gave you a creampie.';
+                  (s as any).tags = 'DP, vaginal, anal';
+                  (s as any).pfilmtext = 'Two guys fucked you in double penetration before giving you a double creampie.';
                 } else {
-                  if (((s as any).film_type ?? 0) === 8) {
+                  if (((s as any).film_type ?? 0) === 9) {
                     (s as any).pfType = 1;
-                    (s as any).pcash = 100;
+                    (s as any).pcash = 90;
                     (s as any).pfactor = 2;
-                    (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
-                    (s as any).tags = 'DP, vaginal, anal';
-                    (s as any).pfilmtext = 'Two guys fucked you in double penetration before giving you a double creampie.';
+                    (s as any).actbonus = (Math.floor(Math.random() * 3) + 1);
+                    (s as any).tags = 'blowjob, vaginal, swallowing';
+                    (s as any).pfilmtext = 'Two guys fucked your pussy and mouth. One gave you a creampie and the other came in your mouth and you swallowed.';
                   } else {
-                    if (((s as any).film_type ?? 0) === 9) {
+                    if (((s as any).film_type ?? 0) === 10) {
                       (s as any).pfType = 1;
-                      (s as any).pcash = 90;
-                      (s as any).pfactor = 2;
-                      (s as any).actbonus = (Math.floor(Math.random() * 3) + 1);
-                      (s as any).tags = 'blowjob, vaginal, swallowing';
-                      (s as any).pfilmtext = 'Two guys fucked your pussy and mouth. One gave you a creampie and the other came in your mouth and you swallowed.';
+                      (s as any).pcash = 120;
+                      (s as any).pfactor = 4;
+                      (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
+                      (s as any).tags = 'vaginal, cumshot';
+                      (s as any).pfilmtext = 'Four guys fucked your pussy and they all ejaculated on your body and face.';
                     } else {
-                      if (((s as any).film_type ?? 0) === 10) {
+                      if (((s as any).film_type ?? 0) === 11) {
                         (s as any).pfType = 1;
-                        (s as any).pcash = 120;
+                        (s as any).pcash = 150;
                         (s as any).pfactor = 4;
                         (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
-                        (s as any).tags = 'vaginal, cumshot';
-                        (s as any).pfilmtext = 'Four guys fucked your pussy and they all ejaculated on your body and face.';
+                        (s as any).tags = 'vaginal';
+                        (s as any).pfilmtext = 'Four guys fucked your pussy, giving you four creampies.';
                       } else {
-                        if (((s as any).film_type ?? 0) === 11) {
-                          (s as any).pfType = 1;
+                        if (((s as any).film_type ?? 0) === 12) {
+                          (s as any).pfType = 0;
                           (s as any).pcash = 150;
                           (s as any).pfactor = 4;
                           (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
-                          (s as any).tags = 'vaginal';
-                          (s as any).pfilmtext = 'Four guys fucked your pussy, giving you four creampies.';
+                          (s as any).tags = 'anal, anal creampie';
+                          (s as any).pfilmtext = 'Four guys fucked your ass, giving you four anal creampies.';
                         } else {
-                          if (((s as any).film_type ?? 0) === 12) {
-                            (s as any).pfType = 0;
+                          if (((s as any).film_type ?? 0) === 13) {
+                            (s as any).pfType = 1;
                             (s as any).pcash = 150;
                             (s as any).pfactor = 4;
                             (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
-                            (s as any).tags = 'anal, anal creampie';
-                            (s as any).pfilmtext = 'Four guys fucked your ass, giving you four anal creampies.';
+                            (s as any).tags = 'DP, vaginal, anal';
+                            (s as any).pfilmtext = 'Four guys fucked you in double penetration in pairs. You got two double creampies.';
                           } else {
-                            if (((s as any).film_type ?? 0) === 13) {
+                            if (((s as any).film_type ?? 0) === 14) {
                               (s as any).pfType = 1;
-                              (s as any).pcash = 150;
-                              (s as any).pfactor = 4;
-                              (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
-                              (s as any).tags = 'DP, vaginal, anal';
-                              (s as any).pfilmtext = 'Four guys fucked you in double penetration in pairs. You got two double creampies.';
+                              (s as any).pcash = 300;
+                              (s as any).pfactor = 50;
+                              (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
+                              (s as any).tags = 'vaginal, anal, blowjob, cumshot, facial, swallowing';
+                              (s as any).pfilmtext = 'Fifty of your fans fucked you however they could. Almost all of them came in your pussy.';
+                              (s as any).pstory = 'You called out to your fans on the internet, giving them an opportunity to fuck you however they like.';
                             } else {
-                              if (((s as any).film_type ?? 0) === 14) {
-                                (s as any).pfType = 1;
-                                (s as any).pcash = 300;
-                                (s as any).pfactor = 50;
+                              if (((s as any).film_type ?? 0) === 15) {
+                                (s as any).pfType = 0;
+                                (s as any).pcash = 50;
+                                (s as any).pfactor = 1;
                                 (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
-                                (s as any).tags = 'vaginal, anal, blowjob, cumshot, facial, swallowing';
-                                (s as any).pfilmtext = 'Fifty of your fans fucked you however they could. Almost all of them came in your pussy.';
-                                (s as any).pstory = 'You called out to your fans on the internet, giving them an opportunity to fuck you however they like.';
+                                (s as any).tags = 'blowjob, anal, anal creampie';
+                                (s as any).pfilmtext = 'You gave a guy a blowjob before he fucked your ass and gave you an anal creampie.';
                               } else {
-                                if (((s as any).film_type ?? 0) === 15) {
+                                if (((s as any).film_type ?? 0) === 16) {
                                   (s as any).pfType = 0;
                                   (s as any).pcash = 50;
                                   (s as any).pfactor = 1;
                                   (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
-                                  (s as any).tags = 'blowjob, anal, anal creampie';
-                                  (s as any).pfilmtext = 'You gave a guy a blowjob before he fucked your ass and gave you an anal creampie.';
+                                  (s as any).tags = 'blowjob, anal, cumshot';
+                                  (s as any).pfilmtext = 'You gave a guy a blowjob and he fucked your ass. He came over your ass.';
                                 } else {
-                                  if (((s as any).film_type ?? 0) === 16) {
+                                  if (((s as any).film_type ?? 0) === 17) {
                                     (s as any).pfType = 0;
                                     (s as any).pcash = 50;
-                                    (s as any).pfactor = 1;
+                                    (s as any).pfactress = 1;
                                     (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
-                                    (s as any).tags = 'blowjob, anal, cumshot';
-                                    (s as any).pfilmtext = 'You gave a guy a blowjob and he fucked your ass. He came over your ass.';
+                                    (s as any).tags = 'tribbing, double dildo, vaginal';
+                                    (s as any).pfilmtext = 'You had sex with a girl using a double dildo.';
                                   } else {
-                                    if (((s as any).film_type ?? 0) === 17) {
+                                    if (((s as any).film_type ?? 0) === 18) {
                                       (s as any).pfType = 0;
                                       (s as any).pcash = 50;
                                       (s as any).pfactress = 1;
                                       (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
-                                      (s as any).tags = 'tribbing, double dildo, vaginal';
-                                      (s as any).pfilmtext = 'You had sex with a girl using a double dildo.';
+                                      (s as any).tags = 'strapon, vaginal, anal';
+                                      (s as any).pfilmtext = 'You had sex with a girl using a strapon.';
                                     } else {
-                                      if (((s as any).film_type ?? 0) === 18) {
+                                      if (((s as any).film_type ?? 0) === 19) {
                                         (s as any).pfType = 0;
-                                        (s as any).pcash = 50;
+                                        (s as any).pcash = 100;
+                                        (s as any).pfactor = 1;
                                         (s as any).pfactress = 1;
-                                        (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
-                                        (s as any).tags = 'strapon, vaginal, anal';
-                                        (s as any).pfilmtext = 'You had sex with a girl using a strapon.';
+                                        (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
+                                        (s as any).tags = 'mff, blowjob, anal, cumshare';
+                                        (s as any).pfilmtext = 'You took part in an MFF threesome, sucking a guy off before he fucked your ass while the girl licked your pussy. You got an anal creampie and shared it with the girl.';
                                       } else {
-                                        if (((s as any).film_type ?? 0) === 19) {
+                                        if (((s as any).film_type ?? 0) === 20) {
                                           (s as any).pfType = 0;
                                           (s as any).pcash = 100;
                                           (s as any).pfactor = 1;
                                           (s as any).pfactress = 1;
                                           (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
-                                          (s as any).tags = 'mff, blowjob, anal, cumshare';
-                                          (s as any).pfilmtext = 'You took part in an MFF threesome, sucking a guy off before he fucked your ass while the girl licked your pussy. You got an anal creampie and shared it with the girl.';
-                                        } else {
-                                          if (((s as any).film_type ?? 0) === 20) {
-                                            (s as any).pfType = 0;
-                                            (s as any).pcash = 100;
-                                            (s as any).pfactor = 1;
-                                            (s as any).pfactress = 1;
-                                            (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
-                                            (s as any).tags = 'mff, blowjob, anal, creampie, cumshare, cuni';
-                                            (s as any).pfilmtext = 'You took part in an MFF threesome, sucking him off before he fucked her ass while you licked her pussy. She shared her anal creampie with you.';
-                                          }
+                                          (s as any).tags = 'mff, blowjob, anal, creampie, cumshare, cuni';
+                                          (s as any).pfilmtext = 'You took part in an MFF threesome, sucking him off before he fucked her ass while you licked her pussy. She shared her anal creampie with you.';
                                         }
                                       }
                                     }
@@ -356,104 +357,104 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    dynamicGoto(s, String((s as any).porntag || ''));
-    (s as any).porntag = qspUntranslated(s, "{", { location: "pornhist" });
-    if (((s as any).pornfilmAppAge ?? 0)?.[String((s as any).i ?? 0)] < 20) {
-      (s as any).pfilmtags = 'teen';
+  }
+  dynamicGoto(s, String((s as any).porntag || ''));
+  (s as any).porntag = qspUntranslated(s, "{", { location: "pornhist" });
+  if (((s as any).pornfilmAppAge ?? 0)?.[String((s as any).i ?? 0)] < 20) {
+    (s as any).pfilmtags = 'teen';
+  } else {
+    if (((s as any).pornfilmAppAge ?? 0)?.[String((s as any).i ?? 0)] >= 40) {
+      (s as any).pfilmtags = 'mature';
     } else {
-      if (((s as any).pornfilmAppAge ?? 0)?.[String((s as any).i ?? 0)] >= 40) {
-        (s as any).pfilmtags = 'mature';
-      } else {
-        (s as any).pfilmtags = '';
-      }
+      (s as any).pfilmtags = '';
     }
-    if (((s as any).pornfilmpreg ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-      if (((s as any).pfilmtags ?? 0) !== '') {
-        (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', pregnant');
-      } else {
-        (s as any).pfilmtags = 'pregnant';
-      }
+  }
+  if (((s as any).pornfilmpreg ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+    if (((s as any).pfilmtags ?? 0) !== '') {
+      (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', pregnant');
+    } else {
+      (s as any).pfilmtags = 'pregnant';
     }
-    if (((s as any).pfactor ?? 0) === 0  &&  ((s as any).pfactress ?? 0) > 0) {
-      if (((s as any).pfilmtags ?? 0) !== '') {
-        (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', lesbian');
-      } else {
-        (s as any).pfilmtags = 'lesbian';
-      }
+  }
+  if (((s as any).pfactor ?? 0) === 0  &&  ((s as any).pfactress ?? 0) > 0) {
+    if (((s as any).pfilmtags ?? 0) !== '') {
+      (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', lesbian');
+    } else {
+      (s as any).pfilmtags = 'lesbian';
     }
-    if (((s as any).pfactor ?? 0) > 2  &&  (!((s as any).pfactress ?? 0))) {
+  }
+  if (((s as any).pfactor ?? 0) > 2  &&  (!((s as any).pfactress ?? 0))) {
+    if (((s as any).pfilmtags ?? 0) !== '') {
+      (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', gangbang');
+    } else {
+      (s as any).pfilmtags = 'gangbang';
+    }
+  } else {
+    if (((s as any).pfactor ?? 0) > 2  &&  ((s as any).pfactress ?? 0) > 1) {
       if (((s as any).pfilmtags ?? 0) !== '') {
-        (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', gangbang');
+        (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', orgy');
       } else {
-        (s as any).pfilmtags = 'gangbang';
+        (s as any).pfilmtags = 'orgy';
       }
     } else {
-      if (((s as any).pfactor ?? 0) > 2  &&  ((s as any).pfactress ?? 0) > 1) {
+      if (((s as any).pfactor ?? 0) === 2  &&  (!((s as any).pfactress ?? 0))) {
         if (((s as any).pfilmtags ?? 0) !== '') {
-          (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', orgy');
+          (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', threesome');
         } else {
-          (s as any).pfilmtags = 'orgy';
+          (s as any).pfilmtags = 'threesome';
         }
       } else {
-        if (((s as any).pfactor ?? 0) === 2  &&  (!((s as any).pfactress ?? 0))) {
+        if (((s as any).pfactor ?? 0) === 1  &&  ((s as any).pfactress ?? 0) === 1) {
           if (((s as any).pfilmtags ?? 0) !== '') {
             (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', threesome');
           } else {
             (s as any).pfilmtags = 'threesome';
           }
         } else {
-          if (((s as any).pfactor ?? 0) === 1  &&  ((s as any).pfactress ?? 0) === 1) {
+          if (((s as any).pfactor ?? 0) === 0  &&  ((s as any).pfactress ?? 0) === 2) {
             if (((s as any).pfilmtags ?? 0) !== '') {
               (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', threesome');
             } else {
               (s as any).pfilmtags = 'threesome';
             }
-          } else {
-            if (((s as any).pfactor ?? 0) === 0  &&  ((s as any).pfactress ?? 0) === 2) {
-              if (((s as any).pfilmtags ?? 0) !== '') {
-                (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', threesome');
-              } else {
-                (s as any).pfilmtags = 'threesome';
-              }
-            }
           }
         }
       }
     }
-    if (((s as any).pfType ?? 0) === 1) {
-      if (((s as any).pfilmtags ?? 0) !== '') {
-        (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', creampie');
-      } else {
-        (s as any).pfilmtags = 'creampie';
-      }
-    }
-    if (((s as any).tits ?? 0) >= 4) {
-      if (((s as any).pfilmtags ?? 0) !== '') {
-        (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', big tits');
-      } else {
-        (s as any).pfilmtags = 'big tits';
-      }
-    }
-    if (qspFunc(s, 'pcs_has_attr', 'body_ass_bubble')) {
-      if (((s as any).pfilmtags ?? 0) !== '') {
-        (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', big ass');
-      } else {
-        (s as any).pfilmtags = 'big ass';
-      }
-    }
-    if (((s as any).pfilmtags ?? 0) !== '') {
-      (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', ' + ((s as any).tags ?? 0));
-    } else {
-      (s as any).pfilmtags = ((s as any).tags ?? 0);
-    }
-    scene.actions([
-      { label: 'Return to Reputation', handler: (st: GameState) => {
-    (st as any).pornfilmdesc = undefined;
-    (st as any).porntag = undefined;
-    (st as any).menu_page = 5;
-  }, goto: ['$menu_character', 'reputation'] },
-    ]);
   }
+  if (((s as any).pfType ?? 0) === 1) {
+    if (((s as any).pfilmtags ?? 0) !== '') {
+      (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', creampie');
+    } else {
+      (s as any).pfilmtags = 'creampie';
+    }
+  }
+  if (((s as any).tits ?? 0) >= 4) {
+    if (((s as any).pfilmtags ?? 0) !== '') {
+      (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', big tits');
+    } else {
+      (s as any).pfilmtags = 'big tits';
+    }
+  }
+  if (qspFunc(s, 'pcs_has_attr', 'body_ass_bubble')) {
+    if (((s as any).pfilmtags ?? 0) !== '') {
+      (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', big ass');
+    } else {
+      (s as any).pfilmtags = 'big ass';
+    }
+  }
+  if (((s as any).pfilmtags ?? 0) !== '') {
+    (s as any).pfilmtags = ((s as any).pfilmtags ?? 0) + (', ' + ((s as any).tags ?? 0));
+  } else {
+    (s as any).pfilmtags = ((s as any).tags ?? 0);
+  }
+  scene.actions([
+    { label: 'Return to Reputation', handler: (st: GameState) => {
+  (st as any).pornfilmdesc = undefined;
+  (st as any).porntag = undefined;
+  (st as any).menu_page = 5;
+  }, goto: ['$menu_character', 'reputation'] },
+  ]);
   scene.build();
 }
 

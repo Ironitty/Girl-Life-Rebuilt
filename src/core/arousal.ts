@@ -54,10 +54,10 @@ export function arousal(s: GameState, params: ArousalParams): void {
 
   // SlipVars
   if (act.startsWith('anal') && !themes.includes('anal_finger')) {
-    const target = Math.max(1, 8 + (s.pain['asshole'] || 0) / 2 - s.pcs_ass);
+    const target = Math.max(1, 8 + (s.pain?.['asshole'] || 0) / 2 - s.pcs_ass);
     if (s.anal_slip < target) {
       const anslipVars: Record<string, number> = {};
-      anslipVars['cum'] = rand(2 * (s.cumvol['3'] || 10), 3 * (s.cumvol['3'] || 10)) / 30;
+      anslipVars['cum'] = rand(2 * (s.cumvol?.['3'] || 10), 3 * (s.cumvol?.['3'] || 10)) / 30;
       if (themes.includes('spit')) anslipVars['spit'] = 4;
       if (s.ar_anal_lube === 1) anslipVars['lube'] = 8;
       else if (Math.max(...Object.values(anslipVars)) < Math.min(target, 8)) {
@@ -77,11 +77,11 @@ export function arousal(s: GameState, params: ArousalParams): void {
   }
 
   if (act.startsWith('vagi') && !themes.includes('vaginal_finger')) {
-    const target = Math.max(1, 8 + (s.pain['vaginal'] || 0) / 2 - s.pcs_vag);
+    const target = Math.max(1, 8 + (s.pain?.['vaginal'] || 0) / 2 - s.pcs_vag);
     if (s.vaginal_slip < target) {
       const vagslipVars: Record<string, number> = {};
       vagslipVars['horny'] = Math.min(s.pcs_horny / 10, 10);
-      vagslipVars['cum'] = rand(s.cumvol['0'] || 10, 2 * (s.cumvol['0'] || 10)) / 10;
+      vagslipVars['cum'] = rand(s.cumvol?.['0'] || 10, 2 * (s.cumvol?.['0'] || 10)) / 10;
       if (themes.includes('spit')) vagslipVars['spit'] = 4;
       if (s.ar_vag_lube === 1) vagslipVars['lube'] = 8;
       else if (Math.max(...Object.values(vagslipVars)) < Math.min(target, 8)) {
@@ -177,13 +177,13 @@ export function arousal(s: GameState, params: ArousalParams): void {
       if (f === 'shemale' && arousalVars['unaware'] === 1) stim['hidden_shemale'] = 1;
       if (f === 'rape') {
         s.rape[0] = s.daystart;
-        if ((s.count['vaginal'] === 1 || s.count['vaginal_strap'] === 1) && !s.virgin_stats['lost_cause']) s.virgin_stats['rape'] = 1;
+        if ((s.count?.['vaginal'] === 1 || s.count?.['vaginal_strap'] === 1) && !s.virgin_stats?.['lost_cause']) (s.virgin_stats ?? {})['rape'] = 1;
       }
       if (f === 'prostitution') {
-        if ((s.count['vaginal'] === 1 || s.count['vaginal_strap'] === 1) && !s.virgin_stats['lost_cause']) s.virgin_stats['prostitute'] = 1;
+        if ((s.count?.['vaginal'] === 1 || s.count?.['vaginal_strap'] === 1) && !s.virgin_stats?.['lost_cause']) (s.virgin_stats ?? {})['prostitute'] = 1;
       }
       if (f === 'shemale') {
-        if ((s.count['vaginal'] === 1 || s.count['vaginal_strap'] === 1) && !s.virgin_stats['lost_cause']) s.virgin_stats['shemale'] = 1;
+        if ((s.count?.['vaginal'] === 1 || s.count?.['vaginal_strap'] === 1) && !s.virgin_stats?.['lost_cause']) (s.virgin_stats ?? {})['shemale'] = 1;
       }
       if (f === 'rough') s.pcs_hairbsh = -1;
     }
@@ -263,7 +263,7 @@ export function arousal(s: GameState, params: ArousalParams): void {
   }
 
   // Pain reduction
-  const painTotal = s.pain['total'] || 0;
+  const painTotal = s.pain?.['total'] || 0;
   if (painTotal > 0) {
     const masoExp = getFetishExp(s, 'maso');
     const masoPref = getFetishPref(s, 'maso');
@@ -363,10 +363,10 @@ function applyAct(
   const noStats = arousalVars['no_stats'] === 1;
 
   const addStat = (key: string, val: number) => {
-    if (!noStats) s.count[key] = (s.count[key] || 0) + val;
+    if (!noStats) (s.count ?? {})[key] = (s.count?.[key] || 0) + val;
   };
   const addHiddenStat = (key: string, val: number) => {
-    if (hidden && !noStats) s.count[`hidden_${key}`] = (s.count[`hidden_${key}`] || 0) + val;
+    if (hidden && !noStats) (s.count ?? {})[`hidden_${key}`] = (s.count?.[`hidden_${key}`] || 0) + val;
   };
   const addNpc = (arr: string[], hiddenArr: string[], npcId: string) => {
     if (npcId && npcId !== '0') {
@@ -467,7 +467,7 @@ function applyAct(
       feed(s, 3);
       s.pcs_hydra -= rand(3, 5) * Math.max(1, time / 5);
       s.pcs_stam -= rand(2, 4) * Math.max(1, time / 5);
-      if (painCoeff > 0) s.pain['vaginal'] = Math.min((s.pain['vaginal'] || 0) + rand(painCoeff, painCoeff + 3), 120);
+      if (painCoeff > 0) (s.pain ?? {})['vaginal'] = Math.min((s.pain?.['vaginal'] || 0) + rand(painCoeff, painCoeff + 3), 120);
       break;
 
     case 'self_fisting':
@@ -478,7 +478,7 @@ function applyAct(
       feed(s, 3);
       s.pcs_hydra -= rand(3, 6) * Math.max(1, time / 5);
       s.pcs_stam -= rand(2, 5) * Math.max(1, time / 5);
-      if (painCoeff > 0) s.pain['vaginal'] = Math.min((s.pain['vaginal'] || 0) + rand(painCoeff, painCoeff + 3), 120);
+      if (painCoeff > 0) (s.pain ?? {})['vaginal'] = Math.min((s.pain?.['vaginal'] || 0) + rand(painCoeff, painCoeff + 3), 120);
       break;
 
     case 'cuni':
@@ -498,7 +498,7 @@ function applyAct(
       feed(s, 2);
       s.pcs_hydra -= rand(2, 4) * Math.max(1, time / 5);
       s.pcs_stam -= rand(1, 3) * Math.max(1, time / 5);
-      if (painCoeff > 0) s.pain['asshole'] = Math.min((s.pain['asshole'] || 0) + rand(painCoeff, painCoeff + 3), 120);
+      if (painCoeff > 0) (s.pain ?? {})['asshole'] = Math.min((s.pain?.['asshole'] || 0) + rand(painCoeff, painCoeff + 3), 120);
       break;
 
     case 'rimming':
@@ -522,9 +522,9 @@ function applyAct(
       s.pcs_stam -= rand(2, 5) * Math.max(1, time / 5);
       s.fat += rand(1, 3) * Math.max(1, time / 5);
       inAnal(s, stim);
-      if (painCoeff > 0) s.pain['asshole'] = Math.min((s.pain['asshole'] || 0) + rand(painCoeff, painCoeff + 5), 120);
+      if (painCoeff > 0) (s.pain ?? {})['asshole'] = Math.min((s.pain?.['asshole'] || 0) + rand(painCoeff, painCoeff + 5), 120);
       stretch(s, 'anal');
-      if (s.virgin_stats['anal'] === 1) setVirginityStats(s, act);
+      if (s.virgin_stats?.['anal'] === 1) setVirginityStats(s, act);
       break;
 
     case 'vaginal':
@@ -540,9 +540,9 @@ function applyAct(
       s.pcs_stam -= rand(2, 5) * Math.max(1, time / 5);
       s.fat += rand(1, 3) * Math.max(1, time / 5);
       inVag(s, stim);
-      if (painCoeff > 0) s.pain['vaginal'] = Math.min((s.pain['vaginal'] || 0) + rand(painCoeff, painCoeff + 5), 120);
+      if (painCoeff > 0) (s.pain ?? {})['vaginal'] = Math.min((s.pain?.['vaginal'] || 0) + rand(painCoeff, painCoeff + 5), 120);
       stretch(s, 'vaginal');
-      if (s.virgin_stats['vaginal'] === 1) setVirginityStats(s, act);
+      if (s.virgin_stats?.['vaginal'] === 1) setVirginityStats(s, act);
       break;
 
     case 'bj':
@@ -557,8 +557,8 @@ function applyAct(
       s.pcs_hydra -= rand(2, 5) * Math.max(1, time / 5);
       s.pcs_stam -= rand(1, 4) * Math.max(1, time / 5);
       inThroat(s, stim);
-      if (painCoeff > 0) s.pain['throat'] = Math.min((s.pain['throat'] || 0) + rand(painCoeff, painCoeff + 3), 120);
-      if (s.virgin_stats['oral'] === 1) setVirginityStats(s, act);
+      if (painCoeff > 0) (s.pain ?? {})['throat'] = Math.min((s.pain?.['throat'] || 0) + rand(painCoeff, painCoeff + 3), 120);
+      if (s.virgin_stats?.['oral'] === 1) setVirginityStats(s, act);
       break;
 
     case 'giving_vaginal':
@@ -583,7 +583,7 @@ function applyAct(
       s.pcs_hydra -= rand(3, 6) * Math.max(1, time / 5);
       s.pcs_stam -= rand(2, 5) * Math.max(1, time / 5);
       s.fat += rand(1, 3) * Math.max(1, time / 5);
-      if (painCoeff > 0) s.pain['asshole'] = Math.min((s.pain['asshole'] || 0) + rand(painCoeff, painCoeff + 5), 120);
+      if (painCoeff > 0) (s.pain ?? {})['asshole'] = Math.min((s.pain?.['asshole'] || 0) + rand(painCoeff, painCoeff + 5), 120);
       break;
 
     case 'giving_bj':
@@ -596,7 +596,7 @@ function applyAct(
       feed(s, 2);
       s.pcs_hydra -= rand(2, 5) * Math.max(1, time / 5);
       s.pcs_stam -= rand(1, 4) * Math.max(1, time / 5);
-      if (painCoeff > 0) s.pain['throat'] = Math.min((s.pain['throat'] || 0) + rand(painCoeff, painCoeff + 3), 120);
+      if (painCoeff > 0) (s.pain ?? {})['throat'] = Math.min((s.pain?.['throat'] || 0) + rand(painCoeff, painCoeff + 3), 120);
       break;
 
     case 'giving_clit_finger':
@@ -644,7 +644,7 @@ function applyAct(
       feed(s, 3);
       s.pcs_hydra -= rand(3, 5) * Math.max(1, time / 5);
       s.pcs_stam -= rand(2, 4) * Math.max(1, time / 5);
-      if (painCoeff > 0) s.pain['vaginal'] = Math.min((s.pain['vaginal'] || 0) + rand(painCoeff, painCoeff + 3), 120);
+      if (painCoeff > 0) (s.pain ?? {})['vaginal'] = Math.min((s.pain?.['vaginal'] || 0) + rand(painCoeff, painCoeff + 3), 120);
       break;
 
     case 'giving_anal_finger':
@@ -654,7 +654,7 @@ function applyAct(
       feed(s, 2);
       s.pcs_hydra -= rand(2, 4) * Math.max(1, time / 5);
       s.pcs_stam -= rand(1, 3) * Math.max(1, time / 5);
-      if (painCoeff > 0) s.pain['asshole'] = Math.min((s.pain['asshole'] || 0) + rand(painCoeff, painCoeff + 3), 120);
+      if (painCoeff > 0) (s.pain ?? {})['asshole'] = Math.min((s.pain?.['asshole'] || 0) + rand(painCoeff, painCoeff + 3), 120);
       break;
 
     case 'giving_rimming':

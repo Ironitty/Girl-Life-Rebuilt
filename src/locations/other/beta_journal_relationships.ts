@@ -102,8 +102,9 @@ function enterRelSpouseKids(s: GameState, scene: SceneBuilder): void {
         if (((s as any).i ?? 0) < ((s as any).kid ?? 0)) {
           scene.text(`<th> a ${(((s as any).polreb ?? 0)?.[String((s as any).i ?? 0)] ?? '')} named ${(((s as any).kidname ?? 0)?.[String((s as any).i ?? 0)] ?? '')}. Born ${(((s as any).daykid ?? 0)?.[String((s as any).i ?? 0)] ?? '')}-${(((s as any).monthkid ?? 0)?.[String((s as any).i ?? 0)] ?? '')}-${(((s as any).yearkid ?? 0)?.[String((s as any).i ?? 0)] ?? '')}. Aged ${(((s as any).kidage ?? 0)?.[String((s as any).i ?? 0)] ?? '')}.</th>`);
           (s as any).i = ((s as any).i ?? 0) + (1);
-          break;
+          continue;
         }
+        break;
       }
     }
   }
@@ -114,7 +115,7 @@ function enterRelSpouseKids(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npcStat', '', (((s as any).lover ?? 0)?.[String((s as any).jnl_i ?? 0)] ?? 0), 'i');
       if ((String((((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID9 ?? 0)] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'ex') {
         (s as any).jnl_i = ((s as any).jnl_i ?? 0) + (1);
-        break;
+        continue;
       }
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID9 ?? 0)] === 'husband') {
         scene.text(`You have been married for ${((s as any).daystart ?? '') - (((s as any).spouseVars ?? {})?.['marry_day'] ?? 0)} days. Your husband ${((s as any).npcdesc9 ?? '')} is ${((s as any).npcheight9 ?? '')} and ${((s as any).npcbuild9 ?? '')} with ${((s as any).npchair9 ?? '')} hair. ${((s as any).npcdesc9 ?? '')} is usually wearing ${((s as any).npcClo9 ?? '')}. Member ${((s as any).dick_desc9 ?? '')} cock and ${((s as any).dick_girth9 ?? '')}. Relationship ${(((s as any).npc_rel ?? 0)?.[String((s as any).npcID9 ?? 0)] ?? '')}.`);
@@ -133,11 +134,12 @@ function enterRelSpouseKids(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).jnl_i = ((s as any).jnl_i ?? 0) + (1);
-      break;
+      continue;
     }
-    (s as any).jnl_i = undefined;
-    (s as any).jnl_max_i = undefined;
+    break;
   }
+  (s as any).jnl_i = undefined;
+  (s as any).jnl_max_i = undefined;
   scene.build();
 }
 

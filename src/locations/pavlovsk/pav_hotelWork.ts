@@ -109,70 +109,86 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).maidrand ?? 0) <= 10) {
       qspGoto(s, 'pav_hotelWork', 'work0');
+      break;
     } else {
       if (((s as any).maidrand ?? 0) <= 15) {
         qspGoto(s, 'pav_hotelWork', 'work1');
+        break;
       } else {
         if (((s as any).maidrand ?? 0) <= 20) {
           if (((s as any).maidcheck ?? 0)[1] === ((s as any).daystart ?? 0)) {
-            break;
+            continue;
           }
           ((s as any).maidcheck = (s as any).maidcheck ?? {})[1] = ((s as any).daystart ?? 0);
           qspGoto(s, 'pav_hotelWork', 'work2');
+          break;
         } else {
           if (((s as any).maidrand ?? 0) <= 25) {
             if (((s as any).maidcheck ?? 0)[2] === ((s as any).daystart ?? 0)) {
-              break;
+              continue;
             }
             ((s as any).maidcheck = (s as any).maidcheck ?? {})[2] = ((s as any).daystart ?? 0);
             qspGoto(s, 'pav_hotelWork', 'work3');
+            break;
           } else {
             if (((s as any).maidrand ?? 0) <= 35) {
               if (((s as any).maidcheck ?? 0)[3] === ((s as any).daystart ?? 0)) {
-                break;
+                continue;
               }
               ((s as any).maidcheck = (s as any).maidcheck ?? {})[3] = ((s as any).daystart ?? 0);
               qspGoto(s, 'pav_hotelWork', 'work4');
+              break;
             } else {
               if (((s as any).maidrand ?? 0) <= 55) {
                 qspGoto(s, 'pav_hotelWork', 'work5');
+                break;
               } else {
                 if (((s as any).maidrand ?? 0) <= 65) {
                   qspGoto(s, 'pav_hotelWork', 'work6');
+                  break;
                 } else {
                   if (((s as any).maidrand ?? 0) <= 70) {
                     qspGoto(s, 'pav_hotelWork', 'work7');
+                    break;
                   } else {
                     if (((s as any).maidrand ?? 0) <= 80) {
                       qspGoto(s, 'pav_hotelWork', 'work8');
+                      break;
                     } else {
                       if (((s as any).maidrand ?? 0) <= 90) {
                         qspGoto(s, 'pav_hotelWork', 'work9');
+                        break;
                       } else {
                         if (((s as any).maidrand ?? 0) <= 95) {
                           qspGoto(s, 'pav_hotelWork', 'work10');
+                          break;
                         } else {
                           if (((s as any).maidrand ?? 0) <= 110) {
                             qspGoto(s, 'pav_hotelWork', 'work11');
+                            break;
                           } else {
                             if (((s as any).maidrand ?? 0) <= 120) {
                               if (((s as any).maidcheck ?? 0)[4] === ((s as any).daystart ?? 0)) {
-                                break;
+                                continue;
                               }
                               ((s as any).maidcheck = (s as any).maidcheck ?? {})[4] = ((s as any).daystart ?? 0);
                               qspGoto(s, 'pav_hotelWork', 'work12');
+                              break;
                             } else {
                               if (((s as any).maidrand ?? 0) <= 140) {
                                 (s as any).maidcheck_sonia = ((s as any).daystart ?? 0);
                                 qspGoto(s, 'pav_hotelWork', 'work13');
+                                break;
                               } else {
                                 if (((s as any).maidrand ?? 0) <= 150) {
                                   (s as any).maidcheck_sonia = ((s as any).daystart ?? 0);
                                   qspGoto(s, 'pav_hotelWork', 'work14');
+                                  break;
                                 } else {
                                   if (((s as any).maidrand ?? 0) <= 160) {
                                     (s as any).maidcheck_sonia = ((s as any).daystart ?? 0);
                                     qspGoto(s, 'pav_hotelWork', 'work15');
+                                    break;
                                   }
                                 }
                               }

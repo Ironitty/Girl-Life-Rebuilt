@@ -319,7 +319,7 @@ function enterRenderActs(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_apptRender = (s as any).temp_apptRender ?? {})['wait'] = ((s as any).appointment_state_wait ?? 0);
   ((s as any).temp_apptRender = (s as any).temp_apptRender ?? {})['state'] = ((s as any).appointment_state ?? 0);
   if (((s as any).temp_apptRender ?? 0)?.['state'] === 'none') {
-    qspCall(s, '$ARGS[2]', '$ARGS[3]', ((s as any).locArgs?.[1] ?? 0));
+    qspCall(s, (s as any).locArgs?.[2] ?? '', (s as any).locArgs?.[3] ?? '', ((s as any).locArgs?.[1] ?? 0));
   } else {
     if (((s as any).temp_apptRender ?? 0)?.['state'] === 'pending') {
       scene.text(`You still have some time before your appointment (about ${qspFunc(s, 'time', 'get_duration_string', (((s as any).temp_apptRender ?? 0)?.['wait'] ?? ''))}).`);
@@ -350,7 +350,7 @@ function enterRenderActs(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(s, '$ARGS[2]', '$ARGS[4]', ((s as any).locArgs?.[1] ?? 0), (((s as any).temp_apptRender ?? 0)?.['wait']), ((s as any).locArgs?.[5] ?? 0));
+      qspCall(s, (s as any).locArgs?.[2] ?? '', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[1] ?? 0), (((s as any).temp_apptRender ?? 0)?.['wait']), ((s as any).locArgs?.[5] ?? 0));
     }
   }
   (s as any).temp_apptRender = undefined;

@@ -1,0 +1,3 @@
+intro_character_creation:lip: 'undefined' in rendered text
+intro_functions:reset_inventory
+therapist_hotel:event6_submit4

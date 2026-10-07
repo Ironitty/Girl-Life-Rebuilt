@@ -1205,10 +1205,11 @@ function enterDefaultEntryDelete(s: GameState, scene: SceneBuilder): void {
       ((s as any).temp_wardrobeVars = (s as any).temp_wardrobeVars ?? {})['j'] = ((s as any).temp_i ?? 0) + 1;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEntryShiftCore(s, scene); (s as any).locArgs = __savedLocArgs; }
       (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
-      break;
+      continue;
     }
-    qspGoto(s, 'wardrobe', ((s as any).wloc ?? ''));
+    break;
   }
+  qspGoto(s, 'wardrobe', ((s as any).wloc ?? ''));
   scene.build();
 }
 

@@ -51,7 +51,7 @@ function enterNavigate(s: GameState, scene: SceneBuilder): void {
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_list', 'init_event_vars');
-  qspCall(s, 'calendar_list', '$ARGS[1]');
+  qspCall(s, 'calendar_list', (s as any).locArgs?.[1] ?? '');
   qspCall(s, 'calendar_list', 'assign_color');
   qspCall(s, 'calendar_events', 'new_event', (((s as any).event_vars ?? 0)?.['id']));
   return;

@@ -20,8 +20,8 @@ export function willpowerCalc(s: GameState, fetishes: string = ''): void {
     const list = fetishes.split(';').map(f => f.trim()).filter(f => f && f !== 'creampie' && f !== 'pregnant');
     let count = 0;
     for (const f of list) {
-      const exp = s.stat[f] || 0;
-      const pref = s.stat[f + '_pref'] || 0;
+      const exp = s.stat?.[f] || 0;
+      const pref = s.stat?.[f + '_pref'] || 0;
       s.will_fetish_mod += Math.max(0, exp - 25);
       s.will_fetish_mod_pref += Math.max(0, pref - 25);
       count++;
@@ -154,24 +154,24 @@ function calcAction(s: GameState, _statKey: string, type: string, difficulty: st
 }
 
 export function willpowerVoyeur(s: GameState, type: string, difficulty: string = '', fetishes: string = ''): void {
-  const statVal = (s.stat['voyeur'] || 0) + (s.stat['voyeur_sex'] || 0);
+  const statVal = (s.stat?.['voyeur'] || 0) + (s.stat?.['voyeur_sex'] || 0);
   calcAction(s, 'voyeur', type, difficulty, fetishes, statVal);
 }
 
 export function willpowerFlash(s: GameState, type: string, difficulty: string = '', fetishes: string = ''): void {
-  const statVal = (s.stat['flash'] || 0) + (s.stat['flashlite'] || 0) / 2;
+  const statVal = (s.stat?.['flash'] || 0) + (s.stat?.['flashlite'] || 0) / 2;
   calcAction(s, 'flash', type, difficulty, fetishes, statVal);
 }
 
 export function willpowerMast(s: GameState, type: string, difficulty: string = '', fetishes: string = ''): void {
-  calcAction(s, 'mast', type, difficulty, fetishes, s.stat['mast'] || 0);
+  calcAction(s, 'mast', type, difficulty, fetishes, s.stat?.['mast'] || 0);
 }
 
 export function willpowerHj(s: GameState, type: string, difficulty: string = '', fetishes: string = ''): void {
   willpowerCalc(s, fetishes);
   if (type === 'self' && s.missCum >= s.timeTresh) s.will_calc = 0;
   if (type === 'resist' && s.missCum >= s.timeTresh) s.will_calc += 100;
-  const statVal = s.stat['hj'] || 0;
+  const statVal = s.stat?.['hj'] || 0;
   const succ = s.will_succubus_mod;
   const arousal = s.will_arousal_mod;
   const calc = s.will_calc;
@@ -192,7 +192,7 @@ export function willpowerBj(s: GameState, type: string, difficulty: string = '',
   willpowerCalc(s, fetishes);
   if (type === 'self' && s.missCum >= s.timeTresh) s.will_calc = 0;
   if (type === 'resist' && s.missCum >= s.timeTresh) s.will_calc += 100;
-  const statVal = s.stat['bj'] || 0;
+  const statVal = s.stat?.['bj'] || 0;
   const succ = s.will_succubus_mod;
   const arousal = s.will_arousal_mod;
   const calc = s.will_calc;
@@ -211,7 +211,7 @@ export function willpowerBj(s: GameState, type: string, difficulty: string = '',
 
 export function willpowerCuni(s: GameState, type: string, difficulty: string = '', fetishes: string = ''): void {
   willpowerCalc(s, fetishes);
-  const statVal = ((s.stat['cuni'] || 0) + (s.stat['cuni_give'] || 0)) / 2;
+  const statVal = ((s.stat?.['cuni'] || 0) + (s.stat?.['cuni_give'] || 0)) / 2;
   const succ = s.will_succubus_mod;
   const arousal = s.will_arousal_mod;
   const calc = s.will_calc;
@@ -230,7 +230,7 @@ export function willpowerCuni(s: GameState, type: string, difficulty: string = '
 
 export function willpowerSex(s: GameState, type: string, difficulty: string = '', fetishes: string = ''): void {
   willpowerCalc(s, fetishes);
-  const statVal = s.stat['vaginal'] || 0;
+  const statVal = s.stat?.['vaginal'] || 0;
   const succ = s.will_succubus_mod;
   const arousal = s.will_arousal_mod;
   const calc = s.will_calc;
@@ -249,7 +249,7 @@ export function willpowerSex(s: GameState, type: string, difficulty: string = ''
 
 export function willpowerAnal(s: GameState, type: string, difficulty: string = '', fetishes: string = ''): void {
   willpowerCalc(s, fetishes);
-  const statVal = s.stat['anal'] || 0;
+  const statVal = s.stat?.['anal'] || 0;
   const succ = s.will_succubus_mod;
   const arousal = s.will_arousal_mod;
   const calc = s.will_calc;
@@ -268,7 +268,7 @@ export function willpowerAnal(s: GameState, type: string, difficulty: string = '
 
 export function willpowerKiss(s: GameState, type: string, difficulty: string = '', fetishes: string = ''): void {
   willpowerCalc(s, fetishes);
-  const statVal = s.stat['kiss'] || 0;
+  const statVal = s.stat?.['kiss'] || 0;
   const arousal = s.will_arousal_mod;
   const calc = s.will_calc;
   if (type === 'self') {
@@ -308,7 +308,7 @@ export function willpowerMisc(s: GameState, type: string, difficulty: string = '
 
 export function willpowerForeplay(s: GameState, type: string, difficulty: string = '', fetishes: string = ''): void {
   willpowerCalc(s, fetishes);
-  const statVal = s.stat['foreplay'] || 0;
+  const statVal = s.stat?.['foreplay'] || 0;
   const succ = s.will_succubus_mod;
   const arousal = s.will_arousal_mod;
   const calc = s.will_calc;

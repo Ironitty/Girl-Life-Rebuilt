@@ -13,7 +13,7 @@ function enterForest1(s: GameState, scene: SceneBuilder): void {
   (s as any).boyAsex = 0;
   (s as any).dirty_dickA = 0;
   (s as any).boyAsexa = 0;
-  qspCall(s, 'boyStat', '$ARGS[1]');
+  qspCall(s, 'boyStat', (s as any).locArgs?.[1] ?? '');
   (s as any).horny_boyA = (Math.floor(Math.random() * 91) + 0);
   qspCall(s, 'stat', '');
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/sex/mitka/mitkaforestsex1.` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
@@ -126,7 +126,7 @@ function enterGad1(s: GameState, scene: SceneBuilder): void {
   (s as any).boyAsex = 0;
   (s as any).boyAsexa = 0;
   (s as any).dirty_dickA = 0;
-  qspCall(s, 'boyStat', '$ARGS[1]');
+  qspCall(s, 'boyStat', (s as any).locArgs?.[1] ?? '');
   (s as any).horny_boyA = (Math.floor(Math.random() * 91) + 0);
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) < 60) {

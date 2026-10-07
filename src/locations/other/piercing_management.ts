@@ -168,7 +168,7 @@ function enterWearLast(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_piercings ?? 0)[String((s as any).locArgs?.[1] ?? '')] >= 0) {
     return;
   }
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), -((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0)]]; enterWear(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), -(((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0)] ?? 0)]; enterWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   scene.build();
 }
@@ -178,7 +178,7 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
     return;
   }
   ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) - (1);
-  ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})[((s as any).locArgs?.[1] ?? 0)] = -((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})[((s as any).locArgs?.[1] ?? 0)] = -(((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0)] ?? 0);
   return;
   scene.build();
 }

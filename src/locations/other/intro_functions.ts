@@ -131,7 +131,7 @@ function enterResetInventory(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterResetFame(s: GameState, scene: SceneBuilder): void {
-  (s as any).fame = undefined;
+  (s as any).fame = {};
   return;
   scene.build();
 }

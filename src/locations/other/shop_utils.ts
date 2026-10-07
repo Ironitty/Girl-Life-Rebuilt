@@ -668,7 +668,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['i'] = 0;
     while (true) {
       if (((s as any).temp_sh_hs_vars ?? 0)?.['i'] < ((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_cols'] - 1) {
-        ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['temp_width'] = ((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_width'] - ((s as any).iif ?? 0)(((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_col_overshoot'] > 0  &&  ((s as any).temp_sh_hs_vars ?? 0)?.['i'] >= ((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_col_overshoot'], 1, 0);
+        ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['temp_width'] = ((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_width'] - ((c,a,b)=>c?a:b)(((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_col_overshoot'] > 0  &&  ((s as any).temp_sh_hs_vars ?? 0)?.['i'] >= ((s as any).Headerstring ?? 0)[String((s as any).locArgs?.[2] ?? '') + '_col_overshoot'], 1, 0);
         ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['j'] = 0;
         ((s as any).temp_sh_hs_vars = (s as any).temp_sh_hs_vars ?? {})['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + ((((s as any).Headerstring ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '_indent'] ?? 0));
         while (true) {

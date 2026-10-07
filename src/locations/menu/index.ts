@@ -409,7 +409,7 @@ function looksEnter(s: GameState, scene: SceneBuilder) {
       break;
     }
     case 'tattoos': {
-      const total = Object.values(s.pcs_tattoos).reduce((a, b) => a + b, 0);
+      const total = Object.values(s.pcs_tattoos ?? {}).reduce((a, b) => a + (b as number), 0);
       if (total === 0) {
         html += `<p class="opacity-60">You have a pristine body. Not in terms of debauchery, but in terms of tattoos.</p>`;
       } else {
@@ -436,7 +436,7 @@ function looksEnter(s: GameState, scene: SceneBuilder) {
       break;
     }
     case 'piercing': {
-      const total = Object.values(s.pcs_piercings).reduce((a, b) => a + b, 0);
+      const total = Object.values(s.pcs_piercings ?? {}).reduce((a, b) => a + (b as number), 0);
       if (total === 0) {
         html += `<p class="opacity-60">No piercings yet.</p>`;
       } else {
@@ -500,7 +500,7 @@ function purseEnter(s: GameState, scene: SceneBuilder) {
     html += `</table>`;
   }
 
-  html += `<hr/><p>Money on hand: <b>₽${s.money.toLocaleString()}</b></p>`;
+  html += `<hr/><p>Money on hand: <b>₽${(s.money ?? 0).toLocaleString()}</b></p>`;
 
   scene.mainText = html;
   scene.curActs = backAction(s);

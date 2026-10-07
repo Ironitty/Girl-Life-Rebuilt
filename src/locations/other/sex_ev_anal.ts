@@ -482,7 +482,7 @@ function enterAnalDoggyInsertSlow(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);
   } },
       ]);
@@ -491,26 +491,26 @@ function enterAnalDoggyInsertSlow(s: GameState, scene: SceneBuilder): void {
       { label: 'Moan', handler: (st: GameState) => {
     scene.text('You let out a loud moan as heat fills up your insides and your pussy begins to salivate with just the insertion of his cock into your asshole.');
     scene.actions([
-      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);
   } },
       { label: 'Groan', handler: (st: GameState) => {
     scene.text('You let out a husky groan as an indescribable ache rocks through your insides. Like a crumb of bread to a woman starving to death, just the insertion of his cock into your asshole sets your lustful hunger ablaze.');
     scene.actions([
-      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);
   } },
       { label: 'Gasp', handler: (st: GameState) => {
     scene.text('You gasp as the pleasure of his insertion sends heat washing through your hips and electric tingles racing across your skin.');
     scene.actions([
-      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);
   } },
       { label: 'Squeak!', handler: (st: GameState) => {
     scene.text('"Eep-!"');
     scene.text('A squeak escapes your lips he fills you from behind, your ass involuntarily squeezing his shaft at the insertion.');
     scene.actions([
-      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);
   } },
     ]);
@@ -576,7 +576,7 @@ function enterAnalDoggyInsertSlow(s: GameState, scene: SceneBuilder): void {
     scene.text(String(qspFunc(s, 'sex_ev', 'anal_insert_desc2') || ''));
     scene.text('Your breath hitches in discomfort as the cock pokes awkward spots in your intestines and settles in behind you.');
     scene.actions([
-      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);
   } },
       { label: 'Squeak!', handler: (st: GameState) => {
@@ -586,7 +586,7 @@ function enterAnalDoggyInsertSlow(s: GameState, scene: SceneBuilder): void {
     scene.text('"Eep-!"');
     scene.text('A squeak escapes your lips he fills you from behind, your ass involuntarily squeezing his shaft at the insertion.');
     scene.actions([
-      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);
   } },
     ]);
@@ -626,7 +626,7 @@ function enterAnalInsertOrgasm(s: GameState, scene: SceneBuilder): void {
       scene.text('"It\'s your big cock," you pant giddily, head still swimming from orgasm. "The way you fill</i> me. It\'s indescribable."');
     }
     scene.actions([
-      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);
   } },
       ]);
@@ -638,7 +638,7 @@ function enterAnalInsertOrgasm(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/vag/doggy/smile1.jpg');
     scene.text('"I come easy," you smile tiredly at him, head still swimming from orgasm. "Sometimes just one thrust is all it takes for me."');
     scene.actions([
-      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);
   } },
       ]);
@@ -648,7 +648,7 @@ function enterAnalInsertOrgasm(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/vag/doggy/smile1.jpg');
     scene.text('"I\'m really horny," you moan, practically melting underneath him.');
     scene.actions([
-      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);
   } },
     ]);
@@ -714,7 +714,7 @@ function enterAnalGoto(s: GameState, scene: SceneBuilder): void {
           }
           ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'anal' + (((s as any).sex_ev ?? 0)?.['speed']) + '';
           scene.actions([
-            { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+            { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
           ]);
         }
       }
@@ -815,7 +815,7 @@ function enterAnalPain3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Ouch! Hey! Ow!" you yell. "Wait! That hurts!"');
     scene.text(`iif(sex_ev['speed'] < 3, '"It'll get better," ${((s as any).npcdesc ?? '')} says uncaringly and continues to fuck you without breaking stride.', '"It'll get better," ${((s as any).npcdesc ?? '')} grunts uncaringly and continues to fuck you without breaking stride.')`);
     scene.actions([
-      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+      { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);
   } else {
     scene.img('images/shared/sex/anal/doggy/anal.jpg');

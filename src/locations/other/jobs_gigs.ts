@@ -88,11 +88,13 @@ function enterGenerateEventSchedule(s: GameState, scene: SceneBuilder): void {
     if (((String(((s as any).evt_transient ?? 0)?.['week_string']).indexOf(String(((s as any).dateVars ?? 0)?.['week']))) + 1) <= 0) {
       ((s as any).evt_transient = (s as any).evt_transient ?? {})['search_day'] = ((s as any).evt_transient['search_day'] ?? 0) + (1);
       if (((s as any).evt_transient ?? 0)?.['search_day'] <= ((s as any).evt_transient ?? 0)?.['search_limit']) {
-        break;
+        continue;
       }
+      break;
     } else {
       ((s as any).evt_transient = (s as any).evt_transient ?? {})['event_daystart'] = (((s as any).evt_transient ?? 0)?.['search_day']);
       ((s as any).evt_transient = (s as any).evt_transient ?? {})['event_dow'] = (((s as any).dateVars ?? 0)?.['week']);
+      break;
     }
   }
   scene.build();

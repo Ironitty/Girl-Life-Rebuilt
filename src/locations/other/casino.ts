@@ -1202,7 +1202,7 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-    } while (((s as any).temp_dealer_hand ?? 0)?.[String((s as any).i ?? 0)] !== 0);
+    } while ((((s as any).temp_dealer_hand ?? 0)?.[String((s as any).i ?? 0)] ?? 0) !== 0);
     while (((s as any).dealerPoints ?? 0) > 21 && ((s as any).numAces ?? 0) > 0) {
       (s as any).dealerPoints = ((s as any).dealerPoints ?? 0) - (10);
       (s as any).numAces = ((s as any).numAces ?? 0) - (1);
@@ -1223,7 +1223,7 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
       scene.text(`l 'Hand #${((s as any).i ?? '') + 1}:'`);
     }
     (s as any).j = 0;
-    while (((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)] !== 0) {
+    while ((((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)] ?? 0) !== 0) {
       scene.img(`${(((s as any).deckImg ?? 0)?.[(((s as any).temp_player_hand ?? 0)?.[((s as any).i ?? '') * 16 + ((s as any).j ?? '')] ?? '')] ?? '')}`);
       if (((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]] === 1) {
         ((s as any).temp_player_points = (s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + (11);

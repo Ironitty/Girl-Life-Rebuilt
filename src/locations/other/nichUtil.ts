@@ -523,7 +523,7 @@ function enterCleanPic(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).nichTempPic ?? {}).length === 0) {
     (s as any).RESULT = 'images/pc/activities/maidCleaning/maid0.jpg';
   } else {
-    (s as any).RESULT = 'images/pc/activities/maidCleaning/'+((s as any).nichTempPic ?? 0)[((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('nichTempPic')-1)];
+    (s as any).RESULT = 'images/pc/activities/maidCleaning/' + (s as any).nichTempPic[Math.floor(Math.random() * ((s as any).nichTempPic?.length ?? 0))];
   }
   if (((s as any).nichDebug ?? 0) === 1) {
     scene.text('Debug: Picture ' + ((s as any).RESULT ?? ''));
@@ -573,9 +573,9 @@ function enterUpdatePcHair(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcActivityAdd(s: GameState, scene: SceneBuilder): void {
-  ((s as any).nichNpcActArr = (s as any).nichNpcActArr ?? {})[0] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).nichNpcActTime = (s as any).nichNpcActTime ?? {})[0] = ((s as any).locArgs?.[2] ?? 0)*60 + ((s as any).locArgs?.[3] ?? 0);
-  scene.build();
+  const arrIdx = Object.keys((s as any).nichNpcActArr ?? {}).length;
+  ((s as any).nichNpcActArr = (s as any).nichNpcActArr ?? {})[String(arrIdx)] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).nichNpcActTime = (s as any).nichNpcActTime ?? {})[String(arrIdx)] = ((s as any).locArgs?.[2] ?? 0)*60 + ((s as any).locArgs?.[3] ?? 0);
 }
 
 function enterNpcActivity(s: GameState, scene: SceneBuilder): void {
@@ -809,14 +809,15 @@ function enterNpcActivity(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nichNpcActTime ?? 0)?.[String((s as any).nichNpcActC ?? 0)] <= ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0)) {
       (s as any).nichNpcActC = ((s as any).nichNpcActC ?? 0) + (1);
       if (((s as any).nichNpcActC ?? 0) < Object.keys((s as any).nichNpcActTime ?? {}).length) {
-        break;
+        continue;
       }
     }
-    (s as any).RESULT = (((s as any).nichNpcActArr ?? 0)?.[String((s as any).nichNpcActC ?? 0)] ?? 0);
-    (s as any).nichNpcActArr = undefined;
-    (s as any).nichNpcActTime = undefined;
-    (s as any).nichNpcActC = undefined;
+    break;
   }
+  (s as any).RESULT = (((s as any).nichNpcActArr ?? 0)?.[String((s as any).nichNpcActC ?? 0)] ?? 0);
+  (s as any).nichNpcActArr = undefined;
+  (s as any).nichNpcActTime = undefined;
+  (s as any).nichNpcActC = undefined;
   scene.build();
 }
 

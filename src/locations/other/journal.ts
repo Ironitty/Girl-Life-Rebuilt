@@ -1103,10 +1103,11 @@ function enterNotestab(s: GameState, scene: SceneBuilder): void {
     if (((s as any).jur_temp ?? 0) < Object.keys((s as any).zapis ?? {}).length) {
       scene.text(`${(((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { /* killvar zapis */ return s; }); window.__gameStore.getState().doGoto(/u0027/u0027journal/u0027/u0027, /u0027/u0027notestab/u0027/u0027/u0027); return false;">Delete</a>`);
       (s as any).jur_temp = ((s as any).jur_temp ?? 0) + (1);
-      break;
+      continue;
     }
-    (s as any).jur_temp = undefined;
+    break;
   }
+  (s as any).jur_temp = undefined;
   scene.build();
 }
 

@@ -156,7 +156,7 @@ function enterSetGroup(s: GameState, scene: SceneBuilder): void {
 function enterDoSubgroup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_functions', 'reset_' + ((s as any).locArgs?.[2] ?? 0) + '');
   qspCall(s, 'intro_character_templates', '$start_type[\'group\']', ((s as any).locArgs?.[2] ?? 0));
-  qspCall(s, 'intro_character_templates', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'intro_character_templates', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   return;
   scene.build();
 }

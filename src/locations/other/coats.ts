@@ -50,7 +50,7 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    qspCall(s, 'coat_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'coat_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = '';
   if (qspFunc(s, 'coats', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -80,7 +80,7 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    qspCall(s, 'coat_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'coat_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = (qspFunc(s, 'coats', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set') === '');
   return;
@@ -181,7 +181,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === 0) {
     return;
   }
-  qspCall(s, 'coat_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'coat_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   if ((!((s as any).CoatQuality ?? 0))) {
     return;
   }

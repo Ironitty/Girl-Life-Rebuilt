@@ -681,7 +681,7 @@ function enterParameters(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).prostitute = (s as any).prostitute ?? {})['regular'] = 0;
   }
-  if (((s as any).prostitute ?? 0)?.['regular'] === 0  &&  ((s as any).prostitute ?? 0)?.['rough'] === 0  &&  ((s as any).prostitute ?? 0)?.['std_mod'] === 0  &&  (Math.floor(Math.random() * 100) + 1) > ((s as any).iif ?? 0)(((s as any).pro_brand ?? 0)?.['text_pubic'] === 'cumslut', 84, 92)) {
+  if (((s as any).prostitute ?? 0)?.['regular'] === 0  &&  ((s as any).prostitute ?? 0)?.['rough'] === 0  &&  ((s as any).prostitute ?? 0)?.['std_mod'] === 0  &&  (Math.floor(Math.random() * 100) + 1) > ((c,a,b)=>c?a:b)(((s as any).pro_brand ?? 0)?.['text_pubic'] === 'cumslut', 84, 92)) {
     ((s as any).prostitute = (s as any).prostitute ?? {})['client_creampie'] = 1;
   } else {
     ((s as any).prostitute = (s as any).prostitute ?? {})['client_creampie'] = 0;

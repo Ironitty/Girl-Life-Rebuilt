@@ -59,11 +59,13 @@ function enterTraceListLocs(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tmp_i ?? 0) < Object.keys((s as any).trace_locations ?? {}).length) {
       (s as any).tmp_msg = ((s as any).tmp_msg ?? 0) + ((((s as any).trace_locations ?? 0)?.[String((s as any).tmp_i ?? 0)] ?? 0) + '<br>');
       (s as any).tmp_i = ((s as any).tmp_i ?? 0) + (1);
-      break;
+      continue;
     }
-    alert(((s as any).tmp_msg ?? 0));
-    (s as any).tmp_i = undefined;
+    break;
   }
+  alert(((s as any).tmp_msg ?? 0));
+  (s as any).tmp_i = undefined;
+  (s as any).tmp_msg = undefined;
   scene.build();
 }
 

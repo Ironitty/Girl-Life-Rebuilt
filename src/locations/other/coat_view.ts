@@ -62,7 +62,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'add') {
-    qspCall(s, 'coat_attributes', '$ARGS[2]', ((s as any).locArgs?.[3] ?? 0));
+    qspCall(s, 'coat_attributes', (s as any).locArgs?.[2] ?? '', ((s as any).locArgs?.[3] ?? 0));
     if ((!((s as any).CoatQuality ?? 0))) {
       return;
     }
@@ -82,7 +82,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      qspCall(s, 'coat_attributes', '$ARGS[4]', ((s as any).locArgs?.[5] ?? 0));
+      qspCall(s, 'coat_attributes', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       scene.img(`${qspFunc(s, '$coat_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       return;
     }
@@ -98,7 +98,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      qspCall(s, 'coat_attributes', '$ARGS[4]', ((s as any).locArgs?.[5] ?? 0));
+      qspCall(s, 'coat_attributes', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       scene.img(`${qspFunc(s, '$coat_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       return;
     }

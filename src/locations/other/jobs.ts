@@ -1038,9 +1038,9 @@ function enterBuildBookingEventVars(s: GameState, scene: SceneBuilder): void {
 function enterGetJobDefinition(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_title ?? 0)[String((s as any).locArgs?.[1] ?? '')] === '') {
     if (((s as any).job_definition_source ?? 0)[String((s as any).locArgs?.[1] ?? '')] !== ''  &&  hasLocation((((s as any).job_definition_source ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0))) {
-      qspCall(s, '$job_definition_source[$ARGS[1]]', '$ARGS[1]');
+      qspCall(s, '$job_definition_source[$ARGS[1]]', (s as any).locArgs?.[1] ?? '');
     } else {
-      qspCall(s, 'jobs_list', '$ARGS[1]');
+      qspCall(s, 'jobs_list', (s as any).locArgs?.[1] ?? '');
     }
   }
   return;
@@ -1304,7 +1304,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
                 }
               } else {
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).sd_si ?? 0)?.['job']), ((s as any).daystart ?? 0)]; enterGetShiftForDay(s, scene); (s as any).locArgs = __savedLocArgs; }
-                if (((s as any).job_last_work_day ?? 0)[((s as any).sd_si ?? 0)?.['job']] === ((s as any).daystart ?? 0)  &&  ((s as any).job_worked_count ?? 0)[((s as any).sd_si ?? 0)?.['job']] > 0  &&  ((s as any).sd_si ?? 0)?.['now'] >= ((s as any).result_arrival ?? 0)  &&  ((s as any).sd_si ?? 0)?.['now'] < ((s as any).iif ?? 0)(((s as any).job_clocked_in ?? 0)[((s as any).sd_si ?? 0)?.['job']] > 0, ((s as any).job_clocked_in ?? 0)[((s as any).sd_si ?? 0)?.['job']], ((s as any).result_start ?? 0)) + ((s as any).result_duration ?? 0)) {
+                if (((s as any).job_last_work_day ?? 0)[((s as any).sd_si ?? 0)?.['job']] === ((s as any).daystart ?? 0)  &&  ((s as any).job_worked_count ?? 0)[((s as any).sd_si ?? 0)?.['job']] > 0  &&  ((s as any).sd_si ?? 0)?.['now'] >= ((s as any).result_arrival ?? 0)  &&  ((s as any).sd_si ?? 0)?.['now'] < ((c,a,b)=>c?a:b)(((s as any).job_clocked_in ?? 0)[((s as any).sd_si ?? 0)?.['job']] > 0, ((s as any).job_clocked_in ?? 0)[((s as any).sd_si ?? 0)?.['job']], ((s as any).result_start ?? 0)) + ((s as any).result_duration ?? 0)) {
                   ((s as any).sd_si = (s as any).sd_si ?? {})['suffix'] = 'green';
                   ((s as any).sd_si = (s as any).sd_si ?? {})['show'] = 1;
                 } else {
@@ -1437,89 +1437,93 @@ function enterCleanupJob(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'calendar_events', 'remove_event', 'job_booking_' + ((s as any).locArgs?.[1] ?? 0) + '_' + String(((s as any).temp_day_idx ?? 0)) + '_' + String(((s as any).temp_cleanup_slot ?? 0)));
           }
           (s as any).temp_cleanup_slot = ((s as any).temp_cleanup_slot ?? 0) + (1);
-          break;
+          continue;
         }
-        (s as any).temp_day_idx = ((s as any).temp_day_idx ?? 0) + (1);
         break;
       }
-    }
-    (s as any).temp_cleanup_max_slot = undefined;
-    (s as any).temp_cleanup_slot = undefined;
-    ((s as any).job_bookings_active = (s as any).job_bookings_active ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-    ((s as any).job_title = (s as any).job_title ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
-    ((s as any).job_location = (s as any).job_location ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
-    ((s as any).job_schedule_mode = (s as any).job_schedule_mode ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
-    ((s as any).job_pay_interval_def = (s as any).job_pay_interval_def ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
-    ((s as any).job_pay_rate_def = (s as any).job_pay_rate_def ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-    ((s as any).job_work_dates = (s as any).job_work_dates ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
-    ((s as any).job_available_days = (s as any).job_available_days ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
-    ((s as any).job_available_start = (s as any).job_available_start ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-    ((s as any).job_available_end = (s as any).job_available_end ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-    ((s as any).job_create_availability_events = (s as any).job_create_availability_events ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-    ((s as any).job_booking_window_days = (s as any).job_booking_window_days ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-    ((s as any).job_booking_slots_per_day = (s as any).job_booking_slots_per_day ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-    ((s as any).job_booking_max_concurrent = (s as any).job_booking_max_concurrent ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-    ((s as any).job_booking_min_gap_days = (s as any).job_booking_min_gap_days ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-    ((s as any).job_arrival_start = (s as any).job_arrival_start ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-    ((s as any).job_arrival_end = (s as any).job_arrival_end ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-    (s as any).temp_cleanup_slot_idx = 0;
-    while (true) {
-      if (((s as any).temp_cleanup_slot_idx ?? 0) < 4) {
-        ((s as any).job_slot_arrival = (s as any).job_slot_arrival ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_cleanup_slot_idx ?? 0))] = 0;
-        ((s as any).job_slot_start = (s as any).job_slot_start ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_cleanup_slot_idx ?? 0))] = 0;
-        ((s as any).job_slot_shift = (s as any).job_slot_shift ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_cleanup_slot_idx ?? 0))] = 0;
-        (s as any).temp_cleanup_slot_idx = ((s as any).temp_cleanup_slot_idx ?? 0) + (1);
-        break;
-      }
-      (s as any).temp_cleanup_slot_idx = undefined;
-      ((s as any).job_blocking = (s as any).job_blocking ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-      ((s as any).job_add_to_calendar = (s as any).job_add_to_calendar ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-      ((s as any).job_show_stat_icon = (s as any).job_show_stat_icon ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-      ((s as any).job_refresh_desc = (s as any).job_refresh_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-      ((s as any).job_penalty_per_miss = (s as any).job_penalty_per_miss ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-      ((s as any).job_penalty_max_debt = (s as any).job_penalty_max_debt ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-      ((s as any).job_on_miss_handler = (s as any).job_on_miss_handler ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
-      ((s as any).job_on_miss_handler_func = (s as any).job_on_miss_handler_func ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
-      ((s as any).job_schedule_switchable = (s as any).job_schedule_switchable ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
-      (s as any).temp_schedule_idx = 0;
-      while (true) {
-        if (((s as any).temp_schedule_idx ?? 0) < 5) {
-          ((s as any).job_work_days = (s as any).job_work_days ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_schedule_idx ?? 0))] = '';
-          ((s as any).job_arrival = (s as any).job_arrival ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_schedule_idx ?? 0))] = 0;
-          ((s as any).job_start = (s as any).job_start ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_schedule_idx ?? 0))] = 0;
-          ((s as any).job_shift = (s as any).job_shift ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_schedule_idx ?? 0))] = 0;
-          ((s as any).job_recurrence_pattern = (s as any).job_recurrence_pattern ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_schedule_idx ?? 0))] = '';
-          (s as any).temp_schedule_idx = ((s as any).temp_schedule_idx ?? 0) + (1);
-          break;
-        }
-        (s as any).temp_list_idx = qspUntranslated(s, "arrpos('job_list', ARGS[1])", { location: "jobs" });
-        if (((s as any).temp_list_idx ?? 0) >= 0) {
-          (s as any).job_list = undefined;
-        }
-        (s as any).temp_schedule_idx = undefined;
-        (s as any).temp_day_idx = undefined;
-        (s as any).temp_list_idx = undefined;
-        (s as any).temp_booking_range = undefined;
-        return;
-      }
-    }
+      (s as any).temp_day_idx = ((s as any).temp_day_idx ?? 0) + (1);
+      continue;
   }
+  break;
+  }
+  (s as any).temp_cleanup_max_slot = undefined;
+  (s as any).temp_cleanup_slot = undefined;
+  ((s as any).job_bookings_active = (s as any).job_bookings_active ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_title = (s as any).job_title ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
+  ((s as any).job_location = (s as any).job_location ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
+  ((s as any).job_schedule_mode = (s as any).job_schedule_mode ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
+  ((s as any).job_pay_interval_def = (s as any).job_pay_interval_def ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
+  ((s as any).job_pay_rate_def = (s as any).job_pay_rate_def ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_work_dates = (s as any).job_work_dates ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
+  ((s as any).job_available_days = (s as any).job_available_days ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
+  ((s as any).job_available_start = (s as any).job_available_start ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_available_end = (s as any).job_available_end ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_create_availability_events = (s as any).job_create_availability_events ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_booking_window_days = (s as any).job_booking_window_days ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_booking_slots_per_day = (s as any).job_booking_slots_per_day ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_booking_max_concurrent = (s as any).job_booking_max_concurrent ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_booking_min_gap_days = (s as any).job_booking_min_gap_days ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_arrival_start = (s as any).job_arrival_start ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_arrival_end = (s as any).job_arrival_end ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  (s as any).temp_cleanup_slot_idx = 0;
+  while (true) {
+    if (((s as any).temp_cleanup_slot_idx ?? 0) < 4) {
+      ((s as any).job_slot_arrival = (s as any).job_slot_arrival ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_cleanup_slot_idx ?? 0))] = 0;
+      ((s as any).job_slot_start = (s as any).job_slot_start ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_cleanup_slot_idx ?? 0))] = 0;
+      ((s as any).job_slot_shift = (s as any).job_slot_shift ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_cleanup_slot_idx ?? 0))] = 0;
+      (s as any).temp_cleanup_slot_idx = ((s as any).temp_cleanup_slot_idx ?? 0) + (1);
+      continue;
+    }
+  break;
+  }
+  (s as any).temp_cleanup_slot_idx = undefined;
+  ((s as any).job_blocking = (s as any).job_blocking ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_add_to_calendar = (s as any).job_add_to_calendar ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_show_stat_icon = (s as any).job_show_stat_icon ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_refresh_desc = (s as any).job_refresh_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_penalty_per_miss = (s as any).job_penalty_per_miss ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_penalty_max_debt = (s as any).job_penalty_max_debt ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  ((s as any).job_on_miss_handler = (s as any).job_on_miss_handler ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
+  ((s as any).job_on_miss_handler_func = (s as any).job_on_miss_handler_func ?? {})[((s as any).locArgs?.[1] ?? 0)] = '';
+  ((s as any).job_schedule_switchable = (s as any).job_schedule_switchable ?? {})[((s as any).locArgs?.[1] ?? 0)] = 0;
+  (s as any).temp_schedule_idx = 0;
+  while (true) {
+    if (((s as any).temp_schedule_idx ?? 0) < 5) {
+      ((s as any).job_work_days = (s as any).job_work_days ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_schedule_idx ?? 0))] = '';
+      ((s as any).job_arrival = (s as any).job_arrival ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_schedule_idx ?? 0))] = 0;
+      ((s as any).job_start = (s as any).job_start ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_schedule_idx ?? 0))] = 0;
+      ((s as any).job_shift = (s as any).job_shift ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_schedule_idx ?? 0))] = 0;
+      ((s as any).job_recurrence_pattern = (s as any).job_recurrence_pattern ?? {})[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_schedule_idx ?? 0))] = '';
+      (s as any).temp_schedule_idx = ((s as any).temp_schedule_idx ?? 0) + (1);
+      continue;
+    }
+  break;
+  }
+  (s as any).temp_list_idx = qspUntranslated(s, "arrpos('job_list', ARGS[1])", { location: "jobs" });
+  if (((s as any).temp_list_idx ?? 0) >= 0) {
+    (s as any).job_list = undefined;
+  }
+  (s as any).temp_schedule_idx = undefined;
+  (s as any).temp_day_idx = undefined;
+  (s as any).temp_list_idx = undefined;
+  (s as any).temp_booking_range = undefined;
+  return;
   scene.build();
 }
 
 function enterTerminateAllJobs(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_term_idx = 0;
+  (s as any).temp_term_idx = Object.keys((s as any).job_list ?? {}).length - 1;
   while (true) {
     if (((s as any).temp_term_idx ?? 0) >= 0) {
       (s as any).temp_term_job = (((s as any).job_list ?? 0)?.[String((s as any).temp_term_idx ?? 0)] ?? 0);
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_term_job ?? 0)]; enterCleanupJob(s, scene); (s as any).locArgs = __savedLocArgs; }
       (s as any).temp_term_idx = ((s as any).temp_term_idx ?? 0) - (1);
-      break;
+      continue;
     }
-    (s as any).temp_term_idx = undefined;
-    (s as any).temp_term_job = undefined;
-    return;
+    break;
   }
+  (s as any).temp_term_idx = undefined;
+  (s as any).temp_term_job = undefined;
   scene.build();
 }
 

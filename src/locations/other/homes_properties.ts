@@ -49,7 +49,7 @@ function enterSetHome(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).temp_homepropcode ?? 0));
     if (((String(((s as any).property ?? 0)?.['type']).indexOf(String('residence'))) + 1) > 0) {
       (s as any).home = undefined;
-      (s as any)[property] ? (s as any)[property] = { ...(s as any)[home] } : (s as any)[property] = { ...(s as any)[home] };
+      (s as any).home = { ...(s as any).property };
       ((s as any).home = (s as any).home ?? {})['current'] = (((s as any).property ?? 0)?.['code']);
       if (((s as any).accessible_property ?? 0)[((s as any).home ?? 0)?.['current']] === 0) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).home ?? 0)?.['current']), 1]; enterSetAccess(s, scene); (s as any).locArgs = __savedLocArgs; }

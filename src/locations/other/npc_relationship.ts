@@ -152,11 +152,12 @@ function enterCheck(s: GameState, scene: SceneBuilder): void {
         (s as any).npc_rel_check = ((s as any).npc_rel_check ?? 0) + (1);
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      break;
+      continue;
     }
-    (s as any).result = ((s as any).npc_rel_check ?? 0);
-    (s as any).npcRelSetVal = undefined;
+    break;
   }
+  (s as any).result = ((s as any).npc_rel_check ?? 0);
+  (s as any).npcRelSetVal = undefined;
   scene.build();
 }
 
@@ -187,10 +188,10 @@ function enterSocialgroupSettingInternal(s: GameState, scene: SceneBuilder): voi
       }
     }
     (s as any).r = ((s as any).r ?? 0) + (1);
-    (s as any).i = undefined;
-    (s as any).r = undefined;
-    (s as any).sg_setting_gend = undefined;
   } while (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0));
+  (s as any).i = undefined;
+  (s as any).r = undefined;
+  (s as any).sg_setting_gend = undefined;
   scene.build();
 }
 

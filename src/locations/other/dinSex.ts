@@ -29,16 +29,16 @@ function enterStdTrigger(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).sexcontra ?? 0) === 4  ||  ((s as any).sexcontra ?? 0) === 5) {
-      if ((Math.floor(Math.random() * 101) + 0) >= ((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '') === 'high', 65, ((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '') === 'low', 85, 75))) {
+      if ((Math.floor(Math.random() * 101) + 0) >= ((c,a,b)=>c?a:b)(String((s as any).locArgs?.[1] ?? '') === 'high', 65, ((c,a,b)=>c?a:b)(String((s as any).locArgs?.[1] ?? '') === 'low', 85, 75))) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDiseasePicker(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).sexcontra ?? 0) === 6  ||  ((s as any).sexcontra ?? 0) === 7) {
-        if ((Math.floor(Math.random() * 101) + 0) >= ((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '') === 'high', 70, ((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '') === 'low', 90, 80))) {
+        if ((Math.floor(Math.random() * 101) + 0) >= ((c,a,b)=>c?a:b)(String((s as any).locArgs?.[1] ?? '') === 'high', 70, ((c,a,b)=>c?a:b)(String((s as any).locArgs?.[1] ?? '') === 'low', 90, 80))) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDiseasePicker(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
-        if ((Math.floor(Math.random() * 101) + 0) >= ((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '') === 'high', 60, ((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '') === 'low', 80, 70))) {
+        if ((Math.floor(Math.random() * 101) + 0) >= ((c,a,b)=>c?a:b)(String((s as any).locArgs?.[1] ?? '') === 'high', 60, ((c,a,b)=>c?a:b)(String((s as any).locArgs?.[1] ?? '') === 'low', 80, 70))) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDiseasePicker(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
@@ -105,16 +105,16 @@ function enterStdTriggerOral(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).sexcontra ?? 0) === 4  ||  ((s as any).sexcontra ?? 0) === 5) {
-      if ((Math.floor(Math.random() * 101) + 0) >= ((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '') === 'high', 70, ((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '') === 'low', 90, 80))) {
+      if ((Math.floor(Math.random() * 101) + 0) >= ((c,a,b)=>c?a:b)(String((s as any).locArgs?.[1] ?? '') === 'high', 70, ((c,a,b)=>c?a:b)(String((s as any).locArgs?.[1] ?? '') === 'low', 90, 80))) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDiseasePickerOral(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).sexcontra ?? 0) === 6  ||  ((s as any).sexcontra ?? 0) === 7) {
-        if ((Math.floor(Math.random() * 101) + 0) >= ((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '') === 'high', 75, ((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '') === 'low', 95, 85))) {
+        if ((Math.floor(Math.random() * 101) + 0) >= ((c,a,b)=>c?a:b)(String((s as any).locArgs?.[1] ?? '') === 'high', 75, ((c,a,b)=>c?a:b)(String((s as any).locArgs?.[1] ?? '') === 'low', 95, 85))) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDiseasePickerOral(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
-        if ((Math.floor(Math.random() * 101) + 0) >= ((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '') === 'high', 65, ((s as any).iif ?? 0)(String((s as any).locArgs?.[1] ?? '') === 'low', 85, 75))) {
+        if ((Math.floor(Math.random() * 101) + 0) >= ((c,a,b)=>c?a:b)(String((s as any).locArgs?.[1] ?? '') === 'high', 65, ((c,a,b)=>c?a:b)(String((s as any).locArgs?.[1] ?? '') === 'low', 85, 75))) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDiseasePickerOral(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
@@ -485,7 +485,7 @@ function enterSexcum(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).npcID ?? 0);
   }
-  qspCall(s, 'npcStat', '$ARGS[1]', 'm');
+  qspCall(s, 'npcStat', (s as any).locArgs?.[1] ?? '', 'm');
   (s as any).frost = 0;
   if (((s as any).protect ?? 0) !== 1) {
     if ((Math.floor(Math.random() * 2) + 0) === 0  ||  ((s as any).pose ?? 0) === 3) {

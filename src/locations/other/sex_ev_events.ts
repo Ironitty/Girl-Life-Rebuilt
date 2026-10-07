@@ -1165,6 +1165,7 @@ function enterSugarDaddyGift(s: GameState, scene: SceneBuilder): void {
 
 function enterSugarDaddyGiftCheck(s: GameState, scene: SceneBuilder): void {
   (s as any).newdress_loop = 0;
+  while (true) {
   if ((Math.floor(Math.random() * 5) + 1) === 1) {
     qspCall(s, 'clothing', 'totals', 'moncheri_dress');
     (s as any).newdress_id = (Math.floor(Math.random() * (((s as any).total ?? 0) - 1 + 1)) + (1));
@@ -1178,7 +1179,7 @@ function enterSugarDaddyGiftCheck(s: GameState, scene: SceneBuilder): void {
       if (((s as any).newdress_loop ?? 0) > 1000) {
         alert('ERROR: formal cloth loop > 1000');
       } else {
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSugarDaddyGiftCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
+        continue
       }
     }
   } else {
@@ -1195,7 +1196,7 @@ function enterSugarDaddyGiftCheck(s: GameState, scene: SceneBuilder): void {
         if (((s as any).newdress_loop ?? 0) > 1000) {
           alert('ERROR: formal cloth loop > 1000');
         } else {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSugarDaddyGiftCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
+          continue
         }
       }
     } else {
@@ -1211,7 +1212,7 @@ function enterSugarDaddyGiftCheck(s: GameState, scene: SceneBuilder): void {
           if (((s as any).newdress_loop ?? 0) > 1000) {
             alert('ERROR: formal cloth loop > 1000');
           } else {
-            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSugarDaddyGiftCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
+            continue
           }
         }
       } else {
@@ -1228,7 +1229,7 @@ function enterSugarDaddyGiftCheck(s: GameState, scene: SceneBuilder): void {
             if (((s as any).newdress_loop ?? 0) > 1000) {
               alert('ERROR: formal cloth loop > 1000');
             } else {
-              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSugarDaddyGiftCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
+              continue
             }
           }
         } else {
@@ -1243,12 +1244,14 @@ function enterSugarDaddyGiftCheck(s: GameState, scene: SceneBuilder): void {
             if (((s as any).newdress_loop ?? 0) > 1000) {
               alert('ERROR: formal cloth loop > 1000');
             } else {
-              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSugarDaddyGiftCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
+              continue
             }
           }
         }
       }
     }
+  }
+  break;
   }
   (s as any).newdress_id = undefined;
   (s as any).newdress_loop = undefined;

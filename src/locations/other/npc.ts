@@ -11,42 +11,43 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCleanarrays(s: GameState, scene: SceneBuilder): void {
-  (s as any).i_gs_cl = 0;
+  (s as any).i_gs_cl = Object.keys((s as any).npc_index ?? {}).length;
   while (true) {
     (s as any).i_gs_cl = ((s as any).i_gs_cl ?? 0) - (1);
     if (((s as any).i_gs_cl ?? 0) >= 0) {
       if ((String((String((((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)] ?? 0)).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) !== 'C') {
-        break;
+        continue;
       }
       if (((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)] === ((s as any).npclastgenerated ?? 0)) {
-        break;
+        continue;
       }
       if ((Array.isArray((s as any).cumarrnam) ? ((s as any).cumarrnam as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
-        break;
+        continue;
       }
       if ((Array.isArray((s as any).sparrnam) ? ((s as any).sparrnam as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
-        break;
+        continue;
       }
       if ((Array.isArray((s as any).cumfthname) ? ((s as any).cumfthname as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
-        break;
+        continue;
       }
       if ((Array.isArray((s as any).wombpotfath) ? ((s as any).wombpotfath as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
-        break;
+        continue;
       }
       if ((Array.isArray((s as any).wombName) ? ((s as any).wombName as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
-        break;
+        continue;
       }
       if ((Array.isArray((s as any).ChildFath) ? ((s as any).ChildFath as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
-        break;
+        continue;
       }
       if ((Array.isArray((s as any).ChildThFath) ? ((s as any).ChildThFath as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
-        break;
+        continue;
       }
       qspCall(s, 'npccleanc', '', (String((((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)] ?? 0)).toUpperCase()));
-      break;
+      continue;
     }
-    (s as any).i_gs_cl = undefined;
+    break;
   }
+  (s as any).i_gs_cl = undefined;
   scene.build();
 }
 

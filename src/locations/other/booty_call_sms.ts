@@ -115,7 +115,7 @@ function enterBcChoice2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '6'] ?? 0));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[4] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
-  qspCall(s, 'booty_call_sms', '$ARGS[3]', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[4] ?? 0));
+  qspCall(s, 'booty_call_sms', (s as any).locArgs?.[3] ?? '', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[4] ?? 0));
   (s as any).SMSTree = undefined;
   scene.build();
 }
@@ -202,7 +202,7 @@ function enterChoice2B2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '4'] ?? 0));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[4] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
-  qspCall(s, 'booty_call_sms', '$ARGS[3]', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[4] ?? 0));
+  qspCall(s, 'booty_call_sms', (s as any).locArgs?.[3] ?? '', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[4] ?? 0));
   (s as any).SMSTree = undefined;
   scene.build();
 }
@@ -571,7 +571,7 @@ function enterNewRouting3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.[((s as any).locArgs?.[3] ?? 0) + '21'] ?? 0));
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[6] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
-  qspCall(s, 'booty_call_sms', '$ARGS[4]', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[6] ?? 0));
+  qspCall(s, 'booty_call_sms', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   (s as any).SMSTree = undefined;
   scene.build();
 }
@@ -584,7 +584,7 @@ function enterNewEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'show_sms', ((s as any).locArgs?.[5] ?? 0));
   qspCall(s, 'SMStext_builder', 'end');
   (s as any).SMSTree = undefined;
-  qspCall(s, 'booty_call_sms', '$ARGS[3]', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[5] ?? 0));
+  qspCall(s, 'booty_call_sms', (s as any).locArgs?.[3] ?? '', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[5] ?? 0));
   scene.build();
 }
 

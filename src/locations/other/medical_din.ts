@@ -363,35 +363,36 @@ function enterGiveBirth(s: GameState, scene: SceneBuilder): void {
     scene.text(`The doctors clean up ${(((s as any).kidname ?? 0)?.[String((s as any).nextBaby ?? 0)] ?? '')}.`);
     if (((s as any).BabyEmbryo ?? 0) > 0) {
       scene.text(`You don't have much time to look at your ${(((s as any).polreb ?? 0)?.[String((s as any).nextBaby ?? 0)] ?? '')} because you're having an another contraction. Your next baby is coming!`);
-      break;
+      continue;
     }
-    (s as any).preg = 0;
-    (s as any).RecovH = (Math.floor(Math.random() * 701) + 1175);
-    (s as any).pregbirthdate = ((s as any).daystart ?? 0);
-    (s as any).thinkpreg = 0;
-    (s as any).knowpreg = 0;
-    (s as any).knowpregrecover = 1;
-    (s as any).vidage = ((s as any).vidage ?? 0) + (1);
-    (s as any).pregtalk = 0;
-    (s as any).pcs_pregtalk = 0;
-    (s as any).pregTalkFamily = 0;
-    ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A16'] = 0;
-    ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A34'] = 0;
-    ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A29'] = 0;
-    (s as any).pregChem = 0;
-    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['preg'] = (((s as any).pcs_mass ?? {})?.['preg'] ?? 0) / 2;
-    if (((s as any).pcs_mass ?? 0)?.['preg'] > 0) {
-      ((s as any).bodyVars = (s as any).bodyVars ?? {})['RecovH_next'] = (((s as any).RecovH ?? 0) * ((((s as any).pcs_mass ?? {})?.['preg'] ?? 0)-1)) / (((s as any).pcs_mass ?? {})?.['preg'] ?? 0);
-    }
-    (s as any).cycle = 4;
-    if (((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {
-      qspCall(s, 'arousal_funcs', 'set_virginity_stats', 'birth');
-      ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['lost_cause'] = 'birth';
-    }
-    qspCall(s, 'cum_cleanup', 'reset');
-    qspCall(s, 'din_bad', 'd_cycreport_choice');
-    qspCall(s, 'stat', '');
+  break;
   }
+  (s as any).preg = 0;
+  (s as any).RecovH = (Math.floor(Math.random() * 701) + 1175);
+  (s as any).pregbirthdate = ((s as any).daystart ?? 0);
+  (s as any).thinkpreg = 0;
+  (s as any).knowpreg = 0;
+  (s as any).knowpregrecover = 1;
+  (s as any).vidage = ((s as any).vidage ?? 0) + (1);
+  (s as any).pregtalk = 0;
+  (s as any).pcs_pregtalk = 0;
+  (s as any).pregTalkFamily = 0;
+  ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A16'] = 0;
+  ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A34'] = 0;
+  ((s as any).npc_pregtalk = (s as any).npc_pregtalk ?? {})['A29'] = 0;
+  (s as any).pregChem = 0;
+  ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['preg'] = (((s as any).pcs_mass ?? {})?.['preg'] ?? 0) / 2;
+  if (((s as any).pcs_mass ?? 0)?.['preg'] > 0) {
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['RecovH_next'] = (((s as any).RecovH ?? 0) * ((((s as any).pcs_mass ?? {})?.['preg'] ?? 0)-1)) / (((s as any).pcs_mass ?? {})?.['preg'] ?? 0);
+  }
+  (s as any).cycle = 4;
+  if (((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {
+    qspCall(s, 'arousal_funcs', 'set_virginity_stats', 'birth');
+    ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['lost_cause'] = 'birth';
+  }
+  qspCall(s, 'cum_cleanup', 'reset');
+  qspCall(s, 'din_bad', 'd_cycreport_choice');
+  qspCall(s, 'stat', '');
   scene.build();
 }
 

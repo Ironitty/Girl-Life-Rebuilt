@@ -182,7 +182,7 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_punch ?? 0));
       } else {
         if (String((s as any).locArgs?.[2] ?? '') === 'kick') {
-          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = 3 * ((s as any).pcs_stren ?? 0) + ((s as any).rand ?? 0)(-3 * (((s as any).pcs_stren ?? 0) / 5), 3 * (((s as any).pcs_stren ?? 0) / 5));
+          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = 3 * ((s as any).pcs_stren ?? 0) + (Math.floor(Math.random() * (3 * (((s as any).pcs_stren ?? 0) / 5) - (-3 * (((s as any).pcs_stren ?? 0) / 5)) + 1)) + (-3 * (((s as any).pcs_stren ?? 0) / 5)));
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_kick ?? 0)) / 2;
         }
       }
@@ -225,7 +225,7 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = ((((s as any).temp_kickboxVars ?? {})?.['npc_speed'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_react'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_punch'] ?? 0));
       } else {
         if (String((s as any).locArgs?.[2] ?? '') === 'kick') {
-          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = 3 * (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) + ((s as any).rand ?? 0)(-3 * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5), 3 * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5));
+          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = 3 * (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) + (Math.floor(Math.random() * (3 * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5) - (-3 * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5)) + 1)) + (-3 * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5)));
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = ((((s as any).temp_kickboxVars ?? {})?.['npc_speed'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_react'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_kick'] ?? 0)) / 2;
         }
       }

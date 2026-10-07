@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspGoto, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -959,6 +959,168 @@ function enterDresscontest(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterAnnaSubSession(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  ((s as any).AnnaQW = (s as any).AnnaQW ?? {})['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
+  ((s as any).AnnaQW = (s as any).AnnaQW ?? {})['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+  (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub0.jpg');
+  scene.text('You both go to change your dress; Anna requires you to wear like a school girl… She gave you a uniform with a short skirt, but you saw someting more daring for sure; it shouldn\'t be a problem after all. ' + qspFunc(s, 'wrap', 'accent', ' "…Uhhmff!…Sometimes i feel that i could use the lingerie to restrict!"') + '<br>' + qspFunc(s, 'wrap', 'v_neg', '"…Do you need any help?"') + qspFunc(s, 'wrap', 'accent', ' "…No thanks my dear… Ngghh!…Ahhh… there we are. Mmmm… i should speak with the Pav G&M owner… Anyway you could feel that today will be less than what you could expect, or even what you saw or done since today; that\'s because i want you to pass through an entire session from the beginning to the end, and I don\'t want any rush; we\'ll see what to do as we proceed. That said: are you ready? We\'ll start collaring you…"'));
+  scene.actions([
+    { label: '…', handler: (st: GameState) => {
+      qspCall(st, 'stat', '');
+      scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub1.jpg');
+      scene.text('You are a bit reluctantly to have a collar on your neck; but it\'s part of the session and you shouldn\'t come back…' + qspFunc(st, 'wrap', 'accent', ' "A little scared? Do not worry, I cannot hurt those puppy eyes… hehehe. Also, remember that there\'s no real meaning if you don\'t look for it."') + ' Anna goes behind your back and wrap the collar on you. ');
+      scene.actions([
+        { label: '…', goto: ['hotel_anna', 'Anna_sub_session1'] },
+      ]);
+    } },
+    { label: 'Offer your neck…', handler: (st: GameState) => {
+      qspCall(st, 'stat', '');
+      scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub1a.jpg');
+      scene.text(qspFunc(st, 'wrap', 'accent', ' "Good girl, I see you enter the role. Of course it stays within the session, it has no real meaning if you aren\'t looking for it."') + ' You offer an easy access to your neck.');
+      scene.actions([
+        { label: '…', goto: ['hotel_anna', 'Anna_sub_session1'] },
+      ]);
+    } },
+  ]);
+}
+
+function enterAnnaSubSession1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub2.jpg');
+  scene.text(qspFunc(s, 'wrap', 'accent', ' "Collaring is a great sign of obedience; today we\'ll speak a little about obedience, and we\'ll pass to practical mainly, if you are willing of course. I don\'t have to remember that nothing has a meaning if you don\'t want."') + '<br>' + qspFunc(s, 'wrap', 'v_neg', '"O-ok.."') + '<br>' + qspFunc(s, 'wrap', 'accent', '"…Anyway, I want you to not being worried about not accomplished some task. Depending on yourself you could find something too much degrading, and I have no reason to let you feel some discomfort. "') + '<br>' + qspFunc(s, 'wrap', 'v_neg', '"T-thanks… I think…"') + '<br>' + qspFunc(s, 'wrap', 'accent', '"…Expecially, showing obedience, that if you accept within a BDSM relationship, has a deep meaning. And we\'ll start with that. Now: do you have something in mind that you could use to show me your obedience?"'));
+  scene.actions([
+    { label: 'Refuse…', handler: (st: GameState) => {
+      qspCall(st, 'stat', '');
+      (st as any).Anna_see_asub = ((st as any).Anna_see_asub ?? 0) - (1);
+      scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub2.jpg');
+      scene.text('You shake your head… ' + qspFunc(st, 'wrap', 'accent', '"…Ok. For example you could lower your body and kiss my feet. Feet have a great meaning too; subs put their life under the Dominant\'s feet. You can clearly see that there\'s a big meaning about subs; what you may not think as first is that it\'s a great responsibility for Dominant. Life is a delicate crystal, and NEVER, I said NEVER, Dominant should think about damaging it. That\'s a rule, and there\'s no deal on that."') + '<br>' + qspFunc(st, 'wrap', 'v_neg', '"I see… I think…"') + '<br>' + qspFunc(st, 'wrap', 'accent', '"Sssshhh!!!"') + '…Anna points her index to the ceiling…' + qspFunc(st, 'wrap', 'accent', '"Listen! Don\'t speak. That\'s a hand code for silence."') + '<br>' + qspFunc(st, 'wrap', 'v_neg', '"…"') + 'You nod<br>' + qspFunc(st, 'wrap', 'accent', '"Good. Now follow me."'));
+      scene.actions([
+        { label: '…', goto: ['hotel_anna', 'Anna_sub_session2'] },
+      ]);
+    } },
+    { label: 'Show your obedience', handler: (st: GameState) => {
+      qspCall(st, 'stat', '');
+      ((st as any).AnnaQW = (st as any).AnnaQW ?? {})['sub'] = ((st as any).AnnaQW['sub'] ?? 0) + (1);
+      scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub2a.jpg');
+      scene.text('You had it… ' + qspFunc(st, 'wrap', 'accent', '"You are a good girl, that\'s a perfect sign of obedience. You have to know that feet have a great meaning too; subs put their life under the Dominant\'s feet. You can clearly see that there\'s a big meaning about subs; what you may not think as first is that it\'s a great responsibility for Dominant. Life is a delicate crystal, and NEVER, I said NEVER, Dominant should think about damaging it. That\'s a rule, and there\'s no deal on that."') + '<br>' + qspFunc(st, 'wrap', 'v_neg', '"I see… I think…"') + '<br>' + qspFunc(st, 'wrap', 'accent', '"Sssshhh!!!"') + '…Anna points her index to the ceiling…' + qspFunc(st, 'wrap', 'accent', '"Listen! Don\'t speak. That\'s a hand code for silence."') + '<br>' + qspFunc(st, 'wrap', 'v_neg', '"…"') + 'You nod<br>' + qspFunc(st, 'wrap', 'accent', '"Good. Now follow me."'));
+      scene.actions([
+        { label: '…', goto: ['hotel_anna', 'Anna_sub_session2'] },
+      ]);
+    } },
+  ]);
+}
+
+function enterAnnaSubSession2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub3.jpg');
+  scene.text('Anna puts her index into the ring of the collar… you have the reflex to put your hands on hers, but she scolds you immediately. ' + qspFunc(s, 'wrap', 'accent', ' "No!…Do not act if not asked. Put your hands, behind your back."') + ' You obey the order Anna gave you, mainly because she\'s joking with the collar and she\'s not pulling it. ' + qspFunc(s, 'wrap', 'accent', ' "The reflex you had shows me you are not willing to be dragged by your collar. That\'s why I didn\'t pull it: to let you get acquainted. Honestly I don\'t want to pull it, I\'d like you to stand up on your own."') + 'You start rising yourself…' + qspFunc(s, 'wrap', 'accent', '"…Without hands."') + '<br>' + qspFunc(s, 'wrap', 'v_neg', '"…But..how…"') + '<br>' + qspFunc(s, 'wrap', 'accent', '"Bend one knee and start rising… it will be natural after that. Don\'t worry… I\'ll follow your movements with my finger. And don\'t rush, I don\'t want you to fall."') + 'You nod and rise your body without your hands… it wasn\'t difficult after all. ');
+  scene.actions([
+    { label: '…', handler: (st: GameState) => {
+      qspCall(st, 'stat', '');
+      scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub3a.jpg');
+      scene.text('Anna took a chair from the room…' + qspFunc(st, 'wrap', 'accent', '"Now bend over."') + '<br>' + qspFunc(st, 'wrap', 'v_neg', '"…"') + '<br>' + qspFunc(st, 'wrap', 'accent', '"See it wasn\'t difficult… was it?"') + '<br>' + qspFunc(st, 'wrap', 'v_neg', '"…It\'s the situation… I mean… I feel a little exposed."') + '<br>' + qspFunc(st, 'wrap', 'accent', '"That\'s great!"') + '<br>' + qspFunc(st, 'wrap', 'v_neg', '"W-what do you mean?"') + '<br>' + qspFunc(st, 'wrap', 'accent', '"Exposure was the think I had to speak about, and since you felt a little exposed I can skip that part. Ok… next… "') + 'Anna moves from the room and returns with a flogger immediately. ' + qspFunc(st, 'wrap', 'accent', '"Again: obedience. This is a flogger as you know; another great sign of obedience is to kiss it, to kiss the Discipline tool, to kiss it shows the respect subs have to have toward the Discipline and the time the Dominant spend for their education. Will you show me your obedience?"'));
+      scene.actions([
+        { label: 'Refuse', handler: (st2: GameState) => {
+          qspCall(st2, 'stat', '');
+          scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub4.jpg');
+          scene.text(qspFunc(st2, 'wrap', 'accent', ' "…Understandable. In that case feel the flogger…"') + '<br>' + qspFunc(st2, 'wrap', 'v_neg', '"WHAT?"') + '<br>' + qspFunc(st2, 'wrap', 'accent', ' "…that softly crawl on your back…"') + '<br>' + qspFunc(st2, 'wrap', 'v_neg', '"…A-Anna… you scared me…"') + '<br>' + qspFunc(st2, 'wrap', 'accent', ' "…sweetie… I didn\'t finished the sentence. Ok, now the reminder spanking."') + '<br>' + qspFunc(st2, 'wrap', 'v_neg', '"WHAT??? I heard well that time."') + '<br>' + qspFunc(st2, 'wrap', 'accent', '"It\'s symbolic ' + ((st2 as any).pcs_nickname ?? '') + ', it take care of things that could have been missed."') + '<br>' + qspFunc(st2, 'wrap', 'v_neg', '"…w-we didn\'t speak about spanking…"') + '<br>' + qspFunc(st2, 'wrap', 'accent', '"Uhhmm… let me think. What about a game?"') + ' ');
+          scene.actions([
+            { label: '…?????…', goto: ['hotel_anna', 'table1'] },
+          ]);
+        } },
+        { label: 'Show your obedience', handler: (st2: GameState) => {
+          qspCall(st2, 'stat', '');
+          scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub4a.jpg');
+          scene.text(qspFunc(st2, 'wrap', 'accent', ' "Good girl. Ok, now the reminder spanking."') + '<br>' + qspFunc(st2, 'wrap', 'v_neg', '"WHAT???"') + '<br>' + qspFunc(st2, 'wrap', 'accent', '"It\'s symbolic ' + ((st2 as any).pcs_nickname ?? '') + ', it takes care of things that could have been missed."') + '<br>' + qspFunc(st2, 'wrap', 'v_neg', '"…w-we didn\'t speak about spanking…"') + '<br>' + qspFunc(st2, 'wrap', 'accent', '"Uhhmm… let me think. What about a game?"'));
+          scene.actions([
+            { label: '…?????…', goto: ['hotel_anna', 'table1'] },
+          ]);
+        } },
+      ]);
+    } },
+  ]);
+}
+
+function enterAnnaSubSession3(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).Anna_mini_round ?? 0) === 1) {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub5.jpg');
+    scene.text(qspFunc(s, 'wrap', 'accent', ' "…Well… it\'s your choice… Ok ' + ((s as any).pcs_nickname ?? '') + ', when you are ready put your belly on my knees. "') + ' You hope it won\'t last long, take a big breath and execute Anna\'s order.<br>' + qspFunc(s, 'wrap', 'v_neg', '"A-Anna… go easy… ok?"') + '<br>' + qspFunc(s, 'wrap', 'accent', ' "Pfff! There\'s no need you\'ll see. Ok, that\'s called OTK: over the knees… just for you to know."') + 'And Anna start… she\'s spanking you but her hit has no real strengh, you barely feel them. You were surprised or the shortness of the spanking, because Anna stop after few hits. <br>' + qspFunc(s, 'wrap', 'accent', '"Uhhmm… interesting…"') + ' Despite the tenderness and shortness, your butt became a little red… <br>' + qspFunc(s, 'wrap', 'v_neg', '"Is there something wrong?"') + '<br>' + qspFunc(s, 'wrap', 'accent', '"Well… you got a delicate skin… nothing incredible. Anyway, we can pass to the posing for the night, you won\'t stay there of course, i\'ll free you when done; you can chose: do you want to try something a little more realistic being naked, or do you prefer to stay dressed?"'));
+    scene.actions([
+      { label: '…I\'ve got no problems being naked…', goto: ['hotel_anna', 'Anna_sub_sessionN'] },
+      { label: '…I prefer staying dressed if you don\'t mind…', goto: ['hotel_anna', 'Anna_sub_sessionD'] },
+    ]);
+  }
+}
+
+function enterAnnaSubSessionN(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub6.jpg');
+  scene.text(qspFunc(s, 'wrap', 'accent', ' "…Good choice… you are a brave girl…"') + ' You undress and Anna guides you to the position.<br>' + qspFunc(s, 'wrap', 'v_neg', '"…A little cold…"') + '<br>' + qspFunc(s, 'wrap', 'accent', ' "…That\'s part of the game… you are exposed, vulnerable, and you are mine for the night…"'));
+  scene.actions([
+    { label: '…', goto: ['hotel_anna', 'Anna_sub_session3'] },
+  ]);
+}
+
+function enterAnnaSubSessionD(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/sub/sub6a.jpg');
+  scene.text(qspFunc(s, 'wrap', 'accent', ' "…Understandable… you are not ready yet…"') + ' You stay dressed and Anna guides you to the position.<br>' + qspFunc(s, 'wrap', 'v_neg', '"…Thank you…"') + '<br>' + qspFunc(s, 'wrap', 'accent', ' "…Don\'t thank me yet… the night is young…"'));
+  scene.actions([
+    { label: '…', goto: ['hotel_anna', 'Anna_sub_session3'] },
+  ]);
+}
+
+function enterScanningPath(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('Scanning path…');
+  scene.actions([
+    { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
+  ]);
+}
+
+function enterText(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('Text…');
+  scene.actions([
+    { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
+  ]);
+}
+
+function enterTable1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('Table 1…');
+  scene.actions([
+    { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
+  ]);
+}
+
+function enterTable1game(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('Table 1 game…');
+  scene.actions([
+    { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
+  ]);
+}
+
+function enterTable2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('Table 2…');
+  scene.actions([
+    { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
+  ]);
+}
+
+function enterTable2game(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('Table 2 game…');
+  scene.actions([
+    { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
+  ]);
+}
+
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).loc = 'hotel_anna';
   (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
@@ -989,6 +1151,42 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'dresscontest':
       enterDresscontest(s, scene);
+      break;
+    case 'Anna_sub_session':
+      enterAnnaSubSession(s, scene);
+      break;
+    case 'Anna_sub_session1':
+      enterAnnaSubSession1(s, scene);
+      break;
+    case 'Anna_sub_session2':
+      enterAnnaSubSession2(s, scene);
+      break;
+    case 'Anna_sub_session3':
+      enterAnnaSubSession3(s, scene);
+      break;
+    case 'Anna_sub_sessionN':
+      enterAnnaSubSessionN(s, scene);
+      break;
+    case 'Anna_sub_sessionD':
+      enterAnnaSubSessionD(s, scene);
+      break;
+    case 'scanning_path':
+      enterScanningPath(s, scene);
+      break;
+    case 'text':
+      enterText(s, scene);
+      break;
+    case 'table1':
+      enterTable1(s, scene);
+      break;
+    case 'table1game':
+      enterTable1game(s, scene);
+      break;
+    case 'table2':
+      enterTable2(s, scene);
+      break;
+    case 'table2game':
+      enterTable2game(s, scene);
       break;
     default:
       enterDefault(s, scene);

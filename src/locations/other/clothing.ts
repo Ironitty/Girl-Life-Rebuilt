@@ -203,7 +203,7 @@ function enterGetSwimsuitCount(s: GameState, scene: SceneBuilder): void {
 
 function enterGetPrice(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[3] ?? '') === 0  &&  String((s as any).locArgs?.[3] ?? '') === '') {
-    qspCall(s, 'clothing_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = (((s as any).CloPrice ?? 0) * ((5 * ((s as any).CloQuality ?? 0)) + 100) / 100) * 1000 / (1250 - ((s as any).Clothingstock ?? 0)[((s as any).locArgs?.[2] ?? 0)]) * 3 / 2;
   (s as any).result = ((s as any).result ?? 0) / 50 * 50;
@@ -219,7 +219,7 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    qspCall(s, 'clothing_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = '';
   if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -271,7 +271,7 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    qspCall(s, 'clothing_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = (qspFunc(s, 'clothing', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set') === '');
   return;
@@ -409,7 +409,7 @@ function enterIsHypnoApproved(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    qspCall(s, 'clothing_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = 1;
   if (((s as any).hypnoClothes ?? 0) <= 0) {
@@ -538,7 +538,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === 0) {
     return;
   }
-  qspCall(s, 'clothing_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   if ((!((s as any).CloQuality ?? 0))) {
     return;
   }

@@ -27,11 +27,11 @@ function enterKGDhire(s: GameState, scene: SceneBuilder): void {
       (s as any).i = 6;
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    (s as any).type = undefined;
-    (s as any).baseHP = undefined;
-    (s as any).baseDam = undefined;
-    (s as any).i = undefined;
   } while (((s as any).i ?? 0) <= 6);
+  (s as any).type = undefined;
+  (s as any).baseHP = undefined;
+  (s as any).baseDam = undefined;
+  (s as any).i = undefined;
   scene.build();
 }
 

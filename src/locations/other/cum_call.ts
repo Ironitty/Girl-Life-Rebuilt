@@ -137,7 +137,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).tempnpcid = undefined;
     }
   }
-  qspCall(s, 'npcStat', '$ARGS[1]', 0, ((s as any).locArgs?.[3] ?? 0));
+  qspCall(s, 'npcStat', (s as any).locArgs?.[1] ?? '', 0, ((s as any).locArgs?.[3] ?? 0));
   (s as any).sexpartkno = ((((s as any).npc_love ?? 0)?.[String((s as any).npcID ?? 0)] > 0) ? (1) : (0));
   if (String((s as any).locArgs?.[2] ?? '') === 1) {
     (s as any).sexpartkno = 1;

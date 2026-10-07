@@ -473,11 +473,11 @@ function enterFindBestPlacement(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).temp_try_start = ((s as any).temp_try_start ?? 0) + (1);
-      break;
+      continue;
     }
-    (s as any).temp_blocked = undefined;
-    return;
+    break;
   }
+  (s as any).temp_blocked = undefined;
   scene.build();
 }
 
@@ -494,24 +494,25 @@ function enterFindFreeWindowAround(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_blocked = qspFunc(s, 'calendar_schedule', 'is_range_blocked', ((s as any).temp_d ?? 0), ((s as any).temp_left ?? 0) - 1, ((s as any).temp_left ?? 0) - 1, ((s as any).temp_evt_id ?? 0), ((s as any).temp_mode ?? 0));
       if ((!((s as any).temp_blocked ?? 0))) {
         (s as any).temp_left = ((s as any).temp_left ?? 0) - (1);
-        break;
+        continue;
       }
     }
-    (s as any).temp_duration = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', duration']);
-    (s as any).temp_right = ((s as any).temp_center ?? 0) + ((s as any).temp_duration ?? 0) - 1;
-    while (true) {
-      if (((s as any).temp_right ?? 0) < ((s as any).temp_orig_end ?? 0)) {
-        (s as any).temp_blocked = qspFunc(s, 'calendar_schedule', 'is_range_blocked', ((s as any).temp_d ?? 0), ((s as any).temp_right ?? 0) + 1, ((s as any).temp_right ?? 0) + 1, ((s as any).temp_evt_id ?? 0), ((s as any).temp_mode ?? 0));
-        if ((!((s as any).temp_blocked ?? 0))) {
-          (s as any).temp_right = ((s as any).temp_right ?? 0) + (1);
-          break;
-        }
-      }
-      (s as any).result_window_start = ((s as any).temp_left ?? 0);
-      (s as any).result_window_end = ((s as any).temp_right ?? 0);
-      return;
-    }
+    break;
   }
+  (s as any).temp_duration = (((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', duration']);
+  (s as any).temp_right = ((s as any).temp_center ?? 0) + ((s as any).temp_duration ?? 0) - 1;
+  while (true) {
+    if (((s as any).temp_right ?? 0) < ((s as any).temp_orig_end ?? 0)) {
+      (s as any).temp_blocked = qspFunc(s, 'calendar_schedule', 'is_range_blocked', ((s as any).temp_d ?? 0), ((s as any).temp_right ?? 0) + 1, ((s as any).temp_right ?? 0) + 1, ((s as any).temp_evt_id ?? 0), ((s as any).temp_mode ?? 0));
+      if ((!((s as any).temp_blocked ?? 0))) {
+        (s as any).temp_right = ((s as any).temp_right ?? 0) + (1);
+        continue;
+      }
+    }
+    break;
+  }
+  (s as any).result_window_start = ((s as any).temp_left ?? 0);
+  (s as any).result_window_end = ((s as any).temp_right ?? 0);
   scene.build();
 }
 
@@ -623,17 +624,18 @@ function enterAssignColumns(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_d ?? 0) <= 7) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0)]; enterAssignDayColumns(s, scene); (s as any).locArgs = __savedLocArgs; }
       (s as any).temp_d = ((s as any).temp_d ?? 0) + (1);
-      break;
+      continue;
     }
-    (s as any).temp_d = 1;
-    while (true) {
-      if (((s as any).temp_d ?? 0) <= 7) {
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0)]; enterCalculateDayColspans(s, scene); (s as any).locArgs = __savedLocArgs; }
-        (s as any).temp_d = ((s as any).temp_d ?? 0) + (1);
-        break;
-      }
-      return;
+    break;
+  }
+  (s as any).temp_d = 1;
+  while (true) {
+    if (((s as any).temp_d ?? 0) <= 7) {
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0)]; enterCalculateDayColspans(s, scene); (s as any).locArgs = __savedLocArgs; }
+      (s as any).temp_d = ((s as any).temp_d ?? 0) + (1);
+      continue;
     }
+    break;
   }
   scene.build();
 }
@@ -646,57 +648,60 @@ function enterAssignDayColumns(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_init_c ?? 0) < 4) {
       ((s as any).column_end_slot = (s as any).column_end_slot ?? {})[String((s as any).temp_init_c ?? 0)] = (-1);
       (s as any).temp_init_c = ((s as any).temp_init_c ?? 0) + (1);
-      break;
+      continue;
     }
-    (s as any).temp_max_col_used = (-1);
-    (s as any).temp_t = 0;
-    while (true) {
-      if (((s as any).temp_t ?? 0) < 96) {
-        (s as any).temp_event_count = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', event_count']);
-        if (((s as any).temp_event_count ?? 0) > 0) {
-          (s as any).temp_e = 0;
-          while (true) {
-            if (((s as any).temp_e ?? 0) < ((s as any).temp_event_count ?? 0)) {
-              (s as any).temp_is_hidden = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_hidden']);
-              if ((!((s as any).temp_is_hidden ?? 0))) {
-                while (true) {
-                  (s as any).temp_event_span = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', span']);
-                  (s as any).temp_event_end_slot = ((s as any).temp_t ?? 0) + ((s as any).temp_event_span ?? 0) - 1;
-                  (s as any).temp_col = 0;
-                  while (true) {
-                    if (((s as any).temp_col ?? 0) >= 4) {
-                      (s as any).temp_col = 3;
-                      qspGoto(s, 'calendar_schedule', 'assign_column');
-                    }
-                    if (((s as any).column_end_slot ?? 0)?.[String((s as any).temp_col ?? 0)] < ((s as any).temp_t ?? 0)) {
-                      // LABEL: assign_column
-                      ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', column'] = ((s as any).temp_col ?? 0);
-                      ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', colspan'] = 1;
-                      ((s as any).column_end_slot = (s as any).column_end_slot ?? {})[String((s as any).temp_col ?? 0)] = ((s as any).temp_event_end_slot ?? 0);
-                      if (((s as any).temp_col ?? 0) > ((s as any).temp_max_col_used ?? 0)) {
-                        (s as any).temp_max_col_used = ((s as any).temp_col ?? 0);
-                      }
-                      break;
-                    }
-                    (s as any).temp_col = ((s as any).temp_col ?? 0) + (1);
-                    break;
+    break;
+  }
+  (s as any).temp_max_col_used = (-1);
+  (s as any).temp_t = 0;
+  while (true) {
+    if (((s as any).temp_t ?? 0) < 96) {
+      (s as any).temp_event_count = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', event_count']);
+      if (((s as any).temp_event_count ?? 0) > 0) {
+        (s as any).temp_e = 0;
+        while (true) {
+          if (((s as any).temp_e ?? 0) < ((s as any).temp_event_count ?? 0)) {
+            (s as any).temp_is_hidden = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', is_hidden']);
+            if ((!((s as any).temp_is_hidden ?? 0))) {
+              (s as any).temp_event_span = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', span']);
+              (s as any).temp_event_end_slot = ((s as any).temp_t ?? 0) + ((s as any).temp_event_span ?? 0) - 1;
+              (s as any).temp_col = 0;
+              while (true) {
+                if (((s as any).temp_col ?? 0) >= 4) {
+                  (s as any).temp_col = 3;
+                  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', column'] = ((s as any).temp_col ?? 0);
+                  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', colspan'] = 1;
+                  ((s as any).column_end_slot = (s as any).column_end_slot ?? {})[String((s as any).temp_col ?? 0)] = ((s as any).temp_event_end_slot ?? 0);
+                  if (((s as any).temp_col ?? 0) > ((s as any).temp_max_col_used ?? 0)) {
+                    (s as any).temp_max_col_used = ((s as any).temp_col ?? 0);
                   }
                   break;
                 }
-                // LABEL: found_column
+                if (((s as any).column_end_slot ?? 0)?.[String((s as any).temp_col ?? 0)] < ((s as any).temp_t ?? 0)) {
+                  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', column'] = ((s as any).temp_col ?? 0);
+                  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', colspan'] = 1;
+                  ((s as any).column_end_slot = (s as any).column_end_slot ?? {})[String((s as any).temp_col ?? 0)] = ((s as any).temp_event_end_slot ?? 0);
+                  if (((s as any).temp_col ?? 0) > ((s as any).temp_max_col_used ?? 0)) {
+                    (s as any).temp_max_col_used = ((s as any).temp_col ?? 0);
+                  }
+                  break;
+                }
+                (s as any).temp_col = ((s as any).temp_col ?? 0) + (1);
+                continue;
               }
-              (s as any).temp_e = ((s as any).temp_e ?? 0) + (1);
-              break;
             }
+            (s as any).temp_e = ((s as any).temp_e ?? 0) + (1);
+            continue;
           }
+          break;
         }
-        (s as any).temp_t = ((s as any).temp_t ?? 0) + (1);
-        break;
       }
-      ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', max_columns'] = ((s as any).temp_max_col_used ?? 0) + 1;
-      return;
+      (s as any).temp_t = ((s as any).temp_t ?? 0) + (1);
+      continue;
     }
+    break;
   }
+  ((s as any).week_schedule = (s as any).week_schedule ?? {})['days=' + String(((s as any).temp_d ?? 0)) + ', max_columns'] = ((s as any).temp_max_col_used ?? 0) + 1;
   scene.build();
 }
 
@@ -806,42 +811,45 @@ function enterIsColumnFreeForSpan(s: GameState, scene: SceneBuilder): void {
               }
             }
             (s as any).temp_scan_e = ((s as any).temp_scan_e ?? 0) + (1);
-            break;
+            continue;
           }
+          break;
         }
       }
       (s as any).temp_scan_t = ((s as any).temp_scan_t ?? 0) + (1);
-      break;
+      continue;
     }
-    (s as any).temp_scan_t = ((s as any).temp_start_ts ?? 0);
-    while (true) {
-      if (((s as any).temp_scan_t ?? 0) <= ((s as any).temp_end_ts ?? 0)) {
-        (s as any).temp_scan_count = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', event_count']);
-        if (((s as any).temp_scan_count ?? 0) > 0) {
-          (s as any).temp_scan_e = 0;
-          while (true) {
-            if (((s as any).temp_scan_e ?? 0) < ((s as any).temp_scan_count ?? 0)) {
-              (s as any).temp_is_hidden = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', is_hidden']);
-              if ((!((s as any).temp_is_hidden ?? 0))) {
-                (s as any).temp_evt_col = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', column']);
-                (s as any).temp_evt_colspan = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', colspan']);
-                if (((s as any).temp_check_col ?? 0) >= ((s as any).temp_evt_col ?? 0)  &&  ((s as any).temp_check_col ?? 0) < ((s as any).temp_evt_col ?? 0) + ((s as any).temp_evt_colspan ?? 0)) {
-                  (s as any).result = 0;
-                  return;
-                }
-              }
-              (s as any).temp_scan_e = ((s as any).temp_scan_e ?? 0) + (1);
-              break;
-            }
-          }
-        }
-        (s as any).temp_scan_t = ((s as any).temp_scan_t ?? 0) + (1);
-        break;
-      }
-      (s as any).result = 1;
-      return;
-    }
+    break;
   }
+  (s as any).temp_scan_t = ((s as any).temp_start_ts ?? 0);
+  while (true) {
+    if (((s as any).temp_scan_t ?? 0) <= ((s as any).temp_end_ts ?? 0)) {
+      (s as any).temp_scan_count = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', event_count']);
+      if (((s as any).temp_scan_count ?? 0) > 0) {
+        (s as any).temp_scan_e = 0;
+        while (true) {
+          if (((s as any).temp_scan_e ?? 0) < ((s as any).temp_scan_count ?? 0)) {
+            (s as any).temp_is_hidden = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', is_hidden']);
+            if ((!((s as any).temp_is_hidden ?? 0))) {
+              (s as any).temp_evt_col = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', column']);
+              (s as any).temp_evt_colspan = (((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_t ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', colspan']);
+              if (((s as any).temp_check_col ?? 0) >= ((s as any).temp_evt_col ?? 0)  &&  ((s as any).temp_check_col ?? 0) < ((s as any).temp_evt_col ?? 0) + ((s as any).temp_evt_colspan ?? 0)) {
+                (s as any).result = 0;
+                return;
+              }
+            }
+            (s as any).temp_scan_e = ((s as any).temp_scan_e ?? 0) + (1);
+            continue;
+          }
+          break;
+        }
+      }
+      (s as any).temp_scan_t = ((s as any).temp_scan_t ?? 0) + (1);
+      continue;
+    }
+    break;
+  }
+  (s as any).result = 1;
   scene.build();
 }
 

@@ -28,9 +28,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'cikl', '');
         (s as any).time_temp_jump_flag = 1;
       }
-      (s as any).time_temp_jump_flag = undefined;
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).totminut ?? 0)]; enterUpdateDaystage(s, scene); (s as any).locArgs = __savedLocArgs; }
     } while (((s as any).time_temp_jump_flag ?? 0) === 1);
+    (s as any).time_temp_jump_flag = undefined;
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).totminut ?? 0)]; enterUpdateDaystage(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).dateVars = undefined;
   return;

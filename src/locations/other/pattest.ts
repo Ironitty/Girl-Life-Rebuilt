@@ -21,8 +21,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).j ?? 0) < ((s as any).kid ?? 0)-1) {
           (s as any).j = ((s as any).j ?? 0) + (1);
-          break;
+          continue;
         }
+        break;
       }
     } else {
       if ((!((s as any).kid ?? 0))) {
@@ -54,15 +55,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).used_pattest = ((s as any).used_pattest ?? 0) + (1);
     (s as any).papa = undefined;
   }
-  (s as any).test_purse = qspUntranslated(s, "{", { location: "pattest" });
-  (s as any).j = 0;
-  (s as any).msg = 'Tests in your purse:';
-  while (true) {
-    if (((s as any).purse_pattest ?? 0)?.[String((s as any).j ?? 0)] === 1) {
-      (s as any).msg = ((s as any).msg ?? '') + '<br>' + (((s as any).testresPotfath ?? 0)?.[String((s as any).j ?? 0)] ?? 0) + '\'s test for fatherhood of ' + (((s as any).kidname ?? 0)?.[String((s as any).j ?? 0)] ?? 0) + '.';
-    }
-    if (((s as any).j ?? 0) < ((s as any).kid ?? 0)-1) {
-      (s as any).j = ((s as any).j ?? 0) + (1);
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    (s as any).test_purse = qspUntranslated(s, "{", { location: "pattest" });
+    (s as any).j = 0;
+    (s as any).msg = 'Tests in your purse:';
+    while (true) {
+      if (((s as any).purse_pattest ?? 0)?.[String((s as any).j ?? 0)] === 1) {
+        (s as any).msg = ((s as any).msg ?? '') + '<br>' + (((s as any).testresPotfath ?? 0)?.[String((s as any).j ?? 0)] ?? 0) + '\'s test for fatherhood of ' + (((s as any).kidname ?? 0)?.[String((s as any).j ?? 0)] ?? 0) + '.';
+      }
+      if (((s as any).j ?? 0) < ((s as any).kid ?? 0)-1) {
+        (s as any).j = ((s as any).j ?? 0) + (1);
+        continue;
+      }
       break;
     }
     alert(((s as any).msg ?? 0));
@@ -76,46 +80,48 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).j ?? 0) < ((s as any).kid ?? 0) - 1) {
         (s as any).j = ((s as any).j ?? 0) + (1);
-        break;
+        continue;
       }
-      ((s as any).testresDay = (s as any).testresDay ?? {})[((s as any).locArgs?.[0] ?? 0)] = ((s as any).daystart ?? 0)+(Math.floor(Math.random() * 3) + 5);
-      ((s as any).purse_pattest = (s as any).purse_pattest ?? {})[((s as any).locArgs?.[0] ?? 0)] = 0;
-      (s as any).used_pattest = ((s as any).used_pattest ?? 0) - (1);
-      (s as any).sms_testresult = qspUntranslated(s, "{", { location: "pattest" });
-      (s as any).cyc = 0;
-      while (true) {
-        if (((s as any).testresKid ?? 0)?.[String((s as any).cyc ?? 0)] !== 1) {
-          (s as any).cyc = ((s as any).cyc ?? 0) + (1);
-          break;
-        }
-        if (((s as any).daystart ?? 0) >= ((s as any).testresDay ?? 0)?.[String((s as any).cyc ?? 0)]) {
-          (s as any).c2 = 0;
-          ((s as any).SMS_msg = (s as any).SMS_msg ?? {})[String((s as any).c2 ?? 0)] = 'Result of testing: <br>';
-          if (((s as any).testresRes ?? 0)?.[String((s as any).cyc ?? 0)] === 1) {
-            ((s as any).SMS_msg = (s as any).SMS_msg ?? {})[String((s as any).c2 ?? 0)] = ((s as any).SMS_msg[String((s as any).c2 ?? 0)] ?? 0) + ('matching DNA');
-          } else {
-            ((s as any).SMS_msg = (s as any).SMS_msg ?? {})[String((s as any).c2 ?? 0)] = ((s as any).SMS_msg[String((s as any).c2 ?? 0)] ?? 0) + ('no DNA match');
-          }
-          ((s as any).SMS_msg = (s as any).SMS_msg ?? {})[String((s as any).c2 ?? 0)] = ((s as any).SMS_msg[String((s as any).c2 ?? 0)] ?? 0) + ('<br>between ' + (((s as any).testresPotfath ?? 0)?.[String((s as any).cyc ?? 0)] ?? 0) + ' and ' + qspUntranslated(s, "kidname[testresKid[cyc]]", { location: "pattest" }) + '.');
-          ((s as any).SMS_effect = (s as any).SMS_effect ?? {})[String((s as any).c2 ?? 0)] = qspUntranslated(s, "{", { location: "pattest" });
-          if (((s as any).testresRes ?? 0)?.[String((s as any).cyc ?? 0)] === 1) {
-            ((s as any).surefather = (s as any).surefather ?? {})[(((s as any).testresKid ?? 0)?.[String((s as any).cyc ?? 0)] ?? 0)] = 1;
-            ((s as any).ChildThFath = (s as any).ChildThFath ?? {})[(((s as any).testresKid ?? 0)?.[String((s as any).cyc ?? 0)] ?? 0)] = qspUntranslated(s, "ChildFath[testresKid[cyc]]", { location: "pattest" });
-          } else {
-            if (((s as any).ChildThFath ?? 0)[((s as any).testresKid ?? 0)?.[String((s as any).cyc ?? 0)]] === ((s as any).testresPotfath ?? 0)[((s as any).testresKid ?? 0)?.[String((s as any).cyc ?? 0)]]) {
-              ((s as any).ChildThFath = (s as any).ChildThFath ?? {})[(((s as any).testresKid ?? 0)?.[String((s as any).cyc ?? 0)] ?? 0)] = 'unknown';
-            }
-          }
-          ((s as any).testresKid = (s as any).testresKid ?? {})[String((s as any).cyc ?? 0)] = 0;
-        }
-        if (((s as any).cyc ?? 0) < ((s as any).kid ?? 0)-1) {
-          (s as any).cyc = ((s as any).cyc ?? 0) + (1);
-          break;
-        }
-        (s as any).cyc = undefined;
-        (s as any).c2 = undefined;
-      }
+      break;
     }
+    ((s as any).testresDay = (s as any).testresDay ?? {})[((s as any).locArgs?.[0] ?? 0)] = ((s as any).daystart ?? 0)+(Math.floor(Math.random() * 3) + 5);
+    ((s as any).purse_pattest = (s as any).purse_pattest ?? {})[((s as any).locArgs?.[0] ?? 0)] = 0;
+    (s as any).used_pattest = ((s as any).used_pattest ?? 0) - (1);
+    (s as any).sms_testresult = qspUntranslated(s, "{", { location: "pattest" });
+    (s as any).cyc = 0;
+    while (true) {
+      if (((s as any).testresKid ?? 0)?.[String((s as any).cyc ?? 0)] !== 1) {
+        (s as any).cyc = ((s as any).cyc ?? 0) + (1);
+        continue;
+      }
+      if (((s as any).daystart ?? 0) >= ((s as any).testresDay ?? 0)?.[String((s as any).cyc ?? 0)]) {
+        (s as any).c2 = 0;
+        ((s as any).SMS_msg = (s as any).SMS_msg ?? {})[String((s as any).c2 ?? 0)] = 'Result of testing: <br>';
+        if (((s as any).testresRes ?? 0)?.[String((s as any).cyc ?? 0)] === 1) {
+          ((s as any).SMS_msg = (s as any).SMS_msg ?? {})[String((s as any).c2 ?? 0)] = ((s as any).SMS_msg[String((s as any).c2 ?? 0)] ?? 0) + ('matching DNA');
+        } else {
+          ((s as any).SMS_msg = (s as any).SMS_msg ?? {})[String((s as any).c2 ?? 0)] = ((s as any).SMS_msg[String((s as any).c2 ?? 0)] ?? 0) + ('no DNA match');
+        }
+        ((s as any).SMS_msg = (s as any).SMS_msg ?? {})[String((s as any).c2 ?? 0)] = ((s as any).SMS_msg[String((s as any).c2 ?? 0)] ?? 0) + ('<br>between ' + (((s as any).testresPotfath ?? 0)?.[String((s as any).cyc ?? 0)] ?? 0) + ' and ' + qspUntranslated(s, "kidname[testresKid[cyc]]", { location: "pattest" }) + '.');
+        ((s as any).SMS_effect = (s as any).SMS_effect ?? {})[String((s as any).c2 ?? 0)] = qspUntranslated(s, "{", { location: "pattest" });
+        if (((s as any).testresRes ?? 0)?.[String((s as any).cyc ?? 0)] === 1) {
+          ((s as any).surefather = (s as any).surefather ?? {})[(((s as any).testresKid ?? 0)?.[String((s as any).cyc ?? 0)] ?? 0)] = 1;
+          ((s as any).ChildThFath = (s as any).ChildThFath ?? {})[(((s as any).testresKid ?? 0)?.[String((s as any).cyc ?? 0)] ?? 0)] = qspUntranslated(s, "ChildFath[testresKid[cyc]]", { location: "pattest" });
+        } else {
+          if (((s as any).ChildThFath ?? 0)[((s as any).testresKid ?? 0)?.[String((s as any).cyc ?? 0)]] === ((s as any).testresPotfath ?? 0)[((s as any).testresKid ?? 0)?.[String((s as any).cyc ?? 0)]]) {
+            ((s as any).ChildThFath = (s as any).ChildThFath ?? {})[(((s as any).testresKid ?? 0)?.[String((s as any).cyc ?? 0)] ?? 0)] = 'unknown';
+          }
+        }
+        ((s as any).testresKid = (s as any).testresKid ?? {})[String((s as any).cyc ?? 0)] = 0;
+      }
+      if (((s as any).cyc ?? 0) < ((s as any).kid ?? 0)-1) {
+        (s as any).cyc = ((s as any).cyc ?? 0) + (1);
+        continue;
+      }
+      break;
+    }
+    (s as any).cyc = undefined;
+    (s as any).c2 = undefined;
   }
   scene.build();
 }

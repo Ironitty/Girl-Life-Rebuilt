@@ -52,7 +52,7 @@ function enterDoggyGoto(s: GameState, scene: SceneBuilder): void {
                 }
                 ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'doggy' + (((s as any).sex_ev ?? 0)?.['speed']) + '';
                 scene.actions([
-                  { label: '', labelFn: (s: GameState) => 'Let ' + String(((s as any).npcdesc ?? '') ?? '') + ' fuck you', handler: (st: GameState) => { qspGoto(st, 'sex_ev_doggy', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+                  { label: '', labelFn: (s: GameState) => 'Let ' + String(((s as any).npcdesc ?? '') ?? '') + ' fuck you', handler: (st: GameState) => { qspGoto(st, 'sex_ev_doggy', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
                 ]);
               }
             }
@@ -580,7 +580,7 @@ function enterDoggyInsertReact(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'sex_ev_doggy', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+      { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'sex_ev_doggy', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);
   } },
       ]);

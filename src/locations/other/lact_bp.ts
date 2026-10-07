@@ -42,6 +42,7 @@ function enterViewMilkBottles(s: GameState, scene: SceneBuilder): void {
       (s as any).vmb_i = ((s as any).vmb_i ?? 0) + (1);
       break;
     }
+    break;
     if (((s as any).milkedvolume ?? 0) > 0) {
       scene.text('<br><a href="exec:gt\'lact_bp\',\'empty_all_milk_bottles\'">Pour the milk into the sink</a>');
     }

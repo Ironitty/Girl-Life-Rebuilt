@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 2;
   do {
-    if (((s as any).KGD ?? 0)['sput_' + (((s as any).i ?? 0))] === 0) {
+    if (((s as any).KGD ?? 0)['sput_' + (((s as any).i ?? 0))] !== 1) {
       (s as any).i = 7;
     }
     if (((s as any).KGD ?? 0)['sput_' + (((s as any).i ?? 0))] === 1) {

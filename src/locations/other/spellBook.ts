@@ -31,15 +31,12 @@ function enter_Dynamic__(s: GameState, scene: SceneBuilder): void {
         } else {
           (s as any).tmpHTMLCode = '\n<tr>\n<td align=\'left\'>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'right\'>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'left\'>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n</tr>';
           (s as any).n = 0;
-          while (true) {
-            if (((s as any).n ?? 0) < Object.keys((s as any)['' + (((s as any).spellOptDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + ''] ?? {}).length) {
-              ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpVal'] = 0;
-              ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpName'] = 0;
-              (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<tr>\n<td align=\'left\'></td>\n<td align=\'left\'><a href="EXEC: gs \'castSpell\', \'' + ((s as any).ThisSpellName ?? 0) + '\', \'' + (((s as any).spellBookVar ?? 0)?.['tmpVal']) + '\' & ' + (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell']) + '">' + (((s as any).spellBookVar ?? 0)?.['tmpName']) + '</a></td>\n<td align=\'left\'></td>\n</tr>');
-              (s as any).n = ((s as any).n ?? 0) + (1);
-              break;
-            }
-          }
+          do {
+            ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpVal'] = 0;
+            ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpName'] = 0;
+            (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<tr>\n<td align=\'left\'></td>\n<td align=\'left\'><a href="EXEC: gs \'castSpell\', \'' + ((s as any).ThisSpellName ?? 0) + '\', \'' + (((s as any).spellBookVar ?? 0)?.['tmpVal']) + '\' & ' + (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell']) + '">' + (((s as any).spellBookVar ?? 0)?.['tmpName']) + '</a></td>\n<td align=\'left\'></td>\n</tr>');
+            (s as any).n = ((s as any).n ?? 0) + (1);
+          } while (((s as any).n ?? 0) < Object.keys((s as any)['' + (((s as any).spellOptDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + ''] ?? {}).length);
         }
         (s as any).result = ((s as any).tmpHTMLCode ?? 0);
         ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['Counter'] = ((s as any).spellBookVar['Counter'] ?? 0) + (1);
@@ -59,24 +56,18 @@ function enter_Dynamic__(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).spellTarget ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 'team') {
               (s as any).n = 0;
-              while (true) {
-                if (((s as any).n ?? 0) < Object.keys((s as any).pcs_health ?? {}).length) {
-                  ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpName'] = 0;
-                  (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<a href="EXEC: *clr & gs \'castSpell\', \'' + ((s as any).ThisSpellName ?? 0) + '\', \'pcs\', ' + ((s as any).n ?? 0) + ', 0 & ' + (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell']) + '">' + (((s as any).spellBookVar ?? 0)?.['tmpName']) + '</a>\n<br>');
-                  (s as any).n = ((s as any).n ?? 0) + (1);
-                  break;
-                }
-              }
+              do {
+                ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpName'] = 0;
+                (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<a href="EXEC: *clr & gs \'castSpell\', \'' + ((s as any).ThisSpellName ?? 0) + '\', \'pcs\', ' + ((s as any).n ?? 0) + ', 0 & ' + (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell']) + '">' + (((s as any).spellBookVar ?? 0)?.['tmpName']) + '</a>\n<br>');
+                (s as any).n = ((s as any).n ?? 0) + (1);
+              } while (((s as any).n ?? 0) < Object.keys((s as any).pcs_health ?? {}).length);
             } else {
               (s as any).n = 0;
-              while (true) {
-                if (((s as any).n ?? 0) < Object.keys((s as any).opp_health ?? {}).length) {
-                  ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpName'] = 0;
-                  (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<a href="EXEC: *clr & gs \'castSpell\', \'' + ((s as any).ThisSpellName ?? 0) + '\', \'opp\', ' + ((s as any).n ?? 0) + ', 0 & ' + (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell']) + '">' + (((s as any).spellBookVar ?? 0)?.['tmpName']) + '</a>\n<br>');
-                  (s as any).n = ((s as any).n ?? 0) + (1);
-                  break;
-                }
-              }
+              do {
+                ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpName'] = 0;
+                (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<a href="EXEC: *clr & gs \'castSpell\', \'' + ((s as any).ThisSpellName ?? 0) + '\', \'opp\', ' + ((s as any).n ?? 0) + ', 0 & ' + (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell']) + '">' + (((s as any).spellBookVar ?? 0)?.['tmpName']) + '</a>\n<br>');
+                (s as any).n = ((s as any).n ?? 0) + (1);
+              } while (((s as any).n ?? 0) < Object.keys((s as any).opp_health ?? {}).length);
             }
           }
           (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + (' </td>\n<td align=\'left\'>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n</tr>');
@@ -96,15 +87,12 @@ function enter_Dynamic__(s: GameState, scene: SceneBuilder): void {
           } else {
             (s as any).tmpHTMLCode = '\n<tr>\n<td align=\'left\'>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'right\'>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'left\'>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n</tr>';
             (s as any).n = 0;
-            while (true) {
-              if (((s as any).n ?? 0) < Object.keys((s as any)['' + (((s as any).spellOptDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + ''] ?? {}).length) {
-                ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpVal'] = 0;
-                ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpName'] = 0;
-                (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<tr>\n<td align=\'left\'></td>\n<td align=\'left\'>' + (((s as any).spellBookVar ?? 0)?.['tmpName']) + '</td>\n<td align=\'left\'></td>\n</tr>');
-                (s as any).n = ((s as any).n ?? 0) + (1);
-                break;
-              }
-            }
+            do {
+              ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpVal'] = 0;
+              ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpName'] = 0;
+              (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<tr>\n<td align=\'left\'></td>\n<td align=\'left\'>' + (((s as any).spellBookVar ?? 0)?.['tmpName']) + '</td>\n<td align=\'left\'></td>\n</tr>');
+              (s as any).n = ((s as any).n ?? 0) + (1);
+            } while (((s as any).n ?? 0) < Object.keys((s as any)['' + (((s as any).spellOptDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + ''] ?? {}).length);
           }
           (s as any).result = ((s as any).tmpHTMLCode ?? 0);
           ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['Counter'] = ((s as any).spellBookVar['Counter'] ?? 0) + (1);
@@ -119,23 +107,20 @@ function enter_Dynamic__(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['ArraySize'] = 0;
   ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['Counter'] = 0;
-  while (true) {
+  do {
     (s as any).ThisSpellName = 0;
-    if (((s as any).i ?? 0) < ((s as any).spellBookVar ?? 0)?.['ArraySize']) {
-      ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = ((s as any).spellBookVar['TableText'] ?? 0) + (0);
-      (s as any).i = ((s as any).i ?? 0) + (1);
-      break;
-    }
-    ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = ((s as any).spellBookVar['TableText'] ?? 0) + ('\n</table>\n</center>');
-    if (((s as any).spellBookVar ?? 0)?.['Counter'] === 0) {
-      ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = '<center>You have no spells in this list.</center>';
-    }
-    (s as any).result = qspFunc(s, 'cleanHTML', (((s as any).spellBookVar ?? 0)?.['TableText']));
-    (s as any).i = undefined;
-    (s as any).ThisSpellName = undefined;
-    (s as any).spellBookVar = undefined;
-    (s as any).spellBookVar = undefined;
+    ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = ((s as any).spellBookVar['TableText'] ?? 0) + (0);
+    (s as any).i = ((s as any).i ?? 0) + (1);
+  } while (((s as any).i ?? 0) < ((s as any).spellBookVar ?? 0)?.['ArraySize']);
+  ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = ((s as any).spellBookVar['TableText'] ?? 0) + ('\n</table>\n</center>');
+  if (((s as any).spellBookVar ?? 0)?.['Counter'] === 0) {
+    ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = '<center>You have no spells in this list.</center>';
   }
+  (s as any).result = qspFunc(s, 'cleanHTML', (((s as any).spellBookVar ?? 0)?.['TableText']));
+  (s as any).i = undefined;
+  (s as any).ThisSpellName = undefined;
+  (s as any).spellBookVar = undefined;
+  (s as any).spellBookVar = undefined;
   scene.build();
 }
 

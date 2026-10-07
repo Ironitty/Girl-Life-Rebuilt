@@ -109,11 +109,12 @@ function enterUpdateBoxRecords(s: GameState, scene: SceneBuilder): void {
     if (((s as any).current_record_update_count ?? 0) < ((s as any).number_of_box_record_updates ?? 0)) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoxRecords(s, scene); (s as any).locArgs = __savedLocArgs; }
       (s as any).current_record_update_count = ((s as any).current_record_update_count ?? 0) + (1);
-      break;
+      continue;
     }
-    (s as any).current_record_update_count = undefined;
-    (s as any).number_of_box_record_updates = undefined;
+    break;
   }
+  (s as any).current_record_update_count = undefined;
+  (s as any).number_of_box_record_updates = undefined;
   scene.build();
 }
 
@@ -130,12 +131,13 @@ function enterBoxRecords(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).crossfit_record_it = ((s as any).crossfit_record_it ?? 0) + (1);
-      break;
+      continue;
     }
-    (s as any).crossfit_record_it = undefined;
-    (s as any).new_record_wod_time = undefined;
-    (s as any).crossfit_wod = undefined;
+    break;
   }
+  (s as any).crossfit_record_it = undefined;
+  (s as any).new_record_wod_time = undefined;
+  (s as any).crossfit_wod = undefined;
   scene.build();
 }
 

@@ -470,11 +470,11 @@ function enterGradeAward(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_grades_n = ((s as any).temp_grades_n ?? 0) + (1);
     }
     (s as any).temp_grades_i = ((s as any).temp_grades_i ?? 0) + (1);
-    ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_grade_average'] = ((s as any).temp_grades_sum ?? 0) / Math.max(1, ((s as any).temp_grades_n ?? 0));
-    (s as any).temp_grades_sum = undefined;
-    (s as any).temp_grades_n = undefined;
-    (s as any).temp_grades_i = undefined;
   } while (((s as any).temp_grades_i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
+  ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_grade_average'] = ((s as any).temp_grades_sum ?? 0) / Math.max(1, ((s as any).temp_grades_n ?? 0));
+  (s as any).temp_grades_sum = undefined;
+  (s as any).temp_grades_n = undefined;
+  (s as any).temp_grades_i = undefined;
   scene.build();
 }
 
@@ -500,11 +500,11 @@ function enterCalculateGrade(s: GameState, scene: SceneBuilder): void {
       ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String((((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] ?? 0)) + '_weekly_grade_gain'] = 0;
     }
     (s as any).temp_grades_i = ((s as any).temp_grades_i ?? 0) + (1);
-    ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_grade_average'] = ((s as any).temp_grades_sum ?? 0) / Math.max(1, ((s as any).temp_grades_n ?? 0));
-    (s as any).temp_grades_sum = undefined;
-    (s as any).temp_grades_n = undefined;
-    (s as any).temp_grades_i = undefined;
   } while (((s as any).temp_grades_i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
+  ((s as any).class = (s as any).class ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '_grade_average'] = ((s as any).temp_grades_sum ?? 0) / Math.max(1, ((s as any).temp_grades_n ?? 0));
+  (s as any).temp_grades_sum = undefined;
+  (s as any).temp_grades_n = undefined;
+  (s as any).temp_grades_i = undefined;
   scene.build();
 }
 

@@ -1,6 +1,7 @@
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+import { qspUntranslated } from '../_shared/qspUntranslated';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
@@ -14,15 +15,19 @@ function enterTeacherActions(s: GameState, scene: SceneBuilder): void {
   (s as any).MaxAvailable = (((s as any).spellListAvail ?? 0)?.[String((s as any).ThisArrayName ?? 0)] ?? 0);
   (s as any).i = 0;
   while (true) {
-    (s as any).ThisSpellName = 0;
+    (s as any).ThisSpellName = qspUntranslated(s, `$${(s as any).ThisArrayName}[${(s as any).i}]`, { location: "spellList" });
     (s as any).spellDifficulty = Math.max((((s as any).spellDiff ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0), 1);
     if (((s as any).i ?? 0) < ((s as any).ThisArraySize ?? 0)  &&  ((s as any).i ?? 0) < ((s as any).MaxAvailable ?? 0)) {
       if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 0  &&  (((s as any).spellReq ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === ''  ||  (((s as any).spellKnown ?? 0)[((s as any).spellReq ?? 0)?.[String((s as any).ThisSpellName ?? 0)]] === 1))) {
         if (((s as any).pcs_magik ?? 0) >= ((s as any).spellDifficulty ?? 0)) {
         }
       }
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      continue;
     }
+    break;
   }
+  (s as any).i = undefined;
   scene.build();
 }
 

@@ -108,7 +108,7 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (! (0 as any)) {
-      qspCall(s, 'exp_deg', '$ARGS[0]', 'reset');
+      qspCall(s, 'exp_deg', (s as any).locArgs?.[0] ?? '', 'reset');
     } else {
       if (((s as any).expgainVars ?? 0)?.['statName'] === 'magik') {
         (s as any).magik_adj = ((s as any).magik_adj ?? 0) + ((((s as any).expgainVars ?? 0)?.['exp_gain']));

@@ -771,7 +771,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         }
         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
         (s as any).gop_sex_lubri = 1;
-        (s as any).pod_whore_lubri_text = '"' + ((s as any).npcdesc ?? 0) + ', wait! If you want to fuck me in the ass, you should lube up my hole!" You say and pull a tube out of your purse. You take the cap off, squeeze some lube onto your fingers, and smear your anus with lube.';
+        (s as any).pod_whore_lubri_text = '"' + ((s as any).npcdesc ?? '') + ', wait! If you want to fuck me in the ass, you should lube up my hole!" You say and pull a tube out of your purse. You take the cap off, squeeze some lube onto your fingers, and smear your anus with lube.';
       } else {
         if (((s as any).mc_inventory ?? 0)?.['lubricant'] === 0) {
           if (((s as any).agape ?? 0) > 2) {
@@ -2101,22 +2101,22 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cun') {
     (s as any).temp_rand = (Math.floor(Math.random() * 6) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_cun = 'Your fingers run through his hair and your hand is pushing his head gentle down towards your crotch. ' + ((s as any).npcdesc ?? 0) + ' kisses your pussy. You arch and poke out your cunny forward. ' + ((s as any).npcdesc ?? 0) + ' slightly touches your pussy with his lips.\n"You have got a nice pussy indeed!"\nYou smiled: "I know"\nHis tongue penetrates slowly into your pussy parting your meaty nether lips. Your moaning gradually passes into scream.';
+      (s as any).txt_sex_cun = 'Your fingers run through his hair and your hand is pushing his head gentle down towards your crotch. ' + ((s as any).npcdesc ?? '') + ' kisses your pussy. You arch and poke out your cunny forward. ' + ((s as any).npcdesc ?? '') + ' slightly touches your pussy with his lips.\n"You have got a nice pussy indeed!"\nYou smiled: "I know"\nHis tongue penetrates slowly into your pussy parting your meaty nether lips. Your moaning gradually passes into scream.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_cun = '' + ((s as any).npcdesc ?? 0) + ' leans his face close to your pussy.\n"Do you like?" You ask.\n"Very much!" He replies and touches your clit with his lips and starts caressing it with his tongue. He licks skillfully, especially for his age. It was clear that it\'s not first time he puts his tongue in the girl\'s cunny.\n"You\'re good at it. Have you trained it?"\n"Sometimes" He replies with a smile.\n"Do you have a girlfriend?"\n"No…" He answers, when has a short rest.\n"Who taught you then?"\n"I got a friend."\n"Ooh. Do I know her? Is she at school?\n"No. I\'ll tell you later."';
+      (s as any).txt_sex_cun = '' + ((s as any).npcdesc ?? '') + ' leans his face close to your pussy.\n"Do you like?" You ask.\n"Very much!" He replies and touches your clit with his lips and starts caressing it with his tongue. He licks skillfully, especially for his age. It was clear that it\'s not first time he puts his tongue in the girl\'s cunny.\n"You\'re good at it. Have you trained it?"\n"Sometimes" He replies with a smile.\n"Do you have a girlfriend?"\n"No…" He answers, when has a short rest.\n"Who taught you then?"\n"I got a friend."\n"Ooh. Do I know her? Is she at school?\n"No. I\'ll tell you later."';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
-      (s as any).txt_sex_cun = 'You lie down on your back and spread your thighs wide apart. ' + ((s as any).npcdesc ?? 0) + ' pulls your panties aside and his mouth clings to your wet pussy. He licks and sucks your cunt lips, your clit, and from time to time his tongue slides into your box. You moan, holding his head and pressing it tightly to your wet pussy.';
+      (s as any).txt_sex_cun = 'You lie down on your back and spread your thighs wide apart. ' + ((s as any).npcdesc ?? '') + ' pulls your panties aside and his mouth clings to your wet pussy. He licks and sucks your cunt lips, your clit, and from time to time his tongue slides into your box. You moan, holding his head and pressing it tightly to your wet pussy.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
-      (s as any).txt_sex_cun = '' + ((s as any).npcdesc ?? 0) + ' puts you on your back and moves to your wet box. He licks your clitoris, then he puts straight two fingers into your wet pussy and starts fingering you. Squishing sounds are coming from your cunny and your moaning resounds surroundings. ' + ((s as any).npcdesc ?? 0) + ' grins and his hand moves even faster';
+      (s as any).txt_sex_cun = '' + ((s as any).npcdesc ?? '') + ' puts you on your back and moves to your wet box. He licks your clitoris, then he puts straight two fingers into your wet pussy and starts fingering you. Squishing sounds are coming from your cunny and your moaning resounds surroundings. ' + ((s as any).npcdesc ?? '') + ' grins and his hand moves even faster';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
-      (s as any).txt_sex_cun = 'You part your legs apart exposing your pussy to his view. Without hesitation, ' + ((s as any).npcdesc ?? 0) + ' starts kissing your box. He tickles your clit with his tongue and then he ran down between your pussy lips to your love hole, which was really very wet. You were ready for sex already so you could start fucking right now. But ' + ((s as any).npcdesc ?? 0) + ' is not in a hurry. He caresses you with both his tongue and his fingers listening to your sweet moans. You writhes with eagerness, but you don\'t beg just enjoy the moment.';
+      (s as any).txt_sex_cun = 'You part your legs apart exposing your pussy to his view. Without hesitation, ' + ((s as any).npcdesc ?? '') + ' starts kissing your box. He tickles your clit with his tongue and then he ran down between your pussy lips to your love hole, which was really very wet. You were ready for sex already so you could start fucking right now. But ' + ((s as any).npcdesc ?? '') + ' is not in a hurry. He caresses you with both his tongue and his fingers listening to your sweet moans. You writhes with eagerness, but you don\'t beg just enjoy the moment.';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
-      (s as any).txt_sex_cun = '"' + ((s as any).npcdesc ?? 0) + ', lick my pussy, please!" you asks kindly.\n"With pleasure!" He replies.\n' + ((s as any).npcdesc ?? 0) + ' lowers his mouth to your groin and starts licking your pussy skillfully.';
+      (s as any).txt_sex_cun = '"' + ((s as any).npcdesc ?? '') + ', lick my pussy, please!" you asks kindly.\n"With pleasure!" He replies.\n' + ((s as any).npcdesc ?? '') + ' lowers his mouth to your groin and starts licking your pussy skillfully.';
     }
     scene.text(`${((s as any).txt_sex_cun ?? '')}`);
     (s as any).txt_sex_cun = undefined;
@@ -2124,10 +2124,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_69') {
     (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_69 = 'Your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips softly accept his member sucking it passionately all round like a lollipop, helping yourself with your nimble tongue tickling his frenulum. At the same time ' + ((s as any).npcdesc ?? 0) + ' grasps your clit with his fingertips rubbing it gently between them. Simultaneously he examines your love hole with his tongue, which has been already prepared to accept something bigger.';
+      (s as any).txt_sex_69 = 'Your ' + (((s as any).pc_desc ?? {})?.['lips'] ?? '') + ' lips softly accept his member sucking it passionately all round like a lollipop, helping yourself with your nimble tongue tickling his frenulum. At the same time ' + ((s as any).npcdesc ?? '') + ' grasps your clit with his fingertips rubbing it gently between them. Simultaneously he examines your love hole with his tongue, which has been already prepared to accept something bigger.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_69 = '' + ((s as any).npcdesc ?? 0) + ' lies down on his back, takes your leg and shifts it over himself so your tushie was just in front of his face. Running his tongue between your nether lips, he feels you take his cock deep into your mouth again. You loosen your grasp a bit then and start sucking it with your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips.';
+      (s as any).txt_sex_69 = '' + ((s as any).npcdesc ?? '') + ' lies down on his back, takes your leg and shifts it over himself so your tushie was just in front of his face. Running his tongue between your nether lips, he feels you take his cock deep into your mouth again. You loosen your grasp a bit then and start sucking it with your ' + (((s as any).pc_desc ?? {})?.['lips'] ?? '') + ' lips.';
     }
     scene.text(`${((s as any).txt_sex_69 ?? '')}`);
     (s as any).txt_sex_69 = undefined;
@@ -2135,19 +2135,19 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_hj') {
     (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_hj = 'Without talking, ' + ((s as any).npcdesc ?? 0) + ' shoves his cock in your face.';
+      (s as any).txt_sex_hj = 'Without talking, ' + ((s as any).npcdesc ?? '') + ' shoves his cock in your face.';
     }
     scene.text('"That\'s like jerk off." You say laughing, take his member into your hand and start pumping.');
     if (((s as any).temp_rand ?? 0) === 1) {
       (s as any).txt_sex_hj = 'You take his still soft cock into your hand and it starts growing noticeably. You begin a hand job feasting your eyes on his strong prick.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
-      (s as any).txt_sex_hj = '' + ((s as any).npcdesc ?? 0) + ' shoves his cock into your hand. Your fingers grip on his fat elastic trunk shakily. He tells you to hold it firmer.';
+      (s as any).txt_sex_hj = '' + ((s as any).npcdesc ?? '') + ' shoves his cock into your hand. Your fingers grip on his fat elastic trunk shakily. He tells you to hold it firmer.';
     }
     scene.text('"Don\'t release it and move your hand up and down…" He takes hold showing how to do it.');
     scene.text('"Not so sharply… yes so. Don\'t pull… Yes, that\'s it. Great…! More… More.!"');
     if (((s as any).temp_rand ?? 0) === 3) {
-      (s as any).txt_sex_hj = '' + ((s as any).npcdesc ?? 0) + ' asks you to do hand job to him. You take his dick firmly into your hand and start to rub the skin back and forth.';
+      (s as any).txt_sex_hj = '' + ((s as any).npcdesc ?? '') + ' asks you to do hand job to him. You take his dick firmly into your hand and start to rub the skin back and forth.';
     }
     scene.text(`${((s as any).txt_sex_hj ?? '')}`);
     (s as any).txt_sex_hj = undefined;
@@ -2155,28 +2155,28 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_bj') {
     (s as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_bj = 'You take his member into your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips, and ' + ((s as any).npcdesc ?? 0) + ' starts to fuck your mouth.';
+      (s as any).txt_sex_bj = 'You take his member into your ' + (((s as any).pc_desc ?? {})?.['lips'] ?? '') + ' lips, and ' + ((s as any).npcdesc ?? '') + ' starts to fuck your mouth.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_bj = 'You take his member into your mouth, and start to suck it. ' + ((s as any).npcdesc ?? 0) + ' takes hold of your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair and impales your head at his prick. Slurping, you swallow his member. You could feel with your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips every vein and bump on its skin.';
+      (s as any).txt_sex_bj = 'You take his member into your mouth, and start to suck it. ' + ((s as any).npcdesc ?? '') + ' takes hold of your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair and impales your head at his prick. Slurping, you swallow his member. You could feel with your ' + (((s as any).pc_desc ?? {})?.['lips'] ?? '') + ' lips every vein and bump on its skin.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
-      (s as any).txt_sex_bj = 'You grasp his member with your hand and pumping, you take with your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips its head into your mouth. His dick stiffens more and gains impressive size. You learned to swallow a cock quite well long ago, and you used it always since that time. ' + ((s as any).npcdesc ?? 0) + ' was fascinated. You fondle his balls with one hand, and stroke his prick with other one, you release it from time to time so that you can take his shaft in your mouth fully.';
+      (s as any).txt_sex_bj = 'You grasp his member with your hand and pumping, you take with your ' + (((s as any).pc_desc ?? {})?.['lips'] ?? '') + ' lips its head into your mouth. His dick stiffens more and gains impressive size. You learned to swallow a cock quite well long ago, and you used it always since that time. ' + ((s as any).npcdesc ?? '') + ' was fascinated. You fondle his balls with one hand, and stroke his prick with other one, you release it from time to time so that you can take his shaft in your mouth fully.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
-      (s as any).txt_sex_bj = 'Without talking, ' + ((s as any).npcdesc ?? 0) + ', seizes you by your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair, tilts your head towards his penis. He starts swinging his hips fucking your mouth in such way.';
+      (s as any).txt_sex_bj = 'Without talking, ' + ((s as any).npcdesc ?? '') + ', seizes you by your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair, tilts your head towards his penis. He starts swinging his hips fucking your mouth in such way.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
-      (s as any).txt_sex_bj = '' + ((s as any).npcdesc ?? 0) + ', seizes you by your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair and starts moving with your head in pace of his swinging. You choke a bit but continued in sucking.';
+      (s as any).txt_sex_bj = '' + ((s as any).npcdesc ?? '') + ', seizes you by your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair and starts moving with your head in pace of his swinging. You choke a bit but continued in sucking.';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
-      (s as any).txt_sex_bj = 'You start to lick his dick with yout nimble tongue, then gather a little saliva, you take his prick in your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips and begin to suck, rubbing it with your hand at the same time.';
+      (s as any).txt_sex_bj = 'You start to lick his dick with yout nimble tongue, then gather a little saliva, you take his prick in your ' + (((s as any).pc_desc ?? {})?.['lips'] ?? '') + ' lips and begin to suck, rubbing it with your hand at the same time.';
     }
     if (((s as any).temp_rand ?? 0) === 6) {
-      (s as any).txt_sex_bj = 'You take his dick in your mouth, your tongue caress its sides, then the bottom and then the tip of head. You purse your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips and start moving back and forth faster. You let his dick slid out of your mouth and you examine a result of your job with excitement. The head becomes even harder, purple and shiny. You feel a faint ache in your lower abdomen. You bend upward the hard shaft and run your tongue from the balls to the cock head, then you tickle it from all sides digging your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips in the head.';
+      (s as any).txt_sex_bj = 'You take his dick in your mouth, your tongue caress its sides, then the bottom and then the tip of head. You purse your ' + (((s as any).pc_desc ?? {})?.['lips'] ?? '') + ' lips and start moving back and forth faster. You let his dick slid out of your mouth and you examine a result of your job with excitement. The head becomes even harder, purple and shiny. You feel a faint ache in your lower abdomen. You bend upward the hard shaft and run your tongue from the balls to the cock head, then you tickle it from all sides digging your ' + (((s as any).pc_desc ?? {})?.['lips'] ?? '') + ' lips in the head.';
     }
     if (((s as any).temp_rand ?? 0) === 7) {
-      (s as any).txt_sex_bj = 'You gently wrap his prick with your wet ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips and let it slide in your mouth. You rub it with your nimble tongue, stroke its trunk and fondling his sack with your hands. You captur it stronger, slurping juices and your saliva enveloping its head. You are tickling it with your tongue and you hear ' + ((s as any).npcdesc ?? 0) + '\'s sweet moaning.';
+      (s as any).txt_sex_bj = 'You gently wrap his prick with your wet ' + (((s as any).pc_desc ?? {})?.['lips'] ?? '') + ' lips and let it slide in your mouth. You rub it with your nimble tongue, stroke its trunk and fondling his sack with your hands. You captur it stronger, slurping juices and your saliva enveloping its head. You are tickling it with your tongue and you hear ' + ((s as any).npcdesc ?? '') + '\'s sweet moaning.';
     }
     scene.text(`${((s as any).txt_sex_bj ?? '')}`);
     (s as any).txt_sex_bj = undefined;
@@ -2184,10 +2184,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_bjt') {
     (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_bjt = 'He shove his prick deep into your throat squeezing it with his hand. Your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips grip tightly his trunk. You aren\'t giving a blowjob. ' + ((s as any).npcdesc ?? 0) + ' is simply fucking your throat and you both have a lot of fun.';
+      (s as any).txt_sex_bjt = 'He shove his prick deep into your throat squeezing it with his hand. Your ' + (((s as any).pc_desc ?? {})?.['lips'] ?? '') + ' lips grip tightly his trunk. You aren\'t giving a blowjob. ' + ((s as any).npcdesc ?? '') + ' is simply fucking your throat and you both have a lot of fun.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_bjt = 'You try to swallow his cock deeper with your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips. You are rubbing it with you hand again, and caressing it with your mouth simultaneously. With each thrust you take it deeper and deeper in your mouth until it reaches your throat. Tears well in your eyes but you still try to put it in even deeper. ' + ((s as any).npcdesc ?? 0) + ' grabbs your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair and took the initiative and starts pulling your head on his shaft.';
+      (s as any).txt_sex_bjt = 'You try to swallow his cock deeper with your ' + (((s as any).pc_desc ?? {})?.['lips'] ?? '') + ' lips. You are rubbing it with you hand again, and caressing it with your mouth simultaneously. With each thrust you take it deeper and deeper in your mouth until it reaches your throat. Tears well in your eyes but you still try to put it in even deeper. ' + ((s as any).npcdesc ?? '') + ' grabbs your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair and took the initiative and starts pulling your head on his shaft.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
       (s as any).txt_sex_bjt = 'The cock head bumps into your throat and it even moves farther, but you can\'t take it more - it was simply too thick. Nevertheless, at each thrust, bit by bit, it moves deeper and deeper. A rope of your saliva oozes out of your mouth down to your chin and drips on the ground.';
@@ -2207,26 +2207,26 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           (s as any).dummytxt = 'He pulls your pants down to your knees';
         }
       }
-      (s as any).txt_sex_doggy = 'You delight ' + ((s as any).npcdesc ?? 0) + '. He jumps, and prompts you to bend forward. ' + ((s as any).dummytxt ?? 0) + ' revealing your cute tushy, and shoves his dick into your pussy from behind. You don\'t expect such abrupt action, but he is fucking you for ten minutes, almost without slowing the pace, only occasionally stopping to take a breath. You think he would be tired soon, but it turns out that he is more tenacious than one might assume. The last five minutes you forget where you are, and screaming your head off. ' + ((s as any).npcdesc ?? 0) + ' is growling spanking your butt with one hand and pulling your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair with the other.';
+      (s as any).txt_sex_doggy = 'You delight ' + ((s as any).npcdesc ?? '') + '. He jumps, and prompts you to bend forward. ' + ((s as any).dummytxt ?? 0) + ' revealing your cute tushy, and shoves his dick into your pussy from behind. You don\'t expect such abrupt action, but he is fucking you for ten minutes, almost without slowing the pace, only occasionally stopping to take a breath. You think he would be tired soon, but it turns out that he is more tenacious than one might assume. The last five minutes you forget where you are, and screaming your head off. ' + ((s as any).npcdesc ?? '') + ' is growling spanking your butt with one hand and pulling your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair with the other.';
       (s as any).dummytxt = undefined;
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? 0) + ' jerks off and then plants you on his cock. You start jiggle with your ass and his prick slides fully into your cunny and hits your cervix. You arch back and he grabs firmly your butt and starts fucking you stronger.';
+      (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? '') + ' jerks off and then plants you on his cock. You start jiggle with your ass and his prick slides fully into your cunny and hits your cervix. You arch back and he grabs firmly your butt and starts fucking you stronger.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
-      (s as any).txt_sex_doggy = 'You are breathing heavily being bending forward and dutifully waggling with your tushie. ' + ((s as any).npcdesc ?? 0) + ' is standing behind you and pulling you up like a dog on a bitch. ' + ((s as any).npcdesc ?? 0) + '\'s rough hands grab your butt helping you get his hard prick deeper into your box. You moan with pleasure, your butt bounces fast against his fascinating insatiable schlong. ' + ((s as any).npcdesc ?? 0) + ' raises his hand to strike and slaps your butt.\n"Good job, bitch, keep banging with your fanny. Come on sweetie, do it faster!" ' + ((s as any).npcdesc ?? 0) + ' is urging and slapping you alternately with left or right hand.';
+      (s as any).txt_sex_doggy = 'You are breathing heavily being bending forward and dutifully waggling with your tushie. ' + ((s as any).npcdesc ?? '') + ' is standing behind you and pulling you up like a dog on a bitch. ' + ((s as any).npcdesc ?? '') + '\'s rough hands grab your butt helping you get his hard prick deeper into your box. You moan with pleasure, your butt bounces fast against his fascinating insatiable schlong. ' + ((s as any).npcdesc ?? '') + ' raises his hand to strike and slaps your butt.\n"Good job, bitch, keep banging with your fanny. Come on sweetie, do it faster!" ' + ((s as any).npcdesc ?? '') + ' is urging and slapping you alternately with left or right hand.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
-      (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? 0) + ' has made you bend forward and then he stands behind you. Thereafter, he thrusts his cock into your wet cunt in one sharp move. You twitch and scream with searing and sharp pain, but stay obediently forward bending. He starts screwing you to the hilt roughly, he is ramming his shaft into you as if he wanted to get with each thrust deeper and deeper into your hole. He is fucking violently his classmate, holding your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair with one hand. ' + ((s as any).npcdesc ?? 0) + '\'s moves are sharp and strong. Silence is breaking with smacking sounds when his pelvis rebound with force from your springy butt, and you silently moan through gritted teeth.';
+      (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? '') + ' has made you bend forward and then he stands behind you. Thereafter, he thrusts his cock into your wet cunt in one sharp move. You twitch and scream with searing and sharp pain, but stay obediently forward bending. He starts screwing you to the hilt roughly, he is ramming his shaft into you as if he wanted to get with each thrust deeper and deeper into your hole. He is fucking violently his classmate, holding your ' + ((s as any).pcs_haircolor ?? 0) + ' ' + ((s as any).curly_txt ?? 0) + ' hair with one hand. ' + ((s as any).npcdesc ?? '') + '\'s moves are sharp and strong. Silence is breaking with smacking sounds when his pelvis rebound with force from your springy butt, and you silently moan through gritted teeth.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
-      (s as any).txt_sex_doggy = '"Go down on the floor and get on all fours, my sweet!"\nYou obey dumbly, and you get on all fours. You like to be fucked in this way.\n"' + ((s as any).pcs_nickname ?? 0) + ' bend backwards and lower your head!"\n"Yes, ' + ((s as any).npcdesc ?? 0) + '." You say excitedly and arch your back more and lower your head. Your bum move up more and your pussy become closer and easier to reach that appeals to him. ' + ((s as any).npcdesc ?? 0) + ' gets on the floor and parts your legs to sides and he kneels between them. Thereafter, he widely stretches your butt cheeks, slowly runs his shaft along your wet pussy and then shoves it deeply in.\n"Mmmm… aaah… mmm," you moaned.\n' + ((s as any).npcdesc ?? 0) + ' puts both hands on your bum and starts plowing your pussy with his prick with delight.';
+      (s as any).txt_sex_doggy = '"Go down on the floor and get on all fours, my sweet!"\nYou obey dumbly, and you get on all fours. You like to be fucked in this way.\n"' + ((s as any).pcs_nickname ?? 0) + ' bend backwards and lower your head!"\n"Yes, ' + ((s as any).npcdesc ?? '') + '." You say excitedly and arch your back more and lower your head. Your bum move up more and your pussy become closer and easier to reach that appeals to him. ' + ((s as any).npcdesc ?? '') + ' gets on the floor and parts your legs to sides and he kneels between them. Thereafter, he widely stretches your butt cheeks, slowly runs his shaft along your wet pussy and then shoves it deeply in.\n"Mmmm… aaah… mmm," you moaned.\n' + ((s as any).npcdesc ?? '') + ' puts both hands on your bum and starts plowing your pussy with his prick with delight.';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
-      (s as any).txt_sex_doggy = 'Holding your waist, ' + ((s as any).npcdesc ?? 0) + ' is banging you, slowly increasing his pace. You are diligently fucking back moaning with pleasure and in quest to please him. Your boobs are swaying and your pink swollen nipples are sticking out seductively. You feel as his strong member alternately fills and pleasantly stretches your pussy at one moment and then it gets out fully. You feel like a whore and you like it.';
+      (s as any).txt_sex_doggy = 'Holding your waist, ' + ((s as any).npcdesc ?? '') + ' is banging you, slowly increasing his pace. You are diligently fucking back moaning with pleasure and in quest to please him. Your boobs are swaying and your pink swollen nipples are sticking out seductively. You feel as his strong member alternately fills and pleasantly stretches your pussy at one moment and then it gets out fully. You feel like a whore and you like it.';
     }
     if (((s as any).temp_rand ?? 0) === 6) {
-      (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? 0) + ' turns you, prompts you to bend forward and without ceremony he starts banging your pussy. Slaps beoame louder and louder. His chest and back are glistening with sweat, his fingers dig into your butt and the thrusts become stronger and shorter. ' + ((s as any).npcdesc ?? 0) + ' is not pulling out his prick fully from your cunt but just a bit. His cock is in your box completely and still keeps pounding. It seems that he won\'t stop.';
+      (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? '') + ' turns you, prompts you to bend forward and without ceremony he starts banging your pussy. Slaps beoame louder and louder. His chest and back are glistening with sweat, his fingers dig into your butt and the thrusts become stronger and shorter. ' + ((s as any).npcdesc ?? '') + ' is not pulling out his prick fully from your cunt but just a bit. His cock is in your box completely and still keeps pounding. It seems that he won\'t stop.';
     }
     scene.text(`${((s as any).txt_sex_doggy ?? '')}`);
     (s as any).txt_sex_doggy = undefined;
@@ -2234,31 +2234,31 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_doggy_anal') {
     (s as any).temp_rand = (Math.floor(Math.random() * 9) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' puts his cock to your anus and shoves it in your tight hole up to his sack with one stroke. You succeed in only twitching and screaming, when his big prick pierces your butt. After a couple of minutes, you become used and start moaning.\n"Oh yess…! mmm… deeper…! mmmm…"\nHe grabs your hips and starts banging increasing his pace gradually. You diligently fuck back wanting to get even more on his shaft. You are insanely excited and serve him with pleasure.';
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? '') + ' puts his cock to your anus and shoves it in your tight hole up to his sack with one stroke. You succeed in only twitching and screaming, when his big prick pierces your butt. After a couple of minutes, you become used and start moaning.\n"Oh yess…! mmm… deeper…! mmmm…"\nHe grabs your hips and starts banging increasing his pace gradually. You diligently fuck back wanting to get even more on his shaft. You are insanely excited and serve him with pleasure.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' is kneeling between your legs and shoving his prick into your ass hole up to his balls.You are on all fours having your bum lifted and you are fucking back in pace and moaning with pleasure. Your lover is propelled even more by your moaning. He is fucking you in silence for a while and then begins moaning excitedly.\n"You have got a nice big butt, ' + ((s as any).pcs_nickname ?? 0) + '…", he tells you, still keeping his pace."\n"Mmmm… yesss… yess… harder… deeper… mmm… oh yesss, you have such big cock… hmmmm…" you are cheering him on.';
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? '') + ' is kneeling between your legs and shoving his prick into your ass hole up to his balls.You are on all fours having your bum lifted and you are fucking back in pace and moaning with pleasure. Your lover is propelled even more by your moaning. He is fucking you in silence for a while and then begins moaning excitedly.\n"You have got a nice big butt, ' + ((s as any).pcs_nickname ?? 0) + '…", he tells you, still keeping his pace."\n"Mmmm… yesss… yess… harder… deeper… mmm… oh yesss, you have such big cock… hmmmm…" you are cheering him on.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
-      (s as any).txt_sex_doggy_anal = '"I missed your tight tushie, baby! I\'m going to fuck your bum now, my sweet chick". You feel that his prick is hard and jostles against your butt. ' + ((s as any).npcdesc ?? 0) + ' spits into his palm, greases his cock head and sets the glans to your anus. He starts pushing and slowly and gentle shoves his cock in your ass. As soon as the cock is fully in your bum, ' + ((s as any).npcdesc ?? 0) + ' starts wiggling with his pelvis holding your hips. You moan loudly and start fucking back and impaling yourself on his big cock.';
+      (s as any).txt_sex_doggy_anal = '"I missed your tight tushie, baby! I\'m going to fuck your bum now, my sweet chick". You feel that his prick is hard and jostles against your butt. ' + ((s as any).npcdesc ?? '') + ' spits into his palm, greases his cock head and sets the glans to your anus. He starts pushing and slowly and gentle shoves his cock in your ass. As soon as the cock is fully in your bum, ' + ((s as any).npcdesc ?? '') + ' starts wiggling with his pelvis holding your hips. You moan loudly and start fucking back and impaling yourself on his big cock.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
-      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' puts his cock head to your narrow entrance and pushes in. Your sphincter stretches and allows his thin prick to slide into your bum without exceptional resistance. He grabs your hips and starts fucking fast your bum. You shriek out at each thrust, which he enjoyes it a lot he is banging you faster and faster. He was seize with animal instincts and he desires so as you scream louder and louder continuously. ' + ((s as any).npcdesc ?? 0) + ' shoves his prick deep into your bowels so his balls smash your taint.';
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? '') + ' puts his cock head to your narrow entrance and pushes in. Your sphincter stretches and allows his thin prick to slide into your bum without exceptional resistance. He grabs your hips and starts fucking fast your bum. You shriek out at each thrust, which he enjoyes it a lot he is banging you faster and faster. He was seize with animal instincts and he desires so as you scream louder and louder continuously. ' + ((s as any).npcdesc ?? '') + ' shoves his prick deep into your bowels so his balls smash your taint.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
-      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' moves you on your knees and he spoons to you from behind. He holds your bum with one hand and with other hand he aims his prick into the brown eye. It is seen that you enjoyed it. Holding your butt firmly, he is swinging his hips back and forth so forcefully, so smacks are somewhat frenzied, are both sonorous and muffled. And so fast: a swing, a hit, a swing, a hit. He starts drawing you close, when he reaches your womb, he draws close your ass, which rippled by his strokes.';
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? '') + ' moves you on your knees and he spoons to you from behind. He holds your bum with one hand and with other hand he aims his prick into the brown eye. It is seen that you enjoyed it. Holding your butt firmly, he is swinging his hips back and forth so forcefully, so smacks are somewhat frenzied, are both sonorous and muffled. And so fast: a swing, a hit, a swing, a hit. He starts drawing you close, when he reaches your womb, he draws close your ass, which rippled by his strokes.';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
-      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' drags you with him. You find yourself being on elbows and knees and you grasp that he is about to penetrate you. He leans tip of his cock against your anus and jostles. It is a little painful, but the desire to pleasure outweighed. ' + ((s as any).npcdesc ?? 0) + ' gradually accelerates his screwing. Your anus relaxes and stretches so his prick could pass easily now.';
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? '') + ' drags you with him. You find yourself being on elbows and knees and you grasp that he is about to penetrate you. He leans tip of his cock against your anus and jostles. It is a little painful, but the desire to pleasure outweighed. ' + ((s as any).npcdesc ?? '') + ' gradually accelerates his screwing. Your anus relaxes and stretches so his prick could pass easily now.';
     }
     if (((s as any).temp_rand ?? 0) === 6) {
-      (s as any).txt_sex_doggy_anal = 'You stand with legs slightly apart, bending forward, he is holding your butt and his prick is fully hid in your ass hole. Breathing heavily, you are taking pleasure in this state. You want so that ' + ((s as any).npcdesc ?? 0) + ' is fully in you and your whole butt feels his strong bangs, and his member is moving back and forth, and waves induced by his banging, fly along your bum. You want to be fucked as a filthy whore.';
+      (s as any).txt_sex_doggy_anal = 'You stand with legs slightly apart, bending forward, he is holding your butt and his prick is fully hid in your ass hole. Breathing heavily, you are taking pleasure in this state. You want so that ' + ((s as any).npcdesc ?? '') + ' is fully in you and your whole butt feels his strong bangs, and his member is moving back and forth, and waves induced by his banging, fly along your bum. You want to be fucked as a filthy whore.';
     }
     if (((s as any).temp_rand ?? 0) === 7) {
-      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' is holding your bum firmly and screwing your brown eye with his prick in full swing. He is banging you heftily and with a backswing. Stronger and even stronger, helping yourself with his hands, he pulls your firm bum towards him. You don\'t feel pain in your anus yet, it gives nice pleasant itching, and you feel something hot and flexible which penetrated deeper and deeper, and disappearing somewhere there.';
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? '') + ' is holding your bum firmly and screwing your brown eye with his prick in full swing. He is banging you heftily and with a backswing. Stronger and even stronger, helping yourself with his hands, he pulls your firm bum towards him. You don\'t feel pain in your anus yet, it gives nice pleasant itching, and you feel something hot and flexible which penetrated deeper and deeper, and disappearing somewhere there.';
     }
     if (((s as any).temp_rand ?? 0) === 8) {
-      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' instructs you to bend forward and aims the head of his cock to your anus and starts pushing his member into your butt. Your ass is already relaxed and stretched and his cock slide fully into your bowels. ' + ((s as any).npcdesc ?? 0) + ' starts screwing you roughly. Bang! Bang! Bang! Smack! The cock moves back and forth. Waves caused by his blows, fly along your arse, your boobs are shaking, your head shudders in the pace of his strokes. Moan of pleasure flies from your lips. You try to resist to his violent pressure and the bonking. Your vision becomes blurred and color shadows and patterns filled your mind. Squeezing your ass, ' + ((s as any).npcdesc ?? 0) + ' is fucking it strongly and tiresome.';
+      (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? '') + ' instructs you to bend forward and aims the head of his cock to your anus and starts pushing his member into your butt. Your ass is already relaxed and stretched and his cock slide fully into your bowels. ' + ((s as any).npcdesc ?? '') + ' starts screwing you roughly. Bang! Bang! Bang! Smack! The cock moves back and forth. Waves caused by his blows, fly along your arse, your boobs are shaking, your head shudders in the pace of his strokes. Moan of pleasure flies from your lips. You try to resist to his violent pressure and the bonking. Your vision becomes blurred and color shadows and patterns filled your mind. Squeezing your ass, ' + ((s as any).npcdesc ?? '') + ' is fucking it strongly and tiresome.';
     }
     scene.text(`${((s as any).txt_sex_doggy_anal ?? '')}`);
     (s as any).txt_sex_doggy_anal = undefined;
@@ -2266,10 +2266,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cow') {
     (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_cow = '' + ((s as any).npcdesc ?? 0) + ' sits down on the couch, you straddle him and slowly lower yourself on his cock slipping it all of the way up inside your tight cunt. You start bouncing your hips sliding up and down his shaft. You are fucking, your eyes closed and you forget everything but her lust';
+      (s as any).txt_sex_cow = '' + ((s as any).npcdesc ?? '') + ' sits down on the couch, you straddle him and slowly lower yourself on his cock slipping it all of the way up inside your tight cunt. You start bouncing your hips sliding up and down his shaft. You are fucking, your eyes closed and you forget everything but her lust';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_cow = 'You straddle him, inserting his cock into your hot wet pussy to the hilt.\n"Oh my god! That\'s so great!" you sigh and wiggle your hips and then you start bouncing up and down on his member. You increase speed of your fucking but after several minutes you fade and slow your ride. ' + ((s as any).npcdesc ?? 0) + ' grabs your ass and he begins set the pace, fucking you back.';
+      (s as any).txt_sex_cow = 'You straddle him, inserting his cock into your hot wet pussy to the hilt.\n"Oh my god! That\'s so great!" you sigh and wiggle your hips and then you start bouncing up and down on his member. You increase speed of your fucking but after several minutes you fade and slow your ride. ' + ((s as any).npcdesc ?? '') + ' grabs your ass and he begins set the pace, fucking you back.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
       (s as any).txt_sex_cow = 'You swing your leg over and straddle him, reaching down, you grasp his hard cock and guide it to your wet pussy. Fucking him, you occasionally lean and kiss him and at that time your boobs touch his chest. After a while, you start squeezing him more with your legs and you press tightly to his groin, trying to get his member deeper into your box.';
@@ -2278,29 +2278,29 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     (s as any).txt_sex_cow = undefined;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cow_anal') {
-    (s as any).txt_sex_cow_anal = 'You squat so you could control height of your ass better. You lift your bum up firstly and then slowly lower your ass again, trying impale yourself on ' + ((s as any).npcdesc ?? 0) + '\'s dick. As soon as its head passes your sphincter, you start swaying your hips slightly. During the riding, you feet that your ass became accustomed to his member, there is no pain. You realize that you have started spontaneously sliding lower and lower.';
+    (s as any).txt_sex_cow_anal = 'You squat so you could control height of your ass better. You lift your bum up firstly and then slowly lower your ass again, trying impale yourself on ' + ((s as any).npcdesc ?? '') + '\'s dick. As soon as its head passes your sphincter, you start swaying your hips slightly. During the riding, you feet that your ass became accustomed to his member, there is no pain. You realize that you have started spontaneously sliding lower and lower.';
     scene.text(`${((s as any).txt_sex_cow_anal ?? '')}`);
     (s as any).txt_sex_cow_anal = undefined;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_miss') {
     (s as any).temp_rand = (Math.floor(Math.random() * 6) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_miss = '' + ((s as any).npcdesc ?? 0) + ' pushes you to lay on your back and then he lies down at you. The boy puts the soft purple head of his cock to your box and pushes in. You sigh feebly and clasp your legs around his butt. He slides to the hilt in your box and starts carefully moving as if he is afraid to cause you pain. Your cunt is wet inside and hot like a furnace. You catch his pace and fucking back you fully forget about the rest of world.';
+      (s as any).txt_sex_miss = '' + ((s as any).npcdesc ?? '') + ' pushes you to lay on your back and then he lies down at you. The boy puts the soft purple head of his cock to your box and pushes in. You sigh feebly and clasp your legs around his butt. He slides to the hilt in your box and starts carefully moving as if he is afraid to cause you pain. Your cunt is wet inside and hot like a furnace. You catch his pace and fucking back you fully forget about the rest of world.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_miss = 'You couldn\'t resist telling him: "Come on, fuck my hot cunny!"\nYou turn on your back and invitingly spread your legs. He doesn\'t need to be asked twice. ' + ((s as any).npcdesc ?? 0) + ' lies down at you and his member plungs into your wet tunnel. You clasp his body with your legs as if you were afraid that he leaves you. ' + ((s as any).npcdesc ?? 0) + ' starts moving rhythmically gradually increasing his pace and you are fucking back actively. You moan loudly and scream when he shoves his prick extra deep into your squelching slit.';
+      (s as any).txt_sex_miss = 'You couldn\'t resist telling him: "Come on, fuck my hot cunny!"\nYou turn on your back and invitingly spread your legs. He doesn\'t need to be asked twice. ' + ((s as any).npcdesc ?? '') + ' lies down at you and his member plungs into your wet tunnel. You clasp his body with your legs as if you were afraid that he leaves you. ' + ((s as any).npcdesc ?? '') + ' starts moving rhythmically gradually increasing his pace and you are fucking back actively. You moan loudly and scream when he shoves his prick extra deep into your squelching slit.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
-      (s as any).txt_sex_miss = '' + ((s as any).npcdesc ?? 0) + ' puts you down on your back, he spreads your legs with his pelvis to sides and he lies down his stomach at you. He penetrates you groaning and watching his member sliding fast into your love hole, softly parting your nether lips. Elastic walls of your cunt softly envelope and captivate his member. He leans his hands on the bed hanging down over you, looking into your face and you keep your eyes on him. You are quite skilled, despite your age. When he is in you, you tightly squeeze your feet beneath him and to further stimulate his member with your hips. He is screwing you experiences a special gripping pleasure, being tightly captured with your hips.';
+      (s as any).txt_sex_miss = '' + ((s as any).npcdesc ?? '') + ' puts you down on your back, he spreads your legs with his pelvis to sides and he lies down his stomach at you. He penetrates you groaning and watching his member sliding fast into your love hole, softly parting your nether lips. Elastic walls of your cunt softly envelope and captivate his member. He leans his hands on the bed hanging down over you, looking into your face and you keep your eyes on him. You are quite skilled, despite your age. When he is in you, you tightly squeeze your feet beneath him and to further stimulate his member with your hips. He is screwing you experiences a special gripping pleasure, being tightly captured with your hips.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
-      (s as any).txt_sex_miss = 'His member is tossing in your cunt like a crazy bull, you sense his hard trunk every time when ' + ((s as any).npcdesc ?? 0) + ' literally stamps your tender groin with his pelvis. He tenses up somewhat and starts banging you tirelessly, what make his dick quite hot.';
+      (s as any).txt_sex_miss = 'His member is tossing in your cunt like a crazy bull, you sense his hard trunk every time when ' + ((s as any).npcdesc ?? '') + ' literally stamps your tender groin with his pelvis. He tenses up somewhat and starts banging you tirelessly, what make his dick quite hot.';
     }
     if (((s as any).temp_rand ?? 0) === 4) {
-      (s as any).txt_sex_miss = 'You are lying on your back, ' + ((s as any).npcdesc ?? 0) + ' starts running along yours nether lips with his bare glans. You feel very ticklish sensation, when he rubs your clit. Later, when he reaches your hole, he starts dipping there a bit more, ramming several times and then he gets out again. Gradually the deepness increases and finally he is fucking you fully. To say true, the position isn\'t very comfortable, but on the other hand he can see the whole body of his moaning mate and it was worth seeing. Suddenly you moans : "More…! More…! Come on!"';
+      (s as any).txt_sex_miss = 'You are lying on your back, ' + ((s as any).npcdesc ?? '') + ' starts running along yours nether lips with his bare glans. You feel very ticklish sensation, when he rubs your clit. Later, when he reaches your hole, he starts dipping there a bit more, ramming several times and then he gets out again. Gradually the deepness increases and finally he is fucking you fully. To say true, the position isn\'t very comfortable, but on the other hand he can see the whole body of his moaning mate and it was worth seeing. Suddenly you moans : "More…! More…! Come on!"';
     }
     if (((s as any).temp_rand ?? 0) === 5) {
-      (s as any).txt_sex_miss = 'Your pussy is well greased and his member slides easily into your love hole. You feel as his mushroom head is stretching inner walls of your fanny. You let out moan with each penetration. It doesn\'t last long and you get accustomed. You put your hands on his buttock and start set the pace. "Faster! faster!" Your whisper is melting into moaning and you tilt your head back. ' + ((s as any).npcdesc ?? 0) + ' doesn\'t contain himself and he rams his prick so deep so your pubes touched. You are breathing fast and heavily through your teeth. After a while ' + ((s as any).npcdesc ?? 0) + ' is fucking you openly. In turn, you seize his back and moan monotonously.';
+      (s as any).txt_sex_miss = 'Your pussy is well greased and his member slides easily into your love hole. You feel as his mushroom head is stretching inner walls of your fanny. You let out moan with each penetration. It doesn\'t last long and you get accustomed. You put your hands on his buttock and start set the pace. "Faster! faster!" Your whisper is melting into moaning and you tilt your head back. ' + ((s as any).npcdesc ?? '') + ' doesn\'t contain himself and he rams his prick so deep so your pubes touched. You are breathing fast and heavily through your teeth. After a while ' + ((s as any).npcdesc ?? '') + ' is fucking you openly. In turn, you seize his back and moan monotonously.';
     }
     scene.text(`${((s as any).txt_sex_miss ?? '')}`);
     (s as any).txt_sex_miss = undefined;
@@ -2308,7 +2308,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_miss_anal') {
     (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_miss_anal = '' + ((s as any).npcdesc ?? 0) + ' pushes you to lay on your back and then he lies down at you. The boy puts the soft purple head of his cock to your pucker and pushes in. You sigh feebly and clasp your legs around his butt. He slides to the hilt in your bum and starts carefully moving as if he is afraid to cause you pain. Your anus is well lubbed and hot like a furnace. You catch his pace and fucking back you fully forget about the rest of world.';
+      (s as any).txt_sex_miss_anal = '' + ((s as any).npcdesc ?? '') + ' pushes you to lay on your back and then he lies down at you. The boy puts the soft purple head of his cock to your pucker and pushes in. You sigh feebly and clasp your legs around his butt. He slides to the hilt in your bum and starts carefully moving as if he is afraid to cause you pain. Your anus is well lubbed and hot like a furnace. You catch his pace and fucking back you fully forget about the rest of world.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
       (s as any).txt_sex_miss_anal = 'You can\'t resist telling him: "Come on, fuck my tight ass!"\nYou turn on your back and invitingly spread your legs. He doesn\'t need to be asked twice.';
@@ -2341,10 +2341,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumm') {
     (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_cumm = '' + ((s as any).npcdesc ?? 0) + ' quickly pulls out his cock and shoves it into your mouth. You don\'t succeed in making an objection and stream of his hot cum hits your tonsils, you instinctively cling closer to him. He cumms and several long torrents of hot juice flood your mouth. In spite of that you try to swallow it all, surplus of his semen runs out of your mouth down your chin.';
+      (s as any).txt_sex_cumm = '' + ((s as any).npcdesc ?? '') + ' quickly pulls out his cock and shoves it into your mouth. You don\'t succeed in making an objection and stream of his hot cum hits your tonsils, you instinctively cling closer to him. He cumms and several long torrents of hot juice flood your mouth. In spite of that you try to swallow it all, surplus of his semen runs out of your mouth down your chin.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_cumm = 'You willingly take his cock in your mouth and you are sucking it with delight until ' + ((s as any).npcdesc ?? 0) + ' pours into your mouth a fair dose of his sticky baby batter.';
+      (s as any).txt_sex_cumm = 'You willingly take his cock in your mouth and you are sucking it with delight until ' + ((s as any).npcdesc ?? '') + ' pours into your mouth a fair dose of his sticky baby batter.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
       (s as any).txt_sex_cumm = 'You swallow his dick, your tongue is tickling his big balls and don\'t last long and his throbbing member spills hot stream of semen into your mouth.';
@@ -2355,16 +2355,16 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumface') {
     (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? 0) + ' covers all your face with his hot sticky semen.';
+      (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? '') + ' covers all your face with his hot sticky semen.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? 0) + ' pulls out his cock and aims it at your face. You see its purple head from which spurts his cum. You feel as warm sticky blobs are landing on your face and after a while his hot cum runs down over your chin and drips on the ground.';
+      (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? '') + ' pulls out his cock and aims it at your face. You see its purple head from which spurts his cum. You feel as warm sticky blobs are landing on your face and after a while his hot cum runs down over your chin and drips on the ground.';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
-      (s as any).txt_sex_cumface = '"Oh fuck!" ' + ((s as any).npcdesc ?? 0) + ' shouts out and pulls his cock out of your sweet captivity and takes it in his hand. A first long stream appears, you screw up your eyes and feel as a trickle of semen hits your chin and made a rope over your cheek. The second shot he aims deliberately straight at your cheek so you have barely a chance to close your eyes. This eruption is rich enough to cover your face with sticky cream.';
+      (s as any).txt_sex_cumface = '"Oh fuck!" ' + ((s as any).npcdesc ?? '') + ' shouts out and pulls his cock out of your sweet captivity and takes it in his hand. A first long stream appears, you screw up your eyes and feel as a trickle of semen hits your chin and made a rope over your cheek. The second shot he aims deliberately straight at your cheek so you have barely a chance to close your eyes. This eruption is rich enough to cover your face with sticky cream.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
-      (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? 0) + ' shifts his cock up to front of your face. At that moment a sticky stream strikes straight into your ' + (((s as any).pc_desc ?? 0)?.['lips']) + ' lips. Trickles of semen is flowing down along your chin and drips on the ground. Ropes of sticky cum hangs down from your chin now. ' + ((s as any).npcdesc ?? 0) + ' spots it after a while when he finally complacently releases last drops of his semen.';
+      (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? '') + ' shifts his cock up to front of your face. At that moment a sticky stream strikes straight into your ' + (((s as any).pc_desc ?? {})?.['lips'] ?? '') + ' lips. Trickles of semen is flowing down along your chin and drips on the ground. Ropes of sticky cum hangs down from your chin now. ' + ((s as any).npcdesc ?? '') + ' spots it after a while when he finally complacently releases last drops of his semen.';
     }
     scene.text(`${((s as any).txt_sex_cumface ?? '')}`);
     (s as any).text_sex_cumface = undefined;
@@ -2372,10 +2372,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumbody') {
     (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_cumbody = 'A minute later, he is barely having time to pull his dick out of you, ' + ((s as any).npcdesc ?? 0) + ' cumms on your boobs, even your face is partially messed with his semen.';
+      (s as any).txt_sex_cumbody = 'A minute later, he is barely having time to pull his dick out of you, ' + ((s as any).npcdesc ?? '') + ' cumms on your boobs, even your face is partially messed with his semen.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_cumbody = '' + ((s as any).npcdesc ?? 0) + ' runs his member over your tummy and finishes. It is so hot, his hard member and warm thick seed.';
+      (s as any).txt_sex_cumbody = '' + ((s as any).npcdesc ?? '') + ' runs his member over your tummy and finishes. It is so hot, his hard member and warm thick seed.';
     }
     scene.text(`${((s as any).txt_sex_cumbody ?? '')}`);
     (s as any).text_sex_cumbody = undefined;
@@ -2383,16 +2383,16 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumvag') {
     (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_cumvag = 'After a while you feel that ' + ((s as any).npcdesc ?? 0) + ' even more increased his furious pace and wheezes. He finishes very explosively. You feel as from his throbbing member spurts his jizz, one jet after another. When ' + ((s as any).npcdesc ?? 0) + ' dick pulls his cock out of your pussy, his sticky cum oozes out of it.';
+      (s as any).txt_sex_cumvag = 'After a while you feel that ' + ((s as any).npcdesc ?? '') + ' even more increased his furious pace and wheezes. He finishes very explosively. You feel as from his throbbing member spurts his jizz, one jet after another. When ' + ((s as any).npcdesc ?? '') + ' dick pulls his cock out of your pussy, his sticky cum oozes out of it.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_cumvag = 'After some time ' + ((s as any).npcdesc ?? 0) + ' can feel as your pussy begins to shrink and throb. You loudly and sensually groan, fuck back wildly moaning with pleasure. He grabs you stronger and begins to bang you even faster and in a few minutes he reaches the peak too. ' + ((s as any).npcdesc ?? 0) + ' cumms right into your pussy. You can feel that your pussy fills with his hot semen…';
+      (s as any).txt_sex_cumvag = 'After some time ' + ((s as any).npcdesc ?? '') + ' can feel as your pussy begins to shrink and throb. You loudly and sensually groan, fuck back wildly moaning with pleasure. He grabs you stronger and begins to bang you even faster and in a few minutes he reaches the peak too. ' + ((s as any).npcdesc ?? '') + ' cumms right into your pussy. You can feel that your pussy fills with his hot semen…';
     }
     if (((s as any).temp_rand ?? 0) === 2) {
-      (s as any).txt_sex_cumvag = 'Suddenly you tighten muscles of your pussy and ' + ((s as any).npcdesc ?? 0) + ' feels that your pussy is even tighter. He can\'t hold it longer and begins to finish right into your pussy. You tense your cunt muscles to milk his sperm from his cock.';
+      (s as any).txt_sex_cumvag = 'Suddenly you tighten muscles of your pussy and ' + ((s as any).npcdesc ?? '') + ' feels that your pussy is even tighter. He can\'t hold it longer and begins to finish right into your pussy. You tense your cunt muscles to milk his sperm from his cock.';
     }
     if (((s as any).temp_rand ?? 0) === 3) {
-      (s as any).txt_sex_cumvag = 'Holding your waist, ' + ((s as any).npcdesc ?? 0) + ' pulls you stronger to him not letting his member slid out. His big cock throbs and twitches indicating so that ' + ((s as any).npcdesc ?? 0) + ' is about to cum. Thanks to your skillful effort his orgasm begins and it is so strong that he is cumming into your pussy at least thirty seconds.';
+      (s as any).txt_sex_cumvag = 'Holding your waist, ' + ((s as any).npcdesc ?? '') + ' pulls you stronger to him not letting his member slid out. His big cock throbs and twitches indicating so that ' + ((s as any).npcdesc ?? '') + ' is about to cum. Thanks to your skillful effort his orgasm begins and it is so strong that he is cumming into your pussy at least thirty seconds.';
     }
     scene.text(`${((s as any).txt_sex_cumvag ?? '')}`);
     (s as any).text_sex_cumvag = undefined;
@@ -2400,10 +2400,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'text_sex_cumass') {
     (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
-      (s as any).txt_sex_cumass = '' + ((s as any).npcdesc ?? 0) + ' shoves his dick in your ass but not whole, only its head. He starts jerking off his prick keeping the head inside of your bum and after some time he pours in your ass huge dose of his semen, which runs down along your thighs and drips on the ground.';
+      (s as any).txt_sex_cumass = '' + ((s as any).npcdesc ?? '') + ' shoves his dick in your ass but not whole, only its head. He starts jerking off his prick keeping the head inside of your bum and after some time he pours in your ass huge dose of his semen, which runs down along your thighs and drips on the ground.';
     }
     if (((s as any).temp_rand ?? 0) === 1) {
-      (s as any).txt_sex_cumass = '' + ((s as any).npcdesc ?? 0) + ' begins to cum into your ass, his sperm melts and thins in your bowels. When he finished, he tries to shove his cock even deeper, and he presses onto your ass with full strength of his body.';
+      (s as any).txt_sex_cumass = '' + ((s as any).npcdesc ?? '') + ' begins to cum into your ass, his sperm melts and thins in your bowels. When he finished, he tries to shove his cock even deeper, and he presses onto your ass with full strength of his body.';
     }
     scene.text(`${((s as any).txt_sex_cumass ?? '')}`);
     (s as any).text_sex_cumass = undefined;

@@ -14,7 +14,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).temp_type = (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('_'))) + 1) - 1)));
   }
-  qspCall(s, '$ARGS[1]', 'add_item', ((s as any).temp_type ?? 0), ((s as any).locArgs?.[3] ?? 0));
+  qspCall(s, (s as any).locArgs?.[1] ?? '', 'add_item', ((s as any).temp_type ?? 0), ((s as any).locArgs?.[3] ?? 0));
   if (String((s as any).locArgs?.[1] ?? '') === 'clothing') {
     if (String((s as any).locArgs?.[4] ?? '') > 0) {
       scene.text('' + ((s as any).locArgs?.[2] ?? 0) + '_h[' + ((s as any).locArgs?.[3] ?? 0) + '] = ' + ((s as any).locArgs?.[4] ?? 0) + '');
@@ -30,7 +30,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[7] ?? '') === 1) {
-    qspCall(s, '$ARGS[1]', 'wear', ((s as any).temp_type ?? 0), ((s as any).locArgs?.[3] ?? 0));
+    qspCall(s, (s as any).locArgs?.[1] ?? '', 'wear', ((s as any).temp_type ?? 0), ((s as any).locArgs?.[3] ?? 0));
   }
   (s as any).temp_type = undefined;
   return;

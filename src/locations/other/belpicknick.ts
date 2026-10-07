@@ -546,6 +546,7 @@ function enterVibor(s: GameState, scene: SceneBuilder): void {
 
 function enterPoisk(s: GameState, scene: SceneBuilder): void {
   (s as any).tempgm = ((s as any).gmember ?? 0);
+  let poisk_count = 0;
   do {
     (s as any).tempgm = ((s as any).tempgm ?? 0) + (1);
     if (((s as any).tempgm ?? 0) > 4) {
@@ -554,7 +555,8 @@ function enterPoisk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tempgm ?? 0) === 1  &&  ((s as any).sashaBeliTimes ?? 0) > 0  ||  ((s as any).tempgm ?? 0) === 2  &&  ((s as any).sipliGangTimes ?? 0) > 0  ||  ((s as any).tempgm ?? 0) === 3  &&  ((s as any).kolGangTimes ?? 0) > 0  ||  ((s as any).tempgm ?? 0) === 4  &&  ((s as any).tatarGangTimes ?? 0) > 0) {
       (s as any).gmember = ((s as any).tempgm ?? 0);
     }
-  } while (((s as any).tempgm ?? 0) === 1  &&  ((s as any).sashaBeliTimes ?? 0) === 0 || ((s as any).tempgm ?? 0) === 2  &&  ((s as any).sipliGangTimes ?? 0) === 0 || ((s as any).tempgm ?? 0) === 3  &&  ((s as any).kolGangTimes ?? 0) === 0 || ((s as any).tempgm ?? 0) === 4  &&  (!((s as any).tatarGangTimes ?? 0)));
+    poisk_count++;
+  } while (((((s as any).tempgm ?? 0) === 1  &&  ((s as any).sashaBeliTimes ?? 0) === 0) || (((s as any).tempgm ?? 0) === 2  &&  ((s as any).sipliGangTimes ?? 0) === 0) || (((s as any).tempgm ?? 0) === 3  &&  ((s as any).kolGangTimes ?? 0) === 0) || (((s as any).tempgm ?? 0) === 4  &&  ((s as any).tatarGangTimes ?? 0) === 0)) && poisk_count < 4);
   scene.build();
 }
 

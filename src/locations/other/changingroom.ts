@@ -118,7 +118,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'clothing_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[1] ?? ''), ((s as any).locArgs?.[2] ?? ''))}`);
   scene.text(`${((s as any).locArgs?.[1] ?? '')} no.${((s as any).locArgs?.[2] ?? '')}`);
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['strength'] = ((s as any).CloStrength ?? 0);

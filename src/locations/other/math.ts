@@ -112,9 +112,10 @@ function enterTrimLong(s: GameState, scene: SceneBuilder): void {
     if ((String(((s as any).result ?? 0)).length) > 1) {
       if ((String(((s as any).result ?? 0)).slice((1)-1, ((1)-1)+(1))) === '0') {
         (s as any).result = (String(((s as any).result ?? 0)).slice((2)-1));
-        break;
+        continue;
       }
     }
+    break;
   }
   scene.build();
 }
@@ -125,11 +126,12 @@ function enterPadLong(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).locArgs?.[1] ?? 0);
   while (true) {
-    if (String((s as any).locArgs?.[2] ?? '') > 0) {
+    if (((s as any).ARGS?.[2] ?? 0) > 0) {
       (s as any).result = '0' + ((s as any).result ?? 0);
       ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).ARGS[2] ?? 0) - (1);
-      break;
+      continue;
     }
+    break;
   }
   scene.build();
 }

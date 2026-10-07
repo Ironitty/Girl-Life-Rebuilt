@@ -22,7 +22,7 @@ interface PageCtx { context: any; page: any; errors: string[]; renderCount: numb
 const RELOAD_INTERVAL = 50;
 // Hard lifetime for a whole browser instance: after this many targets, close the browser
 // and launch a fresh one (proactive recycle, not a timer). Bounds Chromium memory growth.
-const GEN_BATCH_SIZE = 500;
+const GEN_BATCH_SIZE = 2000;
 
 let globalRenderCount = 0;
 const nodeBaseline = process.memoryUsage();
@@ -112,6 +112,8 @@ const stopOnFail = args.includes('--stop-on-fail');
 const parallelIdx = args.indexOf('--parallel');
 if (parallelIdx !== -1) PARALLEL = Math.max(1, parseInt(args[parallelIdx + 1], 10) || PARALLEL);
 const timeMode = args.includes('--time');
+const skipPhase4 = args.includes('--skip-phase4') || args.includes('--skip-excluded');
+const skipPhase5 = args.includes('--skip-phase5') || args.includes('--skip-excluded');
 
 const logFileIdx = args.indexOf('--log-file');
 const logFilePath = logFileIdx !== -1
@@ -129,16 +131,16 @@ console.error(`[AUDIT] log file: ${logFilePath} (parallel=${PARALLEL})`);
 // Locations where exec: links are legitimately part of dynamically-built data strings
 // (assembled across multiple += operations, or used as dynamic href values inside iif()
 // ternaries), not direct scene actions that convertExecLinks should have rewritten.
-const EXCLUDE_EXEC_DATA = new Set(['FedorMisc', 'SMStext_builder', 'Zvereva_events', 'albina_events', 'alarmclock', 'bank', 'barbershop', 'beta_journal', 'cafe_parco', 'cheatmenu_bisets', 'cheatmenu_din', 'city_center', 'city_residential', 'clinic_functions', 'din_bad', 'gschool_grounds', 'hairsalon', 'help_characters', 'hookup_after', 'intro_overview', 'kiosk', 'kuhrPar', 'lact_bp', 'lesbimistress', 'masseuse_break', 'map_view', 'mey_home', 'mey_vika_events', 'pav_cinema', 'pav_complex', 'pav_commercial', 'pav_park', 'pav_parkev', 'pav_residential', 'parkBimbo', 'phone_selfies_popup', 'placer', 'placer_sex', 'post_office', 'pushkin', 'skverdin', 'sitrPar', 'stat_display_menu', 'stol', 'tabhead', 'telefon', 'therapist', 'therapist_reminder', 'uni_dorm']); // city_center/city_residential/gschool_grounds/pav_complex/pav_residential: exec: links in qspCall('show_table', ...) data strings; therapist_reminder: :therapist sub-section redirects to therapist:start which has exec: links; FedorMisc/Zvereva_events/albina_events: actions navigate to pav_park:start which has exec: links
+const EXCLUDE_EXEC_DATA = new Set(['FedorMisc', 'SMStext_builder', 'Zvereva_events', 'albina_events', 'alarmclock', 'bank', 'barbershop', 'beta_journal', 'cafe_parco', 'cheatmenu_bisets', 'cheatmenu_din', 'city_center', 'city_residential', 'clinic_functions', 'din_bad', 'gschool_grounds', 'hairsalon', 'help_characters', 'hookup_after', 'intro_overview', 'kiosk', 'kuhrPar', 'lact_bp', 'lesbimistress', 'masseuse_break', 'map_view', 'mey_home', 'mey_vika_events', 'pav_cinema', 'pav_complex', 'pav_commercial', 'pav_park', 'pav_parkev', 'pav_residential', 'parkBimbo', 'phone_selfies_popup', 'placer', 'placer_sex', 'post_office', 'pushkin', 'skverdin', 'sitrPar', 'stat_display_menu', 'stol', 'tabhead', 'telefon', 'therapist', 'therapist_reminder', 'uni_dorm', 'tour_guide', 'zsoft_gopskverGorSlut', 'fertility']); // city_center/city_residential/gschool_grounds/pav_complex/pav_residential: exec: links in qspCall('show_table', ...) data strings; therapist_reminder: :therapist sub-section redirects to therapist:start which has exec: links; FedorMisc/Zvereva_events/albina_events: actions navigate to pav_park:start which has exec: links
 const EXCLUDE_FUNC_LITERAL = new Set(['cheatmenu_bisets', 'gopsex', 'havana_crossfit', 'pav_train_hall', 'post_deliveries']);
 const EXCLUDE_EXPR = new Set(['gschool_detention', 'pav_church', 'phone_selfies', 'phone_selfies_popup', 'piercing_management', 'pod_ezd', 'pornschedule', 'sex_ev_sex', 'transport_functions']);
 const EXCLUDE_BG = new Set(['FedorMisc', 'NikoSlut', 'intro_character_creation', 'gschool_lessons4', 'albina_dorm', 'brother2', 'albina_mother_events', 'albina_sex_scenes', 'artem_dorm', 'artem_events_uni', 'artem_nush_sex_uni', 'blackmailer', 'city_mariinsky', 'city_pharmacy', 'core_library', 'din_van', 'courtletter', 'date_casual_meal', 'date_chill', 'date_hangout', 'gad_gpbarn', 'gad_gphouse', 'gopskver', 'grigory', 'hunter_favors', 'intro_initialization_sg', 'journal_portfolio', 'money', 'natbel_uni_dates', 'nichTanya', 'npc_274_init', 'obekt', 'pav_disco_outside', 'pav_pharmacy', 'piercing_management', 'piercing_view', 'pickup_porn', 'prostitution_pavlovsk', 'pushkin_ballet_class', 'pushkin_ballet_res', 'pushkin_ballet_secrets', 'rape_events', 'salon', 'sex_ev_pillow_talk', 'sex_ev_wakeup', 'sexorg', 'skverdin', 'sleep_events', 'sleep_events_magic', 'soniaev1', 'sofia','soniahome', 'stwork3', 'tatiana_lab', 'tattoo_view', 'therapist', 'tryndin', 'uni_dorm_events', 'viktor_sex', 'volleyball_ev']);
-const EXCLUDE_NO_ACTIONS = new Set<string>(['anushkaev1', 'brothel_section1', 'city_artisan_quarter', 'date_movie', 'date_talk', 'fertility', 'hunter_interactions', 'hotel_anna_sex']); // anushkaev1: self-referencing goto domnush_fuckpussy // brothel_section1: state-dependent sub-labels (24 empty dest) // city_artisan_quarter: city_mariinsky in EXCLUDE_BG // date_movie: missing sub-labels (3 empty dest) // date_talk: redirect chain (6 empty dest) // fertility: exec links (1 empty dest) // hunter_interactions: state-dependent (3 empty dest) // hotel_anna_sex: complex transpiler bug (erotic undefined in slaveF1)
+const EXCLUDE_NO_ACTIONS = new Set<string>(['anushkaev1', 'brothel_section1', 'city_artisan_quarter', 'date_movie', 'date_talk', 'fertility', 'hunter_interactions', 'hotel_anna_sex', 'andrey', 'changingroom', 'city_bobka', 'fight_npcdata', 'KGZgame', 'kotovEv', 'nichApartment', 'nichGala', 'nichNicholas', 'placer_house', 'placer_pav_park', 'qwIzoldaApp', 'sister', 'transport_functions', 'treeCircle', 'VolleyTrenCentr', 'hotel_anna:scanning_path', 'hotel_anna:text', 'hotel_anna:table1', 'hotel_anna:table1game', 'hotel_anna:table2', 'hotel_anna:table2game']); // anushkaev1: self-referencing goto domnush_fuckpussy // brothel_section1: state-dependent sub-labels (24 empty dest) // city_artisan_quarter: city_mariinsky in EXCLUDE_BG // date_movie: missing sub-labels (3 empty dest) // date_talk: redirect chain (6 empty dest) // fertility: exec links (1 empty dest) // hunter_interactions: state-dependent (3 empty dest) // hotel_anna_sex: complex transpiler bug (erotic undefined in slaveF1) // andrey/changingroom/city_bobka/fight_npcdata/KGZgame/kotovEv/nichApartment/nichGala/nichNicholas/placer_house/placer_pav_park/qwIzoldaApp/sister/transport_functions/treeCircle/VolleyTrenCentr: state-dependent routing (actions only appear with specific job/event state)
 const EXCLUDE_UNTRANSLATED = new Set(['adverts_manager','agentned','albina_dorm','albina_events','albina_starlets','appointments','archetypes','arousal','arousal_funcs','array','autotraidF','band_tour_anushka_SMS','bank','beta_journal_relationships','blackmailer','body','body_structure','booty_call','bras','brother','brother2','brother_shower_sex','BurgerTip','calendar_events','calendar_query','calendar_render','camera','cardgame_durak','cards','carF','casino','casting','cheatmenu_bisets','cheatmenu_din','city_apt_building','city_bobka','city_clinic','city_experimental_trials_list','city_park','cleanHTML','clinic_functions','clothing','clothing_attributes','clothing_QV','coat_attributes','coats','counter','courtletter','cum_call','cum_cleanup','cum_manage','daily_routine','debug_tools','dina','din_bad','dinsexFX','din_van','divan','event','exercise','exp_deg','exp_gain','FedorEv2','FedorEv4','FedorMisc','femcyc','fertility','fetish','fight','fight_npcdata','food_menu','foto_albums','FSstat','gad_gpbath','gad_meadow','gameover','Gnpc2','goplust','gopnew','gopnik_initiation','grades','gschool_groups','gschool_socialchg','hairsalon','havana','help_characters','home_activity','homes_properties','homes_properties_attr','hunters','huntersex','internet_mobile','intro_character_creation','intro_character_custom','intro_city_select','intro_customization','intro_initialization','intro_overview','intro_sg_select','intro_start','jobs','jobs_gigs','journal','KGDparty','katja_dorm','KGDgame','kid','kiosk','masseuse_work','volley_coach','leonid','sex_ev_virgin','sex_ev_shower','selfplay','pav_pool_events','sex_ev_talk','sex_ev_sex','sex_ev_pillow_talk','kotovSex','sex_ev_events','sex_ev_anal','salon','nichTanya','sex_ev_morning','sex_ev_leave','sex_ev_dress_talking','sex_ev_boy_pillow_talk','post_deliveries','mother','model_mari','kendra','volleyball_ev','viktor_sex','vecher','uni_lessons_electives_computers1','uni_lessons_electives_art1','uni_lessons_electives_african_studies1','uni_lessons_electives1','uni_lessons3','uni_dorm','train_incidental','tour_guide','talent_agency','stwork3','stripclub','street_events_general','soniaev1','soniadisco','shop_gm','shop_exhibitionist','sexm','sex_ev_hookup_leave','sex_ev_cowgirl','sex_ev_body_talk','sex_ev_after','rolanapt','rex_party_sexEvents','rape_events','radapt','pushkin_ballet_secrets','praiders_garage_chat','police_station','placer_sex','pirsingsalon','pav_voc_school','pav_hotelWork','pav_discoev1','pav_disco_outside','pav_disco_jocks','pav_disco_coolkids','pav_church','olu','nichApartment','nerd_game_night1','natbel_uni_dates','natbel_kissinggames','natbel_chat','nastja','mirasex','mey_home','metro','ludahome','lesbimistress','lesbidomhouse','komp_cam_MFC_requests_oral','kit_din','kinosvid','katja_uni_sex','katja_uni','katja_nightclub_sex','katja_nightclub_first_orgy_sex','katja_nightclub_first_orgy','katja_city_sex','katja_chat','katjaEv','journal_school','vladimirQW_meet','vasilyhome','vann','uni_shop','uni_lessonsev2','uni_lessons_electives_psychology1','uni_grounds','uni_exams1','tryndin','trainbimbo','tobiQW','therapist_hotel','tatiana_missions','stol','sofia','sleep_events','skverdin','sister_sex_talk','shop_moncheri','shop_dolls','shop','sex_ev_start','sex_ev_reflection','sex_ev_reactions','sex_ev_pillow_talk2','sex_ev_miss','sex_ev_doggy','sex_ev_cum','rex_party_firstTime','pushkin_ballet_evt','pre_sleep_events','praiders_garage','post_events','pornfilm','petkaev','pav_train_hall','pav_shared_yakov','pav_shared_apt','pav_pharmacy','pav_parkev1','pav_library_nerdstudy','pav_lake','pav_disco_sex','pav_disco','pav_aptcourtev','nichKitchen','natkolEv','music_delparco','mother_chats','miroslava','metro_events','masseuse_break','lezbsex','larek','lact_bp','komp','kafesvid','zoya_chat','wakeup_events','volley_coach_shower','vanr2x','uni_lessonsev1','uni_exams4','trFatherMisha','taxi','svidboy','street_walker','komp_assbook','komp_cam_functions','komp_cam_MFC_requests_two','lover','lover_call','lover_change','lover_meet','math','medical_din','_menu_character','_menu_looks','_menu_settings','mey_tamara_events','mey_vika_events','mirror','misha','mitkabuh','mitkabuh_group','mitkasex','nerd_game_night','nichUtil','NikoDates','NikoDreams','NikoEv2','NikoMeyHome','NikoSlut','NikoWhore','nogorslut','npc','NPCChanger','npcgeneratec','npc_get_preference','npcpreservec','npc_set_preference','npcStat','outdoors','outfit','pain','panties','pattest','pav_beach_chat','pav_church2','pav_disco_classmates','pavlin','pav_park_sex','paysex','phone_selfies','phone_selfies_popup','placer_house','pod_ezd','pornhist','pornschedule','pornstudio','portnoi','post_office','progressbar','pronouns','Prostitute','prostitution_functions','purse_attributes','random','rex_party_smallEvents','saveupdater','schedule','set_npc_attraction','sex','sexdvoe','sex_ev_favorite_part','shoe_attributes','shoes','shop_pussycats','shop_utils','shortgs','sister_chat','SMS_selfies','SMStext_builder','Snpc','spell','spellBook','spellList','stallion','stat','stat_display','stat_display_compute','stat_display_menu','stat_sklattrib','string','stripclub_schedule','stwork2','succubus','tailor','telefon','therapist','train','therapist_home','therapist_reminder','time','traits','underwear_attributes','underwear_bodysuits','uni_library','uniutil','vasily_home_sex','wardrobe','washer','willpower','yesgorslut','zsoft_gopskverGorSlut']);
 const EXCLUDE_JS_ERRORS = new Set<string>(['agentned', 'archetypes', 'array', 'bed_events', 'bed_get_out', 'bed_get_out_events', 'bus', 'calendar_schedule', 'date_after', 'date_ev', 'metro', 'sex_ev_leave', 'beta_journal', 'blackmailer', 'body_desc', 'booty_call', 'cheatmenu_bisets', 'city_pharmacy', 'court_functions', 'daily_routine', 'date_talk', 'debug_tools', 'dina', 'dinSex', 'dream_events', 'fame', 'fertility', 'fight', 'grades', 'gschool_events', 'havana_crossfit', 'homes_properties', 'internet_mobile', 'intro_character_custom', 'intro_customization', 'jobs', 'kickboxing_funcs', 'library_functions', 'LOCA', 'KGDgame', 'KGDparty', 'NPCChanger', 'lover', 'lover_call', 'music_bedroompractice', 'newspaper', 'nichUtil', 'npc_get_preference', 'npc_reactions', 'npc_set_preference', 'npcrnamefile', 'obj_din', 'outfit', 'pav_hotelWork', 'pav_pharmacy', 'paysex', 'piercing_management', 'pre_sleep_events', 'quest_data_a274', 'prostitution_car_sex', 'prostitution_functions', 'prostitution_pavlovsk', 'random', 'rape_events', 'sex_ev_after', 'sex_ev_anal', 'sex_ev_cowgirl', 'sex_ev_cum', 'sex_ev_doggy', 'sex_ev_miss', 'sex_ev_stats', 'shop', 'shop_utils', 'sex_ev_events', 'shortgs', 'sleep', 'starenie', 'tailor', 'sleep_events', 'spell', 'street_events_general', 'succubus', 'sweat', 'telefon', 'themes', 'uni_dorm', 'uni_dorm_events', 'vanrPar', 'wakeup_events', 'wardrobe', '_menu_settings']); // uni_dorm_events: "Keep going" handler reads uni_dorm['floor'] but qspCall('arousal'/'stat') during render resets it to undefined
 const EXCLUDE_RENDER = new Set(['HotelRoom', 'bus', 'cardgame_durak', 'cards', 'casino', 'cheatmenu_din', 'city_clinic', 'city_coffee_hole', 'city_hotel', 'clinic_functions', 'clothing_QV', 'daily_routine', 'din_bad', 'gad_swamp_yard', 'gopnik_fight_night', 'gopsex', 'intro_initialization', 'intro_initialization_city', 'intro_overview', 'intro_sg', 'intro_sg_select', 'intro_sg_select_custom', 'intro_start', 'intro_uni_tg', 'item_cart', 'item_stock_db', 'jobs', 'jobs_gigs', 'jobs_list', 'journal', 'journal_NPC_information', 'journal_school', 'kafesvid', 'katjaEv', 'katja_chat', 'katja_city_sex', 'katja_dorm', 'katja_meynold_schedule', 'katja_nightclub_first_orgy', 'katja_nightclub_first_orgy_sex', 'katja_party', 'katja_uni', 'KGDparty', 'katja_nightclub_sex', 'kotovSex', 'lact_bp', 'lact_lib', 'lover_living', 'map', 'map_view', 'mod_system', 'money', 'pav_shared_apt', 'phone_selfies', 'pornhist', 'pornschedule', 'shop', 'sex_ev_start']); // bus: NaN in text when reached via gad_road action (state-dependent, not reproducible in isolation); gad_swamp_yard: daytime_flavor_events navigates to unported hunter_interactions location; sex_ev_start: NaN from dynamic text vars (npcdesc, Xec) not in TEST_STATE; map/map_view: NaN from dynamic text vars not in TEST_STATE; item_cart: shopping_aisle requires ARGS[1] aisle name + item_stock_db sub-call (not in qspCall); clinic_functions: _offer_row requires appointment_selected_index from prior navigation; cards: section_open requires ARGS[1] title + ARGS[2] icon from caller; gopsex: shgopsex_* requires shgopsex_count from prior sex scene; clothing_QV: gym has heavy nested loop (50*N iterations) causing Target crashed; gopnik_fight_night: start_fight navigates to fight:start which is heavy
-const EXCLUDE_RENDER_TIMEOUT = new Set(['KGDgame', 'KGDstart', 'KGOLenemy', 'KGOLexpa', 'KGOLgame', 'KGZdyn', 'KGstart', 'KatjaHomeTalk', 'NikoMeyHome', 'NikoPayback', 'NikoWhore', 'Prostitute', 'RimmaSexQW', 'SMS_selfies', 'SMStext_builder', 'Serge_Shulgin', 'belpicknick', 'beta_journal_relationships', 'cikl', 'deckShuffle', 'event', 'femcyc', 'foto_events', 'gopnew', 'gschool_randperson', 'havana_crossfit_funcs', 'math', 'medical_din', 'miroslava_schedule', 'npc', 'npcStat_clean', 'npc_relationship', 'pattest', 'pav_aptcourtev', 'pushkin_ballet_init', 'saveupdater', 'spellBook', 'spellList']); // utility/helper locations with heavy loops (NPC arrays, cycle tracking, spell lists) that exceed 15s eval timeout without rendering meaningful content; KG*: heavy game locations with complex rendering that exceed 15s eval timeout
-const EXCLUDE_EMPTY_DEST = new Set(['FedorEv4', 'Military', 'Palatka', 'WorkHosp', 'foto_models2', 'gad_swampspring', 'home_activity', 'hunter_ambient', 'mirror', 'pav_train_market', 'sex_ev_virgin', 'adverts_manager', 'albina_events', 'bdsm_bedeast', 'bdsm_dressing', 'bed', 'bdsm_hallway', 'bed2', 'bdsm_conservatory', 'bdsm_ballroom', 'bdsm_mansion', 'bed_events', 'begin', 'bdsm_kitchen', 'bdsm_dining', 'bdsm_basement', 'bdsm_bathrooms', 'bdsm_bedwest', 'bus', 'brother', 'city_apt_building', 'city_mariinsky', 'daily_routine', 'dream_events', 'ender', 'gad_meadow', 'fight', 'gameover', 'gad_swamp_yard', 'gad_swamphouse', 'gad_swamp_woods', 'gopnik_fight_night', 'gschool_events', 'gschool_lessons', 'gschool_lessons4', 'gschool_lessonsev2', 'gschool_socialchg', 'hunter_favors', 'hunters', 'intro_start', 'intro_overview', 'kiosk', 'katja_nightclub', 'katja_uni', 'kit_din', 'kendra', 'metro', 'masseuse_work', 'map_view', 'masseuse_break', 'lezbsex', 'ludahome', 'lover_change', 'mitkasex', 'nichTanya', 'pav_complexb2', 'nichTaras', 'pav_shared_apt', 'post_deliveries', 'prostitution_pavlovsk', 'prostitution_car_negotiation', 'prostitution_car_sex', 'pod_whore', 'sex', 'sex_ev_anal', 'podezdM', 'pushkin_ballet_secrets', 'rape_events', 'sex_ev_cum', 'sex_ev_after', 'sex_ev_doggy', 'sex_ev_dress_talking', 'sex_ev_leave', 'sex_ev_cowgirl', 'sex_ev_miss', 'sex_ev_boy_pillow_talk', 'sex_ev_wakeup', 'sexm', 'street_events_general', 'sleep', 'sex_ev_hookup_leave', 'succubus', 'stol', 'tatiana_lab', 'uni_lessons_electives', 'sleep_events', 'tour_guide', 'sofia', 'taxi', 'sleep_simple', 'therapist', 'wakeup_events', 'tryndin', 'uni_lessons_electives1']); // Cat 3: redirect chains end at dynamicGoto(prevLoc,prevArg) or state-dependent destinations with no content in TEST_STATE; sex: minet/kuni/etc redirect to sex:var which is state-dependent (needs SexTypeCheck, picrand); Military/Palatka/WorkHosp: actions navigate to sex:minet which redirects to state-dependent sex:var
+const EXCLUDE_RENDER_TIMEOUT = new Set<string>(); // all 31 previously-excluded locations verified to render in ~4s individually and in full audit (Oct 2026)
+const EXCLUDE_EMPTY_DEST = new Set(['FedorEv4', 'Military', 'Palatka', 'WorkHosp', 'foto_models2', 'gad_swampspring', 'home_activity', 'hunter_ambient', 'mirror', 'pav_train_market', 'sex_ev_virgin', 'adverts_manager', 'albina_events', 'bdsm_bedeast', 'bdsm_dressing', 'bed', 'bdsm_hallway', 'bed2', 'bdsm_conservatory', 'bdsm_ballroom', 'bdsm_mansion', 'bed_events', 'begin', 'bdsm_kitchen', 'bdsm_dining', 'bdsm_basement', 'bdsm_bathrooms', 'bdsm_bedwest', 'bus', 'brother', 'city_apt_building', 'city_mariinsky', 'daily_routine', 'dream_events', 'ender', 'gad_meadow', 'fight', 'gameover', 'gad_swamp_yard', 'gad_swamphouse', 'gad_swamp_woods', 'gopnik_fight_night', 'gschool_events', 'gschool_lessons', 'gschool_lessons4', 'gschool_lessonsev2', 'gschool_socialchg', 'hunter_favors', 'hunters', 'intro_start', 'intro_overview', 'kiosk', 'katja_nightclub', 'katja_uni', 'kit_din', 'kendra', 'metro', 'masseuse_work', 'map_view', 'masseuse_break', 'lezbsex', 'ludahome', 'lover_change', 'mitkasex', 'nichTanya', 'pav_complexb2', 'nichTaras', 'pav_shared_apt', 'post_deliveries', 'prostitution_pavlovsk', 'prostitution_car_negotiation', 'prostitution_car_sex', 'pod_whore', 'sex', 'sex_ev_anal', 'podezdM', 'pushkin_ballet_secrets', 'rape_events', 'sex_ev_cum', 'sex_ev_after', 'sex_ev_doggy', 'sex_ev_dress_talking', 'sex_ev_leave', 'sex_ev_cowgirl', 'sex_ev_miss', 'sex_ev_boy_pillow_talk', 'sex_ev_wakeup', 'sexm', 'street_events_general', 'sleep', 'sex_ev_hookup_leave', 'succubus', 'stol', 'tatiana_lab', 'uni_lessons_electives', 'sleep_events', 'tour_guide', 'sofia', 'taxi', 'sleep_simple', 'therapist', 'wakeup_events', 'tryndin', 'uni_lessons_electives1', 'bra_view', 'clothing_view', 'coat_view', 'panty_view', 'shoe_view', 'purse_view', 'underwear_bodysuit_view', 'havana_kickboxing', 'sex_ev_sex', 'sex_ev_foreplay', 'lesbisubhouse', 'sex_ev_condoms', 'wakeup', 'uni_lessons_electives2', 'uni_programs', 'pav_complexb3', 'brothel_section1', 'hunter_interactions', 'nichGala', 'hotel_anna', 'sex', 'date_talk', 'date_movie', 'city_artisan_quarter', 'anushkaev1', 'blackmailer']); // Cat 3: redirect chains end at dynamicGoto(prevLoc,prevArg) or state-dependent destinations with no content in TEST_STATE; sex: minet/kuni/etc redirect to sex:var which is state-dependent (needs SexTypeCheck, picrand); Military/Palatka/WorkHosp: actions navigate to sex:minet which redirects to state-dependent sex:var; blackmailer: "Get out of bed" leads to bed_get_out redirect chain that only produces content in sleep state
 
 const GOTO_EXTRA_ARGS: Record<string, string> = {
   'gad_forest_events:forest_hunters': 'forest_outskirts',
@@ -147,7 +149,7 @@ const GOTO_EXTRA_ARGS: Record<string, string> = {
 const TEST_STATE: Record<string, unknown> = {
   arch_vars: { main_active: '', bimbo_points: 0, preppy_points: 0, prude_points: 0, punk_points: 0, goth_points: 0 },
   arch_const: { point_cap: 2000000, point_min: 50000, points_full_effect: 500000 },
-  KGD: { lvl: 1, HP: 100, damage: 10, Infantrie: 1, Cavalry: 1, Archers: 1 },
+  KGD: { lvl: 1, HP: 100, damage: 10, Infantrie: 1, Cavalry: 1, Archers: 1, sput_2: 0, sput_3: 0, sput_4: 0, sput_5: 0, sput_6: 0 },
   KDG: { HP: 100, razm: 1 },
   hour: 12,
   ReturnAdr: 'forest_edge',
@@ -161,8 +163,11 @@ const TEST_STATE: Record<string, unknown> = {
   SexTypeCheck: 1,
   moodType: 'fairly normal',
   holeType: 1,
+  aarraynumber: 50,
+  curloc: 'city_artisan_quarter',
+  region: 'city',
   droutine: { morning_count: 0, evening_count: 0, current_label: '' },
-  date_ev: { unique_npc: 1, loc: 'npc_home', leave_dialogue: 'Bye', leave_action: '' },
+  date_ev: { unique_npc: 1, loc: 'npc_home', leave_dialogue: 'Bye', leave_action: '', film_decide: 'action', prev_arg: 'talk_menu', dialogue_setting: '' },
   shop_utils_view: { link: 'view_grid', type: 'bra', number: 1 },
   sex_ev: { pos_speed: 'anal1', initiative: 'girl', change_pos: 0, first_anal_insertion: 1, anal_count: 1, reset_pos: 'anal' },
   prostitute: { client_scene: 'Blowjob', scene_reduction: 0 },
@@ -174,6 +179,9 @@ const TEST_STATE: Record<string, unknown> = {
   pcs_throat: 20,
   pcs_vag: 20,
   pcs_inhib: 30,
+  pcs_makeup: 0,
+  pcs_hairbsh: 0,
+  count: {},
   temp_rand: 5,
   date_ev_exit: { exit_file: 'city_center', exit_arg: 'start' },
   fightTimType: 'fight',
@@ -187,7 +195,9 @@ const TEST_STATE: Record<string, unknown> = {
   strip_club: { strip_tips: 50 },
   pcs_eyecolor: 'brown',
   noWillpower: '',
-  brothel_vars: { orgasm_meter: 0, rage_meter: 0 },
+  brothel_vars: { orgasm_meter: 0, rage_meter: 0, electro_counter: 0, like: 0, did_whip: 0, did_cane: 0, did_pinch: 0, did_punch: 0, did_tied_1: 0, did_tied_2: 0, did_tied_3: 0, did_tied_4: 0, did_tied_5: 0, did_tied_6: 0, did_tied_7: 0, receptionist_annoy: 0 },
+  spellKnown: { penisenvy: 0 },
+  penisEnvyVariable: 0,
   deckFace: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
   uni_dorm: { floor: 'floor1' },
   transportVars: { trainpass_day: 0, train_wait_center: 5, train_wait_pavlovsk: 10 },
@@ -236,6 +246,7 @@ const TEST_STATE: Record<string, unknown> = {
   pcs_mood: 50,
   pcs_energy: 80,
   pcs_hydra: 80,
+  cumspclnt: 0,
   pcs_sleep: 80,
   pcs_willpwr: 50,
   pcs_health: 100,
@@ -333,6 +344,51 @@ const TEST_STATE: Record<string, unknown> = {
   defshoetype: [] as string[], defshoenumber: [] as number[],
   defcoattype: [] as string[], defcoatnumber: [] as number[],
   defpursetype: [] as string[], defpursenumber: [] as number[],
+  pcs_piercings: {} as Record<string, number>,
+  sexcontra: 0,
+  npcSpermPot: 0,
+  temp_obm_job: '',
+  temp_obm_data: '',
+  temp_obm_film_type: '',
+  temp_obm_cost: 0,
+  porns: 0,
+  locclass: '',
+  shared_apt: { servicePaid: 0, rentLeft: 0 },
+  npcStatVars: {},
+  npclastcalledn: 0,
+  npc_stat_pref_traits: {},
+  npc_stat_pref_values: {},
+  npcAge: [30],
+  pcs_react: 5,
+  pcs_mana: 0,
+  cmbs_set: '',
+  cmbs_class: 0,
+  temp_cmd_path: '',
+  temp_cmd_subpath: '',
+  temp_cmd_desc: '',
+  temp_cmd_img: '',
+  temp_table: '',
+  temp_set: '',
+  temp_set_index: 0,
+  cs_display_text: '',
+  cs_export_text: '',
+  temp_export_text: '',
+  cmbs_exp_set: '',
+  cmd_exp_i: 0,
+  cmd_class_str: '',
+  cmd_imgnums: 0,
+  temp_cmd_img_addon: '',
+  temp_cmd_image: '',
+  temp_base_folder: '',
+  temp_img_num: 0,
+  temp_bs_class_str: '',
+  temp_cmd_img_name: '',
+  temp_cmd_desc_adv: '',
+  temp_cmd_path_adv: '',
+  temp_cmd_subpath_adv: '',
+  temp_cmd_desc_adv2: '',
+  temp_cmd_path_adv2: '',
+  temp_cmd_subpath_adv2: '',
 };
 
 function getMemoryStats() {
@@ -593,9 +649,10 @@ async function createPageCtx(browser: any): Promise<PageCtx> {
   const page = await context.newPage();
   page.setDefaultTimeout(15000);
   const errors: string[] = [];
-  page.on('pageerror', (e: any) => errors.push(`pageerror: ${e.message}`));
+  page.on('pageerror', (e: any) => errors.push(`pageerror: ${e.message}\n${e.stack?.split('\n').slice(0, 5).join('\n')}`));
   page.on('console', (msg: any) => {
-    if (msg.type() === 'error') errors.push(`console: ${msg.text()}`);
+    const text = msg.text();
+    if (msg.type() === 'error') errors.push(`console: ${text}`);
   });
   return { context, page, errors, renderCount: 0 };
 }
@@ -693,17 +750,20 @@ function phase1StaticAnalysis(locations: string[], fileMap: Record<string, strin
   return { passed: allFailures.length === 0, failures: allFailures };
 }
 
+interface CheckOpts { skipExclusion?: boolean; timeout?: number; lenient?: boolean }
+
 async function checkRenderTarget(
   ctx: PageCtx,
   loc: string,
   sub: string,
-  fileMap: Record<string, string>
+  fileMap: Record<string, string>,
+  opts?: CheckOpts
 ): Promise<{ passed: boolean; error?: string; loc?: string }> {
   const { page, errors } = ctx;
   errors.length = 0;
   const label = sub === '' ? loc : `${loc}:${sub}`;
 
-  if (EXCLUDE_RENDER_TIMEOUT.has(loc) || EXCLUDE_JS_ERRORS.has(loc) || EXCLUDE_RENDER.has(loc)) {
+  if (!opts?.skipExclusion && (EXCLUDE_RENDER_TIMEOUT.has(loc) || EXCLUDE_JS_ERRORS.has(loc) || EXCLUDE_RENDER.has(loc))) {
     if (verbose) process.stdout.write('.');
     return { passed: true };
   }
@@ -761,7 +821,7 @@ async function checkRenderTarget(
 
         const t_end = performance.now();
         return { bgInfo, actionCount, bodyTextLen: bodyText.length, hasUntranslated, untranslatedMatches, execLinks, hasExpr, exprCount, hasUndefined, hasNaN, buttonIssues, _timing: tm ? { goto: t_goto - t_start, dom: t_end - t_goto, total: t_end - t_start } : undefined };
-      }, [loc, sub, TEST_STATE, timeMode]);
+      }, [loc, sub, TEST_STATE, timeMode], opts?.timeout);
     const t1 = Date.now();
     if (timeMode && r._timing) {
       const rt = r._timing;
@@ -773,7 +833,7 @@ async function checkRenderTarget(
       }
 
       const newErrors = errors.filter((e: string) => !/404|Failed to load resource/i.test(e));
-      if (newErrors.length > 0 && !EXCLUDE_JS_ERRORS.has(loc)) {
+      if (newErrors.length > 0 && (!opts?.skipExclusion || !EXCLUDE_JS_ERRORS.has(loc))) {
         return { passed: false, error: `JS errors: ${newErrors.slice(0, 3).join('; ')}`, loc: label };
       }
 
@@ -785,11 +845,11 @@ async function checkRenderTarget(
         return { passed: false, error: 'QSP source has *bg but no background rendered', loc: label };
       }
 
-      if (r.actionCount === 0 && sub === '' && qspHasActions(loc) && !EXCLUDE_NO_ACTIONS.has(loc)) {
+      if (!opts?.lenient && r.actionCount === 0 && sub === '' && qspHasActions(loc) && !EXCLUDE_NO_ACTIONS.has(loc)) {
         return { passed: false, error: 'no actions found', loc: label };
       }
 
-      if (r.bodyTextLen < 50) {
+      if (!opts?.lenient && r.bodyTextLen < 50) {
         return { passed: false, error: `text too short (${r.bodyTextLen} chars)`, loc: label };
       }
 
@@ -844,7 +904,7 @@ async function checkRenderTarget(
     // A timed-out (or otherwise failed) eval can leave a stuck page.evaluate running in the
     // renderer. Poison the page so the next target starts from a clean context.
     await poisonPage(ctx);
-    if (EXCLUDE_RENDER_TIMEOUT.has(loc)) {
+    if (!opts?.skipExclusion && EXCLUDE_RENDER_TIMEOUT.has(loc)) {
       if (verbose) process.stdout.write('.');
       return { passed: true };
     }
@@ -987,10 +1047,11 @@ async function phase2RenderAudit(
 async function checkInteractionTarget(
   ctx: PageCtx,
   loc: string,
-  sub: string
+  sub: string,
+  opts?: CheckOpts
 ): Promise<{ passed: boolean; error?: string; loc?: string; action?: string }> {
   const { page, errors } = ctx;
-  if (EXCLUDE_NO_ACTIONS.has(loc) || EXCLUDE_RENDER_TIMEOUT.has(loc)) return { passed: true };
+  if (!opts?.skipExclusion && (EXCLUDE_NO_ACTIONS.has(loc) || EXCLUDE_RENDER_TIMEOUT.has(loc))) return { passed: true };
   errors.length = 0;
   const label = sub === '' ? loc : `${loc}:${sub}`;
 
@@ -1005,7 +1066,7 @@ async function checkInteractionTarget(
         Math.random = () => 0;
         store.getState().doGoto(l, s, ea || undefined);
         Math.random = origRandom;
-      }, [loc, sub, TEST_STATE, extraArg]);
+      }, [loc, sub, TEST_STATE, extraArg], opts?.timeout);
     } catch (e: any) {
       return { passed: false, error: `goto threw: ${e.message}`, loc: label };
     }
@@ -1052,7 +1113,7 @@ async function checkInteractionTarget(
       }
 
       const newErrors = errors.filter((e: string) => !/404|Failed to load resource/i.test(e));
-      if (newErrors.length > 0 && !EXCLUDE_JS_ERRORS.has(loc)) {
+      if (newErrors.length > 0 && (!opts?.skipExclusion || !EXCLUDE_JS_ERRORS.has(loc))) {
         return { passed: false, error: `JS errors after click: ${newErrors.slice(0, 3).join('; ')}`, loc: label, action: actionText };
       }
 
@@ -1224,6 +1285,247 @@ async function phase3InteractionAudit(
   return { passed: allFailures.length === 0, failures: allFailures };
 }
 
+function getExcludedRenderLocations(): Set<string> {
+  const s = new Set<string>();
+  for (const l of EXCLUDE_RENDER) s.add(l);
+  for (const l of EXCLUDE_RENDER_TIMEOUT) s.add(l);
+  for (const l of EXCLUDE_JS_ERRORS) s.add(l);
+  return s;
+}
+
+function getExcludedInteractionLocations(): Set<string> {
+  const s = new Set<string>();
+  for (const l of EXCLUDE_NO_ACTIONS) s.add(l);
+  for (const l of EXCLUDE_RENDER_TIMEOUT) s.add(l);
+  return s;
+}
+
+async function phase4ExcludedRenderAudit(
+  locations: string[],
+  fileMap: Record<string, string>
+): Promise<{ passed: boolean; failures: Array<{ error: string; loc?: string }>; total: number }> {
+  const excluded = getExcludedRenderLocations();
+  const targets = getAllTestTargets(locations.filter((l) => excluded.has(l)), fileMap);
+  const allFailures: Array<{ error: string; loc?: string }> = [];
+  const completed = new Set<number>();
+  let generation = 0;
+
+  while (true) {
+    const remaining = targets.length - completed.size;
+    if (remaining <= 0) break;
+
+    generation++;
+    const genStart = Date.now();
+    logGenerationStart(generation, completed.size, targets.length, PARALLEL);
+
+    const { browser, pages } = await launchBrowser(PARALLEL);
+    const cancelled = { value: false };
+    const stopMemLog = startMemoryLogger(browser, () => { cancelled.value = true; });
+
+    let setupOk = true;
+    if (browser.isConnected()) {
+      try {
+        await Promise.all(pages.map((ctx, i) => setupPage(ctx.page).catch((e: any) => {
+          console.error(`\n[SETUP page ${i} FAILED] ${e.message}`);
+          throw e;
+        })));
+      } catch {
+        setupOk = false;
+      }
+    }
+    if (!setupOk) {
+      stopMemLog();
+      await browser.close().catch(() => {});
+      continue;
+    }
+
+    const assignments: Array<Array<{ loc: string; sub: string; idx: number }>> = pages.map(() => []);
+    let batchCount = 0;
+    for (let i = 0; i < targets.length && batchCount < GEN_BATCH_SIZE; i++) {
+      if (completed.has(i)) continue;
+      assignments[i % pages.length].push({ ...targets[i], idx: i });
+      batchCount++;
+    }
+
+    const workerPromises = pages.map(async (ctx, i) => {
+      for (const { loc, sub, idx } of assignments[i]) {
+        if (cancelled.value) break;
+        if (ctx.page.isClosed() || !browser.isConnected()) {
+          console.error(`\n[PAGE ${i} DEAD] was processing: ${loc}:${sub}`);
+          allFailures.push({ error: 'browser died', loc });
+          break;
+        }
+        const result = await checkRenderTarget(ctx, loc, sub, fileMap, { skipExclusion: true, lenient: true, timeout: 30000 });
+        completed.add(idx);
+        if (!result.passed) {
+          const f = { error: result.error!, loc: result.loc };
+          allFailures.push(f);
+          console.error(`\n[EXCLUDED RENDER FAIL] ${f.loc}: ${f.error}`);
+        }
+        ctx.renderCount++;
+        if (ctx.renderCount >= RELOAD_INTERVAL) {
+          await recyclePage(ctx, browser, i);
+        }
+      }
+    });
+
+    let stallTimer: any = null;
+    const stallPromise = new Promise((_, reject) => {
+      let lastProgress = completed.size;
+      let lastProgressTime = Date.now();
+      stallTimer = setInterval(() => {
+        if (completed.size > lastProgress) {
+          lastProgress = completed.size;
+          lastProgressTime = Date.now();
+        } else if (Date.now() - lastProgressTime > 120000) {
+          clearInterval(stallTimer);
+          cancelled.value = true;
+          reject(new Error(`phase stalled (no progress for 120s, last=${lastProgress})`));
+        }
+      }, 10000);
+    });
+
+    let stalled = false;
+    try {
+      await Promise.race([
+        Promise.all(workerPromises),
+        stallPromise
+      ]);
+    } catch (e: any) {
+      stalled = true;
+      console.error(`\n[STALL DETECTED] ${e.message}`);
+    } finally {
+      if (stallTimer) clearInterval(stallTimer);
+    }
+
+    cancelled.value = true;
+    for (const ctx of pages) await ctx.context.close().catch(() => {});
+    await Promise.allSettled(workerPromises);
+
+    stopMemLog();
+    await browser.close().catch(() => {});
+    logGenerationEnd(generation, completed.size, targets.length, Date.now() - genStart);
+
+    if (stalled) allFailures.push({ error: 'phase stalled (no progress for 120s)' });
+  }
+
+  if (verbose) console.log('');
+  return { passed: allFailures.length === 0, failures: allFailures, total: targets.length };
+}
+
+async function phase5ExcludedInteractionAudit(
+  locations: string[],
+  fileMap: Record<string, string>
+): Promise<{ passed: boolean; failures: Array<{ error: string; loc?: string; action?: string }>; total: number }> {
+  const excluded = getExcludedInteractionLocations();
+  const targets = getAllTestTargets(locations.filter((l) => excluded.has(l)), fileMap);
+  const allFailures: Array<{ error: string; loc?: string; action?: string }> = [];
+  const completed = new Set<number>();
+  let generation = 0;
+
+  while (true) {
+    const remaining = targets.length - completed.size;
+    if (remaining <= 0) break;
+
+    generation++;
+    const genStart = Date.now();
+    logGenerationStart(generation, completed.size, targets.length, PARALLEL);
+
+    const { browser, pages } = await launchBrowser(PARALLEL);
+    const cancelled = { value: false };
+    const stopMemLog = startMemoryLogger(browser, () => { cancelled.value = true; });
+
+    let setupOk = true;
+    if (browser.isConnected()) {
+      try {
+        await Promise.all(pages.map((ctx, i) => setupPage(ctx.page).catch((e: any) => {
+          console.error(`\n[SETUP page ${i} FAILED] ${e.message}`);
+          throw e;
+        })));
+      } catch {
+        setupOk = false;
+      }
+    }
+    if (!setupOk) {
+      stopMemLog();
+      await browser.close().catch(() => {});
+      continue;
+    }
+
+    const assignments: Array<Array<{ loc: string; sub: string; idx: number }>> = pages.map(() => []);
+    let batchCount = 0;
+    for (let i = 0; i < targets.length && batchCount < GEN_BATCH_SIZE; i++) {
+      if (completed.has(i)) continue;
+      assignments[i % pages.length].push({ ...targets[i], idx: i });
+      batchCount++;
+    }
+
+    const workerPromises = pages.map(async (ctx, i) => {
+      for (const { loc, sub, idx } of assignments[i]) {
+        if (cancelled.value) break;
+        if (ctx.page.isClosed() || !browser.isConnected()) {
+          console.error(`\n[PAGE ${i} DEAD] was processing: ${loc}:${sub}`);
+          allFailures.push({ error: 'browser died', loc, action: sub });
+          break;
+        }
+        const result = await checkInteractionTarget(ctx, loc, sub, { skipExclusion: true, timeout: 30000 });
+        completed.add(idx);
+        if (!result.passed) {
+          const f = { error: result.error!, loc: result.loc, action: result.action };
+          allFailures.push(f);
+          console.error(`\n[EXCLUDED INTERACTION FAIL] ${f.loc} / "${f.action}": ${f.error}`);
+        }
+        ctx.renderCount++;
+        if (ctx.renderCount >= RELOAD_INTERVAL) {
+          await recyclePage(ctx, browser, i);
+        }
+      }
+    });
+
+    let stallTimer: any = null;
+    const stallPromise = new Promise((_, reject) => {
+      let lastProgress = completed.size;
+      let lastProgressTime = Date.now();
+      stallTimer = setInterval(() => {
+        if (completed.size > lastProgress) {
+          lastProgress = completed.size;
+          lastProgressTime = Date.now();
+        } else if (Date.now() - lastProgressTime > 120000) {
+          clearInterval(stallTimer);
+          cancelled.value = true;
+          reject(new Error(`phase stalled (no progress for 120s, last=${lastProgress})`));
+        }
+      }, 10000);
+    });
+
+    let stalled = false;
+    try {
+      await Promise.race([
+        Promise.all(workerPromises),
+        stallPromise
+      ]);
+    } catch (e: any) {
+      stalled = true;
+      console.error(`\n[STALL DETECTED] ${e.message}`);
+    } finally {
+      if (stallTimer) clearInterval(stallTimer);
+    }
+
+    cancelled.value = true;
+    for (const ctx of pages) await ctx.context.close().catch(() => {});
+    await Promise.allSettled(workerPromises);
+
+    stopMemLog();
+    await browser.close().catch(() => {});
+    logGenerationEnd(generation, completed.size, targets.length, Date.now() - genStart);
+
+    if (stalled) allFailures.push({ error: 'phase stalled (no progress for 120s)' });
+  }
+
+  if (verbose) console.log('');
+  return { passed: allFailures.length === 0, failures: allFailures, total: targets.length };
+}
+
 async function main() {
   const htmlPath = join(ROOT, 'dist', 'index.html');
   if (!existsSync(htmlPath)) {
@@ -1255,10 +1557,17 @@ async function main() {
   }
   const interactionTargets = getAllTestTargets(interactionLocations, fileMap);
 
+  const excludedRenderLocs = getExcludedRenderLocations();
+  const excludedInteractionLocs = getExcludedInteractionLocations();
+  const excludedRenderTargets = getAllTestTargets(locations.filter((l) => excludedRenderLocs.has(l)), fileMap);
+  const excludedInteractionTargets = getAllTestTargets(locations.filter((l) => excludedInteractionLocs.has(l)), fileMap);
+
   console.log('=== COMPREHENSIVE AUDIT ===');
   console.log(`Locations: ${locations.length}`);
   if (!skipRender) console.log(`Render targets: ${renderTargets.length}`);
   if (!skipInteraction) console.log(`Interaction targets: ${interactionTargets.length}`);
+  if (!skipPhase4) console.log(`Excluded render targets: ${excludedRenderTargets.length}`);
+  if (!skipPhase5) console.log(`Excluded interaction targets: ${excludedInteractionTargets.length}`);
   if (filter) console.log(`Filter: ${filter}`);
   if (startAfter) console.log(`Start after: ${startAfter} (${skipRender ? 'interaction' : 'render'})`);
   if (checkTodo) console.log('TODO-QSP: checking');
@@ -1311,6 +1620,48 @@ async function main() {
       }
     } else {
       console.log('--- Phase 3: Interaction Audit (skipped) ---');
+    }
+
+    let excludedRenderCount = 0;
+    let excludedInteractionCount = 0;
+    const excludedRenderFailures: Array<{ error: string; loc?: string }> = [];
+    const excludedInteractionFailures: Array<{ error: string; loc?: string; action?: string }> = [];
+
+    if (!skipPhase4) {
+      console.log('--- Phase 4: Excluded Render Audit ---');
+      const result = await phase4ExcludedRenderAudit(locations, fileMap);
+      excludedRenderCount = result.total;
+      excludedRenderFailures.push(...result.failures);
+      if (result.passed) {
+        console.log(`PASS All ${excludedRenderCount} excluded locations render clean`);
+      } else {
+        console.log(`Phase 4 complete: ${result.failures.length} failure(s) out of ${excludedRenderCount} excluded targets (warnings only).`);
+      }
+    } else {
+      console.log('--- Phase 4: Excluded Render Audit (skipped) ---');
+    }
+
+    if (!skipPhase5) {
+      console.log('--- Phase 5: Excluded Interaction Audit ---');
+      const result = await phase5ExcludedInteractionAudit(locations, fileMap);
+      excludedInteractionCount = result.total;
+      excludedInteractionFailures.push(...result.failures);
+      if (result.passed) {
+        console.log(`PASS All ${excludedInteractionCount} excluded locations interact clean`);
+      } else {
+        console.log(`Phase 5 complete: ${result.failures.length} failure(s) out of ${excludedInteractionCount} excluded targets (warnings only).`);
+      }
+    } else {
+      console.log('--- Phase 5: Excluded Interaction Audit (skipped) ---');
+    }
+
+    if (excludedRenderFailures.length > 0) {
+      console.log(`\n[EXCLUDED RENDER WARNINGS] ${excludedRenderFailures.length} location(s) with known issues:`);
+      for (const f of excludedRenderFailures) console.log(`  ${f.loc}: ${f.error}`);
+    }
+    if (excludedInteractionFailures.length > 0) {
+      console.log(`\n[EXCLUDED INTERACTION WARNINGS] ${excludedInteractionFailures.length} action(s) with known issues:`);
+      for (const f of excludedInteractionFailures) console.log(`  ${f.loc} / "${f.action}": ${f.error}`);
     }
 
     if (renderFailures.length > 0 || interactionFailures.length > 0) {

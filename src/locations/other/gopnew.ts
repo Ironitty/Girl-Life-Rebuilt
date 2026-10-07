@@ -1330,12 +1330,13 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).tiprand ?? 0) === 0  &&  ((s as any).GLust ?? 0) !== 2) {
     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
     (s as any).namgopctnc = 6;
-    while (true) {
+    do {
       if (((s as any).namgop ?? 0)?.[String((s as any).namgopctnc ?? 0)] === '') {
         (s as any).namgopctnc = ((s as any).namgopctnc ?? 0) - (1);
         if (((s as any).namgopctnc ?? 0) > 0) {
-          break;
+          continue;
         }
+        break;
       } else {
         qspCall(s, 'boyStat', '', 'A' + String(101 + ((s as any).namgopctnc ?? 0)));
         (s as any).sexpartkno = 1;
@@ -1347,10 +1348,12 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'cum_manage', '');
         (s as any).GLust = ((s as any).GLust ?? 0) - (1);
         if (((s as any).GLust ?? 0) > 0) {
-          break;
+          continue;
         }
+        break;
       }
-      qspCall(s, 'stat', '');
+    } while (true);
+    qspCall(s, 'stat', '');
       (s as any).picrand = (Math.floor(Math.random() * 11) + 1);
       scene.img(`images/shared/sex/group/tri${((s as any).picrand ?? '')}.jpg`);
       scene.text(`${(((s as any).namgop ?? 0)?.[0] ?? '')}. The guys make you kneel before them, and begin to slap their cocks against your face impatiently. You do your best to pay attention to all of them, sucking them off one by one and jerking off those you can't put in your mouth.`);
@@ -1363,19 +1366,19 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['city_residential', ''] },
       ]);
-    }
   } else {
     if (((s as any).tiprand ?? 0) === 1  ||  ((s as any).GLust ?? 0) === 2) {
       qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
       qspCall(s, 'arousal_funcs', 'stretch', 'anal', 5);
       qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
       (s as any).namgopctnc = 6;
-      while (true) {
+      do {
         if (((s as any).namgop ?? 0)?.[String((s as any).namgopctnc ?? 0)] === '') {
           (s as any).namgopctnc = ((s as any).namgopctnc ?? 0) - (1);
           if (((s as any).namgopctnc ?? 0) > 0) {
-            break;
+            continue;
           }
+          break;
         } else {
           qspCall(s, 'boyStat', '', 'A' + String(101 + ((s as any).namgopctnc ?? 0)));
           (s as any).sexpartkno = 1;
@@ -1406,10 +1409,12 @@ function enter2(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'cum_manage', '');
           (s as any).GLust = ((s as any).GLust ?? 0) - (1);
           if (((s as any).GLust ?? 0) > 0) {
-            break;
+            continue;
           }
+          break;
         }
-        qspCall(s, 'stat', '');
+      } while (true);
+      qspCall(s, 'stat', '');
         (s as any).picrand = (Math.floor(Math.random() * 14) + 2);
         scene.img(`images/shared/sex/group/gang${((s as any).picrand ?? '')}.jpg`);
         scene.text(`${(((s as any).namgop ?? 0)?.[0] ?? '')}. The guys begin to fuck you in all of your holes at the same time!`);
@@ -1431,7 +1436,6 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['city_residential', ''] },
         ]);
-      }
     }
   }
   scene.build();
@@ -1444,12 +1448,13 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 5);
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
   (s as any).namgopctnc = 6;
-  while (true) {
+  do {
     if (((s as any).namgop ?? 0)?.[String((s as any).namgopctnc ?? 0)] === '') {
       (s as any).namgopctnc = ((s as any).namgopctnc ?? 0) - (1);
       if (((s as any).namgopctnc ?? 0) > 0) {
-        break;
+        continue;
       }
+      break;
     } else {
       qspCall(s, 'boyStat', '', 'A' + String(101 + ((s as any).namgopctnc ?? 0)));
       (s as any).sexpartkno = 1;
@@ -1465,10 +1470,12 @@ function enter3(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'cum_manage', '');
       (s as any).GLust = ((s as any).GLust ?? 0) - (1);
       if (((s as any).GLust ?? 0) > 0) {
-        break;
+        continue;
       }
+      break;
     }
-    qspCall(s, 'stat', '');
+  } while (true);
+  qspCall(s, 'stat', '');
     (s as any).picrand = (Math.floor(Math.random() * 14) + 2);
     scene.img(`images/shared/sex/group/gang${((s as any).picrand ?? '')}.jpg`);
     scene.text(`${(((s as any).namgop ?? 0)?.[0] ?? '')}. The guys begin to fuck you in all of your holes at the same time!`);
@@ -1490,7 +1497,6 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['city_residential', ''] },
     ]);
-  }
   scene.build();
 }
 

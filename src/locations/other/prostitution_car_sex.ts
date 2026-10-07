@@ -52,7 +52,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Blowjob') {
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'prostitution_car_sex', ((st as any).prostitute['client_scene'] ?? '')); } },
+      { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'prostitution_car_sex', ((st as any).prostitute?.['client_scene'] ?? '')); } },
     ]);
   } else {
     if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob'  &&  ((((s as any).prostitute ?? 0)?.['scene_repeat'] === 0  &&  (Math.floor(Math.random() * 6) + 1) < 4)  ||  (((s as any).prostitute ?? 0)?.['scene_repeat'] === 1  &&  (Math.floor(Math.random() * 6) + 1) < 3))  &&  ((s as any).prostitute ?? 0)?.['scene_reduction'] === 0) {
@@ -177,7 +177,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
 function enterRimjobStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   ((s as any).prostitute = (s as any).prostitute ?? {})['rim_pity_counter'] = 0;
-  ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 500 + ((s as any).pcs_hotcat ?? 0) * 5 + ((s as any).iif ?? 0)((((s as any).prostitute ?? 0)?.['piercing_tongue'] === ((s as any).pcs_piercings ?? 0)?.['tongue']  ||  ((s as any).prostitute ?? 0)?.['pirsA'] === ((s as any).pcs_piercings ?? 0)?.['tongue'])  &&  ((s as any).pcs_piercings ?? 0)?.['tongue'] > 0, ((s as any).pcs_piercings ?? 0)?.['tongue'] * 15, 0);
+  ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 500 + ((s as any).pcs_hotcat ?? 0) * 5 + ((c,a,b)=>c?a:b)((((s as any).prostitute ?? 0)?.['piercing_tongue'] === ((s as any).pcs_piercings ?? 0)?.['tongue']  ||  ((s as any).prostitute ?? 0)?.['pirsA'] === ((s as any).pcs_piercings ?? 0)?.['tongue'])  &&  ((s as any).pcs_piercings ?? 0)?.['tongue'] > 0, ((s as any).pcs_piercings ?? 0)?.['tongue'] * 15, 0);
   qspCall(s, 'stat', '');
   scene.text((((Math.floor(Math.random() * 2) + 0) === 0  ||  ((s as any).prostitute_fetish ?? 0)?.['rimjob'] === '') ? ('Even after ten more minutes he still doesn\'t seem to be close to shooting his load. "Something wrong?" you ask. He shakes his head. "Not really, but this will take a while." You let out an involuntary sigh. "There is something that will get me off quickly if you\'re willing to do it." You send him a questioning look. "Lick my ass, that always get\'s me off quickly,"') : ('"This isn\'t working," he says after ten more minutes. "Could you maybe eat my ass? It\'s a sure way for me to cum,"')) + ` he continues and quickly adds. "I pay extra, of course. How about ${qspFunc(s, 'money', 'string_profit', (((s as any).prostitute ?? 0)?.['payment'] ?? ''))}? I would really love to feel ` + ((((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) ? ('that piercing') : ('your tongue')) + ' on my asshole."');
   if (((s as any).prostitute_fetish ?? 0)?.['rimjob'] === '') {

@@ -12,7 +12,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   (s as any).alko_temp = ((s as any).alko ?? 0);
   qspCall(s, 'stat', '');
-  qspCall(s, 'qwBarPolet', 'intro');
   (s as any).orderDrink = ((s as any).pcs_drank ?? 0);
   if (((s as any).MartinTalkDaystart ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).MartinTalkDaystart = ((s as any).daystart ?? 0);

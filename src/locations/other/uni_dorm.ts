@@ -1539,7 +1539,7 @@ function enterDormLoungeWatchTv(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/dorm/dorm_lounge.jpg');
   scene.text('You take a seat on one of the couches to watch something on the TV. There\'s not much on, but it kills a little time.');
   scene.actions([
-    { label: 'Return to the corridor', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+    { label: 'Return to the corridor', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
     { label: 'Keep watching', goto: ['uni_dorm', 'dorm_lounge_watch_tv'] },
   ]);
   scene.build();

@@ -348,7 +348,7 @@ function enterSet_0(s: GameState, scene: SceneBuilder): void {
       if (((st as any).prostitute ?? 0)?.['pav_condom'] === 1) {
         scene.actions([
           { label: 'Let him cum inside the condom', handler: (st: GameState) => {
-    if (((st as any).prostitute ?? 0)?.['client_behavior'] === 'abusive'  &&  (Math.floor(Math.random() * 100) + 1) > ((st as any).iif ?? 0)(((st as any).pro_brand ?? 0)?.['text_pubic'] === 'cumslut', 84, 92)) {
+    if (((st as any).prostitute ?? 0)?.['client_behavior'] === 'abusive'  &&  (Math.floor(Math.random() * 100) + 1) > ((c,a,b)=>c?a:b)(((st as any).pro_brand ?? 0)?.['text_pubic'] === 'cumslut', 84, 92)) {
       ((st as any).prostitute = (st as any).prostitute ?? {})['pav_internal'] = 1;
     }
     qspGoto(st, 'prostitution_pavlovsk', 's0_internal');
@@ -508,7 +508,7 @@ function enterSet_1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).prostitute ?? 0)?.['pav_condom'] === 1) {
       scene.actions([
         { label: 'Let him cum inside the condom', handler: (st: GameState) => {
-    if (((st as any).prostitute ?? 0)?.['client_behavior'] === 'abusive'  &&  (Math.floor(Math.random() * 100) + 1) > ((st as any).iif ?? 0)(((st as any).pro_brand ?? 0)?.['text_pubic'] === 'cumslut', 84, 92)) {
+    if (((st as any).prostitute ?? 0)?.['client_behavior'] === 'abusive'  &&  (Math.floor(Math.random() * 100) + 1) > ((c,a,b)=>c?a:b)(((st as any).pro_brand ?? 0)?.['text_pubic'] === 'cumslut', 84, 92)) {
       ((st as any).prostitute = (st as any).prostitute ?? {})['pav_internal'] = 1;
     }
     qspGoto(st, 'prostitution_pavlovsk', 's1_end');
@@ -930,7 +930,7 @@ function enterSet_4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'auto_lube', 'vaginal', 'custom');
     scene.text('He turns into a small alley, but he doesn\'t head towards one of the houses. Instead he pulls you through a huge gap in a chain-link fence. "What are you doing?" You ask, when he pushes you against the wall and tugs on his pants to free his cock.');
     scene.text('"I can\'t wait anymore, you\'re too fucking hot. We need to do it right here, right now," he hisses into your ear. ' + ((((s as any).prostitute ?? 0)?.['client_behavior'] === 'abusive') ? ('') : ('His nice demeanor from a few minutes ago has completely changed.')));
-    if (((s as any).prostitute ?? 0)?.['pav_condom'] === 1  &&  (((s as any).prostitute ?? 0)?.['client_behavior'] === 'nice'  ||  (Math.floor(Math.random() * 100) + 1) < ((s as any).iif ?? 0)(((s as any).pro_brand ?? 0)?.['text_pubic'] === 'cumslut', 84, 92))) {
+    if (((s as any).prostitute ?? 0)?.['pav_condom'] === 1  &&  (((s as any).prostitute ?? 0)?.['client_behavior'] === 'nice'  ||  (Math.floor(Math.random() * 100) + 1) < ((c,a,b)=>c?a:b)(((s as any).pro_brand ?? 0)?.['text_pubic'] === 'cumslut', 84, 92))) {
       scene.text('"Please, at least use the condom," you beg even if you\'re sure that he has no self-control left. There\'s nothing else you could do anyway. So you close your eyes resigning to your fate, when he suddenly stops his movements. "Fuck...," he swears loudly, but when his cock appears back between your legs it\'s wearing the condom.');
     } else {
       scene.text('"Please, at least use the condom," you beg even if you\'re sure that he has no self-control left. There\'s nothing else you could do anyway. So you close your eyes resigning to your fate. He doesn\'t care as you predicted. Instead his dick forces himself into your unprotected pussy.');

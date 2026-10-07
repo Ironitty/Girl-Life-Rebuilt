@@ -97,6 +97,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   do {
     ((s as any).Clothingstock = (s as any).Clothingstock ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = (Math.floor(Math.random() * 101) + 0);
     ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = ((s as any).ciklVars['i'] ?? 0) + (1);
+  } while (((s as any).ciklVars ?? 0)?.['i'] <= 293);
+  {
     if (qspFunc(s, 'coats', 'is_strength_low')) {
       qspCall(s, 'coats', 'strip');
     }
@@ -501,17 +503,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'money', 'earn', ((s as any).pay ?? 0));
       (s as any).shantsr = 0;
     }
-    while (true) {
-      if (((s as any).shantbog ?? 0) > 0) {
-        if ((Math.floor(Math.random() * 11) + 0) < 3) {
-          qspCall(s, 'money', 'earn', 30000);
-        } else {
-          (s as any).shantpopala = ((s as any).shantpopala ?? 0) + (1);
-        }
-        (s as any).shantbog = ((s as any).shantbog ?? 0) - (1);
-        break;
+    while (((s as any).shantbog ?? 0) > 0) {
+      if ((Math.floor(Math.random() * 11) + 0) < 3) {
+        qspCall(s, 'money', 'earn', 30000);
+      } else {
+        (s as any).shantpopala = ((s as any).shantpopala ?? 0) + (1);
       }
-      (s as any).petersexday = 0;
+      (s as any).shantbog = ((s as any).shantbog ?? 0) - (1);
+    }
+    (s as any).petersexday = 0;
       if (((s as any).cheatVars ?? 0)?.['enema'] === 1) {
         (s as any).klismaday = ((s as any).daystart ?? 0);
         (s as any).klismaday1 = 1;
@@ -531,6 +531,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ((s as any).npc_rel = (s as any).npc_rel ?? {})[(((s as any).ciklVars ?? 0)?.['npcID'])] = 100;
         }
         ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = ((s as any).ciklVars['i'] ?? 0) + (1);
+      } while (((s as any).ciklVars ?? 0)?.['i'] < ((s as any).aarraynumber ?? 0));
+      {
         qspCall(s, 'bank', 'cikl');
         (s as any).holyday = undefined;
         (s as any).kanikuli = undefined;
@@ -828,6 +830,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'clothing', 'recover_lost_clothes', ((s as any).CloLoc ?? 0), 2);
           }
           ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = ((s as any).ciklVars['i'] ?? 0) - (1);
+        } while (((s as any).ciklVars ?? 0)?.['i'] >= 0);
+        {
           if (((s as any).vidageday ?? 0) > 1080) {
             (s as any).vidageday = 1080;
           }
@@ -921,28 +925,28 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 }
               }
               ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = ((s as any).ciklVars['i'] ?? 0) + (1);
-              (s as any).ml_onlinesong_freshness = undefined;
-              (s as any).ml_onlinesong_lastcalcday = undefined;
-              (s as any).ml_onlinesong_hotcat = undefined;
-              (s as any).ml_onlinesong_skilllevel = undefined;
-              (s as any).ml_onlinesong_uploaded = undefined;
-              ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = 0;
-              if (((s as any).ciklVars ?? 0)?.['j'] >= 0) {
-                do {
-                  ((s as any).ml_onlinesong_freshness = (s as any).ml_onlinesong_freshness ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = qspUntranslated(s, "ml_tempsong_freshness[ciklVars['i']]", { location: "cikl" });
-                  ((s as any).ml_onlinesong_hotcat = (s as any).ml_onlinesong_hotcat ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = qspUntranslated(s, "ml_tempsong_hotcat[ciklVars['i']]", { location: "cikl" });
-                  ((s as any).ml_onlinesong_lastcalcday = (s as any).ml_onlinesong_lastcalcday ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = qspUntranslated(s, "ml_tempsong_lastcalcday[ciklVars['i']]", { location: "cikl" });
-                  ((s as any).ml_onlinesong_skilllevel = (s as any).ml_onlinesong_skilllevel ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = qspUntranslated(s, "ml_tempsong_skilllevel[ciklVars['i']]", { location: "cikl" });
-                  ((s as any).ml_onlinesong_uploaded = (s as any).ml_onlinesong_uploaded ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = qspUntranslated(s, "ml_tempsong_uploaded[ciklVars['i']]", { location: "cikl" });
-                  ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = ((s as any).ciklVars['i'] ?? 0) + (1);
-                } while (((s as any).ciklVars ?? 0)?.['i'] <= ((s as any).ciklVars ?? 0)?.['j']);
-              }
-              (s as any).ml_tempsong_freshness = undefined;
-              (s as any).ml_tempsong_lastcalcday = undefined;
-              (s as any).ml_tempsong_hotcat = undefined;
-              (s as any).ml_tempsong_skilllevel = undefined;
-              (s as any).ml_tempsong_uploaded = undefined;
             } while (((s as any).ciklVars ?? 0)?.['i'] < ((s as any).ml_onlinesongcount ?? 0));
+            (s as any).ml_onlinesong_freshness = undefined;
+            (s as any).ml_onlinesong_lastcalcday = undefined;
+            (s as any).ml_onlinesong_hotcat = undefined;
+            (s as any).ml_onlinesong_skilllevel = undefined;
+            (s as any).ml_onlinesong_uploaded = undefined;
+            ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = 0;
+            if (((s as any).ciklVars ?? 0)?.['j'] >= 0) {
+              do {
+                ((s as any).ml_onlinesong_freshness = (s as any).ml_onlinesong_freshness ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = qspUntranslated(s, "ml_tempsong_freshness[ciklVars['i']]", { location: "cikl" });
+                ((s as any).ml_onlinesong_hotcat = (s as any).ml_onlinesong_hotcat ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = qspUntranslated(s, "ml_tempsong_hotcat[ciklVars['i']]", { location: "cikl" });
+                ((s as any).ml_onlinesong_lastcalcday = (s as any).ml_onlinesong_lastcalcday ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = qspUntranslated(s, "ml_tempsong_lastcalcday[ciklVars['i']]", { location: "cikl" });
+                ((s as any).ml_onlinesong_skilllevel = (s as any).ml_onlinesong_skilllevel ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = qspUntranslated(s, "ml_tempsong_skilllevel[ciklVars['i']]", { location: "cikl" });
+                ((s as any).ml_onlinesong_uploaded = (s as any).ml_onlinesong_uploaded ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = qspUntranslated(s, "ml_tempsong_uploaded[ciklVars['i']]", { location: "cikl" });
+                ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = ((s as any).ciklVars['i'] ?? 0) + (1);
+              } while (((s as any).ciklVars ?? 0)?.['i'] <= ((s as any).ciklVars ?? 0)?.['j']);
+            }
+            (s as any).ml_tempsong_freshness = undefined;
+            (s as any).ml_tempsong_lastcalcday = undefined;
+            (s as any).ml_tempsong_hotcat = undefined;
+            (s as any).ml_tempsong_skilllevel = undefined;
+            (s as any).ml_tempsong_uploaded = undefined;
           }
           if (((s as any).ml_performance ?? 0)?.['set_lastpracticeday'] !== (((s as any).daystart ?? 0)-1)) {
             (s as any).repertoire_quality = ((s as any).repertoire_quality ?? 0) - (2);
@@ -1067,11 +1071,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           qspCall(s, 'adverts_manager', 'cikl');
           qspCall(s, 'npcStat_clean', '');
-          (s as any).ciklVars = undefined;
-        } while (((s as any).ciklVars ?? 0)?.['i'] >= 0);
-      } while (((s as any).ciklVars ?? 0)?.['i'] < ((s as any).aarraynumber ?? 0));
-    }
-  } while (((s as any).ciklVars ?? 0)?.['i'] <= 293);
+        }
+      }
+  }
+  (s as any).ciklVars = undefined;
   scene.build();
 }
 

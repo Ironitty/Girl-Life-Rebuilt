@@ -283,7 +283,7 @@ export default function StatusBar() {
       })()}
 
       {panel.tattoos && (() => {
-        const total = Object.values(s.pcs_tattoos).reduce((a, b) => a + b, 0);
+        const total = Object.values(s.pcs_tattoos ?? {}).reduce((a, b) => a + (b as number), 0);
         if (total === 0) return null;
         const locNames: Record<string, string> = {
           face: 'Face', lip: 'Lip', neck: 'Neck', back: 'Back', shoulder: 'Shoulder',
@@ -312,7 +312,7 @@ export default function StatusBar() {
       })()}
 
       {panel.piercings && (() => {
-        const total = Object.values(s.pcs_piercings).reduce((a, b) => a + b, 0);
+        const total = Object.values(s.pcs_piercings ?? {}).reduce((a, b) => a + (b as number), 0);
         if (total === 0) return null;
         const locNames: Record<string, string> = {
           ears: 'Ears', nose: 'Nose', lip: 'Lip', brow: 'Brow',

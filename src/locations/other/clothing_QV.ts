@@ -118,6 +118,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } while (((s as any).i ?? 0) <= Object.keys((s as any).danilovich_outfits ?? {}).length);
+    break;
   }
   scene.build();
 }
@@ -174,7 +175,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
 
 function enterChange(s: GameState, scene: SceneBuilder): void {
   (s as any).swimwear_description = '';
-  qspCall(s, 'clothing_attributes', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[1] ?? ''), ((s as any).locArgs?.[2] ?? ''))}`);
   if (String((s as any).locArgs?.[1] ?? '') === 'misc_outfits'  &&  String((s as any).locArgs?.[2] ?? '') === 1) {
     scene.text('A hessian sack the hunters gave you.');

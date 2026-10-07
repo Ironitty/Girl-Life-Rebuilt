@@ -69,10 +69,10 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'C') {
-    qspCall(s, 'npcpreservec', '$ARGS[1]');
+    qspCall(s, 'npcpreservec', (s as any).locArgs?.[1] ?? '');
     qspCall(s, 'npcStat', '$npclastsaved');
   } else {
-    qspCall(s, 'npcStat', '$ARGS[1]');
+    qspCall(s, 'npcStat', (s as any).locArgs?.[1] ?? '');
   }
   if ((Array.isArray((s as any).lover) ? ((s as any).lover as any[]).indexOf(((s as any).npcID ?? 0)) : -1) < 0) {
     (s as any).lover = [...((s as any).lover ?? []), ((s as any).npcID ?? 0)];

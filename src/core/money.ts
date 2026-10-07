@@ -233,16 +233,17 @@ export function moneyCanAffordDebt(s: GameState, cost: number, method: string = 
 }
 
 export function moneyFormat(_s: GameState, amount: number, hideSign: boolean = false, asText: boolean = false, color: boolean = false): string {
+  const amt = amount ?? 0;
   let str: string;
   if (asText) {
-    str = amount.toLocaleString();
-    if (!hideSign) str += ' Rouble' + (amount !== 1 ? 's' : '');
+    str = amt.toLocaleString();
+    if (!hideSign) str += ' Rouble' + (amt !== 1 ? 's' : '');
   } else {
-    str = amount.toLocaleString('en-US');
+    str = amt.toLocaleString('en-US');
     if (!hideSign) str += ' ₽';
   }
   if (color) {
-    str = amount > 0 ? `<span style="color:green">${str}</span>` : `<span style="color:red">${str}</span>`;
+    str = amt > 0 ? `<span style="color:green">${str}</span>` : `<span style="color:red">${str}</span>`;
   }
   return str;
 }

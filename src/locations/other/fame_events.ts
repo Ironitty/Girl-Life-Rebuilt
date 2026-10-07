@@ -111,27 +111,27 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'mood', 'raise', 'medium');
     (st as any).minut = ((st as any).minut ?? 0) + 6;
     if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
-      qspCall(st, 'fame', '$ARGS[1]', 'music', 'medium');
+      qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', 'music', 'medium');
     } else {
-      qspCall(st, 'fame', '$ARGS[1]', '' + (((st as any).fame ?? 0)?.['activity']) + '', 'medium');
+      qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', '' + (((st as any).fame ?? 0)?.['activity']) + '', 'medium');
     }
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/fame/boyselfie1.jpg');
     scene.text('"Of course!" you say, scooching over towards him.');
     if (((st as any).stat_visible_cum ?? 0) === 1) {
-      qspCall(st, 'fame', '$ARGS[1]', 'sex', 'small');
+      qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', 'sex', 'small');
       scene.text('You sidle up to him and give a big smile into his camera phone. It\'s only when you see yourself reflected in the viewfinder that you think maybe this isn\'t such a great idea. You can clearly see the cum from your last sexual encounter on you. If this kind of thing gets posted on social media, what will people think? Before you can come up with an excuse to back out, the phone makes an artificial shuttering sound and the picture is taken.');
     } else {
       if (((st as any).PCloThinness ?? 0) === 6  &&  (((st as any).braworntype ?? 0) === 'salacious'  ||  ((st as any).braworntype ?? 0) === 'none')) {
-        qspCall(st, 'fame', '$ARGS[1]', 'sex', 'small');
+        qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', 'sex', 'small');
         scene.text('You sidle up to him and give a big smile into his camera phone. It\'s only when you see yourself reflected in the viewfinder that you think maybe this isn\'t such a great idea. Your breasts are <i>fully</i> visible, nipples and everything. If this kind of thing gets posted on social media, what will people think? Before you can come up with an excuse to back out, the phone makes an artificial shuttering sound and the picture is taken.');
       } else {
         if (((st as any).PCloThinness ?? 0) === 5  &&  (((st as any).braworntype ?? 0) === 'salacious'  ||  ((st as any).braworntype ?? 0) === 'none')) {
-          qspCall(st, 'fame', '$ARGS[1]', 'sex', 'tiny');
+          qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', 'sex', 'tiny');
           scene.text('You sidle up to him, giving a big smile into his camera phone. After a few moments, the boy manages to thumb the button and an artificial shuttering sound goes off. He immediately pulls it up for review and you take a look at it with him. It\'s a cute picture, the two of you together, though you notice just now that you can totally see your nipples are poking through your top and it\'s totally visible. Oh well, that\'s hardly the worst thing someone\'s seen of a female celebrity on the internet. But he clearly doesn\'t mind.');
         } else {
           if (((st as any).PCloThinness ?? 0) === 6) {
-            qspCall(st, 'fame', '$ARGS[1]', 'sex', (Math.floor(Math.random() * 2) + 0));
+            qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', 'sex', (Math.floor(Math.random() * 2) + 0));
             scene.text('You sidle up to him, giving a big smile into his camera phone. After a few moments, the boy manages to thumb the button and an artificial shuttering sound goes off. He immediately pulls it up for review and you take a look at it with him. It\'s a cute picture, the two of you together, though you realize just a bit too late that maybe you shouldn\'t have done a fan photo in an exhibitionist outfit like this… But he clearly doesn\'t mind.');
           } else {
             scene.text('You sidle up to him, giving a big smile into his camera phone. After a few moments, the boy manages to thumb the button and an artificial shuttering sound goes off. He immediately pulls it up for review and you take a look at it with him. It\'s a cute picture, the two of you together and he giggles excitedly just looking at it.');
@@ -148,9 +148,9 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Sorry, I\'m in a hurry', handler: (st: GameState) => {
     if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
-      qspCall(st, 'fame', '$ARGS[1]', 'music', (-50));
+      qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', 'music', (-50));
     } else {
-      qspCall(st, 'fame', '$ARGS[1]', '' + (((st as any).fame ?? 0)?.['activity']) + '', (-50));
+      qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', '' + (((st as any).fame ?? 0)?.['activity']) + '', (-50));
     }
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');
@@ -230,26 +230,26 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'mood', 'raise', 'medium');
     (st as any).minut = ((st as any).minut ?? 0) + 6;
     if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
-      qspCall(st, 'fame', '$ARGS[1]', 'music', 'medium');
+      qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', 'music', 'medium');
     } else {
-      qspCall(st, 'fame', '$ARGS[1]', '' + (((st as any).fame ?? 0)?.['activity']) + '', 'medium');
+      qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', '' + (((st as any).fame ?? 0)?.['activity']) + '', 'medium');
     }
     qspCall(st, 'stat', '');
     scene.text('"Of course!" you say, scooching over towards her.');
     if (((st as any).stat_visible_cum ?? 0) === 1) {
-      qspCall(st, 'fame', '$ARGS[1]', 'sex', 'small');
+      qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', 'sex', 'small');
       scene.text('You sidle up to her and give a big smile into her camera phone. It\'s only when you see yourself reflected in the viewfinder that you think maybe this isn\'t such a great idea. You can clearly see the cum from your last sexual encounter on you. If this kind of thing gets posted on social media, what will people think? Before you can come up with an excuse to back out, the phone makes an artificial shuttering sound and the picture is taken.');
     } else {
       if (((st as any).PCloThinness ?? 0) === 6  &&  (((st as any).braworntype ?? 0) === 'salacious'  ||  ((st as any).braworntype ?? 0) === 'none')) {
-        qspCall(st, 'fame', '$ARGS[1]', 'sex', 'small');
+        qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', 'sex', 'small');
         scene.text('You sidle up to her and give a big smile into her camera phone. It\'s only when you see yourself reflected in the viewfinder that you think maybe this isn\'t such a great idea. Your breasts are <i>fully</i> visible, nipples and everything. If this kind of thing gets posted on social media, what will people think? Before you can come up with an excuse to back out, the phone makes an artificial shuttering sound and the picture is taken.');
       } else {
         if (((st as any).PCloThinness ?? 0) === 5  &&  (((st as any).braworntype ?? 0) === 'salacious'  ||  ((st as any).braworntype ?? 0) === 'none')) {
-          qspCall(st, 'fame', '$ARGS[1]', 'sex', 'tiny');
+          qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', 'sex', 'tiny');
           scene.text('You sidle up to her, giving a big smile into her camera phone. After a few moments, the girl manages to thumb the button and an artificial shuttering sound goes off. She immediately pulls it up for review and you take a look at it with her. It\'s a cute picture, the two of you together, though you notice just now that you can totally see your nipples are poking through your top and it\'s totally visible. Oh well, that\'s hardly the worst thing someone\'s seen of a female celebrity on the internet. But she clearly doesn\'t mind.');
         } else {
           if (((st as any).PCloThinness ?? 0) === 6) {
-            qspCall(st, 'fame', '$ARGS[1]', 'sex', (Math.floor(Math.random() * 2) + 0));
+            qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', 'sex', (Math.floor(Math.random() * 2) + 0));
             scene.text('You sidle up to her, giving a big smile into her camera phone. After a few moments, the girl manages to thumb the button and an artificial shuttering sound goes off. She immediately pulls it up for review and you take a look at it with her. It\'s a cute picture, the two of you together, though you realize just a bit too late that maybe you shouldn\'t have done a fan photo in an exhibitionist outfit like this… But she clearly doesn\'t mind.');
           } else {
             scene.text('You sidle up to her, giving a big smile into her camera phone. After a few moments, the girl manages to thumb the button and an artificial shuttering sound goes off. She immediately pulls it up for review and you take a look at it with her. It\'s a cute picture, the two of you together and she giggles excitedly just looking at it.');
@@ -266,9 +266,9 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Sorry, I\'m in a hurry', handler: (st: GameState) => {
     if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
-      qspCall(st, 'fame', '$ARGS[1]', 'music', (-50));
+      qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', 'music', (-50));
     } else {
-      qspCall(st, 'fame', '$ARGS[1]', '' + (((st as any).fame ?? 0)?.['activity']) + '', (-50));
+      qspCall(st, 'fame', (s as any).locArgs?.[1] ?? '', '' + (((st as any).fame ?? 0)?.['activity']) + '', (-50));
     }
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     qspCall(st, 'stat', '');

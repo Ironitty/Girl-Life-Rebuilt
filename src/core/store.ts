@@ -666,9 +666,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
   doGoto: (loc, arg, arg2?, arg3?) => {
     logAction('GOTO', `${loc}${arg ? ':' + arg : ''}`);
     const s = extractState(get());
-    pushSnapshot(s, s.loc, `GOTO ${loc}${arg ? ':' + arg : ''}`);
+    try { pushSnapshot(s, s.loc, `GOTO ${loc}${arg ? ':' + arg : ''}`); } catch (e) { console.error('pushSnapshot error:', e); }
     try {
-      goto(s, loc, arg, arg2, arg3);
+      try { goto(s, loc, arg, arg2, arg3); } catch (e) { console.error('goto error:', e); throw e; }
       computeStats(s);
       let soundOn = true;
       try {

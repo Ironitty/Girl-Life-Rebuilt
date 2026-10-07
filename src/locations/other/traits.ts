@@ -107,7 +107,7 @@ function enterMinute(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheat(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'traits', '$ARGS[1]', 'cheat', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'traits', (s as any).locArgs?.[1] ?? '', 'cheat', ((s as any).locArgs?.[2] ?? 0));
   return;
   scene.build();
 }
@@ -128,7 +128,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
 
 function enterGetDetails(s: GameState, scene: SceneBuilder): void {
   (s as any).trait_temp = undefined;
-  qspCall(s, 'traits', '$ARGS[1]', 'details');
+  qspCall(s, 'traits', (s as any).locArgs?.[1] ?? '', 'details');
   return;
   scene.build();
 }
@@ -141,7 +141,7 @@ function enterLevel(s: GameState, scene: SceneBuilder): void {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})[((s as any).locArgs?.[1] ?? 0) + '_discovered'] = 1;
     }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), (((s as any).temp_level ?? 0)?.['dir']), ((s as any).locArgs?.[2] ?? 0)]; enterNotify(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'traits', '$ARGS[1]', 'level', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'traits', (s as any).locArgs?.[1] ?? '', 'level', ((s as any).locArgs?.[2] ?? 0));
     (s as any).temp_level = undefined;
   }
   return;

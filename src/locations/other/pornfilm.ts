@@ -1596,7 +1596,6 @@ function enter14(s: GameState, scene: SceneBuilder): void {
         (st as any).orgasm_txt = '';
         (st as any).orgasm_or = 'custom';
       }
-      (st as any).gb_counter = undefined;
       (st as any).gb_roll = undefined;
       ((st as any).stat = (st as any).stat ?? {})['vaginal'] = ((st as any).stat['vaginal'] ?? 0) + (((st as any).gb_sex_count ?? 0));
       ((st as any).stat = (st as any).stat ?? {})['anal'] = ((st as any).stat['anal'] ?? 0) + (((st as any).gb_anal_count ?? 0));

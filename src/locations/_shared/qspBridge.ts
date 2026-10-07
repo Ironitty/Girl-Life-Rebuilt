@@ -392,6 +392,25 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
         st.PurseQuality = 0; st.PursePrice = 0; st.PurseStrength = 0;
         return;
       }
+      const def = getLocation(module);
+      if (def?.enter) {
+        const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+        const savedLocArgs = (s as any).locArgs;
+        const savedPrevLoc = (s as any).prevLoc, savedPrevArg = (s as any).prevArg;
+        s.loc = module;
+        s.locArg = func;
+        s.locArg2 = '';
+        s.locArg3 = '';
+        (s as any).locArgs = [func, ...args];
+        (s as any).prevLoc = savedLoc;
+        (s as any).prevArg = savedArg;
+        def.enter(s, new SceneBuilder());
+        s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+        (s as any).locArgs = savedLocArgs;
+        (s as any).prevLoc = savedPrevLoc;
+        (s as any).prevArg = savedPrevArg;
+        return;
+      }
       warn(module, func, args);
       return;
     }
@@ -548,8 +567,28 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
       warn(module, func, args);
       return;
     }
-    default:
+    default: {
+      const def = getLocation(module);
+      if (def?.enter) {
+        const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+        const savedLocArgs = (s as any).locArgs;
+        const savedPrevLoc = (s as any).prevLoc, savedPrevArg = (s as any).prevArg;
+        s.loc = module;
+        s.locArg = func;
+        s.locArg2 = '';
+        s.locArg3 = '';
+        (s as any).locArgs = [func, ...args];
+        (s as any).prevLoc = savedLoc;
+        (s as any).prevArg = savedArg;
+        def.enter(s, new SceneBuilder());
+        s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+        (s as any).locArgs = savedLocArgs;
+        (s as any).prevLoc = savedPrevLoc;
+        (s as any).prevArg = savedPrevArg;
+        return;
+      }
       warn(module, func, args);
+    }
   }
 }
 

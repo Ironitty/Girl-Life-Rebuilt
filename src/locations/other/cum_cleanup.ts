@@ -20,7 +20,7 @@ function enterCleanloc(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === String((s as any).locArgs?.[1] ?? '')) {
         if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] !== 0  &&  ((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] !== 3) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_cleanloc_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
-          break;
+          continue;
         } else {
           if (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  ||  ((s as any).cheatVars ?? 0)?.['enema'] === 0) {
             (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) - (((((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === 0) ? ((((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] ?? 0)) : (0)));
@@ -33,7 +33,7 @@ function enterCleanloc(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).temp_cum_cleanup_cleanloc_i = ((s as any).temp_cum_cleanup_cleanloc_i ?? 0) + (1);
-      break;
+      continue;
     }
     (s as any).temp_cum_cleanup_cleanloc_i = undefined;
     return;
@@ -389,7 +389,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
               (s as any).isprok = 0;
               (s as any).vibratorIN = 0;
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
-              break;
+              continue;
             }
           } else {
             if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 3) {
@@ -397,11 +397,11 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
                 (s as any).analPlugIn = 0;
                 (s as any).analPlugOut = 0;
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
-                break;
+                continue;
               }
             } else {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
-              break;
+              continue;
             }
           }
         }
@@ -444,7 +444,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      break;
+      continue;
     }
     (s as any).toclean = undefined;
     (s as any).deresidue = undefined;

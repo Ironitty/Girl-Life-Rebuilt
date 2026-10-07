@@ -437,9 +437,9 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     } else {
       ((s as any).stat = (s as any).stat ?? {})['think_virgin'] = 0;
     }
-    ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (((s as any).sex ?? 0));
+    ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat?.['vaginal'] ?? 0) + (((s as any).sex ?? 0));
     (s as any).sex = 0;
-    ((s as any).stat = (s as any).stat ?? {})['anal'] = ((s as any).stat['anal'] ?? 0) + (((s as any).anal ?? 0));
+    ((s as any).stat = (s as any).stat ?? {})['anal'] = ((s as any).stat?.['anal'] ?? 0) + (((s as any).anal ?? 0));
     (s as any).anal = 0;
     (s as any).temp_rape_count = (((s as any).stat ?? 0)?.['rape_count']);
     (s as any).temp_rape_this_tick = 0;

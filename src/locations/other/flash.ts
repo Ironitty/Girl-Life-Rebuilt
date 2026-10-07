@@ -179,7 +179,7 @@ function enterGenerateOutput(s: GameState, scene: SceneBuilder): void {
   if (((s as any).flash_text ?? 0)[0] !== '') {
     scene.text('l $flash_text[0]');
   }
-  qspCall(s, 'arousal', '$ARGS[3]', ((s as any).locArgs?.[4] ?? 0), 'exhibitionism', (((s as any).flash_arousal ?? 0)?.[0] ?? 0), (((s as any).flash_arousal ?? 0)?.[1] ?? 0), (((s as any).flash_arousal ?? 0)?.[2] ?? 0), (((s as any).flash_arousal ?? 0)?.[3] ?? 0), (((s as any).flash_arousal ?? 0)?.[4] ?? 0), (((s as any).flash_arousal ?? 0)?.[5] ?? 0));
+  qspCall(s, 'arousal', (s as any).locArgs?.[3] ?? '', ((s as any).locArgs?.[4] ?? 0), 'exhibitionism', (((s as any).flash_arousal ?? 0)?.[0] ?? 0), (((s as any).flash_arousal ?? 0)?.[1] ?? 0), (((s as any).flash_arousal ?? 0)?.[2] ?? 0), (((s as any).flash_arousal ?? 0)?.[3] ?? 0), (((s as any).flash_arousal ?? 0)?.[4] ?? 0), (((s as any).flash_arousal ?? 0)?.[5] ?? 0));
   if (String((s as any).locArgs?.[5] ?? '') !== 1) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0)]; enterEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
@@ -587,7 +587,7 @@ function enterQuickParkFlash(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
     qspGoto(s, 'kseniyaQW', 'event1', '1');
   }
-  qspCall(s, 'flash', '$ARGS[1]', 'outdoors', 5);
+  qspCall(s, 'flash', (s as any).locArgs?.[1] ?? '', 'outdoors', 5);
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkFlashOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();

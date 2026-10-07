@@ -11,7 +11,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).shoplocation = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
-  qspCall(s, 'shop_materinstvo', 'config');
   scene.text('<center><b>Mommy Style</b></center>');
   scene.img('images/locations/city/citycenter/mall/mommy/shop.jpg');
   scene.text('This is a shop dedicated to all things pregnancy related. Here you can buy Pregnancy Clothing or items to aid the process of getting through the day.');
@@ -31,7 +30,6 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).shoplocation = undefined;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
-  qspCall(s, 'shop_materinstvo', 'config');
   scene.text('<center><b>Mommy Style</b></center>');
   scene.img('images/locations/city/citycenter/mall/mommy/shop.jpg');
   scene.text('This is a shop dedicated to all things pregnancy related. Here you can buy Pregnancy Clothing or items to aid the process of getting through the day.');

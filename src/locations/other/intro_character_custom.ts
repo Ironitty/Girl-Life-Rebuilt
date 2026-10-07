@@ -832,40 +832,40 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
       scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})/u0027bust_gen/u0027 = ${((s as any).temp_val ?? '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_custom/u0027, /u0027modapp/u0027); return false;">${((s as any).temp_label ?? '')}</a>`);
     }
     (s as any).temp_idx = ((s as any).temp_idx ?? 0) + (1);
-    (s as any).temp_idx = undefined;
-    (s as any).temp_val = undefined;
-    (s as any).temp_label = undefined;
-    scene.text('Choose base genetic butt size: (this is the genetic disposition and not the actual size at game start)');
-    (s as any).temp_idx = 0;
-    do {
-      (s as any).temp_val = ((s as any).temp_idx ?? 0) * 5 + 2;
-      if ((!((s as any).temp_idx ?? 0))) {
-        (s as any).temp_label = 'Flat';
+  } while (((s as any).temp_idx ?? 0) < 9);
+  (s as any).temp_idx = undefined;
+  (s as any).temp_val = undefined;
+  (s as any).temp_label = undefined;
+  scene.text('Choose base genetic butt size: (this is the genetic disposition and not the actual size at game start)');
+  (s as any).temp_idx = 0;
+  do {
+    (s as any).temp_val = ((s as any).temp_idx ?? 0) * 5 + 2;
+    if ((!((s as any).temp_idx ?? 0))) {
+      (s as any).temp_label = 'Flat';
+    } else {
+      if (((s as any).temp_idx ?? 0) === 1) {
+        (s as any).temp_label = 'Mostly Flat';
       } else {
-        if (((s as any).temp_idx ?? 0) === 1) {
-          (s as any).temp_label = 'Mostly Flat';
+        if (((s as any).temp_idx ?? 0) === 2) {
+          (s as any).temp_label = 'Small';
         } else {
-          if (((s as any).temp_idx ?? 0) === 2) {
-            (s as any).temp_label = 'Small';
+          if (((s as any).temp_idx ?? 0) === 3) {
+            (s as any).temp_label = 'Below Average';
           } else {
-            if (((s as any).temp_idx ?? 0) === 3) {
-              (s as any).temp_label = 'Below Average';
+            if (((s as any).temp_idx ?? 0) === 4) {
+              (s as any).temp_label = 'Average';
             } else {
-              if (((s as any).temp_idx ?? 0) === 4) {
-                (s as any).temp_label = 'Average';
+              if (((s as any).temp_idx ?? 0) === 5) {
+                (s as any).temp_label = 'Above Average';
               } else {
-                if (((s as any).temp_idx ?? 0) === 5) {
-                  (s as any).temp_label = 'Above Average';
+                if (((s as any).temp_idx ?? 0) === 6) {
+                  (s as any).temp_label = 'Big';
                 } else {
-                  if (((s as any).temp_idx ?? 0) === 6) {
-                    (s as any).temp_label = 'Big';
+                  if (((s as any).temp_idx ?? 0) === 7) {
+                    (s as any).temp_label = 'Massive';
                   } else {
-                    if (((s as any).temp_idx ?? 0) === 7) {
-                      (s as any).temp_label = 'Massive';
-                    } else {
-                      if (((s as any).temp_idx ?? 0) === 8) {
-                        (s as any).temp_label = 'Getting silly';
-                      }
+                    if (((s as any).temp_idx ?? 0) === 8) {
+                      (s as any).temp_label = 'Getting silly';
                     }
                   }
                 }
@@ -874,24 +874,24 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      if (((s as any).pcs_mass ?? 0)?.['butt_gen'] === ((s as any).temp_val ?? 0)) {
-        scene.text(`${((s as any).temp_label ?? '')} - Currently set`);
-      } else {
-        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})/u0027butt_gen/u0027 = ${((s as any).temp_val ?? '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_custom/u0027, /u0027modapp/u0027); return false;">${((s as any).temp_label ?? '')}</a>`);
-      }
-      (s as any).temp_idx = ((s as any).temp_idx ?? 0) + (1);
-      (s as any).temp_idx = undefined;
-      (s as any).temp_val = undefined;
-      (s as any).temp_label = undefined;
-      scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Body fat (' + String((((s as any).pcs_mass ?? 0)?.['body'] ?? '') ?? '') + '/200)', handler: (st: GameState) => {
+    }
+    if (((s as any).pcs_mass ?? 0)?.['butt_gen'] === ((s as any).temp_val ?? 0)) {
+      scene.text(`${((s as any).temp_label ?? '')} - Currently set`);
+    } else {
+      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})/u0027butt_gen/u0027 = ${((s as any).temp_val ?? '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_custom/u0027, /u0027modapp/u0027); return false;">${((s as any).temp_label ?? '')}</a>`);
+    }
+    (s as any).temp_idx = ((s as any).temp_idx ?? 0) + (1);
+  } while (((s as any).temp_idx ?? 0) < 9);
+  (s as any).temp_idx = undefined;
+  (s as any).temp_val = undefined;
+  (s as any).temp_label = undefined;
+  scene.actions([
+    { label: '', labelFn: (s: GameState) => 'Body fat (' + String((((s as any).pcs_mass ?? 0)?.['body'] ?? '') ?? '') + '/200)', handler: (st: GameState) => {
     qspCall(st, 'intro_character_custom', '');
     ((st as any).pcs_mass = (st as any).pcs_mass ?? {})['body'] = ((st as any).nstat ?? 0);
   }, goto: ['intro_character_custom', 'modapp'] },
-        { label: 'Return', goto: ['intro_character_custom', 'start'] },
-      ]);
-    } while (((s as any).temp_idx ?? 0) < 9);
-  } while (((s as any).temp_idx ?? 0) < 9);
+    { label: 'Return', goto: ['intro_character_custom', 'start'] },
+  ]);
   scene.build();
 }
 
@@ -1128,7 +1128,8 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
 
 function enterSetval(s: GameState, scene: SceneBuilder): void {
   (s as any).nstat = 0;
-  (s as any).nstat = window.prompt("Enter value in multiples of 5, between 10 and 150. For example, 10, 15, 60 etc.") ?? '';
+  const __setval_input = window.prompt("Enter value in multiples of 5, between 10 and 150. For example, 10, 15, 60 etc.");
+  (s as any).nstat = (__setval_input !== null && __setval_input !== '') ? __setval_input : '50';
   if (((s as any).nstat ?? 0) > 150) {
     alert('Please enter a value less than or equal to 150');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetval(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1203,7 +1204,8 @@ function enterSetbodymass(s: GameState, scene: SceneBuilder): void {
   scene.text('90 = overweight, stocky');
   scene.text('105 = fat, heavy set');
   (s as any).nstat = (((s as any).pcs_mass ?? 0)?.['body']);
-  (s as any).nstat = window.prompt("Enter value in multiples of 5, between 10 and 150. For example, 10, 15, 60 etc.") ?? '';
+  const __setbodymass_input = window.prompt("Enter value in multiples of 5, between 10 and 150. For example, 10, 15, 60 etc.");
+  (s as any).nstat = (__setbodymass_input !== null && __setbodymass_input !== '') ? __setbodymass_input : String(((s as any).pcs_mass ?? 0)?.['body'] ?? 50);
   if (((s as any).nstat ?? 0) > 150) {
     alert('Please enter a value less than 150');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetbodymass(s, scene); (s as any).locArgs = __savedLocArgs; }

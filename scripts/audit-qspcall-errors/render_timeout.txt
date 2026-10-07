@@ -1,0 +1,9 @@
+begin:quick_start
+intro_character_creation:quick_start
+intro_character_templates:mod_only_set_group
+intro_character_templates:set_random_template
+intro_character_templates:set_template
+intro_functions:reset_all
+intro_functions:reset_school
+intro_functions:set_uni_nursing_course
+intro_functions:set_uni_teacher_course

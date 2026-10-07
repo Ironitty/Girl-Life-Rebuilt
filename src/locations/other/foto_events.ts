@@ -15,21 +15,26 @@ function enterFame(s: GameState, scene: SceneBuilder): void {
     ((s as any).special_skill_model = (s as any).special_skill_model ?? {})['roll'] = 2000;
     if (((s as any).first_fame_event ?? 0) < 1) {
       qspGoto(s, 'foto_events', 'topless1');
+      break;
     } else {
       (s as any).mdlng_fame_event = (Math.floor(Math.random() * 3) + 1);
       if (((s as any).mdlng_fame_event ?? 0) === 1  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).daystage ?? 0) < 3) {
         qspGoto(s, 'foto_events', 'pool1');
+        break;
       } else {
         if (((s as any).mdlng_fame_event ?? 0) === 2  &&  ((s as any).pcs_agil ?? 0) >= 40) {
           qspGoto(s, 'foto_events', 'tennis');
+          break;
         } else {
           if (((s as any).mdlng_fame_event ?? 0) === 2  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).daystage ?? 0) < 3) {
             qspGoto(s, 'foto_events', 'pool1');
+            break;
           } else {
             if (((s as any).mdlng_fame_event ?? 0) === 3) {
               qspGoto(s, 'foto_events2', 'champagne1');
-            } else {
               break;
+            } else {
+              continue;
             }
           }
         }
@@ -47,20 +52,25 @@ function enterSkill(s: GameState, scene: SceneBuilder): void {
     (s as any).mdlng_skill_event = (Math.floor(Math.random() * 5) + 1);
     if (((s as any).mdlng_skill_event ?? 0) === 1  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).daystage ?? 0) < 3) {
       qspGoto(s, 'foto_events', 'topless2');
+      break;
     } else {
       if (((s as any).mdlng_skill_event ?? 0) === 2  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).daystage ?? 0) < 3) {
         qspGoto(s, 'foto_events', 'beach2');
+        break;
       } else {
         if (((s as any).mdlng_skill_event ?? 0) === 3  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).daystage ?? 0) < 3) {
           qspGoto(s, 'foto_events', 'pool2');
+          break;
         } else {
           if (((s as any).mdlng_skill_event ?? 0) === 4  &&  ((s as any).hour ?? 0) <= 18) {
             qspGoto(s, 'foto_events', 'runway2');
+            break;
           } else {
             if (((s as any).mdlng_skill_event ?? 0) === 5) {
               qspGoto(s, 'foto_events', 'wet1');
-            } else {
               break;
+            } else {
+              continue;
             }
           }
         }

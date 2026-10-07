@@ -113,20 +113,22 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).porns ?? 0) < 3) {
         (s as any).porns = ((s as any).porns ?? 0) + (1);
-        break;
+        continue;
       }
-      if (((s as any).days ?? 0) < ((s as any).job_booking_window_days ?? 0)?.['city_pornstudio_actress']) {
-        (s as any).days = ((s as any).days ?? 0) + (1);
-        break;
-      }
-      (s as any).temp_sched_tail = ((((s as any).job_booking_window_days ?? {})?.['city_pornstudio_actress'] ?? 0) + 1) * 4;
-      (s as any).pornplan = undefined;
-      (s as any).pornplan = undefined;
-      (s as any).pornplan = undefined;
-      (s as any).pornplan = undefined;
-      (s as any).temp_sched_tail = undefined;
+      break;
     }
+    if (((s as any).days ?? 0) < ((s as any).job_booking_window_days ?? 0)?.['city_pornstudio_actress']) {
+      (s as any).days = ((s as any).days ?? 0) + (1);
+      continue;
+    }
+    break;
   }
+  (s as any).temp_sched_tail = ((((s as any).job_booking_window_days ?? {})?.['city_pornstudio_actress'] ?? 0) + 1) * 4;
+  (s as any).pornplan = undefined;
+  (s as any).pornplan = undefined;
+  (s as any).pornplan = undefined;
+  (s as any).pornplan = undefined;
+  (s as any).temp_sched_tail = undefined;
   scene.build();
 }
 
@@ -348,13 +350,13 @@ function enterCanceling(s: GameState, scene: SceneBuilder): void {
         scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027do_cancel/u0027, String((s as any).ps_i ?? /u0027/u0027)); return false;">${(((s as any).porndesc ?? 0)?.[parseFloat(((s as any).temp_nc_booking ?? ''))] ?? '')}</a>`);
       }
       (s as any).porns = ((s as any).porns ?? 0) + (1);
-      (s as any).ps_i = ((s as any).ps_i ?? 0) + (1);
-      (s as any).ps_i = undefined;
-      (s as any).porns = undefined;
-      (s as any).temp_nc_daystart = undefined;
-      (s as any).temp_nc_booking = undefined;
     } while (((s as any).porns ?? 0) < 4);
+    (s as any).ps_i = ((s as any).ps_i ?? 0) + (1);
   } while (((s as any).ps_i ?? 0) < ((s as any).job_booking_window_days ?? 0)?.['city_pornstudio_actress'] + 1);
+  (s as any).ps_i = undefined;
+  (s as any).porns = undefined;
+  (s as any).temp_nc_daystart = undefined;
+  (s as any).temp_nc_booking = undefined;
   scene.build();
 }
 
@@ -491,7 +493,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).nh1 = undefined;
       scene.text(`<td align="center"><font size=5>${((s as any).option ?? '')}</font></td>`);
-      (s as any).d1 = ((s as any).d1 ?? 0) + (1);
+        (s as any).d1 = ((s as any).d1 ?? 0) + (1);
       (s as any).p1 = ((s as any).p1 ?? 0) + (1);
       (s as any).w1 = ((s as any).w1 ?? 0) + (1);
       if (((s as any).monthsend ?? 0)?.[String((s as any).m1 ?? 0)] < ((s as any).d1 ?? 0)) {
@@ -506,7 +508,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
           (s as any).m1 = 1;
         }
         (s as any).d1 = 1;
-        if (((s as any).p1 ?? 0) < 50) {
+        if (((s as any).p1 ?? 0) >= 50) {
           break;
         }
       } else {
@@ -515,27 +517,31 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
             scene.text('</tr>');
             (s as any).w1 = 1;
           }
-          break;
+          continue;
         } else {
           scene.text('</tr></table><br>');
+          break;
         }
       }
-      (s as any).inversefilter = 0;
-      scene.text('');
-      if ((!((s as any).weekdayfilter ?? 0))) {
-        (s as any).weekdayfilter_link = '<a href="#" onclick="window.__gameStore.setState((s) => { s.weekdayfilter = 1; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Remove weekdays</a>';
-      } else {
-        (s as any).weekdayfilter_link = '<a href="#" onclick="window.__gameStore.setState((s) => { s.weekdayfilter = 0; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Restore weekdays</a>';
-      }
-      if ((!((s as any).weekendfilter ?? 0))) {
-        (s as any).weekendfilter_link = '<a href="#" onclick="window.__gameStore.setState((s) => { s.weekendfilter = 1; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Remove weekends</a>';
-      } else {
-        (s as any).weekendfilter_link = '<a href="#" onclick="window.__gameStore.setState((s) => { s.weekendfilter = 0; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Restore weekends</a>';
-      }
-      scene.text(`${((s as any).weekdayfilter_link ?? '')} ${((s as any).weekendfilter_link ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { s.inversefilter = 1; return s; }); window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027selection/u0027); return false;">Inverse selection</a><br>`);
-      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any)[\u0027datefilter\u0027]; delete (s as any)[\u0027selected\u0027]; s.weekdayfilter = 0; s.weekendfilter = 0; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Clear date filters</a>');
+    }
+    if (((s as any).p1 ?? 0) >= 50) {
+      break;
     }
   }
+  (s as any).inversefilter = 0;
+  scene.text('');
+  if ((!((s as any).weekdayfilter ?? 0))) {
+    (s as any).weekdayfilter_link = '<a href="#" onclick="window.__gameStore.setState((s) => { s.weekdayfilter = 1; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Remove weekdays</a>';
+  } else {
+    (s as any).weekdayfilter_link = '<a href="#" onclick="window.__gameStore.setState((s) => { s.weekdayfilter = 0; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Restore weekdays</a>';
+  }
+  if ((!((s as any).weekendfilter ?? 0))) {
+    (s as any).weekendfilter_link = '<a href="#" onclick="window.__gameStore.setState((s) => { s.weekendfilter = 1; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Remove weekends</a>';
+  } else {
+    (s as any).weekendfilter_link = '<a href="#" onclick="window.__gameStore.setState((s) => { s.weekendfilter = 0; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Restore weekends</a>';
+  }
+  scene.text(`${((s as any).weekdayfilter_link ?? '')} ${((s as any).weekendfilter_link ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { s.inversefilter = 1; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Inverse selection</a><br>`);
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any)[\u0027datefilter\u0027]; delete (s as any)[\u0027selected\u0027]; s.weekdayfilter = 0; s.weekendfilter = 0; return s; }); window.__gameStore.getState().doGoto(\u0027pornschedule\u0027, \u0027selection\u0027); return false;">Clear date filters</a>');
   scene.build();
 }
 

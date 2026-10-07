@@ -37,50 +37,52 @@ function enterInitFight(s: GameState, scene: SceneBuilder): void {
   (s as any).opp_spells = undefined;
   (s as any).opp_timer = undefined;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearPCSArrayPlayer(s, scene); (s as any).locArgs = __savedLocArgs; }
-  (s as any).temp_clear_check = 0;
+  (s as any).temp_clear_check = Object.keys((s as any).pcs_health ?? {}).length;
   while (true) {
     if (((s as any).temp_clear_check ?? 0) > 1) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_clear_check ?? 0) - 1]; enterClearPCSArray(s, scene); (s as any).locArgs = __savedLocArgs; }
       (s as any).temp_clear_check = ((s as any).temp_clear_check ?? 0) - (1);
-      break;
+      continue;
     }
-    (s as any).clear_check = undefined;
-    ((s as any).pcs_name = (s as any).pcs_name ?? {})[0] = 'You';
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
-      ((s as any).pcs_image = (s as any).pcs_image ?? {})[0] = 'images/system/1_openings/1_tf/mikhail_1.jpg';
-    } else {
-      ((s as any).pcs_image = (s as any).pcs_image ?? {})[0] = qspFunc(s, '$face_image', '');
-    }
+    break;
+  }
+  (s as any).clear_check = undefined;
+  ((s as any).pcs_name = (s as any).pcs_name ?? {})[0] = 'You';
+  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    ((s as any).pcs_image = (s as any).pcs_image ?? {})[0] = 'images/system/1_openings/1_tf/mikhail_1.jpg';
+  } else {
+    ((s as any).pcs_image = (s as any).pcs_image ?? {})[0] = qspFunc(s, '$face_image', '');
   }
   scene.build();
 }
 
 function enterClearPCSArray(s: GameState, scene: SceneBuilder): void {
-  (s as any).pcs_name = undefined;
-  (s as any).pcs_image = undefined;
-  (s as any).pcs_def = undefined;
-  (s as any).pcs_run = undefined;
-  (s as any).pcs_wrstlng = undefined;
-  (s as any).pcs_kick = undefined;
-  (s as any).pcs_punch = undefined;
-  (s as any).pcs_jab = undefined;
-  (s as any).pcs_stren = undefined;
-  (s as any).pcs_agil = undefined;
-  (s as any).pcs_vital = undefined;
-  (s as any).pcs_react = undefined;
-  (s as any).pcs_health = undefined;
-  (s as any).pcs_willpwr = undefined;
-  (s as any).pcs_shoot = undefined;
-  (s as any).pcs_magik = undefined;
-  (s as any).pcs_mana = undefined;
-  (s as any).pcs_fog = undefined;
-  (s as any).pcs_clone = undefined;
-  (s as any).pcs_shield = undefined;
-  (s as any).pcs_dambonus = undefined;
-  (s as any).pcs_init = undefined;
-  (s as any).pcs_stun = undefined;
-  (s as any).pcs_spells = undefined;
-  (s as any).pcs_timer = undefined;
+  const idx = String((s as any).locArgs?.[1] ?? 0);
+  if ((s as any).pcs_name) delete (s as any).pcs_name[idx];
+  if ((s as any).pcs_image) delete (s as any).pcs_image[idx];
+  if ((s as any).pcs_def) delete (s as any).pcs_def[idx];
+  if ((s as any).pcs_run) delete (s as any).pcs_run[idx];
+  if ((s as any).pcs_wrstlng) delete (s as any).pcs_wrstlng[idx];
+  if ((s as any).pcs_kick) delete (s as any).pcs_kick[idx];
+  if ((s as any).pcs_punch) delete (s as any).pcs_punch[idx];
+  if ((s as any).pcs_jab) delete (s as any).pcs_jab[idx];
+  if ((s as any).pcs_stren) delete (s as any).pcs_stren[idx];
+  if ((s as any).pcs_agil) delete (s as any).pcs_agil[idx];
+  if ((s as any).pcs_vital) delete (s as any).pcs_vital[idx];
+  if ((s as any).pcs_react) delete (s as any).pcs_react[idx];
+  if ((s as any).pcs_health) delete (s as any).pcs_health[idx];
+  if ((s as any).pcs_willpwr) delete (s as any).pcs_willpwr[idx];
+  if ((s as any).pcs_shoot) delete (s as any).pcs_shoot[idx];
+  if ((s as any).pcs_magik) delete (s as any).pcs_magik[idx];
+  if ((s as any).pcs_mana) delete (s as any).pcs_mana[idx];
+  if ((s as any).pcs_fog) delete (s as any).pcs_fog[idx];
+  if ((s as any).pcs_clone) delete (s as any).pcs_clone[idx];
+  if ((s as any).pcs_shield) delete (s as any).pcs_shield[idx];
+  if ((s as any).pcs_dambonus) delete (s as any).pcs_dambonus[idx];
+  if ((s as any).pcs_init) delete (s as any).pcs_init[idx];
+  if ((s as any).pcs_stun) delete (s as any).pcs_stun[idx];
+  if ((s as any).pcs_spells) delete (s as any).pcs_spells[idx];
+  if ((s as any).pcs_timer) delete (s as any).pcs_timer[idx];
   scene.build();
 }
 
@@ -141,33 +143,36 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).i ?? 0) < ((s as any).tableSize ?? 0)) {
       (s as any).HTMLText = ((s as any).HTMLText ?? 0) + ('\n<tr>\n<td align="left"><img HEIGHT=300 src="' + (((s as any).pcs_image ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '"></left></td>\n<td align="right"><img HEIGHT=300 src="' + (((s as any).opp_image ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '"></right></td>\n</tr>\n<tr>\n<td align="left"><b><font size=10>' + (((s as any).pcs_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '</font></b></left></td>\n<td align="right"><b><font size=10>' + (((s as any).opp_name ?? 0)?.[String((s as any).i ?? 0)] ?? 0) + '</font></b></right></td>\n</tr>');
       (s as any).i = ((s as any).i ?? 0) + (1);
-      break;
+      continue;
     }
-    (s as any).HTMLText = ((s as any).HTMLText ?? 0) + ('</table>');
-    (s as any).i = 0;
-    while (true) {
-      if (((s as any).i ?? 0) < Object.keys((s as any).pcs_health ?? {}).length) {
-        ((s as any).pcs_timer = (s as any).pcs_timer ?? {})[String((s as any).i ?? 0)] = 60 - ((((s as any).pcs_react ?? 0)?.[String((s as any).i ?? 0)] ?? 0)/2);
-        (s as any).i = ((s as any).i ?? 0) + (1);
-        break;
-      }
-      (s as any).i = 0;
-      while (true) {
-        if (((s as any).i ?? 0) < Object.keys((s as any).opp_health ?? {}).length) {
-          ((s as any).opp_timer = (s as any).opp_timer ?? {})[String((s as any).i ?? 0)] = 60 - ((((s as any).opp_react ?? 0)?.[String((s as any).i ?? 0)] ?? 0)/2);
-          (s as any).i = ((s as any).i ?? 0) + (1);
-          break;
-        }
-        (s as any).fight_start = 1;
-        (s as any).HTMLText = undefined;
-        (s as any).tableSize = undefined;
-        (s as any).i = undefined;
-        scene.actions([
-          { label: 'Fight!', goto: ['fight', 'main'] },
-        ]);
-      }
-    }
+    break;
   }
+  (s as any).HTMLText = ((s as any).HTMLText ?? 0) + ('</table>');
+  (s as any).i = 0;
+  while (true) {
+    if (((s as any).i ?? 0) < Object.keys((s as any).pcs_health ?? {}).length) {
+      ((s as any).pcs_timer = (s as any).pcs_timer ?? {})[String((s as any).i ?? 0)] = 60 - ((((s as any).pcs_react ?? 0)?.[String((s as any).i ?? 0)] ?? 0)/2);
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      continue;
+    }
+    break;
+  }
+  (s as any).i = 0;
+  while (true) {
+    if (((s as any).i ?? 0) < Object.keys((s as any).opp_health ?? {}).length) {
+      ((s as any).opp_timer = (s as any).opp_timer ?? {})[String((s as any).i ?? 0)] = 60 - ((((s as any).opp_react ?? 0)?.[String((s as any).i ?? 0)] ?? 0)/2);
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      continue;
+    }
+    break;
+  }
+  (s as any).fight_start = 1;
+  (s as any).HTMLText = undefined;
+  (s as any).tableSize = undefined;
+  (s as any).i = undefined;
+  scene.actions([
+    { label: 'Fight!', goto: ['fight', 'main'] },
+  ]);
   scene.build();
 }
 
@@ -189,28 +194,30 @@ function enterFindActiveTimer(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      break;
+      continue;
     }
-    (s as any).i = 0;
-    while (true) {
-      if (((s as any).i ?? 0) < Object.keys((s as any).opp_timer ?? {}).length) {
-        if (((s as any).opp_stun ?? 0)?.[String((s as any).i ?? 0)] > 0) {
-          ((s as any).opp_stun = (s as any).opp_stun ?? {})[String((s as any).i ?? 0)] = ((s as any).opp_stun[String((s as any).i ?? 0)] ?? 0) - (1);
-        } else {
-          if (((s as any).opp_health ?? 0)?.[String((s as any).i ?? 0)] > 0) {
-            if (((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
-              (s as any).fightTimLow = (((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
-              (s as any).fightTimNum = ((s as any).i ?? 0);
-              (s as any).fightTimType = 'opponent';
-            }
+    break;
+  }
+  (s as any).i = 0;
+  while (true) {
+    if (((s as any).i ?? 0) < Object.keys((s as any).opp_timer ?? {}).length) {
+      if (((s as any).opp_stun ?? 0)?.[String((s as any).i ?? 0)] > 0) {
+        ((s as any).opp_stun = (s as any).opp_stun ?? {})[String((s as any).i ?? 0)] = ((s as any).opp_stun[String((s as any).i ?? 0)] ?? 0) - (1);
+      } else {
+        if (((s as any).opp_health ?? 0)?.[String((s as any).i ?? 0)] > 0) {
+          if (((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
+            (s as any).fightTimLow = (((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)] ?? 0);
+            (s as any).fightTimNum = ((s as any).i ?? 0);
+            (s as any).fightTimType = 'opponent';
           }
         }
-        (s as any).i = ((s as any).i ?? 0) + (1);
-        break;
       }
-      (s as any).i = undefined;
+      (s as any).i = ((s as any).i ?? 0) + (1);
+      continue;
     }
+    break;
   }
+  (s as any).i = undefined;
   scene.build();
 }
 

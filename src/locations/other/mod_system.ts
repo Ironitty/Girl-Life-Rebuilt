@@ -172,36 +172,36 @@ function enterDeleteMod(s: GameState, scene: SceneBuilder): void {
       ((s as any).mod_opt_temp = (s as any).mod_opt_temp ?? {})[String((s as any).mod_i ?? 0)] = (((s as any).mod_opt ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0);
     }
     (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
-    (s as any).mod_i = undefined;
-    (s as any).mod_removed_temp = undefined;
-    (s as any).mod_su_name = undefined;
-    if (((s as any).qspver ?? 0) < '5.8.0') {
-    }
-    (s as any).mod_name = undefined;
-    (s as any).mod_version = undefined;
-    (s as any).mod_author = undefined;
-    (s as any).mod_desc = undefined;
-    (s as any).mod_opt = undefined;
-    (s as any).mod_i = 0;
-    do {
-      if (((s as any).mod_name_temp ?? 0)?.[String((s as any).mod_i ?? 0)] !== '') {
-        if (((s as any).qspver ?? 0) < '5.8.0') {
-        }
-        (s as any).mod_name = [...((s as any).mod_name ?? []), (((s as any).mod_name_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0)];
-        (s as any).mod_version = [...((s as any).mod_version ?? []), (((s as any).mod_version_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0)];
-        (s as any).mod_author = [...((s as any).mod_author ?? []), (((s as any).mod_author_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0)];
-        (s as any).mod_desc = [...((s as any).mod_desc ?? []), (((s as any).mod_desc_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0)];
-        (s as any).mod_opt = [...((s as any).mod_opt ?? []), (((s as any).mod_opt_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0)];
-      }
-      (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
-      (s as any).mod_i = undefined;
-      (s as any).mod_name_temp = undefined;
-      (s as any).mod_version_temp = undefined;
-      (s as any).mod_author_temp = undefined;
-      (s as any).mod_desc_temp = undefined;
-      (s as any).mod_opt_temp = undefined;
-    } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name_temp ?? {}).length);
   } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length);
+  (s as any).mod_i = undefined;
+  (s as any).mod_removed_temp = undefined;
+  (s as any).mod_su_name = undefined;
+  if (((s as any).qspver ?? 0) < '5.8.0') {
+  }
+  (s as any).mod_name = undefined;
+  (s as any).mod_version = undefined;
+  (s as any).mod_author = undefined;
+  (s as any).mod_desc = undefined;
+  (s as any).mod_opt = undefined;
+  (s as any).mod_i = 0;
+  do {
+    if (((s as any).mod_name_temp ?? 0)?.[String((s as any).mod_i ?? 0)] !== '') {
+      if (((s as any).qspver ?? 0) < '5.8.0') {
+      }
+      (s as any).mod_name = [...((s as any).mod_name ?? []), (((s as any).mod_name_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0)];
+      (s as any).mod_version = [...((s as any).mod_version ?? []), (((s as any).mod_version_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0)];
+      (s as any).mod_author = [...((s as any).mod_author ?? []), (((s as any).mod_author_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0)];
+      (s as any).mod_desc = [...((s as any).mod_desc ?? []), (((s as any).mod_desc_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0)];
+      (s as any).mod_opt = [...((s as any).mod_opt ?? []), (((s as any).mod_opt_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0)];
+    }
+    (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+  } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name_temp ?? {}).length);
+  (s as any).mod_i = undefined;
+  (s as any).mod_name_temp = undefined;
+  (s as any).mod_version_temp = undefined;
+  (s as any).mod_author_temp = undefined;
+  (s as any).mod_desc_temp = undefined;
+  (s as any).mod_opt_temp = undefined;
   scene.build();
 }
 
@@ -214,40 +214,40 @@ function enterUpdateAllMods(s: GameState, scene: SceneBuilder): void {
     ((s as any).mod_desc_temp = (s as any).mod_desc_temp ?? {})[String((s as any).mod_i ?? 0)] = (((s as any).mod_desc ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0);
     ((s as any).mod_opt_temp = (s as any).mod_opt_temp ?? {})[String((s as any).mod_i ?? 0)] = (((s as any).mod_opt ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0);
     (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
-    if (((s as any).qspver ?? 0) < '5.8.0') {
-    }
-    (s as any).mod_name = undefined;
-    (s as any).mod_version = undefined;
-    (s as any).mod_author = undefined;
-    (s as any).mod_desc = undefined;
-    (s as any).mod_opt = undefined;
-    (s as any).mod_i = 0;
-    do {
-      (s as any).mod_temp = (((s as any).mod_name_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0);
-      if (((s as any).mod_temp ?? 0) !== '') {
-        if (((s as any).qspver ?? 0) < '5.8.0') {
-        }
-        (s as any).mod_temp = 'mod_' + ((s as any).mod_temp ?? 0) + '_setup';
-        if (hasLocation(((s as any).mod_temp ?? 0))) {
-          qspCall(s, '$mod_temp', '');
-        }
-        (s as any).mod_name = [...((s as any).mod_name ?? []), (((s as any).mod_info ?? 0)?.[0] ?? 0)];
-        (s as any).mod_version = [...((s as any).mod_version ?? []), (((s as any).mod_info ?? 0)?.[1] ?? 0)];
-        (s as any).mod_author = [...((s as any).mod_author ?? []), (((s as any).mod_info ?? 0)?.[2] ?? 0)];
-        (s as any).mod_desc = [...((s as any).mod_desc ?? []), (((s as any).mod_info ?? 0)?.[3] ?? 0)];
-        (s as any).mod_opt = [...((s as any).mod_opt ?? []), (((s as any).mod_info ?? 0)?.[4] ?? 0)];
-        (s as any).mod_info = undefined;
-      }
-      (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
-      (s as any).mod_name_temp = undefined;
-      (s as any).mod_version_temp = undefined;
-      (s as any).mod_author_temp = undefined;
-      (s as any).mod_desc_temp = undefined;
-      (s as any).mod_opt_temp = undefined;
-      (s as any).mod_temp = undefined;
-      (s as any).mod_i = undefined;
-    } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name_temp ?? {}).length);
   } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length);
+  if (((s as any).qspver ?? 0) < '5.8.0') {
+  }
+  (s as any).mod_name = undefined;
+  (s as any).mod_version = undefined;
+  (s as any).mod_author = undefined;
+  (s as any).mod_desc = undefined;
+  (s as any).mod_opt = undefined;
+  (s as any).mod_i = 0;
+  do {
+    (s as any).mod_temp = (((s as any).mod_name_temp ?? 0)?.[String((s as any).mod_i ?? 0)] ?? 0);
+    if (((s as any).mod_temp ?? 0) !== '') {
+      if (((s as any).qspver ?? 0) < '5.8.0') {
+      }
+      (s as any).mod_temp = 'mod_' + ((s as any).mod_temp ?? 0) + '_setup';
+      if (hasLocation(((s as any).mod_temp ?? 0))) {
+        qspCall(s, '$mod_temp', '');
+      }
+      (s as any).mod_name = [...((s as any).mod_name ?? []), (((s as any).mod_info ?? 0)?.[0] ?? 0)];
+      (s as any).mod_version = [...((s as any).mod_version ?? []), (((s as any).mod_info ?? 0)?.[1] ?? 0)];
+      (s as any).mod_author = [...((s as any).mod_author ?? []), (((s as any).mod_info ?? 0)?.[2] ?? 0)];
+      (s as any).mod_desc = [...((s as any).mod_desc ?? []), (((s as any).mod_info ?? 0)?.[3] ?? 0)];
+      (s as any).mod_opt = [...((s as any).mod_opt ?? []), (((s as any).mod_info ?? 0)?.[4] ?? 0)];
+      (s as any).mod_info = undefined;
+    }
+    (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+  } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name_temp ?? {}).length);
+  (s as any).mod_name_temp = undefined;
+  (s as any).mod_version_temp = undefined;
+  (s as any).mod_author_temp = undefined;
+  (s as any).mod_desc_temp = undefined;
+  (s as any).mod_opt_temp = undefined;
+  (s as any).mod_temp = undefined;
+  (s as any).mod_i = undefined;
   scene.build();
 }
 

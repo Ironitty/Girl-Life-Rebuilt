@@ -304,7 +304,7 @@ function enterEdahotd(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'medium_meal';
   }
-  qspCall(s, 'food', '$ARGS[1]');
+  qspCall(s, 'food', (s as any).locArgs?.[1] ?? '');
   scene.build();
 }
 

@@ -161,12 +161,13 @@ function enterForceChange(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
       (s as any).mss_i = ((s as any).mss_i ?? 0) + (1);
       if (((s as any).mss_i ?? 0) < 10) {
-        break;
+        continue;
       }
     }
-    (s as any).mss_i = undefined;
-    (s as any).temp_start_loc = undefined;
+    break;
   }
+  (s as any).mss_i = undefined;
+  (s as any).temp_start_loc = undefined;
   scene.build();
 }
 

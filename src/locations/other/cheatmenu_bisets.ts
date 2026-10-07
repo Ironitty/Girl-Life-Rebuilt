@@ -257,54 +257,54 @@ function enterCsExport(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cheatmenu_bisets', '');
   } },
   ]);
-  (s as any).temp_export_text = 'fix_bod_set[\'advanced\'] = ' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_advanced']) + '\n$fix_bod_set[\'folder\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_folder']) + '\'\n';
+  (s as any).temp_export_text = 'fix_bod_set[\'advanced\'] = ' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_advanced'] ?? '') + '\n$fix_bod_set[\'folder\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_folder'] ?? '') + '\'\n';
   if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_name'] !== '') {
-    (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'name\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_name']) + '\'\n');
+    (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'name\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_name'] ?? '') + '\'\n');
   }
   if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_path'] !== '') {
-    (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'path\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_path']) + '\'\n');
+    (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'path\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_path'] ?? '') + '\'\n');
   }
   (s as any).cmd_exp_i = 0;
   do {
     if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_img_' + (((s as any).cmd_exp_i ?? 0))] !== '') {
-      (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'img_' + ((s as any).cmd_exp_i ?? 0) + '\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_img_' + String(((s as any).cmd_exp_i ?? 0))]) + '\'\n');
+      (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'img_' + ((s as any).cmd_exp_i ?? 0) + '\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_img_' + String(((s as any).cmd_exp_i ?? 0))] ?? '') + '\'\n');
     }
     if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_desc_' + (((s as any).cmd_exp_i ?? 0))] !== '') {
-      (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'desc_' + ((s as any).cmd_exp_i ?? 0) + '\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_desc_' + String(((s as any).cmd_exp_i ?? 0))]) + '\'\n');
+      (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'desc_' + ((s as any).cmd_exp_i ?? 0) + '\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_desc_' + String(((s as any).cmd_exp_i ?? 0))] ?? '') + '\'\n');
     }
     (s as any).cmd_exp_i = ((s as any).cmd_exp_i ?? 0) + (1);
-    if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_imgnums_0000'] > 0) {
-      (s as any).cmd_exp_bmi = 0;
-      do {
-        (s as any).cmd_exp_stren = 0;
-        do {
-          (s as any).cmd_class_str = (String(10000 + ((s as any).cmd_exp_bmi ?? 0) * 100 + ((s as any).cmd_exp_stren ?? 0)).slice((2)-1));
-          if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_desc_' + (((s as any).cmd_class_str ?? 0))] !== '') {
-            (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'desc_' + ((s as any).cmd_class_str ?? 0) + '\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_desc_' + String(((s as any).cmd_class_str ?? 0))]) + '\'\n');
-          }
-          if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_path_' + (((s as any).cmd_class_str ?? 0))] !== '') {
-            (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'path_' + ((s as any).cmd_class_str ?? 0) + '\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_path_' + String(((s as any).cmd_class_str ?? 0))]) + '\'\n');
-          }
-          (s as any).cmd_imgnums = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_imgnums_' + String(((s as any).cmd_class_str ?? 0))]);
-          (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('fix_bod_set[\'imgnums_' + ((s as any).cmd_class_str ?? 0) + '\'] = ' + ((s as any).cmd_imgnums ?? 0) + '\n');
-          (s as any).cmd_exp_i = 0;
-          do {
-            if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_img_' + (((s as any).cmd_class_str ?? 0)) + '_' + (((s as any).cmd_exp_i ?? 0))] !== '') {
-              (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'img_' + ((s as any).cmd_class_str ?? 0) + '_' + ((s as any).cmd_exp_i ?? 0) + '\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_img_' + String(((s as any).cmd_class_str ?? 0)) + '_' + String(((s as any).cmd_exp_i ?? 0))]) + '\'\n');
-            }
-            (s as any).cmd_exp_i = ((s as any).cmd_exp_i ?? 0) + (1);
-            (s as any).cmd_exp_stren = ((s as any).cmd_exp_stren ?? 0) + (1);
-            (s as any).cmd_exp_bmi = ((s as any).cmd_exp_bmi ?? 0) + (1);
-          } while (((s as any).cmd_exp_i ?? 0) < ((s as any).cmd_imgnums ?? 0));
-        } while (((s as any).cmd_exp_stren ?? 0) < 18);
-      } while (((s as any).cmd_exp_bmi ?? 0) < 9);
-    }
-    (s as any).temp_export_text = (String(((s as any).temp_export_text ?? 0)).split('  ').join(''));
-    scene.text(`${((s as any).temp_export_text ?? '')}`);
-    (s as any).temp_export_text = undefined;
-    scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));
-    (s as any).cmbs_exp_set = undefined;
   } while (((s as any).cmd_exp_i ?? 0) < 9);
+  if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_imgnums_0000'] > 0) {
+    (s as any).cmd_exp_bmi = 0;
+    do {
+      (s as any).cmd_exp_stren = 0;
+      do {
+        (s as any).cmd_class_str = (String(10000 + ((s as any).cmd_exp_bmi ?? 0) * 100 + ((s as any).cmd_exp_stren ?? 0)).slice((2)-1));
+        if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_desc_' + (((s as any).cmd_class_str ?? 0))] !== '') {
+          (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'desc_' + ((s as any).cmd_class_str ?? 0) + '\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_desc_' + String(((s as any).cmd_class_str ?? 0))] ?? '') + '\'\n');
+        }
+        if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_path_' + (((s as any).cmd_class_str ?? 0))] !== '') {
+          (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'path_' + ((s as any).cmd_class_str ?? 0) + '\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_path_' + String(((s as any).cmd_class_str ?? 0))] ?? '') + '\'\n');
+        }
+        (s as any).cmd_imgnums = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_imgnums_' + String(((s as any).cmd_class_str ?? 0))] ?? 0);
+        (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('fix_bod_set[\'imgnums_' + ((s as any).cmd_class_str ?? 0) + '\'] = ' + ((s as any).cmd_imgnums ?? 0) + '\n');
+        (s as any).cmd_exp_i = 0;
+        do {
+          if (((s as any).cheatVars ?? 0)['fix_biset_' + (((s as any).cmbs_exp_set ?? 0)) + '_img_' + (((s as any).cmd_class_str ?? 0)) + '_' + (((s as any).cmd_exp_i ?? 0))] !== '') {
+            (s as any).temp_export_text = ((s as any).temp_export_text ?? 0) + ('$fix_bod_set[\'img_' + ((s as any).cmd_class_str ?? 0) + '_' + ((s as any).cmd_exp_i ?? 0) + '\'] = \'' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_exp_set ?? 0)) + '_img_' + String(((s as any).cmd_class_str ?? 0)) + '_' + String(((s as any).cmd_exp_i ?? 0))] ?? '') + '\'\n');
+          }
+          (s as any).cmd_exp_i = ((s as any).cmd_exp_i ?? 0) + (1);
+        } while (((s as any).cmd_exp_i ?? 0) < ((s as any).cmd_imgnums ?? 0));
+        (s as any).cmd_exp_stren = ((s as any).cmd_exp_stren ?? 0) + (1);
+      } while (((s as any).cmd_exp_stren ?? 0) < 18);
+      (s as any).cmd_exp_bmi = ((s as any).cmd_exp_bmi ?? 0) + (1);
+    } while (((s as any).cmd_exp_bmi ?? 0) < 9);
+  }
+  (s as any).temp_export_text = (String(((s as any).temp_export_text ?? 0)).split('  ').join(''));
+  scene.text(`${((s as any).temp_export_text ?? '')}`);
+  (s as any).temp_export_text = undefined;
+  scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));
+  (s as any).cmbs_exp_set = undefined;
   scene.build();
 }
 
@@ -413,50 +413,50 @@ function enterCsMainAdvanced(s: GameState, scene: SceneBuilder): void {
   do {
     (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th style="white-space: nowrap">' + (((s as any).temp_bmi_text ?? 0)?.[String((s as any).cmd_adv_bmi_i ?? 0)] ?? 0) + '</th>');
     (s as any).cmd_adv_bmi_i = ((s as any).cmd_adv_bmi_i ?? 0) + (1);
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr align="center">');
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th rowspan=18>Strength</th>');
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[0] = '000-005';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[1] = '006-010';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[2] = '011-015';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[3] = '016-025';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[4] = '026-035';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[5] = '036-050';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[6] = '051-070';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[7] = '071-100';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[8] = '101-110';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[9] = '111-120';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[10] = '121-130';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[11] = '131-140';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[12] = '141-150';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[13] = '151-160';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[14] = '161-170';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[15] = '171-180';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[16] = '181-190';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[17] = '191-200';
-    (s as any).cmd_adv_str_i = 0;
-    do {
-      if (((s as any).cmd_adv_str_i ?? 0) !== 0) {
-        (s as any).temp_table = ((s as any).temp_table ?? '') + '<tr align="center">';
-      }
-      (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th style="white-space: nowrap">' + (((s as any).temp_str_text ?? 0)?.[String((s as any).cmd_adv_str_i ?? 0)] ?? 0) + '</th>');
-      (s as any).cmd_adv_bmi_i = 0;
-      do {
-        (s as any).cmbs_class = ((s as any).cmd_adv_bmi_i ?? 0) * 100 + ((s as any).cmd_adv_str_i ?? 0);
-        (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_main_advanced2\u0027, String((s as any).cmbs_set ?? \u0027\u0027)); return false;">' + (String(1000 + ((s as any).cmbs_class ?? 0)).slice((2)-1)) + '</a></td>');
-        (s as any).cmd_adv_bmi_i = ((s as any).cmd_adv_bmi_i ?? 0) + (1);
-        (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr>');
-        (s as any).cmd_adv_str_i = ((s as any).cmd_adv_str_i ?? 0) + (1);
-        (s as any).cmd_adv_str_i = undefined;
-        (s as any).cmd_adv_bmi_i = undefined;
-        (s as any).cmbs_class = undefined;
-        (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
-        scene.text(`${((s as any).temp_table ?? '')}`);
-        (s as any).temp_table = undefined;
-        (s as any).temp_str_text = undefined;
-        (s as any).cmbs_set = undefined;
-      } while (((s as any).cmd_adv_bmi_i ?? 0) < 9);
-    } while (((s as any).cmd_adv_str_i ?? 0) < 18);
   } while (((s as any).cmd_adv_bmi_i ?? 0) < 9);
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr align="center">');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th rowspan=18>Strength</th>');
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[0] = '000-005';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[1] = '006-010';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[2] = '011-015';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[3] = '016-025';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[4] = '026-035';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[5] = '036-050';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[6] = '051-070';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[7] = '071-100';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[8] = '101-110';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[9] = '111-120';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[10] = '121-130';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[11] = '131-140';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[12] = '141-150';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[13] = '151-160';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[14] = '161-170';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[15] = '171-180';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[16] = '181-190';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[17] = '191-200';
+  (s as any).cmd_adv_str_i = 0;
+  do {
+    if (((s as any).cmd_adv_str_i ?? 0) !== 0) {
+      (s as any).temp_table = ((s as any).temp_table ?? '') + '<tr align="center">';
+    }
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th style="white-space: nowrap">' + (((s as any).temp_str_text ?? 0)?.[String((s as any).cmd_adv_str_i ?? 0)] ?? 0) + '</th>');
+    (s as any).cmd_adv_bmi_i = 0;
+    do {
+      (s as any).cmbs_class = ((s as any).cmd_adv_bmi_i ?? 0) * 100 + ((s as any).cmd_adv_str_i ?? 0);
+      (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_main_advanced2\u0027, String((s as any).cmbs_set ?? \u0027\u0027)); return false;">' + (String(1000 + ((s as any).cmbs_class ?? 0)).slice((2)-1)) + '</a></td>');
+      (s as any).cmd_adv_bmi_i = ((s as any).cmd_adv_bmi_i ?? 0) + (1);
+    } while (((s as any).cmd_adv_bmi_i ?? 0) < 9);
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr>');
+    (s as any).cmd_adv_str_i = ((s as any).cmd_adv_str_i ?? 0) + (1);
+  } while (((s as any).cmd_adv_str_i ?? 0) < 18);
+  (s as any).cmd_adv_str_i = undefined;
+  (s as any).cmd_adv_bmi_i = undefined;
+  (s as any).cmbs_class = undefined;
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  scene.text(`${((s as any).temp_table ?? '')}`);
+  (s as any).temp_table = undefined;
+  (s as any).temp_str_text = undefined;
+  (s as any).cmbs_set = undefined;
   scene.build();
 }
 
@@ -478,7 +478,7 @@ function enterCsMainAdvanced2(s: GameState, scene: SceneBuilder): void {
   } },
   ]);
   scene.text('Click links to edit');
-  (s as any).temp_cmd_desc = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_desc_' + String(((s as any).cmdbs_class_str ?? 0))]);
+  (s as any).temp_cmd_desc = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_desc_' + String(((s as any).cmdbs_class_str ?? 0))] ?? '');
   if (((s as any).temp_cmd_desc ?? 0) === '') {
     (s as any).temp_cmd_desc = qspFunc(s, 'cheatmenu_bisets', 'cs_get_default_desc', ((s as any).cmbs_set ?? 0), ((s as any).cmbs_class ?? 0));
     scene.text(`You are: <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_change_desc_adv/u0027, String((s as any).cmbs_set ?? /u0027/u0027)); return false;">${((s as any).temp_cmd_desc ?? '')}</a>`);
@@ -486,12 +486,12 @@ function enterCsMainAdvanced2(s: GameState, scene: SceneBuilder): void {
     scene.text(`You are: <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_change_desc_adv/u0027, String((s as any).cmbs_set ?? /u0027/u0027)); return false;">${((s as any).temp_cmd_desc ?? '')}</a>    <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_set_default_desc_adv/u0027, ((s as any).locArgs?.[1] ?? /u0027/u0027)); return false;">Use default description</a>`);
   }
   (s as any).temp_cmd_desc = undefined;
-  (s as any).temp_cmd_path = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_path']);
+  (s as any).temp_cmd_path = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_path'] ?? '');
   if (((s as any).temp_cmd_path ?? 0) === '') {
     (s as any).temp_cmd_path = 'images/pc/body/shape';
   }
-  (s as any).temp_cmd_path = ((s as any).temp_cmd_path ?? 0) + ('/' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_folder']));
-  (s as any).temp_cmd_subpath = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_path_' + String(((s as any).cmdbs_class_str ?? 0))]);
+  (s as any).temp_cmd_path = ((s as any).temp_cmd_path ?? 0) + ('/' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_folder'] ?? ''));
+  (s as any).temp_cmd_subpath = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_path_' + String(((s as any).cmdbs_class_str ?? 0))] ?? '');
   if (((s as any).temp_cmd_subpath ?? 0) === '') {
     (s as any).temp_cmd_subpath = qspFunc(s, 'cheatmenu_bisets', 'cs_get_default_subpath', ((s as any).cmbs_set ?? 0), ((s as any).cmbs_class ?? 0));
     (s as any).temp_cmd_subpath = (String(((s as any).temp_cmd_subpath ?? 0)).slice((22)-1));
@@ -530,8 +530,8 @@ function enterGetCustomBodyimgDescLinkAdvanced(s: GameState, scene: SceneBuilder
   (s as any).temp_class = ((s as any).locArgs?.[2] ?? 0);
   (s as any).temp_img_num = ((s as any).locArgs?.[3] ?? 0);
   (s as any).temp_bs_class_str = (String(10000 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1));
-  (s as any).temp_cmd_img_name = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_img_' + String(((s as any).temp_bs_class_str ?? 0)) + '_' + String(((s as any).temp_img_num ?? 0))]);
-  (s as any).temp_cmd_desc = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_desc_' + String(((s as any).temp_bs_class_str ?? 0))]);
+  (s as any).temp_cmd_img_name = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_img_' + String(((s as any).temp_bs_class_str ?? 0)) + '_' + String(((s as any).temp_img_num ?? 0))] ?? '');
+  (s as any).temp_cmd_desc = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_desc_' + String(((s as any).temp_bs_class_str ?? 0))] ?? '');
   if (((s as any).temp_cmd_img_name ?? 0) === '') {
     (s as any).temp_cmd_image = qspFunc(s, 'cheatmenu_bisets', 'cs_get_default_img', ((s as any).temp_set ?? 0), ((s as any).temp_class ?? 0));
     (s as any).temp_cmd_img_addon = '';
@@ -590,12 +590,12 @@ function enterGetPregsetLink(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>Pregnancy Image Set Display - Set = ${((s as any).preg_set ?? '')}</b></center>`);
   scene.text(String(qspFunc(s, 'cheatmenu', 'table_start') || ''));
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_main\u0027, String(window.__gameStore.getState().temp_set ?? \u0027\u0027)); return false;"><b>Go Back</b></a>');
-  (s as any).temp_cmd_path = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_path']);
+  (s as any).temp_cmd_path = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_path'] ?? '');
   if (((s as any).temp_cmd_path ?? 0) === '') {
     (s as any).temp_cmd_path = 'images/pc/body/shape';
   }
-  (s as any).temp_cmd_path = ((s as any).temp_cmd_path ?? 0) + ('/' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_folder']));
-  (s as any).temp_cmd_subpath = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_pregpath_' + String(((s as any).preg_set ?? 0))]);
+  (s as any).temp_cmd_path = ((s as any).temp_cmd_path ?? 0) + ('/' + (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_folder'] ?? ''));
+  (s as any).temp_cmd_subpath = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_pregpath_' + String(((s as any).preg_set ?? 0))] ?? '');
   if (((s as any).temp_cmd_subpath ?? 0) === '') {
     (s as any).temp_cmd_subpath = 'preg/0';
   }
@@ -629,8 +629,8 @@ function enterGetCustomPregimg(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_set = ((s as any).locArgs?.[1] ?? 0);
   (s as any).preg_set = ((s as any).locArgs?.[2] ?? 0);
   (s as any).temp_img = ((s as any).locArgs?.[3] ?? 0);
-  (s as any).temp_cmd_img_name = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_pregimg_' + String(((s as any).preg_set ?? 0)) + '_' + String(((s as any).temp_img ?? 0))]);
-  (s as any).temp_cmd_desc = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_desc_' + String(((s as any).preg_set ?? 0))]);
+  (s as any).temp_cmd_img_name = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_pregimg_' + String(((s as any).preg_set ?? 0)) + '_' + String(((s as any).temp_img ?? 0))] ?? '');
+  (s as any).temp_cmd_desc = (((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_desc_' + String(((s as any).preg_set ?? 0))] ?? '');
   if (((s as any).temp_cmd_img_name ?? 0) === '') {
     (s as any).temp_cmd_image = qspFunc(s, 'cheatmenu_bisets', 'cs_get_default_img', ((s as any).temp_set ?? 0), ((s as any).temp_class ?? 0));
     (s as any).temp_cmd_img_addon = '';
@@ -675,78 +675,78 @@ function enterCsCopyClassMenu(s: GameState, scene: SceneBuilder): void {
   do {
     (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th style="white-space: nowrap"><b><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_bmi\u0027, String((s as any).cmd_adv_bmi_i ?? \u0027\u0027)); return false;">' + (((s as any).temp_bmi_text ?? 0)?.[String((s as any).cmd_adv_bmi_i ?? 0)] ?? 0) + '</a></b></th>');
     (s as any).cmd_adv_bmi_i = ((s as any).cmd_adv_bmi_i ?? 0) + (1);
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr align="center">');
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th rowspan=18>Strength</th>');
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[0] = '000-005';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[1] = '006-010';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[2] = '011-015';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[3] = '016-025';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[4] = '026-035';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[5] = '036-050';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[6] = '051-070';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[7] = '071-100';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[8] = '101-110';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[9] = '111-120';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[10] = '121-130';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[11] = '131-140';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[12] = '141-150';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[13] = '151-160';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[14] = '161-170';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[15] = '171-180';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[16] = '181-190';
-    ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[17] = '191-200';
-    ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['counter'] = 0;
-    (s as any).cmd_adv_str_i = 0;
-    do {
-      if (((s as any).cmd_adv_str_i ?? 0) !== 0) {
-        (s as any).temp_table = ((s as any).temp_table ?? '') + '<tr align="center">';
-      }
-      (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th style="white-space: nowrap"><b><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_stren\u0027, String((s as any).cmd_adv_str_i ?? \u0027\u0027)); return false;">' + (((s as any).temp_str_text ?? 0)?.[String((s as any).cmd_adv_str_i ?? 0)] ?? 0) + '</a></b></th>');
-      (s as any).cmd_adv_bmi_i = 0;
-      do {
-        (s as any).cmbs_class = ((s as any).cmd_adv_bmi_i ?? 0) * 100 + ((s as any).cmd_adv_str_i ?? 0);
-        (s as any).cmbs_class_str = (String(10000 + ((s as any).cmbs_class ?? 0)).slice((2)-1));
-        if (((s as any).cmd_copy_class ?? 0)?.['base'] === ((s as any).cmbs_class ?? 0)) {
-          (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>' + ((s as any).cmbs_class_str ?? 0) + '</td>');
-        } else {
-          if (((s as any).cmd_copy_class ?? 0)?.[String((s as any).cmbs_class_str ?? 0)] === 1) {
-            ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['counter'] = ((s as any).cmd_copy_class['counter'] ?? 0) + (1);
-            (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><i><a href="#" onclick="window.__gameStore.setState((s) => { (s.cmd_copy_class ??= {})String((s as any).cmbs_class_str ?? \u0027\u0027) = 0; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_menu\u0027); return false;">' + ((s as any).cmbs_class_str ?? 0) + '</a></i></td>');
-          } else {
-            (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><a href="#" onclick="window.__gameStore.setState((s) => { (s.cmd_copy_class ??= {})String((s as any).cmbs_class_str ?? \u0027\u0027) = 1; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_menu\u0027); return false;">' + ((s as any).cmbs_class_str ?? 0) + '</a></td>');
-          }
-        }
-        (s as any).cmd_adv_bmi_i = ((s as any).cmd_adv_bmi_i ?? 0) + (1);
-        (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr>');
-        (s as any).cmd_adv_str_i = ((s as any).cmd_adv_str_i ?? 0) + (1);
-        (s as any).cmd_adv_str_i = undefined;
-        (s as any).cmd_adv_bmi_i = undefined;
-        (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
-        scene.text(`${((s as any).temp_table ?? '')}`);
-        (s as any).temp_table = undefined;
-        (s as any).temp_str_text = undefined;
-        (s as any).cmbs_set = undefined;
-        (s as any).cmbs_class = undefined;
-        if (((s as any).cmd_copy_class ?? 0)?.['counter'] > 0) {
-          scene.actions([
-            { label: 'Reset', handler: (st: GameState) => {
-    (st as any).temp_set = (((st as any).cmd_copy_class ?? 0)?.['set']);
-    (st as any).temp_base = (((st as any).cmd_copy_class ?? 0)?.['base']);
-    (st as any).cmd_copy_class = undefined;
-    ((st as any).cmd_copy_class = (st as any).cmd_copy_class ?? {})['set'] = ((st as any).temp_set ?? 0);
-    ((st as any).cmd_copy_class = (st as any).cmd_copy_class ?? {})['base'] = ((st as any).temp_base ?? 0);
-    (st as any).temp_set = undefined;
-    (st as any).temp_base = undefined;
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCsCopyClassMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-            { label: 'Overwrite', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCsOverwriteClassesBase(st, scene); (st as any).locArgs = __savedLocArgs; }
-  } },
-          ]);
-        }
-      } while (((s as any).cmd_adv_bmi_i ?? 0) < 9);
-    } while (((s as any).cmd_adv_str_i ?? 0) < 18);
   } while (((s as any).cmd_adv_bmi_i ?? 0) < 9);
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr align="center">');
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th rowspan=18>Strength</th>');
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[0] = '000-005';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[1] = '006-010';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[2] = '011-015';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[3] = '016-025';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[4] = '026-035';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[5] = '036-050';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[6] = '051-070';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[7] = '071-100';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[8] = '101-110';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[9] = '111-120';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[10] = '121-130';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[11] = '131-140';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[12] = '141-150';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[13] = '151-160';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[14] = '161-170';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[15] = '171-180';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[16] = '181-190';
+  ((s as any).temp_str_text = (s as any).temp_str_text ?? {})[17] = '191-200';
+  ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['counter'] = 0;
+  (s as any).cmd_adv_str_i = 0;
+  do {
+    if (((s as any).cmd_adv_str_i ?? 0) !== 0) {
+      (s as any).temp_table = ((s as any).temp_table ?? '') + '<tr align="center">';
+    }
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<th style="white-space: nowrap"><b><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_stren\u0027, String((s as any).cmd_adv_str_i ?? \u0027\u0027)); return false;">' + (((s as any).temp_str_text ?? 0)?.[String((s as any).cmd_adv_str_i ?? 0)] ?? 0) + '</a></b></th>');
+    (s as any).cmd_adv_bmi_i = 0;
+    do {
+      (s as any).cmbs_class = ((s as any).cmd_adv_bmi_i ?? 0) * 100 + ((s as any).cmd_adv_str_i ?? 0);
+      (s as any).cmbs_class_str = (String(10000 + ((s as any).cmbs_class ?? 0)).slice((2)-1));
+      if (((s as any).cmd_copy_class ?? 0)?.['base'] === ((s as any).cmbs_class ?? 0)) {
+        (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td>' + ((s as any).cmbs_class_str ?? 0) + '</td>');
+      } else {
+        if (((s as any).cmd_copy_class ?? 0)?.[String((s as any).cmbs_class_str ?? 0)] === 1) {
+          ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['counter'] = ((s as any).cmd_copy_class['counter'] ?? 0) + (1);
+          (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><i><a href="#" onclick="window.__gameStore.setState((s) => { (s.cmd_copy_class ??= {})String((s as any).cmbs_class_str ?? \u0027\u0027) = 0; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_menu\u0027); return false;">' + ((s as any).cmbs_class_str ?? 0) + '</a></i></td>');
+        } else {
+          (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><a href="#" onclick="window.__gameStore.setState((s) => { (s.cmd_copy_class ??= {})String((s as any).cmbs_class_str ?? \u0027\u0027) = 1; return s; }); window.__gameStore.getState().doGoto(\u0027cheatmenu_bisets\u0027, \u0027cs_copy_class_menu\u0027); return false;">' + ((s as any).cmbs_class_str ?? 0) + '</a></td>');
+        }
+      }
+      (s as any).cmd_adv_bmi_i = ((s as any).cmd_adv_bmi_i ?? 0) + (1);
+      (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr>');
+      (s as any).cmd_adv_str_i = ((s as any).cmd_adv_str_i ?? 0) + (1);
+    } while (((s as any).cmd_adv_bmi_i ?? 0) < 9);
+  } while (((s as any).cmd_adv_str_i ?? 0) < 18);
+  (s as any).cmd_adv_str_i = undefined;
+  (s as any).cmd_adv_bmi_i = undefined;
+  (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</table>');
+  scene.text(`${((s as any).temp_table ?? '')}`);
+  (s as any).temp_table = undefined;
+  (s as any).temp_str_text = undefined;
+  (s as any).cmbs_set = undefined;
+  (s as any).cmbs_class = undefined;
+  if (((s as any).cmd_copy_class ?? 0)?.['counter'] > 0) {
+    scene.actions([
+      { label: 'Reset', handler: (st: GameState) => {
+  (st as any).temp_set = (((st as any).cmd_copy_class ?? 0)?.['set']);
+  (st as any).temp_base = (((st as any).cmd_copy_class ?? 0)?.['base']);
+  (st as any).cmd_copy_class = undefined;
+  ((st as any).cmd_copy_class = (st as any).cmd_copy_class ?? {})['set'] = ((st as any).temp_set ?? 0);
+  ((st as any).cmd_copy_class = (st as any).cmd_copy_class ?? {})['base'] = ((st as any).temp_base ?? 0);
+  (st as any).temp_set = undefined;
+  (st as any).temp_base = undefined;
+  { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCsCopyClassMenu(st, scene); (st as any).locArgs = __savedLocArgs; }
+} },
+      { label: 'Overwrite', handler: (st: GameState) => {
+  { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCsOverwriteClassesBase(st, scene); (st as any).locArgs = __savedLocArgs; }
+} },
+    ]);
+  }
   scene.actions([
     { label: 'Cancel', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', (((st as any).cmd_copy_class ?? 0)?.['set']), (((st as any).cmd_copy_class ?? 0)?.['base'])]; enterCsMainAdvanced2(st, scene); (st as any).locArgs = __savedLocArgs; }
@@ -767,23 +767,23 @@ function enterCsCopyClassBmi(s: GameState, scene: SceneBuilder): void {
       ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['counter'] = ((s as any).temp_copyclass['counter'] ?? 0) + (1);
     }
     ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['stren'] = ((s as any).temp_copyclass['stren'] ?? 0) + (1);
-    if (((s as any).temp_copyclass ?? 0)?.['counter'] < 18) {
-      ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['result'] = 1;
-    } else {
-      ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['result'] = 0;
-    }
-    ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['stren'] = 0;
-    do {
-      ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['class'] = (((s as any).temp_copyclass ?? {})?.['bmi'] ?? 0) * 100 + (((s as any).temp_copyclass ?? {})?.['stren'] ?? 0);
-      ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['class_str'] = (String(10000 + (((s as any).temp_copyclass ?? {})?.['class'] ?? 0)).slice((2)-1));
-      if (((s as any).cmd_copy_class ?? 0)?.['base'] !== ((s as any).temp_copyclass ?? 0)?.['class']) {
-        ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})[(((s as any).temp_copyclass ?? 0)?.['class_str'])] = (((s as any).temp_copyclass ?? 0)?.['result']);
-      }
-      ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['stren'] = ((s as any).temp_copyclass['stren'] ?? 0) + (1);
-      (s as any).temp_copyclass = undefined;
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCsCopyClassMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
-    } while (((s as any).temp_copyclass ?? 0)?.['stren'] < 18);
   } while (((s as any).temp_copyclass ?? 0)?.['stren'] < 18);
+  if (((s as any).temp_copyclass ?? 0)?.['counter'] < 18) {
+    ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['result'] = 1;
+  } else {
+    ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['result'] = 0;
+  }
+  ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['stren'] = 0;
+  do {
+    ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['class'] = (((s as any).temp_copyclass ?? {})?.['bmi'] ?? 0) * 100 + (((s as any).temp_copyclass ?? {})?.['stren'] ?? 0);
+    ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['class_str'] = (String(10000 + (((s as any).temp_copyclass ?? {})?.['class'] ?? 0)).slice((2)-1));
+    if (((s as any).cmd_copy_class ?? 0)?.['base'] !== ((s as any).temp_copyclass ?? 0)?.['class']) {
+      ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})[(((s as any).temp_copyclass ?? 0)?.['class_str'])] = (((s as any).temp_copyclass ?? 0)?.['result']);
+    }
+    ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['stren'] = ((s as any).temp_copyclass['stren'] ?? 0) + (1);
+  } while (((s as any).temp_copyclass ?? 0)?.['stren'] < 18);
+  (s as any).temp_copyclass = undefined;
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCsCopyClassMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -798,23 +798,23 @@ function enterCsCopyClassStren(s: GameState, scene: SceneBuilder): void {
       ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['counter'] = ((s as any).temp_copyclass['counter'] ?? 0) + (1);
     }
     ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['bmi'] = ((s as any).temp_copyclass['bmi'] ?? 0) + (1);
-    if (((s as any).temp_copyclass ?? 0)?.['counter'] < 9) {
-      ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['result'] = 1;
-    } else {
-      ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['result'] = 0;
-    }
-    ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['bmi'] = 0;
-    do {
-      ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['class'] = (((s as any).temp_copyclass ?? {})?.['bmi'] ?? 0) * 100 + (((s as any).temp_copyclass ?? {})?.['stren'] ?? 0);
-      ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['class_str'] = (String(10000 + (((s as any).temp_copyclass ?? {})?.['class'] ?? 0)).slice((2)-1));
-      if (((s as any).cmd_copy_class ?? 0)?.['base'] !== ((s as any).temp_copyclass ?? 0)?.['class']) {
-        ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})[(((s as any).temp_copyclass ?? 0)?.['class_str'])] = (((s as any).temp_copyclass ?? 0)?.['result']);
-      }
-      ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['bmi'] = ((s as any).temp_copyclass['bmi'] ?? 0) + (1);
-      (s as any).temp_copyclass = undefined;
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCsCopyClassMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
-    } while (((s as any).temp_copyclass ?? 0)?.['bmi'] < 9);
   } while (((s as any).temp_copyclass ?? 0)?.['bmi'] < 9);
+  if (((s as any).temp_copyclass ?? 0)?.['counter'] < 9) {
+    ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['result'] = 1;
+  } else {
+    ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['result'] = 0;
+  }
+  ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['bmi'] = 0;
+  do {
+    ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['class'] = (((s as any).temp_copyclass ?? {})?.['bmi'] ?? 0) * 100 + (((s as any).temp_copyclass ?? {})?.['stren'] ?? 0);
+    ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['class_str'] = (String(10000 + (((s as any).temp_copyclass ?? {})?.['class'] ?? 0)).slice((2)-1));
+    if (((s as any).cmd_copy_class ?? 0)?.['base'] !== ((s as any).temp_copyclass ?? 0)?.['class']) {
+      ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})[(((s as any).temp_copyclass ?? 0)?.['class_str'])] = (((s as any).temp_copyclass ?? 0)?.['result']);
+    }
+    ((s as any).temp_copyclass = (s as any).temp_copyclass ?? {})['bmi'] = ((s as any).temp_copyclass['bmi'] ?? 0) + (1);
+  } while (((s as any).temp_copyclass ?? 0)?.['bmi'] < 9);
+  (s as any).temp_copyclass = undefined;
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCsCopyClassMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -828,22 +828,22 @@ function enterCsOverwriteClassesBase(s: GameState, scene: SceneBuilder): void {
   do {
     ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['img_' + String((((s as any).cmd_copy_class ?? 0)?.['i']))] = (((s as any).cheatVars ?? 0)?.[(((s as any).cmd_copy_class ?? 0)?.['string']) + 'img_' + (((s as any).cmd_copy_class ?? 0)?.['base_str']) + '_' + (((s as any).cmd_copy_class ?? 0)?.['i']) + ''] ?? 0);
     ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['i'] = ((s as any).cmd_copy_class['i'] ?? 0) + (1);
-    ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['str_i'] = 0;
-    do {
-      ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['bmi_i'] = 0;
-      do {
-        (s as any).cmbs_class = (((s as any).cmd_copy_class ?? {})?.['bmi_i'] ?? 0) * 100 + (((s as any).cmd_copy_class ?? {})?.['str_i'] ?? 0);
-        (s as any).cmbs_class_str = (String(10000 + ((s as any).cmbs_class ?? 0)).slice((2)-1));
-        if (((s as any).cmd_copy_class ?? 0)?.['base'] !== ((s as any).cmbs_class ?? 0)  &&  ((s as any).cmd_copy_class ?? 0)?.[String((s as any).cmbs_class_str ?? 0)] === 1) {
-          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).cmbs_class_str ?? 0)]; enterCsOverwriteClass(s, scene); (s as any).locArgs = __savedLocArgs; }
-        }
-        ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['bmi_i'] = ((s as any).cmd_copy_class['bmi_i'] ?? 0) + (1);
-        ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['str_i'] = ((s as any).cmd_copy_class['str_i'] ?? 0) + (1);
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).cmd_copy_class ?? 0)?.['set'])]; enterCsMain(s, scene); (s as any).locArgs = __savedLocArgs; }
-        (s as any).cmd_copy_class = undefined;
-      } while (((s as any).cmd_copy_class ?? 0)?.['bmi_i'] < 9);
-    } while (((s as any).cmd_copy_class ?? 0)?.['str_i'] < 18);
   } while (((s as any).cmd_copy_class ?? 0)?.['i'] < ((s as any).cmd_copy_class ?? 0)?.['imgnums']);
+  ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['str_i'] = 0;
+  do {
+    ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['bmi_i'] = 0;
+    do {
+      (s as any).cmbs_class = (((s as any).cmd_copy_class ?? {})?.['bmi_i'] ?? 0) * 100 + (((s as any).cmd_copy_class ?? {})?.['str_i'] ?? 0);
+      (s as any).cmbs_class_str = (String(10000 + ((s as any).cmbs_class ?? 0)).slice((2)-1));
+      if (((s as any).cmd_copy_class ?? 0)?.['base'] !== ((s as any).cmbs_class ?? 0)  &&  ((s as any).cmd_copy_class ?? 0)?.[String((s as any).cmbs_class_str ?? 0)] === 1) {
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).cmbs_class_str ?? 0)]; enterCsOverwriteClass(s, scene); (s as any).locArgs = __savedLocArgs; }
+      }
+      ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['bmi_i'] = ((s as any).cmd_copy_class['bmi_i'] ?? 0) + (1);
+    } while (((s as any).cmd_copy_class ?? 0)?.['bmi_i'] < 9);
+    ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['str_i'] = ((s as any).cmd_copy_class['str_i'] ?? 0) + (1);
+  } while (((s as any).cmd_copy_class ?? 0)?.['str_i'] < 18);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).cmd_copy_class ?? 0)?.['set'])]; enterCsMain(s, scene); (s as any).locArgs = __savedLocArgs; }
+  (s as any).cmd_copy_class = undefined;
   scene.build();
 }
 
@@ -854,15 +854,15 @@ function enterCsOverwriteClass(s: GameState, scene: SceneBuilder): void {
   do {
     (s as any).cheatVars = (s as any).cheatVars ?? {}; (s as any).cheatVars[String(((s as any).cmd_copy_class ?? 0)?.['string'] ?? '') + 'img_' + String((s as any).locArgs?.[1] ?? '') + '_' + String(((s as any).cmd_copy_class ?? 0)?.['i'] ?? '')] = ((s as any).cmd_copy_class ?? 0)?.['img_' + String(((s as any).cmd_copy_class ?? 0)?.['i'] ?? '')];
     ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['i'] = ((s as any).cmd_copy_class['i'] ?? 0) + (1);
-    if (((s as any).cheatVars ?? 0)[((s as any).cmd_copy_class ?? 0)?.['string'] + 'imgnums_' + (String((s as any).locArgs?.[1] ?? ''))] > ((s as any).cmd_copy_class ?? 0)?.['imgnums']) {
-      ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['i'] = (((s as any).cmd_copy_class ?? 0)?.['imgnums']);
-      do {
-        qspCall(s, 'array', 'remove_element', '$cheatVars', (((s as any).cmd_copy_class ?? 0)?.['string']) + 'img_' + ((s as any).locArgs?.[1] ?? 0) + '_' + (((s as any).cmd_copy_class ?? 0)?.['i']) + '');
-        ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['i'] = ((s as any).cmd_copy_class['i'] ?? 0) + (1);
-      } while (((s as any).cmd_copy_class ?? 0)?.['i'] < ((s as any).cheatVars ?? 0)[((s as any).cmd_copy_class ?? 0)?.['string'] + 'imgnums_' + (String((s as any).locArgs?.[1] ?? ''))]);
-    }
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})[(((s as any).cmd_copy_class ?? 0)?.['string']) + 'imgnums_' + ((s as any).locArgs?.[1] ?? 0) + ''] = (((s as any).cmd_copy_class ?? 0)?.['imgnums']);
   } while (((s as any).cmd_copy_class ?? 0)?.['i'] < ((s as any).cmd_copy_class ?? 0)?.['imgnums']);
+  if (((s as any).cheatVars ?? 0)[((s as any).cmd_copy_class ?? 0)?.['string'] + 'imgnums_' + (String((s as any).locArgs?.[1] ?? ''))] > ((s as any).cmd_copy_class ?? 0)?.['imgnums']) {
+    ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['i'] = (((s as any).cmd_copy_class ?? 0)?.['imgnums']);
+    do {
+      qspCall(s, 'array', 'remove_element', '$cheatVars', (((s as any).cmd_copy_class ?? 0)?.['string']) + 'img_' + ((s as any).locArgs?.[1] ?? 0) + '_' + (((s as any).cmd_copy_class ?? 0)?.['i']) + '');
+      ((s as any).cmd_copy_class = (s as any).cmd_copy_class ?? {})['i'] = ((s as any).cmd_copy_class['i'] ?? 0) + (1);
+    } while (((s as any).cmd_copy_class ?? 0)?.['i'] < ((s as any).cheatVars ?? 0)[((s as any).cmd_copy_class ?? 0)?.['string'] + 'imgnums_' + (String((s as any).locArgs?.[1] ?? ''))]);
+  }
+  ((s as any).cheatVars = (s as any).cheatVars ?? {})[(((s as any).cmd_copy_class ?? 0)?.['string']) + 'imgnums_' + ((s as any).locArgs?.[1] ?? 0) + ''] = (((s as any).cmd_copy_class ?? 0)?.['imgnums']);
   scene.build();
 }
 

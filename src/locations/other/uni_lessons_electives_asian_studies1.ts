@@ -139,7 +139,7 @@ function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Don\'t pay attention in class', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_102_no_attention'] },
-    { label: 'Talk to a classmate', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_102_talks'] },
+    { label: 'Talk to a classmate', goto: ['uni_lessons_electives_asian_studies1', 'asian_studies_102_talk'] },
   ]);
   scene.build();
 }

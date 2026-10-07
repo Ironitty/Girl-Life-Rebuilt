@@ -19,7 +19,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+      { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
     ]);
   } else {
     if (((s as any).temp ?? 0) === 1) {
@@ -30,7 +30,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'end');
       qspCall(s, 'stat', '');
       scene.actions([
-        { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+        { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
       ]);
     } else {
       if (((s as any).temp ?? 0) === 2) {
@@ -38,7 +38,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
         scene.text('You walk down the mostly quiet hall when four girls suddenly come screaming and laughing down the hallway at full speed.');
         scene.text('You dodge out of the way and they continue sprinting away. What was that about?');
         scene.actions([
-          { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+          { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
         ]);
       } else {
         if (((s as any).temp ?? 0) === 3) {
@@ -48,7 +48,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'arousal', 'end');
           qspCall(s, 'stat', '');
           scene.actions([
-            { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+            { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
           ]);
         } else {
           if (((s as any).temp ?? 0) === 4) {
@@ -58,7 +58,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'arousal', 'end');
             qspCall(s, 'stat', '');
             scene.actions([
-              { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+              { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
             ]);
           } else {
             if (((s as any).temp ?? 0) === 5) {
@@ -69,7 +69,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'arousal', 'end');
               qspCall(s, 'stat', '');
               scene.actions([
-                { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
               ]);
             } else {
               if (((s as any).temp ?? 0) === 6) {
@@ -80,7 +80,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'arousal', 'end');
                 qspCall(s, 'stat', '');
                 scene.actions([
-                  { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                  { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                 ]);
               } else {
                 if (((s as any).temp ?? 0) === 7) {
@@ -91,7 +91,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'arousal', 'end');
                   qspCall(s, 'stat', '');
                   scene.actions([
-                    { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                    { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                   ]);
                 } else {
                   if (((s as any).temp ?? 0) === 8) {
@@ -103,7 +103,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'arousal', 'end');
                     qspCall(s, 'stat', '');
                     scene.actions([
-                      { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                      { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                     ]);
                   } else {
                     if (((s as any).temp ?? 0) === 9) {
@@ -113,7 +113,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                       qspCall(s, 'arousal', 'end');
                       qspCall(s, 'stat', '');
                       scene.actions([
-                        { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                        { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                       ]);
                     } else {
                       if (((s as any).temp ?? 0) === 10) {
@@ -124,7 +124,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                         qspCall(s, 'arousal', 'end');
                         qspCall(s, 'stat', '');
                         scene.actions([
-                          { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                          { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                         ]);
                       } else {
                         if (((s as any).temp ?? 0) === 11) {
@@ -136,7 +136,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                           qspCall(s, 'arousal', 'end');
                           qspCall(s, 'stat', '');
                           scene.actions([
-                            { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                            { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                           ]);
                         } else {
                           if (((s as any).temp ?? 0) === 12) {
@@ -148,7 +148,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                             qspCall(s, 'arousal', 'end');
                             qspCall(s, 'stat', '');
                             scene.actions([
-                              { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                              { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                             ]);
                           } else {
                             if (((s as any).temp ?? 0) === 13) {
@@ -159,7 +159,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                               qspCall(s, 'arousal', 'end');
                               qspCall(s, 'stat', '');
                               scene.actions([
-                                { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                               ]);
                             } else {
                               if (((s as any).temp ?? 0) === 14) {
@@ -170,7 +170,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                                 qspCall(s, 'arousal', 'end');
                                 qspCall(s, 'stat', '');
                                 scene.actions([
-                                  { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                  { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                 ]);
                               } else {
                                 if (((s as any).temp ?? 0) === 15) {
@@ -182,7 +182,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                                   qspCall(s, 'arousal', 'end');
                                   qspCall(s, 'stat', '');
                                   scene.actions([
-                                    { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                    { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                   ]);
                                 } else {
                                   if (((s as any).temp ?? 0) === 16) {
@@ -194,7 +194,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                                     qspCall(s, 'arousal', 'end');
                                     qspCall(s, 'stat', '');
                                     scene.actions([
-                                      { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                      { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                     ]);
                                   } else {
                                     if (((s as any).temp ?? 0) === 17) {
@@ -205,7 +205,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                                       qspCall(s, 'arousal', 'end');
                                       qspCall(s, 'stat', '');
                                       scene.actions([
-                                        { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                        { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                       ]);
                                     } else {
                                       if (((s as any).temp ?? 0) === 18) {
@@ -216,7 +216,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                                         qspCall(s, 'arousal', 'end');
                                         qspCall(s, 'stat', '');
                                         scene.actions([
-                                          { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                          { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                         ]);
                                       } else {
                                         if (((s as any).temp ?? 0) === 19) {
@@ -225,13 +225,13 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                                           scene.text('You look down at the clipboard she\'s carrying. "What\'s it for?"');
                                           scene.text('She smiles as you seem to take an interest in her petition. "It\'s to get the library hours extended to 2am. Some of us need to study very late and these dorms are just too loud at that time. Will you sign it?"');
                                           scene.actions([
-                                            { label: 'Refuse', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                            { label: 'Refuse', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                             { label: 'Sign the petition', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor/petition_girl.jpg');
     scene.text('You nod and pick up the pen, sign your name on the petition.');
     scene.text('"Oh thank you! Thank you so much!" the girl exclaims before she turns and starts talking to another student, trying to get them to sign as well.');
     scene.actions([
-      { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+      { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
     ]);
   } },
                                           ]);
@@ -245,7 +245,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                                             qspCall(s, 'arousal', 'end');
                                             qspCall(s, 'stat', '');
                                             scene.actions([
-                                              { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                              { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                               { label: 'Watch her', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor/naked_shower_girl2.jpg');
     scene.text('She walks down the hallway, completely naked. "Okay, very funny Anya! I <i>will</i> get you back for this, you bitch!"');
@@ -254,7 +254,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'stat', '');
     scene.actions([
-      { label: 'Go on', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+      { label: 'Go on', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
       { label: 'Follow her', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor/naked_shower_girl3.jpg');
     scene.text('As she continues, a guy stops her. "Hey, if you\'re going to parade around naked like that, then how about you show us <i>all</i>the goods?"');
@@ -265,7 +265,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'stat', '');
     scene.actions([
-      { label: 'Go where you were going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+      { label: 'Go where you were going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
       { label: 'Watch her some more', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor/naked_shower_girl4.jpg');
     scene.text('She finally stops at a door and turns the handle. You can hear the laughter of several other girls inside as she opens the door.');
@@ -275,7 +275,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'stat', '');
     scene.actions([
-      { label: 'Go on your way', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+      { label: 'Go on your way', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
     ]);
   } },
     ]);
@@ -287,12 +287,12 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                                             scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
                                             scene.text('As you walk down the hallway, you hear some noises coming from one of the rooms. You stop near the door and listen, but you can\'t make it out. You could try the door and see if it\'s unlocked or just mind your own business.');
                                             scene.actions([
-                                              { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                              { label: 'Keep going', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                               { label: 'Try the door', handler: (st: GameState) => {
     scene.img('images/pc/activities/spy/peep3.jpg');
     scene.text('You step up to the door and check the handle. It turns easily in your hand, so it\'s not locked, but do you peep? You really want to know what\'s happening, but what if someone sees you?');
     scene.actions([
-      { label: 'Don\'t peek', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+      { label: 'Don\'t peek', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
       { label: 'Peek', goto: ['uni_dorm_events', 'dorm_floor_sex'] },
     ]);
   } },
@@ -331,7 +331,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+      { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
     ]);
   } else {
     if (((s as any).temp ?? 0) === 1) {
@@ -342,7 +342,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'end');
       qspCall(s, 'stat', '');
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+        { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
       ]);
     } else {
       if (((s as any).temp ?? 0) === 2) {
@@ -353,7 +353,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'end');
         qspCall(s, 'stat', '');
         scene.actions([
-          { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+          { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
         ]);
       } else {
         if (((s as any).temp ?? 0) === 3) {
@@ -364,7 +364,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'arousal', 'end');
           qspCall(s, 'stat', '');
           scene.actions([
-            { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+            { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
           ]);
         } else {
           if (((s as any).temp ?? 0) === 4) {
@@ -375,7 +375,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'arousal', 'end');
             qspCall(s, 'stat', '');
             scene.actions([
-              { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+              { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
             ]);
           } else {
             if (((s as any).temp ?? 0) === 5) {
@@ -389,7 +389,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'arousal', 'end');
               qspCall(s, 'stat', '');
               scene.actions([
-                { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
               ]);
             } else {
               if (((s as any).temp ?? 0) === 6) {
@@ -401,7 +401,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'arousal', 'end');
                 qspCall(s, 'stat', '');
                 scene.actions([
-                  { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                  { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                 ]);
               } else {
                 if (((s as any).temp ?? 0) === 7) {
@@ -412,7 +412,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'arousal', 'end');
                   qspCall(s, 'stat', '');
                   scene.actions([
-                    { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                    { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                   ]);
                 } else {
                   if (((s as any).temp ?? 0) === 8) {
@@ -423,7 +423,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'arousal', 'end');
                     qspCall(s, 'stat', '');
                     scene.actions([
-                      { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                      { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                     ]);
                   } else {
                     if (((s as any).temp ?? 0) === 9) {
@@ -434,7 +434,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                       qspCall(s, 'arousal', 'end');
                       qspCall(s, 'stat', '');
                       scene.actions([
-                        { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                        { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                       ]);
                     } else {
                       if (((s as any).temp ?? 0) === 10) {
@@ -445,7 +445,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                         qspCall(s, 'arousal', 'end');
                         qspCall(s, 'stat', '');
                         scene.actions([
-                          { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                          { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                         ]);
                       } else {
                         if (((s as any).temp ?? 0) === 11) {
@@ -456,7 +456,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                           qspCall(s, 'arousal', 'end');
                           qspCall(s, 'stat', '');
                           scene.actions([
-                            { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                            { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                           ]);
                         } else {
                           if (((s as any).temp ?? 0) === 12) {
@@ -467,7 +467,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                             qspCall(s, 'arousal', 'end');
                             qspCall(s, 'stat', '');
                             scene.actions([
-                              { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                              { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                             ]);
                           } else {
                             if (((s as any).temp ?? 0) === 13) {
@@ -478,7 +478,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                               qspCall(s, 'arousal', 'end');
                               qspCall(s, 'stat', '');
                               scene.actions([
-                                { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                               ]);
                             } else {
                               if (((s as any).temp ?? 0) === 14) {
@@ -489,7 +489,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                 qspCall(s, 'arousal', 'end');
                                 qspCall(s, 'stat', '');
                                 scene.actions([
-                                  { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                  { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                 ]);
                               } else {
                                 if (((s as any).temp ?? 0) === 15) {
@@ -500,7 +500,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                   qspCall(s, 'arousal', 'end');
                                   qspCall(s, 'stat', '');
                                   scene.actions([
-                                    { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                    { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                   ]);
                                 } else {
                                   if (((s as any).temp ?? 0) === 16) {
@@ -511,7 +511,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                     qspCall(s, 'arousal', 'end');
                                     qspCall(s, 'stat', '');
                                     scene.actions([
-                                      { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                      { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                     ]);
                                   } else {
                                     if (((s as any).temp ?? 0) === 17) {
@@ -522,7 +522,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                       qspCall(s, 'arousal', 'end');
                                       qspCall(s, 'stat', '');
                                       scene.actions([
-                                        { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                        { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                       ]);
                                     } else {
                                       if (((s as any).temp ?? 0) === 18) {
@@ -534,7 +534,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                         qspCall(s, 'arousal', 'end');
                                         qspCall(s, 'stat', '');
                                         scene.actions([
-                                          { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                          { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                         ]);
                                       } else {
                                         if (((s as any).temp ?? 0) === 19) {
@@ -545,7 +545,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                           qspCall(s, 'arousal', 'end');
                                           qspCall(s, 'stat', '');
                                           scene.actions([
-                                            { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                            { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                           ]);
                                         } else {
                                           if (((s as any).temp ?? 0) === 20) {
@@ -556,7 +556,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                             qspCall(s, 'arousal', 'end');
                                             qspCall(s, 'stat', '');
                                             scene.actions([
-                                              { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                              { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                             ]);
                                           } else {
                                             if (((s as any).temp ?? 0) === 21) {
@@ -567,7 +567,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                               qspCall(s, 'arousal', 'end');
                                               qspCall(s, 'stat', '');
                                               scene.actions([
-                                                { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                                { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                               ]);
                                             } else {
                                               if (((s as any).temp ?? 0) === 22) {
@@ -578,7 +578,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                                 qspCall(s, 'arousal', 'end');
                                                 qspCall(s, 'stat', '');
                                                 scene.actions([
-                                                  { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                                  { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                                 ]);
                                               } else {
                                                 if (((s as any).temp ?? 0) === 23) {
@@ -589,7 +589,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                                   qspCall(s, 'arousal', 'end');
                                                   qspCall(s, 'stat', '');
                                                   scene.actions([
-                                                    { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                                    { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                                   ]);
                                                 } else {
                                                   if (((s as any).temp ?? 0) === 24) {
@@ -600,7 +600,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                                     qspCall(s, 'arousal', 'end');
                                                     qspCall(s, 'stat', '');
                                                     scene.actions([
-                                                      { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                                      { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                                     ]);
                                                   } else {
                                                     if (((s as any).temp ?? 0) === 25) {
@@ -611,7 +611,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                                       qspCall(s, 'arousal', 'end');
                                                       qspCall(s, 'stat', '');
                                                       scene.actions([
-                                                        { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                                        { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                                       ]);
                                                     } else {
                                                       if (((s as any).temp ?? 0) === 26) {
@@ -622,7 +622,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                                         qspCall(s, 'arousal', 'end');
                                                         qspCall(s, 'stat', '');
                                                         scene.actions([
-                                                          { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                                          { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                                         ]);
                                                       } else {
                                                         if (((s as any).temp ?? 0) < 60) {
@@ -630,13 +630,13 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
                                                           scene.text('You turn the handle and gently push the door open just wide enough to look inside. You\'re greeted by the sight of an empty door room, but notice that the TV has been left on.');
                                                           scene.text('Having found the source of the noise, you close the door.');
                                                           scene.actions([
-                                                            { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                                            { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                                           ]);
                                                         } else {
                                                           scene.img('images/locations/city/island/university/dorm/hallway/locked.jpg');
                                                           scene.text('You turn the handle, but the door is locked.');
                                                           scene.actions([
-                                                            { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm['floor'] ?? '')); } },
+                                                            { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'uni_dorm', ((st as any).uni_dorm?.['floor'] ?? '')); } },
                                                           ]);
                                                         }
                                                       }

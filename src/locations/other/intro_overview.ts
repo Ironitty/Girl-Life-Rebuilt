@@ -1017,7 +1017,7 @@ function enterGetStartTimeSetter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetTrait(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'traits', '$ARGS[1]', 'overview');
+  qspCall(s, 'traits', (s as any).locArgs?.[1] ?? '', 'overview');
   (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', (((s as any).trait_temp ?? 0)?.['ov_label']), (((s as any).trait_temp ?? 0)?.['ov_val']), 0, (((s as any).trait_temp ?? 0)?.['ov_left']), (((s as any).trait_temp ?? 0)?.['ov_right']));
   (s as any).trait_temp = undefined;
   return;

@@ -324,12 +324,12 @@ function enterScoreDebug(s: GameState, scene: SceneBuilder): void {
     (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Total Day Score: ' + ((s as any).total_daily ?? 0) + ''];
     (s as any).ballet_log = [...((s as any).ballet_log ?? []), '<b>- - - Day ' + ((s as any).debug_day ?? 0) + ' End - - -</b>'];
     (s as any).debug_day = ((s as any).debug_day ?? 0) + (1);
-    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Cumulative daily score: ' + (((s as any).ballet_grade_score ?? 0)?.['class']) + ''];
-    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Cumulative homework score: ' + (((s as any).ballet_grade_score ?? 0)?.['homework']) + ''];
-    (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Passmark: ' + 100 * ((((s as any).ballet_grade_score ?? {})?.['class'] ?? 0) + (((s as any).ballet_grade_score ?? {})?.['homework'] ?? 0)) / 210];
-    (s as any).debug_day = undefined;
-    (s as any).total_daily = undefined;
   } while (((s as any).debug_day ?? 0) <= 5);
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Cumulative daily score: ' + (((s as any).ballet_grade_score ?? 0)?.['class']) + ''];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Cumulative homework score: ' + (((s as any).ballet_grade_score ?? 0)?.['homework']) + ''];
+  (s as any).ballet_log = [...((s as any).ballet_log ?? []), 'Passmark: ' + 100 * ((((s as any).ballet_grade_score ?? {})?.['class'] ?? 0) + (((s as any).ballet_grade_score ?? {})?.['homework'] ?? 0)) / 210];
+  (s as any).debug_day = undefined;
+  (s as any).total_daily = undefined;
   scene.build();
 }
 

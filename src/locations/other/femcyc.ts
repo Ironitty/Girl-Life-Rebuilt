@@ -38,40 +38,42 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       } else {
         qspCall(s, 'cum_cleanup', 'cleanwomb', ((s as any).cumarr_idx ?? 0));
       }
-      break;
+      continue;
     }
-    if (((s as any).succubusflag ?? 0) === 1) {
-      if (Object.keys((s as any).cumarrppt ?? {}).length > 0) {
-        (s as any).succycletmp = 0;
-        do {
-          if (((s as any).cumarrdel ?? 0)?.[String((s as any).succycletmp ?? 0)] === 0) {
-            if (((s as any).cumarrcpt ?? 0)?.[String((s as any).succycletmp ?? 0)] > 10000) {
-              (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).succublvl ?? 0));
-              (s as any).succubxp = ((s as any).succubxp ?? 0) + (3);
+    break;
+  }
+  if (((s as any).succubusflag ?? 0) === 1) {
+    if (Object.keys((s as any).cumarrppt ?? {}).length > 0) {
+      (s as any).succycletmp = 0;
+      do {
+        if (((s as any).cumarrdel ?? 0)?.[String((s as any).succycletmp ?? 0)] === 0) {
+          if (((s as any).cumarrcpt ?? 0)?.[String((s as any).succycletmp ?? 0)] > 10000) {
+            (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).succublvl ?? 0));
+            (s as any).succubxp = ((s as any).succubxp ?? 0) + (3);
+          } else {
+            if (((s as any).cumarrcpt ?? 0)?.[String((s as any).succycletmp ?? 0)] < 3000  &&  ((s as any).cumarrcpt ?? 0)?.[String((s as any).succycletmp ?? 0)] > 1000) {
+              (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (5 * ((s as any).succublvl ?? 0));
+              (s as any).succubxp = ((s as any).succubxp ?? 0) + (2);
             } else {
-              if (((s as any).cumarrcpt ?? 0)?.[String((s as any).succycletmp ?? 0)] < 3000  &&  ((s as any).cumarrcpt ?? 0)?.[String((s as any).succycletmp ?? 0)] > 1000) {
-                (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (5 * ((s as any).succublvl ?? 0));
-                (s as any).succubxp = ((s as any).succubxp ?? 0) + (2);
+              if (((s as any).cumarrcpt ?? 0)?.[String((s as any).succycletmp ?? 0)] <= 1000) {
+                (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (((s as any).succublvl ?? 0));
               } else {
-                if (((s as any).cumarrcpt ?? 0)?.[String((s as any).succycletmp ?? 0)] <= 1000) {
-                  (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (((s as any).succublvl ?? 0));
-                } else {
-                  (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (25 * ((s as any).succublvl ?? 0));
-                  (s as any).succubxp = ((s as any).succubxp ?? 0) + (3);
-                }
+                (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (25 * ((s as any).succublvl ?? 0));
+                (s as any).succubxp = ((s as any).succubxp ?? 0) + (3);
               }
             }
-            qspCall(s, 'cum_cleanup', 'cleanwomb', ((s as any).succycletmp ?? 0));
-            (s as any).sucabscum = 1;
-          } else {
-            (s as any).succycletmp = ((s as any).succycletmp ?? 0) + (1);
           }
-        } while (((s as any).succycletmp ?? 0) < Object.keys((s as any).cumarrppt ?? {}).length);
-      }
-      (s as any).succycletmp = undefined;
+          qspCall(s, 'cum_cleanup', 'cleanwomb', ((s as any).succycletmp ?? 0));
+          (s as any).sucabscum = 1;
+        } else {
+          (s as any).succycletmp = ((s as any).succycletmp ?? 0) + (1);
+        }
+      } while (((s as any).succycletmp ?? 0) < Object.keys((s as any).cumarrppt ?? {}).length);
     }
-    (s as any).cumarrtemp = 0;
-    if (Object.keys((s as any).sparrvol ?? {}).length > 0) {
+    (s as any).succycletmp = undefined;
+  }
+  (s as any).cumarrtemp = 0;
+  if (Object.keys((s as any).sparrvol ?? {}).length > 0) {
       while (true) {
         if (((s as any).succubusflag ?? 0) === 1) {
           if (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 3  ||  ((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 12) {
@@ -223,15 +225,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).cumarrtemp ?? 0) < Object.keys((s as any).sparrvol ?? {}).length) {
           (s as any).cumarrtemp = ((s as any).cumarrtemp ?? 0) + (1);
-          break;
+          continue;
         }
-        (s as any).cumsumbod = (((s as any).ctemp ?? 0)?.[0] ?? 0);
-        (s as any).cumsumvag = (((s as any).ctemp ?? 0)?.[1] ?? 0);
-        (s as any).cumsumass = (((s as any).ctemp ?? 0)?.[2] ?? 0);
-        (s as any).ctemp = undefined;
-        (s as any).sparrtmpv = undefined;
-        (s as any).cumarrtemp = undefined;
+        break;
       }
+      (s as any).cumsumbod = (((s as any).ctemp ?? 0)?.[0] ?? 0);
+      (s as any).cumsumvag = (((s as any).ctemp ?? 0)?.[1] ?? 0);
+      (s as any).cumsumass = (((s as any).ctemp ?? 0)?.[2] ?? 0);
+      (s as any).ctemp = undefined;
+      (s as any).sparrtmpv = undefined;
+      (s as any).cumarrtemp = undefined;
     }
     if (((s as any).cheatVars ?? 0)?.['no_lactation'] > 0) {
       qspCall(s, 'lact_lib', 'lactate_optout');
@@ -286,7 +289,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(s, 'din_bad', 'd_cycreport_update');
-  }
   scene.build();
 }
 
@@ -391,85 +393,88 @@ function enterCyc2(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).cumfathlotto = undefined;
       (s as any).cfw_idx = 0;
-      (s as any).cfw_sz = 0;
+      (s as any).cfw_sz = Object.keys((s as any).wombAmount ?? {}).length;
       while (true) {
         if (((s as any).cfw_idx ?? 0) < ((s as any).cfw_sz ?? 0)  &&  ((s as any).cum_total ?? 0) > 0) {
           (s as any).cfl_ct = ((((s as any).wombAmount ?? 0)?.[String((s as any).cfw_idx ?? 0)] ?? 0) * 100) / ((s as any).cum_total ?? 0);
           if (((s as any).cfl_ct ?? 0) < 1) {
             (s as any).cfl_ct = 1;
           }
-          (s as any).cfl_idx = 0;
+          (s as any).cfl_idx = Object.keys((s as any).cumfathlotto ?? {}).length;
           while (true) {
             if (((s as any).cfl_ct ?? 0) > 0) {
               ((s as any).cumfathlotto = (s as any).cumfathlotto ?? {})[String((s as any).cfl_idx ?? 0)] = (((s as any).wombName ?? 0)?.[String((s as any).cfw_idx ?? 0)] ?? 0);
               (s as any).cfl_idx = ((s as any).cfl_idx ?? 0) + (1);
               (s as any).cfl_ct = ((s as any).cfl_ct ?? 0) - (1);
-              break;
+              continue;
             }
-            (s as any).cfw_idx = ((s as any).cfw_idx ?? 0) + (1);
             break;
           }
+          (s as any).cfw_idx = ((s as any).cfw_idx ?? 0) + (1);
+          continue;
         }
-        (s as any).wombName = undefined;
-        (s as any).wombAmount = undefined;
-        (s as any).cfl_sz = 0;
-        (s as any).egg_idx = 0;
-        (s as any).egg_sz = ((s as any).UnfertEgg ?? 0);
-        if (((s as any).cheatVars ?? 0)?.['no_pregnancy'] === 1) {
-          (s as any).egg_idx = ((s as any).egg_sz ?? 0);
-        }
-        while (true) {
-          if (((s as any).egg_idx ?? 0) < ((s as any).egg_sz ?? 0)) {
-            (s as any).fert_thresh = (Math.floor(Math.random() * 250000) + 1);
-            if (((s as any).pillcon ?? 0) < 0) {
-              (s as any).pillcon = 0;
-            }
-            if (((s as any).steriletu ?? 0) === 1) {
-              (s as any).fert_thresh = ((s as any).fert_thresh ?? 0) + (((s as any).fert_thresh ?? 0) * 30);
-            }
-            if (((s as any).broodcurse ?? 0) > 0) {
-              (s as any).fert_thresh = ((s as any).fert_thresh ?? 0) / (2);
-            }
-            if (((s as any).cheatVars ?? 0)?.['preg_chance'] !== 0) {
-              (s as any).fert_thresh = (((s as any).fert_thresh ?? 0) * 100) / qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['preg_chance']), 100, (((s as any).cheatVars ?? 0)?.['preg_chance_custom']));
-            }
-            if (((s as any).trait_vars ?? 0)?.['fertility'] > 0) {
-              (s as any).fert_thresh = ((s as any).fert_thresh ?? 0) / (2);
-            }
-            if (((s as any).trait_vars ?? 0)?.['fertility'] === -1) {
-              (s as any).fert_thresh = ((s as any).fert_thresh ?? 0) * (2);
-            }
-            if (((s as any).fert_thresh ?? 0) <= ((s as any).cum_total ?? 0)  &&  ((s as any).trait_vars ?? 0)?.['fertility'] !== -2) {
-              (s as any).lotto_idx = (Math.floor(Math.random() * (((s as any).cfl_sz ?? 0) - 1 - 0 + 1)) + (0));
-              (s as any).UnfertEgg = ((s as any).UnfertEgg ?? 0) - (1);
-              (s as any).FertEgg = ((s as any).FertEgg ?? 0) + (1);
-              (s as any).nextBaby = 0;
-              ((s as any).polkid = (s as any).polkid ?? {})[String((s as any).nextBaby ?? 0)] = (Math.floor(Math.random() * 2) + 0);
-              ((s as any).kidname = (s as any).kidname ?? {})[String((s as any).nextBaby ?? 0)] = 'unborn';
-              ((s as any).kidage = (s as any).kidage ?? {})[String((s as any).nextBaby ?? 0)] = 0;
-              ((s as any).daykid = (s as any).daykid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
-              ((s as any).monthkid = (s as any).monthkid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
-              ((s as any).yearkid = (s as any).yearkid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
-              ((s as any).Babyptype = (s as any).Babyptype ?? {})[String((s as any).nextBaby ?? 0)] = 0;
-              ((s as any).ChildFath = (s as any).ChildFath ?? {})[String((s as any).nextBaby ?? 0)] = (((s as any).cumfathlotto ?? 0)?.[String((s as any).lotto_idx ?? 0)] ?? 0);
-              ((s as any).hairkid = (s as any).hairkid ?? {})[String((s as any).nextBaby ?? 0)] = (Math.floor(Math.random() * 4) + 0);
-              ((s as any).eyeskid = (s as any).eyeskid ?? {})[String((s as any).nextBaby ?? 0)] = (Math.floor(Math.random() * 4) + 0);
-              ((s as any).ChildConType = (s as any).ChildConType ?? {})[String((s as any).nextBaby ?? 0)] = (((s as any).cumarrcon ?? 0)?.[String((s as any).nextBaby ?? 0)] ?? 0);
-              if (((s as any).FertEgg ?? 0) > 1) {
-                ((s as any).childtype = (s as any).childtype ?? {})[String((s as any).nextBaby ?? 0)] = 'fraternal twin';
-                ((s as any).childtype = (s as any).childtype ?? {})[((s as any).nextBaby ?? 0)-1] = 'fraternal twin';
-              } else {
-                ((s as any).childtype = (s as any).childtype ?? {})[String((s as any).nextBaby ?? 0)] = '';
-              }
-            }
-            (s as any).egg_idx = ((s as any).egg_idx ?? 0) + (1);
-            break;
-          }
-          (s as any).cumfathlotto = undefined;
-          (s as any).temp = undefined;
-          (s as any).tempovbonus = 0;
-        }
+        break;
       }
+      (s as any).wombName = undefined;
+      (s as any).wombAmount = undefined;
+      (s as any).cfl_sz = Object.keys((s as any).cumfathlotto ?? {}).length;
+      (s as any).egg_idx = 0;
+      (s as any).egg_sz = ((s as any).UnfertEgg ?? 0);
+      if (((s as any).cheatVars ?? 0)?.['no_pregnancy'] === 1) {
+        (s as any).egg_idx = ((s as any).egg_sz ?? 0);
+      }
+      while (true) {
+        if (((s as any).egg_idx ?? 0) < ((s as any).egg_sz ?? 0)) {
+          (s as any).fert_thresh = (Math.floor(Math.random() * 250000) + 1);
+          if (((s as any).pillcon ?? 0) < 0) {
+            (s as any).pillcon = 0;
+          }
+          if (((s as any).steriletu ?? 0) === 1) {
+            (s as any).fert_thresh = ((s as any).fert_thresh ?? 0) + (((s as any).fert_thresh ?? 0) * 30);
+          }
+          if (((s as any).broodcurse ?? 0) > 0) {
+            (s as any).fert_thresh = ((s as any).fert_thresh ?? 0) / (2);
+          }
+          if (((s as any).cheatVars ?? 0)?.['preg_chance'] !== 0) {
+            (s as any).fert_thresh = (((s as any).fert_thresh ?? 0) * 100) / qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['preg_chance']), 100, (((s as any).cheatVars ?? 0)?.['preg_chance_custom']));
+          }
+          if (((s as any).trait_vars ?? 0)?.['fertility'] > 0) {
+            (s as any).fert_thresh = ((s as any).fert_thresh ?? 0) / (2);
+          }
+          if (((s as any).trait_vars ?? 0)?.['fertility'] === -1) {
+            (s as any).fert_thresh = ((s as any).fert_thresh ?? 0) * (2);
+          }
+          if (((s as any).fert_thresh ?? 0) <= ((s as any).cum_total ?? 0)  &&  ((s as any).trait_vars ?? 0)?.['fertility'] !== -2) {
+            (s as any).lotto_idx = (Math.floor(Math.random() * (((s as any).cfl_sz ?? 0) - 1 - 0 + 1)) + (0));
+            (s as any).UnfertEgg = ((s as any).UnfertEgg ?? 0) - (1);
+            (s as any).FertEgg = ((s as any).FertEgg ?? 0) + (1);
+            (s as any).nextBaby = 0;
+            ((s as any).polkid = (s as any).polkid ?? {})[String((s as any).nextBaby ?? 0)] = (Math.floor(Math.random() * 2) + 0);
+            ((s as any).kidname = (s as any).kidname ?? {})[String((s as any).nextBaby ?? 0)] = 'unborn';
+            ((s as any).kidage = (s as any).kidage ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+            ((s as any).daykid = (s as any).daykid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+            ((s as any).monthkid = (s as any).monthkid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+            ((s as any).yearkid = (s as any).yearkid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+            ((s as any).Babyptype = (s as any).Babyptype ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+            ((s as any).ChildFath = (s as any).ChildFath ?? {})[String((s as any).nextBaby ?? 0)] = (((s as any).cumfathlotto ?? 0)?.[String((s as any).lotto_idx ?? 0)] ?? 0);
+            ((s as any).hairkid = (s as any).hairkid ?? {})[String((s as any).nextBaby ?? 0)] = (Math.floor(Math.random() * 4) + 0);
+            ((s as any).eyeskid = (s as any).eyeskid ?? {})[String((s as any).nextBaby ?? 0)] = (Math.floor(Math.random() * 4) + 0);
+            ((s as any).ChildConType = (s as any).ChildConType ?? {})[String((s as any).nextBaby ?? 0)] = (((s as any).cumarrcon ?? 0)?.[String((s as any).nextBaby ?? 0)] ?? 0);
+            if (((s as any).FertEgg ?? 0) > 1) {
+              ((s as any).childtype = (s as any).childtype ?? {})[String((s as any).nextBaby ?? 0)] = 'fraternal twin';
+              ((s as any).childtype = (s as any).childtype ?? {})[((s as any).nextBaby ?? 0)-1] = 'fraternal twin';
+            } else {
+              ((s as any).childtype = (s as any).childtype ?? {})[String((s as any).nextBaby ?? 0)] = '';
+            }
+          }
+          (s as any).egg_idx = ((s as any).egg_idx ?? 0) + (1);
+          continue;
+        }
+        break;
+      }
+      (s as any).cumfathlotto = undefined;
+      (s as any).temp = undefined;
+      (s as any).tempovbonus = 0;
     } while (((s as any).can_idx ?? 0) < ((s as any).can_sz ?? 0));
   }
   if (((s as any).pillcon ?? 0) > 26000  &&  (Math.floor(Math.random() * 401) + 0) !== 0) {
@@ -479,42 +484,43 @@ function enterCyc2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).EggRH ?? 0) > ((((s as any).UnfertEgg ?? 0) + ((s as any).FertEgg ?? 0)) * 150)) {
       (s as any).UnfertEgg = ((s as any).UnfertEgg ?? 0) + (1);
       (s as any).EggRH = ((s as any).EggRH ?? 0) - ((200 * ((s as any).UnfertEgg ?? 0)));
-      break;
+      continue;
     }
-    if (((s as any).ovulate ?? 0) <= 0) {
-      (s as any).cycle = 3;
-      (s as any).UnfertEgg = 0;
+  break;
+  }
+  if (((s as any).ovulate ?? 0) <= 0) {
+    (s as any).cycle = 3;
+    (s as any).UnfertEgg = 0;
+  }
+  if (((s as any).FertEgg ?? 0) === 1  &&  ((s as any).ferteggage ?? 0) < 330) {
+    if ((!(Math.floor(Math.random() * ((2000 - ((s as any).age ?? 0) * 20 - 0 + 1)) + (0))))) {
+      (s as any).FertEgg = ((s as any).FertEgg ?? 0) + (1);
+      (s as any).nextBaby = 0;
+      ((s as any).polkid = (s as any).polkid ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).polkid ?? 0)[((s as any).nextBaby ?? 0)-1];
+      ((s as any).kidname = (s as any).kidname ?? {})[String((s as any).nextBaby ?? 0)] = 'unborn';
+      ((s as any).kidage = (s as any).kidage ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+      ((s as any).daykid = (s as any).daykid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+      ((s as any).monthkid = (s as any).monthkid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+      ((s as any).yearkid = (s as any).yearkid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+      ((s as any).Babyptype = (s as any).Babyptype ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).Babyptype ?? 0)[((s as any).nextBaby ?? 0)-1];
+      ((s as any).ChildFath = (s as any).ChildFath ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).ChildFath ?? 0)[((s as any).nextBaby ?? 0)-1];
+      ((s as any).hairkid = (s as any).hairkid ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).hairkid ?? 0)[((s as any).nextBaby ?? 0)-1];
+      ((s as any).eyeskid = (s as any).eyeskid ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).eyeskid ?? 0)[((s as any).nextBaby ?? 0)-1];
+      ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).cumarrcon ?? 0)[((s as any).nextBaby ?? 0)-1];
+      ((s as any).childtype = (s as any).childtype ?? {})[String((s as any).nextBaby ?? 0)] = 'identical twin';
+      ((s as any).childtype = (s as any).childtype ?? {})[((s as any).nextBaby ?? 0)-1] = 'identical twin';
     }
-    if (((s as any).FertEgg ?? 0) === 1  &&  ((s as any).ferteggage ?? 0) < 330) {
-      if ((!(Math.floor(Math.random() * ((2000 - ((s as any).age ?? 0) * 20 - 0 + 1)) + (0))))) {
-        (s as any).FertEgg = ((s as any).FertEgg ?? 0) + (1);
-        (s as any).nextBaby = 0;
-        ((s as any).polkid = (s as any).polkid ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).polkid ?? 0)[((s as any).nextBaby ?? 0)-1];
-        ((s as any).kidname = (s as any).kidname ?? {})[String((s as any).nextBaby ?? 0)] = 'unborn';
-        ((s as any).kidage = (s as any).kidage ?? {})[String((s as any).nextBaby ?? 0)] = 0;
-        ((s as any).daykid = (s as any).daykid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
-        ((s as any).monthkid = (s as any).monthkid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
-        ((s as any).yearkid = (s as any).yearkid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
-        ((s as any).Babyptype = (s as any).Babyptype ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).Babyptype ?? 0)[((s as any).nextBaby ?? 0)-1];
-        ((s as any).ChildFath = (s as any).ChildFath ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).ChildFath ?? 0)[((s as any).nextBaby ?? 0)-1];
-        ((s as any).hairkid = (s as any).hairkid ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).hairkid ?? 0)[((s as any).nextBaby ?? 0)-1];
-        ((s as any).eyeskid = (s as any).eyeskid ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).eyeskid ?? 0)[((s as any).nextBaby ?? 0)-1];
-        ((s as any).cumarrcon = (s as any).cumarrcon ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).cumarrcon ?? 0)[((s as any).nextBaby ?? 0)-1];
-        ((s as any).childtype = (s as any).childtype ?? {})[String((s as any).nextBaby ?? 0)] = 'identical twin';
-        ((s as any).childtype = (s as any).childtype ?? {})[((s as any).nextBaby ?? 0)-1] = 'identical twin';
-      }
-    }
-    (s as any).ferteggage = ((s as any).ferteggage ?? 0) + (1);
-    (s as any).Ovulate = ((s as any).Ovulate ?? 0) - (1);
-    (s as any).LutH = ((s as any).LutH ?? 0) + (1);
-    ((s as any).stat = (s as any).stat ?? {})['cycle_phase'] = 'ovulation';
-    if (((s as any).bodyVars ?? 0)?.['bust_cycle'] < 12) {
-      ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_cycle'] = ((s as any).bodyVars['bust_cycle'] ?? 0) + (1);
-    } else {
-      ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_cycle'] = 0;
-      if ((Math.floor(Math.random() * 3) + 1) >= 2) {
-        ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_menst'] = ((s as any).bodyVars['bust_menst'] ?? 0) + (1);
-      }
+  }
+  (s as any).ferteggage = ((s as any).ferteggage ?? 0) + (1);
+  (s as any).Ovulate = ((s as any).Ovulate ?? 0) - (1);
+  (s as any).LutH = ((s as any).LutH ?? 0) + (1);
+  ((s as any).stat = (s as any).stat ?? {})['cycle_phase'] = 'ovulation';
+  if (((s as any).bodyVars ?? 0)?.['bust_cycle'] < 12) {
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_cycle'] = ((s as any).bodyVars['bust_cycle'] ?? 0) + (1);
+  } else {
+    ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_cycle'] = 0;
+    if ((Math.floor(Math.random() * 3) + 1) >= 2) {
+      ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_menst'] = ((s as any).bodyVars['bust_menst'] ?? 0) + (1);
     }
   }
   scene.build();
@@ -543,7 +549,7 @@ function enterCyc3(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).ferteggage = ((s as any).ferteggage ?? 0) + (1);
   (s as any).implant_idx = 0;
-  (s as any).implant_sz = 0;
+  (s as any).implant_sz = Object.keys((s as any).Babyptype ?? {}).length;
   while (true) {
     if (((s as any).implant_idx ?? 0) < ((s as any).implant_sz ?? 0)) {
       if (((s as any).Babyptype ?? 0)?.[String((s as any).implant_idx ?? 0)] === 0  &&  ((s as any).ChildFath ?? 0)?.[String((s as any).implant_idx ?? 0)] !== '') {
@@ -588,87 +594,89 @@ function enterCyc3(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).implant_idx = ((s as any).implant_idx ?? 0) + (1);
+      continue;
+    }
+    break;
+  }
+  if (((s as any).lutH ?? 0) > ((s as any).lutH_max ?? 0)) {
+    (s as any).rej_idx = 0;
+    (s as any).rej_sz = Object.keys((s as any).Babyptype ?? {}).length;
+    while (true) {
+      if (((s as any).rej_idx ?? 0) < ((s as any).rej_sz ?? 0)) {
+        if (((s as any).Babyptype ?? 0)?.[String((s as any).rej_idx ?? 0)] === 0) {
+          (s as any).polkid = undefined;
+          (s as any).kidname = undefined;
+          (s as any).kidage = undefined;
+          (s as any).daykid = undefined;
+          (s as any).monthkid = undefined;
+          (s as any).yearkid = undefined;
+          (s as any).Babyptype = undefined;
+          (s as any).ChildFath = undefined;
+          (s as any).hairkid = undefined;
+          (s as any).eyeskid = undefined;
+          (s as any).cumarrcon = undefined;
+          (s as any).FertEgg = ((s as any).FertEgg ?? 0) - (1);
+        }
+        (s as any).rej_idx = ((s as any).rej_idx ?? 0) + (1);
+        continue;
+      }
       break;
     }
-    if (((s as any).lutH ?? 0) > ((s as any).lutH_max ?? 0)) {
-      (s as any).rej_idx = 0;
-      (s as any).rej_sz = 0;
-      while (true) {
-        if (((s as any).rej_idx ?? 0) < ((s as any).rej_sz ?? 0)) {
-          if (((s as any).Babyptype ?? 0)?.[String((s as any).rej_idx ?? 0)] === 0) {
-            (s as any).polkid = undefined;
-            (s as any).kidname = undefined;
-            (s as any).kidage = undefined;
-            (s as any).daykid = undefined;
-            (s as any).monthkid = undefined;
-            (s as any).yearkid = undefined;
-            (s as any).Babyptype = undefined;
-            (s as any).ChildFath = undefined;
-            (s as any).hairkid = undefined;
-            (s as any).eyeskid = undefined;
-            (s as any).cumarrcon = undefined;
-            (s as any).FertEgg = ((s as any).FertEgg ?? 0) - (1);
-          }
-          (s as any).rej_idx = ((s as any).rej_idx ?? 0) + (1);
-          break;
-        }
-        (s as any).lutH = 0;
-        if (((s as any).preg ?? 0) === 1) {
-          (s as any).cycle = 5;
+    (s as any).lutH = 0;
+    if (((s as any).preg ?? 0) === 1) {
+      (s as any).cycle = 5;
+    } else {
+      if (((s as any).menoage ?? 0) <= ((s as any).age ?? 0)) {
+        (s as any).wombpotfath = undefined;
+        (s as any).cumfthname = undefined;
+        (s as any).cumfthusedname = undefined;
+        (s as any).cumtime = undefined;
+        (s as any).cycle = 6;
+      } else {
+        (s as any).wombpotfath = undefined;
+        (s as any).cumfthname = undefined;
+        (s as any).cumfthusedname = undefined;
+        (s as any).cumtime = undefined;
+        (s as any).focH_max = (Math.floor(Math.random() * 49) + 312);
+        (s as any).temprand = (Math.floor(Math.random() * 11) + 0);
+        if (((s as any).pillcon ?? 0) >= 38000  ||  (((s as any).pillcon ?? 0) > 0  &&  (Math.floor(Math.random() * 24) + 1) === 1)) {
+          (s as any).EggRH = 0;
+          (s as any).cycle = 1;
+          (s as any).mesec = 0;
         } else {
-          if (((s as any).menoage ?? 0) <= ((s as any).age ?? 0)) {
-            (s as any).wombpotfath = undefined;
-            (s as any).cumfthname = undefined;
-            (s as any).cumfthusedname = undefined;
-            (s as any).cumtime = undefined;
-            (s as any).cycle = 6;
+          (s as any).cycle = 0;
+          (s as any).abortionbirthdate = undefined;
+          if (((s as any).cheatVars ?? 0)?.['track_period'] === 1) {
+            (s as any).daylastperiod = ((s as any).daystart ?? 0);
+          }
+          (s as any).firstmens = ((s as any).daystart ?? 0);
+          (s as any).temprand = (Math.floor(Math.random() * 11) + 0);
+          if (((s as any).temprand ?? 0) === 0  &&  ((s as any).pillcon ?? 0) < 10000) {
+            (s as any).mesec = (Math.floor(Math.random() * 33) + 104);
           } else {
-            (s as any).wombpotfath = undefined;
-            (s as any).cumfthname = undefined;
-            (s as any).cumfthusedname = undefined;
-            (s as any).cumtime = undefined;
-            (s as any).focH_max = (Math.floor(Math.random() * 49) + 312);
-            (s as any).temprand = (Math.floor(Math.random() * 11) + 0);
-            if (((s as any).pillcon ?? 0) >= 38000  ||  (((s as any).pillcon ?? 0) > 0  &&  (Math.floor(Math.random() * 24) + 1) === 1)) {
-              (s as any).EggRH = 0;
-              (s as any).cycle = 1;
-              (s as any).mesec = 0;
+            if (((s as any).temprand ?? 0) < 9  &&  ((s as any).pillcon ?? 0) < 15000) {
+              (s as any).mesec = (Math.floor(Math.random() * 29) + 76);
             } else {
-              (s as any).cycle = 0;
-              (s as any).abortionbirthdate = undefined;
-              if (((s as any).cheatVars ?? 0)?.['track_period'] === 1) {
-                (s as any).daylastperiod = ((s as any).daystart ?? 0);
-              }
-              (s as any).firstmens = ((s as any).daystart ?? 0);
-              (s as any).temprand = (Math.floor(Math.random() * 11) + 0);
-              if (((s as any).temprand ?? 0) === 0  &&  ((s as any).pillcon ?? 0) < 10000) {
-                (s as any).mesec = (Math.floor(Math.random() * 33) + 104);
+              if (((s as any).pillcon ?? 0) < 20000) {
+                (s as any).mesec = (Math.floor(Math.random() * 25) + 52);
               } else {
-                if (((s as any).temprand ?? 0) < 9  &&  ((s as any).pillcon ?? 0) < 15000) {
-                  (s as any).mesec = (Math.floor(Math.random() * 29) + 76);
-                } else {
-                  if (((s as any).pillcon ?? 0) < 20000) {
-                    (s as any).mesec = (Math.floor(Math.random() * 25) + 52);
-                  } else {
-                    (s as any).mesec = (Math.floor(Math.random() * 9) + 44);
-                  }
-                }
+                (s as any).mesec = (Math.floor(Math.random() * 9) + 44);
               }
             }
           }
         }
       }
-    } else {
-      if (((s as any).preg ?? 0) === 1) {
-        (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['preg_speed']), 100, (((s as any).cheatVars ?? 0)?.['preg_speed_custom'])));
-        (s as any).pregChem = ((s as any).pregChem ?? 0) + (((s as any).pregChemFrac ?? 0) / 100);
-        (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) % 100;
-      }
-      if ((Math.floor(Math.random() * 101) + 0) < 100) {
-        (s as any).lutH = ((s as any).lutH ?? 0) + (1);
-      }
     }
-  }
+    } else {
+    if (((s as any).preg ?? 0) === 1) {
+    (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', (((s as any).cheatVars ?? 0)?.['preg_speed']), 100, (((s as any).cheatVars ?? 0)?.['preg_speed_custom'])));
+    (s as any).pregChem = ((s as any).pregChem ?? 0) + (((s as any).pregChemFrac ?? 0) / 100);
+    (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) % 100;
+    }
+    if ((Math.floor(Math.random() * 101) + 0) < 100) {
+    (s as any).lutH = ((s as any).lutH ?? 0) + (1);
+    }
+    }
   scene.build();
 }
 

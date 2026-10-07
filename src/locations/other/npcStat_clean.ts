@@ -105,14 +105,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).person = undefined;
       (s as any).personc = undefined;
       (s as any).npcStat_clean_i = ((s as any).npcStat_clean_i ?? 0) - (1);
-      break;
+      continue;
     }
-    (s as any).npcStat_clean_i = 1;
-    do {
-      (s as any).npcStat_clean_i = ((s as any).npcStat_clean_i ?? 0) + (1);
-      (s as any).npc_Stat_clean_i = undefined;
-    } while (((s as any).npcStat_clean_i ?? 0) < 26);
+    break;
   }
+  (s as any).npcStat_clean_i = 1;
+  do {
+    (s as any).npcStat_clean_i = ((s as any).npcStat_clean_i ?? 0) + (1);
+    (s as any).npc_Stat_clean_i = undefined;
+  } while (((s as any).npcStat_clean_i ?? 0) < 26);
   const arg = s.locArg;
   switch (arg) {
     case '__dynamic__':

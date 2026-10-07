@@ -87,7 +87,7 @@ function enterPermLatch(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPeek(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locat ?? 0)?.['sdad_athome'] === 1  &&  ((s as any).locat ?? 0)?.['Mom_athome'] === 0  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).stepdadqw_day ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).iif ?? 0)(((s as any).stepdadqw ?? 0)>0, 1, (Math.floor(Math.random() * 2) + 0)) === 1) {
+  if (((s as any).locat ?? 0)?.['sdad_athome'] === 1  &&  ((s as any).locat ?? 0)?.['Mom_athome'] === 0  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).stepdadqw_day ?? 0) !== ((s as any).daystart ?? 0)  &&  ((c,a,b)=>c?a:b)(((s as any).stepdadqw ?? 0)>0, 1, (Math.floor(Math.random() * 2) + 0)) === 1) {
     (s as any).stepdadqw_day = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     if (((s as any).npc_rel ?? 0)?.['A28'] < 60  ||  ((s as any).stepdadqw ?? 0) < 3) {

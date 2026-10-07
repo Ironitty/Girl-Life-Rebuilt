@@ -37,7 +37,7 @@ export function removeEvent(s: GameState, id: string): void {
 
 export function getEventsForDay(s: GameState, daystart: number): EventDef[] {
   const results: EventDef[] = [];
-  for (const id of s.events_list) {
+  for (const id of Object.values(s.events_list ?? {})) {
     const eventDay = s.event_daystart[id];
     const recur = (s.event_recur[id] ?? 'none') as EventDef['recur'];
 
@@ -86,7 +86,7 @@ export function checkReminders(s: GameState): EventDef[] {
   const currentTs = timeToTs(s.hour, s.minut);
   const today = s.daystart;
 
-  for (const id of s.events_list) {
+  for (const id of Object.values(s.events_list ?? {})) {
     if (s.cal_reminded[id] === today) continue;
     const eventDay = s.event_daystart[id];
     const recur = (s.event_recur[id] ?? 'none') as EventDef['recur'];

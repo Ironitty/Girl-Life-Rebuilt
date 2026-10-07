@@ -2659,7 +2659,11 @@ function enterTraitsCheats(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h3>Archetype Points</h3></center>');
   scene.text(`Active: ${((((s as any).arch_vars ?? 0)?.['main_active'] !== '') ? ((((s as any).arch_vars ?? 0)?.['main_active'] ?? '')) : ('none'))}`);
   (s as any).cheat_tp_refresh = 'gs \'archetypes\', \'set_active\' & gt \'cheatmenu_din\', \'traits_cheats\'';
-  ((s as any).cheat_arch = (s as any).cheat_arch ?? {})[0] = 'bimbo\' & $cheat_arch[1] = \'preppy\' & $cheat_arch[2] = \'prude\' & $cheat_arch[3] = \'punk\' & $cheat_arch[4] = \'goth';
+  ((s as any).cheat_arch = (s as any).cheat_arch ?? {})[0] = 'bimbo';
+  ((s as any).cheat_arch = (s as any).cheat_arch ?? {})[1] = 'preppy';
+  ((s as any).cheat_arch = (s as any).cheat_arch ?? {})[2] = 'prude';
+  ((s as any).cheat_arch = (s as any).cheat_arch ?? {})[3] = 'punk';
+  ((s as any).cheat_arch = (s as any).cheat_arch ?? {})[4] = 'goth';
   (s as any).cheat_tp_i = 0;
   do {
     (s as any).cheat_tp_t = (((s as any).cheat_arch ?? 0)?.[String((s as any).cheat_tp_i ?? 0)] ?? 0);
@@ -2672,13 +2676,14 @@ function enterTraitsCheats(s: GameState, scene: SceneBuilder): void {
     scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})String((s as any).cheat_tp_k ?? /u0027/u0027) -=10000; { const _t = String((s as any).cheat_tp_refresh || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); window.__gameStore.getState().doGoto(/u0027archetypes/u0027, /u0027clamp/u0027, /u0027//u0027/u0027 + String((s as any).cheat_tp_t ?? /u0027/u0027) + /u0027//u0027 & /u0027 + String((s as any).cheat_tp_refresh ?? /u0027/u0027)); return false;">-10k</a>`);
     scene.text(` <a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})String((s as any).cheat_tp_k ?? /u0027/u0027) = 0; { const _t = String((s as any).cheat_tp_refresh || /u0027/u0027); const _tp = _t.split(/u0027 /u0027); if (_tp.length >= 3 && _tp[1] === /u0027=/u0027) (s as any)[_tp[0]] = Number(_tp[2]); } return s; }); return false;">Zero</a>`);
     (s as any).cheat_tp_i = ((s as any).cheat_tp_i ?? 0) + (1);
-    (s as any).cheat_arch = undefined;
-    (s as any).cheat_tp_t = undefined;
-    (s as any).cheat_tp_title = undefined;
-    (s as any).cheat_tp_k = undefined;
-    (s as any).cheat_tp_refresh = undefined;
-    (s as any).cheat_tp_i = undefined;
-    scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})\u0027bimbo_points\u0027 = 0; (s.arch_vars ??= {})\u0027preppy_points\u0027 = 0; (s.arch_vars ??= {})\u0027prude_points\u0027 = 0; (s.arch_vars ??= {})\u0027punk_points\u0027 = 0; (s.arch_vars ??= {})\u0027goth_points\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027archetypes\u0027, \u0027set_active\u0027 & gs \u0027archetypes\u0027, \u0027seed_snapshots\u0027 & gt \u0027cheatmenu_din\u0027); return false;">Reset all Archetype points</a>');
+  } while (((s as any).cheat_tp_i ?? 0) < 5);
+  (s as any).cheat_arch = undefined;
+  (s as any).cheat_tp_t = undefined;
+  (s as any).cheat_tp_title = undefined;
+  (s as any).cheat_tp_k = undefined;
+  (s as any).cheat_tp_refresh = undefined;
+  (s as any).cheat_tp_i = undefined;
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { (s.arch_vars ??= {})\u0027bimbo_points\u0027 = 0; (s.arch_vars ??= {})\u0027preppy_points\u0027 = 0; (s.arch_vars ??= {})\u0027prude_points\u0027 = 0; (s.arch_vars ??= {})\u0027punk_points\u0027 = 0; (s.arch_vars ??= {})\u0027goth_points\u0027 = 0; return s; }); window.__gameStore.getState().doGoto(\u0027archetypes\u0027, \u0027set_active\u0027 & gs \u0027archetypes\u0027, \u0027seed_snapshots\u0027 & gt \u0027cheatmenu_din\u0027); return false;">Reset all Archetype points</a>');
     scene.text('<center><h3>Trait Enable / Disable</h3></center>');
     scene.text('Disabling a trait prevents its daily/minute logic from running. The trait level is preserved but frozen.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumeater_disabled', 'Cumeater', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -2735,7 +2740,6 @@ function enterTraitsCheats(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'show_hidden_traits', 'Show hidden traits as inactive (reveals names and descriptions)']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('When enabled, hidden traits that are inactive will display their name and description on the traits page instead of "???".');
     scene.text(String(qspFunc(s, 'cheatmenu', 'table_end') || ''));
-  } while (((s as any).cheat_tp_i ?? 0) < 5);
   scene.build();
 }
 

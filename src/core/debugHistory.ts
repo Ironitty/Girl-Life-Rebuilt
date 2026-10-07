@@ -18,9 +18,10 @@ let lastSnapshot: DebugSnapshot | null = null;
 let counter = 0;
 
 function snapshotScene(scene: SceneState): SceneState {
+  if (!scene) return scene;
   return {
     ...scene,
-    curActs: [...scene.curActs],
+    curActs: [...(scene.curActs ?? [])],
   };
 }
 

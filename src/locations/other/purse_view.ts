@@ -74,7 +74,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'add') {
-    qspCall(s, 'purse_attributes', '$ARGS[2]', ((s as any).locArgs?.[3] ?? 0));
+    qspCall(s, 'purse_attributes', (s as any).locArgs?.[2] ?? '', ((s as any).locArgs?.[3] ?? 0));
     if ((!((s as any).PurseQuality ?? 0))) {
       return;
     }
@@ -94,7 +94,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      qspCall(s, 'purse_attributes', '$ARGS[4]', ((s as any).locArgs?.[5] ?? 0));
+      qspCall(s, 'purse_attributes', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       return;
     }
@@ -110,7 +110,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      qspCall(s, 'purse_attributes', '$ARGS[4]', ((s as any).locArgs?.[5] ?? 0));
+      qspCall(s, 'purse_attributes', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       return;
     }
@@ -180,7 +180,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'purse_view', 'view_item_unwanted');
   }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'purse_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'purse_view', 'view_grid', ((st as any).shop_utils_view?.['link'] ?? '')); } },
 ]);
   return;
   scene.build();
@@ -228,7 +228,7 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
 function enterViewItemWearing(s: GameState, scene: SceneBuilder): void {
   scene.text('You are using this purse.');
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'purse_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'purse_view', 'view_grid', ((st as any).shop_utils_view?.['link'] ?? '')); } },
 ]);
   return;
   scene.build();
@@ -238,7 +238,7 @@ function enterViewItemWardrobe(s: GameState, scene: SceneBuilder): void {
   scene.text('This purse is in your wardrobe.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'purse_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'purse_view', 'view_grid', ((st as any).shop_utils_view?.['link'] ?? '')); } },
 { label: 'Use this purse', handler: (st: GameState) => {
     qspCall(st, 'purses', 'wear', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
     qspCall(st, 'shop_utils', 'cleanup');
@@ -253,7 +253,7 @@ function enterViewItemStorage(s: GameState, scene: SceneBuilder): void {
   scene.text('This purse is in storage.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'purse_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'purse_view', 'view_grid', ((st as any).shop_utils_view?.['link'] ?? '')); } },
 ]);
   return;
   scene.build();
@@ -263,7 +263,7 @@ function enterViewItemUnwanted(s: GameState, scene: SceneBuilder): void {
   scene.text('This purse is unwanted.');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
-{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'purse_view', 'view_grid', ((st as any).shop_utils_view['link'] ?? '')); } },
+{ label: 'Return', handler: (st: GameState) => { qspGoto(st, 'purse_view', 'view_grid', ((st as any).shop_utils_view?.['link'] ?? '')); } },
 ]);
   return;
   scene.build();

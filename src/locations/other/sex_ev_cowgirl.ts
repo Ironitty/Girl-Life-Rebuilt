@@ -40,7 +40,7 @@ function enterCowgirlGoto(s: GameState, scene: SceneBuilder): void {
               }
               ((s as any).sex_ev = (s as any).sex_ev ?? {})['pos_speed'] = 'cowgirl' + (((s as any).sex_ev ?? 0)?.['speed']) + '';
               scene.actions([
-                { label: '', labelFn: (s: GameState) => 'Ride ' + String(((s as any).npcdesc ?? '') ?? ''), handler: (st: GameState) => { qspGoto(st, 'sex_ev_cowgirl', ((st as any).sex_ev['pos_speed'] ?? '')); } },
+                { label: '', labelFn: (s: GameState) => 'Ride ' + String(((s as any).npcdesc ?? '') ?? ''), handler: (st: GameState) => { qspGoto(st, 'sex_ev_cowgirl', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
               ]);
             }
           }

@@ -1976,40 +1976,40 @@ function enterPeeGive(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).orgasm_or ?? 0) !== '!') {
     if (((s as any).orgasm_buildup ?? 0) >= 300  &&  ((s as any).pcs_horny ?? 0) >= 60) {
-      qspCall(s, 'orgasm', '$ARGS[0]', ((s as any).npcID10 ?? 0));
+      qspCall(s, 'orgasm', (s as any).locArgs?.[0] ?? '', ((s as any).npcID10 ?? 0));
     } else {
       if (((s as any).orgasm_flag ?? 0)?.['trigger'] !== 0) {
         if (((s as any).orgasm_buildup ?? 0) >= 50  &&  ((s as any).pcs_horny ?? 0) >= 300) {
-          qspCall(s, 'orgasm', '$ARGS[0]', ((s as any).npcID10 ?? 0));
+          qspCall(s, 'orgasm', (s as any).locArgs?.[0] ?? '', ((s as any).npcID10 ?? 0));
         } else {
           if (((s as any).orgasm_or ?? 0) === 'yes'  ||  ((s as any).orgasm_or ?? 0) === 'custom') {
-            qspCall(s, 'orgasm', '$ARGS[0]', ((s as any).npcID10 ?? 0));
+            qspCall(s, 'orgasm', (s as any).locArgs?.[0] ?? '', ((s as any).npcID10 ?? 0));
           } else {
             (s as any).temp_org_buildup = ((s as any).orgasm_buildup ?? 0) + ((s as any).pcs_horny ?? 0) / 2;
             (s as any).temp_stim_total = (((s as any).stim ?? {})?.['total'] ?? 0) + ((((s as any).trait_vars ?? 0)?.['sensitivity'] > 0) ? (2) : (0)) + (Math.floor(Math.random() * (3 - (-3) + 1)) + ((-3)));
             if (((s as any).temp_org_buildup ?? 0) >= 300) {
               if (((s as any).temp_stim_total ?? 0) > 4) {
-                qspCall(s, 'orgasm', '$ARGS[0]', ((s as any).npcID10 ?? 0));
+                qspCall(s, 'orgasm', (s as any).locArgs?.[0] ?? '', ((s as any).npcID10 ?? 0));
               }
             } else {
               if (((s as any).temp_org_buildup ?? 0) >= 250) {
                 if (((s as any).temp_stim_total ?? 0) > 5) {
-                  qspCall(s, 'orgasm', '$ARGS[0]', ((s as any).npcID10 ?? 0));
+                  qspCall(s, 'orgasm', (s as any).locArgs?.[0] ?? '', ((s as any).npcID10 ?? 0));
                 }
               } else {
                 if (((s as any).temp_org_buildup ?? 0) >= 200) {
                   if (((s as any).temp_stim_total ?? 0) > 6) {
-                    qspCall(s, 'orgasm', '$ARGS[0]', ((s as any).npcID10 ?? 0));
+                    qspCall(s, 'orgasm', (s as any).locArgs?.[0] ?? '', ((s as any).npcID10 ?? 0));
                   }
                 } else {
                   if (((s as any).temp_org_buildup ?? 0) >= 150) {
                     if (((s as any).temp_stim_total ?? 0) > 8) {
-                      qspCall(s, 'orgasm', '$ARGS[0]', ((s as any).npcID10 ?? 0));
+                      qspCall(s, 'orgasm', (s as any).locArgs?.[0] ?? '', ((s as any).npcID10 ?? 0));
                     }
                   } else {
                     if (((s as any).temp_org_buildup ?? 0) >= 100) {
                       if (((s as any).temp_stim_total ?? 0) > 10) {
-                        qspCall(s, 'orgasm', '$ARGS[0]', ((s as any).npcID10 ?? 0));
+                        qspCall(s, 'orgasm', (s as any).locArgs?.[0] ?? '', ((s as any).npcID10 ?? 0));
                       }
                     }
                   }
@@ -2038,7 +2038,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     return;
   } else {
     if (((String(';count;count2;checks;auto_lube;').indexOf(String(';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1) > 0) {
-      qspCall(s, 'arousal_funcs', '$ARGS[0]', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
+      qspCall(s, 'arousal_funcs', (s as any).locArgs?.[0] ?? '', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
       return;
     }
   }

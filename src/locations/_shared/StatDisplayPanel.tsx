@@ -184,7 +184,7 @@ export default function StatDisplayPanel({ onOpenSave, onOpenSettings }: { onOpe
         <span className={`text-lg font-bold ${tempColor} shrink-0`}>{Math.round(s.temper)}°C</span>
         <span className="text-base font-bold opacity-80 shrink-0">{timeStr}</span>
         <span className="text-xs opacity-60 shrink-0">{dateStr}</span>
-        <span className="text-base font-bold opacity-80 shrink-0">₽{s.money.toLocaleString()}</span>
+        <span className="text-base font-bold opacity-80 shrink-0">₽{(s.money ?? 0).toLocaleString()}</span>
         <div className="flex items-center gap-1 ml-auto shrink-0">
           {menuIcons.filter(ic => ic.visible).map((ic, i) => (
             <button key={i} onClick={ic.onClick} title={ic.tip} className="hover:opacity-80 opacity-70 hover:opacity-100 p-0.5 rounded">
