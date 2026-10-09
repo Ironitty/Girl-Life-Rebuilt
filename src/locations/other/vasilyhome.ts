@@ -1395,6 +1395,33 @@ function enterVasilyLern(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '', labelFn: (s: GameState) => String(((((s as any).pcs_horny ?? 0) >= 50) ? ('You\'re already wet') : ('Oh, I suppose')) ?? ''), goto: ['vasily_home_sex', 'vasily_lern_sex_yes'] },
       ]);
+    } else {
+      scene.text(`"${((s as any).pcs_nickname ?? '')}, if you would like to keep learning, I've been told that I'm an excellent teacher," Vasily says as he gently starts to paw at you.`);
+      scene.text('You have a sneaking suspicion that he isn\'t talking about the biology assignment.');
+      scene.text('"I… Don\'t know… Would you please…" you stammer.');
+      if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
+        qspCall(s, 'willpower', 'sex', 'resist', 'easy');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Stop it', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Stop it', handler: (st: GameState) => {
+    qspCall(st, 'willpower', 'pay', 'resist');
+  }, goto: ['vasilyhome', 'vasily_lern_sex_no'] },
+          ]);
+        }
+        scene.actions([
+          { label: 'Teach me', goto: ['vasily_home_sex', 'vasily_lern_sex_yes'] },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Stop it', goto: ['vasilyhome', 'vasily_lern_sex_no'] },
+        ]);
+      }
     }
   }
   scene.build();

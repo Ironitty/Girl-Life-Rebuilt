@@ -99,6 +99,7 @@ export const initialState = {
   pcs_mana: 0,
   pcs_horny: 0,
   money: 0,
+  epayments: { value: 0, description: '', method: '', item_variable: '', quantity: 1, banner: '', paid: 0, loc: '', loc_arg: '' },
 
   moodVars: {
     disp_base: 50,

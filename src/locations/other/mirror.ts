@@ -415,6 +415,27 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterSteam(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_off = 1;
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/shared/home/bathroom/mirror1.jpg"></center>`);
+  scene.text('<center>The mirror is heavily misted. It must be wiped or left to cool.</center>');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Wipe the mirror', handler: (st: GameState) => {
+      (st as any).minut = ((st as any).minut ?? 0) + 1;
+      (st as any).mirror_steam = -1;
+      qspCall(st, 'stat', '');
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/home/bathroom/mirror2.jpg"></center>`);
+      scene.text('<center>You wipe the mirror with a towel.</center>');
+      scene.actions([
+        { label: 'Look in the mirror', goto: ['mirror', 'start'] },
+      ]);
+    } },
+    { label: 'Move away from the mirror', goto: ['mirror', 'fin'] },
+  ]);
+  scene.build();
+}
+
 function enterBrush(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_off = 1;
   (s as any).minut = ((s as any).minut ?? 0) + Math.min(15, Math.max(1, ((s as any).pcs_hairlng ?? 0) / 80));
@@ -482,6 +503,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'brush':
       enterBrush(s, scene);
+      break;
+    case 'steam':
+      enterSteam(s, scene);
       break;
     case 'get_max_cosmetic_routines':
       enterGetMaxCosmeticRoutines(s, scene);

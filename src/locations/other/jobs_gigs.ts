@@ -3,10 +3,10 @@ import { qspUntranslated } from '../_shared/qspUntranslated';
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
-import type { GameState, ActionDef, LocationDef } from '../../core/types';
-import type { SceneBuilder } from '../../core/scene';
+import type { GameState, LocationDef } from '../../core/types';
+import { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault(_s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
@@ -236,6 +236,57 @@ function enterSetEventAct(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDelEvt(s: GameState, scene: SceneBuilder): void {
+  const idx = Number((s as any).locArgs?.[1] ?? 0);
+  const evtEvent = (s as any).evt_event ?? [];
+  if (idx >= 0 && idx < evtEvent.length) {
+    (s as any).evt_idx = idx;
+    scene.curActs.length = 0;
+    scene.text("You're about to delete this job:");
+    scene.text(`Delete: ${evtEvent[idx]}`);
+    scene.text(`Index: ${idx}`);
+    scene.text(`Desc: ${(s as any).evt_desc?.[idx] ?? ''}`);
+    scene.action({
+      label: 'Confirm?',
+      handler: (st: GameState) => {
+        const sc = new SceneBuilder();
+        sc.text('Are you sure?');
+        sc.action({
+          label: 'Deleting',
+          handler: (st2: GameState) => {
+            qspCall(st2, 'jobs_gigs', 'del_evt2', (st2 as any).evt_idx);
+            (st2 as any).evt_idx = undefined;
+            st2.scene = new SceneBuilder().action({ label: 'Return', goto: ['journal_work', 'start'] }).build();
+            (st2 as any).navigationVersion++;
+          },
+        });
+        sc.action({ label: 'Cancel', goto: ['journal_work', 'start'] });
+        st.scene = sc.build();
+        (st as any).navigationVersion++;
+      },
+    });
+  } else {
+    scene.text(`${(s as any).evt_idx ?? ''} - Invalid record - please check your index`);
+  }
+  scene.build();
+}
+
+function enterDelEvt2(s: GameState, scene: SceneBuilder): void {
+  const idx = (s as any).locArgs?.[1] ?? 0;
+  const arrs = ['evt_verbose', 'evt_event', 'evt_event_sub', 'evt_dow', 'evt_daystart', 'evt_starttime', 'evt_duration', 'evt_wages', 'evt_journal', 'evt_loc', 'evt_loc_arg', 'evt_content_code', 'evt_desc'];
+  for (const arr of arrs) {
+    const a = (s as any)[arr];
+    if (a && a[idx] !== undefined) {
+      if (Array.isArray(a)) {
+        a.splice(idx, 1);
+      } else {
+        delete a[idx];
+      }
+    }
+  }
+  scene.build();
+}
+
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
@@ -271,6 +322,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'set_event_act':
       enterSetEventAct(s, scene);
+      break;
+    case 'del_evt':
+      enterDelEvt(s, scene);
+      break;
+    case 'del_evt2':
+      enterDelEvt2(s, scene);
       break;
     default:
       enterDefault(s, scene);

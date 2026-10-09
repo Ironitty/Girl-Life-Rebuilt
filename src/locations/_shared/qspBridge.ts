@@ -763,6 +763,19 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
         case 'price': return moneyPrice(s, num(args[0]));
         case 'profit': return moneyProfit(s, num(args[0]));
         case 'format': return moneyFormat(s, num(args[0]));
+        case 'get_cost_string': {
+          const cost = num(args[0]);
+          const method = str(args[1]) || 'both';
+          let methodStr = '';
+          if (method === 'cash') methodStr = ' - Cash only';
+          else if (method === 'bank') methodStr = ' - Bank only';
+          else if (method === 'desk') methodStr = ' - Cash and desk only';
+          let result = ' (' + moneyStringPrice(s, cost) + methodStr + ')';
+          if (!moneyCanAfford(s, cost, method)) {
+            result += " (You can't afford this)";
+          }
+          return result;
+        }
       }
       warn(module, func, args);
       return 0;

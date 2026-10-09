@@ -1482,24 +1482,25 @@ function enterSleepSex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Make the guys breakfast', goto: ['placer_sex', 'breakfast'] },
-    ]);
-  } },
-    ]);
-  } },
-    ]);
-  } },
-    ]);
-  } },
-    ]);
-  } },
-    ]);
-  } },
-    ]);
-  } },
-    ]);
-  } },
-      { label: 'Make the guys breakfast', goto: ['placer_sex', 'breakfast'] },
       { label: 'Stay in bed', goto: ['placer_sex', 'stay_in_bed'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      { label: 'Make breakfast for the guys', goto: ['placer_sex', 'breakfast'] },
+      { label: 'Lie in bed', goto: ['placer_sex', 'stay_in_bed'] },
     ]);
   }
   scene.build();

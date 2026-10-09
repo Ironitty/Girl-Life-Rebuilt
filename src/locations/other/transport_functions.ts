@@ -2,7 +2,7 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
-import type { SceneBuilder } from '../../core/scene';
+import { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
@@ -114,6 +114,102 @@ function enterSetTrainTicket(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterBuyBusPass(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).daystart ?? 0) >= ((s as any).transportVars ?? 0)?.['buspass_day']) {
+    scene.actions([
+      { label: 'Buy a daily bus pass (1 day)', handler: (st: GameState) => {
+    if (qspFunc(st, 'money', 'can_afford', 100) === 0) {
+      st.scene = { ...st.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(st, 'money', 'pay', 100);
+      ((st as any).transportVars = (st as any).transportVars ?? {})['buspass_day'] = ((st as any).daystart ?? 0) + 1;
+      qspCall(st, 'stat', '');
+      st.scene = new SceneBuilder().action({ label: 'Return', goto: ['<<$loc>>', '' + ((st as any).loc_arg ?? 0) + ''] }).build();
+    }
+  } },
+      { label: 'Buy a weekly bus pass (7 days)', handler: (st: GameState) => {
+    if (qspFunc(st, 'money', 'can_afford', 500) === 0) {
+      st.scene = { ...st.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(st, 'money', 'pay', 500);
+      ((st as any).transportVars = (st as any).transportVars ?? {})['buspass_day'] = ((st as any).daystart ?? 0) + 7;
+      qspCall(st, 'stat', '');
+      st.scene = new SceneBuilder().action({ label: 'Return', goto: ['<<$loc>>', '' + ((st as any).loc_arg ?? 0) + ''] }).build();
+    }
+  } },
+      { label: 'Buy a monthly bus pass (30 days)', handler: (st: GameState) => {
+    if (qspFunc(st, 'money', 'can_afford', 1500) === 0) {
+      st.scene = { ...st.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(st, 'money', 'pay', 1500);
+      ((st as any).transportVars = (st as any).transportVars ?? {})['buspass_day'] = ((st as any).daystart ?? 0) + 30;
+      qspCall(st, 'stat', '');
+      st.scene = new SceneBuilder().action({ label: 'Return', goto: ['<<$loc>>', '' + ((st as any).loc_arg ?? 0) + ''] }).build();
+    }
+  } },
+      { label: 'Buy a yearly bus pass (365 days)', handler: (st: GameState) => {
+    if (qspFunc(st, 'money', 'can_afford', 13000) === 0) {
+      st.scene = { ...st.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(st, 'money', 'pay', 13000);
+      ((st as any).transportVars = (st as any).transportVars ?? {})['buspass_day'] = ((st as any).daystart ?? 0) + 365;
+      qspCall(st, 'stat', '');
+      st.scene = new SceneBuilder().action({ label: 'Return', goto: ['<<$loc>>', '' + ((st as any).loc_arg ?? 0) + ''] }).build();
+    }
+  } },
+    ]);
+  }
+  scene.build();
+}
+
+function enterBuyMetroPass(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).transportVars ?? 0)?.['metropass_day'] <= ((s as any).daystart ?? 0)) {
+    scene.actions([
+      { label: 'Buy a daily metro pass (1 day)', handler: (st: GameState) => {
+    if (qspFunc(st, 'money', 'can_afford', 50) === 0) {
+      st.scene = { ...st.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(st, 'money', 'pay', 50);
+      ((st as any).transportVars = (st as any).transportVars ?? {})['metropass_day'] = ((st as any).daystart ?? 0) + 1;
+      qspCall(st, 'stat', '');
+      st.scene = new SceneBuilder().action({ label: 'Return', goto: ['<<$loc>>', '' + ((st as any).loc_arg ?? 0) + ''] }).build();
+    }
+  } },
+      { label: 'Buy a weekly metro pass (7 days)', handler: (st: GameState) => {
+    if (qspFunc(st, 'money', 'can_afford', 250) === 0) {
+      st.scene = { ...st.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(st, 'money', 'pay', 250);
+      ((st as any).transportVars = (st as any).transportVars ?? {})['metropass_day'] = ((st as any).daystart ?? 0) + 7;
+      qspCall(st, 'stat', '');
+      st.scene = new SceneBuilder().action({ label: 'Return', goto: ['<<$loc>>', '' + ((st as any).loc_arg ?? 0) + ''] }).build();
+    }
+  } },
+      { label: 'Buy a monthly metro pass (30 days)', handler: (st: GameState) => {
+    if (qspFunc(st, 'money', 'can_afford', 750) === 0) {
+      st.scene = { ...st.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(st, 'money', 'pay', 750);
+      ((st as any).transportVars = (st as any).transportVars ?? {})['metropass_day'] = ((st as any).daystart ?? 0) + 30;
+      qspCall(st, 'stat', '');
+      st.scene = new SceneBuilder().action({ label: 'Return', goto: ['<<$loc>>', '' + ((st as any).loc_arg ?? 0) + ''] }).build();
+    }
+  } },
+      { label: 'Buy a yearly metro pass (365 days)', handler: (st: GameState) => {
+    if (qspFunc(st, 'money', 'can_afford', 6500) === 0) {
+      st.scene = { ...st.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(st, 'money', 'pay', 6500);
+      ((st as any).transportVars = (st as any).transportVars ?? {})['metropass_day'] = ((st as any).daystart ?? 0) + 365;
+      qspCall(st, 'stat', '');
+      st.scene = new SceneBuilder().action({ label: 'Return', goto: ['<<$loc>>', '' + ((st as any).loc_arg ?? 0) + ''] }).build();
+    }
+  } },
+    ]);
+  }
+  scene.build();
+}
+
 function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('Transport Functions');
   const arg = s.locArg;
@@ -126,6 +222,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'set_train_ticket':
       enterSetTrainTicket(s, scene);
+      break;
+    case 'buy_bus_pass':
+      enterBuyBusPass(s, scene);
+      break;
+    case 'buy_metro_pass':
+      enterBuyMetroPass(s, scene);
       break;
     default:
       enterDefault(s, scene);

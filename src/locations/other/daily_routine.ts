@@ -167,6 +167,161 @@ function enterPhaseAvailable(s: GameState, _scene: SceneBuilder): void {
   }
 }
 
+function enterManage(s: GameState, scene: SceneBuilder): void {
+  scene.curActs.length = 0;
+  qspCall(s, 'daily_routine', 'settings_defaults');
+  const arg1 = (s as any).locArgs?.[1] ?? '';
+  const arg2 = (s as any).locArgs?.[2] ?? '';
+  if (arg1 !== '') {
+    ((s as any).droutine = (s as any).droutine ?? {})['ui_return_loc'] = arg1;
+    ((s as any).droutine = (s as any).droutine ?? {})['ui_return_arg'] = arg2;
+  } else {
+    ((s as any).droutine = (s as any).droutine ?? {})['ui_return_loc'] = '';
+    ((s as any).droutine = (s as any).droutine ?? {})['ui_return_arg'] = '';
+  }
+  scene.text('<center><b>Daily routine</b></center>');
+  scene.text('Set up the steps that play in order each morning and evening. Steps whose conditions are not met that day are skipped automatically.');
+  scene.text(`<b>Morning</b> (${(s as any).droutine?.['morning_count'] ?? 0} steps)`);
+  qspCall(s, 'daily_routine', 'render_list_inline', 'morning');
+  scene.text(`<b>Evening</b> (${(s as any).droutine?.['evening_count'] ?? 0} steps)`);
+  qspCall(s, 'daily_routine', 'render_list_inline', 'evening');
+  if (((s as any).droutine_settings ?? 0)?.['quick_routine'] === 1) {
+    scene.text('<b>Quick routine:</b> ON - simple steps (no choices, no possible interruptions) finish themselves when they\'re next in line.');
+    scene.actions([
+      { label: 'Turn off quick routine', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['quick_routine'] = 0;
+        qspGoto(st, 'daily_routine', 'manage', arg1, arg2);
+      } },
+    ]);
+  } else {
+    scene.text('<b>Quick routine:</b> OFF - every step waits for you to pick it.');
+    scene.actions([
+      { label: 'Turn on quick routine', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['quick_routine'] = 1;
+        qspGoto(st, 'daily_routine', 'manage', arg1, arg2);
+      } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Edit morning routine', goto: ['daily_routine', 'manage_phase', 'morning'] },
+    { label: 'Edit evening routine', goto: ['daily_routine', 'manage_phase', 'evening'] },
+    { label: 'Availability and timing', goto: ['daily_routine', 'settings'] },
+  ]);
+  if (((s as any).droutine ?? 0)?.['ui_return_loc'] !== '') {
+    scene.actions([
+      { label: 'Done', goto: [((s as any).droutine ?? 0)?.['ui_return_loc'], ((s as any).droutine ?? 0)?.['ui_return_arg']] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterSettings(s: GameState, scene: SceneBuilder): void {
+  scene.curActs.length = 0;
+  const settings = (s as any).droutine_settings ?? {};
+  scene.text('<center><b>Availability and timing</b></center>');
+  scene.text('<b>Morning</b>');
+  if (settings['morning_use_abs'] === 1) {
+    scene.text(`  Fixed hours: ON  (${settings['morning_abs_start']}:00 to ${settings['morning_abs_end']}:00)`);
+  } else {
+    scene.text('  Fixed hours: OFF');
+  }
+  scene.text('<b>Evening</b>');
+  if (settings['evening_use_abs'] === 1) {
+    scene.text(`  Fixed hours: ON  (${settings['evening_abs_start']}:00 to ${settings['evening_abs_end']}:00)`);
+  } else {
+    scene.text('  Fixed hours: OFF');
+  }
+  if (settings['morning_use_wake'] === 1) {
+    scene.actions([
+      { label: 'Morning after-waking: turn off', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['morning_use_wake'] = 0;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+      { label: 'Morning after-waking window +15 min', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['morning_wake_min'] = Math.min(240, ((st as any).droutine_settings['morning_wake_min'] ?? 0) + 15);
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+      { label: 'Morning after-waking window -15 min', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['morning_wake_min'] = Math.max(15, ((st as any).droutine_settings['morning_wake_min'] ?? 0) - 15);
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Morning after-waking: turn on', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['morning_use_wake'] = 1;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+    ]);
+  }
+  if (settings['morning_use_abs'] === 1) {
+    scene.actions([
+      { label: 'Morning fixed hours: turn off', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['morning_use_abs'] = 0;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+      { label: 'Morning start +1h', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['morning_abs_start'] = (((st as any).droutine_settings['morning_abs_start'] ?? 0) + 1) % 24;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+      { label: 'Morning start -1h', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['morning_abs_start'] = (((st as any).droutine_settings['morning_abs_start'] ?? 0) + 23) % 24;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+      { label: 'Morning end +1h', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['morning_abs_end'] = (((st as any).droutine_settings['morning_abs_end'] ?? 0) + 1) % 24;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+      { label: 'Morning end -1h', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['morning_abs_end'] = (((st as any).droutine_settings['morning_abs_end'] ?? 0) + 23) % 24;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Morning fixed hours: turn on', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['morning_use_abs'] = 1;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+    ]);
+  }
+  if (settings['evening_use_abs'] === 1) {
+    scene.actions([
+      { label: 'Evening fixed hours: turn off', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['evening_use_abs'] = 0;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+      { label: 'Evening start +1h', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['evening_abs_start'] = (((st as any).droutine_settings['evening_abs_start'] ?? 0) + 1) % 24;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+      { label: 'Evening start -1h', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['evening_abs_start'] = (((st as any).droutine_settings['evening_abs_start'] ?? 0) + 23) % 24;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+      { label: 'Evening end +1h', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['evening_abs_end'] = (((st as any).droutine_settings['evening_abs_end'] ?? 0) + 1) % 24;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+      { label: 'Evening end -1h', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['evening_abs_end'] = (((st as any).droutine_settings['evening_abs_end'] ?? 0) + 23) % 24;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Evening fixed hours: turn on', handler: (st: GameState) => {
+        ((st as any).droutine_settings = (st as any).droutine_settings ?? {})['evening_use_abs'] = 1;
+        qspGoto(st, 'daily_routine', 'settings');
+      } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Back', goto: ['daily_routine', 'manage'] },
+  ]);
+  scene.build();
+}
+
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
@@ -196,6 +351,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'phase_available':
       enterPhaseAvailable(s, scene);
+      break;
+    case 'manage':
+      enterManage(s, scene);
+      break;
+    case 'settings':
+      enterSettings(s, scene);
       break;
     default:
       enterDefault(s, scene);

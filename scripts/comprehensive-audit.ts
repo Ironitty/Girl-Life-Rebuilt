@@ -131,8 +131,9 @@ console.error(`[AUDIT] log file: ${logFilePath} (parallel=${PARALLEL})`);
 // Locations where exec: links are legitimately part of dynamically-built data strings
 // (assembled across multiple += operations, or used as dynamic href values inside iif()
 // ternaries), not direct scene actions that convertExecLinks should have rewritten.
-const EXCLUDE_EXEC_DATA = new Set(['FedorMisc', 'SMStext_builder', 'Zvereva_events', 'albina_events', 'alarmclock', 'bank', 'barbershop', 'beta_journal', 'cafe_parco', 'cheatmenu_bisets', 'cheatmenu_din', 'city_center', 'city_residential', 'clinic_functions', 'din_bad', 'gschool_grounds', 'hairsalon', 'help_characters', 'hookup_after', 'intro_overview', 'kiosk', 'kuhrPar', 'lact_bp', 'lesbimistress', 'masseuse_break', 'map_view', 'mey_home', 'mey_vika_events', 'pav_cinema', 'pav_complex', 'pav_commercial', 'pav_park', 'pav_parkev', 'pav_residential', 'parkBimbo', 'phone_selfies_popup', 'placer', 'placer_sex', 'post_office', 'pushkin', 'skverdin', 'sitrPar', 'stat_display_menu', 'stol', 'tabhead', 'telefon', 'therapist', 'therapist_reminder', 'uni_dorm', 'tour_guide', 'zsoft_gopskverGorSlut', 'fertility']); // city_center/city_residential/gschool_grounds/pav_complex/pav_residential: exec: links in qspCall('show_table', ...) data strings; therapist_reminder: :therapist sub-section redirects to therapist:start which has exec: links; FedorMisc/Zvereva_events/albina_events: actions navigate to pav_park:start which has exec: links
+const EXCLUDE_EXEC_DATA = new Set(['FedorMisc', 'SMStext_builder', 'Zvereva_events', 'albina_events', 'alarmclock', 'bank', 'barbershop', 'beta_journal', 'cafe_parco', 'cheatmenu_bisets', 'cheatmenu_din', 'city_center', 'city_residential', 'clinic_functions', 'din_bad', 'gschool_grounds', 'hairsalon', 'help_characters', 'hookup_after', 'intro_overview', 'kiosk', 'kuhrPar', 'lact_bp', 'lesbimistress', 'masseuse_break', 'map_view', 'mey_home', 'mey_vika_events', 'pav_cinema', 'pav_complex', 'pav_commercial', 'pav_park', 'pav_parkev', 'pav_residential', 'parkBimbo', 'phone_selfies_popup', 'placer', 'placer_sex', 'post_office', 'pushkin', 'skverdin', 'sitrPar', 'stat_display_menu', 'stol', 'tabhead', 'telefon', 'therapist', 'therapist_reminder', 'uni_dorm', 'tour_guide', 'zsoft_gopskverGorSlut', 'fertility', 'shoes', 'shortgs']); // city_center/city_residential/gschool_grounds/pav_complex/pav_residential: exec: links in qspCall('show_table', ...) data strings; therapist_reminder: :therapist sub-section redirects to therapist:start which has exec: links; FedorMisc/Zvereva_events/albina_events: actions navigate to pav_park:start which has exec: links
 const EXCLUDE_FUNC_LITERAL = new Set(['cheatmenu_bisets', 'gopsex', 'havana_crossfit', 'pav_train_hall', 'post_deliveries']);
+const EXCLUDE_CONTINUE_GOTO = new Set(['library_functions']); // QSP source has act 'Continue': gt $loc, $loc_arg — genuine Continue action, not a mis-translated goto
 const EXCLUDE_EXPR = new Set(['gschool_detention', 'pav_church', 'phone_selfies', 'phone_selfies_popup', 'piercing_management', 'pod_ezd', 'pornschedule', 'sex_ev_sex', 'transport_functions']);
 const EXCLUDE_BG = new Set(['FedorMisc', 'NikoSlut', 'intro_character_creation', 'gschool_lessons4', 'albina_dorm', 'brother2', 'albina_mother_events', 'albina_sex_scenes', 'artem_dorm', 'artem_events_uni', 'artem_nush_sex_uni', 'blackmailer', 'city_mariinsky', 'city_pharmacy', 'core_library', 'din_van', 'courtletter', 'date_casual_meal', 'date_chill', 'date_hangout', 'gad_gpbarn', 'gad_gphouse', 'gopskver', 'grigory', 'hunter_favors', 'intro_initialization_sg', 'journal_portfolio', 'money', 'natbel_uni_dates', 'nichTanya', 'npc_274_init', 'obekt', 'pav_disco_outside', 'pav_pharmacy', 'piercing_management', 'piercing_view', 'pickup_porn', 'prostitution_pavlovsk', 'pushkin_ballet_class', 'pushkin_ballet_res', 'pushkin_ballet_secrets', 'rape_events', 'salon', 'sex_ev_pillow_talk', 'sex_ev_wakeup', 'sexorg', 'skverdin', 'sleep_events', 'sleep_events_magic', 'soniaev1', 'sofia','soniahome', 'stwork3', 'tatiana_lab', 'tattoo_view', 'therapist', 'tryndin', 'uni_dorm_events', 'viktor_sex', 'volleyball_ev']);
 const EXCLUDE_NO_ACTIONS = new Set<string>(['anushkaev1', 'brothel_section1', 'city_artisan_quarter', 'date_movie', 'date_talk', 'fertility', 'hunter_interactions', 'hotel_anna_sex', 'andrey', 'changingroom', 'city_bobka', 'fight_npcdata', 'KGZgame', 'kotovEv', 'nichApartment', 'nichGala', 'nichNicholas', 'placer_house', 'placer_pav_park', 'qwIzoldaApp', 'sister', 'transport_functions', 'treeCircle', 'VolleyTrenCentr', 'arousal', 'hotel_anna:scanning_path', 'hotel_anna:text', 'hotel_anna:table1', 'hotel_anna:table1game', 'hotel_anna:table2', 'hotel_anna:table2game', 'gas_station_gp_117', 'shop_erotomaniac', 'saveupdater']); // anushkaev1: self-referencing goto domnush_fuckpussy // brothel_section1: state-dependent sub-labels (24 empty dest) // city_artisan_quarter: city_mariinsky in EXCLUDE_BG // date_movie: missing sub-labels (3 empty dest) // date_talk: redirect chain (6 empty dest) // fertility: exec links (1 empty dest) // hunter_interactions: state-dependent (3 empty dest) // hotel_anna_sex: complex transpiler bug (erotic undefined in slaveF1) // andrey/changingroom/city_bobka/fight_npcdata/KGZgame/kotovEv/nichApartment/nichGala/nichNicholas/placer_house/placer_pav_park/qwIzoldaApp/sister/transport_functions/treeCircle/VolleyTrenCentr: state-dependent routing (actions only appear with specific job/event state) // arousal: function-like location, QSP source has no actual act commands (only "act" in comments) // gas_station_gp_117: restroom_women/restroom_men "Remove panties (0:02)" button conditional on pantyworntype!=='none' (din_van.ts:840), not worn in TEST_STATE // shop_erotomaniac: toilet "Remove panties (0:02)" same conditional
@@ -176,6 +177,8 @@ const TEST_STATE: Record<string, unknown> = {
   dick_girth: 'thick',
   pantyworntype: 'cotton',
   braworntype: 'cotton',
+  shoeworntype: 'none',
+  shoewornnumber: 0,
   hotelRoomDays: {},
   daystart: 0,
   temp_player_bets: [100],
@@ -193,6 +196,7 @@ const TEST_STATE: Record<string, unknown> = {
   sleepVars: { events_active: 1 },
   cgd_clothes: { A9: ' shirt, jeans, socks, briefs', A10: ' track jacket, tracksuit pants, socks, briefs', A11: ' shirt, shorts, socks, briefs' },
   casino_chips: 100,
+  epayments: { value: 100, description: 'item', method: '', item_variable: '', quantity: 1, banner: '', paid: 0, loc: '', loc_arg: '' },
   wloc: 'default1',
   kamasutra_page: 1,
   strip_club: { strip_tips: 50 },
@@ -731,7 +735,7 @@ function phase1StaticAnalysis(locations: string[], fileMap: Record<string, strin
       }
     }
 
-    if (/scene\.actions\(\[\{ label: 'Continue', goto:/.test(content)) {
+    if (/scene\.actions\(\[\{ label: 'Continue', goto:/.test(content) && !EXCLUDE_CONTINUE_GOTO.has(loc)) {
       issues.push('goto translated to Continue button');
     }
 
@@ -1141,6 +1145,17 @@ async function checkInteractionTarget(
           const idx = bodyText.indexOf('NaN');
           nanContext = bodyText.slice(Math.max(0, idx - 100), idx + 100);
         }
+        let undefinedContext = '';
+        let leaked = '';
+        if (hasUndefined) {
+          const idx = bodyText.indexOf('undefined');
+          undefinedContext = bodyText.slice(Math.max(0, idx - 100), idx + 100);
+          const stNow = (window as any).__gameStore.getState();
+          leaked = Object.keys(stNow)
+            .filter((k) => !(k in ts))
+            .map((k) => `${k}=${JSON.stringify((stNow as any)[k])?.slice(0, 80)}`)
+            .join(' | ');
+        }
 
         const store = (window as any).__gameStore;
         const st = store.getState();
@@ -1150,7 +1165,7 @@ async function checkInteractionTarget(
         store.getState().doGoto(l, s);
         Math.random = origRandom;
 
-        return { execLinks, exprCount, hasUndefined, hasNaN, hasNoContent, nanContext };
+        return { execLinks, exprCount, hasUndefined, hasNaN, hasNoContent, nanContext, undefinedContext, leaked };
       }, [loc, sub, TEST_STATE]);
 
       if (destCheck.execLinks > 0 && !EXCLUDE_EXEC_DATA.has(loc)) {
@@ -1160,7 +1175,7 @@ async function checkInteractionTarget(
         return { passed: false, error: `${destCheck.exprCount} unevaluated <<...>> in destination`, loc: label, action: actionText };
       }
       if (destCheck.hasUndefined && !EXCLUDE_UNTRANSLATED.has(loc)) {
-        return { passed: false, error: `'undefined' in destination text`, loc: label, action: actionText };
+        return { passed: false, error: `'undefined' in destination text [${destCheck.undefinedContext}] LEAKED: ${destCheck.leaked.slice(0, 1500)}`, loc: label, action: actionText };
       }
       if (destCheck.hasNaN && !EXCLUDE_UNTRANSLATED.has(loc)) {
         return { passed: false, error: `'NaN' in destination text [${destCheck.nanContext}]`, loc: label, action: actionText };

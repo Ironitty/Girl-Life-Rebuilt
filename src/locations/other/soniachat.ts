@@ -1067,6 +1067,182 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  if (((s as any).soniaQW ?? 0)?.['artem_bf'] === 1 && (((s as any).artemQW ?? 0)?.['nush3some'] >= 2 || ((s as any).artemQW ?? 0)?.['katja_threesome'] >= 2)) {
+    scene.actions([
+      { label: 'Bring up Artem threesomes', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    scene.text('<center><b>Sonia\'s Room</b></center>');
+    scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_happyslut.jpg');
+    scene.text('You think for a moment if you want to talk about how Artem has changed. "You remember when I told you I was dating Artem?"');
+    scene.text('She nods and takes hold of your hand, seemingly concerned that you\'re about to tell her something bad. "Is something wrong? Are you guys not getting along?"');
+    scene.text('You shake you head and can\'t help but smile at her concern. "No, nothing like that. Kind of the opposite, in fact."');
+    scene.text('She looks relieved to hear that and relaxes a little. "What do you mean?"');
+    scene.text('You can\'t help but grin. "I\'ve been encouraging him to stand up for himself, be more confident and even be a little dominant, and boy did it work! We\'ve ended up having some threesomes."');
+    scene.text('"Really?!" she gasps. "With who?!"');
+    scene.actions([
+      { label: "Don't tell", handler: (st2: GameState) => {
+        (st2 as any).minut = ((st2 as any).minut ?? 0) + 5;
+        scene.text('<center><b>Sonia\'s Room</b></center>');
+        scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_happyslut.jpg');
+        scene.text('You decide against telling her anything. "Sorry I can\'t say who it is, at least not without asking them first."');
+        scene.text('She frowns in disappointment at first, then nods her head and smiles. "I get it. If they ever say you can, then I\'d love to know."');
+        scene.actions([
+          { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
+          { label: 'Keep talking', goto: ['soniachat', 'sonia_chat_happyslut'] },
+        ]);
+      } },
+    ]);
+    if (((st as any).artemQW ?? 0)?.['katja_threesome'] >= 2) {
+      scene.actions([
+        { label: 'Tell her about Katja', handler: (st2: GameState) => {
+          (st2 as any).minut = ((st2 as any).minut ?? 0) + 5;
+          scene.text('<center><b>Sonia\'s Room</b></center>');
+          scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_happyslut.jpg');
+          scene.text('You\'re not sure if you should be saying anything, but you think Katja wouldn\'t mind so long as Sonia doesn\'t tell anyone else.');
+          scene.text('"Okay, but you have to swear not to tell anyone," you smirk and Sonia grins and nods.');
+          scene.text('"It was Katja," you tell her with a smile.');
+          scene.text('"Katja? Seriously?" she replies, seemingly having a hard time wrapping her head around it. "I would have never guessed..."');
+          scene.text('She then looks thoughtful. "So... Did she like it? Also I have to say I\'m surprised Katja would do something like that, especially with one of the nerds."');
+          scene.text('"I can see why you asked me not to say anything, though. That would really hurt her rep with those assholes who think they\'re so cool," she rants, her anger and bitterness at how the cool kids all turned on her coming through.');
+          scene.text('You decide to ignore the anger and pretend like you didn\'t notice. "Yeah, she seemed to like it. Katja\'s more fun than she lets on, she\'s just very worried about appearances is all."');
+          scene.text('Realizing what you just said, you quickly decide to change the subject.');
+          scene.actions([
+            { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
+            { label: 'Keep talking', goto: ['soniachat', 'sonia_chat_happyslut'] },
+          ]);
+          if (((st2 as any).artemQW ?? 0)?.['nush3some'] >= 2) {
+            scene.text('You could always tell her about Anushka as well...');
+            scene.actions([
+              { label: 'Tell her about Anushka', handler: (st3: GameState) => {
+                ((st3 as any).artemQW = (st3 as any).artemQW ?? {})['sonia3some_ask'] = ((st3 as any).artemQW['sonia3some_ask'] ?? 0) + 1;
+                (st3 as any).minut = ((st3 as any).minut ?? 0) + 5;
+                scene.text('<center><b>Sonia\'s Room</b></center>');
+                scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_happyslut.jpg');
+                scene.text('You guess Anushka wouldn\'t have any issue, either. "Katja isn\'t the only one..." you tease.');
+                scene.text('Sonia smiles. "Who knew Artem was such a stud! Who else?"');
+                scene.text('"Remember, you can\'t say anything, especially not this one because... it\'s Nush."');
+                scene.text('She looks surprised. "Really? I mean I know she has a bit of a rep as a slut, but her giving it to a nerd <i>is</i> a bit shocking."');
+                scene.text('She then looks thoughtful. "I can see why you don\'t think she would want the other gopniks to know she\'s letting a nerd fuck her. Wow, watching Nush get fucked by a nerd <i>would</i> be a sight to see!" she giggles.');
+                scene.text('You smile. "I think she actually gets off on the idea of a nerd fucking and dominating her."');
+                scene.text('She giggles, then nods. "Yeah I can see that, something so different. I can totally see why she would like letting a nerd fuck her."');
+                scene.text('She shakes her head a little, as if clearing it and coming to terms with what she\'s hearing. "So you\'re telling me, little nerd Artem has fucked Nush, one of the tough gopnik girls <i>and</i> Katja one of the prim and proper cool kids?"');
+                scene.text('You nod with a proud smile on your face.');
+                scene.text('"Wow!" she laughs. "I have to say I\'m impressed, I never would have dreamed he could pull <i>that</i> off. So is this like a regular difficulty or just, you know, a one off thing out of curiosity on the girls part?"');
+                scene.text('You grin. "A regular thing. They both seem to enjoy it, for their own reasons."');
+                scene.text('"WOW! Maybe I should give him another look..." she says with a sheepish smile on her face. "I mean if you\'re okay with it, that is. I mean it sounds like he might be fun to hook up with."');
+                scene.text('You know she\'s asking without asking. "I\'ll ask him and see what he thinks. I\'ll let you know."');
+                scene.text('She smiles at that and the two of you then talk about some threesomes you\'ve both had.');
+                scene.actions([
+                  { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
+                  { label: 'Keep talking', goto: ['soniachat', 'sonia_chat_happyslut'] },
+                ]);
+              } },
+            ]);
+          }
+        } },
+      ]);
+    }
+    if (((st as any).artemQW ?? 0)?.['nush3some'] >= 2) {
+      scene.actions([
+        { label: 'Tell her about Anushka', handler: (st2: GameState) => {
+          (st2 as any).minut = ((st2 as any).minut ?? 0) + 5;
+          scene.text('<center><b>Sonia\'s Room</b></center>');
+          scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_happyslut.jpg');
+          scene.text('You\'re not sure if you should be saying anything, but you think Anushka wouldn\'t mind so long as Sonia doesn\'t tell anyone else.');
+          scene.text('"Okay, but you have to swear to not repeat it," you tell her. "I don\'t think she would care if I told you, but... it\'s Nush."');
+          scene.text('She looks surprised. "Really? I mean I know she has a bit of a rep as a slut, but her giving it to a nerd <i>is</i> a bit shocking."');
+          scene.text('She then looks thoughtful. "I can see why you don\'t think she would want the other gopniks to know she\'s letting a nerd fuck her. Wow, watching Nush get fucked by a nerd <i>would</i> be a sight to see!" she giggles.');
+          scene.text('You smile. "I think she actually gets off on the idea of a nerd fucking and dominating her."');
+          scene.text('She giggles, then nods. "Yeah I can see that, something so different. I can totally see why she would like letting a nerd fuck her."');
+          scene.actions([
+            { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
+            { label: 'Keep talking', goto: ['soniachat', 'sonia_chat_happyslut'] },
+          ]);
+          if (((st2 as any).artemQW ?? 0)?.['katja_threesome'] >= 2) {
+            scene.text('You could always tell her about Katja as well...');
+            scene.actions([
+              { label: 'Tell her about Katja', handler: (st3: GameState) => {
+                ((st3 as any).artemQW = (st3 as any).artemQW ?? {})['sonia3some_ask'] = ((st3 as any).artemQW['sonia3some_ask'] ?? 0) + 1;
+                (st3 as any).minut = ((st3 as any).minut ?? 0) + 5;
+                scene.text('<center><b>Sonia\'s Room</b></center>');
+                scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_happyslut.jpg');
+                scene.text('You pause a moment, not sure if you should tell her about Katja as well, but decide she wouldn\'t have an issue with it so long as Sonia doesn\'t tell anyone else.');
+                scene.text('"Nush isn\'t the only one..." you tease.');
+                scene.text('Sonia smiles. "Who knew Artem was such a stud! Who else?"');
+                scene.text('"Remember you can\'t say anything, especially since... it\'s Katja."');
+                scene.actions([
+                  { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
+                  { label: 'Keep talking', goto: ['soniachat', 'sonia_chat_happyslut'] },
+                ]);
+              } },
+            ]);
+          }
+        } },
+      ]);
+    }
+  } },
+    ]);
+  }
+  if (((s as any).soniaQW ?? 0)?.['kiss_day'] < ((s as any).daystart ?? 0)) {
+    scene.actions([
+      { label: 'Kiss her', handler: (st: GameState) => {
+    qspCall(st, 'npcStat', 'A25');
+    scene.text('<center><b>Sonia\'s Room</b></center>');
+    scene.img('images/characters/pavlovsk/school/girl/sonia/home/bed_kiss.jpg');
+    if (((st as any).pcs_hotcat ?? 0) < 5) {
+      scene.text('As you sit side by side, you can\'t help but look at her. Maybe for too long, or maybe she just senses it, because she turns her head to look at you. Her face is not that far from yours and you can\'t help yourself. You lean over to give her a kiss.');
+      scene.text('She briefly returns your kiss before stopping to pull away. Sensing that she isn\'t interested, you decide to keep talking instead.');
+      qspCall(st, 'arousal', 'foreplay', 1, 'lesbian');
+      qspCall(st, 'arousal', 'end');
+      scene.actions([
+        { label: 'Stop kissing and talk more', goto: ['soniachat', 'sonia_chat_happyslut'] },
+      ]);
+    } else {
+      scene.text('As you sit side by side, you can\'t help but look at her. Maybe for too long, or maybe she just senses it, because she turns her head to look at you. Her face is not that far from yours and you can\'t help yourself. You lean over to give her a kiss, a kiss she fully returns.');
+      qspCall(st, 'arousal', 'foreplay', 1, 'lesbian');
+      qspCall(st, 'stat', '');
+      scene.actions([
+        { label: 'Stop', goto: ['soniachat', 'sonia_chat_happyslut'] },
+        { label: 'Make out', handler: (st2: GameState) => {
+          scene.text('<center><b>Sonia\'s Room</b></center>');
+          scene.img('images/characters/pavlovsk/school/girl/sonia/home/bed_kiss.jpg');
+          scene.text('As you wrap your hands around the side of her face, you feel her hands hold you by your hips as the two of you passionately make out. After a few minutes, the two of you mutually break the kiss. She licks her lips and is clearly aroused, but she\'s not pushing you to keep going. You could have sex with her' + (((st2 as any).spellKnown ?? 0)?.['penisenvy'] === 1 && ((st2 as any). strapon ?? 0) === 1 && ((st2 as any).strapnumber ?? 0) > 0 ? ', or maybe this is the moment to try out that spell...' : '.'));
+          qspCall(st2, 'arousal', 'foreplay', 2, 'lesbian');
+          qspCall(st2, 'arousal', 'end');
+          scene.actions([
+            { label: 'Stop kissing', goto: ['soniachat', 'sonia_chat_happyslut'] },
+            { label: 'Make a move on her', goto: ['soniaev1', 'eatsonia'] },
+          ]);
+          if (((st2 as any).spellKnown ?? 0)?.['penisenvy'] === 1 && ((st2 as any). strapon ?? 0) === 1 && ((st2 as any).strapnumber ?? 0) > 0) {
+            scene.actions([
+              { label: 'Fuck her using Penis Envy', handler: (st3: GameState) => {
+                scene.text('<center><video autoplay loop src="images/pc/activities/misc/puton_strapon1.mp4"></video></center>');
+                scene.text('You get up and grab your stuff. "I\'ll be right back, I\'ve got to go do something in the bathroom."');
+                scene.text('She gives you a curious gaze, but doesn\'t pry as you smile at her and hurry to the bathroom. Once inside, you quickly put on your strapon harness with attached dildo.');
+                if (((st3 as any).penisEnvyVariable ?? 0) === 0) {
+                  scene.actions([
+                    { label: 'Cast Penis Envy', handler: (st4: GameState) => {
+                      qspCall(st4, 'castSpell', 'penisenvy');
+                      scene.text('<center><img src="images/pc/magic/cast_spell.jpg"></center>');
+                      if (((st4 as any).spellSuccess ?? 0) > 0) {
+                        scene.text('You cast the spell and feel the magic coursing through your body. It centers on your pelvic region as you feel the dildo meld with your body and it slowly twitches. Once the magical sensation has passed, you look down and see a dick the same size as the dildo was, hanging down in front of you.');
+                        scene.text('You can\'t help but smile, hoping Sonia will enjoy this as much as you will. You put your new dick away before you go back to her room.');
+                        scene.actions([
+                          { label: 'Go back to her room', goto: ['soniaev1', 'eatsonia'] },
+                        ]);
+                      }
+                    } },
+                  ]);
+                }
+              } },
+            ]);
+          }
+        } },
+      ]);
+    }
+  } },
+    ]);
+  }
   scene.actions([
     { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
     { label: 'Make small talk', handler: (st: GameState) => {

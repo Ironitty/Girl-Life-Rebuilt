@@ -1,126 +1,125 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
-import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { GameState, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
+function generateSpellRow(s: GameState): string {
+  const st = s as any;
+  const type = st.spellBookVar?.['Type'];
+  const spellName = String(st.ThisSpellName ?? '');
+
+  if (type === 'learn') {
+    if ((st.spellLearn ?? {})[spellName] > 0 && (st.spellKnown ?? {})[spellName] !== 1) {
+      st.spellBookVar['Counter'] = (st.spellBookVar['Counter'] ?? 0) + 1;
+      return '\n<tr>\n<td align=\'left\'>' + (st.spellName ?? {})[spellName] + '</td>\n<td align=\'right\'>' + (st.spellLearn ?? {})[spellName] + '%</td>\n</tr>';
+    }
+    return '';
+  }
+
+  if (type === 'cast') {
+    if ((st.spellKnown ?? {})[spellName] === 1) {
+      if ((st.spellOptDesc ?? {})[spellName] === '') {
+        st.spellBookVar['Counter'] = (st.spellBookVar['Counter'] ?? 0) + 1;
+        return '\n<tr>\n<td align=\'left\'><a href="EXEC: gs \'castSpell\', \'' + spellName + '\'& ' + st.spellBookVar['CodeAfterSpell'] + '">' + (st.spellName ?? {})[spellName] + '</a></td>\n<td align=\'right\'>' + (st.spellMana ?? {})[spellName] + '</td>\n<td align=\'left\'>' + (st.spellDesc ?? {})[spellName] + '</td>\n</tr>';
+      } else {
+        let tmpHTMLCode = '\n<tr>\n<td align=\'left\'>' + (st.spellName ?? {})[spellName] + '</td>\n<td align=\'right\'>' + (st.spellMana ?? {})[spellName] + '</td>\n<td align=\'left\'>' + (st.spellDesc ?? {})[spellName] + '</td>\n</tr>';
+        const optDesc = String((st.spellOptDesc ?? {})[spellName] ?? '');
+        const optArr = st[optDesc] ?? {};
+        const optSize = Array.isArray(optArr) ? optArr.length : Object.keys(optArr).length;
+        for (let n = 0; n < optSize; n++) {
+          st.spellBookVar['tmpVal'] = (st.spellOptVal ?? {})[spellName]?.[n] ?? 0;
+          st.spellBookVar['tmpName'] = (st.spellOptDesc ?? {})[spellName]?.[n] ?? 0;
+          tmpHTMLCode += '\n<tr>\n<td align=\'left\'></td>\n<td align=\'left\'><a href="EXEC: gs \'castSpell\', \'' + spellName + '\', \'' + st.spellBookVar['tmpVal'] + '\' & ' + st.spellBookVar['CodeAfterSpell'] + '">' + st.spellBookVar['tmpName'] + '</a></td>\n<td align=\'left\'></td>\n</tr>';
+        }
+        st.spellBookVar['Counter'] = (st.spellBookVar['Counter'] ?? 0) + 1;
+        return tmpHTMLCode;
+      }
+    }
+    return '';
+  }
+
+  if (type === 'targetable') {
+    if ((st.spellKnown ?? {})[spellName] === 1) {
+      let tmpHTMLCode = '\n<tr>\n<td align=\'left\'>' + (st.spellName ?? {})[spellName] + '</td>\n<td align=\'right\'>' + (st.spellMana ?? {})[spellName] + '</td>\n<td align=\'center\'>';
+      if ((st.spellTarget ?? {})[spellName] === 'self') {
+        tmpHTMLCode += '\n<a href="EXEC: *clr & gs \'castSpell\', \'' + spellName + '\', \'pcs\', 0, 0 & ' + st.spellBookVar['CodeAfterSpell'] + '">You</a>';
+      } else if ((st.spellTarget ?? {})[spellName] === 'team') {
+        const pcsHealth = st.pcs_health ?? {};
+        const pcsSize = Array.isArray(pcsHealth) ? pcsHealth.length : Object.keys(pcsHealth).length;
+        for (let n = 0; n < pcsSize; n++) {
+          st.spellBookVar['tmpName'] = (st.pcs_name ?? {})[n] ?? '';
+          tmpHTMLCode += '\n<a href="EXEC: *clr & gs \'castSpell\', \'' + spellName + '\', \'pcs\', ' + n + ', 0 & ' + st.spellBookVar['CodeAfterSpell'] + '">' + st.spellBookVar['tmpName'] + '</a>\n<br>';
+        }
+      } else {
+        const oppHealth = st.opp_health ?? {};
+        const oppSize = Array.isArray(oppHealth) ? oppHealth.length : Object.keys(oppHealth).length;
+        for (let n = 0; n < oppSize; n++) {
+          st.spellBookVar['tmpName'] = (st.opp_name ?? {})[n] ?? '';
+          tmpHTMLCode += '\n<a href="EXEC: *clr & gs \'castSpell\', \'' + spellName + '\', \'opp\', ' + n + ', 0 & ' + st.spellBookVar['CodeAfterSpell'] + '">' + st.spellBookVar['tmpName'] + '</a>\n<br>';
+        }
+      }
+      tmpHTMLCode += ' </td>\n<td align=\'left\'>' + (st.spellDesc ?? {})[spellName] + '</td>\n</tr>';
+      st.spellBookVar['Counter'] = (st.spellBookVar['Counter'] ?? 0) + 1;
+      return tmpHTMLCode;
+    }
+    return '';
+  }
+
+  // Default type
+  if ((st.spellKnown ?? {})[spellName] === 1) {
+    if ((st.spellOptDesc ?? {})[spellName] === '') {
+      st.spellBookVar['Counter'] = (st.spellBookVar['Counter'] ?? 0) + 1;
+      return '\n<tr>\n<td align=\'left\'>' + (st.spellName ?? {})[spellName] + '</td>\n<td align=\'right\'>' + (st.spellMana ?? {})[spellName] + '</td>\n<td align=\'left\'>' + (st.spellDesc ?? {})[spellName] + '</td>\n</tr>';
+    } else {
+      let tmpHTMLCode = '\n<tr>\n<td align=\'left\'>' + (st.spellName ?? {})[spellName] + '</td>\n<td align=\'right\'>' + (st.spellMana ?? {})[spellName] + '</td>\n<td align=\'left\'>' + (st.spellDesc ?? {})[spellName] + '</td>\n</tr>';
+      const optDesc = String((st.spellOptDesc ?? {})[spellName] ?? '');
+      const optArr = st[optDesc] ?? {};
+      const optSize = Array.isArray(optArr) ? optArr.length : Object.keys(optArr).length;
+      for (let n = 0; n < optSize; n++) {
+        st.spellBookVar['tmpVal'] = (st.spellOptVal ?? {})[spellName]?.[n] ?? 0;
+        st.spellBookVar['tmpName'] = (st.spellOptDesc ?? {})[spellName]?.[n] ?? 0;
+        tmpHTMLCode += '\n<tr>\n<td align=\'left\'></td>\n<td align=\'left\'>' + st.spellBookVar['tmpName'] + '</td>\n<td align=\'left\'></td>\n</tr>';
+      }
+      st.spellBookVar['Counter'] = (st.spellBookVar['Counter'] ?? 0) + 1;
+      return tmpHTMLCode;
+    }
+  }
+  return '';
 }
 
 function enter_Dynamic__(s: GameState, scene: SceneBuilder): void {
+  const st = s as any;
   qspCall(s, 'spellList', '');
-  if (((s as any).spellBookVar ?? 0)?.['Type'] === 'learn') {
-    ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = '\n<center>\n<table CELLPADDING = \'5\'>\n<tr>\n<th align=\'left\'>Spell</th>\n<th align=\'left\'>Progress</th>\n</tr>';
-    ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['RowCode'] = qspUntranslated(s, "{", { location: "spellBook" });
-    if (((s as any).spellLearn ?? 0)?.[String((s as any).ThisSpellName ?? 0)] > 0  &&  ((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] !== 1) {
-      (s as any).result = '\n<tr>\n<td align=\'left\'>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'right\'>' + (((s as any).spellLearn ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '%</td>\n</tr>';
-      ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['Counter'] = ((s as any).spellBookVar['Counter'] ?? 0) + (1);
-    } else {
-      (s as any).result = '';
-    }
+
+  if (st.spellBookVar?.['Type'] === 'learn') {
+    st.spellBookVar['TableText'] = '\n<center>\n<table CELLPADDING = \'5\'>\n<tr>\n<th align=\'left\'>Spell</th>\n<th align=\'left\'>Progress</th>\n</tr>';
+  } else if (st.spellBookVar?.['Type'] === 'cast') {
+    st.spellBookVar['TableText'] = '\n<center>\n<table CELLPADDING = \'5\'>\n<tr>\n<th align=\'left\'>Spell</th>\n<th align=\'left\'>Mana</th>\n<th align=\'left\'>Description</th>\n</tr>';
+  } else if (st.spellBookVar?.['Type'] === 'targetable') {
+    st.spellBookVar['TableText'] = '\n<center>\n<table CELLPADDING = \'5\'>\n<tr>\n<th align=\'left\'>Spell</th>\n<th align=\'left\'>Mana</th>\n<th align=\'left\'>Targets</th>\n<th align=\'left\'>Description</th>\n</tr>';
   } else {
-    if (((s as any).spellBookVar ?? 0)?.['Type'] === 'cast') {
-      ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = '\n<center>\n<table CELLPADDING = \'5\'>\n<tr>\n<th align=\'left\'>Spell</th>\n<th align=\'left\'>Mana</th>\n<th align=\'left\'>Description</th>\n</tr>';
-      ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['RowCode'] = qspUntranslated(s, "{", { location: "spellBook" });
-      if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 1) {
-        if (((s as any).spellOptDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === '') {
-          (s as any).tmpHTMLCode = '\n<tr>\n<td align=\'left\'><a href="EXEC: gs \'castSpell\', \'' + ((s as any).ThisSpellName ?? 0) + '\'& ' + (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell']) + '">' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</a></td>\n<td align=\'right\'>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'left\'>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n</tr>';
-        } else {
-          (s as any).tmpHTMLCode = '\n<tr>\n<td align=\'left\'>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'right\'>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'left\'>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n</tr>';
-          (s as any).n = 0;
-          do {
-            ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpVal'] = 0;
-            ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpName'] = 0;
-            (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<tr>\n<td align=\'left\'></td>\n<td align=\'left\'><a href="EXEC: gs \'castSpell\', \'' + ((s as any).ThisSpellName ?? 0) + '\', \'' + (((s as any).spellBookVar ?? 0)?.['tmpVal']) + '\' & ' + (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell']) + '">' + (((s as any).spellBookVar ?? 0)?.['tmpName']) + '</a></td>\n<td align=\'left\'></td>\n</tr>');
-            (s as any).n = ((s as any).n ?? 0) + (1);
-          } while (((s as any).n ?? 0) < Object.keys((s as any)['' + (((s as any).spellOptDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + ''] ?? {}).length);
-        }
-        (s as any).result = ((s as any).tmpHTMLCode ?? 0);
-        ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['Counter'] = ((s as any).spellBookVar['Counter'] ?? 0) + (1);
-        (s as any).tmpHTMLCode = undefined;
-        (s as any).n = undefined;
-      } else {
-        (s as any).result = '';
-      }
-    } else {
-      if (((s as any).spellBookVar ?? 0)?.['Type'] === 'targetable') {
-        ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = '\n<center>\n<table CELLPADDING = \'5\'>\n<tr>\n<th align=\'left\'>Spell</th>\n<th align=\'left\'>Mana</th>\n<th align=\'left\'>Targets</th>\n<th align=\'left\'>Description</th>\n</tr>';
-        ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['RowCode'] = qspUntranslated(s, "{", { location: "spellBook" });
-        if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 1) {
-          (s as any).tmpHTMLCode = '\n<tr>\n<td align=\'left\'>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'right\'>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'center\'>';
-          if (((s as any).spellTarget ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 'self') {
-            (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<a href="EXEC: *clr & gs \'castSpell\', \'' + ((s as any).ThisSpellName ?? 0) + '\', \'pcs\', 0, 0 & ' + (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell']) + '">You</a>');
-          } else {
-            if (((s as any).spellTarget ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 'team') {
-              (s as any).n = 0;
-              do {
-                ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpName'] = 0;
-                (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<a href="EXEC: *clr & gs \'castSpell\', \'' + ((s as any).ThisSpellName ?? 0) + '\', \'pcs\', ' + ((s as any).n ?? 0) + ', 0 & ' + (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell']) + '">' + (((s as any).spellBookVar ?? 0)?.['tmpName']) + '</a>\n<br>');
-                (s as any).n = ((s as any).n ?? 0) + (1);
-              } while (((s as any).n ?? 0) < Object.keys((s as any).pcs_health ?? {}).length);
-            } else {
-              (s as any).n = 0;
-              do {
-                ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpName'] = 0;
-                (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<a href="EXEC: *clr & gs \'castSpell\', \'' + ((s as any).ThisSpellName ?? 0) + '\', \'opp\', ' + ((s as any).n ?? 0) + ', 0 & ' + (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell']) + '">' + (((s as any).spellBookVar ?? 0)?.['tmpName']) + '</a>\n<br>');
-                (s as any).n = ((s as any).n ?? 0) + (1);
-              } while (((s as any).n ?? 0) < Object.keys((s as any).opp_health ?? {}).length);
-            }
-          }
-          (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + (' </td>\n<td align=\'left\'>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n</tr>');
-          (s as any).result = ((s as any).tmpHTMLCode ?? 0);
-          ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['Counter'] = ((s as any).spellBookVar['Counter'] ?? 0) + (1);
-          (s as any).tmpHTMLCode = undefined;
-          (s as any).n = undefined;
-        } else {
-          (s as any).result = '';
-        }
-      } else {
-        ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = '\n<center>\n<table CELLPADDING = \'5\'>\n<tr>\n<th align=\'left\'>Spell</th>\n<th align=\'left\'>Mana</th>\n<th align=\'left\'>Description</th>\n</tr>';
-        ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['RowCode'] = qspUntranslated(s, "{", { location: "spellBook" });
-        if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 1) {
-          if (((s as any).spellOptDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === '') {
-            (s as any).tmpHTMLCode = '\n<tr>\n<td align=\'left\'>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'right\'>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'left\'>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n</tr>';
-          } else {
-            (s as any).tmpHTMLCode = '\n<tr>\n<td align=\'left\'>' + (((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'right\'>' + (((s as any).spellMana ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n<td align=\'left\'>' + (((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + '</td>\n</tr>';
-            (s as any).n = 0;
-            do {
-              ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpVal'] = 0;
-              ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['tmpName'] = 0;
-              (s as any).tmpHTMLCode = ((s as any).tmpHTMLCode ?? 0) + ('\n<tr>\n<td align=\'left\'></td>\n<td align=\'left\'>' + (((s as any).spellBookVar ?? 0)?.['tmpName']) + '</td>\n<td align=\'left\'></td>\n</tr>');
-              (s as any).n = ((s as any).n ?? 0) + (1);
-            } while (((s as any).n ?? 0) < Object.keys((s as any)['' + (((s as any).spellOptDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? 0) + ''] ?? {}).length);
-          }
-          (s as any).result = ((s as any).tmpHTMLCode ?? 0);
-          ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['Counter'] = ((s as any).spellBookVar['Counter'] ?? 0) + (1);
-          (s as any).tmpHTMLCode = undefined;
-          (s as any).n = undefined;
-        } else {
-          (s as any).result = '';
-        }
-      }
-    }
+    st.spellBookVar['TableText'] = '\n<center>\n<table CELLPADDING = \'5\'>\n<tr>\n<th align=\'left\'>Spell</th>\n<th align=\'left\'>Mana</th>\n<th align=\'left\'>Description</th>\n</tr>';
   }
-  (s as any).i = 0;
-  ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['ArraySize'] = 0;
-  ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['Counter'] = 0;
-  do {
-    (s as any).ThisSpellName = 0;
-    ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = ((s as any).spellBookVar['TableText'] ?? 0) + (0);
-    (s as any).i = ((s as any).i ?? 0) + (1);
-  } while (((s as any).i ?? 0) < ((s as any).spellBookVar ?? 0)?.['ArraySize']);
-  ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = ((s as any).spellBookVar['TableText'] ?? 0) + ('\n</table>\n</center>');
-  if (((s as any).spellBookVar ?? 0)?.['Counter'] === 0) {
-    ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['TableText'] = '<center>You have no spells in this list.</center>';
+
+  const spellArrName = st.spellBookVar['Array'] ?? '';
+  const spellArr = st[spellArrName] ?? [];
+  const spellArrSize = Array.isArray(spellArr) ? spellArr.length : Object.keys(spellArr).length;
+  st.spellBookVar['ArraySize'] = spellArrSize;
+  st.spellBookVar['Counter'] = 0;
+
+  for (let i = 0; i < spellArrSize; i++) {
+    st.ThisSpellName = spellArr[i];
+    const row = generateSpellRow(s);
+    st.spellBookVar['TableText'] += row;
   }
-  (s as any).result = qspFunc(s, 'cleanHTML', (((s as any).spellBookVar ?? 0)?.['TableText']));
-  (s as any).i = undefined;
-  (s as any).ThisSpellName = undefined;
-  (s as any).spellBookVar = undefined;
-  (s as any).spellBookVar = undefined;
+
+  st.spellBookVar['TableText'] += '\n</table>\n</center>';
+  if (st.spellBookVar['Counter'] === 0) {
+    st.spellBookVar['TableText'] = '<center>You have no spells in this list.</center>';
+  }
+  st.result = qspFunc(s, 'cleanHTML', st.spellBookVar['TableText']);
+  st.spellBookVar = undefined;
   scene.build();
 }
 
@@ -135,15 +134,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).spellBookVar ?? 0)?.['CodeAfterSpell'] === '') {
     ((s as any).spellBookVar = (s as any).spellBookVar ?? {})['CodeAfterSpell'] = 'gt $loc, $loc_arg';
   }
-  const arg = s.locArg;
-  switch (arg) {
-    case '__dynamic__':
-      enter_Dynamic__(s, scene);
-      break;
-    default:
-      enterDefault(s, scene);
-      break;
-  }
+  enter_Dynamic__(s, scene);
 }
 
 export const spellBook: LocationDef = {

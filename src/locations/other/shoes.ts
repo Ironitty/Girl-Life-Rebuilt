@@ -1,10 +1,10 @@
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
-import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { GameState, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault(_s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
@@ -391,6 +391,41 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterGym(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_off = 1;
+  if (!(s as any).regularwornshoetype) {
+    (s as any).regularwornshoetype = (s as any).shoeworntype;
+    (s as any).regularwornshoenumber = (s as any).shoewornnumber;
+  }
+  scene.text('<center><img src="images/locations/city/citycenter/mall/sports.png"></center>');
+  for (let i = 1; i <= 40; i++) {
+    const canWear = qspFunc(s, 'shoes', 'can_wear', 'danilovich', i);
+    if (canWear) {
+      scene.text(`<a href="exec:gt 'shoe_view', 'view_item', 'wardrobe', 'danilovich', ${i}"><img height="250" src="images/pc/items/danilovich/shoes/${i}.jpg"/></a>`);
+    }
+  }
+  scene.action({ label: 'Return', goto: [(s as any).loc ?? '', (s as any).locArg ?? ''] });
+  if ((s as any).shoeworntype !== (s as any).regularwornshoetype) {
+    qspCall(s, 'shoes', 'gym2');
+  }
+  scene.build();
+}
+
+function enterGym2(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_off = 1;
+  scene.action({
+    label: 'Put your regular shoes back on',
+    handler: (st: GameState) => {
+      (st as any).shoeworntype = (st as any).regularwornshoetype;
+      (st as any).shoewornnumber = (st as any).regularwornshoenumber;
+      (st as any).regularwornshoetype = undefined;
+      (st as any).regularwornshoenumber = undefined;
+      qspCall(st, 'shoes', 'gym');
+    },
+  });
+  scene.build();
+}
+
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
@@ -480,6 +515,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'move_to_wardrobe':
       enterMoveToWardrobe(s, scene);
+      break;
+    case 'gym':
+      enterGym(s, scene);
+      break;
+    case 'gym2':
+      enterGym2(s, scene);
       break;
     default:
       enterDefault(s, scene);
