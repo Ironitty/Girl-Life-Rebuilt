@@ -189,7 +189,7 @@ function enterUnlockImgSet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetBodyimgDescLink(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027\u0027 + func(\u0027body_structure\u0027, \u0027body_img_from_class\u0027, ARGS[1], 0) + \u0027\u0027; return s; }); return false;">' + qspFunc(s, 'body_structure', 'body_desc_from_class', ((s as any).locArgs?.[1] ?? 0)) + '</a>';
   } else {
     (s as any).result = '<i><a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \u0027\u0027 + func(\u0027body_structure\u0027, \u0027body_img_from_class\u0027, ARGS[1], 0) + \u0027\u0027; return s; }); return false;">' + qspFunc(s, 'body_structure', 'body_desc_from_class', ((s as any).locArgs?.[1] ?? 0)) + '</a></i>';

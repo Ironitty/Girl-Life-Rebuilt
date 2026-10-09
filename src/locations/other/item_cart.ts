@@ -20,8 +20,9 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
     (s as any).icon_height = 18;
   }
   (s as any).i = 1;
+  (s as any).cart_curr_quantity = {};
   do {
-    if (((s as any).item_curr_aisle ?? 0)[(((s as any).i ?? 0))] !== '') {
+    if ((((s as any).item_curr_aisle ?? 0)[(((s as any).i ?? 0))] ?? '') !== '') {
       (s as any).temp_bcolor = qspFunc(s, 'themes', 'alt_color', ((s as any).temp_bcolor ?? 0));
       (s as any).cart_tmp = (((s as any).var_curr_aisle ?? 0)?.[String(((s as any).i ?? 0))]);
       (s as any).item_line = '<TR bgcolor=' + ((s as any).temp_bcolor ?? 0) + '>';
@@ -35,8 +36,8 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
       } else {
         (s as any).item_line = ((s as any).item_line ?? 0) + ('<td></td><td></td>');
       }
-      (s as any).item_line = ((s as any).item_line ?? 0) + ('<td align="center">' + (((s as any).cart_curr_quantity ?? 0)?.[String(((s as any).i ?? 0))]) + '</td>');
-      if (((s as any).cart_curr_quantity ?? 0)[(((s as any).i ?? 0))] + ((s as any).mc_inventory ?? 0)?.[String((s as any).cart_tmp ?? 0)] < ((s as any).max_curr_aisle ?? 0)[(((s as any).i ?? 0))]  ||  ((s as any).max_curr_aisle ?? 0)[(((s as any).i ?? 0))] === 0) {
+      (s as any).item_line = ((s as any).item_line ?? 0) + ('<td align="center">' + (((s as any).cart_curr_quantity ?? 0)?.[String(((s as any).i ?? 0))] ?? 0) + '</td>');
+      if ((((s as any).cart_curr_quantity ?? 0)?.[String(((s as any).i ?? 0))] ?? 0) + (((s as any).mc_inventory ?? 0)?.[String((s as any).cart_tmp ?? 0)] ?? 0) < ((s as any).max_curr_aisle ?? 0)[(((s as any).i ?? 0))]  ||  ((s as any).max_curr_aisle ?? 0)[(((s as any).i ?? 0))] === 0) {
         (s as any).item_line = ((s as any).item_line ?? 0) + ('<td valign="center" align="center" width="6%"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027item_cart\u0027, \u0027add\u0027, String((s as any).i ?? \u0027\u0027)); return false;"><img src="images/system/ui/more' + ((s as any).icon_selector ?? 0) + '.png" height="' + ((s as any).icon_height ?? 0) + '"></a></td>');
         (s as any).item_line = ((s as any).item_line ?? 0) + ('<td valign="center" align="center" width="6%"><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027item_cart\u0027, \u0027add\u0027, String((s as any).i ?? \u0027\u0027)); return false;"><img src="images/system/ui/more' + ((s as any).icon_selector ?? 0) + '.png" height="' + ((s as any).icon_height ?? 0) + '"></a></td>');
       } else {
@@ -93,7 +94,7 @@ function enterCartTotal(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).item_line = (s as any).item_line ?? {})[2] = ((s as any).item_line[2] ?? 0) + ('<td>&nbsp;<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027item_cart\u0027, \u0027cancel\u0027); return false;">cancel</a>&nbsp;</td>');
   ((s as any).item_line = (s as any).item_line ?? {})[2] = ((s as any).item_line[2] ?? 0) + ('</tr></table></center>');
-  scene.text('$item_line[2]');
+  scene.text(String((s as any).item_line?.[2] ?? ''));
   scene.build();
 }
 

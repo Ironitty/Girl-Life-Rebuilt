@@ -78,7 +78,7 @@ function enterSetAccess(s: GameState, scene: SceneBuilder): void {
     (s as any)._rent = ((s as any).property_code ?? 0) + '-rent';
     (s as any)._tenant_day = ((s as any).property_code ?? 0) + '-tenant-day';
     (s as any)._tenant_month = ((s as any).property_code ?? 0) + '-tenant-month';
-    if (((s as any).accessible_property ?? 0)?.[String((s as any)._display ?? 0)] === ''  ||  ((s as any).accessible_property ?? 0)?.[String((s as any)._name ?? 0)] === '') {
+    if ((((s as any).accessible_property ?? 0)?.[String((s as any)._display ?? 0)] ?? '') === ''  ||  (((s as any).accessible_property ?? 0)?.[String((s as any)._name ?? 0)] ?? '') === '') {
       if (((s as any).property ?? 0)?.['code'] !== ((s as any).property_code ?? 0)) {
         qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).property_code ?? 0));
       } else {
@@ -216,7 +216,7 @@ function enterIsHomeless(s: GameState, scene: SceneBuilder): void {
 
 function enterCanLiveHere(s: GameState, scene: SceneBuilder): void {
   (s as any).canlivecode = ((String((s as any).locArgs?.[1] ?? '') === '') ? ((((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)] ?? 0)) : ((((s as any).home_name ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] ?? 0)));
-  (s as any).result = ((s as any).accessible_property ?? 0)?.[String((s as any).canlivecode ?? 0)] !== ((s as any).NO_ACCESS ?? 0)  &&  ((s as any).accessible_property ?? 0)?.[String((s as any).canlivecode ?? 0)] !== ((s as any).TENANTS ?? 0)  &&  qspFunc(s, 'homes_properties', 'get_property_construction_status', ((s as any).canlivecode ?? 0)) === 2;
+  (s as any).result = (((s as any).accessible_property ?? 0)?.[String((s as any).canlivecode ?? 0)] !== ((s as any).NO_ACCESS ?? 0)) && (((s as any).accessible_property ?? 0)?.[String((s as any).canlivecode ?? 0)] !== ((s as any).TENANTS ?? 0)) && (qspFunc(s, 'homes_properties', 'get_property_construction_status', ((s as any).canlivecode ?? 0)) === 2);
   (s as any).canlivecode = undefined;
   return;
   scene.build();
@@ -357,7 +357,7 @@ function enterGetRentedProperties(s: GameState, scene: SceneBuilder): void {
       if (((s as any).home_name ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] !== ''  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] === 1) {
         if ((((s as any).remp_hpVars ?? 0)?.['type'] !== 'home'  &&  ((s as any).accessible_property ?? 0)[(((s as any).temp_hpVars ?? 0)?.['code']) + '-is-home'] === 0)  ||  (((s as any).remp_hpVars ?? 0)?.['type'] !== 'business'  &&  ((s as any).accessible_property ?? 0)[(((s as any).temp_hpVars ?? 0)?.['code']) + '-is-home'])) {
           ((s as any).property_code = (s as any).property_code ?? {})[(((s as any).temp_hpVars ?? 0)?.['j'])] = (((s as any).temp_hpVars ?? 0)?.['code']);
-          if (String((s as any).locArgs?.[2] ?? '') === 0) {
+          if (String((s as any).locArgs?.[0] ?? '') === '0') {
             ((s as any).property_name = (s as any).property_name ?? {})[(((s as any).temp_hpVars ?? 0)?.['j'])] = (((s as any).accessible_property ?? 0)?.['' + (((s as any).temp_hpVars ?? 0)?.['code']) + '-name'] ?? 0);
             ((s as any).property_display = (s as any).property_display ?? {})[(((s as any).temp_hpVars ?? 0)?.['j'])] = (((s as any).accessible_property ?? 0)?.['' + (((s as any).temp_hpVars ?? 0)?.['code']) + '-display'] ?? 0);
             ((s as any).property_days = (s as any).property_days ?? {})[(((s as any).temp_hpVars ?? 0)?.['j'])] = (((s as any).accessible_property ?? 0)?.['' + (((s as any).temp_hpVars ?? 0)?.['code']) + '-days-left'] ?? 0);
@@ -810,7 +810,7 @@ function enterPayRent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddRentDays(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).accessible_property = (s as any).accessible_property ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-days-left'] = ((s as any).accessible_property[String(((s as any).locArgs?.[1] ?? 0)) + '-days-left'] ?? 0) + (qspFunc(s, 'homes_properties', 'days_in_month'));
   } else {
     ((s as any).accessible_property = (s as any).accessible_property ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-days-left'] = ((s as any).accessible_property[String(((s as any).locArgs?.[1] ?? 0)) + '-days-left'] ?? 0) + (((s as any).locArgs?.[2] ?? 0));
@@ -820,7 +820,7 @@ function enterAddRentDays(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetRentDays(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).accessible_property = (s as any).accessible_property ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-days-left'] = qspFunc(s, 'homes_properties', 'days_in_month');
   } else {
     ((s as any).accessible_property = (s as any).accessible_property ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-days-left'] = ((s as any).locArgs?.[2] ?? 0);

@@ -192,7 +192,7 @@ function enterWearCondom(s: GameState, scene: SceneBuilder): void {
 
 function enterVaginalSex(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   qspCall(s, 'arousal', 'vaginal', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));
@@ -445,7 +445,7 @@ function enterAnalsex(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).boydesc ?? '')} fingers your anus, slowly pushing in before squeezing in a second one, `);
   scene.text(`iif(pcs_ass < 10, 'when ${((s as any).xe ?? '')} tries inserting a third finger you groan in pain. ', '${((s as any).xe ?? '')} inserts a third finger, very slowly thrusting and wiggling to stretch your anus, ')`);
   scene.text(`${((s as any).xe ?? '')} pulls ${((s as any).xyr ?? '')} fingers out of your ass and you feel ${((s as any).xyr ?? '')} ${((s as any).penis_desc ?? '')} pushing against your butthole. `);
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   qspCall(s, 'arousal', 'anal', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));

@@ -191,7 +191,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_card = (s as any).temp_card ?? {})['desc'] = (((s as any).trait_temp ?? 0)?.['desc']);
   ((s as any).temp_card = (s as any).temp_card ?? {})['name'] = (((s as any).trait_temp ?? 0)?.['name']);
   ((s as any).temp_card = (s as any).temp_card ?? {})['prog'] = '';
-  if (((s as any).trait_temp ?? 0)?.['tooltip'] !== '') {
+  if ((((s as any).trait_temp ?? 0)?.['tooltip'] ?? '') !== '') {
     if (((s as any).trait_temp ?? 0)?.['exp_down'] === -1) {
     } else {
       if (((s as any).trait_temp ?? 0)?.['exp_down'] >= 1000  ||  ((s as any).trait_temp ?? 0)?.['exp_down'] <= -1000) {
@@ -200,7 +200,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
         (s as any).temp_pw = '↓&nbsp' + String((((s as any).trait_temp ?? 0)?.['exp_down'])) + '&nbsp|&nbsp';
       }
     }
-    (s as any).temp_pw = ((s as any).temp_pw ?? 0) + ('<b>' + String((((s as any).trait_temp ?? 0)?.['exp'])) + '</b>');
+    (s as any).temp_pw = ((s as any).temp_pw ?? 0) + ('<b>' + String((((s as any).trait_temp ?? 0)?.['exp'] ?? 0)) + '</b>');
     if (((s as any).trait_temp ?? 0)?.['exp_up'] === -1) {
     } else {
       if (((s as any).trait_temp ?? 0)?.['exp_up'] >= 1000  ||  ((s as any).trait_temp ?? 0)?.['exp_up'] <= -1000) {
@@ -212,7 +212,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_card = (s as any).temp_card ?? {})['prog'] = '<span title="' + (((s as any).trait_temp ?? 0)?.['tooltip']) + '" style="cursor:help;font-size:0.8em;white-space:nowrap;font-family:monospace;opacity:0.7;">[' + ((s as any).temp_pw ?? 0) + ']</span>';
     (s as any).temp_pw = undefined;
   }
-  if (((s as any).trait_temp ?? 0)?.['hidden'] === 1  &&  String((s as any).locArgs?.[2] ?? '') === 0  &&  ((s as any).trait_vars ?? 0)[String((s as any).locArgs?.[1] ?? '') + '_discovered'] === 0  &&  ((s as any).cheatVars ?? 0)?.['show_hidden_traits'] === 0) {
+  if (((s as any).trait_temp ?? 0)?.['hidden'] === 1  &&  String((s as any).locArgs?.[0] ?? '') === '0'  &&  ((s as any).trait_vars ?? 0)[String((s as any).locArgs?.[1] ?? '') + '_discovered'] === 0  &&  ((s as any).cheatVars ?? 0)?.['show_hidden_traits'] === 0) {
     ((s as any).temp_card = (s as any).temp_card ?? {})['name'] = '???';
     ((s as any).temp_card = (s as any).temp_card ?? {})['desc'] = 'This trait is inactive and unknown; who knows what it could be?<br>Unlock the trait to find out.';
     ((s as any).temp_card = (s as any).temp_card ?? {})['icon'] = 'images/system/icons/traits/hidden.png';
@@ -328,11 +328,11 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumeater_exp'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumeater', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumeater_exp'] = 50;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumeater', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
@@ -405,21 +405,21 @@ function enterCreampieFetish(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_exp'] = 0;
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_exp_risky'] = 0;
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_prev'] = 0;
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_prev_risky'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'creampie_fetish', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_exp'] = 150;
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_exp_risky'] = 0;
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_prev'] = 0;
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_prev_risky'] = 0;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'creampie_fetish', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 2) {
+        if (String((s as any).locArgs?.[2] ?? '') === '2') {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_exp'] = 200;
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_exp_risky'] = 100;
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['creampie_fetish_prev'] = 0;
@@ -605,7 +605,7 @@ function enterSensitivity(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sensitivity', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
@@ -613,7 +613,7 @@ function enterSensitivity(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sensitivity', (-2)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === -1  ||  String((s as any).locArgs?.[2] ?? '') === 1) {
+        if (String((s as any).locArgs?.[2] ?? '') === -1  ||  String((s as any).locArgs?.[1] ?? '') === '1') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sensitivity', ((s as any).locArgs?.[2] ?? 0)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
@@ -625,7 +625,7 @@ function enterSensitivity(s: GameState, scene: SceneBuilder): void {
 
 function enterNewAgain(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'level') {
-    if (String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[0] ?? '') === '0') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'new_again']; enterDeregisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['new_again-all-exp_gain'] = 100;
@@ -671,11 +671,11 @@ function enterNewAgain(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['new_again_exp'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'new_again', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['new_again_exp'] = 84;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'new_again', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
@@ -829,7 +829,7 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_exp'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
@@ -837,15 +837,15 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_exp'] = (-1000);
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 1) {
+        if (String((s as any).locArgs?.[1] ?? '') === '1') {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_exp'] = 50000;
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 2) {
+          if (String((s as any).locArgs?.[2] ?? '') === '2') {
             ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_exp'] = 95000;
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            if (String((s as any).locArgs?.[2] ?? '') === 3) {
+            if (String((s as any).locArgs?.[3] ?? '') === '3') {
               ((s as any).trait_vars = (s as any).trait_vars ?? {})['heel_preference_exp'] = 135000;
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
@@ -951,7 +951,7 @@ function enterAddictivePersonality(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['addictive_personality_exp'] = 0;
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['addictive_personality_prev'] = 0;
       ((s as any).drugVars = (s as any).drugVars ?? {})['cigarettes_exp'] = 0;
@@ -963,15 +963,15 @@ function enterAddictivePersonality(s: GameState, scene: SceneBuilder): void {
       ((s as any).drugVars = (s as any).drugVars ?? {})['painkiller_exp'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['addictive_personality_exp'] = 2;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 2) {
+        if (String((s as any).locArgs?.[2] ?? '') === '2') {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['addictive_personality_exp'] = 3;
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 3) {
+          if (String((s as any).locArgs?.[3] ?? '') === '3') {
             ((s as any).trait_vars = (s as any).trait_vars ?? {})['addictive_personality_exp'] = 4;
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
@@ -1071,19 +1071,19 @@ function enterButtslut(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['buttslut_exp'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['buttslut_exp'] = 10;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 2) {
+        if (String((s as any).locArgs?.[2] ?? '') === '2') {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['buttslut_exp'] = 50;
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 3) {
+          if (String((s as any).locArgs?.[3] ?? '') === '3') {
             ((s as any).trait_vars = (s as any).trait_vars ?? {})['buttslut_exp'] = 100;
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
@@ -1175,19 +1175,19 @@ function enterExhibitionist(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'exhibitionist', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = 30;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'exhibitionist', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 2) {
+        if (String((s as any).locArgs?.[2] ?? '') === '2') {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = 74;
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'exhibitionist', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 3) {
+          if (String((s as any).locArgs?.[3] ?? '') === '3') {
             ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = 150;
             if (((s as any).exhibitionQW ?? 0) < 3) {
               (s as any).exhibitionQW = 3;
@@ -1293,19 +1293,19 @@ function enterPantyPreference(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['panty_preference_exp'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['panty_preference_exp'] = 22000;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 2) {
+        if (String((s as any).locArgs?.[2] ?? '') === '2') {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['panty_preference_exp'] = 35000;
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 3) {
+          if (String((s as any).locArgs?.[3] ?? '') === '3') {
             ((s as any).trait_vars = (s as any).trait_vars ?? {})['panty_preference_exp'] = 45000;
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
@@ -1358,8 +1358,8 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'details') {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['hidden'] = 0;
-    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['drinking_exp']);
-    if (((s as any).trait_vars ?? 0)?.['drinking'] === 0) {
+    ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp'] = (((s as any).trait_vars ?? 0)?.['drinking_exp'] ?? 0);
+    if ((((s as any).trait_vars ?? 0)?.['drinking'] ?? 0) === 0) {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['name'] = 'Alcohol Tolerance';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['icon'] = 'alko.png';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['desc'] = 'You have an average tolerance for alcohol. Nothing to write home about.';
@@ -1367,7 +1367,7 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-down'] = 'You\'ve lost the trait <b>Heavyweight</b>. Your alcohol tolerance is now average.';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-50);
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = 50;
-      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Tolerance EXP: ' + (((s as any).trait_vars ?? 0)?.['drinking_exp']) + '. ';
+      ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Tolerance EXP: ' + (((s as any).trait_vars ?? 0)?.['drinking_exp'] ?? 0) + '. ';
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Drink regularly to build tolerance. ');
       ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Going sober reduces tolerance over time.');
     } else {
@@ -1378,7 +1378,7 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-up'] = 'You\'ve gained the trait <b>Heavyweight</b>.';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = 50;
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-1);
-        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Tolerance EXP: ' + (((s as any).trait_vars ?? 0)?.['drinking_exp']) + '. ';
+        ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Tolerance EXP: ' + (((s as any).trait_vars ?? 0)?.['drinking_exp'] ?? 0) + '. ';
         ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Going sober reduces tolerance over time.');
       } else {
         if (((s as any).trait_vars ?? 0)?.['drinking'] === -1) {
@@ -1388,14 +1388,14 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['msg-up'] = 'You\'ve gained the trait <b>Lightweight</b>.';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_down'] = (-1);
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['exp_up'] = (-50);
-          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Tolerance EXP: ' + (((s as any).trait_vars ?? 0)?.['drinking_exp']) + '. ';
+          ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = 'Tolerance EXP: ' + (((s as any).trait_vars ?? 0)?.['drinking_exp'] ?? 0) + '. ';
           ((s as any).trait_temp = (s as any).trait_temp ?? {})['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Drink alcohol regularly to recover.');
         }
       }
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_exp'] = 0;
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_days_sober'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drinking', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1405,7 +1405,7 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_days_sober'] = 0;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drinking', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 1) {
+        if (String((s as any).locArgs?.[1] ?? '') === '1') {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_exp'] = 75;
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_days_sober'] = 0;
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drinking', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1431,7 +1431,7 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[2] ?? '') === -1) {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_exp'] = (-50);
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_exp'] = 50;
       } else {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['drinking_exp'] = 0;
@@ -1574,21 +1574,21 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 0;
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = 0;
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['nerd_learn_home'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 200;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 2) {
+        if (String((s as any).locArgs?.[2] ?? '') === '2') {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 325;
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 3) {
+          if (String((s as any).locArgs?.[3] ?? '') === '3') {
             ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 400;
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
@@ -1603,16 +1603,16 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
     ((s as any).trait_temp = (s as any).trait_temp ?? {})['ov_right'] = 'gs \'traits\', \'academic\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['academic'] ?? 0) + 1, 0, 3);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'ov_set') {
-    if (String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 0;
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 250;
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 2) {
+        if (String((s as any).locArgs?.[2] ?? '') === '2') {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 350;
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 3) {
+          if (String((s as any).locArgs?.[3] ?? '') === '3') {
             ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 450;
           }
         }
@@ -1711,11 +1711,11 @@ function enterBookworm(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['bookworm_exp'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bookworm', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['bookworm_exp'] = 100;
         (s as any).lastreadday = ((s as any).daystart ?? 0);
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bookworm', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1773,10 +1773,10 @@ function enterSleepDuration(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep_duration', qspFunc(s, 'math', 'int_clamp', ((s as any).locArgs?.[2] ?? 0), (-1), 1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep_duration', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === -1  ||  String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[2] ?? '') === -1  ||  String((s as any).locArgs?.[1] ?? '') === '1') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep_duration', ((s as any).locArgs?.[2] ?? 0)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
@@ -1832,10 +1832,10 @@ function enterElasticity(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'elasticity', qspFunc(s, 'math', 'int_clamp', ((s as any).locArgs?.[2] ?? 0), (-1), 1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'elasticity', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === -1  ||  String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[2] ?? '') === -1  ||  String((s as any).locArgs?.[1] ?? '') === '1') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'elasticity', ((s as any).locArgs?.[2] ?? 0)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
@@ -1961,16 +1961,16 @@ function enterSizequeen(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_exp'] = 0;
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_temp'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sizequeen', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_exp'] = 80;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sizequeen', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 2) {
+        if (String((s as any).locArgs?.[2] ?? '') === '2') {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_exp'] = 130;
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sizequeen', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
@@ -2052,12 +2052,12 @@ function enterFitnessFreak(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['fitness_freak_exp'] = 0;
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['fitness_freak_today'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fitness_freak', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['fitness_freak_exp'] = 80;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fitness_freak', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
@@ -2111,13 +2111,13 @@ function enterHairGrowthRate(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hair_growth_rate', ((s as any).locArgs?.[2] ?? 0)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hair_growth_rate', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[2] ?? '') === -1) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hair_growth_rate', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 1) {
+        if (String((s as any).locArgs?.[1] ?? '') === '1') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hair_growth_rate', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
@@ -2194,13 +2194,13 @@ function enterBodyHairGrowthRate(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_growth_rate', ((s as any).locArgs?.[2] ?? 0)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_growth_rate', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[2] ?? '') === -1) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_growth_rate', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 1) {
+        if (String((s as any).locArgs?.[1] ?? '') === '1') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_growth_rate', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
@@ -2349,7 +2349,7 @@ function enterBodyHairAttitude(s: GameState, scene: SceneBuilder): void {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['body_hair_attitude_exp'] = (-500);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['body_hair_attitude_exp'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
@@ -2360,7 +2360,7 @@ function enterBodyHairAttitude(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['body_hair_attitude_exp'] = (-450);
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 1) {
+          if (String((s as any).locArgs?.[1] ?? '') === '1') {
             ((s as any).trait_vars = (s as any).trait_vars ?? {})['body_hair_attitude_exp'] = 450;
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
@@ -2399,13 +2399,13 @@ function enterPainTolerance(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain_tolerance', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (String((s as any).locArgs?.[2] ?? '') === -1) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain_tolerance', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 1) {
+        if (String((s as any).locArgs?.[1] ?? '') === '1') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain_tolerance', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
@@ -2501,19 +2501,19 @@ function enterDoormat(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['doormat_exp'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['doormat_exp'] = 2;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 2) {
+        if (String((s as any).locArgs?.[2] ?? '') === '2') {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['doormat_exp'] = 5;
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 3) {
+          if (String((s as any).locArgs?.[3] ?? '') === '3') {
             ((s as any).trait_vars = (s as any).trait_vars ?? {})['doormat_exp'] = 10;
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
@@ -2645,17 +2645,17 @@ function enterCumslut(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp'] = 0;
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp_public'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumslut', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp'] = 1000;
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp_public'] = 0;
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumslut', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 2) {
+        if (String((s as any).locArgs?.[2] ?? '') === '2') {
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp'] = 4000;
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumslut_exp_public'] = 2000;
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumslut', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -2743,11 +2743,11 @@ function enterCumAddict(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cum_addict', ((s as any).locArgs?.[2] ?? 0)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'cheat') {
-    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[2] ?? '') === -99  ||  String((s as any).locArgs?.[0] ?? '') === '0') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cum_addict', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       (s as any).missCum = undefined;
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1  ||  String((s as any).locArgs?.[2] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1'  ||  String((s as any).locArgs?.[2] ?? '') === '2') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cum_addict', ((s as any).locArgs?.[2] ?? 0)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }

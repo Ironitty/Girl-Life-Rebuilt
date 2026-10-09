@@ -50,7 +50,7 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    qspCall(s, 'coat_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'coat_attributes', '', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = '';
   if (qspFunc(s, 'coats', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -80,7 +80,7 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    qspCall(s, 'coat_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'coat_attributes', '', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = (qspFunc(s, 'coats', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set') === '');
   return;
@@ -178,10 +178,10 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     return;
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     return;
   }
-  qspCall(s, 'coat_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'coat_attributes', '', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   if ((!((s as any).CoatQuality ?? 0))) {
     return;
   }
@@ -193,7 +193,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).coatworntype ?? 0);
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
   }
   if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'none') {
@@ -223,11 +223,68 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).coatworntype ?? 0);
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).coatwornnumber ?? 0);
   }
   if (qspFunc(s, 'coats', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
   }
+  scene.build();
+}
+
+function enterStripCode(s: GameState, scene: SceneBuilder): void {
+  (s as any).coatworntype = 'none';
+  (s as any).coatwornnumber = 0;
+  qspCall(s, 'coats', 'reset_CoatVars');
+  qspCall(s, 'coats', 'reset_PCoatVars');
+  qspCall(s, 'outfit', 'set_derived_vars');
+  scene.build();
+}
+
+function enterStrip(s: GameState, scene: SceneBuilder): void {
+  if ((s as any).coatworntype === '') {
+    (s as any).coatworntype = 'none';
+    (s as any).coatwornnumber = 0;
+  }
+  (s as any).lastworncoattype = (s as any).coatworntype;
+  (s as any).lastworncoatnumber = (s as any).coatwornnumber;
+  qspCall(s, 'coats', 'strip_code');
+  scene.build();
+}
+
+function enterWear(s: GameState, scene: SceneBuilder): void {
+  let arg1 = String((s as any).locArgs?.[1] ?? '');
+  let arg2 = (s as any).locArgs?.[2] ?? 0;
+  if (arg1 === 'last_worn') {
+    arg1 = String((s as any).lastworncoattype ?? '');
+    arg2 = (s as any).lastworncoatnumber ?? 0;
+  }
+  if (arg1 === '' || arg1 === 'none') {
+    scene.build();
+    return;
+  }
+  qspCall(s, 'coats', 'strip');
+  qspCall(s, 'coat_attributes', '', arg1, arg2);
+  const argsArr = (s as any).locArgs ?? [];
+  if (argsArr.includes('check')) {
+    const reason = qspFunc(s, 'coats', 'not_wear_reason', arg1, arg2, 'attributes_set');
+    if (reason !== '') {
+      scene.build();
+      return;
+    }
+  }
+  (s as any).coatworntype = arg1;
+  (s as any).coatwornnumber = arg2;
+  ((s as any)[`${arg1}_coats_w`] = (s as any)[`${arg1}_coats_w`] ?? {})[arg2] = 1;
+  (s as any).PCoatWarm = (s as any).CoatWarm;
+  (s as any).PCoatQuality = (s as any).CoatQuality;
+  (s as any).PCoatPrice = (s as any).CoatPrice;
+  (s as any).PCoatStrength = (s as any).CoatStrength;
+  (s as any).PCoatMaxStrength = (s as any).CoatMaxStrength;
+  if (argsArr.includes('borrowed')) {
+    (s as any).PCoatBorrowed = 1;
+    (s as any).PCoatStrength = (s as any).PCoatMaxStrength;
+  }
+  qspCall(s, 'outfit', 'set_derived_vars');
   scene.build();
 }
 
@@ -275,6 +332,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'remove_item':
       enterRemoveItem(s, scene);
+      break;
+    case 'wear':
+      enterWear(s, scene);
+      break;
+    case 'strip':
+      enterStrip(s, scene);
+      break;
+    case 'strip_code':
+      enterStripCode(s, scene);
       break;
     case 'reset_immutables':
       enterResetImmutables(s, scene);

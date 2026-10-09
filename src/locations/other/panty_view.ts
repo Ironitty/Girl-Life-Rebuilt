@@ -443,7 +443,7 @@ function enterViewItemWearSingleHypno(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     qspCall(st, 'panties', 'wear', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
     qspCall(st, 'shop_utils', 'cleanup');
-    if (String((st as any).locArgs?.[1] ?? '') === 0) {
+    if (String((st as any).locArgs?.[0] ?? '') === '0') {
       qspGoto(st, 'wardrobe', 'main');
     }
   } },
@@ -475,7 +475,7 @@ function enterViewItemWearPair(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'panties', 'wear', (((s as any).shop_utils_view ?? 0)?.['type']), (((s as any).shop_utils_view ?? 0)?.['number']));
   qspCall(s, 'bras', 'wear', (((s as any).shop_utils_view ?? 0)?.['type']), (((s as any).underwear ?? 0)?.['pair']));
   qspCall(s, 'shop_utils', 'cleanup');
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     qspGoto(s, 'wardrobe', 'main');
   }
   return;

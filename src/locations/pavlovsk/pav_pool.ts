@@ -294,7 +294,7 @@ function enterLockerfemale(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  String((s as any).locArgs?.[1] ?? '') === 0) {
+  if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  String((s as any).locArgs?.[1] ?? '') === '0') {
     qspGoto(s, 'pav_pool_events', 'naked_locker');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -426,7 +426,7 @@ function enterShowerfemale(s: GameState, scene: SceneBuilder): void {
 function enterMirror(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_pool', 'mirror');
   (s as any).location_type = 'private';
-  if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  String((s as any).locArgs?.[1] ?? '') === 0) {
+  if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  String((s as any).locArgs?.[1] ?? '') === '0') {
     qspGoto(s, 'pav_pool_events', 'naked_mirror');
   }
   qspCall(s, 'stat', '');

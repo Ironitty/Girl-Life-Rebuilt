@@ -226,7 +226,7 @@ function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
-  (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'gm'  &&  String((s as any).locArgs?.[2] ?? '') === 1);
+  (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'gm'  &&  String((s as any).locArgs?.[1] ?? '') === '1');
   return;
   scene.build();
 }
@@ -253,7 +253,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     return;
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     return;
   }
   qspCall(s, 'underwear_attributes', '', ((s as any).locArgs?.[1] ?? 0) + '_bras', ((s as any).locArgs?.[2] ?? 0));
@@ -268,13 +268,13 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'none') {
     return;
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 'gm'  &&  String((s as any).locArgs?.[2] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 'gm'  &&  String((s as any).locArgs?.[1] ?? '') === '1') {
     if (String((s as any).locArgs?.[1] ?? '') === ((s as any).braworntype ?? 0)  &&  String((s as any).locArgs?.[2] ?? '') === ((s as any).brawornnumber ?? 0)) {
       qspCall(s, 'bras', 'strip');
     }
@@ -313,11 +313,94 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
   }
+  scene.build();
+}
+
+function enterStripCode(s: GameState, scene: SceneBuilder): void {
+  (s as any).braworntype = 'none';
+  (s as any).bodysuitworntype = 'none';
+  (s as any).brawornnumber = 0;
+  (s as any).bodysuitwornnumber = 0;
+  qspCall(s, 'bras', 'reset_BraVars');
+  qspCall(s, 'bras', 'reset_PBraVars');
+  qspCall(s, 'outfit', 'set_derived_vars');
+  scene.build();
+}
+
+function enterStrip(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).underwear ?? {})['type'] === 2) {
+    qspCall(s, 'underwear_bodysuits', 'strip');
+    scene.build();
+    return;
+  }
+  if ((s as any).braworntype === '') {
+    (s as any).braworntype = 'none';
+    (s as any).brawornnumber = 0;
+  }
+  (s as any).lastwornbratype = (s as any).braworntype;
+  (s as any).lastwornbranumber = (s as any).brawornnumber;
+  (s as any).lastwornunderwear = 0;
+  qspCall(s, 'bras', 'strip_code');
+  scene.build();
+}
+
+function enterWear(s: GameState, scene: SceneBuilder): void {
+  let arg1 = String((s as any).locArgs?.[1] ?? '');
+  let arg2 = (s as any).locArgs?.[2] ?? 0;
+  if (arg1 === '' || arg1 === 'last_worn') {
+    if (((s as any).lastwornunderwear ?? 0) === 2) {
+      qspCall(s, 'underwear_bodysuits', 'wear', 'last_worn');
+      scene.build();
+      return;
+    }
+    arg1 = String((s as any).lastwornbratype ?? '');
+    arg2 = (s as any).lastwornbranumber ?? 0;
+  }
+  if (arg1 === '' || arg1 === 'none') {
+    scene.build();
+    return;
+  }
+  qspCall(s, 'bras', 'strip');
+  qspCall(s, 'underwear_attributes', '', `${arg1}_bras`, arg2);
+  if ((s as any).BraQuality === 0) {
+    scene.text(`ERROR: Bra "${arg1}_bras[${arg2}]" does not exist`);
+    scene.build();
+    return;
+  }
+  const argsArr = (s as any).locArgs ?? [];
+  if (argsArr.includes('check')) {
+    const reason = qspFunc(s, 'bras', 'not_wear_reason', arg1, arg2, 'no_init');
+    if (reason !== '' && reason !== 'hypno') {
+      scene.build();
+      return;
+    }
+  }
+  (s as any).braworntype = arg1;
+  (s as any).brawornnumber = arg2;
+  (s as any).underwear = { ...(s as any).underwear, type: 0 };
+  ((s as any)[`${arg1}_brasS`] = (s as any)[`${arg1}_brasS`] ?? {})[arg2] = 0;
+  (s as any).PBraMaterial = (s as any).BraMaterial;
+  (s as any).PBraType = (s as any).BraType;
+  (s as any).PBraFun = (s as any).BraFun;
+  (s as any).PBraQuality = (s as any).BraQuality;
+  (s as any).PBraThinness = (s as any).BraThinness;
+  (s as any).PBraCover = (s as any).BraCover;
+  (s as any).PBraSport = (s as any).BraSport;
+  (s as any).PBraPrice = (s as any).BraPrice;
+  (s as any).PBraDirt = (s as any).BraDirt;
+  (s as any).PBraStrength = (s as any).BraStrength;
+  (s as any).PBraMaxStrength = (s as any).BraMaxStrength;
+  if (argsArr.includes('borrowed')) {
+    (s as any).PBraBorrowed = 1;
+    (s as any).PBraDirt = 0;
+    (s as any).PBraStrength = (s as any).PBraMaxStrength;
+  }
+  qspCall(s, 'outfit', 'set_derived_vars');
   scene.build();
 }
 
@@ -380,6 +463,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'remove_item':
       enterRemoveItem(s, scene);
+      break;
+    case 'wear':
+      enterWear(s, scene);
+      break;
+    case 'strip':
+      enterStrip(s, scene);
+      break;
+    case 'strip_code':
+      enterStripCode(s, scene);
       break;
     case 'reset_immutables':
       enterResetImmutables(s, scene);

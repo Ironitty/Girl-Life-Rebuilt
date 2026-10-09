@@ -7,7 +7,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetXpprv(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     (s as any).result = 0;
   } else {
     (s as any).result = 1 + (146 * (((s as any).locArgs?.[1] ?? 0) - 1) * (((s as any).locArgs?.[1] ?? 0) - 1) / 91);

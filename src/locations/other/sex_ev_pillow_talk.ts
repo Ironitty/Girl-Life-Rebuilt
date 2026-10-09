@@ -116,25 +116,25 @@ function enterPillowPicture1(s: GameState, scene: SceneBuilder): void {
                       if (String((s as any).locArgs?.[2] ?? '') === 'jpg') {
                         scene.img(`images/shared/sex/after/${((s as any).locArgs?.[1] ?? '')}.jpg`);
                       } else {
-                        if (String((s as any).locArgs?.[1] ?? '') === 1) {
+                        if (String((s as any).locArgs?.[1] ?? '') === '1') {
                           scene.img('images/shared/sex/after/pillow_talk1.jpg');
                         } else {
-                          if (String((s as any).locArgs?.[1] ?? '') === 2) {
+                          if (String((s as any).locArgs?.[1] ?? '') === '2') {
                             scene.img('images/shared/sex/after/pillow_talk2.jpg');
                           } else {
-                            if (String((s as any).locArgs?.[1] ?? '') === 3) {
+                            if (String((s as any).locArgs?.[1] ?? '') === '3') {
                               scene.img('images/shared/sex/after/pillow_talk3.jpg');
                             } else {
-                              if (String((s as any).locArgs?.[1] ?? '') === 4) {
+                              if (String((s as any).locArgs?.[1] ?? '') === '4') {
                                 scene.img('images/shared/sex/after/pillow_talk4.jpg');
                               } else {
-                                if (String((s as any).locArgs?.[1] ?? '') === 5) {
+                                if (String((s as any).locArgs?.[1] ?? '') === '5') {
                                   scene.img('images/shared/sex/after/pillow_talk5.jpg');
                                 } else {
-                                  if (String((s as any).locArgs?.[1] ?? '') === 6) {
+                                  if (String((s as any).locArgs?.[1] ?? '') === '6') {
                                     scene.img('images/shared/sex/after/pillow_talk6.jpg');
                                   } else {
-                                    if (String((s as any).locArgs?.[1] ?? '') === 7) {
+                                    if (String((s as any).locArgs?.[1] ?? '') === '7') {
                                       scene.img('images/shared/sex/after/pillow_talk7.jpg');
                                     } else {
                                       if (String((s as any).locArgs?.[1] ?? '') === 'smile') {
@@ -207,7 +207,7 @@ function enterTopics(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTalkTimeAdd(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).locArgs?.[1] ?? 0));

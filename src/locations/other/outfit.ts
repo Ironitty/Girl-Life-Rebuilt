@@ -420,7 +420,7 @@ function enterWearLastWorn(s: GameState, scene: SceneBuilder): void {
 
 function enterRecoverLostOutfit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing', 'recover_lost_clothes', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
-  if (String((s as any).locArgs?.[2] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterRestore(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;

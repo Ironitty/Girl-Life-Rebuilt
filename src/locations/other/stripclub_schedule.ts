@@ -50,26 +50,26 @@ function enterDoCancel(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[3] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     (s as any).scs_return_arg = 'set_schedule';
   } else {
-    if (String((s as any).locArgs?.[3] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).scs_return_arg = 'next_week_set_schedule';
     }
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     (s as any).scs_time_string = '18:00-00:00';
     (s as any).scs_hour1 = 9;
     (s as any).scs_hour2 = 13;
   } else {
-    if (String((s as any).locArgs?.[2] ?? '') === 2) {
+    if (String((s as any).locArgs?.[2] ?? '') === '2') {
       (s as any).scs_time_string = '21:00-03:00';
       (s as any).scs_hour1 = 13;
       (s as any).scs_hour2 = 17;
     }
   }
   (s as any).scs_offset = (((s as any).locArgs?.[1] ?? 0) - ((s as any).week ?? 0) + 7) % 7;
-  if (String((s as any).locArgs?.[3] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     (s as any).scs_offset = ((s as any).scs_offset ?? 0) + (7);
   }
   (s as any).scs_day = ((s as any).daystart ?? 0) + ((s as any).scs_offset ?? 0);
@@ -77,14 +77,14 @@ function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
   (s as any).scs_booking = qspFunc(s, 'jobs', 'get_booking_data', 'city_strip_stripper', ((s as any).scs_day ?? 0), ((s as any).scs_slot ?? 0));
   (s as any).scs_has_conflict = qspFunc(s, 'jobs', 'check_booking_conflict', 'city_strip_stripper', ((s as any).scs_day ?? 0), ((s as any).scs_slot ?? 0));
   (s as any).result = ((s as any).result ?? 0) + ('<tr><td>');
-  if (((s as any).scs_booking ?? 0) === ''  &&  !(String((s as any).locArgs?.[3] ?? '') === 0  &&  ((s as any).week ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).hour ?? 0) >= ((s as any).scs_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).scs_hour2 ?? 0))) {
+  if (((s as any).scs_booking ?? 0) === ''  &&  !(String((s as any).locArgs?.[0] ?? '') === '0'  &&  ((s as any).week ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).hour ?? 0) >= ((s as any).scs_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).scs_hour2 ?? 0))) {
     if (((s as any).scs_has_conflict ?? 0) === 1) {
       (s as any).result = ((s as any).result ?? 0) + ('<font color="grey">' + ((s as any).scs_time_string ?? 0) + ' shift (busy)</font>');
     } else {
       (s as any).result = ((s as any).result ?? 0) + ('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027stripclub_schedule\u0027, \u0027do_book\u0027, ((s as any).locArgs?.[1] ?? \u0027\u0027)); return false;">' + ((s as any).scs_time_string ?? 0) + ' shift</a>');
     }
   } else {
-    if (String((s as any).locArgs?.[3] ?? '') === 0  &&  ((s as any).week ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).hour ?? 0) >= ((s as any).scs_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).scs_hour2 ?? 0)) {
+    if (String((s as any).locArgs?.[0] ?? '') === '0'  &&  ((s as any).week ?? 0) === String((s as any).locArgs?.[1] ?? '')  &&  ((s as any).hour ?? 0) >= ((s as any).scs_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).scs_hour2 ?? 0)) {
       (s as any).result = ((s as any).result ?? 0) + ('' + ((s as any).scs_time_string ?? 0) + ' shift');
       (s as any).result = ((s as any).result ?? 0) + ('</td></tr><tr><td>');
       (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'stripclub_schedule', 'random_stripper_name'));

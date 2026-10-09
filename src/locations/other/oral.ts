@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  (s as any).tmpl = ((String((s as any).locArgs?.[1] ?? '') === 0) ? (10) : (((s as any).locArgs?.[1] ?? 0)));
+  (s as any).tmpl = ((String((s as any).locArgs?.[1] ?? '') === '0') ? (10) : (((s as any).locArgs?.[1] ?? 0)));
   (s as any).frost = 0;
   scene.text(`Your one hand caress his ${((s as any).dick ?? '')} cm cock, while the other cups his balls as you lick his cock.`);
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {

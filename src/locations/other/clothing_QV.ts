@@ -85,7 +85,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     do {
       if (((s as any).danilovich_outfits ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-        qspCall(s, 'clothing_attributes', 'danilovich_outfits', ((s as any).i ?? 0));
+        qspCall(s, 'clothing_attributes', '', 'danilovich_outfits', ((s as any).i ?? 0));
         qspCall(s, 'clothing_view', 'home_filter');
         if ((((s as any).outfitfilter ?? 0)?.['quality_sort'] === 1  &&  ((s as any).CloQuality ?? 0) === ((s as any).clo_i ?? 0))  ||  (((s as any).outfitfilter ?? 0)?.['inhibition_sort'] === 1  &&  ((s as any).CloInhibit ?? 0) === ((s as any).clo_i ?? 0))  ||  ((s as any).outfitfilter ?? 0)?.['number_sort'] === 1) {
           if (((s as any).outfitfilter ?? 0)?.['include'] === 1  &&  ((s as any).outfitfilter ?? 0)?.['sport'] >= 0) {
@@ -175,9 +175,9 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
 
 function enterChange(s: GameState, scene: SceneBuilder): void {
   (s as any).swimwear_description = '';
-  qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'clothing_attributes', '', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[1] ?? ''), ((s as any).locArgs?.[2] ?? ''))}`);
-  if (String((s as any).locArgs?.[1] ?? '') === 'misc_outfits'  &&  String((s as any).locArgs?.[2] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 'misc_outfits'  &&  String((s as any).locArgs?.[1] ?? '') === '1') {
     scene.text('A hessian sack the hunters gave you.');
   } else {
     if (((s as any).swimwear_description ?? 0) === '') {

@@ -1203,7 +1203,7 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
         scene.text('"What do you think? I think you would gorgeous in this."');
         scene.text('"Wait? Me?"');
         scene.text('Tanya laughs out. "Yes. I would really like you to wear it. And look, I even found a skirt that goes great with it. Please let me buy this for you."');
-        qspCall(s, 'clothing_attributes', 'gm_dress', 148);
+        qspCall(s, 'clothing_attributes', '', 'gm_dress', 148);
         if (((s as any).CloInhibit ?? 0) <= ((s as any).pcs_inhib ?? 0)) {
           scene.actions([
             { label: 'Agree', handler: (st: GameState) => {
@@ -2233,7 +2233,7 @@ function enterShoppingUniform(s: GameState, scene: SceneBuilder): void {
       (s as any).nichLoopAttempt = ((s as any).nichLoopAttempt ?? 0) + (1);
       continue;
     }
-    qspCall(s, 'clothing_attributes', 'uniform', ((s as any).nichRand ?? 0));
+    qspCall(s, 'clothing_attributes', '', 'uniform', ((s as any).nichRand ?? 0));
     (s as any).price = (20 * ((5 * ((s as any).CloQuality ?? 0)) + 100)) * 3 / 2;
     (s as any).price = ((s as any).price ?? 0) / 50 * 50;
     scene.img(`images/pc/items/gm/maid/${((s as any).nichRand ?? '')}.jpg`);

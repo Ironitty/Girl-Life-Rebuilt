@@ -7,8 +7,8 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).TatQuality = 0;
   (s as any).TatPrice = 0;
-  if (hasLocation('$attributes_tattoo_' + (String((s as any).locArgs?.[0] ?? '')))) {
-    qspCall(s, '$attributes_tattoo_' + ((s as any).locArgs?.[0] ?? 0) + '', '', ((s as any).locArgs?.[1] ?? 0));
+  if (hasLocation('_attributes_tattoo_' + (String((s as any).locArgs?.[0] ?? '')))) {
+    qspCall(s, '_attributes_tattoo_' + ((s as any).locArgs?.[0] ?? 0) + '', String((s as any).locArgs?.[1] ?? 0));
   }
   if ((!((s as any).TatQuality ?? 0))) {
     return;

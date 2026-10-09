@@ -2318,7 +2318,7 @@ function enterMarcusDiscussion(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 2) {
     scene.text('"I kind of miss our threesomes, now that you no longer have a boyfriend," Katja says. "Maybe we could find somebody else to have fun with, but it needs to be somebody that can keep quiet about it!"');
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 0  &&  ((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  ((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 1) {
       scene.text('"So now that you and Artem have an open relationship, I was thinking that you maybe you and me could try having sex with another guy?" Katja asks while looking at you pleadingly.');
     }
   }

@@ -142,10 +142,10 @@ function enterMagbEvent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNichServentSleepEventsHandler(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     qspGoto(s, 'nichBedroomServant', 'sleepEvents', '100');
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspGoto(s, 'nichBedroomServant', 'sleepEvents', '1000');
     }

@@ -321,10 +321,10 @@ function enterLecture(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 6;
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'start_month') {
-    if (String((s as any).locArgs?.[2] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).result = 9;
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === '2') {
         (s as any).result = 2;
       } else {
         (s as any).result = 13;
@@ -332,10 +332,10 @@ function enterLecture(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'end_month') {
-    if (String((s as any).locArgs?.[2] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).result = 11;
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === '2') {
         (s as any).result = 4;
       } else {
         (s as any).result = 0;
@@ -382,10 +382,10 @@ function enterLecture(s: GameState, scene: SceneBuilder): void {
 
 function enterExam(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'month') {
-    if (String((s as any).locArgs?.[2] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).result = 12;
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === '2') {
         (s as any).result = 5;
       } else {
         (s as any).result = 0;

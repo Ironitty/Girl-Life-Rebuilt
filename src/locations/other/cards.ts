@@ -13,7 +13,7 @@ function enterShellOpen(s: GameState, scene: SceneBuilder): void {
   (s as any).cs_opac = ((((s as any).card_in ?? 0)?.['opacity'] !== '') ? ((((s as any).card_in ?? 0)?.['opacity'])) : ('1.0'));
   (s as any).cs_icon_size = ((((s as any).card_in ?? 0)?.['icon_size'] > 0) ? ((((s as any).card_in ?? 0)?.['icon_size'])) : (48));
   (s as any).cs_col_w = ((s as any).cs_icon_size ?? 0) + 22;
-  (s as any).result = '<center><table width="90%" cellpadding="0" cellspacing="0" style="border: 2px solid ' + ((s as any).cs_border ?? 0) + '; background-color: ' + (((s as any).card_in ?? 0)?.['bg']) + '; margin-bottom: 10px; opacity: ' + ((s as any).cs_opac ?? 0) + ';">';
+  (s as any).result = '<center><table width="90%" cellpadding="0" cellspacing="0" style="border: 2px solid ' + ((s as any).cs_border ?? 0) + '; background-color: ' + (((s as any).card_in ?? 0)?.['bg'] ?? '') + '; margin-bottom: 10px; opacity: ' + ((s as any).cs_opac ?? 0) + ';">';
   (s as any).result = ((s as any).result ?? 0) + ('<tr>');
   if (((s as any).card_in ?? 0)?.['icon'] !== '') {
     (s as any).result = ((s as any).result ?? 0) + ('<td width="' + ((s as any).cs_col_w ?? 0) + '" valign="middle" align="center" style="padding: 10px;">');
@@ -22,14 +22,14 @@ function enterShellOpen(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).result ?? 0) + ('<td valign="middle" style="padding: 10px 10px 10px ' + ((((s as any).card_in ?? 0)?.['icon'] !== '') ? ('0') : (String(((s as any).cs_col_w ?? 0) + 20) + 'px')) + ';">');
   if (((s as any).card_in ?? 0)?.['extra'] !== '') {
-    (s as any).result = ((s as any).result ?? 0) + ('<div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px;"><span><b>' + (((s as any).card_in ?? 0)?.['title']) + '</b>');
-    if (((s as any).card_in ?? 0)?.['title_sub'] !== '') {
+    (s as any).result = ((s as any).result ?? 0) + ('<div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px;"><span><b>' + (((s as any).card_in ?? 0)?.['title'] ?? '') + '</b>');
+    if ((((s as any).card_in ?? 0)?.['title_sub'] ?? '') !== '') {
       (s as any).result = ((s as any).result ?? '') + ' <span style="opacity:0.7; font-size:0.9em;">' + (((s as any).card_in ?? 0)?.['title_sub']) + '</span>';
     }
-    (s as any).result = ((s as any).result ?? 0) + ('</span>' + (((s as any).card_in ?? 0)?.['extra']) + '</div>');
+    (s as any).result = ((s as any).result ?? 0) + ('</span>' + (((s as any).card_in ?? 0)?.['extra'] ?? '') + '</div>');
   } else {
-    (s as any).result = ((s as any).result ?? 0) + ('<div><b>' + (((s as any).card_in ?? 0)?.['title']) + '</b>');
-    if (((s as any).card_in ?? 0)?.['title_sub'] !== '') {
+    (s as any).result = ((s as any).result ?? 0) + ('<div><b>' + (((s as any).card_in ?? 0)?.['title'] ?? '') + '</b>');
+    if ((((s as any).card_in ?? 0)?.['title_sub'] ?? '') !== '') {
       (s as any).result = ((s as any).result ?? '') + ' <span style="opacity:0.7; font-size:0.9em;">' + (((s as any).card_in ?? 0)?.['title_sub']) + '</span>';
     }
     (s as any).result = ((s as any).result ?? 0) + ('</div>');

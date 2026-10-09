@@ -330,7 +330,7 @@ function enterDefaultClothingLine(s: GameState, scene: SceneBuilder): void {
   if (((s as any).defshoenumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
     (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
   } else {
-    qspCall(s, 'shoe_attributes', '', (((s as any).defshoetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defshoenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
+    qspCall(s, 'shoe_attributes', '', '', (((s as any).defshoetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defshoenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
     (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$shoe_image', (((s as any).defshoetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defshoenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
   }
   if (((s as any).defcoatnumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {

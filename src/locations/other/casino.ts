@@ -1183,7 +1183,7 @@ function enterDealer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.img(`${qspUntranslated(s, "deckImg[temp_dealer_hand[0]]", { location: "casino" })}`);
   } else {
     (s as any).numAces = 0;

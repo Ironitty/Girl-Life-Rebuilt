@@ -1378,7 +1378,7 @@ function enterSetSkills(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPrintStatLinks(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[3] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     scene.text(`"${((s as any).locArgs?.[2] ?? '')} (${0}) - Total (${0}): "`);
   } else {
     scene.text(`"${((s as any).locArgs?.[2] ?? '')} (${0}): "`);
@@ -1396,7 +1396,7 @@ function enterPrintStatLinks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPrintStatLinksInverted(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[3] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     scene.text(`"${((s as any).locArgs?.[2] ?? '')} (${0}) - Total (${0}): "`);
   } else {
     scene.text(`"${((s as any).locArgs?.[2] ?? '')} (${0}): "`);

@@ -47,7 +47,7 @@ function enterForest2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).temp_ms = (Math.floor(Math.random() * 2) + 1);
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     if (((s as any).temp_ms ?? 0) === 1) {
       qspCall(s, 'boyStat', 'A63');
     }
@@ -55,7 +55,7 @@ function enterForest2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'boyStat', 'A61');
     }
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       if (((s as any).temp_ms ?? 0) === 1) {
         qspCall(s, 'boyStat', 'A63');
       }
@@ -63,7 +63,7 @@ function enterForest2(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'boyStat', 'A62');
       }
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === '3') {
         if (((s as any).temp_ms ?? 0) === 1) {
           qspCall(s, 'boyStat', 'A61');
         }

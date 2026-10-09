@@ -1701,7 +1701,7 @@ function enterTwoGuysCumming(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/claining_up_after_sex.jpg');
     scene.text('On the way to the bathroom, you pick up your clothes, then spend some time cleaning the rest of their cum off your faces.');
-    if (String((st as any).locArgs?.[1] ?? '') === 2) {
+    if (String((st as any).locArgs?.[2] ?? '') === '2') {
       if (((st as any).katjaQW ?? 0)?.['anal_quest'] < 3) {
         ((st as any).katjaQW = (st as any).katjaQW ?? {})['anal_quest'] = 3;
         ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + ((Math.floor(Math.random() * 11) + 10));
@@ -1743,7 +1743,7 @@ function enterTwoGuysCumming(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (String((st as any).locArgs?.[1] ?? '') === 1) {
+      if (String((st as any).locArgs?.[1] ?? '') === '1') {
         if (((st as any).katjaQW ?? 0)?.['anal_quest'] < 3) {
           ((st as any).katjaQW = (st as any).katjaQW ?? {})['anal_quest'] = 3;
           ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + ((Math.floor(Math.random() * 6) + 5));

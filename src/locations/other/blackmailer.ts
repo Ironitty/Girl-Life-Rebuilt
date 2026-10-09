@@ -486,7 +486,7 @@ function enterAddBlackmailSelfie(s: GameState, scene: SceneBuilder): void {
 
 function enterChooseBlackmailImage(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '';
-  if ((Math.floor(Math.random() * 11) + 0) > 0  ||  String((s as any).locArgs?.[1] ?? '') === 1) {
+  if ((Math.floor(Math.random() * 11) + 0) > 0  ||  String((s as any).locArgs?.[1] ?? '') === '1') {
     (s as any).result = ((s as any).blackmailQW ?? 0)['selfie_image_' + (Math.floor(Math.random() * (((s as any).in ?? 0)((((s as any).blackmailQW ?? 0)?.[String((s as any).total_material ?? 0)] ?? 0)-1, 9) - 0 + 1)) + (0)) + ''];
   }
   if (((s as any).result ?? 0) === '') {
@@ -564,40 +564,40 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
 
 function enterCosplaynumberToBmid(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  if (String((s as any).locArgs?.[1] ?? '') === 78) {
+  if (String((s as any).locArgs?.[1] ?? '') === '78') {
     (s as any).result = 1;
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 21) {
+    if (String((s as any).locArgs?.[1] ?? '') === '21') {
       (s as any).result = 2;
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 110) {
+      if (String((s as any).locArgs?.[1] ?? '') === '110') {
         (s as any).result = 3;
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 26) {
+        if (String((s as any).locArgs?.[1] ?? '') === '26') {
           (s as any).result = 4;
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 90) {
+          if (String((s as any).locArgs?.[1] ?? '') === '90') {
             (s as any).result = 5;
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 106) {
+            if (String((s as any).locArgs?.[1] ?? '') === '106') {
               (s as any).result = 6;
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 31) {
+              if (String((s as any).locArgs?.[1] ?? '') === '31') {
                 (s as any).result = 7;
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 34) {
+                if (String((s as any).locArgs?.[1] ?? '') === '34') {
                   (s as any).result = 8;
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 129) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '129') {
                     (s as any).result = 9;
                   } else {
-                    if (String((s as any).locArgs?.[1] ?? '') === 74) {
+                    if (String((s as any).locArgs?.[1] ?? '') === '74') {
                       (s as any).result = 10;
                     } else {
-                      if (String((s as any).locArgs?.[1] ?? '') === 93) {
+                      if (String((s as any).locArgs?.[1] ?? '') === '93') {
                         (s as any).result = 11;
                       } else {
-                        if (String((s as any).locArgs?.[1] ?? '') === 133) {
+                        if (String((s as any).locArgs?.[1] ?? '') === '133') {
                           (s as any).result = 12;
                         }
                       }
@@ -617,40 +617,40 @@ function enterCosplaynumberToBmid(s: GameState, scene: SceneBuilder): void {
 
 function enterBmidToCosplaynumber(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     (s as any).result = 78;
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       (s as any).result = 21;
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === '3') {
         (s as any).result = 110;
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 4) {
+        if (String((s as any).locArgs?.[1] ?? '') === '4') {
           (s as any).result = 26;
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 5) {
+          if (String((s as any).locArgs?.[1] ?? '') === '5') {
             (s as any).result = 90;
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 6) {
+            if (String((s as any).locArgs?.[1] ?? '') === '6') {
               (s as any).result = 106;
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 7) {
+              if (String((s as any).locArgs?.[1] ?? '') === '7') {
                 (s as any).result = 31;
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 8) {
+                if (String((s as any).locArgs?.[1] ?? '') === '8') {
                   (s as any).result = 34;
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 9) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '9') {
                     (s as any).result = 129;
                   } else {
-                    if (String((s as any).locArgs?.[1] ?? '') === 10) {
+                    if (String((s as any).locArgs?.[1] ?? '') === '10') {
                       (s as any).result = 74;
                     } else {
-                      if (String((s as any).locArgs?.[1] ?? '') === 11) {
+                      if (String((s as any).locArgs?.[1] ?? '') === '11') {
                         (s as any).result = 83;
                       } else {
-                        if (String((s as any).locArgs?.[1] ?? '') === 12) {
+                        if (String((s as any).locArgs?.[1] ?? '') === '12') {
                           (s as any).result = 133;
                         }
                       }
@@ -669,7 +669,7 @@ function enterBmidToCosplaynumber(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRegisterCosplayUsed(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = qspFunc(s, 'blackmailer', 'cosplaynumber_to_bmid', ((s as any).clothingwornnumber ?? 0));
   }
   (s as any).temp_cu = (String(100 + ((s as any).locArgs?.[1] ?? 0)).slice((2)-1));
@@ -1147,7 +1147,7 @@ function enterParkRepeatHide(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/park/blackmailer/dropoff.jpg');
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.text('You descretely put the money inside a nearby paper bag and hide it on the side of the bench.');
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === -1) {
@@ -1158,7 +1158,7 @@ function enterParkRepeatHide(s: GameState, scene: SceneBuilder): void {
         scene.text('You can only hope that the blackmailer isn\'t currently watching you.');
       }
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         scene.text('You can only hope that this getup doesn\'t draw too much attention to you as you try to descretely put the money inside a nearby paper bag and hide it on the side of the bench.');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).clothingwornnumber ?? 0)]; enterRegisterCosplayUsed(s, scene); (s as any).locArgs = __savedLocArgs; }
       }

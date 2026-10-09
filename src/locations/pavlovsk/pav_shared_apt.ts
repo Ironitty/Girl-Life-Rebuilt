@@ -126,7 +126,7 @@ function enterBlockApt(s: GameState, scene: SceneBuilder): void {
   (s as any).servitudelvl_bak = (((s as any).shared_apt ?? 0)?.['servitudeLvl']);
   (s as any).shared_apt = undefined;
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['seenAd'] = 1;
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     ((s as any).shared_apt = (s as any).shared_apt ?? {})['evicted'] = 1;
   }
   ((s as any).shared_apt = (s as any).shared_apt ?? {})['previousTenant'] = 1;

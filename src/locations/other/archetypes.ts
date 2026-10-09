@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFmtPts(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     (s as any).result = '0';
     return;
   }
@@ -48,19 +48,19 @@ function enterClamp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetArchetype(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     (s as any).result = 'bimbo';
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).result = 'preppy';
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         (s as any).result = 'prude';
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 3) {
+        if (String((s as any).locArgs?.[1] ?? '') === '3') {
           (s as any).result = 'punk';
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 4) {
+          if (String((s as any).locArgs?.[1] ?? '') === '4') {
             (s as any).result = 'goth';
           } else {
             (s as any).result = '';
@@ -75,19 +75,19 @@ function enterGetArchetype(s: GameState, scene: SceneBuilder): void {
 
 function enterGetOpposite(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'bimbo') {
-    (s as any).result = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ('prude') : ('punk'));
+    (s as any).result = ((String((s as any).locArgs?.[0] ?? '') === '0') ? ('prude') : ('punk'));
   } else {
     if (String((s as any).locArgs?.[1] ?? '') === 'preppy') {
-      (s as any).result = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ('punk') : ('goth'));
+      (s as any).result = ((String((s as any).locArgs?.[0] ?? '') === '0') ? ('punk') : ('goth'));
     } else {
       if (String((s as any).locArgs?.[1] ?? '') === 'prude') {
-        (s as any).result = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ('goth') : ('bimbo'));
+        (s as any).result = ((String((s as any).locArgs?.[0] ?? '') === '0') ? ('goth') : ('bimbo'));
       } else {
         if (String((s as any).locArgs?.[1] ?? '') === 'punk') {
-          (s as any).result = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ('bimbo') : ('preppy'));
+          (s as any).result = ((String((s as any).locArgs?.[0] ?? '') === '0') ? ('bimbo') : ('preppy'));
         } else {
           if (String((s as any).locArgs?.[1] ?? '') === 'goth') {
-            (s as any).result = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ('preppy') : ('prude'));
+            (s as any).result = ((String((s as any).locArgs?.[0] ?? '') === '0') ? ('preppy') : ('prude'));
           } else {
             (s as any).result = '';
           }
@@ -101,7 +101,7 @@ function enterGetOpposite(s: GameState, scene: SceneBuilder): void {
 
 function enterGetPercentage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arch_const ?? 0)?.['point_cap'] > 0) {
-    if (String((s as any).locArgs?.[2] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).temp_gap_gp = Math.max(0, ((s as any).arch_vars ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_points'] - (((s as any).arch_const ?? {})?.['point_min'] ?? 0));
       (s as any).result = Math.min(100, ((s as any).temp_gap_gp ?? 0) * 100 / ((((s as any).arch_const ?? {})?.['point_cap'] ?? 0) - (((s as any).arch_const ?? {})?.['point_min'] ?? 0)));
       (s as any).temp_gap_gp = undefined;
@@ -2511,7 +2511,7 @@ function enterLogEvent(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['arch_log_enabled'] === 0) {
     return;
   }
-  if (String((s as any).locArgs?.[4] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     return;
   }
   while (true) {

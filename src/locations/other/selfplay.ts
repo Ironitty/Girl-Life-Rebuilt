@@ -2096,10 +2096,10 @@ function enterAnalFingering(s: GameState, scene: SceneBuilder): void {
       (s as any).analPlugOut = 1;
     }
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 2) {
+  if (String((s as any).locArgs?.[1] ?? '') === '2') {
     scene.text('You pull both fingers out of your ass and wait for the immediate pain to subside. You then slowly start pushing just a single digit back into your asshole.');
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       if (((s as any).pcs_ass ?? 0) >= 5) {
         scene.text('You keep fucking your asshole with one finger. It slides in quite easily.');
         if (((s as any).trait_vars ?? 0)?.['buttslut'] > 1) {
@@ -2144,10 +2144,10 @@ function enterAnalFingering2(s: GameState, scene: SceneBuilder): void {
   (s as any).selfplaytime = ((s as any).selfplaytime ?? 0) + (5);
   (s as any).mast_anal = 1;
   scene.img('images/shared/sex/mast/2.jpg');
-  if (String((s as any).locArgs?.[1] ?? '') === 2) {
+  if (String((s as any).locArgs?.[1] ?? '') === '2') {
     scene.text('You pull the three fingers out of your ass and wait for the immediate pain to subside. You then slowly start pushing one and then a second back into your asshole.');
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       if (((s as any).pcs_ass ?? 0) >= 10) {
         scene.text('You keep fucking your asshole with two fingers. They\'re sliding in fairly easily.');
         if (((s as any).agape ?? 0) < 1) {
@@ -2231,10 +2231,10 @@ function enterAnalFingering3(s: GameState, scene: SceneBuilder): void {
   (s as any).selfplaytime = ((s as any).selfplaytime ?? 0) + (5);
   (s as any).mast_anal = 1;
   scene.img('images/shared/sex/mast/3.jpg');
-  if (String((s as any).locArgs?.[1] ?? '') === 2) {
+  if (String((s as any).locArgs?.[1] ?? '') === '2') {
     scene.text('You pull two fingers out of your ass, letting your hole clench back around the remaining two as you wait for the immediate pain to subside. You then slowly start pushing a third digit back into your asshole.');
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       if (((s as any).pcs_ass ?? 0) >= 15) {
         scene.text('You keep fucking your ass with three fingers. Your asshole is fairly loose and you manage to slide all three fingers in and out without much effort.');
         if (((s as any).agape ?? 0) < 2) {
@@ -2321,10 +2321,10 @@ function enterAnalFingering4(s: GameState, scene: SceneBuilder): void {
   (s as any).selfplaytime = ((s as any).selfplaytime ?? 0) + (5);
   (s as any).mast_anal = 1;
   scene.img('images/shared/sex/mast/4.jpg');
-  if (String((s as any).locArgs?.[1] ?? '') === 2) {
+  if (String((s as any).locArgs?.[1] ?? '') === '2') {
     scene.text('You pull two fingers out of your ass, letting your hole clench back around the remaining two as you wait for the immediate pain to subside. You then slowly start pushing a third digit back into your asshole.');
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       if (((s as any).pcs_ass ?? 0) >= 20) {
         scene.text('You keep fucking your ass with four fingers. Your asshole is feeling fairly loose around them, and you manage to slide all four fingers in and out without much effort.');
         if (((s as any).agape ?? 0) < 3) {
@@ -2413,7 +2413,7 @@ function enterAnalFisting(s: GameState, scene: SceneBuilder): void {
   (s as any).selfplaytime = ((s as any).selfplaytime ?? 0) + (5);
   (s as any).mast_anal = 9;
   scene.img('images/shared/sex/mast/5.jpg');
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     if (((s as any).pcs_ass ?? 0) >= 25) {
       scene.text('You keep shoving your hand up your ass. There\'s still some resistance, but your experienced asshole lets you move your fist backwards and forwards fairly easily by now. The feeling of being stretched so much and the rubbing inside your ass is blissful.');
       if (((s as any).trait_vars ?? 0)?.['buttslut'] > 1) {

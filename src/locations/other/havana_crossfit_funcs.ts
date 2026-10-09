@@ -83,7 +83,7 @@ function enterAddWod(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRecordstring(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     (s as any).result = 'No score yet';
   } else {
     (s as any).wod_score = ((s as any).wod_min_score ?? 0)[((s as any).locArgs?.[1] ?? 0)] + (((s as any).wod_max_score ?? 0)[((s as any).locArgs?.[1] ?? 0)] - ((s as any).wod_min_score ?? 0)[((s as any).locArgs?.[1] ?? 0)]) * ((s as any).locArgs?.[2] ?? 0) / 100;

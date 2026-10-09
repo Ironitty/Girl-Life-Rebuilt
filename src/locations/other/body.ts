@@ -71,7 +71,7 @@ function enterCalcBMI2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCalcOptBodyMass(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 225;
   }
   (s as any).result = ((((s as any).pcs_hgt ?? 0) * ((s as any).pcs_hgt ?? 0) * ((s as any).locArgs?.[1] ?? 0)) - 2820000 - 70000 * (((s as any).pcs_hgt ?? 0) - 165)) / (550 * (60 + (((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0)));

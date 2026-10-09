@@ -48,7 +48,7 @@ function enterInitFight(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).clear_check = undefined;
   ((s as any).pcs_name = (s as any).pcs_name ?? {})[0] = 'You';
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     ((s as any).pcs_image = (s as any).pcs_image ?? {})[0] = 'images/system/1_openings/1_tf/mikhail_1.jpg';
   } else {
     ((s as any).pcs_image = (s as any).pcs_image ?? {})[0] = qspFunc(s, '$face_image', '');

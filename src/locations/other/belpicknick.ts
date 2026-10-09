@@ -672,7 +672,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     qspGoto(s, 'road', ((Math.floor(Math.random() * 9) + 1) + (Math.floor(Math.random() * 9) + 1)) / 2 + 10 * (Math.floor(Math.random() * 2) + 0));
   } else {
     qspGoto(s, 'road', ((Math.floor(Math.random() * 19) + 1) + (Math.floor(Math.random() * 19) + 1)) / 2);

@@ -204,15 +204,27 @@ function enterCheckAvailableOralDildo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCamming(s: GameState, scene: SceneBuilder): void {
+  const _t0 = Date.now();
+  const _timing: Record<string, number> = {};
   if (String((s as any).locArgs?.[1] ?? '') > 0) {
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).locArgs?.[1] ?? 0));
     qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), ((s as any).locArgs?.[1] ?? 0));
   }
   ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((String((s as any).locArgs?.[1] ?? '') < 0) ? (-((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)));
+  let _t = Date.now();
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0)]; enterUpdateCamBonus(s, scene); (s as any).locArgs = __savedLocArgs; }
+  _timing.bonus = Date.now() - _t;
+  _t = Date.now();
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0)]; enterUpdateStats(s, scene); (s as any).locArgs = __savedLocArgs; }
+  _timing.stats = Date.now() - _t;
+  _t = Date.now();
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0)]; enterViews(s, scene); (s as any).locArgs = __savedLocArgs; }
+  _timing.views = Date.now() - _t;
+  _t = Date.now();
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0)]; enterDonate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  _timing.donate = Date.now() - _t;
+  _timing.total = Date.now() - _t0;
+  (window as any).__cammingTiming = _timing;
   scene.build();
 }
 
@@ -315,7 +327,7 @@ function enterViews(s: GameState, scene: SceneBuilder): void {
   if ((String(((s as any).camGirl ?? 0)?.['type']).slice((1)-1, ((1)-1)+(4))) === 'mod_') {
     qspCall(s, 'LOCA', 'camGirl', 'views', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
   } else {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).camGirl ?? 0)?.['type']) + '_views', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0)]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).camGirl ?? 0)?.['type']) + '_views', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0)]; enterMFCViews(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterViewsCore(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).camGirl = (s as any).camGirl ?? {})[(((s as any).camGirl ?? 0)?.['type']) + '_time'] = ((s as any).camGirl[(((s as any).camGirl ?? 0)?.['type']) + '_time'] ?? 0) + ((((s as any).cam_viewsVars ?? 0)?.['dt']));

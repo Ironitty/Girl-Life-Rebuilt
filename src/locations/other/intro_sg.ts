@@ -13,7 +13,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   (s as any).hour = 6;
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['last_month_paid'] = ((s as any).month ?? 0);
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     (s as any).loc = 'gad_gphouse';
     (s as any).loc_arg = 'main';
     qspCall(s, 'homes_properties', 'give_access', 'parents_home');
@@ -26,7 +26,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     qspGoto(s, 'gad_gphouse', 'quick_start');
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       qspCall(s, 'homes_properties', 'give_access', 'parents_home');
       qspCall(s, 'homes_properties', 'rent_property', 'old_town_apartment');
       qspCall(s, 'homes_properties', 'set_home', 'old_town_apartment');
@@ -37,7 +37,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       qspGoto(s, 'bedr2x', '');
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === '3') {
         (s as any).motherKnowWhore = 1;
         (s as any).motherKnowSpravka = 2;
         qspCall(s, 'npc_relationship', 'set', 'A29', 0);

@@ -955,44 +955,44 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
 function enterCumgather(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_cum_manage_pos = qspUntranslated(s, "arrpos('sparrloc', ARGS[1])", { location: "cum_manage" });
   if (((s as any).temp_cum_manage_pos ?? 0) >= 0  &&  ((s as any).temp_cum_manage_pos ?? 0) < Object.keys((s as any).sparrloc ?? {}).length) {
-    if (String((s as any).locArgs?.[1] ?? '') === 0) {
+    if (String((s as any).locArgs?.[1] ?? '') === '0') {
       (s as any).part = 'pussy';
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         (s as any).part = 'pussylips';
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 2  ||  String((s as any).locArgs?.[1] ?? '') === 5) {
+        if (String((s as any).locArgs?.[1] ?? '') === '2'  ||  String((s as any).locArgs?.[1] ?? '') === '5') {
           (s as any).part = 'your panties';
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 3) {
+          if (String((s as any).locArgs?.[1] ?? '') === '3') {
             (s as any).part = 'anus';
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 4) {
+            if (String((s as any).locArgs?.[1] ?? '') === '4') {
               (s as any).part = 'buttocks';
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 6  ||  String((s as any).locArgs?.[1] ?? '') === 7) {
+              if (String((s as any).locArgs?.[1] ?? '') === '6'  ||  String((s as any).locArgs?.[1] ?? '') === '7') {
                 (s as any).part = 'clothes';
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 8) {
+                if (String((s as any).locArgs?.[1] ?? '') === '8') {
                   (s as any).part = 'back';
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 9) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '9') {
                     (s as any).part = 'legs';
                   } else {
-                    if (String((s as any).locArgs?.[1] ?? '') === 10) {
+                    if (String((s as any).locArgs?.[1] ?? '') === '10') {
                       (s as any).part = 'arms';
                     } else {
-                      if (String((s as any).locArgs?.[1] ?? '') === 11) {
+                      if (String((s as any).locArgs?.[1] ?? '') === '11') {
                         ((s as any).stat = (s as any).stat ?? {})['cum_facial'] = ((s as any).stat['cum_facial'] ?? 0) + (1);
                         (s as any).part = 'face';
                       } else {
-                        if (String((s as any).locArgs?.[1] ?? '') === 14) {
+                        if (String((s as any).locArgs?.[1] ?? '') === '14') {
                           (s as any).part = 'stomach';
                         } else {
-                          if (String((s as any).locArgs?.[1] ?? '') === 15) {
+                          if (String((s as any).locArgs?.[1] ?? '') === '15') {
                             (s as any).part = 'breasts';
                           } else {
-                            if (String((s as any).locArgs?.[1] ?? '') === 16) {
+                            if (String((s as any).locArgs?.[1] ?? '') === '16') {
                               (s as any).part = 'hair';
                             } else {
                               (s as any).part = 'unknown';
@@ -1052,51 +1052,51 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
     (s as any).cumnostd = 0;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).part = '';
-    if (String((s as any).locArgs?.[1] ?? '') === 13) {
+    if (String((s as any).locArgs?.[1] ?? '') === '13') {
       qspCall(s, 'cum_cleanup', 'cleanloc', ((s as any).locArgs?.[1] ?? 0));
       scene.text('You carefully lick the sperm residue from your hands, enjoying the tart taste.');
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 0) {
+      if (String((s as any).locArgs?.[1] ?? '') === '0') {
         (s as any).part = 'pussy';
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 1) {
+        if (String((s as any).locArgs?.[1] ?? '') === '1') {
           (s as any).part = 'pussylips';
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 2  ||  String((s as any).locArgs?.[1] ?? '') === 5) {
+          if (String((s as any).locArgs?.[1] ?? '') === '2'  ||  String((s as any).locArgs?.[1] ?? '') === '5') {
             (s as any).part = 'your panties';
             qspCall(s, 'cum_cleanup', 'cleanloc', 2);
             qspCall(s, 'cum_cleanup', 'cleanloc', 5);
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 3) {
+            if (String((s as any).locArgs?.[1] ?? '') === '3') {
               (s as any).part = 'anus';
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 4) {
+              if (String((s as any).locArgs?.[1] ?? '') === '4') {
                 (s as any).part = 'buttocks';
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 6  ||  String((s as any).locArgs?.[1] ?? '') === 7) {
+                if (String((s as any).locArgs?.[1] ?? '') === '6'  ||  String((s as any).locArgs?.[1] ?? '') === '7') {
                   (s as any).part = 'clothes';
                   qspCall(s, 'cum_cleanup', 'cleanloc', 6);
                   qspCall(s, 'cum_cleanup', 'cleanloc', 7);
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 8) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '8') {
                     (s as any).part = 'back';
                   } else {
-                    if (String((s as any).locArgs?.[1] ?? '') === 9) {
+                    if (String((s as any).locArgs?.[1] ?? '') === '9') {
                       (s as any).part = 'legs';
                     } else {
-                      if (String((s as any).locArgs?.[1] ?? '') === 10) {
+                      if (String((s as any).locArgs?.[1] ?? '') === '10') {
                         (s as any).part = 'arms';
                       } else {
-                        if (String((s as any).locArgs?.[1] ?? '') === 11) {
+                        if (String((s as any).locArgs?.[1] ?? '') === '11') {
                           (s as any).part = 'face';
                         } else {
-                          if (String((s as any).locArgs?.[1] ?? '') === 14) {
+                          if (String((s as any).locArgs?.[1] ?? '') === '14') {
                             (s as any).part = 'stomach';
                           } else {
-                            if (String((s as any).locArgs?.[1] ?? '') === 15) {
+                            if (String((s as any).locArgs?.[1] ?? '') === '15') {
                               (s as any).part = 'breasts';
                             } else {
-                              if (String((s as any).locArgs?.[1] ?? '') === 16) {
+                              if (String((s as any).locArgs?.[1] ?? '') === '16') {
                                 (s as any).part = 'hair';
                               } else {
                                 (s as any).part = 'unknown';
@@ -1164,7 +1164,7 @@ function enterIsPrivateLocation(s: GameState, scene: SceneBuilder): void {
 function enterCheckPrivate(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'cum_manage', 'is_private_location');
   if ((!((s as any).result ?? 0))) {
-    if (String((s as any).locArgs?.[1] ?? '') === 2  ||  String((s as any).locArgs?.[1] ?? '') === 5  ||  String((s as any).locArgs?.[1] ?? '') === 6  ||  String((s as any).locArgs?.[1] ?? '') === 7  ||  String((s as any).locArgs?.[1] ?? '') === 8  ||  String((s as any).locArgs?.[1] ?? '') === 9  ||  String((s as any).locArgs?.[1] ?? '') === 10  ||  String((s as any).locArgs?.[1] ?? '') === 11  ||  String((s as any).locArgs?.[1] ?? '') === 13  ||  String((s as any).locArgs?.[1] ?? '') === 14  ||  String((s as any).locArgs?.[1] ?? '') === 16) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2'  ||  String((s as any).locArgs?.[1] ?? '') === '5'  ||  String((s as any).locArgs?.[1] ?? '') === '6'  ||  String((s as any).locArgs?.[1] ?? '') === '7'  ||  String((s as any).locArgs?.[1] ?? '') === '8'  ||  String((s as any).locArgs?.[1] ?? '') === '9'  ||  String((s as any).locArgs?.[1] ?? '') === '10'  ||  String((s as any).locArgs?.[1] ?? '') === '11'  ||  String((s as any).locArgs?.[1] ?? '') === '13'  ||  String((s as any).locArgs?.[1] ?? '') === '14'  ||  String((s as any).locArgs?.[1] ?? '') === '16') {
       (s as any).result = 1;
     }
   }
@@ -1174,12 +1174,12 @@ function enterCheckPrivate(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckInnerOverflow(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  if (String((s as any).locArgs?.[1] ?? '') === 0  ||  String((s as any).locArgs?.[1] ?? '') === -1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  ||  String((s as any).locArgs?.[1] ?? '') === -1) {
     if (((s as any).cumsumvag ?? 0) >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 0)  &&  ((s as any).isprok ?? 0) === 0  &&  (!((s as any).vibratorIN ?? 0))) {
       (s as any).result = 1;
     }
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 3  ||  String((s as any).locArgs?.[1] ?? '') === -1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '3'  ||  String((s as any).locArgs?.[1] ?? '') === -1) {
     if (((s as any).cumsumass ?? 0) >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 3)  &&  (!((s as any).analPlugIn ?? 0))) {
       (s as any).result = 1;
     }
@@ -1190,10 +1190,10 @@ function enterCheckInnerOverflow(s: GameState, scene: SceneBuilder): void {
 
 function enterGetInnerCapacity(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 1;
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     (s as any).result = Math.max(1, 3 * ((s as any).pcs_vag ?? 0) - 30 * ((s as any).vgape ?? 0) - Math.min(100, ((s as any).pcs_horny ?? 0)) / 10);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 3) {
+    if (String((s as any).locArgs?.[1] ?? '') === '3') {
       (s as any).result = Math.max(1, 6 * ((s as any).pcs_ass ?? 0) - 40 * ((s as any).agape ?? 0));
     }
   }
@@ -1262,7 +1262,7 @@ function enterCheckInside(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumDecay(s: GameState, scene: SceneBuilder): void {
-  if ((String((s as any).locArgs?.[1] ?? '') === 0  &&  (((s as any).menu_off ?? 0) === 1  ||  ((s as any).totminut ?? 0) < ((s as any).cumdectime ?? 0) + 15))  ||  ((s as any).cheatVars ?? 0)?.['no_cum_leak'] === 1) {
+  if ((String((s as any).locArgs?.[1] ?? '') === '0'  &&  (((s as any).menu_off ?? 0) === 1  ||  ((s as any).totminut ?? 0) < ((s as any).cumdectime ?? 0) + 15))  ||  ((s as any).cheatVars ?? 0)?.['no_cum_leak'] === 1) {
     return;
   }
   if (Object.keys((s as any).sparrvol ?? {}).length > 0) {
@@ -1357,10 +1357,10 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
       ((s as any).sparrvol = (s as any).sparrvol ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).sparrvol[((s as any).locArgs?.[1] ?? 0)] ?? 0) - (((s as any).cumamount ?? 0));
       (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) - (((s as any).cumamount ?? 0));
       ((s as any).cumvol = (s as any).cumvol ?? {})[0] = ((s as any).cumvol[0] ?? 0) - (((s as any).cumamount ?? 0));
-      (s as any).sexvolume = Math.max(((s as any).cumamount ?? 0)/10, ((s as any).cumamount ?? 0)/2 - ((String((s as any).locArgs?.[2] ?? '') === 0) ? (((s as any).isprokp ?? 0) * (Math.floor(Math.random() * 11) + 10)) : (0)));
+      (s as any).sexvolume = Math.max(((s as any).cumamount ?? 0)/10, ((s as any).cumamount ?? 0)/2 - ((String((s as any).locArgs?.[0] ?? '') === '0') ? (((s as any).isprokp ?? 0) * (Math.floor(Math.random() * 11) + 10)) : (0)));
       if (((s as any).sexvolume ?? 0) > 0) {
         (s as any).spafinloc = 1;
-        (s as any).sexunaware = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ((((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0))) : (0));
+        (s as any).sexunaware = ((String((s as any).locArgs?.[0] ?? '') === '0') ? ((((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0))) : (0));
         (s as any).sexspecpot = (-1);
         (s as any).cumnpcID = ((s as any).npcID ?? 0);
         (s as any).npcID = qspUntranslated(s, "sparrnam[ARGS[1]]", { location: "cum_manage" });
@@ -1369,7 +1369,7 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
         ((s as any).cumvol = (s as any).cumvol ?? {})[1] = ((s as any).cumvol[1] ?? 0) + (((s as any).sexvolume ?? 0));
         ((s as any).cumloc = (s as any).cumloc ?? {})[1] = 1;
       }
-      if (String((s as any).locArgs?.[2] ?? '') === 0) {
+      if (String((s as any).locArgs?.[0] ?? '') === '0') {
         if (((s as any).pantyworntype ?? 0) !== 'none'  ||  ((s as any).PCloPanties ?? 0) === 1) {
           if (((s as any).isprokp ?? 0) !== 1) {
             (s as any).spafinloc = 2;
@@ -1438,10 +1438,10 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
       ((s as any).sparrvol = (s as any).sparrvol ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).sparrvol[((s as any).locArgs?.[1] ?? 0)] ?? 0) - (((s as any).cumamount ?? 0));
       (s as any).cumsumass = ((s as any).cumsumass ?? 0) - (((s as any).cumamount ?? 0));
       ((s as any).cumvol = (s as any).cumvol ?? {})[3] = ((s as any).cumvol[3] ?? 0) - (((s as any).cumamount ?? 0));
-      (s as any).sexvolume = Math.max(((s as any).cumamount ?? 0)/10, ((s as any).cumamount ?? 0)/4 - ((String((s as any).locArgs?.[2] ?? '') === 0) ? (((s as any).isprokp ?? 0)*(Math.floor(Math.random() * 11) + 10)) : (0)));
+      (s as any).sexvolume = Math.max(((s as any).cumamount ?? 0)/10, ((s as any).cumamount ?? 0)/4 - ((String((s as any).locArgs?.[0] ?? '') === '0') ? (((s as any).isprokp ?? 0)*(Math.floor(Math.random() * 11) + 10)) : (0)));
       if (((s as any).sexvolume ?? 0) > 0) {
         (s as any).spafinloc = 1;
-        (s as any).sexunaware = ((String((s as any).locArgs?.[2] ?? '') === 0) ? ((((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0))) : (0));
+        (s as any).sexunaware = ((String((s as any).locArgs?.[0] ?? '') === '0') ? ((((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[String((s as any).locArgs?.[1] ?? '')] === -2) ? (1) : (0))) : (0));
         (s as any).sexspecpot = (-1);
         (s as any).cumnpcID = ((s as any).npcID ?? 0);
         (s as any).npcID = qspUntranslated(s, "sparrnam[ARGS[1]]", { location: "cum_manage" });

@@ -13,12 +13,12 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
   ((s as any).spellCompExec = (s as any).spellCompExec ?? {})[String((s as any).spellCompSize ?? 0)] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).spellTickExec = (s as any).spellTickExec ?? {})[String((s as any).spellCompSize ?? 0)] = ((s as any).locArgs?.[4] ?? 0);
   (s as any).spellCompSize = undefined;
-  if (String((s as any).locArgs?.[0] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     (s as any).BeforeTime = ((s as any).prevtotmin ?? 0);
   } else {
     (s as any).BeforeTime = ((s as any).locArgs?.[0] ?? 0);
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     (s as any).AfterTime = ((s as any).totminut ?? 0);
   } else {
     (s as any).AfterTime = ((s as any).locArgs?.[1] ?? 0);

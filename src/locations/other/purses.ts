@@ -179,7 +179,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   const num = (s as any).locArgs?.[2] ?? 0;
   if (type === '') return;
   if (num === 0) return;
-  qspCall(s, 'purse_attributes', type, num);
+  qspCall(s, 'purse_attributes', '', type, num);
   if (!((s as any).PursePrice ?? 0)) return;
   const purseVar = `${type}_purses`;
   ((s as any)[purseVar] = (s as any)[purseVar] ?? {})[num] = 1;
@@ -191,7 +191,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'none') {
@@ -222,7 +222,7 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -243,7 +243,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
   }
   if (arg1 === '' || arg1 === 'none') return;
   qspCall(s, 'purses', 'strip');
-  qspCall(s, 'purse_attributes', arg1, arg2);
+  qspCall(s, 'purse_attributes', '', arg1, arg2);
   if (!((s as any).PursePrice ?? 0)) return;
   if ((s as any).locArgs?.includes('check')) {
     const tempNotWearReason = qspFunc(s, 'purses', 'not_wear_reason', arg1, arg2, 'attributes_set');

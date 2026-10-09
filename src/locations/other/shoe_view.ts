@@ -305,7 +305,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'add') {
-    qspCall(s, 'shoe_attributes', (s as any).locArgs?.[2] ?? '', ((s as any).locArgs?.[3] ?? 0));
+    qspCall(s, 'shoe_attributes', '', (s as any).locArgs?.[2] ?? '', ((s as any).locArgs?.[3] ?? 0));
     if ((!((s as any).ShoQuality ?? 0))) {
       return;
     }
@@ -326,7 +326,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      qspCall(s, 'shoe_attributes', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
+      qspCall(s, 'shoe_attributes', '', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
         scene.img(`${qspFunc(s, '$shoe_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       }
@@ -346,7 +346,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      qspCall(s, 'shoe_attributes', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
+      qspCall(s, 'shoe_attributes', '', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0)]; enterListLine(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
@@ -405,7 +405,7 @@ function enterViewList(s: GameState, scene: SceneBuilder): void {
 
 function enterListLine(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'clothing');
-  qspCall(s, 'shoe_attributes', (s as any).locArgs?.[2] ?? '', ((s as any).locArgs?.[3] ?? 0));
+  qspCall(s, 'shoe_attributes', '', (s as any).locArgs?.[2] ?? '', ((s as any).locArgs?.[3] ?? 0));
   scene.text('<tr bgcolor=' + ((s as any).temp_bcolor ?? '') + '>');
   scene.img(`${qspFunc(s, '$shoe_image', '', ((s as any).locArgs?.[2] ?? ''), ((s as any).locArgs?.[3] ?? ''))}`);
   scene.text(`<td>${qspFunc(s, '$shoe_description', '', ((s as any).locArgs?.[2] ?? ''), ((s as any).locArgs?.[3] ?? ''))}</td>`);
@@ -454,7 +454,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount'] = ((s as any).locArgs?.[4] ?? 0);
   qspCall(s, 'stat', '');
   scene.img(`${qspFunc(s, '$shoe_image', '', (((s as any).shop_utils_view ?? 0)?.['type'] ?? ''), (((s as any).shop_utils_view ?? 0)?.['number'] ?? ''))}`);
-  qspCall(s, 'shoe_attributes', '$shop_utils_view[\'type\']', (((s as any).shop_utils_view ?? 0)?.['number']));
+  qspCall(s, 'shoe_attributes', '', '$shop_utils_view[\'type\']', (((s as any).shop_utils_view ?? 0)?.['number']));
   if (((s as any).ShoStyle ?? 0) === 1) {
     scene.text('This shoe is considered alternative style and makes you feel more assertive and aggressive.');
   }

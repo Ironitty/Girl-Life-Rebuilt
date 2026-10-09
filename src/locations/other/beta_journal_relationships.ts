@@ -617,7 +617,7 @@ function enterNpcPreview(s: GameState, scene: SceneBuilder): void {
 function enterVcard(s: GameState, scene: SceneBuilder): void {
   (s as any).quest_id = 'A\' + ARGS[1';
   (s as any).loc_id = 'beta_journal_quests';
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     dynamicGoto(s, 'loc_id');
   }
   if (((s as any).npc_quest ?? 0)?.['q_next'] === '') {

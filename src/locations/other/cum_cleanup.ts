@@ -229,14 +229,14 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
     (s as any).cumspclnt = undefined;
   }
   if (((s as any).trait_vars ?? 0)?.['cum_addict'] > 0) {
-    if (String((s as any).locArgs?.[0] ?? '') === 1  ||  String((s as any).locArgs?.[0] ?? '') === 10) {
+    if (String((s as any).locArgs?.[0] ?? '') === '1'  ||  String((s as any).locArgs?.[0] ?? '') === '10') {
       ((s as any).ARGS = (s as any).ARGS ?? {})[0] = 18;
     }
   }
   (s as any).spafinloc = undefined;
   (s as any).toclean = undefined;
   (s as any).deresidue = undefined;
-  if (String((s as any).locArgs?.[0] ?? '') === 1  ||  String((s as any).locArgs?.[0] ?? '') === 10) {
+  if (String((s as any).locArgs?.[0] ?? '') === '1'  ||  String((s as any).locArgs?.[0] ?? '') === '10') {
     if (((s as any).isprok ?? 0) === 0  &&  (!((s as any).vibratorIN ?? 0))) {
       (s as any).deresidue = [...((s as any).deresidue ?? []), 0];
     }
@@ -259,10 +259,10 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
     (s as any).toclean = [...((s as any).toclean ?? []), 15];
     (s as any).toclean = [...((s as any).toclean ?? []), 16];
   } else {
-    if (String((s as any).locArgs?.[0] ?? '') === 2) {
+    if (String((s as any).locArgs?.[0] ?? '') === '2') {
       (s as any).toclean = [...((s as any).toclean ?? []), 12];
     } else {
-      if (String((s as any).locArgs?.[0] ?? '') === 3) {
+      if (String((s as any).locArgs?.[0] ?? '') === '3') {
         (s as any).toclean = [...((s as any).toclean ?? []), 0];
         (s as any).toclean = [...((s as any).toclean ?? []), 3];
         (s as any).toclean = [...((s as any).toclean ?? []), 17];
@@ -270,7 +270,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
           scene.text('You have no reason to, but you carefully avoid cleaning out your pussy and ass.');
         }
       } else {
-        if (String((s as any).locArgs?.[0] ?? '') === 4) {
+        if (String((s as any).locArgs?.[0] ?? '') === '4') {
           (s as any).toclean = [...((s as any).toclean ?? []), 1];
           (s as any).toclean = [...((s as any).toclean ?? []), 4];
           (s as any).toclean = [...((s as any).toclean ?? []), 8];
@@ -282,39 +282,39 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
           (s as any).toclean = [...((s as any).toclean ?? []), 15];
           (s as any).toclean = [...((s as any).toclean ?? []), 16];
         } else {
-          if (String((s as any).locArgs?.[0] ?? '') === 5) {
+          if (String((s as any).locArgs?.[0] ?? '') === '5') {
             (s as any).toclean = [...((s as any).toclean ?? []), 16];
           } else {
-            if (String((s as any).locArgs?.[0] ?? '') === 6) {
+            if (String((s as any).locArgs?.[0] ?? '') === '6') {
               (s as any).toclean = [...((s as any).toclean ?? []), 2];
               (s as any).toclean = [...((s as any).toclean ?? []), 5];
               (s as any).toclean = [...((s as any).toclean ?? []), 6];
               (s as any).toclean = [...((s as any).toclean ?? []), 7];
             } else {
-              if (String((s as any).locArgs?.[0] ?? '') === 7) {
+              if (String((s as any).locArgs?.[0] ?? '') === '7') {
                 (s as any).toclean = [...((s as any).toclean ?? []), 3];
               } else {
-                if (String((s as any).locArgs?.[0] ?? '') === 8) {
+                if (String((s as any).locArgs?.[0] ?? '') === '8') {
                 } else {
-                  if (String((s as any).locArgs?.[0] ?? '') === 9) {
+                  if (String((s as any).locArgs?.[0] ?? '') === '9') {
                     (s as any).toclean = [...((s as any).toclean ?? []), 13];
                   } else {
-                    if (String((s as any).locArgs?.[0] ?? '') === 11) {
+                    if (String((s as any).locArgs?.[0] ?? '') === '11') {
                       (s as any).toclean = [...((s as any).toclean ?? []), 11];
                     } else {
-                      if (String((s as any).locArgs?.[0] ?? '') === 12) {
+                      if (String((s as any).locArgs?.[0] ?? '') === '12') {
                         (s as any).toclean = [...((s as any).toclean ?? []), 11];
                         (s as any).toclean = [...((s as any).toclean ?? []), 16];
                       } else {
-                        if (String((s as any).locArgs?.[0] ?? '') === 13) {
+                        if (String((s as any).locArgs?.[0] ?? '') === '13') {
                           (s as any).toclean = [...((s as any).toclean ?? []), 11];
                           (s as any).toclean = [...((s as any).toclean ?? []), 12];
                           (s as any).toclean = [...((s as any).toclean ?? []), 16];
                         } else {
-                          if (String((s as any).locArgs?.[0] ?? '') === 14) {
+                          if (String((s as any).locArgs?.[0] ?? '') === '14') {
                             (s as any).toclean = [...((s as any).toclean ?? []), 14];
                           } else {
-                            if (String((s as any).locArgs?.[0] ?? '') === 15) {
+                            if (String((s as any).locArgs?.[0] ?? '') === '15') {
                               (s as any).toclean = [...((s as any).toclean ?? []), 1];
                               (s as any).toclean = [...((s as any).toclean ?? []), 4];
                               (s as any).deresidue = [...((s as any).deresidue ?? []), 0];
@@ -323,14 +323,14 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
                                 scene.text('You have no reason to, but you carefully avoid cleaning out your pussy and ass.');
                               }
                             } else {
-                              if (String((s as any).locArgs?.[0] ?? '') === 16) {
+                              if (String((s as any).locArgs?.[0] ?? '') === '16') {
                                 (s as any).toclean = [...((s as any).toclean ?? []), 15];
                               } else {
-                                if (String((s as any).locArgs?.[0] ?? '') === 17) {
+                                if (String((s as any).locArgs?.[0] ?? '') === '17') {
                                   (s as any).toclean = [...((s as any).toclean ?? []), 9];
                                   (s as any).toclean = [...((s as any).toclean ?? []), 10];
                                 } else {
-                                  if (String((s as any).locArgs?.[0] ?? '') === 18) {
+                                  if (String((s as any).locArgs?.[0] ?? '') === '18') {
                                     (s as any).toclean = [...((s as any).toclean ?? []), 1];
                                     (s as any).toclean = [...((s as any).toclean ?? []), 2];
                                     (s as any).toclean = [...((s as any).toclean ?? []), 4];
@@ -347,7 +347,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
                                     (s as any).toclean = [...((s as any).toclean ?? []), 15];
                                     (s as any).toclean = [...((s as any).toclean ?? []), 16];
                                   } else {
-                                    if (String((s as any).locArgs?.[0] ?? '') === 20) {
+                                    if (String((s as any).locArgs?.[0] ?? '') === '20') {
                                       (s as any).sparrage = undefined;
                                       (s as any).sparrloc = undefined;
                                       (s as any).sparrnam = undefined;
@@ -385,7 +385,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp_cum_cleanup_pos ?? 0) >= 0) {
         if (((s as any).temp_cum_cleanup_pos ?? 0) < Object.keys((s as any).deresidue ?? {}).length) {
           if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 0) {
-            if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 0) === 1  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (String((s as any).locArgs?.[0] ?? '') === 10  ||  String((s as any).locArgs?.[0] ?? '') === 1  ||  String((s as any).locArgs?.[0] ?? '') === 3))))) {
+            if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 0) === 1  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (String((s as any).locArgs?.[0] ?? '') === '10'  ||  String((s as any).locArgs?.[0] ?? '') === '1'  ||  String((s as any).locArgs?.[0] ?? '') === '3'))))) {
               (s as any).isprok = 0;
               (s as any).vibratorIN = 0;
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -393,7 +393,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 3) {
-              if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 3) === 1  ||  String((s as any).locArgs?.[0] ?? '') === 7  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (String((s as any).locArgs?.[0] ?? '') === 10  ||  String((s as any).locArgs?.[0] ?? '') === 1  ||  String((s as any).locArgs?.[0] ?? '') === 3))))) {
+              if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 3) === 1  ||  String((s as any).locArgs?.[0] ?? '') === '7'  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (String((s as any).locArgs?.[0] ?? '') === '10'  ||  String((s as any).locArgs?.[0] ?? '') === '1'  ||  String((s as any).locArgs?.[0] ?? '') === '3'))))) {
                 (s as any).analPlugIn = 0;
                 (s as any).analPlugOut = 0;
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -418,8 +418,8 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 0) {
-            if (((s as any).cumsumvag ?? 0) * (Math.floor(Math.random() * 4) + 6) / 6 >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 0)  &&  ((s as any).isprok ?? 0) === 0  &&  ((s as any).vibratorIN ?? 0) === 0  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (String((s as any).locArgs?.[0] ?? '') === 10  ||  String((s as any).locArgs?.[0] ?? '') === 1  ||  String((s as any).locArgs?.[0] ?? '') === 3))))) {
-              if (String((s as any).locArgs?.[0] ?? '') === 3) {
+            if (((s as any).cumsumvag ?? 0) * (Math.floor(Math.random() * 4) + 6) / 6 >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 0)  &&  ((s as any).isprok ?? 0) === 0  &&  ((s as any).vibratorIN ?? 0) === 0  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (String((s as any).locArgs?.[0] ?? '') === '10'  ||  String((s as any).locArgs?.[0] ?? '') === '1'  ||  String((s as any).locArgs?.[0] ?? '') === '3'))))) {
+              if (String((s as any).locArgs?.[0] ?? '') === '3') {
                 (s as any).isprok = 0;
                 (s as any).vibratorIN = 0;
               }
@@ -429,8 +429,8 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 3) {
-              if ((((s as any).cumsumass ?? 0) * (Math.floor(Math.random() * 4) + 6) / 6 >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 3)  &&  ((s as any).analPlugIn ?? 0) === 0)  ||  String((s as any).locArgs?.[0] ?? '') === 7  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (String((s as any).locArgs?.[0] ?? '') === 10  ||  String((s as any).locArgs?.[0] ?? '') === 1  ||  String((s as any).locArgs?.[0] ?? '') === 3))))) {
-                if (String((s as any).locArgs?.[0] ?? '') === 3  ||  String((s as any).locArgs?.[0] ?? '') === 7) {
+              if ((((s as any).cumsumass ?? 0) * (Math.floor(Math.random() * 4) + 6) / 6 >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 3)  &&  ((s as any).analPlugIn ?? 0) === 0)  ||  String((s as any).locArgs?.[0] ?? '') === '7'  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (String((s as any).locArgs?.[0] ?? '') === '10'  ||  String((s as any).locArgs?.[0] ?? '') === '1'  ||  String((s as any).locArgs?.[0] ?? '') === '3'))))) {
+                if (String((s as any).locArgs?.[0] ?? '') === '3'  ||  String((s as any).locArgs?.[0] ?? '') === '7') {
                   (s as any).analPlugIn = 0;
                   (s as any).analPlugOut = 0;
                 }

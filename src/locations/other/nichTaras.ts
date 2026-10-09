@@ -742,7 +742,7 @@ function enterVan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVanAbduct(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.img('images/characters/city/taras/abduction.jpg');
     scene.text('As you pass the van the back door is suddenly opened. You have no time to react before a piece of cloth is pressed against your face.');
     scene.text('It smells sweetish… and you begin to black out.');
@@ -751,7 +751,7 @@ function enterVanAbduct(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['nichTaras', 'vanAbduct', '1'] },
     ]);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       scene.img('images/characters/city/taras/abductionVan.jpg');
       scene.text('You slowly come back to your senses. The first thing you realize is that you are completely tied up. You can\'t move at all.');
       scene.text('You open your eyes in panic. You are in the back area of the van and it is moving. You try to scream, but your mouth is taped shut.');

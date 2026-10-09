@@ -1188,7 +1188,7 @@ function enterSugarDaddyGiftCheck(s: GameState, scene: SceneBuilder): void {
       (s as any).newdress_id = (Math.floor(Math.random() * (((s as any).total ?? 0) - 1 + 1)) + (1));
       if (((s as any).moncheri_shoe ?? 0)?.[String((s as any).newdress_id ?? 0)] === 0) {
         ((s as any).moncheri_shoe = (s as any).moncheri_shoe ?? {})[String((s as any).newdress_id ?? 0)] = 1;
-        qspCall(s, 'shoe_attributes', 'moncheri', ((s as any).newdress_id ?? 0));
+        qspCall(s, 'shoe_attributes', '', 'moncheri', ((s as any).newdress_id ?? 0));
         ((s as any).moncheri_shoe_h = (s as any).moncheri_shoe_h ?? {})[String((s as any).newdress_id ?? 0)] = ((s as any).ShoMaxStrength ?? 0);
         scene.img(`images/pc/items/moncheri/shoes/${((s as any).newdress_id ?? '')}.jpg`);
       } else {

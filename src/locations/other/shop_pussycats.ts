@@ -540,7 +540,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
 
 function enter7(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_pussycats_index = (Math.floor(Math.random() * (qspFunc(s, 'clothing', 'get_total', 'cats_outfits') - 1 + 1)) + (1));
-  qspCall(s, 'clothing_attributes', 'cats_outfits', ((s as any).temp_pussycats_index ?? 0));
+  qspCall(s, 'clothing_attributes', '', 'cats_outfits', ((s as any).temp_pussycats_index ?? 0));
   scene.img(`images/pc/items/cats/outfits/${((s as any).temp_pussycats_index ?? '')}.jpg`);
   scene.text(`'Nastya approaches you. "This nice new blouse has a slight defect and the manager asked me to put it in the discount bin, but maybe you want to take it for yourself? It's normally ${qspFunc(s, 'money', 'string_price', ((s as any).CloPrice ?? ''))}, but you can have it for 720₽."'`);
   if (((s as any).cats_outfits ?? 0)?.[String((s as any).temp_pussycats_index ?? 0)] === 1) {

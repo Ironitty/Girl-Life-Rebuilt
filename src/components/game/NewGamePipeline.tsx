@@ -165,13 +165,7 @@ export default function NewGamePipeline({ onComplete }: { onComplete: () => void
     if (s.startMagic === 'magic') {
       set({ pcs_magik: 5, manamax: 100, pcs_mana: 50 });
     }
-    let loc = 'pav_residential';
-    let arg = 'wake';
-    if (s.startLoc === 'sg' && s.startLocation === 1) {
-      loc = 'gad_residential';
-      arg = 'wake';
-    }
-    doGoto(loc, arg);
+    doGoto('intro_game_start', 'quick_start');
     onComplete();
   }, [s, set, doGoto, onComplete]);
 

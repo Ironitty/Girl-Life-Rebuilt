@@ -163,97 +163,97 @@ function enterGetClass(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBodyImgTotals(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     (s as any).result = 2;
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 6) {
+    if (String((s as any).locArgs?.[1] ?? '') === '6') {
       (s as any).result = 2;
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 100) {
+      if (String((s as any).locArgs?.[1] ?? '') === '100') {
         (s as any).result = 4;
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 106) {
+        if (String((s as any).locArgs?.[1] ?? '') === '106') {
           (s as any).result = 3;
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 200) {
+          if (String((s as any).locArgs?.[1] ?? '') === '200') {
             (s as any).result = 2;
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 206) {
+            if (String((s as any).locArgs?.[1] ?? '') === '206') {
               (s as any).result = 4;
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 207) {
+              if (String((s as any).locArgs?.[1] ?? '') === '207') {
                 (s as any).result = 3;
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 208) {
+                if (String((s as any).locArgs?.[1] ?? '') === '208') {
                   (s as any).result = 1;
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 210) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '210') {
                     (s as any).result = 1;
                   } else {
-                    if (String((s as any).locArgs?.[1] ?? '') === 213) {
+                    if (String((s as any).locArgs?.[1] ?? '') === '213') {
                       (s as any).result = 1;
                     } else {
-                      if (String((s as any).locArgs?.[1] ?? '') === 215) {
+                      if (String((s as any).locArgs?.[1] ?? '') === '215') {
                         (s as any).result = 1;
                       } else {
-                        if (String((s as any).locArgs?.[1] ?? '') === 300) {
+                        if (String((s as any).locArgs?.[1] ?? '') === '300') {
                           (s as any).result = 3;
                         } else {
-                          if (String((s as any).locArgs?.[1] ?? '') === 306) {
+                          if (String((s as any).locArgs?.[1] ?? '') === '306') {
                             (s as any).result = 3;
                           } else {
-                            if (String((s as any).locArgs?.[1] ?? '') === 307) {
+                            if (String((s as any).locArgs?.[1] ?? '') === '307') {
                               (s as any).result = 1;
                             } else {
-                              if (String((s as any).locArgs?.[1] ?? '') === 308) {
+                              if (String((s as any).locArgs?.[1] ?? '') === '308') {
                                 (s as any).result = 1;
                               } else {
-                                if (String((s as any).locArgs?.[1] ?? '') === 400) {
+                                if (String((s as any).locArgs?.[1] ?? '') === '400') {
                                   (s as any).result = 2;
                                 } else {
-                                  if (String((s as any).locArgs?.[1] ?? '') === 406) {
+                                  if (String((s as any).locArgs?.[1] ?? '') === '406') {
                                     (s as any).result = 2;
                                   } else {
-                                    if (String((s as any).locArgs?.[1] ?? '') === 500) {
+                                    if (String((s as any).locArgs?.[1] ?? '') === '500') {
                                       (s as any).result = 3;
                                     } else {
-                                      if (String((s as any).locArgs?.[1] ?? '') === 506) {
+                                      if (String((s as any).locArgs?.[1] ?? '') === '506') {
                                         (s as any).result = 2;
                                       } else {
-                                        if (String((s as any).locArgs?.[1] ?? '') === 600) {
+                                        if (String((s as any).locArgs?.[1] ?? '') === '600') {
                                           (s as any).result = 1;
                                         } else {
-                                          if (String((s as any).locArgs?.[1] ?? '') === 700) {
+                                          if (String((s as any).locArgs?.[1] ?? '') === '700') {
                                             (s as any).result = 2;
                                           } else {
-                                            if (String((s as any).locArgs?.[1] ?? '') === 800) {
+                                            if (String((s as any).locArgs?.[1] ?? '') === '800') {
                                               (s as any).result = 1;
                                             } else {
-                                              if (String((s as any).locArgs?.[1] ?? '') === 1000) {
+                                              if (String((s as any).locArgs?.[1] ?? '') === '1000') {
                                                 (s as any).result = 1;
                                               } else {
-                                                if (String((s as any).locArgs?.[1] ?? '') === 2000) {
+                                                if (String((s as any).locArgs?.[1] ?? '') === '2000') {
                                                   (s as any).result = 1;
                                                 } else {
-                                                  if (String((s as any).locArgs?.[1] ?? '') === 3000) {
+                                                  if (String((s as any).locArgs?.[1] ?? '') === '3000') {
                                                     (s as any).result = 1;
                                                   } else {
-                                                    if (String((s as any).locArgs?.[1] ?? '') === 4000) {
+                                                    if (String((s as any).locArgs?.[1] ?? '') === '4000') {
                                                       (s as any).result = 1;
                                                     } else {
-                                                      if (String((s as any).locArgs?.[1] ?? '') === 5000) {
+                                                      if (String((s as any).locArgs?.[1] ?? '') === '5000') {
                                                         (s as any).result = 1;
                                                       } else {
-                                                        if (String((s as any).locArgs?.[1] ?? '') === 6000) {
+                                                        if (String((s as any).locArgs?.[1] ?? '') === '6000') {
                                                           (s as any).result = 1;
                                                         } else {
-                                                          if (String((s as any).locArgs?.[1] ?? '') === 7000) {
+                                                          if (String((s as any).locArgs?.[1] ?? '') === '7000') {
                                                             (s as any).result = 1;
                                                           } else {
-                                                            if (String((s as any).locArgs?.[1] ?? '') === 8000) {
+                                                            if (String((s as any).locArgs?.[1] ?? '') === '8000') {
                                                               (s as any).result = 1;
                                                             } else {
-                                                              if (String((s as any).locArgs?.[1] ?? '') === 9000) {
+                                                              if (String((s as any).locArgs?.[1] ?? '') === '9000') {
                                                                 (s as any).result = 1;
                                                               }
                                                             }
@@ -305,10 +305,10 @@ function enterBodyImgTransform(s: GameState, scene: SceneBuilder): void {
           if (String((s as any).locArgs?.[1] ?? '') < 206) {
             (s as any).result = 200;
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 206) {
+            if (String((s as any).locArgs?.[1] ?? '') === '206') {
               (s as any).result = 206;
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 207) {
+              if (String((s as any).locArgs?.[1] ?? '') === '207') {
                 (s as any).result = 207;
               } else {
                 if (String((s as any).locArgs?.[1] ?? '') < 210) {
@@ -326,10 +326,10 @@ function enterBodyImgTransform(s: GameState, scene: SceneBuilder): void {
                         if (String((s as any).locArgs?.[1] ?? '') < 306) {
                           (s as any).result = 300;
                         } else {
-                          if (String((s as any).locArgs?.[1] ?? '') === 306) {
+                          if (String((s as any).locArgs?.[1] ?? '') === '306') {
                             (s as any).result = 306;
                           } else {
-                            if (String((s as any).locArgs?.[1] ?? '') === 307) {
+                            if (String((s as any).locArgs?.[1] ?? '') === '307') {
                               (s as any).result = 307;
                             } else {
                               if (String((s as any).locArgs?.[1] ?? '') < 310) {
@@ -483,31 +483,31 @@ function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).result ?? 0) + ('/');
   if (String((s as any).locArgs?.[1] ?? '') >= 1000) {
     (s as any).result = ((s as any).result ?? 0) + ('0/');
-    if (String((s as any).locArgs?.[1] ?? '') === 1000) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1000') {
       (s as any).result = ((s as any).result ?? 0) + ('0');
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2000) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2000') {
         (s as any).result = ((s as any).result ?? 0) + ('1');
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 3000) {
+        if (String((s as any).locArgs?.[1] ?? '') === '3000') {
           (s as any).result = ((s as any).result ?? 0) + ('2');
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 4000) {
+          if (String((s as any).locArgs?.[1] ?? '') === '4000') {
             (s as any).result = ((s as any).result ?? 0) + ('3');
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 5000) {
+            if (String((s as any).locArgs?.[1] ?? '') === '5000') {
               (s as any).result = ((s as any).result ?? 0) + ('4');
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 6000) {
+              if (String((s as any).locArgs?.[1] ?? '') === '6000') {
                 (s as any).result = ((s as any).result ?? 0) + ('5');
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 7000) {
+                if (String((s as any).locArgs?.[1] ?? '') === '7000') {
                   (s as any).result = ((s as any).result ?? 0) + ('6');
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 8000) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '8000') {
                     (s as any).result = ((s as any).result ?? 0) + ('7');
                   } else {
-                    if (String((s as any).locArgs?.[1] ?? '') === 9000) {
+                    if (String((s as any).locArgs?.[1] ?? '') === '9000') {
                       (s as any).result = ((s as any).result ?? 0) + ('8');
                     }
                   }
@@ -522,55 +522,55 @@ function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
     return;
   }
   ((s as any).ARGS = (s as any).ARGS ?? {})[2] = (((s as any).locArgs?.[1] ?? 0) % 100);
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     (s as any).result = ((s as any).result ?? 0) + ('0_low_');
   } else {
-    if (String((s as any).locArgs?.[2] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).result = ((s as any).result ?? 0) + ('1_???_');
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === '2') {
         (s as any).result = ((s as any).result ?? 0) + ('2_???_');
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 3) {
+        if (String((s as any).locArgs?.[3] ?? '') === '3') {
           (s as any).result = ((s as any).result ?? 0) + ('3_???_');
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 4) {
+          if (String((s as any).locArgs?.[4] ?? '') === '4') {
             (s as any).result = ((s as any).result ?? 0) + ('4_???_');
           } else {
-            if (String((s as any).locArgs?.[2] ?? '') === 5) {
+            if (String((s as any).locArgs?.[5] ?? '') === '5') {
               (s as any).result = ((s as any).result ?? 0) + ('5_???_');
             } else {
-              if (String((s as any).locArgs?.[2] ?? '') === 6) {
+              if (String((s as any).locArgs?.[6] ?? '') === '6') {
                 (s as any).result = ((s as any).result ?? 0) + ('6_mid_');
               } else {
-                if (String((s as any).locArgs?.[2] ?? '') === 7) {
+                if (String((s as any).locArgs?.[7] ?? '') === '7') {
                   (s as any).result = ((s as any).result ?? 0) + ('7_high_');
                 } else {
-                  if (String((s as any).locArgs?.[2] ?? '') === 8) {
+                  if (String((s as any).locArgs?.[8] ?? '') === '8') {
                     (s as any).result = ((s as any).result ?? 0) + ('8_strong_');
                   } else {
-                    if (String((s as any).locArgs?.[2] ?? '') === 9) {
+                    if (String((s as any).locArgs?.[9] ?? '') === '9') {
                       (s as any).result = ((s as any).result ?? 0) + ('9_???_');
                     } else {
-                      if (String((s as any).locArgs?.[2] ?? '') === 10) {
+                      if (String((s as any).locArgs?.[10] ?? '') === '10') {
                         (s as any).result = ((s as any).result ?? 0) + ('10_vstrong_');
                       } else {
-                        if (String((s as any).locArgs?.[2] ?? '') === 11) {
+                        if (String((s as any).locArgs?.[11] ?? '') === '11') {
                           (s as any).result = ((s as any).result ?? 0) + ('11_???_');
                         } else {
-                          if (String((s as any).locArgs?.[2] ?? '') === 12) {
+                          if (String((s as any).locArgs?.[12] ?? '') === '12') {
                             (s as any).result = ((s as any).result ?? 0) + ('12_???_');
                           } else {
-                            if (String((s as any).locArgs?.[2] ?? '') === 13) {
+                            if (String((s as any).locArgs?.[13] ?? '') === '13') {
                               (s as any).result = ((s as any).result ?? 0) + ('13_bbuilder_');
                             } else {
-                              if (String((s as any).locArgs?.[2] ?? '') === 14) {
+                              if (String((s as any).locArgs?.[14] ?? '') === '14') {
                                 (s as any).result = ((s as any).result ?? 0) + ('14_???_');
                               } else {
-                                if (String((s as any).locArgs?.[2] ?? '') === 15) {
+                                if (String((s as any).locArgs?.[15] ?? '') === '15') {
                                   (s as any).result = ((s as any).result ?? 0) + ('15_hulk_');
                                 } else {
-                                  if (String((s as any).locArgs?.[2] ?? '') === 16) {
+                                  if (String((s as any).locArgs?.[16] ?? '') === '16') {
                                     (s as any).result = ((s as any).result ?? 0) + ('16_???_');
                                   } else {
                                     (s as any).result = ((s as any).result ?? 0) + ('17_???_');
@@ -932,55 +932,55 @@ function enterAppearanceBonusFromClass(s: GameState, scene: SceneBuilder): void 
     }
   }
   ((s as any).ARGS = (s as any).ARGS ?? {})[2] = (((s as any).locArgs?.[1] ?? 0) % 100);
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     (s as any).result = ((s as any).result ?? 0) - (30);
   } else {
-    if (String((s as any).locArgs?.[2] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).result = ((s as any).result ?? 0) - (20);
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === '2') {
         (s as any).result = ((s as any).result ?? 0) - (15);
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 3) {
+        if (String((s as any).locArgs?.[3] ?? '') === '3') {
           (s as any).result = ((s as any).result ?? 0) - (10);
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 4) {
+          if (String((s as any).locArgs?.[4] ?? '') === '4') {
             (s as any).result = ((s as any).result ?? 0) - (5);
           } else {
-            if (String((s as any).locArgs?.[2] ?? '') === 5) {
+            if (String((s as any).locArgs?.[5] ?? '') === '5') {
               (s as any).result = ((s as any).result ?? 0) + (0);
             } else {
-              if (String((s as any).locArgs?.[2] ?? '') === 6) {
+              if (String((s as any).locArgs?.[6] ?? '') === '6') {
                 (s as any).result = ((s as any).result ?? 0) + (5);
               } else {
-                if (String((s as any).locArgs?.[2] ?? '') === 7) {
+                if (String((s as any).locArgs?.[7] ?? '') === '7') {
                   (s as any).result = ((s as any).result ?? 0) + (10);
                 } else {
-                  if (String((s as any).locArgs?.[2] ?? '') === 8) {
+                  if (String((s as any).locArgs?.[8] ?? '') === '8') {
                     (s as any).result = ((s as any).result ?? 0) + (5);
                   } else {
-                    if (String((s as any).locArgs?.[2] ?? '') === 9) {
+                    if (String((s as any).locArgs?.[9] ?? '') === '9') {
                       (s as any).result = ((s as any).result ?? 0) + (0);
                     } else {
-                      if (String((s as any).locArgs?.[2] ?? '') === 10) {
+                      if (String((s as any).locArgs?.[10] ?? '') === '10') {
                         (s as any).result = ((s as any).result ?? 0) - (5);
                       } else {
-                        if (String((s as any).locArgs?.[2] ?? '') === 11) {
+                        if (String((s as any).locArgs?.[11] ?? '') === '11') {
                           (s as any).result = ((s as any).result ?? 0) - (15);
                         } else {
-                          if (String((s as any).locArgs?.[2] ?? '') === 12) {
+                          if (String((s as any).locArgs?.[12] ?? '') === '12') {
                             (s as any).result = ((s as any).result ?? 0) - (30);
                           } else {
-                            if (String((s as any).locArgs?.[2] ?? '') === 13) {
+                            if (String((s as any).locArgs?.[13] ?? '') === '13') {
                               (s as any).result = ((s as any).result ?? 0) - (45);
                             } else {
-                              if (String((s as any).locArgs?.[2] ?? '') === 14) {
+                              if (String((s as any).locArgs?.[14] ?? '') === '14') {
                                 (s as any).result = ((s as any).result ?? 0) - (60);
                               } else {
-                                if (String((s as any).locArgs?.[2] ?? '') === 15) {
+                                if (String((s as any).locArgs?.[15] ?? '') === '15') {
                                   (s as any).result = ((s as any).result ?? 0) - (75);
                                 } else {
-                                  if (String((s as any).locArgs?.[2] ?? '') === 16) {
+                                  if (String((s as any).locArgs?.[16] ?? '') === '16') {
                                     (s as any).result = ((s as any).result ?? 0) - (100);
                                   } else {
                                     (s as any).result = ((s as any).result ?? 0) - (130);

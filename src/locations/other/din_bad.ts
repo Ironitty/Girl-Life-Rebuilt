@@ -406,19 +406,19 @@ function enterDin_Do_Condom_Counts(s: GameState, scene: SceneBuilder): void {
   scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     scene.text('Use a condom the next time you have sex.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'normal']; enterSetCondomUsed(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       scene.text('You will not use a condom the next time you have sex.');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'none']; enterSetCondomUsed(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === '3') {
         scene.text('Use your sabotaged condom the next time you have sex.');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sabotaged']; enterSetCondomUsed(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 4) {
+        if (String((s as any).locArgs?.[1] ?? '') === '4') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSabotageACondom(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
@@ -674,7 +674,7 @@ function enterDTabletkiedt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     (s as any).tabletkipd = ((s as any).tabletkipd ?? 0) + (((s as any).tabletkipt ?? 0));
     if (((s as any).tabletkiday ?? 0) !== ((s as any).daystart ?? 0)) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTakepill(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -689,18 +689,18 @@ function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
     scene.text('You take your birth control pill.');
     qspCall(s, 'stat', '');
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       ((s as any).birth_control = (s as any).birth_control ?? {})['remind_hour'] = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetAutoBc(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.text('You will do your best to remember to take your birth control pills every day.');
       qspCall(s, 'stat', '');
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === '3') {
         scene.text('You will take your birth control pills as you desire.');
         (s as any).tabletkicheck = 0;
         qspCall(s, 'stat', '');
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 4) {
+        if (String((s as any).locArgs?.[1] ?? '') === '4') {
           if (((s as any).pcs_intel ?? 0) + ((s as any).pilldays ?? 0) <= (Math.floor(Math.random() * 66) + 30)  ||  ((s as any).therapistFuckedPussyStage ?? 0) > 1) {
             scene.text('These pills appear to be normal birth control pills.');
             (s as any).tabletkioddk = 0;
@@ -742,7 +742,7 @@ function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
             }
           }
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 5) {
+          if (String((s as any).locArgs?.[1] ?? '') === '5') {
             scene.text('You get rid of the strange pills.');
             (s as any).tabletkioddk = 0;
             ((s as any).pillsleft = (s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = 0;
@@ -881,7 +881,7 @@ function enterDCycreportChoice(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     if (((s as any).knowpreg ?? 0) === 1) {
       (s as any).denypreg = 1;
       (s as any).thinkpreg = 0;
@@ -893,14 +893,14 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportChoice(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       (s as any).thinkpreg = 1;
       (s as any).denypreg = 0;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspCall(s, 'stat', '');
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportChoice(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === '3') {
         (s as any).thinkpreg = 0;
         (s as any).denypreg = 0;
         (s as any).daylastperiod = ((s as any).daystart ?? 0);
@@ -908,7 +908,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportChoice(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 4) {
+        if (String((s as any).locArgs?.[1] ?? '') === '4') {
           (s as any).thinkpreg = 0;
           (s as any).denypreg = 0;
           scene.text('<center><h1>Fertility Cycle</h1></center>');
@@ -928,7 +928,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 5) {
+          if (String((s as any).locArgs?.[1] ?? '') === '5') {
             if (((s as any).knowpreg ?? 0) === 1) {
               (s as any).denypreg = 1;
             } else {
@@ -939,7 +939,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportChoice(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 6) {
+            if (String((s as any).locArgs?.[1] ?? '') === '6') {
               scene.text('<center><h1>Fertility Cycle</h1></center>');
               scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
               scene.text('<td width="250" cellspacing="0" cellpadding="0" valign="top">');
@@ -957,7 +957,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
   } },
               ]);
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 7) {
+              if (String((s as any).locArgs?.[1] ?? '') === '7') {
                 scene.text('<center><h1>Fertility Cycle</h1></center>');
                 scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
                 scene.text('<td width="500" cellspacing="0" cellpadding="0" valign="top">');
@@ -991,13 +991,13 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
   } },
                 ]);
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 8) {
+                if (String((s as any).locArgs?.[1] ?? '') === '8') {
                   (s as any).thinkpreg = 0;
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
                   qspCall(s, 'stat', '');
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportChoice(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 10) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '10') {
                     (s as any).temp = 0;
                     (s as any).temp = ((s as any).temp ?? 0) - (1);
                     (s as any).cycreport_txt = 'You are currently recovering from childbirth. You gave birth on ' + (((s as any).monthkid ?? 0)?.[String((s as any).temp ?? 0)] ?? 0) + ' / ' + (((s as any).daykid ?? 0)?.[String((s as any).temp ?? 0)] ?? 0) + ' / ' + (((s as any).yearkid ?? 0)?.[String((s as any).temp ?? 0)] ?? 0) + '.';
@@ -1493,6 +1493,7 @@ function enterComputeBcStatus(s: GameState, scene: SceneBuilder): void {
 
 function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_state'] = '';
+  ((s as any).stat_texts = (s as any).stat_texts ?? {})['cycle_feel'] = '';
   if (((s as any).succubusflag ?? 0) === 1  &&  (!((s as any).preg ?? 0))) {
     return;
   }

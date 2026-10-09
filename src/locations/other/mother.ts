@@ -493,7 +493,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (qspFunc(s, 'clothing', 'is_owned', 'gm_dress', ((st as any).numrand ?? 0))) {
             break;
           }
-          qspCall(st, 'clothing_attributes', 'gm_dress', ((st as any).numrand ?? 0));
+          qspCall(st, 'clothing_attributes', '', 'gm_dress', ((st as any).numrand ?? 0));
           if (((st as any).CloStyle ?? 0) === 4  ||  ((st as any).CloProstitute ?? 0) === 1) {
             break;
           }
@@ -507,7 +507,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (qspFunc(s, 'clothing', 'is_owned', 'gm_outfits', ((st as any).numrand ?? 0))) {
             break;
           }
-          qspCall(st, 'clothing_attributes', 'gm_outfits', ((st as any).numrand ?? 0));
+          qspCall(st, 'clothing_attributes', '', 'gm_outfits', ((st as any).numrand ?? 0));
           if (((st as any).CloStyle ?? 0) === 4  ||  ((st as any).CloProstitute ?? 0) === 1) {
             break;
           }

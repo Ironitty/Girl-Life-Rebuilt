@@ -142,10 +142,10 @@ function enterRestaurauntIntImg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestaurantTalkingImg(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     scene.img('images/shared/romance/dates/casual_dining/talking1.jpg');
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       scene.img('images/shared/romance/dates/casual_dining/talking2.jpg');
     } else {
       scene.img('images/shared/romance/dates/casual_dining/talking1.jpg');

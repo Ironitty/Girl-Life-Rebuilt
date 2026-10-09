@@ -794,7 +794,7 @@ function enterFirstTimeKatjaTitjob(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstTimeRide(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/first_time_11.jpg');
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     scene.text('"You go first," Katja says and you climb onto his still extremely hard cock.');
   } else {
     scene.text('"Let\'s change position," Katja says, "Great, because I\'m getting tired!" Artem answers with a smile.');

@@ -199,37 +199,37 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).vikachatday = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.text('You start chatting with Vika and she tells you about the boys she\'s met, the parties she\'s been to and the cosmetics she\'s bought.');
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       scene.text('She says she was in a cafe when she was invited to dance by a guy who then paid her bill.');
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         scene.text('She says that working as a stripper is a rather profitable job for students, though clients are very grabby.');
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 3) {
+        if (String((s as any).locArgs?.[1] ?? '') === '3') {
           scene.text('She tells you that a few girls from the track team go to the European level sports competitions and earn big money, but admits that she\'s too lazy to put in the effort to make the team.');
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 4) {
+          if (String((s as any).locArgs?.[1] ?? '') === '4') {
             scene.text('She tells you that she always buys birth control pills at the pharmacy, which came in useful one time when one of her friends couldn\'t pull out in time and gave her a creampie.');
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 5) {
+            if (String((s as any).locArgs?.[1] ?? '') === '5') {
               scene.text('She tells you about the time she walked too deep into the park and a stranger offered her money in exchange for sex.');
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 6) {
+              if (String((s as any).locArgs?.[1] ?? '') === '6') {
                 scene.text('She tells about the time she did a nude photoshoot at the photography studio, but that it\'s bad for your reputation to do so.');
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 7) {
+                if (String((s as any).locArgs?.[1] ?? '') === '7') {
                   scene.text('She tells a story about how a girl who never washed or shaved. She smelled <i>awful</i> and rumor was that she ended up with a vaginal infection.');
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 8) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '8') {
                     scene.text('Vika says that she buys tampons and always keeps a reserve of them, even if she is on the birth control shot.');
                   } else {
-                    if (String((s as any).locArgs?.[1] ?? '') === 9) {
+                    if (String((s as any).locArgs?.[1] ?? '') === '9') {
                       scene.text('She tells how one of her guys likes anal sex, and that she let him fuck her ass even though she didn\'t have any lube. She tells you how it hurt a lot at first before she started to like it.');
                     } else {
-                      if (String((s as any).locArgs?.[1] ?? '') === 10) {
+                      if (String((s as any).locArgs?.[1] ?? '') === '10') {
                         scene.text('She tells how she needs to buy a new swimsuit for sunbathing at the beach.');
                       } else {
                         scene.text('She tells you that swimming is a great way to keep yourself in shape, even if she is too lazy to do it herself.');

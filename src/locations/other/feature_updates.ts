@@ -1,4 +1,4 @@
-import { qspFunc, dynamicGoto } from '../_shared/qspBridge';
+import { qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -121,7 +121,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
 { label: 'Exit', handler: (st: GameState) => {
-    dynamicGoto(st, 'ARGS[1]');
+    qspGoto(st, String((st as any).locArgs?.[1] ?? ''), '');
   } },
 ]);
   return;

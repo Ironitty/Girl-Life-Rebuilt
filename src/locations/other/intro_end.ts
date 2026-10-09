@@ -90,7 +90,7 @@ function enterSetRandomUniElectives(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSgTg(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.img(`${qspFunc(s, '$face_image', '')}`);
     scene.text('You couldn\'t tell from her photo, but although shorter than you, she is rather tall for a girl.');
     scene.text('She looks like she\'s spent some time in front of the mirror trying to pretty herself up, and her clothes are very clean. Nevertheless, she still looks blurry in the mirror. Like she is the type of girl that would be a background character in another person\'s life.');
@@ -160,7 +160,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).music_loop = 0;
       (s as any).bcolor = 0;
       (s as any).lcolor = 0;
@@ -299,7 +299,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
         scene.text(`Shortly after Tatiana left, ${((s as any).pcs_nickname ?? '')}'s new mother showed up to take her to her new home. ${((s as any).pcs_nickname ?? '')} met her new family and did the best she could to fit in, afraid of them figuring out that she isn't really ${((s as any).pcs_firstname ?? '')}. They seem to have bought Tatiana's explanation of amnesia and mental trauma, going out of their way to reintroduce her to her new life.`);
         scene.actions([
@@ -392,7 +392,7 @@ function enterUniTg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUniShared(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.img('images/characters/shared/headshots_main/big28.jpg');
     scene.text('Having spent almost an hour in the cramped truck, you jump out as soon as you arrive. Vladimir gets out and stretches before telling you to take your sister and find out where you\'re staying while the rest of the family unloads your stuff.');
     scene.text('Looking around, you see many people doing the same.');
@@ -425,7 +425,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       qspCall(s, 'homes_properties', 'give_access', 'parents_home');
       ((s as any).gschoolVars = (s as any).gschoolVars ?? {})['school_diploma'] = 1;
       qspCall(s, 'homes_properties', 'set_home', 'university_dorm');
@@ -443,7 +443,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         scene.img('images/system/1_openings/6_uni/degree_choice.jpg');
         scene.text('It\'s possible to enroll in up to 3 elective classes, which have to be chosen now.');
         scene.text('Computer Class and Asian Studies are in the same timeslot Monday afternoon, Art class on Tuesday afternoon, Psychology and African Studies in the same timeslot Thursday afternoon.');
@@ -546,7 +546,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
           { label: 'Don\'t enroll in any more elective classes', goto: ['intro_end', 'uni_shared', '3'] },
         ]);
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 3) {
+        if (String((s as any).locArgs?.[1] ?? '') === '3') {
           scene.img('images/locations/city/island/university/dorm/dorm.jpg');
           scene.text('You follow Diane into the dorm building where an older woman with a very unpleasant and judgmental look on her face sits in a room just off the main hallway.');
           scene.text(`Diane walks up to her. "I need ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}'s room key, please."`);
@@ -611,7 +611,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 4) {
+          if (String((s as any).locArgs?.[1] ?? '') === '4') {
             scene.img('images/locations/city/island/university/uni_day.jpg');
             scene.text('You rejoin Anya and Diane, who begins to point out the main areas of the university.');
             scene.text('"Right now you\'re in the main courtyard. It\'s basically the main hub of the university. You already know where the dorms are, and I imagine you\'ve been to the admin building already. It has all the main offices, so any paperwork or trouble you get into will be handled there."');
@@ -708,7 +708,7 @@ function enterCityTg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCityShared(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.img('images/characters/shared/headshots_main/big28.jpg');
     scene.text('Having spent almost an hour in the cramped truck, you jump out as soon as you arrive. Vladimir gets out and stretches before heading to the back of the Gazelle to start unloading your stuff.');
     scene.actions([
@@ -744,7 +744,7 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       scene.img('images/characters/shared/headshots_main/big29.jpg');
       scene.text(`Your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} finally comes inside, carrying food she made ahead of time for everyone.`);
       scene.text(`"${((s as any).pcs_nickname ?? '')}, this is a pretty rough neighborhood. You need to be really careful of those boys outside. The sooner university starts and you can get out of here, the better. I don't know why you couldn't just wait until summer ended to move to the city."`);
@@ -778,7 +778,7 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         scene.img('images/locations/pavlovsk/resident/apartment/home/dinnerhome.jpg');
         if (((s as any).npc_rel ?? 0)?.['A29'] >= 60) {
           scene.text(`Your ${(((s as any).npc_nickname ?? 0)?.['A29'] ?? '')} hands you a plate with a big smile as you all sit down at your kitchen table.`);

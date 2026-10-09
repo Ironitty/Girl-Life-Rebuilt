@@ -6,8 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing', 'reset_CloVars');
-  if (hasLocation('$attributes_' + (String((s as any).locArgs?.[0] ?? '')))) {
-    qspCall(s, '$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '', '', ((s as any).locArgs?.[1] ?? 0));
+  if (hasLocation('_attributes_' + (String((s as any).locArgs?.[0] ?? '')))) {
+    qspCall(s, '_attributes_' + ((s as any).locArgs?.[0] ?? 0) + '', String((s as any).locArgs?.[1] ?? 0));
   }
   if ((!((s as any).CloQuality ?? 0))) {
     return;

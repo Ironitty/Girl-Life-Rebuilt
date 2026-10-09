@@ -29,7 +29,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
       scene.text('' + ((s as any).locArgs?.[2] ?? 0) + '_h[' + ((s as any).locArgs?.[3] ?? 0) + '] += rand(' + ((s as any).locArgs?.[6] ?? 0) + ', 0)');
     }
   }
-  if (String((s as any).locArgs?.[7] ?? '') === 1) {
+  if (String((s as any).locArgs?.[7] ?? '') === '1') {
     qspCall(s, (s as any).locArgs?.[1] ?? '', 'wear', ((s as any).temp_type ?? 0), ((s as any).locArgs?.[3] ?? 0));
   }
   (s as any).temp_type = undefined;

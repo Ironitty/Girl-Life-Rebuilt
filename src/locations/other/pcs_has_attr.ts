@@ -406,7 +406,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 break;
               }
               (s as any).result = 0;
-              if (String((s as any).locArgs?.[1] ?? '') === 0) {
+              if (String((s as any).locArgs?.[1] ?? '') === '0') {
                 (s as any).pha_i = 1;
                 (s as any).pha_target = 1;
               } else {

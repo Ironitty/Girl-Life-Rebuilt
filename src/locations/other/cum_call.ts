@@ -61,7 +61,7 @@ function enterPrecum(s: GameState, scene: SceneBuilder): void {
                               if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('mouth_swallow') : -1) >= 0) {
                                 (s as any).spafinloc = 12;
                                 ((s as any).stat = (s as any).stat ?? {})['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
-                                if (String((s as any).locArgs?.[2] ?? '') === 2) {
+                                if (String((s as any).locArgs?.[2] ?? '') === '2') {
                                   ((s as any).stat = (s as any).stat ?? {})['swallow_unaware'] = ((s as any).stat['swallow_unaware'] ?? 0) + (1);
                                 }
                                 ((s as any).stat = (s as any).stat ?? {})['cum_swallowed_ml'] = ((s as any).stat['cum_swallowed_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
@@ -139,10 +139,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'npcStat', (s as any).locArgs?.[1] ?? '', 0, ((s as any).locArgs?.[3] ?? 0));
   (s as any).sexpartkno = ((((s as any).npc_love ?? 0)?.[String((s as any).npcID ?? 0)] > 0) ? (1) : (0));
-  if (String((s as any).locArgs?.[2] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     (s as any).sexpartkno = 1;
   } else {
-    if (String((s as any).locArgs?.[2] ?? '') === 2) {
+    if (String((s as any).locArgs?.[2] ?? '') === '2') {
       (s as any).sexunaware = 1;
     }
   }

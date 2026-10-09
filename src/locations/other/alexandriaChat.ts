@@ -756,7 +756,7 @@ function enterSword(s: GameState, scene: SceneBuilder): void {
         scene.text('The rest of the trip towards his home, go without problems, and when you arrive, Aleksei don\'t lose time in taking you to his room.');
       } else {
         (st as any).numrand = (Math.floor(Math.random() * 100) + 1);
-        qspCall(st, 'clothing_attributes', 'moncheri_gown', ((st as any).numrand ?? 0));
+        qspCall(st, 'clothing_attributes', '', 'moncheri_gown', ((st as any).numrand ?? 0));
         if (((st as any).CloBimbo ?? 0) === 1) {
           break;
         }

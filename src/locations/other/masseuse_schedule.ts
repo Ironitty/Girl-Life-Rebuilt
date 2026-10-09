@@ -38,28 +38,28 @@ function enterExitSchedule(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[3] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     (s as any).ms_taken_key = '' + ((s as any).locArgs?.[1] ?? 0) + '_shift_' + ((s as any).locArgs?.[2] ?? 0) + '_taken';
     (s as any).ms_target_day = ((s as any).daystart ?? 0) - (((s as any).week ?? 0) - 1) + (((s as any).locArgs?.[1] ?? 0) - 1);
     (s as any).ms_return_arg = 'set_schedule';
   } else {
-    if (String((s as any).locArgs?.[3] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).ms_taken_key = 'next_' + ((s as any).locArgs?.[1] ?? 0) + '_shift_' + ((s as any).locArgs?.[2] ?? 0) + '_taken';
       (s as any).ms_target_day = ((s as any).daystart ?? 0) - (((s as any).week ?? 0) - 1) + 7 + (((s as any).locArgs?.[1] ?? 0) - 1);
       (s as any).ms_return_arg = 'next_week_set_schedule';
     }
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     (s as any).ms_time_string = '9:00-13:00';
     (s as any).ms_hour1 = 9;
     (s as any).ms_hour2 = 13;
   } else {
-    if (String((s as any).locArgs?.[2] ?? '') === 2) {
+    if (String((s as any).locArgs?.[2] ?? '') === '2') {
       (s as any).ms_time_string = '13:00-17:00';
       (s as any).ms_hour1 = 13;
       (s as any).ms_hour2 = 17;
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 3) {
+      if (String((s as any).locArgs?.[3] ?? '') === '3') {
         (s as any).ms_time_string = '17:00-21:00';
         (s as any).ms_hour1 = 17;
         (s as any).ms_hour2 = 21;

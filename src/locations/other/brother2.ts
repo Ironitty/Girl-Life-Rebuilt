@@ -1540,15 +1540,15 @@ function enterVideoGamingStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 16) + 15));
   scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/${(Math.floor(Math.random() * 3) + 1)}.jpg`);
   qspCall(s, 'stat', '');
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     (s as any).temp_winchance = (Math.floor(Math.random() * (10 - (-2) + 1)) + ((-2)));
     scene.text('In it for the fun and taking it easy on Kolka.');
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).temp_winchance = (Math.floor(Math.random() * 10) + 1);
       scene.text('In it for the fun you still hope to beat Kolka.');
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         (s as any).temp_winchance = (Math.floor(Math.random() * 6) + 5);
         scene.text('Focusing on the game you grip your controller and start playing.');
       } else {
@@ -1564,10 +1564,10 @@ function enterVideoGamingStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Mom_athome'] === 1) {
     scene.text('<i>At some point your mother peeks her head in and tells you to both to keep it down.</i>');
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 3) {
+  if (String((s as any).locArgs?.[1] ?? '') === '3') {
     scene.text('You having taken the lead, Kolka steels him self for a last minute come back.');
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       scene.text('Having been neck and neck the hole game it\'s near its end.');
     } else {
       scene.text('Kolka is in the lead but you still have a chance to come back.');
@@ -1712,7 +1712,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Kolka</b></center>');
   scene.img(`${qspFunc(s, '$brother_face_image')}`);
   scene.text(`"Ok ${((s as any).pcs_nickname ?? '')}, I dare you… too…" he say as he looks around as if he is thinking about what to dare you to do.`);
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     if ((Math.floor(Math.random() * 2) + 1) === 1) {
       qspCall(s, 'brother2', 'caught_risk');
       if (((s as any).dare_lick ?? 0) < 3) {
@@ -1750,7 +1750,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       if ((Math.floor(Math.random() * 2) + 1) === 1) {
         qspCall(s, 'willpower', 'sex', 'resist', 'hard');
         scene.text('too… uhh" he seems unsure of what he wants. "Well, I\'m not going to sit here all day." you say impatiently. "You have to… <b>let me rub your butt</b>!" he blurts out' + ((((s as any).brother ?? 0)?.['SexQW'] < 5  &&  ((s as any).brother ?? 0)?.['kisstalk'] === 0  &&  ((s as any).brother ?? 0)?.['pentalk'] === 0) ? (', however as he does he seems like he wants to take it back but you quickly interject before he can say any thing.') : ('.')));
@@ -1771,7 +1771,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === '3') {
         qspCall(s, 'boyStat', 'A34');
         do {
           if (((s as any).brother ?? 0)?.['pentalk'] === 1) {

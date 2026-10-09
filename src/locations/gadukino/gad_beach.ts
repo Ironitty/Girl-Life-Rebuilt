@@ -89,7 +89,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if ((! qspFunc(s, 'miroslava_schedule', 'is_here'))  &&  qspFunc(s, 'miroslava_schedule', 'was_here')) {
     qspGoto(s, 'gad_beach', 'Mira_leaves');
   } else {
-    if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  String((s as any).locArgs?.[1] ?? '') === 0  &&  ((s as any).MiraVars ?? 0)?.['follow_time'] === 0) {
+    if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  String((s as any).locArgs?.[1] ?? '') === '0'  &&  ((s as any).MiraVars ?? 0)?.['follow_time'] === 0) {
       qspGoto(s, 'gad_beach', 'arrive_Mira_already_there');
     }
   }
@@ -561,7 +561,7 @@ function enterMira(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   (s as any).locclass = undefined;
   qspCall(s, 'stat', '');
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     if (((s as any).MiraVars ?? 0)?.['QW'] < 12) {
       scene.img('images/characters/gadukino/mira/mirabeach.jpg');
     } else {

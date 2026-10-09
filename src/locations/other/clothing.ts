@@ -202,8 +202,8 @@ function enterGetSwimsuitCount(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetPrice(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[3] ?? '') === 0  &&  String((s as any).locArgs?.[3] ?? '') === '') {
-    qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
+  if (String((s as any).locArgs?.[0] ?? '') === '0'  &&  String((s as any).locArgs?.[3] ?? '') === '') {
+    qspCall(s, 'clothing_attributes', '', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = (((s as any).CloPrice ?? 0) * ((5 * ((s as any).CloQuality ?? 0)) + 100) / 100) * 1000 / (1250 - ((s as any).Clothingstock ?? 0)[((s as any).locArgs?.[2] ?? 0)]) * 3 / 2;
   (s as any).result = ((s as any).result ?? 0) / 50 * 50;
@@ -219,7 +219,7 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'clothing_attributes', '', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = '';
   if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -271,7 +271,7 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'clothing_attributes', '', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = (qspFunc(s, 'clothing', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'attributes_set') === '');
   return;
@@ -409,7 +409,7 @@ function enterIsHypnoApproved(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
+    qspCall(s, 'clothing_attributes', '', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   }
   (s as any).result = 1;
   if (((s as any).hypnoClothes ?? 0) <= 0) {
@@ -454,18 +454,18 @@ function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'gm_outfits'  &&  String((s as any).locArgs?.[2] ?? '') === 3);
+  (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'gm_outfits'  &&  String((s as any).locArgs?.[3] ?? '') === '3');
   if (((s as any).result ?? 0)) {
     return;
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
-    (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'gm_school'  &&  String((s as any).locArgs?.[2] ?? '') === 6);
+    (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'gm_school'  &&  String((s as any).locArgs?.[6] ?? '') === '6');
     if (((s as any).result ?? 0)) {
       return;
     }
   }
   if (((s as any).misc_outfits ?? 0)[1]) {
-    (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'misc_outfits'  &&  String((s as any).locArgs?.[2] ?? '') === 1);
+    (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'misc_outfits'  &&  String((s as any).locArgs?.[1] ?? '') === '1');
   }
   return;
   scene.build();
@@ -535,10 +535,10 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     return;
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     return;
   }
-  qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'clothing_attributes', '', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   if ((!((s as any).CloQuality ?? 0))) {
     return;
   }
@@ -550,7 +550,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'nude') {
@@ -597,11 +597,247 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
   }
+  scene.build();
+}
+
+function enterResetCloVars(s: GameState, scene: SceneBuilder): void {
+  (s as any).CloQuality = 0;
+  (s as any).CloThinness = 0;
+  (s as any).CloTopCut = 0;
+  (s as any).CloBra = 0;
+  (s as any).CloPanties = 0;
+  (s as any).CloPantsShortness = 0;
+  (s as any).CloSkirtShortness = 0;
+  (s as any).CloDress = 0;
+  (s as any).CloOnePiece = 0;
+  (s as any).CloInhibit = 0;
+  (s as any).CloCoverFront = 0;
+  (s as any).CloCoverBack = 0;
+  (s as any).CloCoverTop = 0;
+  (s as any).CloStyle = 0;
+  (s as any).CloStyle2 = 0;
+  (s as any).CloStyle3 = 0;
+  (s as any).CloBimbo = 0;
+  (s as any).CloGoth = 0;
+  (s as any).CloPunk = 0;
+  (s as any).CloPrep = 0;
+  (s as any).CloPrude = 0;
+  (s as any).CloProstitute = 0;
+  (s as any).CloMaid = 0;
+  (s as any).CloServer = 0;
+  (s as any).CloStrip = 0;
+  (s as any).CloSchool = 0;
+  (s as any).CloOffice = 0;
+  (s as any).CloSport = 0;
+  (s as any).CloSwim = 0;
+  (s as any).CloPrice = 0;
+  (s as any).CloDirt = 0;
+  (s as any).CloStrength = 0;
+  (s as any).CloMaxStrength = 0;
+  scene.build();
+}
+
+function enterResetPCloVars(s: GameState, scene: SceneBuilder): void {
+  (s as any).PCloDress = 0;
+  (s as any).PCloPanties = 0;
+  (s as any).PCloBra = 0;
+  (s as any).PCloQuality = 0;
+  (s as any).PCloThinness = 0;
+  (s as any).PCloTopCut = 0;
+  (s as any).PCloPants = 0;
+  (s as any).PCloSkirt = 0;
+  (s as any).PCloStyle = 0;
+  (s as any).PCloStyle2 = 0;
+  (s as any).PCloStyle3 = 0;
+  (s as any).PCloBimbo = 0;
+  (s as any).PCloGoth = 0;
+  (s as any).PCloPunk = 0;
+  (s as any).PCloPrep = 0;
+  (s as any).PCloPrude = 0;
+  (s as any).PCloInhibit = 0;
+  (s as any).PCloOnePiece = 0;
+  (s as any).PCloProstitute = 0;
+  (s as any).PCloMaid = 0;
+  (s as any).PCloServer = 0;
+  (s as any).PCloStrip = 0;
+  (s as any).PCloSchool = 0;
+  (s as any).PCloOffice = 0;
+  (s as any).PCloSport = 0;
+  (s as any).PCloSwim = 0;
+  (s as any).PCloCoverTop = 4;
+  (s as any).PCloCoverBack = 4;
+  (s as any).PCloCoverFront = 4;
+  (s as any).PCloPrice = 0;
+  (s as any).PCloDirt = 0;
+  (s as any).PCloStrength = 0;
+  (s as any).PCloMaxStrength = 0;
+  (s as any).PCloBorrowed = 0;
+  (s as any).PXCloThinness = 0;
+  (s as any).PXCloTopCut = 0;
+  (s as any).PXCloBottomShortness = 0;
+  scene.build();
+}
+
+function enterStripCode(s: GameState, scene: SceneBuilder): void {
+  (s as any).clothingworntype = 'nude';
+  (s as any).clothingwornnumber = 0;
+  qspCall(s, 'clothing', 'reset_CloVars');
+  qspCall(s, 'clothing', 'reset_PCloVars');
+  qspCall(s, 'outfit', 'set_derived_vars');
+  scene.build();
+}
+
+function enterStrip(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).clothingworntype ?? '') === '') {
+    (s as any).clothingworntype = 'nude';
+    (s as any).clothingwornnumber = 0;
+  }
+  qspCall(s, 'cum_cleanup', 6);
+  if (((s as any).clothingworntype ?? '') !== 'nude') {
+    const stripLoc = String((s as any).locArgs?.[1] ?? '');
+    if (stripLoc === '') {
+      if ((s as any).PSwim === 1) {
+        ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})['swim'] = (s as any).clothingworntype;
+        ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})['swim'] = (s as any).clothingwornnumber;
+      } else {
+        (s as any).lastwornclothingtype = (s as any).clothingworntype;
+        (s as any).lastwornclothingnumber = (s as any).clothingwornnumber;
+      }
+    } else {
+      const cloType = (s as any).clothingworntype as string;
+      const cloNum = (s as any).clothingwornnumber as number;
+      const varName = `CloLos${cloType}`;
+      ((s as any)[varName] = (s as any)[varName] ?? {})[cloNum] = stripLoc;
+      (s as any).CloLosLoc = [...((s as any).CloLosLoc ?? []), stripLoc];
+      ((s as any).CloLosTyp = (s as any).CloLosTyp ?? {})[stripLoc] = cloType;
+      ((s as any).CloLosNum = (s as any).CloLosNum ?? {})[stripLoc] = cloNum;
+      ((s as any).CloLosDay = (s as any).CloLosDay ?? {})[stripLoc] = (s as any).daystart;
+      (s as any).lastwornclothingtype = 'nude';
+      (s as any).lastwornclothingnumber = 0;
+    }
+  }
+  qspCall(s, 'clothing', 'strip_code');
+  scene.build();
+}
+
+function enterStripAll(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'clothing', 'strip', (s as any).locArgs?.[1] ?? '');
+  qspCall(s, 'underwear', 'strip');
+  scene.build();
+}
+
+function enterWear(s: GameState, scene: SceneBuilder): void {
+  let arg1 = String((s as any).locArgs?.[1] ?? '');
+  let arg2 = (s as any).locArgs?.[2] ?? 0;
+  if (arg1 === '') arg1 = 'nude';
+
+  if (arg1 === 'last_worn') {
+    if (((s as any).lastwornclothingtype ?? '') === '') {
+      (s as any).lastwornclothingtype = 'nude';
+      (s as any).lastwornclothingnumber = 0;
+    }
+    arg1 = String((s as any).lastwornclothingtype ?? '');
+    arg2 = (s as any).lastwornclothingnumber ?? 0;
+  }
+
+  if (arg1 === '' || arg1 === 'nude') {
+    scene.build();
+    return;
+  }
+
+  qspCall(s, 'clothing', 'strip');
+  qspCall(s, 'clothing_attributes', '', arg1, arg2);
+
+  if ((s as any).CloQuality === 0) {
+    scene.text(`ERROR: Clothing "${arg1}[${arg2}]" does not exist`);
+    scene.build();
+    return;
+  }
+
+  const argsArr = (s as any).locArgs ?? [];
+  if (argsArr.includes('check')) {
+    const reason = qspFunc(s, 'clothing', 'not_wear_reason', arg1, arg2, 'no_init');
+    if (reason !== '' && reason !== 'hypno') {
+      scene.build();
+      return;
+    }
+  }
+
+  (s as any).clothingworntype = arg1;
+  (s as any).clothingwornnumber = arg2;
+
+  const wVar = `${arg1}_w`;
+  const sVar = `${arg1}_s`;
+  ((s as any)[wVar] = (s as any)[wVar] ?? {})[arg2] = 1;
+  ((s as any)[sVar] = (s as any)[sVar] ?? {})[arg2] = 0;
+
+  (s as any).PCloQuality = (s as any).CloQuality;
+  (s as any).PCloThinness = (s as any).CloThinness;
+  (s as any).PCloTopCut = (s as any).CloTopCut;
+  (s as any).PCloBra = (s as any).CloBra;
+  (s as any).PCloOnePiece = (s as any).CloOnePiece;
+  (s as any).PCloPants = (s as any).CloPantsShortness;
+  (s as any).PCloSkirt = (s as any).CloSkirtShortness;
+  (s as any).PCloPanties = (s as any).CloPanties;
+  (s as any).PCloDress = (s as any).CloDress;
+  (s as any).PCloStyle = (s as any).CloStyle;
+  (s as any).PCloStyle2 = (s as any).CloStyle2;
+  (s as any).PCloStyle3 = (s as any).CloStyle3;
+  (s as any).PCloInhibit = (s as any).CloInhibit;
+  (s as any).PCloBimbo = (s as any).CloBimbo;
+  (s as any).PCloGoth = (s as any).CloGoth;
+  (s as any).PCloPunk = (s as any).CloPunk;
+  (s as any).PCloPrep = (s as any).CloPrep;
+  (s as any).PCloPrude = (s as any).CloPrude;
+  (s as any).PCloProstitute = (s as any).CloProstitute;
+  (s as any).PCloMaid = (s as any).CloMaid;
+  (s as any).PCloServer = (s as any).CloServer;
+  (s as any).PCloStrip = (s as any).CloStrip;
+  (s as any).PCloSchool = (s as any).CloSchool;
+  (s as any).PCloOffice = (s as any).CloOffice;
+  (s as any).PCloSport = (s as any).CloSport;
+  (s as any).PCloSwim = (s as any).CloSwim;
+  (s as any).PCloCoverTop = (s as any).CloCoverTop;
+  (s as any).PCloCoverBack = (s as any).CloCoverBack;
+  (s as any).PCloCoverFront = (s as any).CloCoverFront;
+  (s as any).PCloPrice = (s as any).CloPrice;
+  (s as any).PCloDirt = (s as any).CloDirt;
+  (s as any).PCloStrength = (s as any).CloStrength;
+  (s as any).PCloMaxStrength = (s as any).CloMaxStrength;
+
+  const thinness = (s as any).PCloThinness ?? 0;
+  (s as any).PXCloThinness = thinness === 0 ? 0 : thinness === 1 ? 150 : thinness === 2 ? 200 : thinness === 3 ? 250 : thinness === 4 ? 300 : thinness === 5 ? 350 : 400;
+
+  const topCut = (s as any).PCloTopCut ?? 0;
+  (s as any).PXCloTopCut = topCut === 0 ? 0 : topCut === 1 ? 100 : topCut === 2 ? 200 : topCut === 3 ? 300 : 400;
+
+  const skirt = (s as any).PCloSkirt ?? 0;
+  const pants = (s as any).PCloPants ?? 0;
+  let bottomShortness = 0;
+  if (skirt === 0 && pants === 0) bottomShortness = 0;
+  else if (skirt === 1 || pants === 1) bottomShortness = 100;
+  else if (skirt === 2 || pants === 2) bottomShortness = 150;
+  else if (skirt === 3 || pants === 3) bottomShortness = 200;
+  else if (skirt === 4 || pants === 4) bottomShortness = 250;
+  else if (skirt === 5 || pants === 5) bottomShortness = 300;
+  else if (skirt === 6 || pants === 6) bottomShortness = 350;
+  else bottomShortness = 400;
+  if ((s as any).PCloPanties === 1) bottomShortness = 400;
+  (s as any).PXCloBottomShortness = bottomShortness;
+
+  if (argsArr.includes('borrowed')) {
+    (s as any).PCloBorrowed = 1;
+    ((s as any)[wVar] = (s as any)[wVar] ?? {})[arg2] = 0;
+    (s as any).PCloDirt = 0;
+    (s as any).PCloStrength = (s as any).PCloMaxStrength;
+  }
+
+  qspCall(s, 'outfit', 'set_derived_vars');
   scene.build();
 }
 
@@ -700,6 +936,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'move_to_wardrobe':
       enterMoveToWardrobe(s, scene);
+      break;
+    case 'wear':
+      enterWear(s, scene);
+      break;
+    case 'strip':
+      enterStrip(s, scene);
+      break;
+    case 'strip_all':
+      enterStripAll(s, scene);
+      break;
+    case 'strip_code':
+      enterStripCode(s, scene);
+      break;
+    case 'reset_CloVars':
+      enterResetCloVars(s, scene);
+      break;
+    case 'reset_PCloVars':
+      enterResetPCloVars(s, scene);
       break;
     default:
       enterDefault(s, scene);

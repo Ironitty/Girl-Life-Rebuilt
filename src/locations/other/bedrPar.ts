@@ -346,7 +346,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspGoto(st, 'sister_chat', 'pargone');
     }
     (st as any).minut = ((st as any).minut ?? 0) + (1);
-  } },
+  }, goto: ['korrPar', ''] },
               ]);
             }
           }
@@ -699,7 +699,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspGoto(st, 'sister_chat', 'pargone');
     }
     (st as any).minut = ((st as any).minut ?? 0) + (1);
-  } },
+  }, goto: ['korrPar', ''] },
               ]);
             }
           }

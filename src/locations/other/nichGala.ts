@@ -191,7 +191,7 @@ function enterApproach(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTarasPlan(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.img('images/pc/activities/maidCleaning/phone.jpg');
     scene.text('You pretend using the phone talking to somebody who gives you a lot of information in a short amount of time.');
     scene.text('Afterwards you act confused and walk over to Gala.');
@@ -211,7 +211,7 @@ function enterTarasPlan(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 100) {
+    if (String((s as any).locArgs?.[1] ?? '') === '100') {
       scene.img('images/characters/city/gala/02.jpg');
       scene.text('You hesitate at first, but then you tell Gala everything you know about the plan of Taras.');
       scene.text('She is clearly shocked by this reveal. But she trusts your word. Who else could have told you about Katinka than Taras?');
@@ -461,7 +461,7 @@ function enterContractOfferSign(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSlaveIntro(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     qspCall(s, 'pain', '10', 'nipples', 'pinch');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -481,7 +481,7 @@ function enterSlaveIntro(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['nichGala', 'slaveIntro', '10'] },
     ]);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       qspCall(s, 'pain', '10', 'nipples', 'pinch');
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
@@ -496,7 +496,7 @@ function enterSlaveIntro(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['nichGala', 'slaveIntro', '10'] },
       ]);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 10) {
+      if (String((s as any).locArgs?.[1] ?? '') === '10') {
         scene.img('images/characters/city/gala/slave/taras/intro3.jpg');
         scene.text('"There is a valuable lesson for you to learn here, slave: you are here for my entertainment. And you being in discomfort is very entertaining to me. If you don\'t like that you better provide another form of entertainment."');
         scene.text('She walks behind you. From the corner of you eye you see that she kneels down at your back when she returns. Suddenly you feel a pressure against your butthole.');
@@ -516,7 +516,7 @@ function enterSlaveIntro(s: GameState, scene: SceneBuilder): void {
           { label: 'Continue', goto: ['nichGala', 'slaveIntro', '20'] },
         ]);
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 20) {
+        if (String((s as any).locArgs?.[1] ?? '') === '20') {
           scene.img('images/characters/city/gala/slave/taras/intro2.jpg');
           scene.text('"I have things to do now. You will stay here and think about how much you are my property, how much you want to serve me and how bad you want to avoid punishment."');
           scene.text('She closes the door behind her as she leaves the room. You hear the key being turned. You are alone now.');
@@ -557,7 +557,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
       { label: 'Go inside', goto: ['nichGala', 'slaveDoc', '2'] },
     ]);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       scene.img('images/characters/city/gala/slave/doctorNur.jpg');
       scene.text('Just behind the door you are greeted by a nurse. To your surprise she is wearing a latex outfit. Is she an actual nurse or is this a costume?');
       scene.text('"Welcome to our institute. You are just in time for you appointment. Please follow me."');
@@ -572,7 +572,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
         { label: 'Comply', goto: ['nichGala', 'slaveDoc', '3'] },
       ]);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === '3') {
         scene.img('images/characters/city/gala/slave/doctorEx.jpg');
         scene.text('You relunctantly undress and get into the chair. Why did Gala bring you here? You could have had an examination by your regular gynecologist.');
         scene.text('"Please tell your slave to hold still. This is for her own safety."');
@@ -588,7 +588,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
           { label: 'Wait', goto: ['nichGala', 'slaveDoc', '4'] },
         ]);
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 4) {
+        if (String((s as any).locArgs?.[1] ?? '') === '4') {
           scene.img('images/characters/city/gala/slave/doctorGre.jpg');
           scene.text('A few minutes later a middle-aged man enters the room. He must be the doctor. The nurse follows him.');
           scene.text('The doctor goes over to Gala and shakes her hand.');
@@ -602,7 +602,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
             { label: 'Next', goto: ['nichGala', 'slaveDoc', '5'] },
           ]);
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 5) {
+          if (String((s as any).locArgs?.[1] ?? '') === '5') {
             scene.img('images/characters/city/gala/slave/doctorEx.jpg');
             scene.text('The doctor probes you with various tools and also takes a blood sample.');
             if ((!((s as any).Venera ?? 0))) {
@@ -631,7 +631,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
               { label: 'Next', goto: ['nichGala', 'slaveDoc', '6'] },
             ]);
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 6) {
+            if (String((s as any).locArgs?.[1] ?? '') === '6') {
               if ((!((s as any).preg ?? 0))) {
                 qspGoto(s, 'nichGala', 'slaveDoc', '8');
               }
@@ -659,7 +659,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
                 { label: 'Next', goto: ['nichGala', 'slaveDoc', '7'] },
               ]);
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 7) {
+              if (String((s as any).locArgs?.[1] ?? '') === '7') {
                 scene.img('images/characters/city/gala/slave/doctorEx.jpg');
                 if (((s as any).knowpreg ?? 0) === 1) {
                   scene.text('You watch in horror as the nurse prepares everything to end your pregnancy. They are seriously going to kill your baby!');
@@ -678,7 +678,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
                   { label: 'Next', goto: ['nichGala', 'slaveDoc', '8'] },
                 ]);
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 8) {
+                if (String((s as any).locArgs?.[1] ?? '') === '8') {
                   scene.img('images/characters/city/gala/slave/doctorEx.jpg');
                   scene.text('The doctor gives you another shot, this time into your left arm.');
                   scene.text('"This will make sure she doesn\'t get pregnant in the future. It\'s a standard formula which is also used at more traditional medical institutes."');
@@ -689,7 +689,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
                     { label: 'Next', goto: ['nichGala', 'slaveDoc', '9'] },
                   ]);
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 9) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '9') {
                     scene.img('images/characters/city/gala/slave/doctorImpl.jpg');
                     scene.text('"I believe you were also interested in my little pet project?"');
                     scene.text('"Yes, that\'s right. Although I am still not completely sure what it is about."');
@@ -710,7 +710,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
                       { label: 'Next', goto: ['nichGala', 'slaveDoc', '10'] },
                     ]);
                   } else {
-                    if (String((s as any).locArgs?.[1] ?? '') === 10) {
+                    if (String((s as any).locArgs?.[1] ?? '') === '10') {
                       scene.img('images/characters/city/gala/slave/doctorGre.jpg');
                       scene.text('"Could I do something else for you? Maybe breast implants for your slave?"');
                       scene.text('"No, thank you. I think that\'s enough for today."');
@@ -747,7 +747,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     if ((!((s as any).nichGalaImplantLevel ?? 0))) {
       qspGoto(s, 'nichGala', 'slaveImplant', '1');
     } else {
@@ -781,7 +781,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       scene.img('images/characters/city/gala/slave/dildo2.jpg');
       scene.text('Gala pulls you by your hair. She leads you to your room.');
       scene.text('"You little skank. Did you forget that I monitor your sexual activity? Or do you just don\'t care?"');
@@ -803,7 +803,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['nichBedroomServant', ''] },
       ]);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 10) {
+      if (String((s as any).locArgs?.[1] ?? '') === '10') {
         scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/gala/slave/whipped` + (Math.floor(Math.random() * 2) + 1) + '.jpg"></center>');
         scene.text(`${((s as any).nichGalaTxt ?? '')}`);
         scene.text('She leads you to your room. There she makes you undress. Once you are naked she ties you up.');
@@ -820,7 +820,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
           { label: 'Continue', goto: ['nichBedroomServant', ''] },
         ]);
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 50) {
+        if (String((s as any).locArgs?.[1] ?? '') === '50') {
           scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/gala/slave/cane` + (Math.floor(Math.random() * 3) + 1) + '.jpg"></center>');
           scene.text(`${((s as any).nichGalaTxt ?? '')}`);
           scene.text('She leads you up to the attic. There she makes you undress. Once you are naked she ties you up.');
@@ -845,7 +845,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
             { label: 'Continue', goto: ['nichApartment', ''] },
           ]);
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 100) {
+          if (String((s as any).locArgs?.[1] ?? '') === '100') {
             scene.text(`${((s as any).nichGalaTxt ?? '')}`);
             scene.text('She leads you outside the house and to her car. She has her driver drive you to a tattoo studio.');
             scene.text('"I will make sure everybody knows what you are."');
@@ -857,7 +857,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
               { label: 'Continue', goto: ['nichGala', 'slaveImplant', '101'] },
             ]);
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 101) {
+            if (String((s as any).locArgs?.[1] ?? '') === '101') {
               (s as any).nichTempOverwrite = 0;
               if (((s as any).pcs_tattoos ?? 0)?.['pussy'] <= 0) {
                 qspCall(s, 'tattoo_management', 'add', 'pussy', 47);
@@ -901,7 +901,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
   }, goto: ['nichApartment', ''] },
               ]);
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 120) {
+              if (String((s as any).locArgs?.[1] ?? '') === '120') {
                 scene.img('images/characters/city/gala/slave/pubhum1x1.jpg');
                 scene.text(`${((s as any).nichGalaTxt ?? '')}`);
                 scene.text('She leads you outside the house and to her car. She has her driver drive you to the bar of a biker gang outside the city.');
@@ -917,7 +917,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                   { label: 'Obey', goto: ['nichGala', 'slaveImplant', '121'] },
                 ]);
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 121) {
+                if (String((s as any).locArgs?.[1] ?? '') === '121') {
                   scene.img('images/characters/city/gala/slave/pubhum1x2.jpg');
                   scene.text('You clear your voice. By now everybody is starring at you. With uncertain voice you tell them what Gala wanted you to say: that you are a dirty slut and that you need punishment.');
                   scene.text('Gala grins and leaves the bar.');
@@ -929,7 +929,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                     { label: 'Continue', goto: ['nichGala', 'slaveImplant', '121 + rand(1, 2)'] },
                   ]);
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 122) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '122') {
                     qspCall(s, 'npcgeneratec', '0', 'Some biker', 0, (Math.floor(Math.random() * 2) + 3), 1);
                     qspCall(s, 'npcStat', '$npclastgenerated');
                     scene.img('images/characters/city/gala/slave/pubhum1x3.jpg');
@@ -945,7 +945,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                       { label: 'Continue', goto: ['nichGala', 'slaveImplant', '122 + rand(1, 2)'] },
                     ]);
                   } else {
-                    if (String((s as any).locArgs?.[1] ?? '') === 123) {
+                    if (String((s as any).locArgs?.[1] ?? '') === '123') {
                       qspCall(s, 'npcgeneratec', '0', 'Some biker', 0, (Math.floor(Math.random() * 2) + 3), 1);
                       qspCall(s, 'npcStat', '$npclastgenerated');
                       scene.img('images/characters/city/gala/slave/pubhum1x4.jpg');
@@ -961,7 +961,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                         { label: 'Continue', goto: ['nichGala', 'slaveImplant', '123 + rand(1, 2)'] },
                       ]);
                     } else {
-                      if (String((s as any).locArgs?.[1] ?? '') === 124) {
+                      if (String((s as any).locArgs?.[1] ?? '') === '124') {
                         qspCall(s, 'npcgeneratec', '1', 'Some biker girl', 0, (Math.floor(Math.random() * 2) + 3), 1);
                         qspCall(s, 'npcStat', '$npclastgenerated');
                         scene.img('images/characters/city/gala/slave/pubhum1x5.jpg');
@@ -974,7 +974,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                           { label: 'Continue', goto: ['nichGala', 'slaveImplant', '124 + rand(1, 2)'] },
                         ]);
                       } else {
-                        if (String((s as any).locArgs?.[1] ?? '') === 125) {
+                        if (String((s as any).locArgs?.[1] ?? '') === '125') {
                           qspCall(s, 'npcgeneratec', '0', 'Married guy', 45 + (Math.floor(Math.random() * 11) + 0), (Math.floor(Math.random() * 2) + 3), 1);
                           qspCall(s, 'npcStat', '$npclastgenerated');
                           qspCall(s, 'npcgeneratec', '1', 'Married woman', 45 + (Math.floor(Math.random() * 11) + 0), (Math.floor(Math.random() * 2) + 3), 1);
@@ -992,7 +992,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                             { label: 'Continue', goto: ['nichGala', 'slaveImplant', '125 + rand(1, 2)'] },
                           ]);
                         } else {
-                          if (String((s as any).locArgs?.[1] ?? '') === 126) {
+                          if (String((s as any).locArgs?.[1] ?? '') === '126') {
                             qspCall(s, 'npcgeneratec', '0', 'A biker barkeep', 0, (Math.floor(Math.random() * 2) + 3), 1);
                             qspCall(s, 'npcStat', '$npclastgenerated');
                             qspCall(s, 'npcgeneratec', '1', 'Barkeep\'s girlfriend', 45 + (Math.floor(Math.random() * 11) + 0), (Math.floor(Math.random() * 2) + 3), 1);
@@ -1009,7 +1009,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                               { label: 'Continue', goto: ['nichGala', 'slaveImplant', '126 + rand(1, 2)'] },
                             ]);
                           } else {
-                            if (String((s as any).locArgs?.[1] ?? '') === 127) {
+                            if (String((s as any).locArgs?.[1] ?? '') === '127') {
                               qspCall(s, 'npcgeneratec', '1', 'Rocker\'s girl', ((s as any).age ?? 0) + (Math.floor(Math.random() * 2) + 0), (Math.floor(Math.random() * 2) + 3), 1);
                               qspCall(s, 'npcStat', '$npclastgenerated');
                               scene.img('images/characters/city/gala/slave/pubhum1x8.jpg');
@@ -1023,7 +1023,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                                 { label: 'Continue', goto: ['nichGala', 'slaveImplant', '127 + rand(1, 2)'] },
                               ]);
                             } else {
-                              if (String((s as any).locArgs?.[1] ?? '') === 128) {
+                              if (String((s as any).locArgs?.[1] ?? '') === '128') {
                                 scene.img('images/characters/city/gala/slave/pubhum1x9.jpg');
                                 scene.text('There is nobody else waiting for you. Therefore the barkeepers girlfriend pushes you to the ground and ties you into a painful hogtie.');
                                 scene.text('You stay on the ground for nearly an hour. Sometimes a guest spits at you or gives you a kick, but they seem to be mostly done with you.');
@@ -1033,7 +1033,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                                   { label: 'Continue', goto: ['nichGala', 'slaveImplant', '129'] },
                                 ]);
                               } else {
-                                if (String((s as any).locArgs?.[1] ?? '') === 129) {
+                                if (String((s as any).locArgs?.[1] ?? '') === '129') {
                                   scene.img('images/characters/city/gala/slave/pubhum1x10.jpg');
                                   scene.text('Finally Gala returns. The barkeepers girlfriend removes your restraints for her.');
                                   scene.text('"If you ever have enough of your slut just tell us. She is a great entertainment for our guests."');
@@ -1127,7 +1127,7 @@ function enterSlaveGeneric(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSlaveTarasIntro(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.img('images/characters/city/gala/slave/taras/intro0.jpg');
     scene.text('Gala leads you up to the attic. You put your clothes off, then she binds you to an old rusty bed and secures a ballgag in your mouth.');
     scene.text('Then she leaves the room. To your surprise she returns a few minutes later with her bodyguard.');
@@ -1141,7 +1141,7 @@ function enterSlaveTarasIntro(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['nichGala', 'slaveTarasIntro', '1'] },
     ]);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       scene.img('images/characters/city/gala/slave/taras/intro1.jpg');
       scene.text('Without saying a word Taras grabs a crop and starts hitting your back with it.');
       scene.text('He expertly administers his strokes to inflict the most pain without leaving any visible damage.');
@@ -1152,7 +1152,7 @@ function enterSlaveTarasIntro(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['nichGala', 'slaveTarasIntro', '2'] },
       ]);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         scene.img('images/characters/city/gala/slave/taras/intro2.jpg');
         scene.text('He steps next to the bed and you feel his hand around your throat.');
         scene.text('"Listen, slut. You better learn to enjoy this. This is your life now."');
@@ -1175,7 +1175,7 @@ function enterSlaveTarasIntro(s: GameState, scene: SceneBuilder): void {
           { label: 'Continue', goto: ['nichGala', 'slaveTarasIntro', '3'] },
         ]);
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 3) {
+        if (String((s as any).locArgs?.[1] ?? '') === '3') {
           scene.img('images/characters/city/gala/slave/taras/intro3.jpg');
           scene.text('He pulls down his pants and climbs into the bed. Then he begins to fuck you.');
           scene.text('He pushes into you while holding you tightly by your wrist.');

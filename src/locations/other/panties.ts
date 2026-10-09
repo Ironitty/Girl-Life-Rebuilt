@@ -226,7 +226,7 @@ function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).pantywornnumber ?? 0);
   }
-  (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'gm'  &&  String((s as any).locArgs?.[2] ?? '') === 1);
+  (s as any).result = (String((s as any).locArgs?.[1] ?? '') === 'gm'  &&  String((s as any).locArgs?.[1] ?? '') === '1');
   return;
   scene.build();
 }
@@ -247,7 +247,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     return;
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     return;
   }
   qspCall(s, 'underwear_attributes', '', ((s as any).locArgs?.[1] ?? 0) + '_panties', ((s as any).locArgs?.[2] ?? 0));
@@ -261,13 +261,13 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pantyworntype ?? 0);
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).pantywornnumber ?? 0);
   }
   if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'none') {
     return;
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 'gm'  &&  String((s as any).locArgs?.[2] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === 'gm'  &&  String((s as any).locArgs?.[1] ?? '') === '1') {
     if (String((s as any).locArgs?.[1] ?? '') === ((s as any).pantyworntype ?? 0)  &&  String((s as any).locArgs?.[2] ?? '') === ((s as any).pantywornnumber ?? 0)) {
       qspCall(s, 'panties', 'strip');
     }
@@ -306,11 +306,95 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).pantyworntype ?? 0);
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).pantywornnumber ?? 0);
   }
   if (qspFunc(s, 'panties', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
   }
+  scene.build();
+}
+
+function enterStripCode(s: GameState, scene: SceneBuilder): void {
+  (s as any).pantyworntype = 'none';
+  (s as any).bodysuitworntype = 'none';
+  (s as any).pantywornnumber = 0;
+  (s as any).bodysuitwornnumber = 0;
+  (s as any).isprokp = 0;
+  qspCall(s, 'panties', 'reset_PanVars');
+  qspCall(s, 'panties', 'reset_PPanVars');
+  qspCall(s, 'outfit', 'set_derived_vars');
+  scene.build();
+}
+
+function enterStrip(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).underwear ?? {})['type'] === 2) {
+    qspCall(s, 'underwear_bodysuits', 'strip');
+    scene.build();
+    return;
+  }
+  if ((s as any).pantyworntype === '') {
+    (s as any).pantyworntype = 'none';
+    (s as any).pantywornnumber = 0;
+  }
+  (s as any).lastwornunderwear = 0;
+  (s as any).lastwornpantytype = (s as any).pantyworntype;
+  (s as any).lastwornpantynumber = (s as any).pantywornnumber;
+  qspCall(s, 'panties', 'strip_code');
+  scene.build();
+}
+
+function enterWear(s: GameState, scene: SceneBuilder): void {
+  let arg1 = String((s as any).locArgs?.[1] ?? '');
+  let arg2 = (s as any).locArgs?.[2] ?? 0;
+  if (arg1 === '' || arg1 === 'last_worn') {
+    if (((s as any).lastwornunderwear ?? 0) === 2) {
+      qspCall(s, 'underwear_bodysuits', 'wear', 'last_worn');
+      scene.build();
+      return;
+    }
+    arg1 = String((s as any).lastwornpantytype ?? '');
+    arg2 = (s as any).lastwornpantynumber ?? 0;
+  }
+  if (arg1 === '' || arg1 === 'none') {
+    scene.build();
+    return;
+  }
+  qspCall(s, 'panties', 'strip');
+  qspCall(s, 'underwear_attributes', '', `${arg1}_panties`, arg2);
+  if ((s as any).PanQuality === 0) {
+    scene.text(`ERROR: Panties "${arg1}_panties[${arg2}]" do not exist`);
+    scene.build();
+    return;
+  }
+  const argsArr = (s as any).locArgs ?? [];
+  if (argsArr.includes('check')) {
+    const reason = qspFunc(s, 'panties', 'not_wear_reason', arg1, arg2, 'no_init');
+    if (reason !== '' && reason !== 'hypno') {
+      scene.build();
+      return;
+    }
+  }
+  (s as any).pantyworntype = arg1;
+  (s as any).pantywornnumber = arg2;
+  (s as any).underwear = { ...(s as any).underwear, type: 0 };
+  ((s as any)[`${arg1}_pantiesS`] = (s as any)[`${arg1}_pantiesS`] ?? {})[arg2] = 0;
+  (s as any).PPanMaterial = (s as any).PanMaterial;
+  (s as any).PPanFun = (s as any).PanFun;
+  (s as any).PPanQuality = (s as any).PanQuality;
+  (s as any).PPanThinness = (s as any).PanThinness;
+  (s as any).PPanCoverFront = (s as any).PanCoverFront;
+  (s as any).PPanCoverBack = (s as any).PanCoverBack;
+  (s as any).PPanSport = (s as any).PanSport;
+  (s as any).PPanPrice = (s as any).PanPrice;
+  (s as any).PPanDirt = (s as any).PanDirt;
+  (s as any).PPanStrength = (s as any).PanStrength;
+  (s as any).PPanMaxStrength = (s as any).PanMaxStrength;
+  if (argsArr.includes('borrowed')) {
+    (s as any).PPanBorrowed = 1;
+    (s as any).PPanDirt = 0;
+    (s as any).PPanStrength = (s as any).PPanMaxStrength;
+  }
+  qspCall(s, 'outfit', 'set_derived_vars');
   scene.build();
 }
 
@@ -370,6 +454,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'remove_item':
       enterRemoveItem(s, scene);
+      break;
+    case 'wear':
+      enterWear(s, scene);
+      break;
+    case 'strip':
+      enterStrip(s, scene);
+      break;
+    case 'strip_code':
+      enterStripCode(s, scene);
       break;
     case 'reset_immutables':
       enterResetImmutables(s, scene);

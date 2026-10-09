@@ -1553,7 +1553,7 @@ function enterVasilykitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Kitchen</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh.jpg');
   scene.text('An uninspiring kitchen, with the basic amenities for life.');
-  if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 21  &&  String((s as any).locArgs?.[0] ?? '') === 0) {
+  if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 21  &&  String((s as any).locArgs?.[0] ?? '') === '0') {
     if ((Math.floor(Math.random() * 100) + 1) < 10) {
       scene.text(`When you enter the kitchen, ${((s as any).serg_obr ?? '')} <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Serge_kuh/u0027, /u0027kuh_buh/u0027); return false;">Sergey</a> gives you a friendly nod. He's sitting at the kitchen table, drinking vodka.`);
     } else {

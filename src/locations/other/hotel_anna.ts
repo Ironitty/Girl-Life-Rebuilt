@@ -48,7 +48,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === '1') {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     scene.img('images/characters/pavlovsk/resident/Anna/annacorridor1.jpg');
@@ -85,7 +85,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 2) {
+  if (String((s as any).locArgs?.[0] ?? '') === '2') {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
@@ -139,7 +139,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter2a(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[0] ?? '') === 3) {
+  if (String((s as any).locArgs?.[0] ?? '') === '3') {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     ((s as any).AnnaQW = (s as any).AnnaQW ?? {})['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -284,7 +284,7 @@ function enter3b(s: GameState, scene: SceneBuilder): void {
   scene.text('With a whip or none rigid implement the face and head are forbidden places to strike unless the eyes are covered, this is important these toys can be dangerous and we should never do something that could cause lasting harm to another.');
   scene.text('Back to the warm up phase this in itself can extremely intense and to aid that we have sensation play. The Wattenburg wheel and cupping can be part of that. Sensation play allows us to increase the perception of a good pain instead of a bad pain, I know that sounds strange but linking the pain to pleasure makes the pain feel like pleasure. These concepts are a bit advanced so maybe we\'ll cover it in more detail another time.');
   scene.text('We also have toys that can be used purely for sexual pleasure such as the butt plug or my Hitachi vibrator."');
-  if (String((s as any).locArgs?.[0] ?? '') === 4) {
+  if (String((s as any).locArgs?.[0] ?? '') === '4') {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna2restr0.jpg');
@@ -390,7 +390,7 @@ function enter4a(s: GameState, scene: SceneBuilder): void {
   scene.text('Now the swing\'s role, it allows the person being fisted to decide the deepness of the penetration giving them control that is otherwise entirely in the hands of the person fisting. It lets you control something that is usually controlled by another and that is a way to trigger new mental sensations.');
   scene.text('It is not cheap though. BDSM gear can cost a lot especially elaborate furniture. That is not a worry if you get it as a gift though" She smiles. "Now for the restriction part, the fisting swing can be used to pose a sub not without a need to fist them, the pose can be very exposing making them available for various sex acts or simply to be admired.');
   scene.text('OK enough about my fabulous new swing let\'s talk about restriction and again I ask you to wait until the end where I\'ll give you a choice for a demonstration."');
-  if (String((s as any).locArgs?.[0] ?? '') === 5) {
+  if (String((s as any).locArgs?.[0] ?? '') === '5') {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -518,7 +518,7 @@ function enter4a(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 6) {
+  if (String((s as any).locArgs?.[0] ?? '') === '6') {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -724,7 +724,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
   scene.text('Anna is standing there looking at you holding the ropes you had just untied from Jeanie, if that is even her name.');
   scene.text(`Well ${((s as any).pcs_firstname ?? '')}, I wonder if you did this because you wanted to be punished of if you simply don't listen. Either way I gave you fair warning so get on my knee. Now!"`);
   scene.text('Anna has sat down and Jeanie is standing right behind you, her breath on your neck. It doesn\'t look like you have a choice.');
-  if (String((s as any).locArgs?.[0] ?? '') === 7) {
+  if (String((s as any).locArgs?.[0] ?? '') === '7') {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpractice/annapract19.jpg');
@@ -860,7 +860,7 @@ function enterDresscontest(s: GameState, scene: SceneBuilder): void {
     scene.text('"That dress makes you look like professional Domme, I have to resist the urge to knee in front of you and await your instructions." She says joking but you do feel like you are more assertive than normal.');
   }
   (s as any).hobble = undefined;
-  if (String((s as any).locArgs?.[0] ?? '') === 8) {
+  if (String((s as any).locArgs?.[0] ?? '') === '8') {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -874,7 +874,7 @@ function enterDresscontest(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['hotel_anna_sex', 'slaveM'] },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 9) {
+  if (String((s as any).locArgs?.[0] ?? '') === '9') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpractice/Annapract18.jpg');

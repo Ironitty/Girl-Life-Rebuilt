@@ -1525,11 +1525,11 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
 
 function enterCondString(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '';
-  if (String((s as any).locArgs?.[2] ?? '') === 0  &&  String((s as any).locArgs?.[4] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0'  &&  String((s as any).locArgs?.[0] ?? '') === '0') {
     return;
   }
   ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = '';
-  if (String((s as any).locArgs?.[2] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     ((s as any).sd_cs = (s as any).sd_cs ?? {})['dirt_pct'] = Math.min(Math.max(0, ((s as any).locArgs?.[1] ?? 0) / 24), 100);
     if (((s as any).sd_cs ?? 0)?.['dirt_pct'] <= 20) {
       ((s as any).sd_cs = (s as any).sd_cs ?? {})['dirt_col'] = 'v_pos';
@@ -1542,7 +1542,7 @@ function enterCondString(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = qspFunc(s, 'wrap', (((s as any).sd_cs ?? 0)?.['dirt_col']), '[' + String((((s as any).sd_cs ?? 0)?.['dirt_pct'])) + '% dirt]');
   }
-  if (String((s as any).locArgs?.[4] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     if (((s as any).sd_cs ?? 0)?.['out'] !== '') {
       ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = ((s as any).sd_cs['out'] ?? 0) + (' ');
     }

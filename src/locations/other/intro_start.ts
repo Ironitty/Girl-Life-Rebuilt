@@ -105,7 +105,7 @@ function enterSgShared(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMagicShared(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.img('images/system/1_openings/shared/site_gadukino.jpg');
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       scene.text('Having completed your second to last year of school, you went on summer break.');
@@ -141,7 +141,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       scene.img('images/system/1_openings/shared/site_tunnel_2.jpg');
       scene.text('The tunnel goes on for what feels like miles. You start to worry that your phone battery will die.');
       scene.actions([
@@ -161,7 +161,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         scene.img('images/system/1_openings/shared/site_working.jpg');
         scene.text('You follow the passage and find yourself in a construction site. There are several <b>KEEP OUT</b> signs visible from here. Shit.');
         scene.actions([
@@ -182,7 +182,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 3) {
+        if (String((s as any).locArgs?.[1] ?? '') === '3') {
           scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
           scene.text('"What the hell is going on?" you respond. You try to move your hands, but you\'re tied to the bed.');
           scene.text('"I\'ll start from the beginning," the girl says. "Magic exists and is real. Millennia ago, the world was not the same. The fae creatures who possess natural magic lived in balance, but the succubus were free to breed with whomever they wished."');
@@ -211,7 +211,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 4) {
+          if (String((s as any).locArgs?.[1] ?? '') === '4') {
             scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
             scene.text('"What do you want from me?" you ask.');
             scene.text('"Well, the amulet, obviously," Tatiana replies. "When I looked for you, I was hoping to get that object of power to study, but the power transferred to you first. The amulet will now be pretty much useless."');
@@ -240,7 +240,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 5) {
+            if (String((s as any).locArgs?.[1] ?? '') === '5') {
               if (((s as any).start_type ?? 0)?.['loc'] === 'uni'  ||  ((s as any).start_type ?? 0)?.['loc'] === 'city'  ||  (!((s as any).start_location ?? 0))) {
                 scene.img('images/system/1_openings/shared/site_pavlovsk.jpg');
                 if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
@@ -277,7 +277,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.text('<center><b>Apartment</b></center>');
     scene.img('images/system/1_openings/1_tf/1.jpg');
     scene.text('You wake up to the sound of your alarm clock and hear Luda, your wife, mumbling next to you. "Don\'t want to, it\'s too early." She pulls her blanket up and rolls over. You reach over and turn the clock off.');
@@ -341,7 +341,7 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).music_loop = 0;
       scene.img('images/system/1_openings/1_tf/4.jpg');
       scene.text('You leave the office and phone your wife in the car. You explain the situation to her and drive off to the construction site as soon as you hang up.');
@@ -421,7 +421,7 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         scene.img('images/system/1_openings/1_tf/6.jpg');
         scene.text('Your trip to the hotel is quite uneventful compared to your tomb raiding adventure.');
         scene.text('You park your car and go to the receptionist to get a room. You swipe your company card and take your room key.');
@@ -511,8 +511,8 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 3) {
-          (s as any).no_exp_gain = undefined;
+        if (String((s as any).locArgs?.[1] ?? '') === '3') {
+          (s as any).no_exp_gain = 0;
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTgAdultSharedResetMikaelStats(s, scene); (s as any).locArgs = __savedLocArgs; }
           scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
           scene.text('You wake up in an unfamiliar room. Standing near you is the same red-haired girl that entered your hotel room.');
@@ -642,27 +642,50 @@ function enterTgAdultSharedSetMikaelStats(s: GameState, scene: SceneBuilder): vo
 }
 
 function enterTgAdultSharedResetMikaelStats(s: GameState, scene: SceneBuilder): void {
-  (s as any).pcs_firstname = undefined;
-  (s as any).age = undefined;
-  (s as any).year = undefined;
-  (s as any).week = undefined;
-  (s as any).pcs_hgt = undefined;
-  (s as any).pcs_energy = undefined;
-  (s as any).dick = undefined;
-  (s as any).pcs_stren = undefined;
-  (s as any).pcs_agil = undefined;
-  (s as any).pcs_vital = undefined;
-  (s as any).pcs_jab = undefined;
-  (s as any).healthmax = undefined;
-  (s as any).pcs_health = undefined;
-  (s as any).birthyear = undefined;
-  (s as any).pcs_dob = undefined;
+  (s as any).pcs_firstname = '';
+  (s as any).pcs_lastname = '';
+  (s as any).age = 0;
+  (s as any).vidage = 0;
+  (s as any).year = 0;
+  (s as any).month = 0;
+  (s as any).day = 0;
+  (s as any).week = 0;
+  (s as any).hour = 0;
+  (s as any).minut = 0;
+  (s as any).pcs_hgt = 0;
+  (s as any).pcs_energy = 0;
+  (s as any).pcs_hydra = 0;
+  (s as any).pcs_sleep = 0;
+  (s as any).dick = 0;
+  (s as any).pcs_stren = 0;
+  (s as any).pcs_intel = 0;
+  (s as any).pcs_chrsm = 0;
+  (s as any).pcs_agil = 0;
+  (s as any).pcs_react = 0;
+  (s as any).pcs_prcptn = 0;
+  (s as any).pcs_vital = 0;
+  (s as any).pcs_sprt = 0;
+  (s as any).pcs_magik = 0;
+  (s as any).pcs_jab = 0;
+  (s as any).pcs_punch = 0;
+  (s as any).pcs_kick = 0;
+  (s as any).pcs_def = 0;
+  (s as any).healthmax = 0;
+  (s as any).willpowermax = 0;
+  (s as any).manamax = 0;
+  (s as any).pcs_health = 0;
+  (s as any).pcs_willpwr = 0;
+  (s as any).pcs_mana = 0;
+  (s as any).birthyear = 0;
+  (s as any).birthmonth = 0;
+  (s as any).birthday = 0;
+  (s as any).pcs_dob = 0;
   return;
   scene.build();
 }
 
 function enterSgTg(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.img('images/system/1_openings/shared/npc_ivan.jpg');
     scene.text('You are Mikhail Ivanov.');
     scene.text('Your parents died shortly after you were born and your only remaining relative, your great uncle Ivan (pictured), took you in. Your uncle has always made it clear that he took you in as a courtesy to your parents, not to become one himself. You never became close, resulting in a lonely childhood.');
@@ -698,7 +721,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       if (((s as any).pcs_firstname ?? 0) === '') {
         qspCall(s, 'intro_functions', 'set_default', 'name');
       }
@@ -722,7 +745,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
         { label: 'Re-enter her name(s)', goto: ['intro_start', 'sg_tg', '1'] },
       ]);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
         scene.text('You found out about her mother Natasha, and how her biological father left when she was a baby. Her mother remarried shortly afterwards to a man called Vladimir.');
         scene.text('She had a sister named Anya who was a few years older than her. Anya chose to live at home instead of going to college, working at the local grocery during the day and partying at night.');

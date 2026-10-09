@@ -335,6 +335,25 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
         st.CloMaxStrength = 0;
         return;
       }
+      const def = getLocation(module);
+      if (def?.enter) {
+        const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+        const savedLocArgs = (s as any).locArgs;
+        const savedPrevLoc = (s as any).prevLoc, savedPrevArg = (s as any).prevArg;
+        s.loc = module;
+        s.locArg = func;
+        s.locArg2 = '';
+        s.locArg3 = '';
+        (s as any).locArgs = [func, ...args];
+        (s as any).prevLoc = savedLoc;
+        (s as any).prevArg = savedArg;
+        def.enter(s, new SceneBuilder());
+        s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+        (s as any).locArgs = savedLocArgs;
+        (s as any).prevLoc = savedPrevLoc;
+        (s as any).prevArg = savedPrevArg;
+        return;
+      }
       warn(module, func, args);
       return;
     }
@@ -346,6 +365,27 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
         st.BraDirt = 0; st.BraStrength = 0; st.BraMaxStrength = 0;
         st.underwear = { ...st.underwear, pair: 0 };
         return;
+      }
+      {
+        const def = getLocation(module);
+        if (def?.enter) {
+          const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+          const savedLocArgs = (s as any).locArgs;
+          const savedPrevLoc = (s as any).prevLoc, savedPrevArg = (s as any).prevArg;
+          s.loc = module;
+          s.locArg = func;
+          s.locArg2 = '';
+          s.locArg3 = '';
+          (s as any).locArgs = [func, ...args];
+          (s as any).prevLoc = savedLoc;
+          (s as any).prevArg = savedArg;
+          def.enter(s, new SceneBuilder());
+          s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+          (s as any).locArgs = savedLocArgs;
+          (s as any).prevLoc = savedPrevLoc;
+          (s as any).prevArg = savedPrevArg;
+          return;
+        }
       }
       warn(module, func, args);
       return;
@@ -360,6 +400,27 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
         st.underwear = { ...st.underwear, pair: 0 };
         return;
       }
+      {
+        const def = getLocation(module);
+        if (def?.enter) {
+          const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+          const savedLocArgs = (s as any).locArgs;
+          const savedPrevLoc = (s as any).prevLoc, savedPrevArg = (s as any).prevArg;
+          s.loc = module;
+          s.locArg = func;
+          s.locArg2 = '';
+          s.locArg3 = '';
+          (s as any).locArgs = [func, ...args];
+          (s as any).prevLoc = savedLoc;
+          (s as any).prevArg = savedArg;
+          def.enter(s, new SceneBuilder());
+          s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+          (s as any).locArgs = savedLocArgs;
+          (s as any).prevLoc = savedPrevLoc;
+          (s as any).prevArg = savedPrevArg;
+          return;
+        }
+      }
       warn(module, func, args);
       return;
     }
@@ -373,6 +434,27 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
         st.ShoPain = { severe: 0, medium: 0, mild: 0 };
         return;
       }
+      {
+        const def = getLocation(module);
+        if (def?.enter) {
+          const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+          const savedLocArgs = (s as any).locArgs;
+          const savedPrevLoc = (s as any).prevLoc, savedPrevArg = (s as any).prevArg;
+          s.loc = module;
+          s.locArg = func;
+          s.locArg2 = '';
+          s.locArg3 = '';
+          (s as any).locArgs = [func, ...args];
+          (s as any).prevLoc = savedLoc;
+          (s as any).prevArg = savedArg;
+          def.enter(s, new SceneBuilder());
+          s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+          (s as any).locArgs = savedLocArgs;
+          (s as any).prevLoc = savedPrevLoc;
+          (s as any).prevArg = savedPrevArg;
+          return;
+        }
+      }
       warn(module, func, args);
       return;
     }
@@ -382,6 +464,27 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
         st.CoatWarm = 0; st.CoatQuality = 0; st.CoatPrice = 0;
         st.CoatStrength = 0; st.CoatMaxStrength = 0; st.coat_description = '';
         return;
+      }
+      {
+        const def = getLocation(module);
+        if (def?.enter) {
+          const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+          const savedLocArgs = (s as any).locArgs;
+          const savedPrevLoc = (s as any).prevLoc, savedPrevArg = (s as any).prevArg;
+          s.loc = module;
+          s.locArg = func;
+          s.locArg2 = '';
+          s.locArg3 = '';
+          (s as any).locArgs = [func, ...args];
+          (s as any).prevLoc = savedLoc;
+          (s as any).prevArg = savedArg;
+          def.enter(s, new SceneBuilder());
+          s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+          (s as any).locArgs = savedLocArgs;
+          (s as any).prevLoc = savedPrevLoc;
+          (s as any).prevArg = savedPrevArg;
+          return;
+        }
       }
       warn(module, func, args);
       return;
@@ -417,12 +520,12 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
     case 'clothing_attributes': {
       const type = str(args[0]), idx = num(args[1]);
       qspCall(s, 'clothing', 'reset_CloVars');
-      const attrLoc = `$attributes_${type}`;
+      const attrLoc = `_attributes_${type}`;
       if (hasLocation(attrLoc)) {
         const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
         const savedLocArgs = (s as any).locArgs;
         s.loc = attrLoc; s.locArg = String(idx);
-        (s as any).locArgs = ['', String(idx)];
+        (s as any).locArgs = [String(idx)];
         invoke(s, attrLoc, 'enter');
         s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
         (s as any).locArgs = savedLocArgs;
@@ -458,12 +561,12 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
       qspCall(s, 'panties', 'reset_PanVars');
       const st = s as any;
       st.underwear = { ...st.underwear, pair: 0 };
-      const attrLoc = `$attributes_${type}`;
+      const attrLoc = `_attributes_${type}`;
       if (hasLocation(attrLoc)) {
         const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
         const savedLocArgs = (s as any).locArgs;
         s.loc = attrLoc; s.locArg = String(idx);
-        (s as any).locArgs = ['', String(idx)];
+        (s as any).locArgs = [String(idx)];
         invoke(s, attrLoc, 'enter');
         s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
         (s as any).locArgs = savedLocArgs;
@@ -484,12 +587,12 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
       const type = str(args[0]), idx = num(args[1]);
       qspCall(s, 'shoes', 'reset_ShoVars');
       const st = s as any;
-      const attrLoc = `$attributes_${type}_shoes`;
+      const attrLoc = `_attributes_${type}_shoes`;
       if (hasLocation(attrLoc)) {
         const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
         const savedLocArgs = (s as any).locArgs;
         s.loc = attrLoc; s.locArg = String(idx);
-        (s as any).locArgs = ['', String(idx)];
+        (s as any).locArgs = [String(idx)];
         invoke(s, attrLoc, 'enter');
         s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
         (s as any).locArgs = savedLocArgs;
@@ -511,12 +614,12 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
       const type = str(args[0]), idx = num(args[1]);
       qspCall(s, 'coats', 'reset_CoatVars');
       const st = s as any;
-      const attrLoc = `$attributes_${type}_coats`;
+      const attrLoc = `_attributes_${type}_coats`;
       if (hasLocation(attrLoc)) {
         const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
         const savedLocArgs = (s as any).locArgs;
         s.loc = attrLoc; s.locArg = String(idx);
-        (s as any).locArgs = ['', String(idx)];
+        (s as any).locArgs = [String(idx)];
         invoke(s, attrLoc, 'enter');
         s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
         (s as any).locArgs = savedLocArgs;
@@ -531,12 +634,12 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
       const type = str(args[0]), idx = num(args[1]);
       qspCall(s, 'purses', 'reset_PurseVars');
       const st = s as any;
-      const attrLoc = `$attributes_${type}_purses`;
+      const attrLoc = `_attributes_${type}_purses`;
       if (hasLocation(attrLoc)) {
         const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
         const savedLocArgs = (s as any).locArgs;
         s.loc = attrLoc; s.locArg = String(idx);
-        (s as any).locArgs = ['', String(idx)];
+        (s as any).locArgs = [String(idx)];
         invoke(s, attrLoc, 'enter');
         s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
         (s as any).locArgs = savedLocArgs;
@@ -570,24 +673,17 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
     default: {
       const def = getLocation(module);
       if (def?.enter) {
-        const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+        const savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
         const savedLocArgs = (s as any).locArgs;
-        const savedPrevLoc = (s as any).prevLoc, savedPrevArg = (s as any).prevArg;
-        s.loc = module;
         s.locArg = func;
-        s.locArg2 = '';
-        s.locArg3 = '';
         (s as any).locArgs = [func, ...args];
-        (s as any).prevLoc = savedLoc;
-        (s as any).prevArg = savedArg;
-        def.enter(s, new SceneBuilder());
-        s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+        invoke(s, module, func);
+        s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
         (s as any).locArgs = savedLocArgs;
-        (s as any).prevLoc = savedPrevLoc;
-        (s as any).prevArg = savedPrevArg;
         return;
       }
       warn(module, func, args);
+      return;
     }
   }
 }
@@ -960,7 +1056,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
           result += `<TD><img width="100" src="images/pc/items/blank.jpg"></TD>`;
         } else {
           const cloType = str(st.defclothingtype?.[entry] ?? '');
-          qspCall(s, 'clothing_attributes', cloType, cloNum);
+          qspCall(s, 'clothing_attributes', '', cloType, cloNum);
           const img = qspFunc(s, '$clothing_image', cloType, cloNum);
           result += `<TD><img width="100" src="${img}"></TD>`;
         }
@@ -971,7 +1067,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
             result += `<TD><img width="100" src="images/pc/items/blank.jpg"></TD>`;
           } else {
             const bsType = str(st.defbodysuittype?.[entry] ?? '');
-            qspCall(s, 'underwear_attributes', bsType + '_bodysuits', bsNum);
+            qspCall(s, 'underwear_attributes', '', bsType + '_bodysuits', bsNum);
             const img = qspFunc(s, '$pcs_outfit_image', bsType + '_bodysuits', bsNum);
             result += `<TD><img width="100" src="${img}"></TD>`;
           }
@@ -982,7 +1078,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
             result += `<TD><img width="100" src="images/pc/items/blank.jpg"></TD>`;
           } else {
             const braType = str(st.defbratype?.[entry] ?? '');
-            qspCall(s, 'underwear_attributes', braType + '_bras', braNum);
+            qspCall(s, 'underwear_attributes', '', braType + '_bras', braNum);
             const img = qspFunc(s, '$bra_image', braType, braNum);
             result += `<TD><img width="100" src="${img}"></TD>`;
           }
@@ -991,7 +1087,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
             result += `<TD><img width="100" src="images/pc/items/blank.jpg"></TD>`;
           } else {
             const panType = str(st.defpantytype?.[entry] ?? '');
-            qspCall(s, 'underwear_attributes', panType + '_panties', panNum);
+            qspCall(s, 'underwear_attributes', '', panType + '_panties', panNum);
             const img = qspFunc(s, '$panty_image', panType, panNum);
             result += `<TD><img width="100" src="${img}"></TD>`;
           }
@@ -1001,7 +1097,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
           result += `<TD><img width="100" src="images/pc/items/blank.jpg"></TD>`;
         } else {
           const shoeType = str(st.defshoetype?.[entry] ?? '');
-          qspCall(s, 'shoe_attributes', shoeType, shoeNum);
+          qspCall(s, 'shoe_attributes', '', shoeType, shoeNum);
           const img = qspFunc(s, '$shoe_image', shoeType, shoeNum);
           result += `<TD><img width="100" src="${img}"></TD>`;
         }
@@ -1010,7 +1106,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
           result += `<TD><img width="100" src="images/pc/items/blank.jpg"></TD>`;
         } else {
           const coatType = str(st.defcoattype?.[entry] ?? '');
-          qspCall(s, 'coat_attributes', coatType, coatNum);
+          qspCall(s, 'coat_attributes', '', coatType, coatNum);
           const img = qspFunc(s, '$coat_image', coatType, coatNum);
           result += `<TD><img width="100" src="${img}"></TD>`;
         }
@@ -1019,7 +1115,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
           result += `<TD><img width="100" src="images/pc/items/blank.jpg"></TD>`;
         } else {
           const purseType = str(st.defpursetype?.[entry] ?? '');
-          qspCall(s, 'purse_attributes', purseType, purseNum);
+          qspCall(s, 'purse_attributes', '', purseType, purseNum);
           const img = qspFunc(s, '$purse_image', purseType, purseNum);
           result += `<TD><img width="100" src="${img}"></TD>`;
         }
@@ -1199,8 +1295,21 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
       warn(module, func, args);
       return 0;
     }
-    default:
+    default: {
+      const def = getLocation(module);
+      if (def?.enter) {
+        const savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+        const savedLocArgs = (s as any).locArgs;
+        s.locArg = func;
+        (s as any).locArgs = [func, ...args];
+        invoke(s, module, func);
+        const _ret = (s as any).result;
+        s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+        (s as any).locArgs = savedLocArgs;
+        return _ret ?? 0;
+      }
       warn(module, func, args);
       return 0;
+    }
   }
 }

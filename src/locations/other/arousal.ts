@@ -2050,7 +2050,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).arousal_overcall = 0;
     ((s as any).arousal_overcall = (s as any).arousal_overcall ?? {})['args'] = ((s as any).locArgs?.[0] ?? 0) + ((s as any).locArgs?.[1] ?? 0) + ((s as any).locArgs?.[2] ?? 0) + ((s as any).locArgs?.[3] ?? 0) + ((s as any).locArgs?.[4] ?? 0) + ((s as any).locArgs?.[5] ?? 0) + ((s as any).locArgs?.[6] ?? 0) + ((s as any).locArgs?.[7] ?? 0) + ((s as any).locArgs?.[8] ?? 0);
   }
-  (s as any).temp_time = ((s as any).locArgs?.[0] ?? 0) + ((s as any).locArgs?.[1] ?? 0) + ((s as any).locArgs?.[2] ?? 0) + ((s as any).locArgs?.[3] ?? 0) + ((s as any).locArgs?.[4] ?? 0) + ((s as any).locArgs?.[5] ?? 0) + ((s as any).locArgs?.[6] ?? 0) + ((s as any).locArgs?.[7] ?? 0) + ((s as any).locArgs?.[8] ?? 0);
+  (s as any).temp_time = [0,1,2,3,4,5,6,7,8].reduce((sum: number, i: number) => { const v = Number((s as any).locArgs?.[i]); return sum + (isNaN(v) ? 0 : v); }, 0);
   if ((!((s as any).temp_time ?? 0))) {
     scene.text('Error: Arousal called with a duration of 0 minutes.');
   } else {

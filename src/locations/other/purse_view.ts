@@ -74,7 +74,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'add') {
-    qspCall(s, 'purse_attributes', (s as any).locArgs?.[2] ?? '', ((s as any).locArgs?.[3] ?? 0));
+    qspCall(s, 'purse_attributes', '', (s as any).locArgs?.[2] ?? '', ((s as any).locArgs?.[3] ?? 0));
     if ((!((s as any).PurseQuality ?? 0))) {
       return;
     }
@@ -94,7 +94,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      qspCall(s, 'purse_attributes', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
+      qspCall(s, 'purse_attributes', '', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       return;
     }
@@ -110,7 +110,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
-      qspCall(s, 'purse_attributes', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
+      qspCall(s, 'purse_attributes', '', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
       return;
     }
@@ -162,7 +162,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount'] = ((s as any).locArgs?.[4] ?? 0);
   qspCall(s, 'stat', '');
   scene.img(`${qspFunc(s, '$purse_image', '', (((s as any).shop_utils_view ?? 0)?.['type'] ?? ''), (((s as any).shop_utils_view ?? 0)?.['number'] ?? ''))}`);
-  qspCall(s, 'purse_attributes', '$shop_utils_view[\'type\']', (((s as any).shop_utils_view ?? 0)?.['number']));
+  qspCall(s, 'purse_attributes', '', '$shop_utils_view[\'type\']', (((s as any).shop_utils_view ?? 0)?.['number']));
   qspCall(s, 'purses', 'descriptions', (((s as any).shop_utils_view ?? 0)?.['type']));
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop'  ||  ((s as any).shop_utils_view ?? 0)?.['link'] === 'cheat') {
     qspGoto(s, 'purse_view', 'view_item_shop');

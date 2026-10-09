@@ -279,19 +279,19 @@ function enterGetMultiplied(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === -99) {
     (s as any).result = 0;
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 0) {
+    if (String((s as any).locArgs?.[1] ?? '') === '0') {
       (s as any).result = ((s as any).locArgs?.[2] ?? 0);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         (s as any).result = (((s as any).locArgs?.[2] ?? 0) * 5) / 4;
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 2) {
+        if (String((s as any).locArgs?.[1] ?? '') === '2') {
           (s as any).result = (((s as any).locArgs?.[2] ?? 0) * 3) / 2;
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 3) {
+          if (String((s as any).locArgs?.[1] ?? '') === '3') {
             (s as any).result = ((s as any).locArgs?.[2] ?? 0) * 2;
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 4) {
+            if (String((s as any).locArgs?.[1] ?? '') === '4') {
               (s as any).result = ((s as any).locArgs?.[2] ?? 0) * 3;
             } else {
               if (String((s as any).locArgs?.[1] ?? '') === -1) {
@@ -306,7 +306,7 @@ function enterGetMultiplied(s: GameState, scene: SceneBuilder): void {
                     if (String((s as any).locArgs?.[1] ?? '') === -4) {
                       (s as any).result = ((s as any).locArgs?.[2] ?? 0) / 3;
                     } else {
-                      if (String((s as any).locArgs?.[1] ?? '') === 99) {
+                      if (String((s as any).locArgs?.[1] ?? '') === '99') {
                         (s as any).result = (((s as any).locArgs?.[2] ?? 0) * ((s as any).locArgs?.[3] ?? 0)) / 100;
                       }
                     }
@@ -318,6 +318,9 @@ function enterGetMultiplied(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+  }
+  if ((s as any).result === undefined) {
+    (s as any).result = ((s as any).locArgs?.[2] ?? 0);
   }
   return;
   scene.build();

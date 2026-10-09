@@ -336,7 +336,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   if ((!(Math.floor(Math.random() * 4) + 0))) {
     qspGoto(s, 'pav_train_market', (Math.floor(Math.random() * 19) + 1));
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 1) {
+  if (String((s as any).locArgs?.[0] ?? '') === '1') {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/poproshaika1.jpg');
     scene.text('You\'re strolling through the market when a beggar asks you for some change.');
@@ -375,7 +375,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 2) {
+  if (String((s as any).locArgs?.[0] ?? '') === '2') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/dedgitara.jpg');
@@ -389,7 +389,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 3) {
+  if (String((s as any).locArgs?.[0] ?? '') === '3') {
     (s as any).pavtrain_book = 1;
     qspCall(s, 'stat', '');
     if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
@@ -408,7 +408,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 4) {
+  if (String((s as any).locArgs?.[0] ?? '') === '4') {
     (s as any).pavmarket_porn = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/pornmag.jpg');
@@ -768,7 +768,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 5) {
+  if (String((s as any).locArgs?.[0] ?? '') === '5') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/dedgitara.jpg');
@@ -782,7 +782,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 6) {
+  if (String((s as any).locArgs?.[0] ?? '') === '6') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/nenavizublyadcigan.jpg');
@@ -815,7 +815,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 7) {
+  if (String((s as any).locArgs?.[0] ?? '') === '7') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/kosmetic.jpg');
@@ -839,7 +839,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 8) {
+  if (String((s as any).locArgs?.[0] ?? '') === '8') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/vitaminki.jpg');
@@ -863,7 +863,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 9) {
+  if (String((s as any).locArgs?.[0] ?? '') === '9') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/pc/items/accessories/birthcontrol/condoms.jpg');
@@ -898,7 +898,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 10) {
+  if (String((s as any).locArgs?.[0] ?? '') === '10') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/balzam.jpg');
@@ -922,7 +922,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 11) {
+  if (String((s as any).locArgs?.[0] ?? '') === '11') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
@@ -940,7 +940,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 12) {
+  if (String((s as any).locArgs?.[0] ?? '') === '12') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/cheburek.jpg');
@@ -980,7 +980,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 13) {
+  if (String((s as any).locArgs?.[0] ?? '') === '13') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/dropwallet.jpg');
@@ -1042,7 +1042,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 14) {
+  if (String((s as any).locArgs?.[0] ?? '') === '14') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/rebenok.jpg');
@@ -1056,7 +1056,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 15) {
+  if (String((s as any).locArgs?.[0] ?? '') === '15') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/rezba.jpg');
@@ -1070,7 +1070,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 16) {
+  if (String((s as any).locArgs?.[0] ?? '') === '16') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/gruzchik.jpg');
@@ -1084,7 +1084,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 17) {
+  if (String((s as any).locArgs?.[0] ?? '') === '17') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/meatlavka.jpg');
@@ -1098,7 +1098,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 18) {
+  if (String((s as any).locArgs?.[0] ?? '') === '18') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/dirka.jpg');
@@ -1133,7 +1133,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
     ]);
   }
-  if (String((s as any).locArgs?.[0] ?? '') === 19) {
+  if (String((s as any).locArgs?.[0] ?? '') === '19') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/market/birthcontrolpills.jpg');

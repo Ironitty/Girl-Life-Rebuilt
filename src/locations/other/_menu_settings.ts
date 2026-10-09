@@ -77,7 +77,7 @@ function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
 function enterSwap(s: GameState, scene: SceneBuilder): void {
   while (true) {
     (s as any).temp_arr = ((s as any).locArgs?.[1] ?? 0);
-    if (String((s as any).locArgs?.[2] ?? '') === 0  &&  String((s as any).locArgs?.[3] ?? '') === 'up') {
+    if (String((s as any).locArgs?.[0] ?? '') === '0'  &&  String((s as any).locArgs?.[3] ?? '') === 'up') {
       break;
     }
     if (String((s as any).locArgs?.[2] ?? '') === (Object.keys((s as any)['$' + ((s as any).temp_arr ?? 0)] ?? {}).length - 1)  &&  String((s as any).locArgs?.[3] ?? '') === 'down') {

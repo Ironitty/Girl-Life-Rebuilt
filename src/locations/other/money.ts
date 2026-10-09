@@ -53,7 +53,7 @@ function enterDeskTransfer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPay(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     return;
   }
   ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['amount'] = qspFunc(s, 'money', '_apply_modifiers', ((s as any).locArgs?.[1] ?? 0), 'price');
@@ -92,7 +92,7 @@ function enterPay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEarn(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     return;
   }
   ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['amount'] = qspFunc(s, 'money', '_apply_modifiers', ((s as any).locArgs?.[1] ?? 0), 'profit');
@@ -209,7 +209,7 @@ function enterCanAffordInner(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStringPrice(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     (s as any).result = 'Free';
   } else {
     (s as any).result = qspFunc(s, 'money', 'format', qspFunc(s, 'money', '_apply_modifiers', ((s as any).locArgs?.[1] ?? 0), 'price'), 0, 0);
@@ -227,12 +227,12 @@ function enterStringProfit(s: GameState, scene: SceneBuilder): void {
 function enterFormat(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[3] ?? '')) {
     (s as any).result = qspFunc(s, 'string', 'parse_number', ((s as any).locArgs?.[1] ?? 0));
-    if (String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[0] ?? '') === '0') {
       (s as any).result = ((s as any).result ?? '') + ' Rouble' + ((String((s as any).locArgs?.[1] ?? '') !== 1) ? ('s') : (''));
     }
   } else {
     (s as any).result = qspFunc(s, 'money', '_format_price_string', ((s as any).locArgs?.[1] ?? 0));
-    if (String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[0] ?? '') === '0') {
       (s as any).result = ((s as any).result ?? '') + ' <b>₽</b>';
     }
   }
@@ -278,7 +278,7 @@ function enterFormatBalance(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).result = qspFunc(s, 'money', 'format', (((s as any).format_balance_temp ?? 0)?.['base']), 1);
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     (s as any).result = ((s as any).result ?? '') + ' <b>₽</b>';
   }
   if (String((s as any).locArgs?.[3] ?? '')) {
@@ -531,7 +531,7 @@ function enterChoosePaymentMethod(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDebtAdd(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     return;
   }
   ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['amount'] = qspFunc(s, 'money', 'price', ((s as any).locArgs?.[2] ?? 0));

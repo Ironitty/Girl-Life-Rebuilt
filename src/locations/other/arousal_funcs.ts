@@ -25,7 +25,7 @@ function enterCalcStimtotal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStretch(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_amount = ((String((s as any).locArgs?.[2] ?? '') === 0) ? (1) : (((s as any).locArgs?.[2] ?? 0)));
+  (s as any).temp_amount = ((String((s as any).locArgs?.[0] ?? '') === '0') ? (1) : (((s as any).locArgs?.[2] ?? 0)));
   if (String((s as any).locArgs?.[1] ?? '') === 'vaginal') {
     if (((s as any).trait_vars ?? 0)?.['elasticity'] >= 0  ||  (!(Math.floor(Math.random() * 4) + 0))) {
       (s as any).pcs_vag = ((s as any).pcs_vag ?? 0) + (((s as any).temp_amount ?? 0));

@@ -629,7 +629,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
   (s as any).natkolkadeal = undefined;
   qspCall(s, 'arousal', 'voyeur_sex', 5, 'dom');
   qspCall(s, 'arousal', 'end');
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     if (((s as any).NatbelQW ?? 0)?.['KolkaCP'] > 0) {
@@ -708,7 +708,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 2) {
+  if (String((s as any).locArgs?.[1] ?? '') === '2') {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     if (((s as any).NatbelQW ?? 0)?.['KolkaCP'] > 0) {
@@ -760,7 +760,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 3) {
+  if (String((s as any).locArgs?.[1] ?? '') === '3') {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     if (((s as any).NatbelQW ?? 0)?.['KolkaCP'] > 0) {
@@ -812,7 +812,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 4) {
+  if (String((s as any).locArgs?.[1] ?? '') === '4') {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -839,7 +839,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 5) {
+  if (String((s as any).locArgs?.[1] ?? '') === '5') {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -855,7 +855,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 6) {
+  if (String((s as any).locArgs?.[1] ?? '') === '6') {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([

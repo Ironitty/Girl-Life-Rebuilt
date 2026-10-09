@@ -442,7 +442,7 @@ function enterGetTimeString(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length <= 3) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = (((s as any).cheatVars ?? 0)?.['time_format']);
   }
-  if (String((s as any).locArgs?.[3] ?? '') === 0  &&  String((s as any).locArgs?.[3] ?? '') === '') {
+  if (String((s as any).locArgs?.[0] ?? '') === '0'  &&  String((s as any).locArgs?.[3] ?? '') === '') {
     (s as any).result = '' + (String(100 + ((s as any).locArgs?.[1] ?? 0)).slice((2)-1, ((2)-1)+(2))) + ':' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '';
   } else {
     ((s as any).dateVars = (s as any).dateVars ?? {})['period'] = 'AM';
@@ -452,11 +452,11 @@ function enterGetTimeString(s: GameState, scene: SceneBuilder): void {
         ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).ARGS[1] ?? 0) - (12);
       }
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 0) {
+      if (String((s as any).locArgs?.[1] ?? '') === '0') {
         ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 12;
       }
     }
-    if (String((s as any).locArgs?.[2] ?? '') === 0) {
+    if (String((s as any).locArgs?.[0] ?? '') === '0') {
       (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '&nbsp;' + (((s as any).dateVars ?? 0)?.['period']) + '';
     } else {
       (s as any).result = '' + (String(100 + ((s as any).locArgs?.[1] ?? 0)).slice((2)-1, ((2)-1)+(2))) + ':' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '&nbsp;' + (((s as any).dateVars ?? 0)?.['period']) + '';
@@ -477,16 +477,16 @@ function enterGetDateString(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).day ?? 0);
   }
   (s as any).temp_date_suffix = qspFunc(s, 'time', 'get_number_suffix', ((s as any).locArgs?.[3] ?? 0));
-  if (String((s as any).locArgs?.[4] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + String(((s as any).locArgs?.[1] ?? 0)) + '-' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '-' + (String(100 + ((s as any).locArgs?.[3] ?? 0)).slice((2)-1, ((2)-1)+(2)));
   } else {
-    if (String((s as any).locArgs?.[4] ?? '') === 2) {
+    if (String((s as any).locArgs?.[2] ?? '') === '2') {
       (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + (String(100 + ((s as any).locArgs?.[3] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + String(((s as any).locArgs?.[1] ?? 0));
     } else {
-      if (String((s as any).locArgs?.[4] ?? '') === 3) {
+      if (String((s as any).locArgs?.[3] ?? '') === '3') {
         (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + qspUntranslated(s, "monthName[ARGS[2]]", { location: "time" }) + '&nbsp;' + String(((s as any).locArgs?.[3] ?? 0)) + ((s as any).temp_date_suffix ?? 0) + ',&nbsp;' + String(((s as any).locArgs?.[1] ?? 0));
       } else {
-        if (String((s as any).locArgs?.[4] ?? '') === 4) {
+        if (String((s as any).locArgs?.[4] ?? '') === '4') {
           (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + (String(100 + ((s as any).locArgs?.[2] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + (String(100 + ((s as any).locArgs?.[3] ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + String(((s as any).locArgs?.[1] ?? 0));
         } else {
           (s as any).result = ((s as any).weekName ?? 0) + ',&nbsp;' + String(((s as any).locArgs?.[3] ?? 0)) + ((s as any).temp_date_suffix ?? 0) + '&nbsp;' + qspUntranslated(s, "monthName[ARGS[2]]", { location: "time" }) + '&nbsp;' + String(((s as any).locArgs?.[1] ?? 0));

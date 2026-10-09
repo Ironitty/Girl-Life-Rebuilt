@@ -42,7 +42,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
     }
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     ((s as any).testresDay = (s as any).testresDay ?? {})[((s as any).locArgs?.[0] ?? 0)] = 2147483647;
     if (((s as any).ChildFath ?? 0)[String((s as any).locArgs?.[0] ?? '')] === ((s as any).papa ?? 0)) {
       ((s as any).testresRes = (s as any).testresRes ?? {})[((s as any).locArgs?.[0] ?? 0)] = 1;
@@ -55,7 +55,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).used_pattest = ((s as any).used_pattest ?? 0) + (1);
     (s as any).papa = undefined;
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     (s as any).test_purse = qspUntranslated(s, "{", { location: "pattest" });
     (s as any).j = 0;
     (s as any).msg = 'Tests in your purse:';

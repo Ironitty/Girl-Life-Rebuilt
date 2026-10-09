@@ -146,12 +146,12 @@ function enterNapBed(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_sleep ?? 0) <= 90) {
       (s as any).inSleep = 1;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 60]; enterNapBase(s, scene); (s as any).locArgs = __savedLocArgs; }
-      if (String((s as any).locArgs?.[1] ?? '') === 0) {
+      if (String((s as any).locArgs?.[1] ?? '') === '0') {
         scene.text('You sleep about an hour.');
       }
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      if (String((s as any).locArgs?.[1] ?? '') === 0) {
+      if (String((s as any).locArgs?.[1] ?? '') === '0') {
         scene.text('You are not tired enough to sleep, even for a short nap.');
       }
     }
@@ -169,12 +169,12 @@ function enterNap(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) <= 90) {
     (s as any).inSleep = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 60]; enterNapBase(s, scene); (s as any).locArgs = __savedLocArgs; }
-    if (String((s as any).locArgs?.[1] ?? '') === 0) {
+    if (String((s as any).locArgs?.[1] ?? '') === '0') {
       scene.text('You nap for about an hour.');
     }
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (String((s as any).locArgs?.[1] ?? '') === 0) {
+    if (String((s as any).locArgs?.[1] ?? '') === '0') {
       scene.text('You are not tired enough even for a short nap.');
     }
   }

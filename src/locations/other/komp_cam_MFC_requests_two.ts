@@ -9,7 +9,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).camGirl = (s as any).camGirl ?? {})['MFC_lastrequest'] = ((s as any).totminut ?? 0);
   qspCall(s, 'stat', '');
-  if (String((s as any).locArgs?.[0] ?? '') === 80) {
+  if (String((s as any).locArgs?.[0] ?? '') === '80') {
     scene.text('When one of your loyal viewers speaks up, you feel a weird knot in your throat. He\'s usually making rather insensitive comments and seems to enjoy watching you squirm, but he pays well.');
     scene.text('"I want to really see you suffer today", he types. "I\'ll give you a lot of tokens if you do this, but it will hurt: Find a hook and stick it inside your cunt. Then puncture your perineum with it, so it comes out your anus again."');
     qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
@@ -56,7 +56,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (String((s as any).locArgs?.[0] ?? '') === 81) {
+    if (String((s as any).locArgs?.[0] ?? '') === '81') {
       scene.text('One of the regulars says: "I\'ve always been curious what the inside of a girl\'s ass looks like. How about you show me? I\'ve got a bunch of tokens with your name on it! ;)"');
       qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -95,7 +95,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (String((s as any).locArgs?.[0] ?? '') === 82) {
+      if (String((s as any).locArgs?.[0] ?? '') === '82') {
         scene.text('One of the regulars asks: "You know, I really love it when girls stick something in their urethra! Could you do that for me? It doesn\'t have to be big!"');
         qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -133,7 +133,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (String((s as any).locArgs?.[0] ?? '') === 83) {
+        if (String((s as any).locArgs?.[0] ?? '') === '83') {
           scene.text('One of the viewers asks you: "Fuck yourself with something! But not a dildo… be creative! Use your imagination and surprise us!"');
           qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -179,7 +179,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          if (String((s as any).locArgs?.[0] ?? '') === 84) {
+          if (String((s as any).locArgs?.[0] ?? '') === '84') {
             if (((s as any).pcs_vag ?? 0) >= ((s as any).pcs_ass ?? 0)) {
               scene.text('One of the viewers, noticing how drunk you are, asks in chat: "How much would it take for you to shove a bottle in your vagina and fuck yourself with it? That would be so hot…"');
             } else {
@@ -219,7 +219,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            if (String((s as any).locArgs?.[0] ?? '') === 85) {
+            if (String((s as any).locArgs?.[0] ?? '') === '85') {
               scene.text(`One of the viewers, noticing how drunk you are, asks in chat: "Hey, ${((s as any).pcs_nickname ?? '')}! Show us something unusual! Anything!"`);
               (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 0)", { location: "komp_cam_MFC_requests_two" });
               if (((s as any).sparrvol ?? 0)?.[String((s as any).temp ?? 0)] > 0  &&  ((s as any).temp ?? 0) >= 0) {
@@ -388,7 +388,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
               (s as any).temp = undefined;
             } else {
-              if (String((s as any).locArgs?.[0] ?? '') === 86) {
+              if (String((s as any).locArgs?.[0] ?? '') === '86') {
                 scene.text('One of the viewers, noticing how drunk you are, asks in chat: "How much would it take for you to shove a bottle in your vagina? That would be so hot…"');
                 scene.text('You immediately jump up from your chair, forgetting to even ask for tokens. "I\'ll go get one! I don\'t normally do this, but… only today, and only for you!" you wink at the camera in a slightly slurry voice.');
                 scene.actions([
@@ -411,7 +411,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
                 ]);
               } else {
-                if (String((s as any).locArgs?.[0] ?? '') === 87) {
+                if (String((s as any).locArgs?.[0] ?? '') === '87') {
                   scene.text('One of the viewers challenges you: "Put something in your vagina. Anything. Impress me."');
                   qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
                   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -449,7 +449,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
                   ]);
                 } else {
-                  if (String((s as any).locArgs?.[0] ?? '') === 88) {
+                  if (String((s as any).locArgs?.[0] ?? '') === '88') {
                     scene.text('One of the viewers has a rather unusual request: "Time for you to quiet down for a while! Gag yourself by putting your panties into your mouth…"');
                     qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
                     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -490,7 +490,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
                     ]);
                   } else {
-                    if (String((s as any).locArgs?.[0] ?? '') === 89) {
+                    if (String((s as any).locArgs?.[0] ?? '') === '89') {
                       scene.text('One of the viewers makes several comments on how badly he wants to fuck your ass, and then offers you tokens to show your asshole to him…');
                       qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
                       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {

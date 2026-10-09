@@ -13,7 +13,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'rasputin_host', 'start');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
     scene.text('Nadia waits with a warm smile.');
     scene.text(`"Is there anything else I can help you with ${((s as any).pcs_firstname ?? '')}?"`);

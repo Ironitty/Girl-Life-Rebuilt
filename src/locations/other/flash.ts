@@ -231,7 +231,7 @@ function enterButt(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterExhibitionism(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).flashVars = (s as any).flashVars ?? {})['text_before'] = 'You glance around to see who is in the area, then you pull ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('up the back of your skirt') : ('down the back of your pants')) + ' to show off your butt. Most people don\'t notice but a few do, some smile, others frown or shake their head in disgust.';
   ((s as any).flashVars = (s as any).flashVars ?? {})['text_after'] = 'You ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('lower the skirt back in place') : ('pull your pants back up')) + ', feeling the thrill of excitement running down your spine.';
-  if (((s as any).analPlugIn ?? 0) === 1  ||  String((s as any).locArgs?.[0] ?? '') === 'butt_plug') {
+  if (((s as any).analPlugIn ?? 0) === 1) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'butt_plug', ((s as any).locArgs?.[1] ?? 0)]; enterGetImage(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'butt_plug', ((s as any).locArgs?.[1] ?? 0), 'flash', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)]; enterGenerateOutput(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
@@ -291,12 +291,12 @@ function enterExhibitionism(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[3] ?? '') < 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = -((s as any).locArgs?.[3] ?? 0);
   }
-  if (String((s as any).locArgs?.[3] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
   }
   ((s as any).temp_rand = (s as any).temp_rand ?? {})[1] = 1 + ((((s as any).locArgs?.[3] ?? 0) - 1) / 5);
   (s as any).temp_rand = (Math.floor(Math.random() * (59 - 0 + 1)) + (0));
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = ((s as any).trait_vars['exhibitionist_exp'] ?? 0) + (1);
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
@@ -311,7 +311,7 @@ function enterExhibitionism(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'fame', '$region', 'flash', 'tiny');
     }
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = ((s as any).trait_vars['exhibitionist_exp'] ?? 0) + (2);
       if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -330,7 +330,7 @@ function enterExhibitionism(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === '3') {
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = ((s as any).trait_vars['exhibitionist_exp'] ?? 0) + (3);
         if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);

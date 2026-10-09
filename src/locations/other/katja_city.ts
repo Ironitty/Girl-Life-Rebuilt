@@ -276,7 +276,7 @@ function enterPussy_Cats(s: GameState, scene: SceneBuilder): void {
       } else {
         if ((Math.floor(Math.random() * 2) + 0) === 1) {
           (st as any).numrand = (Math.floor(Math.random() * 220) + 1);
-          qspCall(st, 'clothing_attributes', 'cats_dress', ((st as any).numrand ?? 0));
+          qspCall(st, 'clothing_attributes', '', 'cats_dress', ((st as any).numrand ?? 0));
           if (((st as any).CloBimbo ?? 0) === 1) {
             break;
           }
@@ -348,7 +348,7 @@ function enterPussy_Cats(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           (st as any).numrand = (Math.floor(Math.random() * 200) + 1);
-          qspCall(st, 'clothing_attributes', 'cats_dress', ((st as any).numrand ?? 0));
+          qspCall(st, 'clothing_attributes', '', 'cats_dress', ((st as any).numrand ?? 0));
           if (((st as any).CloBimbo ?? 0) === 1) {
             break;
           }

@@ -118,7 +118,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'clothing_attributes', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
+  qspCall(s, 'clothing_attributes', '', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[1] ?? ''), ((s as any).locArgs?.[2] ?? ''))}`);
   scene.text(`${((s as any).locArgs?.[1] ?? '')} no.${((s as any).locArgs?.[2] ?? '')}`);
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['strength'] = ((s as any).CloStrength ?? 0);
@@ -132,10 +132,10 @@ function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).pcs_inhib ?? 0) < ((s as any).CloInhibit ?? 0)) {
-      if (String((s as any).locArgs?.[3] ?? '') === 0) {
+      if (String((s as any).locArgs?.[0] ?? '') === '0') {
         scene.text('You don\'t feel daring enough to wear swimwear this revealing.');
       } else {
-        if (String((s as any).locArgs?.[3] ?? '') === 1) {
+        if (String((s as any).locArgs?.[1] ?? '') === '1') {
           scene.text('You don\'t feel daring enough to wear swimwear this revealing, but if you want to go into the water, you\'re going to have to brave it.');
           qspCall(s, 'willpower', 'exhib', 'self', 'easy');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -156,7 +156,7 @@ function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
             ]);
           }
         } else {
-          if (String((s as any).locArgs?.[3] ?? '') === 2) {
+          if (String((s as any).locArgs?.[2] ?? '') === '2') {
             scene.text('You don\'t feel daring enough to wear swimwear this revealing, but if you want to go into the water, you\'re going to have to brave it.');
             scene.actions([
               { label: 'Wear', handler: (st: GameState) => {

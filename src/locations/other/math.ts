@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntSqrt(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     (s as any).result = 0;
     return;
   }
@@ -32,7 +32,7 @@ function enterIntSqrt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntDivide(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     alert('<b>Error: No dividing by 0! You trying to make the universe disappear?</b> in math, int_round_divide');
     return;
   }
@@ -42,7 +42,7 @@ function enterIntDivide(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntRound(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     alert('<b>Error: Can\'t round to 0!</b> in math, int_round');
     return;
   }
@@ -58,19 +58,19 @@ function enterIntClamp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntPower(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[2] ?? '') === '0') {
     (s as any).result = 1;
   } else {
     if (String((s as any).locArgs?.[2] ?? '') < 0) {
       (s as any).result = 0;
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         (s as any).result = ((s as any).locArgs?.[1] ?? 0);
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 2) {
+        if (String((s as any).locArgs?.[2] ?? '') === '2') {
           (s as any).result = ((s as any).locArgs?.[1] ?? 0) * ((s as any).locArgs?.[1] ?? 0);
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 3) {
+          if (String((s as any).locArgs?.[2] ?? '') === '3') {
             (s as any).result = ((s as any).locArgs?.[1] ?? 0) * ((s as any).locArgs?.[1] ?? 0) * ((s as any).locArgs?.[1] ?? 0);
           } else {
             if ((!(String((s as any).locArgs?.[2] ?? '') % 2))) {
@@ -143,7 +143,9 @@ function enterLongAdd(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = '' + ((s as any).locArgs?.[2] ?? 0) + '';
   }
-  (s as any).temp_add_sign = undefined;
+  (s as any).temp_add_sign = {1: 0, 2: 0};
+  ((s as any).ARGS = (s as any).ARGS ?? {})[1] = String(((s as any).locArgs?.[1] ?? 0));
+  ((s as any).ARGS = (s as any).ARGS ?? {})[2] = String(((s as any).locArgs?.[2] ?? 0));
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
     ((s as any).temp_add_sign = (s as any).temp_add_sign ?? {})[1] = 1;
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1));
@@ -154,9 +156,9 @@ function enterLongAdd(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_add_sign ?? 0)[1] !== ((s as any).temp_add_sign ?? 0)[2]) {
     if (((s as any).temp_add_sign ?? 0)[1] === 0) {
-      (s as any).result = qspFunc(s, 'math', 'long_sub', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
+      (s as any).result = qspFunc(s, 'math', 'long_sub', ((s as any).ARGS ?? {})[1], ((s as any).ARGS ?? {})[2]);
     } else {
-      (s as any).result = qspFunc(s, 'math', 'long_sub', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[1] ?? 0));
+      (s as any).result = qspFunc(s, 'math', 'long_sub', ((s as any).ARGS ?? {})[2], ((s as any).ARGS ?? {})[1]);
     }
     qspGoto(s, 'math', 'long_add_cleanup');
   } else {
@@ -207,7 +209,9 @@ function enterLongSub(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = '' + ((s as any).locArgs?.[2] ?? 0) + '';
   }
-  (s as any).temp_sub_sign = undefined;
+  (s as any).temp_sub_sign = {1: 0, 2: 0};
+  ((s as any).ARGS = (s as any).ARGS ?? {})[1] = String(((s as any).locArgs?.[1] ?? 0));
+  ((s as any).ARGS = (s as any).ARGS ?? {})[2] = String(((s as any).locArgs?.[2] ?? 0));
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
     ((s as any).temp_sub_sign = (s as any).temp_sub_sign ?? {})[1] = 1;
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1));
@@ -226,7 +230,7 @@ function enterLongSub(s: GameState, scene: SceneBuilder): void {
       (s as any).result = qspFunc(s, 'math', 'long_add', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
       (s as any).result = '-' + ((s as any).result ?? 0);
     } else {
-      (s as any).result = qspFunc(s, 'math', 'long_sub', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[1] ?? 0));
+      (s as any).result = qspFunc(s, 'math', 'long_sub', ((s as any).ARGS ?? {})[2], ((s as any).ARGS ?? {})[1]);
     }
     qspGoto(s, 'math', 'long_sub_cleanup');
   }
@@ -297,7 +301,7 @@ function enterLongMult(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = '' + ((s as any).locArgs?.[2] ?? 0) + '';
   }
-  (s as any).temp_mult_sign = undefined;
+  (s as any).temp_mult_sign = {1: 0, 2: 0};
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
     ((s as any).temp_mult_sign = (s as any).temp_mult_sign ?? {})[1] = 1;
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1));
@@ -308,34 +312,30 @@ function enterLongMult(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).temp_mult_sign = (s as any).temp_mult_sign ?? {})[0] = ((((s as any).temp_mult_sign ?? 0)[1] + ((s as any).temp_mult_sign ?? 0)[2]) % 2);
   (s as any).math_i = 0;
-  (s as any).long = undefined;
-  do {
+  (s as any).long = {};
+  const _arg1 = String((s as any).locArgs?.[1] ?? 0);
+  const _arg2 = String((s as any).locArgs?.[2] ?? 0);
+  for (; (s as any).math_i < _arg1.length; (s as any).math_i++) {
     (s as any).math_j = 0;
-    do {
-      ((s as any).long = (s as any).long ?? {})[((s as any).math_i ?? 0)+((s as any).math_j ?? 0)+1] = ((s as any).long[((s as any).math_i ?? 0)+((s as any).math_j ?? 0)+1] ?? 0) + (parseFloat((String(((s as any).locArgs?.[1] ?? 0)).slice((((s as any).math_i ?? 0)+1)-1, ((((s as any).math_i ?? 0)+1)-1)+(1)))) * parseFloat((String(((s as any).locArgs?.[2] ?? 0)).slice((((s as any).math_j ?? 0)+1)-1, ((((s as any).math_j ?? 0)+1)-1)+(1)))));
-      (s as any).math_j = ((s as any).math_j ?? 0) + (1);
-      (s as any).math_i = ((s as any).math_i ?? 0) + (1);
-      (s as any).result = '';
-      (s as any).math_i = 0;
-      do {
-        if (((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] > 9) {
-          ((s as any).long = (s as any).long ?? {})[((s as any).math_i ?? 0)-1] = ((s as any).long[((s as any).math_i ?? 0)-1] ?? 0) + ((((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] ?? 0) / 10);
-          ((s as any).long = (s as any).long ?? {})[String((s as any).math_i ?? 0)] = ((((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] ?? 0) % 10);
-        }
-        (s as any).result = '' + (((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] ?? 0) + '\' + $resul';
-        (s as any).math_i = ((s as any).math_i ?? 0) - (1);
-        (s as any).result = '' + (((s as any).long ?? 0)?.[0] ?? 0) + '\' + $resul';
-        (s as any).result = qspFunc(s, 'math', 'trim_long', ((s as any).result ?? 0));
-        if (((s as any).temp_mult_sign ?? 0)[0] === 1) {
-          (s as any).result = '-' + ((s as any).result ?? 0);
-        }
-        (s as any).math_i = undefined;
-        (s as any).math_j = undefined;
-        (s as any).long = undefined;
-        (s as any).temp_mult_sign = undefined;
-      } while (((s as any).math_i ?? 0) > 0);
-    } while (((s as any).math_j ?? 0) < (String(((s as any).locArgs?.[2] ?? 0)).length));
-  } while (((s as any).math_i ?? 0) < (String(((s as any).locArgs?.[1] ?? 0)).length));
+    for (; (s as any).math_j < _arg2.length; (s as any).math_j++) {
+      const _i = (s as any).math_i, _j = (s as any).math_j;
+      ((s as any).long as any)[_i + _j + 1] = (((s as any).long as any)[_i + _j + 1] ?? 0) + (parseFloat(_arg1[_i]) * parseFloat(_arg2[_j]));
+    }
+  }
+  (s as any).result = '';
+  (s as any).math_i = Object.keys((s as any).long as any).length - 1;
+  for (; (s as any).math_i > 0; (s as any).math_i--) {
+    const _i = (s as any).math_i;
+    if (((s as any).long as any)[_i] > 9) {
+      ((s as any).long as any)[_i - 1] = (((s as any).long as any)[_i - 1] ?? 0) + Math.floor(((s as any).long as any)[_i] / 10);
+      ((s as any).long as any)[_i] = ((s as any).long as any)[_i] % 10;
+    }
+    (s as any).result = String(((s as any).long as any)[_i] ?? 0) + (s as any).result;
+  }
+  (s as any).result = qspFunc(s, 'math', 'trim_long', (s as any).result ?? 0);
+  if (((s as any).temp_mult_sign ?? 0)[0] === 1) {
+    (s as any).result = '-' + ((s as any).result ?? 0);
+  }
   scene.build();
 }
 
@@ -351,14 +351,16 @@ function enterLongDiv(s: GameState, scene: SceneBuilder): void {
     (s as any).result = '0';
     return;
   }
-  (s as any).temp_div_sign = undefined;
+  (s as any).temp_div_sign = {1: 0, 2: 0};
+  ((s as any).ARGS = (s as any).ARGS ?? {})[1] = String(((s as any).locArgs?.[1] ?? 0));
+  ((s as any).ARGS = (s as any).ARGS ?? {})[2] = String(((s as any).locArgs?.[2] ?? 0));
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
     ((s as any).temp_div_sign = (s as any).temp_div_sign ?? {})[1] = 1;
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1));
   }
   if ((String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
     ((s as any).temp_div_sign = (s as any).temp_div_sign ?? {})[2] = 1;
-    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1));
+    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = (String(((s as any).locArgs?.[2] ?? 0)).slice((2)-1));
   }
   ((s as any).temp_div_sign = (s as any).temp_div_sign ?? {})[0] = ((((s as any).temp_div_sign ?? 0)[1] + ((s as any).temp_div_sign ?? 0)[2]) % 2);
   (s as any).temp_n = (String(((s as any).locArgs?.[1] ?? 0)).length) - (String(((s as any).locArgs?.[2] ?? 0)).length);
@@ -377,7 +379,7 @@ function enterLongDiv(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = '0';
   while (true) {
-    (s as any).temp_div_res = qspFunc(s, 'math', 'long_sub', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
+    (s as any).temp_div_res = qspFunc(s, 'math', 'long_sub', ((s as any).ARGS ?? {})[1], ((s as any).ARGS ?? {})[2]);
     if ((String(((s as any).temp_div_res ?? 0)).slice((1)-1, ((1)-1)+(1))) !== '-') {
       ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).temp_div_res ?? 0);
       (s as any).result = qspFunc(s, 'math', 'long_add', ((s as any).result ?? 0), ((s as any).div_mult ?? 0));

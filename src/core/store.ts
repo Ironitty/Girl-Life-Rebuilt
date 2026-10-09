@@ -303,6 +303,9 @@ export const initialState = {
   fightTimNum: 1,
   fightEnding: 1,
   npc_img_path: {},
+  accessible_property: {} as Record<string, number>,
+  home_name: {} as Record<string, string>,
+  homes: [] as string[],
   zz_stage: 0,
   pro_rand: 0,
   lern_imgset: 0,
@@ -609,7 +612,7 @@ export const initialState = {
 
   hypnoClothes: 0, pcs_hips: 0,
   CloLosTyp: [] as string[], CloLosNum: [] as number[],
-  theme_hex: {} as Record<string, string>,
+  theme_hex: { table_bg: '#ffffff', table_bg_alt: '#f0f0f0', accent: '#38C0D6', v_pos: '#a6da95', pos: '#eed49f', neutral: '#f5a97f', neg: '#ee99a0', v_neg: '#ed8796', punk: '#c6a0f6', bimbo: '#f5bde6', goth: '#a5adcb', hypno: '#f5a97f' } as Record<string, string>,
   bodysuitworntype: 'none', bodysuitwornnumber: 0,
   default_entry: 0,
   default_sport_number: {} as Record<string, number>,

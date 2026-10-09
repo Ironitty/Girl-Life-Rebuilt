@@ -138,7 +138,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
 
 function enterStartFight(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fight', 'initFight');
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     qspCall(s, 'fight_npcdata', 'random_gopfem');
   } else {
     qspCall(s, 'fight_npcdata', 'random_gopmale');

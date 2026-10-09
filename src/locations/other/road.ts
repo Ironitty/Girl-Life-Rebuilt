@@ -145,7 +145,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     (s as any).road_textrand4 = '' + qspFunc(s, 'money', 'string_price', ((s as any).autostop_price ?? 0)*100) + '.';
   }
   scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     if (((s as any).truck_drive ?? 0) === 1) {
       scene.img(`images/locations/highway/truck_guy (${((s as any).locArgs?.[2] ?? '')}).jpg`);
     } else {

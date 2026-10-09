@@ -355,7 +355,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
   (s as any).nichtTimeQuick = ((s as any).nichTimeBQuick ?? 0) * ((s as any).nichChoreTimeF ?? 0);
   (s as any).nichTimeNormal = ((s as any).nichTimeBNormal ?? 0) * ((s as any).nichChoreTimeF ?? 0);
   (s as any).nichTimeDiligent = ((s as any).nichTimeBDiligent ?? 0) * ((s as any).nichChoreTimeF ?? 0);
-  if (String((s as any).locArgs?.[2] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     qspGoto(s, 'nichChore', 'nichChoreSkipInspect');
   }
   scene.actions([
@@ -549,7 +549,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   (s as any).nichTempPic = qspFunc(s, 'nichUtil', 'cleanPic', ((s as any).nichChoreType ?? 0), ((s as any).nichChoreLoc ?? 0));
   (s as any).nichChoreResult = 0;
   if ((!((s as any).nichChoreID ?? 0))) {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).nichChoreDesc = 'You decide to clean the hallway as quickly as possible, not wasting your time with harder to reach spots or visiting a place twice.';
       ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the floor at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
       ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
@@ -558,7 +558,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
         ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
       }
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         (s as any).nichChoreDesc = 'You carefully clean the hallway, making sure you also remove the dirt in hard to reach corners.';
       } else {
         (s as any).nichChoreDesc = 'You carefully clean the hallway, making sure you also remove the dirt in hard to reach corners. Afterwards you apply a special polish to protect the wooden floor from visible aging.';
@@ -570,7 +570,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).nichChoreID ?? 0) === 1) {
-      if (String((s as any).locArgs?.[1] ?? '') === 1) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1') {
         (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
         ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
         ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
@@ -579,7 +579,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
           ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
         }
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 2) {
+        if (String((s as any).locArgs?.[1] ?? '') === '2') {
           (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the toilet, the sink and the floor. You also make sure that the towels are neatly folded.';
         } else {
           (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the toilet, the sink and the floor. You also apply a special perfume to improve the smell and fold some of the towels into hearts and swans.';
@@ -591,7 +591,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).nichChoreID ?? 0) === 2) {
-        if (String((s as any).locArgs?.[1] ?? '') === 1) {
+        if (String((s as any).locArgs?.[1] ?? '') === '1') {
           (s as any).nichChoreDesc = 'You clean your room as quickly as possible.';
           ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
           ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
@@ -600,13 +600,13 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
             ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
           }
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 2) {
+          if (String((s as any).locArgs?.[1] ?? '') === '2') {
             (s as any).nichChoreDesc = 'Your carefully clean your room.';
           }
         }
       } else {
         if (((s as any).nichChoreID ?? 0) === 3) {
-          if (String((s as any).locArgs?.[1] ?? '') === 1) {
+          if (String((s as any).locArgs?.[1] ?? '') === '1') {
             (s as any).nichChoreDesc = 'You clean the room as quickly as possible.';
             ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
             ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
@@ -615,13 +615,13 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
               ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
             }
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 2) {
+            if (String((s as any).locArgs?.[1] ?? '') === '2') {
               (s as any).nichChoreDesc = 'Your carefully clean the room.';
             }
           }
         } else {
           if (((s as any).nichChoreID ?? 0) === 4) {
-            if (String((s as any).locArgs?.[1] ?? '') === 1) {
+            if (String((s as any).locArgs?.[1] ?? '') === '1') {
               (s as any).nichChoreDesc = 'You think about separating the clothes before you wash them, but then you decide to put them into the washing machine all at once. While the washing machine washes them you wash the delicates by hand by putting all of them into the sink at the same time. After the washing washine is done you place its load in the dryer. Afterwards you iron the clothes quickly.';
               ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are done you realize that one of the shirts of Nicholas has some visible spots of color on it. There is no way you could fix that. Some other clothes are also affected, but you might get them clean by washing them again.\' & nichChoreModLaundry1 += 1 & nichChoreResult = max (0, nichChoreState[nichChoreID] - 5)';
               ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 10;
@@ -630,7 +630,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
               ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = 'nichChoreResult = max (0, nichChoreState[nichChoreID] - 15)';
               ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 10000;
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 2) {
+              if (String((s as any).locArgs?.[1] ?? '') === '2') {
                 (s as any).nichChoreDesc = 'You start by separating the laundry by color. While the washing machine washes the dark and then the light clothes you wash the delicates by hand. Whenever the washing washine is done you place its load in the dryer. Everything that comes from the dryer you iron.';
                 ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = 'nichChoreResult = max (0, nichChoreState[nichChoreID] - 20)';
                 ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 10000;
@@ -644,7 +644,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).nichChoreID ?? 0) === 5) {
-              if (String((s as any).locArgs?.[1] ?? '') === 1) {
+              if (String((s as any).locArgs?.[1] ?? '') === '1') {
                 (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
                 ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
                 ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
@@ -653,13 +653,13 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                   ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                 }
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 2) {
+                if (String((s as any).locArgs?.[1] ?? '') === '2') {
                   (s as any).nichChoreDesc = 'You carefully clean the room, making sure you place every possession of Tanya at the right place so she can easily find it again.';
                 }
               }
             } else {
               if (((s as any).nichChoreID ?? 0) === 6) {
-                if (String((s as any).locArgs?.[1] ?? '') === 1) {
+                if (String((s as any).locArgs?.[1] ?? '') === '1') {
                   (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
                   ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
                   ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
@@ -668,7 +668,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                     ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                   }
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 2) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '2') {
                     (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the toilet, the sink and the floor. You also make sure that the towels are neatly folded.';
                   } else {
                     (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the toilet, the bathtub, the shower, the sink and the floor. You also apply a special perfume to improve the smell and fold some of the towels into hearts and swans.';
@@ -680,7 +680,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                 }
               } else {
                 if (((s as any).nichChoreID ?? 0) === 7) {
-                  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '1') {
                     (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
                     ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
                     ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
@@ -689,13 +689,13 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                       ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                     }
                   } else {
-                    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+                    if (String((s as any).locArgs?.[1] ?? '') === '2') {
                       (s as any).nichChoreDesc = 'You carefully clean the room, making sure you place every possession of Nicholas at the right place so he can easily find it again.';
                     }
                   }
                 } else {
                   if (((s as any).nichChoreID ?? 0) === 8) {
-                    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+                    if (String((s as any).locArgs?.[1] ?? '') === '1') {
                       (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
                       ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
                       ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
@@ -704,7 +704,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                         ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                       }
                     } else {
-                      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+                      if (String((s as any).locArgs?.[1] ?? '') === '2') {
                         (s as any).nichChoreDesc = 'You carefully clean the room, making sure you catch every tiny bit of dust.';
                       } else {
                         (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the floor and the various pieces of furniture.';
@@ -716,7 +716,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                     }
                   } else {
                     if (((s as any).nichChoreID ?? 0) === 9) {
-                      if (String((s as any).locArgs?.[1] ?? '') === 1) {
+                      if (String((s as any).locArgs?.[1] ?? '') === '1') {
                         (s as any).nichChoreDesc = 'You jam all dirty dishes in the dishwasher at once and hastily clean up the stove and the floor.';
                         ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before and the dishes didn\'t get clean either.\' & nichChoreResult = nichChoreState[nichChoreID]';
                         ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
@@ -725,7 +725,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                           ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                         }
                       } else {
-                        if (String((s as any).locArgs?.[1] ?? '') === 2) {
+                        if (String((s as any).locArgs?.[1] ?? '') === '2') {
                           (s as any).nichChoreDesc = 'You carefully clean the room, making sure you clean the silverware by hand and using the recommended cleaning agents to clean the stove and the floor.';
                         } else {
                           (s as any).nichChoreDesc = 'You carefully clean the room. In order to get the silverware sparkling you use a special silver polish and you also clean the whine glasses by hand to remove every tiny spot of imperfection.';
@@ -737,7 +737,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                       }
                     } else {
                       if (((s as any).nichChoreID ?? 0) === 10) {
-                        if (String((s as any).locArgs?.[1] ?? '') === 1) {
+                        if (String((s as any).locArgs?.[1] ?? '') === '1') {
                           (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
                           ((s as any).nichChoreResultCode = (s as any).nichChoreResultCode ?? {})[0] = '*pl \'Once you are finished you realize that you didn\'t improve the condition of the room at all. It is still as dirty as before.\' & nichChoreResult = nichChoreState[nichChoreID]';
                           ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
@@ -746,7 +746,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                             ((s as any).nichChoreResulChance = (s as any).nichChoreResulChance ?? {})[0] = 30;
                           }
                         } else {
-                          if (String((s as any).locArgs?.[1] ?? '') === 2) {
+                          if (String((s as any).locArgs?.[1] ?? '') === '2') {
                             (s as any).nichChoreDesc = 'You carefully clean the room, making sure you catch every tiny bit of dust.';
                           } else {
                             (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the floor and the various pieces of furniture.';
@@ -775,11 +775,11 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       (s as any).nichI = ((s as any).nichI ?? 0) + (1);
       break;
     }
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichtTimeQuick ?? 0));
       qspCall(s, 'exp_gain', 'cleaning', 0);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeNormal ?? 0));
         qspCall(s, 'exp_gain', 'cleaning', 0);
       } else {
@@ -824,7 +824,7 @@ function enterCleanApartment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 0  &&  String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 0  &&  String((s as any).locArgs?.[1] ?? '') === '1') {
     scene.actions([
       { label: 'Clean again', handler: (st: GameState) => {
     qspGoto(st, 'nichChore', 'inspect', ((st as any).nichChoreCurrent ?? ''), '1');

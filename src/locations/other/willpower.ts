@@ -247,16 +247,16 @@ function enterGetWillcostString(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = (((s as any).cheatVars ?? 0)?.['willcost_style']);
   }
-  if (String((s as any).locArgs?.[3] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '/' + ((s as any).locArgs?.[2] ?? 0) + '';
   } else {
-    if (String((s as any).locArgs?.[3] ?? '') === 2) {
+    if (String((s as any).locArgs?.[2] ?? '') === '2') {
       (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '';
     } else {
       (s as any).result = '' + ((s as any).locArgs?.[2] ?? 0) + '/' + ((s as any).locArgs?.[1] ?? 0) + '';
     }
   }
-  if (String((s as any).locArgs?.[2] ?? '') < String((s as any).locArgs?.[1] ?? '')  &&  String((s as any).locArgs?.[4] ?? '') === 0  &&  String((s as any).locArgs?.[4] ?? '') === '') {
+  if (String((s as any).locArgs?.[2] ?? '') < String((s as any).locArgs?.[1] ?? '')  &&  String((s as any).locArgs?.[0] ?? '') === '0'  &&  String((s as any).locArgs?.[4] ?? '') === '') {
     (s as any).result = ' (' + qspFunc(s, 'wrap', 'v_neg', ((s as any).result ?? 0) + ' Willpower') + ')';
   } else {
     (s as any).result = ' (' + ((s as any).result ?? 0) + ' Willpower)';

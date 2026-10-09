@@ -423,7 +423,7 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '_enroll_core']; enterCourses(s, scene); (s as any).locArgs = __savedLocArgs; }
       ((s as any).university = (s as any).university ?? {})['enrolled_in'] = 'teaching_studies';
     }
-    if (String((s as any).locArgs?.[2] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_1', 'general education 101', 3, 2, 'no', 'no', 1, 12);
       qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_1', 'teaching methods 101', 3, 2, 'no', 'no', 1, 12);
       qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_1', 'learning theories 101', 3, 2, 'no', 'no', 1, 12);
@@ -431,7 +431,7 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_1', 'teaching methods 101', 35);
       qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_1', 'learning theories 101', 35);
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === '2') {
         qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_2', 'general education 102', 3, 2, 'no', 'no', 1, 12);
         qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_2', 'teaching methods 102', 3, 2, 'no', 'no', 1, 12);
         qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_2', 'psychology of a student 101', 3, 2, 'no', 'no', 1, 12);
@@ -439,7 +439,7 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_2', 'teaching methods 102', ((((s as any).class ?? {})?.['uni_teaching_studies_semester_1_teaching methods 101_grade'] ?? 0)/3+10));
         qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_2', 'psychology of a student 101', 35);
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 3) {
+        if (String((s as any).locArgs?.[3] ?? '') === '3') {
           qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_3', 'general education 201', 3, 2, 'no', 'no', 1, 12);
           qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_3', 'assessment 201', 3, 2, 'no', 'no', 1, 12);
           qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_3', 'learning theories 201', 3, 2, 'no', 'no', 1, 12);
@@ -447,7 +447,7 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_3', 'learning theories 201', ((((s as any).class ?? {})?.['uni_teaching_studies_semester_1_learning theories 101_grade'] ?? 0)/3+10));
           qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_3', 'assessment 201', 35);
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 4) {
+          if (String((s as any).locArgs?.[4] ?? '') === '4') {
             qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_4', 'general education 202', 3, 2, 'no', 'no', 1, 12);
             qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_4', 'learning theories 202', 3, 2, 'no', 'no', 1, 12);
             qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_4', 'psychology of a student 201', 3, 2, 'no', 'no', 1, 12);
@@ -465,7 +465,7 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '_enroll_core']; enterCourses(s, scene); (s as any).locArgs = __savedLocArgs; }
       ((s as any).university = (s as any).university ?? {})['enrolled_in'] = 'nursing';
     }
-    if (String((s as any).locArgs?.[2] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_1', 'patient care 101', 4, 2, 'no', 'no', 1, 12);
       qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_1', 'anatomy and physiology 101', 4, 2, 'no', 'no', 1, 12);
       qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_1', 'examination and treatment 101', 1, 2, 'no', 'no', 1, 12);
@@ -473,7 +473,7 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_1', 'anatomy and physiology 101', 35);
       qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_1', 'examination and treatment 101', 35);
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === '2') {
         qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_2', 'patient care 102', 4, 2, 'no', 'no', 1, 12);
         qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_2', 'anatomy and physiology 102', 4, 2, 'no', 'no', 1, 12);
         qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_2', 'examination and treatment 102', 1, 2, 'no', 'no', 1, 12);
@@ -481,7 +481,7 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_2', 'anatomy and physiology 102', (((s as any).class ?? 0)?.['uni_nursing_semester_1_anatomy  &&  physiology 101_grade']/3+10));
         qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_2', 'examination and treatment 102', (((s as any).class ?? 0)?.['uni_nursing_semester_1_examination  &&  treatment 101_grade']/3+10));
       } else {
-        if (String((s as any).locArgs?.[2] ?? '') === 3) {
+        if (String((s as any).locArgs?.[3] ?? '') === '3') {
           qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_3', 'patient care 201', 4, 2, 'no', 'no', 1, 12);
           qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_3', 'anatomy and physiology 201', 4, 2, 'no', 'no', 1, 12);
           qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_3', 'dosages and pharmaceuticals 101', 1, 2, 'no', 'no', 1, 12);
@@ -489,7 +489,7 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_3', 'anatomy and physiology 201', ((((s as any).class ?? 0)?.['uni_nursing_semester_1_anatomy  &&  physiology 101_grade'] + ((s as any).class ?? 0)?.['uni_nursing_semester_2_anatomy  &&  physiology 102_grade'])/6+10));
           qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_3', 'dosages and pharmaceuticals 101', 35);
         } else {
-          if (String((s as any).locArgs?.[2] ?? '') === 4) {
+          if (String((s as any).locArgs?.[4] ?? '') === '4') {
             qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_4', 'patient care 202', 4, 2, 'no', 'no', 1, 12);
             qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_4', 'anatomy and physiology 202', 4, 2, 'no', 'no', 1, 12);
             qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_4', 'dosages and pharmaceuticals 102', 1, 2, 'no', 'no', 1, 12);

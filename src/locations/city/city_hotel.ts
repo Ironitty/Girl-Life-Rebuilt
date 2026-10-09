@@ -138,17 +138,17 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
 function enterPayTheRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).hotel_room_id = ((s as any).locArgs?.[1] ?? 0);
   if (qspFunc(s, 'money', 'can_afford', ((s as any).totalCost ?? 0)) === 0) {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       scene.actions([
         { label: 'You can\'t afford to stay in the hotel for that long', goto: ['city_hotel', ''] },
       ]);
     }
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       scene.actions([
         { label: 'You can\'t afford to stay in a luxury room for that long', goto: ['city_hotel', ''] },
       ]);
     }
-    if (String((s as any).locArgs?.[1] ?? '') === 3) {
+    if (String((s as any).locArgs?.[1] ?? '') === '3') {
       scene.actions([
         { label: 'You can\'t afford to stay in the Royal Suite for that long', goto: ['city_hotel', ''] },
       ]);

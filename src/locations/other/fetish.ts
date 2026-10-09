@@ -64,7 +64,7 @@ function enterAddExp(s: GameState, scene: SceneBuilder): void {
     scene.text(`Error in gs 'fetish', 'add_exp': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 1;
   }
   ((s as any).fetishes = (s as any).fetishes ?? {})[((s as any).locArgs?.[1] ?? 0) + '_exp'] = ((s as any).fetishes[((s as any).locArgs?.[1] ?? 0) + '_exp'] ?? 0) + (((s as any).locArgs?.[2] ?? 0));
@@ -106,7 +106,7 @@ function enterAddPref(s: GameState, scene: SceneBuilder): void {
     scene.text(`Error in gs 'fetish', 'add_pref': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 1;
   }
   ((s as any).fetishes = (s as any).fetishes ?? {})[((s as any).locArgs?.[1] ?? 0) + '_pref'] = ((s as any).fetishes[((s as any).locArgs?.[1] ?? 0) + '_pref'] ?? 0) + (((s as any).locArgs?.[2] ?? 0));

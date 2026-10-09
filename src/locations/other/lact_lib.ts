@@ -639,31 +639,31 @@ function enterLactateOptout(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetSuckflowrate(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     (s as any).result = 17000;
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).result = 11000;
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         (s as any).result = 8000;
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 3) {
+        if (String((s as any).locArgs?.[1] ?? '') === '3') {
           (s as any).result = 40000;
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 4) {
+          if (String((s as any).locArgs?.[1] ?? '') === '4') {
             (s as any).result = 100000;
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 5) {
+            if (String((s as any).locArgs?.[1] ?? '') === '5') {
               (s as any).result = 20000;
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 6) {
+              if (String((s as any).locArgs?.[1] ?? '') === '6') {
                 (s as any).result = 160000;
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 7) {
+                if (String((s as any).locArgs?.[1] ?? '') === '7') {
                   (s as any).result = 5000;
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 8) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '8') {
                     (s as any).result = 15000;
                   } else {
                     (s as any).result = 10000;
@@ -700,16 +700,16 @@ function enterGetMaxnipflowrate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetMoodmod(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     ((s as any).lactation = (s as any).lactation ?? {})['moodmod'] = ((s as any).locArgs?.[2] ?? 0)/8;
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       ((s as any).lactation = (s as any).lactation ?? {})['moodmod'] = ((s as any).locArgs?.[2] ?? 0)/2;
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         ((s as any).lactation = (s as any).lactation ?? {})['moodmod'] = ((s as any).locArgs?.[2] ?? 0);
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 7) {
+        if (String((s as any).locArgs?.[1] ?? '') === '7') {
           ((s as any).lactation = (s as any).lactation ?? {})['moodmod'] = ((s as any).locArgs?.[2] ?? 0);
         } else {
           ((s as any).lactation = (s as any).lactation ?? {})['moodmod'] = 0;

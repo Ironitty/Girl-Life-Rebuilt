@@ -84,7 +84,7 @@ function enterStripHub(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStripHub2(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     if (((s as any).fame ?? 0)?.['city_stripping'] < 50) {
       scene.text('There are men sitting in front of the stage, mostly talking amongst themselves.');
     } else {

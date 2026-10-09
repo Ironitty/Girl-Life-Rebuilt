@@ -427,7 +427,7 @@ function enterAddEvent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLoadNewEv(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     ((s as any).new_ev = (s as any).new_ev ?? {})['id'] = (((s as any).event_vars ?? 0)?.['id']);
     ((s as any).new_ev = (s as any).new_ev ?? {})['title'] = (((s as any).event_vars ?? 0)?.['title']);
     ((s as any).new_ev = (s as any).new_ev ?? {})['loc'] = (((s as any).event_vars ?? 0)?.['loc']);

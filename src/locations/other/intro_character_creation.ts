@@ -159,7 +159,7 @@ function enterGetRandom(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
-  if (String((s as any).locArgs?.[2] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     if (((s as any).currentpursetype ?? 0) !== ''  &&  ((s as any).currentpursetype ?? 0) !== 'none') {
     }
     (s as any).tsg = ((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (0));
@@ -174,7 +174,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcstatic3', '');
     qspGoto(s, 'intro_character_creation', 'start', String((s as any).locArgs?.[1] ?? ''), '1');
   } else {
-    if (String((s as any).locArgs?.[2] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
         qspGoto(s, 'intro_character_creation', 'start', String((s as any).locArgs?.[1] ?? ''), '2');
       } else {
@@ -208,7 +208,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      if (String((s as any).locArgs?.[2] ?? '') === 2) {
+      if (String((s as any).locArgs?.[2] ?? '') === '2') {
         qspCall(s, 'npcstatic4', '');
         qspCall(s, 'npcstatic5', '');
         qspCall(s, 'npcstatic6', '');

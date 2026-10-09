@@ -80,6 +80,93 @@ function enterHub(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterOfferHere(s: GameState, scene: SceneBuilder): void {
+  if (qspFunc(s, 'daily_routine', 'can_use_here') === 0) {
+    scene.build();
+    return;
+  }
+  qspCall(s, 'daily_routine', 'settings_defaults');
+  if (((s as any).droutine_settings ?? 0)?.['disabled'] === 1) {
+    scene.build();
+    return;
+  }
+  const acts: ActionDef[] = [];
+  if (((s as any).droutine ?? 0)?.['morning_count'] > 0 && qspFunc(s, 'daily_routine', 'phase_available', 'morning')) {
+    acts.push({ label: 'Start your morning routine', goto: ['daily_routine', 'start', 'morning'] });
+  }
+  if (((s as any).droutine ?? 0)?.['evening_count'] > 0 && qspFunc(s, 'daily_routine', 'phase_available', 'evening')) {
+    acts.push({ label: 'Start your evening routine', goto: ['daily_routine', 'start', 'evening'] });
+  }
+  if (acts.length > 0) {
+    scene.actions(acts);
+  }
+  scene.build();
+}
+
+function enterCanUseHere(s: GameState, _scene: SceneBuilder): void {
+  (s as any).result = qspFunc(s, 'homes_properties', 'is_at_a_home', '');
+}
+
+function enterSettingsDefaults(s: GameState, _scene: SceneBuilder): void {
+  if (((s as any).droutine_settings ?? 0)?.['init'] === 1) return;
+  (s as any).droutine_settings = {
+    ...(s as any).droutine_settings ?? {},
+    init: 1,
+    disabled: 1,
+    morning_use_wake: 1,
+    morning_wake_min: 120,
+    morning_use_abs: 0,
+    morning_abs_start: 5,
+    morning_abs_end: 11,
+    evening_use_abs: 1,
+    evening_abs_start: 20,
+    evening_abs_end: 1,
+    makeup_level: 1,
+  };
+}
+
+function enterInHourWindow(s: GameState, _scene: SceneBuilder): void {
+  const start = Number((s as any).locArgs?.[1] ?? 0);
+  const end = Number((s as any).locArgs?.[2] ?? 0);
+  const hour = (s as any).hour ?? 0;
+  (s as any).result = 0;
+  if (start === end) {
+    (s as any).result = 0;
+  } else if (start < end) {
+    if (hour >= start && hour < end) (s as any).result = 1;
+  } else {
+    if (hour >= start || hour < end) (s as any).result = 1;
+  }
+}
+
+function enterLogicalDay(s: GameState, _scene: SceneBuilder): void {
+  let phase = String((s as any).locArgs?.[1] ?? '');
+  if (phase !== 'evening') phase = 'morning';
+  (s as any).result = (s as any).daystart ?? 0;
+  const settings = (s as any).droutine_settings ?? {};
+  if (settings[`${phase}_use_abs`] === 1 && settings[`${phase}_abs_end`] < settings[`${phase}_abs_start`] && (s as any).hour < settings[`${phase}_abs_end`]) {
+    (s as any).result = ((s as any).daystart ?? 0) - 1;
+  }
+}
+
+function enterPhaseAvailable(s: GameState, _scene: SceneBuilder): void {
+  qspCall(s, 'daily_routine', 'settings_defaults');
+  (s as any).result = 0;
+  let phase = String((s as any).locArgs?.[1] ?? '');
+  if (phase !== 'evening') phase = 'morning';
+  const settings = (s as any).droutine_settings ?? {};
+  const logicalDay = qspFunc(s, 'daily_routine', 'logical_day', phase);
+  if (settings[`${phase}_done_day`] === logicalDay) return;
+  if (settings[`${phase}_use_wake`] === 1 && ((s as any).droutine ?? 0)?.['woke_at_min'] > 0) {
+    const elapsed = ((s as any).totminut ?? 0) - ((s as any).droutine ?? 0)?.['woke_at_min'];
+    if (elapsed >= 0 && elapsed <= settings[`${phase}_wake_min`]) (s as any).result = 1;
+  }
+  if (settings[`${phase}_use_abs`] === 1) {
+    const inWindow = qspFunc(s, 'daily_routine', 'in_hour_window', settings[`${phase}_abs_start`], settings[`${phase}_abs_end`]);
+    if (inWindow) (s as any).result = 1;
+  }
+}
+
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
@@ -91,6 +178,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'hub':
       enterHub(s, scene);
+      break;
+    case 'offer_here':
+      enterOfferHere(s, scene);
+      break;
+    case 'can_use_here':
+      enterCanUseHere(s, scene);
+      break;
+    case 'settings_defaults':
+      enterSettingsDefaults(s, scene);
+      break;
+    case 'in_hour_window':
+      enterInHourWindow(s, scene);
+      break;
+    case 'logical_day':
+      enterLogicalDay(s, scene);
+      break;
+    case 'phase_available':
+      enterPhaseAvailable(s, scene);
       break;
     default:
       enterDefault(s, scene);

@@ -6,8 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shoes', 'reset_ShoVars');
-  if (hasLocation('$attributes_' + (String((s as any).locArgs?.[0] ?? '')) + '_shoes')) {
-    qspCall(s, '$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '_shoes', '', ((s as any).locArgs?.[1] ?? 0));
+  if (hasLocation('_attributes_' + (String((s as any).locArgs?.[0] ?? '')) + '_shoes')) {
+    qspCall(s, '_attributes_' + ((s as any).locArgs?.[0] ?? 0) + '_shoes', String((s as any).locArgs?.[1] ?? 0));
   }
   if ((!((s as any).ShoQuality ?? 0))) {
     return;

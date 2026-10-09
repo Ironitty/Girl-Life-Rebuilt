@@ -590,7 +590,7 @@ function enterCaffeineStat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSmoke(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['cigarettes'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cigarettes'] = 0;
@@ -628,7 +628,7 @@ function enterSmoke(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCigarette(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['cigarettes'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cigarettes'] = 0;
@@ -702,7 +702,7 @@ function enterCigaretteHourlyEvents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWeed(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = ((s as any).mc_inventory['joints'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['joints'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = 0;
@@ -741,7 +741,7 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJoint(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = ((s as any).mc_inventory['joints'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['joints'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = 0;
@@ -797,7 +797,7 @@ function enterAmphetamine(s: GameState, scene: SceneBuilder): void {
     scene.text('Your heart is already beating uncontrollably in your chest, you should avoid taking anymore pills.');
     return;
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['amphetamine'] = ((s as any).mc_inventory['amphetamine'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['amphetamine'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['amphetamine'] = 0;
@@ -887,7 +887,7 @@ function enterAmphetamineStat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCocaine(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['cocaine'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cocaine'] = 0;
@@ -1084,7 +1084,7 @@ function enterHeroinStat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPainkiller(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['painkillers'] = ((s as any).mc_inventory['painkillers'] ?? 0) - (1);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAddPainkillerTimer(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).mc_inventory ?? 0)?.['painkillers'] <= 0) {
@@ -1238,7 +1238,7 @@ function enterAphrodisiac(s: GameState, scene: SceneBuilder): void {
     ((s as any).drugVars = (s as any).drugVars ?? {})['aphrodisiac_msg'] = '<br>You\'ve had enough aphrodisiac for today.';
     return;
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['aphrodisiac'] = ((s as any).mc_inventory['aphrodisiac'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['aphrodisiac'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['aphrodisiac'] = 0;
@@ -1320,7 +1320,7 @@ function enterAphrodisiacHourlyEvents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMentats(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['mentats'] = ((s as any).mc_inventory['mentats'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['mentats'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['mentats'] = 0;
@@ -1358,7 +1358,7 @@ function enterSteroids(s: GameState, scene: SceneBuilder): void {
     scene.text('You really shouldn\'t take any more pills today.');
     return;
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['steroids'] = ((s as any).mc_inventory['steroids'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['steroids'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['steroids'] = 0;
@@ -1411,7 +1411,7 @@ function enterBreastcream(s: GameState, scene: SceneBuilder): void {
     scene.text('Using any more cream won\'t have any effect.');
     return;
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['breastcream'] = ((s as any).mc_inventory['breastcream'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['breastcream'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['breastcream'] = 0;
@@ -1448,7 +1448,7 @@ function enterHairExtensioncream(s: GameState, scene: SceneBuilder): void {
     scene.text('Using any more hair extension shampoo won\'t have any effect.');
     return;
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['hair_extensioncream'] = ((s as any).mc_inventory['hair_extensioncream'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['hair_extensioncream'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['hair_extensioncream'] = 0;
@@ -1482,7 +1482,7 @@ function enterButtInjection(s: GameState, scene: SceneBuilder): void {
     scene.text('Using any more injections won\'t have any effect.');
     return;
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 0  &&  String((s as any).locArgs?.[1] ?? '') === '') {
+  if (String((s as any).locArgs?.[1] ?? '') === '0'  &&  String((s as any).locArgs?.[1] ?? '') === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['butt_injection'] = ((s as any).mc_inventory['butt_injection'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['butt_injection'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['butt_injection'] = 0;

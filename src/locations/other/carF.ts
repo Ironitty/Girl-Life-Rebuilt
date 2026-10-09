@@ -1060,7 +1060,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNearby(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 5;
   }
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).locArgs?.[1] ?? 0));

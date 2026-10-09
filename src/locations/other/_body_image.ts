@@ -387,7 +387,7 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
             if (((s as any).PClobimbo ?? 0) === 1) {
               (s as any).body_image_msg = ((s as any).body_image_msg ?? '') + '<br>You are dressed like a bimbo.';
             }
-            qspCall(s, 'clothing_attributes', '$clothingworntype', ((s as any).clothingwornnumber ?? 0));
+            qspCall(s, 'clothing_attributes', '', '$clothingworntype', ((s as any).clothingwornnumber ?? 0));
             if ((!((s as any).PSwim ?? 0))) {
               qspCall(s, 'clothing_descriptions', '');
               (s as any).body_image_msg = ((s as any).body_image_msg ?? 0) + ('<br>' + ((s as any).description ?? 0) + '');

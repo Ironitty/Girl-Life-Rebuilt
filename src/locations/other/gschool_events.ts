@@ -2226,7 +2226,7 @@ function enterSweet(s: GameState, scene: SceneBuilder): void {
 function enterRandBoyArg(s: GameState, scene: SceneBuilder): void {
   (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 0, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).school_static_num ?? 0) !== 'A0') {
-    (s as any).rand_boy = (((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)] ?? 0);
+    (s as any).rand_boy = (((s as any).npc_nickname ?? {})?.[String((s as any).school_static_num ?? 0)] ?? '');
   } else {
     (s as any).rand_boy = 'boy you don\'t know';
   }
@@ -2237,12 +2237,13 @@ function enterRandBoyArg1(s: GameState, scene: SceneBuilder): void {
   while (true) {
     (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 0, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
     if (((s as any).school_static_num ?? 0) !== 'A0') {
-      (s as any).rand_boy1 = (((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)] ?? 0);
-      if (((s as any).rand_boy ?? 0) === ((s as any).rand_boy1 ?? 0)) {
+      (s as any).rand_boy1 = (((s as any).npc_nickname ?? {})?.[String((s as any).school_static_num ?? 0)] ?? '');
+      if (String((s as any).rand_boy ?? '') !== String((s as any).rand_boy1 ?? '')) {
         break;
       }
     } else {
       (s as any).rand_boy1 = 'boy you don\'t know';
+      break;
     }
   }
   scene.build();
@@ -2251,7 +2252,7 @@ function enterRandBoyArg1(s: GameState, scene: SceneBuilder): void {
 function enterRandGirlArg(s: GameState, scene: SceneBuilder): void {
   (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 1, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
   if (((s as any).school_static_num ?? 0) !== 'A0') {
-    (s as any).rand_girl = (((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)] ?? 0);
+    (s as any).rand_girl = (((s as any).npc_nickname ?? {})?.[String((s as any).school_static_num ?? 0)] ?? '');
   } else {
     (s as any).rand_girl = 'girl you don\'t know';
   }
@@ -2262,12 +2263,13 @@ function enterRandGirlArg1(s: GameState, scene: SceneBuilder): void {
   while (true) {
     (s as any).school_static_num = qspFunc(s, 'gschool_events', 'random_pers', 1, ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0));
     if (((s as any).school_static_num ?? 0) !== 'A0') {
-      (s as any).rand_girl1 = (((s as any).npc_nickname ?? 0)?.[String((s as any).school_static_num ?? 0)] ?? 0);
-      if (((s as any).rand_girl ?? 0) === ((s as any).rand_girl1 ?? 0)) {
+      (s as any).rand_girl1 = (((s as any).npc_nickname ?? {})?.[String((s as any).school_static_num ?? 0)] ?? '');
+      if (String((s as any).rand_girl ?? '') !== String((s as any).rand_girl1 ?? '')) {
         break;
       }
     } else {
       (s as any).rand_girl1 = 'girl you don\'t know';
+      break;
     }
   }
   scene.build();
@@ -2285,21 +2287,25 @@ function enterRandTeacherArg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRandomPers(s: GameState, scene: SceneBuilder): void {
-  (s as any).tmpArrIdx = 0;
-  do {
-    (s as any).school_static_num = (((s as any).school_static_num ?? 0)?.[String((s as any).tmpArrIdx ?? 0)] ?? 0);
-    if (((s as any).schoolenable ?? 0)?.[String((s as any).school_static_num ?? 0)] === 1  &&  (String((s as any).locArgs?.[1] ?? '') === -1  ||  ((s as any).npc_gender ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[1] ?? ''))  &&  (((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[2] ?? '')  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[3] ?? '')*2  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[4] ?? '')*3  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[5] ?? '')*4  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[6] ?? '')*5  ||  ((s as any).npc_grupTipe ?? 0)?.[String((s as any).school_static_num ?? 0)] === String((s as any).locArgs?.[7] ?? '')*6)) {
-      (s as any).tmpCandidateArr = [...((s as any).tmpCandidateArr ?? []), ((s as any).school_static_num ?? 0)];
+  const npcIds = Object.keys((s as any).school_static_num ?? {});
+  const tmpCandidateArr: string[] = [];
+  for (let tmpArrIdx = 0; tmpArrIdx < npcIds.length; tmpArrIdx++) {
+    const npcId = String(npcIds[tmpArrIdx]);
+    if (((s as any).schoolenable ?? {})[npcId] === 1 &&
+        (String((s as any).locArgs?.[1] ?? '') === '-1' ||
+         ((s as any).npc_gender ?? {})[npcId] === String((s as any).locArgs?.[1] ?? '')) &&
+        (((s as any).npc_grupTipe ?? {})[npcId] === String((s as any).locArgs?.[2] ?? '') ||
+         ((s as any).npc_grupTipe ?? {})[npcId] === String(Number((s as any).locArgs?.[3] ?? 0) * 2) ||
+         ((s as any).npc_grupTipe ?? {})[npcId] === String(Number((s as any).locArgs?.[4] ?? 0) * 3) ||
+         ((s as any).npc_grupTipe ?? {})[npcId] === String(Number((s as any).locArgs?.[5] ?? 0) * 4) ||
+         ((s as any).npc_grupTipe ?? {})[npcId] === String(Number((s as any).locArgs?.[6] ?? 0) * 5) ||
+         ((s as any).npc_grupTipe ?? {})[npcId] === String(Number((s as any).locArgs?.[7] ?? 0) * 6))) {
+      tmpCandidateArr.push(npcId);
     }
-    (s as any).tmpArrIdx = ((s as any).tmpArrIdx ?? 0) + (1);
-    if (Object.keys((s as any).tmpCandidateArr ?? {}).length > 0) {
-      (s as any).result = (((s as any).tmpCandidateArr ?? 0)?.[(Math.floor(Math.random() * (0 - 0 + 1)) + (0))] ?? 0);
-    } else {
-      (s as any).result = 'A0';
-    }
-    (s as any).tmpArrIdx = undefined;
-    (s as any).tmpCandidateArr = undefined;
-  } while (((s as any).tmpArrIdx ?? 0) < Object.keys((s as any).school_static_num ?? {}).length);
+  }
+  (s as any).result = tmpCandidateArr.length > 0
+    ? tmpCandidateArr[Math.floor(Math.random() * tmpCandidateArr.length)]
+    : 'A0';
   scene.build();
 }
 

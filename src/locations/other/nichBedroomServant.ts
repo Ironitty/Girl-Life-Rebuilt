@@ -531,7 +531,7 @@ function enterRedeemSalary(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     if (((s as any).nichGalaOpponent ?? 0) === 30  &&  ((s as any).hour ?? 0) <= 23  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).nichDebug ?? 0) === 1) {
       qspGoto(s, 'nichBedroomServant', 'sleepEvents', '1000');
     } else {
@@ -540,7 +540,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 100) {
+    if (String((s as any).locArgs?.[1] ?? '') === '100') {
       (s as any).nichGalaContractTarasLast = ((s as any).daystart ?? 0);
       (s as any).nichRand = (-1);
       if (((s as any).nichGalaContractTarasCount ?? 0) > 10) {
@@ -912,7 +912,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 1000) {
+      if (String((s as any).locArgs?.[1] ?? '') === '1000') {
         (s as any).hour = 23;
         (s as any).minut = ((s as any).minut ?? 0) + 180;
         scene.text('In the middle of the night, you wake up from your sleep. You sense somebody is in your room watching you. You look around, but there is nobody to be seen.');

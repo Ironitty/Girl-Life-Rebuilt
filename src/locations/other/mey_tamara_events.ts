@@ -342,7 +342,7 @@ function enterLearning1(s: GameState, scene: SceneBuilder): void {
           qspGoto(st, 'mey_tamara_events', 'looptamaraschool');
         }
         if (qspFunc(s, 'clothing', 'is_owned', 'gm_school', ((st as any).newdress_id ?? 0)) === 0) {
-          qspCall(st, 'clothing_attributes', 'gm_school', ((st as any).newdress_id ?? 0));
+          qspCall(st, 'clothing_attributes', '', 'gm_school', ((st as any).newdress_id ?? 0));
           if (((st as any).CloInhibit ?? 0) < 30) {
             qspGoto(st, 'mey_tamara_events', 'looptamaraschool');
           }

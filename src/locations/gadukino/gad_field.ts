@@ -332,7 +332,7 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
 
 function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['A60_loc'] !== 'gad_field') {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
         if (((s as any).pcs_sleep ?? 0) < 40) {
           scene.actions([
@@ -393,7 +393,7 @@ function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
           if (((s as any).pcs_stam ?? 0) >= (5 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
             scene.actions([

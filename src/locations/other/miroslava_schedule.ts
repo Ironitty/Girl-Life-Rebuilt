@@ -264,112 +264,112 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLocarg(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 10) {
+  if (String((s as any).locArgs?.[1] ?? '') === '10') {
     ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_miroslava_home';
     ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
     ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 11) {
+    if (String((s as any).locArgs?.[1] ?? '') === '11') {
       ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_miroslava_home';
       ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
       ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = 'sleep';
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 20) {
+      if (String((s as any).locArgs?.[1] ?? '') === '20') {
         ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_gpyard';
         ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
         ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 21) {
+        if (String((s as any).locArgs?.[1] ?? '') === '21') {
           ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_gphouse';
           ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'main';
           ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 22) {
+          if (String((s as any).locArgs?.[1] ?? '') === '22') {
             ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_gpbath';
             ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
             ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 23) {
+            if (String((s as any).locArgs?.[1] ?? '') === '23') {
               ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_gpbarn';
               ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = '';
               ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
             } else {
-              if (String((s as any).locArgs?.[1] ?? '') === 30) {
+              if (String((s as any).locArgs?.[1] ?? '') === '30') {
                 ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gadukino';
                 ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = '';
                 ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
               } else {
-                if (String((s as any).locArgs?.[1] ?? '') === 31) {
+                if (String((s as any).locArgs?.[1] ?? '') === '31') {
                   ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_church';
                   ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
                   ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                 } else {
-                  if (String((s as any).locArgs?.[1] ?? '') === 40) {
+                  if (String((s as any).locArgs?.[1] ?? '') === '40') {
                     ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_road';
                     ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
                     ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                   } else {
-                    if (String((s as any).locArgs?.[1] ?? '') === 41) {
+                    if (String((s as any).locArgs?.[1] ?? '') === '41') {
                       ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'bus';
                       ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'gadukino';
                       ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                     } else {
-                      if (String((s as any).locArgs?.[1] ?? '') === 42) {
+                      if (String((s as any).locArgs?.[1] ?? '') === '42') {
                         ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'mitkabuh_group';
                         ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
                         ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                       } else {
-                        if (String((s as any).locArgs?.[1] ?? '') === 50) {
+                        if (String((s as any).locArgs?.[1] ?? '') === '50') {
                           ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_river';
                           ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
                           ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                         } else {
-                          if (String((s as any).locArgs?.[1] ?? '') === 51) {
+                          if (String((s as any).locArgs?.[1] ?? '') === '51') {
                             ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_beach';
                             ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
                             ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                           } else {
-                            if (String((s as any).locArgs?.[1] ?? '') === 60) {
+                            if (String((s as any).locArgs?.[1] ?? '') === '60') {
                               ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_forest';
                               ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'forest_edge';
                               ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                             } else {
-                              if (String((s as any).locArgs?.[1] ?? '') === 61) {
+                              if (String((s as any).locArgs?.[1] ?? '') === '61') {
                                 ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_meadow';
                                 ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
                                 ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                               } else {
-                                if (String((s as any).locArgs?.[1] ?? '') === 62) {
+                                if (String((s as any).locArgs?.[1] ?? '') === '62') {
                                   ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_forest';
                                   ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'forest_outskirts';
                                   ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                 } else {
-                                  if (String((s as any).locArgs?.[1] ?? '') === 63) {
+                                  if (String((s as any).locArgs?.[1] ?? '') === '63') {
                                     ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_forest';
                                     ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'forest_center';
                                     ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                   } else {
-                                    if (String((s as any).locArgs?.[1] ?? '') === 64) {
+                                    if (String((s as any).locArgs?.[1] ?? '') === '64') {
                                       ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_swamp';
                                       ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
                                       ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                     } else {
-                                      if (String((s as any).locArgs?.[1] ?? '') === 70) {
+                                      if (String((s as any).locArgs?.[1] ?? '') === '70') {
                                         ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_field';
                                         ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'field';
                                         ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                       } else {
-                                        if (String((s as any).locArgs?.[1] ?? '') === 80) {
+                                        if (String((s as any).locArgs?.[1] ?? '') === '80') {
                                           ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'gad_prostitutes';
                                           ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'start';
                                           ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                         } else {
-                                          if (String((s as any).locArgs?.[1] ?? '') === 81) {
+                                          if (String((s as any).locArgs?.[1] ?? '') === '81') {
                                             ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'train';
                                             ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = 'gadukino';
                                             ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';
                                           } else {
-                                            if (String((s as any).locArgs?.[1] ?? '') === 82) {
+                                            if (String((s as any).locArgs?.[1] ?? '') === '82') {
                                               ((s as any).locat = (s as any).locat ?? {})['A60_loc'] = 'furi';
                                               ((s as any).locat = (s as any).locat ?? {})['A60_arg'] = '';
                                               ((s as any).locat = (s as any).locat ?? {})['A60_arg1'] = '';

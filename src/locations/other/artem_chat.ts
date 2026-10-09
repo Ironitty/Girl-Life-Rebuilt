@@ -1150,7 +1150,7 @@ function enterStripagree(s: GameState, scene: SceneBuilder): void {
   ((s as any).artemQW = (s as any).artemQW ?? {})['date'] = ((s as any).artemQW['date'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/characters/pavlovsk/school/boy/artem/strip1.jpg');
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.text('You give him a serious look. "You want me to get naked for you?"');
   } else {
     scene.text('You give him a serious look. "You want me to get naked for you that badly?"');

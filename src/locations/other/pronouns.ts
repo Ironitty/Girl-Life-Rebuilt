@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[0] ?? '') === 0  ||  String((s as any).locArgs?.[0] ?? '') === 3) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0'  ||  String((s as any).locArgs?.[0] ?? '') === '3') {
     ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[0] = 'he';
     ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[1] = 'He';
     ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[2] = 'him';
@@ -15,7 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[8] = 'himself';
     ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[9] = 'Himself';
   } else {
-    if (String((s as any).locArgs?.[0] ?? '') === 1  ||  String((s as any).locArgs?.[0] ?? '') === 2) {
+    if (String((s as any).locArgs?.[0] ?? '') === '1'  ||  String((s as any).locArgs?.[0] ?? '') === '2') {
       ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[0] = 'she';
       ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[1] = 'She';
       ((s as any).pronounTmp = (s as any).pronounTmp ?? {})[2] = 'her';

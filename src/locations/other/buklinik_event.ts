@@ -388,7 +388,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
   scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/vika/` + ((String((s as any).locArgs?.[1] ?? '')===0) ? (5) : (3)) + '.jpg"></center>');
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     scene.text('You arrive at the address and knock on the door. Vika opens it.');
     scene.text(`- Oh, hey, ${((s as any).pcs_nickname ?? '')}! Do you mind if I call you that?`);
     scene.text('- No, not at all, - you reply with a smile.');
@@ -396,26 +396,26 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
     scene.text('- I enjoyed conversing with him too.');
     scene.text('- Damn, I\'m getting jealous! - she chuckles. - Well, I\'ll run now. Let\'s talk next time. Look, don\'t misbehave while I\'m gone! - she says, playfully poking you in the ribs before walking away.');
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     scene.text('As usual, when you arrive to see Michael, Vika opens the door.');
     scene.text(`- Hi, ${((s as any).pcs_nickname ?? '')}. We've been waiting for you.`);
     scene.text('- Well, here I am, - you respond.');
     scene.text('- Let\'s go then. I\'m off! - she says cheerfully.');
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 2  ||  String((s as any).locArgs?.[1] ?? '') === 4) {
+  if (String((s as any).locArgs?.[1] ?? '') === '2'  ||  String((s as any).locArgs?.[1] ?? '') === '4') {
     scene.text('You arrive at Michael\'s place, and Vika opens the door.');
     scene.text(`- Hi, ${((s as any).pcs_nickname ?? '')}.`);
     scene.text('- Hi, - you reply.');
     scene.text('- Come in already!');
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 3) {
+  if (String((s as any).locArgs?.[1] ?? '') === '3') {
     scene.text('You arrive at Michael\'s, and the door is already open for you by Vika.');
     scene.text(`- Hi, ${((s as any).pcs_nickname ?? '')}.`);
     scene.text('- Hi, - you respond.');
     scene.text('- How are you feeling today? - she asks.');
     scene.text('- Thanks, I\'m feeling pretty normal, - you answer with a smile.');
   }
-  if (String((s as any).locArgs?.[1] ?? '') === 5) {
+  if (String((s as any).locArgs?.[1] ?? '') === '5') {
     if (((s as any).MishaLove ?? 0) === 1) {
       scene.text('You arrive at Michael\'s, and Vika opens the door for you.');
       scene.text(`- Hi, ${((s as any).pcs_nickname ?? '')}.`);

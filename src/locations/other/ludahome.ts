@@ -641,7 +641,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLudaMomTalk(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     (s as any).LudaLoc = 4;
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (10);
@@ -665,7 +665,7 @@ function enterLudaMomTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep chatting', goto: ['ludahome', 'luda_mom_talk', '1'] },
     ]);
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).minut = ((s as any).minut ?? 0) + 30;
       qspCall(s, 'npc_relationship', 'modify', 'A29', 'like');
       qspCall(s, 'npc_relationship', 'modify', 'A30', 'like');

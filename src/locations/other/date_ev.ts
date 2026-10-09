@@ -37,7 +37,7 @@ function enterInviteCode(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 'movie_date';
   }
-  if (String((s as any).locArgs?.[3] ?? '') === 0) {
+  if (String((s as any).locArgs?.[0] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).hour ?? 0) + 1;
   }
   ((s as any).npc_date_invite = (s as any).npc_date_invite ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).daystart ?? 0);

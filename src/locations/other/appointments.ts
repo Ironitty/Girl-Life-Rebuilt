@@ -128,7 +128,7 @@ function enterOfferTryDay(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_apptTry = (s as any).temp_apptTry ?? {})['offset'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).temp_apptTry = (s as any).temp_apptTry ?? {})['daystart'] = ((s as any).daystart ?? 0) + (((s as any).temp_apptTry ?? {})?.['offset'] ?? 0);
   ((s as any).temp_apptTry = (s as any).temp_apptTry ?? {})['done'] = 0;
-  if (String((s as any).locArgs?.[5] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     ((s as any).temp_apptTry = (s as any).temp_apptTry ?? {})['wk'] = (((s as any).week ?? 0) + (((s as any).temp_apptTry ?? {})?.['offset'] ?? 0)) % 7;
     if (((s as any).temp_apptTry ?? 0)?.['wk'] === 0) {
       ((s as any).temp_apptTry = (s as any).temp_apptTry ?? {})['wk'] = 7;

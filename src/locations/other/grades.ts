@@ -387,13 +387,13 @@ function enterOptionalActivityAttribute(s: GameState, scene: SceneBuilder): void
 function enterHomework(s: GameState, scene: SceneBuilder): void {
   (s as any).lernHome = ((s as any).lernHome ?? 0) - (((s as any).locArgs?.[3] ?? 0));
   (s as any).temp_grades_mult_fact = ((((s as any).pcs_stam ?? 0) <= 0) ? (2) : (((((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) ? (3) : (4))));
-  if (String((s as any).locArgs?.[4] ?? '') === 2) {
+  if (String((s as any).locArgs?.[2] ?? '') === '2') {
     (s as any).temp_grades_modifier = Math.max((((s as any).npc_intel ?? 0)?.[((s as any).locArgs?.[5] ?? 0)] ?? 0), 50);
   } else {
-    if (String((s as any).locArgs?.[4] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       (s as any).temp_grades_modifier = Math.max(qspUntranslated(s, "npc_intel[\u00000\u0000]", { location: "grades" }), ((s as any).pcs_intel ?? 0)) + Math.max(10 + Math.min(((s as any).npc_intel ?? 0)[((s as any).locArgs?.[5] ?? 0)] - ((s as any).pcs_intel ?? 0), ((s as any).pcs_intel ?? 0) - ((s as any).npc_intel ?? 0)[((s as any).locArgs?.[5] ?? 0)]), 0) * (100 - Math.max(qspUntranslated(s, "npc_intel[\u00003\u0000]", { location: "grades" }), ((s as any).pcs_intel ?? 0))) / 50;
     } else {
-      if (String((s as any).locArgs?.[4] ?? '') === 3) {
+      if (String((s as any).locArgs?.[3] ?? '') === '3') {
         (s as any).temp_grades_modifier = ((s as any).locArgs?.[5] ?? 0);
       } else {
         (s as any).temp_grades_modifier = ((s as any).pcs_intel ?? 0);

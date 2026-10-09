@@ -8,8 +8,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).PirQuality = 0;
   (s as any).PirFirst = 0;
   (s as any).PirPrice = 0;
-  if (hasLocation('$attributes_piercing_' + (String((s as any).locArgs?.[0] ?? '')))) {
-    qspCall(s, '$attributes_piercing_' + ((s as any).locArgs?.[0] ?? 0) + '', '', ((s as any).locArgs?.[1] ?? 0));
+  if (hasLocation('_attributes_piercing_' + (String((s as any).locArgs?.[0] ?? '')))) {
+    qspCall(s, '_attributes_piercing_' + ((s as any).locArgs?.[0] ?? 0) + '', String((s as any).locArgs?.[1] ?? 0));
   }
   if ((!((s as any).PirQuality ?? 0))) {
     (s as any).PirFirst = 0;

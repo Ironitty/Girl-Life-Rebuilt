@@ -27,22 +27,22 @@ function enterSetLocCode(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetWageScale(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 0) {
+  if (String((s as any).locArgs?.[1] ?? '') === '0') {
     ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = 0;
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 1) {
+    if (String((s as any).locArgs?.[1] ?? '') === '1') {
       ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * (10 - 2 + 1)) + (2));
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 2) {
+      if (String((s as any).locArgs?.[1] ?? '') === '2') {
         ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * (20 - 10 + 1)) + (10));
       } else {
-        if (String((s as any).locArgs?.[1] ?? '') === 3) {
+        if (String((s as any).locArgs?.[1] ?? '') === '3') {
           ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * (40 - 20 + 1)) + (20));
         } else {
-          if (String((s as any).locArgs?.[1] ?? '') === 4) {
+          if (String((s as any).locArgs?.[1] ?? '') === '4') {
             ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * (80 - 40 + 1)) + (40));
           } else {
-            if (String((s as any).locArgs?.[1] ?? '') === 5) {
+            if (String((s as any).locArgs?.[1] ?? '') === '5') {
               ((s as any).evt_transient = (s as any).evt_transient ?? {})['wage'] = ((s as any).locArgs?.[2] ?? 0);
             }
           }
@@ -131,13 +131,13 @@ function enterEvtExit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDispEvt(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === 1) {
+  if (String((s as any).locArgs?.[1] ?? '') === '1') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDispEvt1(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (String((s as any).locArgs?.[1] ?? '') === 2) {
+    if (String((s as any).locArgs?.[1] ?? '') === '2') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDispEvt2(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (String((s as any).locArgs?.[1] ?? '') === 3) {
+      if (String((s as any).locArgs?.[1] ?? '') === '3') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDispEvt3(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }

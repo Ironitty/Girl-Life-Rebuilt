@@ -1214,21 +1214,20 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>You drink your own breast milk and clean up your breast pump.</center>');
     scene.text('<center>The milk is still warm from your breasts.</center>');
     (st as any).di_i = 0;
-    while (true) {
-      if (((st as any).di_i ?? 0) < (((st as any).mc_inventory ?? 0)?.['bottle_m'] + ((st as any).mc_inventory ?? 0)?.['bottle_s'])) {
-        if (((st as any).mbarrmage ?? 0)?.[String((st as any).di_i ?? 0)] >= ((st as any).pump_start_timestamp ?? 0)  &&  ((st as any).mbarrmage ?? 0)?.[String((st as any).di_i ?? 0)] <= ((st as any).pump_timestamp ?? 0)) {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).di_i ?? 0)]; enterEmptyMilkBottle(st, scene); (st as any).locArgs = __savedLocArgs; }
-        }
-        (st as any).di_i = ((st as any).di_i ?? 0) + (1);
-        break;
+    const __inv = (st as any).mc_inventory ?? {};
+    const __totalBottles = (__inv['bottle_m'] ?? 0) + (__inv['bottle_s'] ?? 0);
+    while (((st as any).di_i ?? 0) < __totalBottles) {
+      if (((st as any).mbarrmage ?? 0)?.[String((st as any).di_i ?? 0)] >= ((st as any).pump_start_timestamp ?? 0)  &&  ((st as any).mbarrmage ?? 0)?.[String((st as any).di_i ?? 0)] <= ((st as any).pump_timestamp ?? 0)) {
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).di_i ?? 0)]; enterEmptyMilkBottle(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
-      scene.actions([
-        { label: 'Finish', handler: (st: GameState) => {
+      (st as any).di_i = ((st as any).di_i ?? 0) + (1);
+    }
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
     (st as any).milkedvolume = 0;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-      ]);
-    }
+    ]);
   } },
       ]);
     }
@@ -1237,28 +1236,27 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + (3 + ((st as any).milkedvolume ?? 0) / 1500);
     qspCall(st, 'stat', '');
     (st as any).piits_i = 0;
-    while (true) {
-      if (((st as any).piits_i ?? 0) < (((st as any).mc_inventory ?? 0)?.['bottle_m'] + ((st as any).mc_inventory ?? 0)?.['bottle_s'])) {
-        if (((st as any).mbarrmage ?? 0)?.[String((st as any).piits_i ?? 0)] >= ((st as any).pump_start_timestamp ?? 0)  &&  ((st as any).mbarrmage ?? 0)?.[String((st as any).piits_i ?? 0)] <= ((st as any).pump_timestamp ?? 0)) {
-          { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).piits_i ?? 0)]; enterEmptyMilkBottle(st, scene); (st as any).locArgs = __savedLocArgs; }
-        }
-        (st as any).piits_i = ((st as any).piits_i ?? 0) + (1);
-        break;
+    const __inv2 = (st as any).mc_inventory ?? {};
+    const __totalBottles2 = (__inv2['bottle_m'] ?? 0) + (__inv2['bottle_s'] ?? 0);
+    while (((st as any).piits_i ?? 0) < __totalBottles2) {
+      if (((st as any).mbarrmage ?? 0)?.[String((st as any).piits_i ?? 0)] >= ((st as any).pump_start_timestamp ?? 0)  &&  ((st as any).mbarrmage ?? 0)?.[String((st as any).piits_i ?? 0)] <= ((st as any).pump_timestamp ?? 0)) {
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).piits_i ?? 0)]; enterEmptyMilkBottle(st, scene); (st as any).locArgs = __savedLocArgs; }
       }
-      if (((st as any).milkedvolume ?? 0) > 1500  &&  ((st as any).mc_inventory ?? 0)?.['bottle_s'] <= 1) {
-        scene.img('images/pc/body/tits/milk_sink.jpg');
-        scene.text('<center>You pour 150ml of your breast milk into the sink and clean up your breast pump.</center>');
-      } else {
-        scene.img('images/pc/body/tits/milk_sink.jpg');
-        scene.text(`<center>You pour ${((st as any).milkedvolume ?? '')/10}ml of your breast milk into the sink and clean up your breast pump.</center>`);
-      }
-      scene.actions([
-        { label: 'Finish', handler: (st: GameState) => {
+      (st as any).piits_i = ((st as any).piits_i ?? 0) + (1);
+    }
+    if (((st as any).milkedvolume ?? 0) > 1500  &&  ((st as any).mc_inventory ?? 0)?.['bottle_s'] <= 1) {
+      scene.img('images/pc/body/tits/milk_sink.jpg');
+      scene.text('<center>You pour 150ml of your breast milk into the sink and clean up your breast pump.</center>');
+    } else {
+      scene.img('images/pc/body/tits/milk_sink.jpg');
+      scene.text(`<center>You pour ${((st as any).milkedvolume ?? '')/10}ml of your breast milk into the sink and clean up your breast pump.</center>`);
+    }
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
     (st as any).milkedvolume = 0;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-      ]);
-    }
+    ]);
   } },
       { label: 'Leave it here', handler: (st: GameState) => {
     scene.text('You screw the cap onto the bottle and put it away.');

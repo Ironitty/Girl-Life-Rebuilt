@@ -5,12 +5,16 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  const __savedLocArgs = (s as any).locArgs;
+  const __type = String((s as any).locArgs?.[0] ?? '');
+  const __idx = String((s as any).locArgs?.[1] ?? 0);
   qspCall(s, 'bras', 'reset_BraVars');
   qspCall(s, 'panties', 'reset_PanVars');
   ((s as any).underwear = (s as any).underwear ?? {})['pair'] = 0;
-  if (hasLocation('$attributes_' + (String((s as any).locArgs?.[0] ?? '')))) {
-    qspCall(s, '$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '', '', ((s as any).locArgs?.[1] ?? 0));
+  if (hasLocation('_attributes_' + __type)) {
+    qspCall(s, '_attributes_' + __type, __idx);
   }
+  (s as any).locArgs = __savedLocArgs;
   if (((s as any).BraQuality ?? 0) === 0  &&  (!((s as any).PanQuality ?? 0))) {
     return;
   }
