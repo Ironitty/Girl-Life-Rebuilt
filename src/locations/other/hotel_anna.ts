@@ -1075,49 +1075,422 @@ function enterAnnaSubSessionD(s: GameState, scene: SceneBuilder): void {
 
 function enterScanningPath(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.text('Scanning path…');
+  const statusdressB = (s as any).IgorevnaBDSM_statusdress_b ?? 0;
+  const statusdressA = (s as any).IgorevnaBDSM_statusdress_a ?? 0;
+  const freeJM = (s as any).IgorevnaBDSM_freeJM ?? 0;
+  const nickname = (s as any).pcs_nickname ?? '';
+  if (statusdressB === 1 && freeJM !== 3) {
+    scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpractice/Annapract18.jpg"></center>');
+    scene.text('class="wrap accent">"Wait ' + nickname + ', i didn\'t finished. Since it seems you have a clear preference, i\'d like to give you some option to chose, anyway you could see and chose directly next time. So basically you can chose between a man, a woman or to delay your choice to our next encounter: but in that last case, with all the probability, i will not able to call an external performer and so all the route will be avaible and it will be between me and you… hehehe."</class>');
+    scene.actions([
+      { label: 'Man', goto: ['hotel_anna', 'scanning_man'] },
+      { label: 'Woman', goto: ['hotel_anna', 'scanning_woman'] },
+      { label: "I'll see next time… I think i'm not ready for an external performer", goto: ['hotel_anna', 'scanning_next'] },
+    ]);
+  } else if (statusdressA === 1 && freeJM === 3) {
+    scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpractice/Annapract18a.jpg"></center>');
+    scene.text('class="wrap accent">"Wait ' + nickname + ', i didn\'t finished. Since it seems you have a clear preference, i want you to look at this… or you could decide next time we\'ll meet: in that case the work will not be avaible."</class>Anna pass you a piece of paper with something written on.\'\'Light worker sub protocol\'\': "This protocol is intended for coca cola worker subs and should be accomplished in every parts. Dom/Domme rules: Dom/Domme could ask to execute regular work that doesn\'t last for more than 2 hours; nudity and sexual intercourse are not allowed if not explicitely agree; underwear and proper sub dress are highly recommended as the use of basic gags, cuffs and chain to lock; proper way to address could be asked; insult and too much degrading words are forbidden. sub rules: sub cannot refuse to execute the work they were asked for as for proper way to address the Dom/Domme or recommended way to dress as they stay in the above setting specified in Dom/Domme section; any fail could result in punishment for the max time of 5 minutes. Recommended safe word: RED. Safe action: three stomp on the floor. This protocol could be signed or stay as a verbal agreement. Role: Dominant. Number of actor:… Role: submissive. Number of actor:…" Two space at the end of the paper allow to put the names of the actors.');
+    scene.actions([
+      { label: 'A… work?', goto: ['hotel_anna', 'scanning_work_intro'] },
+    ]);
+  } else {
+    scene.text('…');
+    scene.actions([
+      { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
+    ]);
+  }
+}
+
+function enterScanningMan(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  (s as any).IgorevnaBDSM_session_slaveM = 1;
+  const qw = (s as any).AnnaQW ?? {};
+  qw['dom'] = (qw['dom'] ?? 0) + 1;
+  (s as any).AnnaQW = qw;
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpractice/Annapract18.jpg"></center>');
+  scene.text('class="wrap accent">"…Man uh? Generally speaking they are much more difficult to control expecially at the beginning, but do not worry: once you keep them at the balls they are marvelous. Anyway, we\'ll play easy with a loyal servant, so you have nothing to be worried about. Oh! And before you ask: no sex allowed. I forbid my pet to have sex this month… so… well, i\'m sure you can deal with that."</class><br>class="wrap v_neg">"…\'k…"</class><br>class="wrap accent">"Then it\'s settled. Ok let me lead you to the exit…"</class>');
   scene.actions([
-    { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
+    { label: 'Bye Anna', goto: ['pav_hotel', ''] },
+  ]);
+}
+
+function enterScanningWoman(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  (s as any).IgorevnaBDSM_session_slaveF = 1;
+  const qw = (s as any).AnnaQW ?? {};
+  qw['dom'] = (qw['dom'] ?? 0) + 1;
+  (s as any).AnnaQW = qw;
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpractice/Annapract18.jpg"></center>');
+  scene.text('class="wrap accent">"…Woman uh? Generally speaking they are easier to control expecially at the beginning: but every rules have their own exception… hehehe. Anyway, we\'ll play easy with a loyal servant, so you have nothing to be worried about. Oh! And before you ask: no sex allowed. I forbid my pet to have sex this month… so… well, i\'m sure you can deal with that."</class><br>class="wrap v_neg">"…\'k…"</class><br>class="wrap accent">"Then it\'s settled. Ok let me lead you to the exit…"</class>');
+  scene.actions([
+    { label: 'Bye bye Anna', goto: ['pav_hotel', ''] },
+  ]);
+}
+
+function enterScanningNext(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpractice/Annapract18.jpg"></center>');
+  scene.text('class="wrap accent">"Than, in that case it will be within me and you as i said. Do not worry too much about missing this chance, you\'ll see: it will be interesting whatever you\'ll decide to do, plus i will not lose the chance to give you the right tips if needed."</class><br>class="wrap v_neg">"…\'k…"</class><br>class="wrap accent">"Then it\'s settled. Ok let me lead you to the exit…"</class>');
+  scene.actions([
+    { label: 'Till next…', goto: ['pav_hotel', ''] },
+  ]);
+}
+
+function enterScanningWorkIntro(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpractice/Annapract18.jpg"></center>');
+  scene.text('class="wrap accent">"It\'s not a proper work, i have to do some stuff, and i could link that with a session with you. You\'ll eventually give me an help with the stuff i have to do: I think it\'s a good mix between real BDSM lifestyle, a pure session and a test to see your disposal to this word. It will give me a feedback on your willing to do BDSM stuff too, of course. But pay attention: work will not be avaible if you don\'t chose it right now; in that case i\'ll think about something else and all the route will be open. Even if you\'ll miss this good mix you\'ll be able to learn pretty good things with my tips… hehehe…"</class>');
+  scene.actions([
+    { label: 'Work', goto: ['hotel_anna', 'scanning_work'] },
+    { label: "I-i'll see next time Anna… it sound… scary…", goto: ['hotel_anna', 'scanning_scary'] },
+  ]);
+}
+
+function enterScanningWork(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  (s as any).IgorevnaBDSM_session_librarian = 1;
+  const qw = (s as any).AnnaQW ?? {};
+  qw['sub'] = (qw['sub'] ?? 0) + 1;
+  (s as any).AnnaQW = qw;
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpractice/Annapract18.jpg"></center>');
+  scene.text('class="wrap accent">"It will not be a big stuff, that\'s true, but knowing that you trust me enough to accept the work with me fill my heart of joy."</class><br>class="wrap v_neg">"Well..it\'s… i…think… i\'m safe with you…"</class><br>class="wrap accent">"Hehe… don\'t flatter me… you will make me blush. Just think to take this work seriously… a little punishment will wait for you otherwise… Or maybe you are looking for that… hehehe"</class>…Anna smiles…class="wrap accent">"Then it\'s settled, our verbal agreement will be sufficient, i\'m pretty sure of that. Let me lead to the exit"</class>');
+  scene.actions([
+    { label: 'S-see you… Anna…', goto: ['pav_hotel', ''] },
+  ]);
+}
+
+function enterScanningScary(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  const qw = (s as any).AnnaQW ?? {};
+  qw['switch'] = (qw['switch'] ?? 0) + 1;
+  (s as any).AnnaQW = qw;
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpractice/Annapract18.jpg"></center>');
+  scene.text('class="wrap accent">"Hehehe… that doesn\'t means we\'ll not have fun! Do not worry about missing this chance, you probably has to look better inside yourself and that\'s understandable, even auspicable to be honest."</class><br>class="wrap v_neg">"Thanks for your understanding Anna…"</class><br>class="wrap accent">"Hehe… don\'t flatter me… you will make me blush… hehehe"</class>…Anna smiles…class="wrap accent">"Then it\'s settled, we\'ll see next time… Let me lead to the exit"</class>');
+  scene.actions([
+    { label: 'See you… Anna…', goto: ['pav_hotel', ''] },
   ]);
 }
 
 function enterText(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'stat', '');
-  scene.text('Text…');
-  scene.actions([
-    { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
-  ]);
+  const miniRound = (s as any).Anna_mini_round ?? 0;
+  const poseRound = (s as any).Anna_pose_round ?? 0;
+  let text = '';
+  if (miniRound === 1) {
+    if (poseRound === 1) text = 'bracelets';
+    else if (poseRound === 2) text = 'ko lahr';
+    else if (poseRound === 3) text = 'walk';
+    else if (poseRound === 4) text = 'lotus';
+    else if (poseRound === 5) text = 'expose';
+    else if (poseRound === 6) text = 'prostrate';
+    else if (poseRound === 7) text = 'she sleen';
+    else if (poseRound === 8) text = 'sula y';
+    else if (poseRound === 9) text = 'table';
+  } else if (miniRound === 2) {
+    if (poseRound === 1) text = 'wait';
+    else if (poseRound === 2) text = 'hair';
+    else if (poseRound === 3) text = 'leading';
+    else if (poseRound === 4) text = 'sula s';
+    else if (poseRound === 5) text = 'bara';
+    else if (poseRound === 6) text = 'belly';
+    else if (poseRound === 7) text = 'leasha';
+    else if (poseRound === 8) text = 'inspection';
+    else if (poseRound === 9) text = 'offer me';
+  } else if (miniRound === 3) {
+    if (poseRound === 1) text = 'PNP';
+    else if (poseRound === 2) text = 'obedience';
+    else if (poseRound === 3) text = 'rest';
+    else if (poseRound === 4) text = 'egyptian';
+    else if (poseRound === 5) text = "slaver's kiss";
+    else if (poseRound === 6) text = 'frog';
+    else if (poseRound === 7) text = 'penitent';
+    else if (poseRound === 8) text = 'offer rock';
+    else if (poseRound === 9) text = 'eagle';
+  }
+  (s as any).Minigame_text = text;
+  scene.build();
 }
 
 function enterTable1(s: GameState, scene: SceneBuilder): void {
+  (s as any).Anna_mini_round = 1;
+  (s as any).Anna_round_score = 0;
+  (s as any).Anna_pose_round = Math.floor(Math.random() * 9) + 1;
   qspCall(s, 'stat', '');
-  scene.text('Table 1…');
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/game/table1.jpg"></center>');
+  scene.text(
+    'class="wrap v_neg">"W-what kind of game? And… what are the rules?…"</class><br>' +
+    'class="wrap accent">"Pretty simple: three rounds. I\'ll show you a table with subs poses like this one, and you will try to execute the one i call for each round. If you score 3/3 you\'ll skip the reminding spanking; 2/3 it\'s like we didn\'t play at all, that means a reminder spanking; if less that 2/3 you will receive a little spanking according your score: it will not be a punishment spanking in any case… that\'s a promise. It\'s only a little game, but you have to be naked."</class>br>' +
+    'class="wrap v_neg">"Naked? Why?…"</class>br>' +
+    'class="wrap accent">"It will make things easy for you, also… if you fail a pose, you cannot say it was caused by the dress. What do you say?"</class>'
+  );
+  scene.text('look at the table one');
   scene.actions([
-    { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
+    { label: '…try your luck…', goto: ['hotel_anna', 'table1game'] },
+    { label: '…but it could be worst…', goto: ['hotel_anna', 'Anna_sub_session3'] },
   ]);
 }
 
 function enterTable1game(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'stat', '');
-  scene.text('Table 1 game…');
-  scene.actions([
-    { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
-  ]);
+  qspCall(s, 'hotel_anna', 'text');
+  const poseName = (s as any).Minigame_text ?? '';
+  scene.text('class="wrap accent center h4">"' + poseName + '"</class>');
+  const icons = [
+    [1, 'set1/1bracelets.jpg'], [2, 'set1/1braceletsno.jpg'],
+    [3, 'set1/2collar.jpg'], [4, 'set1/2collarno.jpg'],
+    [5, 'set1/3walk.jpg'], [6, 'set1/3walkno.jpg'],
+    [7, 'set1/4lotus.jpg'], [8, 'set1/4lotusno.jpg'],
+    [9, 'set1/5expose.jpg'], [10, 'set1/5exposeno.jpg'],
+    [11, 'set1/6prostrate.jpg'], [12, 'set1/6prostrateno.jpg'],
+    [13, 'set1/7she_sleen.jpg'], [14, 'set1/7she_sleenno.jpg'],
+    [15, 'set1/8sulay.jpg'], [16, 'set1/8sulayno.jpg'],
+    [17, 'set1/9table.jpg'], [18, 'set1/9tableno.jpg'],
+    [19, 'set1/28mix0.jpg'], [20, 'set1/28mix1.jpg'],
+    [21, 'set1/28mix2.jpg'], [22, 'set1/28mix3.jpg'],
+    [23, 'set1/28mix4.jpg'], [70, '28mix17.jpg'],
+  ] as const;
+  let html = '';
+  for (const [val, img] of icons) {
+    const src = `images/characters/pavlovsk/resident/Anna/sessionpracticend/gameicons/${img}`;
+    html += `<a href="#" onclick="window.__gameStore.setState((s) => { s.pose_table = ${val}; return s; }); window.__gameStore.getState().doGoto('hotel_anna', 'table2'); return false;"><img src="${src}"></a>    `;
+  }
+  scene.text(html);
+  scene.build();
 }
 
 function enterTable2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.text('Table 2…');
+  const poseTable = (s as any).pose_table ?? 0;
+  const poseRound = (s as any).Anna_pose_round ?? 0;
+  scene.text(`<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/game/${poseTable}.jpg"></center>`);
+  const correctMap: Record<number, number> = { 1: 1, 2: 3, 3: 5, 4: 7, 5: 9, 6: 11, 7: 13, 8: 15, 9: 17 };
+  if (correctMap[poseRound] === poseTable) {
+    (s as any).Anna_round_score = ((s as any).Anna_round_score ?? 0) + 1;
+    scene.text('right');
+  } else {
+    scene.text('wrong');
+  }
   scene.actions([
-    { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
+    {
+      label: 'look the table',
+      handler: (st) => {
+        (st as any).Anna_mini_round = 2;
+        (st as any).Anna_pose_round = Math.floor(Math.random() * 9) + 1;
+      },
+      goto: ['hotel_anna', 'table2_pre'],
+    },
+  ]);
+}
+
+function enterTable2Pre(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/game/table2.jpg"></center>');
+  scene.actions([
+    { label: 'play', goto: ['hotel_anna', 'table2game'] },
   ]);
 }
 
 function enterTable2game(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'hotel_anna', 'text');
+  const poseName = (s as any).Minigame_text ?? '';
+  scene.text('class="wrap accent center h4">"' + poseName + '"</class>');
+  const icons = [
+    [24, 'set2/10wait.jpg'], [25, 'set2/10waitno.jpg'],
+    [26, 'set2/11hair.jpg'], [27, 'set2/11hairslut.jpg'],
+    [28, 'set2/12leading.jpg'], [29, 'set2/12leadingslut.jpg'],
+    [30, 'set2/13sula.jpg'], [31, 'set2/13sulaslut.jpg'],
+    [32, 'set2/14bara.jpg'], [33, 'set2/14barano.jpg'],
+    [34, 'set2/15belly.jpg'], [35, 'set2/15bellyno.jpg'],
+    [36, 'set2/16leasha.jpg'], [37, 'set2/16leashano.jpg'],
+    [38, 'set2/17inspection.jpg'], [39, 'set2/17inspectionno.jpg'],
+    [40, 'set2/18offer.jpg'], [41, 'set2/18offerno.jpg'],
+    [42, 'set2/28mix5.jpg'], [43, 'set2/28mix6.jpg'],
+    [44, 'set2/28mix7.jpg'], [45, 'set2/28mix8.jpg'],
+    [46, 'set2/28mix8.jpg'], [70, '28mix17.jpg'],
+  ] as const;
+  let html = '';
+  for (const [val, img] of icons) {
+    const src = `images/characters/pavlovsk/resident/Anna/sessionpracticend/gameicons/${img}`;
+    html += `<a href="#" onclick="window.__gameStore.setState((s) => { s.pose_table = ${val}; return s; }); window.__gameStore.getState().doGoto('hotel_anna', 'table3'); return false;"><img src="${src}"></a>    `;
+  }
+  scene.text(html);
+  scene.build();
+}
+
+function enterTable3Pre(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.text('Table 2 game…');
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/game/table3.jpg"></center>');
   scene.actions([
-    { label: 'Continue', goto: ['hotel_anna', 'meeting'] },
+    { label: 'play', goto: ['hotel_anna', 'table3game'] },
+  ]);
+}
+
+function enterTable3(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  const poseTable = (s as any).pose_table ?? 0;
+  const poseRound = (s as any).Anna_pose_round ?? 0;
+  scene.text(`<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/game/${poseTable}.jpg"></center>`);
+  const correctMap: Record<number, number> = { 1: 24, 2: 26, 3: 28, 4: 30, 5: 32, 6: 34, 7: 36, 8: 38, 9: 40 };
+  if (correctMap[poseRound] === poseTable) {
+    (s as any).Anna_round_score = ((s as any).Anna_round_score ?? 0) + 1;
+    scene.text('right');
+  } else {
+    scene.text('wrong');
+  }
+  scene.actions([
+    {
+      label: 'look the table',
+      handler: (st) => {
+        (st as any).Anna_mini_round = 3;
+        (st as any).Anna_pose_round = Math.floor(Math.random() * 9) + 1;
+      },
+      goto: ['hotel_anna', 'table3_pre'],
+    },
+  ]);
+}
+
+function enterTable3game(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'hotel_anna', 'text');
+  const poseName = (s as any).Minigame_text ?? '';
+  scene.text('class="wrap accent center h4">"' + poseName + '"</class>');
+  const icons = [
+    [47, 'set3/19pnp.jpg'], [48, 'set3/19pnpno.jpg'],
+    [49, 'set3/20obedience.jpg'], [50, 'set3/20obedienceno.jpg'],
+    [51, 'set3/21rest.jpg'], [52, 'set3/21restno.jpg'],
+    [53, 'set3/22egyptian.jpg'], [54, 'set3/22egyptianno.jpg'],
+    [55, 'set3/23slaverskiss.jpg'], [56, 'set3/23slaverskissno.jpg'],
+    [57, 'set3/24frog.jpg'], [58, 'set3/24frogno.jpg'],
+    [59, 'set3/25whipping.jpg'], [60, 'set3/25whippingno.jpg'],
+    [61, 'set3/26offerrock.jpg'], [62, 'set3/26offerrockno.jpg'],
+    [63, 'set3/27eagle.jpg'], [64, 'set3/27eagleno.jpg'],
+    [65, 'set3/28mix10.jpg'], [66, 'set3/28mix11.jpg'],
+    [67, 'set3/28mix12.jpg'], [68, 'set3/28mix13.jpg'],
+    [69, 'set3/28mix14.jpg'], [70, '28mix17.jpg'],
+  ] as const;
+  let html = '';
+  for (const [val, img] of icons) {
+    const src = `images/characters/pavlovsk/resident/Anna/sessionpracticend/gameicons/${img}`;
+    html += `<a href="#" onclick="window.__gameStore.setState((s) => { s.pose_table = ${val}; return s; }); window.__gameStore.getState().doGoto('hotel_anna', 'end'); return false;"><img src="${src}"></a>    `;
+  }
+  scene.text(html);
+  scene.build();
+}
+
+function enterEnd(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  const poseTable = (s as any).pose_table ?? 0;
+  const poseRound = (s as any).Anna_pose_round ?? 0;
+  scene.text(`<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/game/${poseTable}.jpg"></center>`);
+  const correctMap: Record<number, number> = { 1: 47, 2: 49, 3: 51, 4: 53, 5: 55, 6: 57, 7: 59, 8: 61, 9: 63 };
+  if (correctMap[poseRound] === poseTable) {
+    (s as any).Anna_round_score = ((s as any).Anna_round_score ?? 0) + 1;
+    scene.text('right');
+  } else {
+    scene.text('wrong');
+  }
+  scene.actions([
+    { label: 'test01', goto: ['hotel_anna', 'table1'] },
+    { label: 'go away', goto: ['hotel_anna', 'Anna_sub_session3'] },
+  ]);
+}
+
+function enter8Old(s: GameState, scene: SceneBuilder): void {
+  const librarian = (s as any).IgorevnaBDSM_session_librarian ?? 0;
+  const nickname = (s as any).pcs_nickname ?? '';
+  const firstname = (s as any).pcs_firstname ?? '';
+  if (librarian === 2) {
+    scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/annahurt.jpg"></center>');
+    scene.text('class="wrap v_neg">"Hi Anna…"</class><br>class="wrap accent">"' + nickname + '…"</class><br>class="wrap v_neg">"C-can i enter? … \' …shit! Am I the reason of her sight? It couldn\'t be something else… she\'s never been that way… I think it\'s worse than I thought…\' …"</class><br>Anna slowly opens the door, and make you the sign to enter… not more than: ' + 'class="wrap accent">"…take a seat."</class> comes out of her mouth; and you have no difficulties to understand the reason: you should be the one who speaks.');
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'Anna_path_choice'] },
+    ]);
+  } else if (librarian === 3) {
+    scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/annahurt.jpg"></center>');
+    scene.text('class="wrap v_neg">"Hi Anna…"</class><br>class="wrap accent">"' + firstname + '…"</class>Anna slowly opens the door, and gives you the sign to enter…');
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'Anna_path_choice'] },
+    ]);
+  } else {
+    scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/electrapack.jpg"></center>');
+    scene.text('Again, you see that woman…, you peep to see what\'s happening before going near to the door. "' + 'class="wrap accent"> "… the litter box should be… uhmmm… ask Candy for that… " ' + '… "…that means outside relief probably. Something else?… ". ' + 'class="wrap accent"> "…Yes… please… just don\'t return me a crazy sex maniacs as you always do… " ' + '"I\'ll see what I can do. No promise. Mmmm… it seems she\'s eating too much… she gain weight… ok then, if that\'s everything, we\'ll see in one or two weeks… oh and… Anna, preserve your stamina… just in case… hehehe.".' + 'class="wrap accent">"I knew it…"</class> The woman, left for the hallway, you take your time to assure she\'s no more on sight, then you knock at Anna\'s door…<br>You hear her…' + 'class="wrap accent"> Coming…!</class><br>' + 'class="wrap v_neg">…\' …probably Anna let her sleep for the night, she\'s going away with a bag; it seems they are close friends… \' … ' + ' You are lost in your thought… finally<br>' + 'class="wrap accent"> "' + nickname + '…come in!" ');
+    scene.actions([
+      { label: '…', goto: ['hotel_anna', '8_old_check'] },
+    ]);
+  }
+}
+
+function enter8OldCheck(s: GameState, scene: SceneBuilder): void {
+  const slaveF = (s as any).IgorevnaBDSM_session_slaveF ?? 0;
+  const slaveM = (s as any).IgorevnaBDSM_session_slaveM ?? 0;
+  const librarian = (s as any).IgorevnaBDSM_session_librarian ?? 0;
+  if (slaveF === 1 || slaveM === 1) {
+    qspGoto(s, 'hotel_anna', '8_old_slave');
+  } else if (librarian === 1) {
+    qspGoto(s, 'hotel_anna', '8_old_librarian');
+  } else {
+    qspGoto(s, 'hotel_anna', '8_old_default');
+  }
+}
+
+function enter8OldSlave(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start0s.jpg"></center>');
+  scene.text('Anna leads you to the main room; she\'s wearing only a fishnet without any lingerie on… it\'s becoming a habit for you to see her naked. You cannot avoid to stare at her body and you wonder if you will stay in the same shape with aging… <br>' + 'class="wrap accent"> "Oh… there\'s no need to thank poor Anna to prepare everything… really… it cost me nothing" ' + '<br>You realize you didn\'t say neither hello to Anna…' + 'class="wrap v_neg">"Sorry Anna… my bad… Hi! I\'m a little light head today… Thanks really for your efforts… I really shouldn\'t forgot my manners… "' + '<br>' + 'class="wrap accent">"Nah… I\'m joking. I hope I\'m the source of your distractions… hehehe…"</class> ');
+  scene.actions([
+    { label: '…', goto: ['hotel_anna', '8_old_slave2'] },
+  ]);
+}
+
+function enter8OldSlave2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  const slaveF = (s as any).IgorevnaBDSM_session_slaveF ?? 0;
+  const slaveM = (s as any).IgorevnaBDSM_session_slaveM ?? 0;
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start1s.jpg"></center>');
+  scene.text('class="wrap v_neg">"Well… it could reeaaaly help me to make the session with you…"</class><br>' + 'class="wrap accent">"…Nice attempt but: Nope. Not with a semi-serious session…"</class><br>' + 'class="wrap v_neg">… \'…and I cannot touch that forbidden fruit yet… \' …</class><br>' + 'class="wrap accent">"Don\'t give me those puppy eyes… never say never…"</class>');
+  if (slaveF === 1) {
+    scene.text('class="wrap v_neg">"Ok… then. Is Jeanine ready?"</class><br>' + '…"…Jeanine… is… busy at the moment. But there\'s nothing to be worried about: Verushka will play great, I assure you. She\'s ready; what about you? Shall we start?"');
+    scene.actions([
+      { label: "Let's start", goto: ['hotel_anna_sex', 'slaveF'] },
+    ]);
+  } else if (slaveM === 1) {
+    scene.text('class="wrap v_neg">"Ok… then. Who\'s the "lucky" guy?"</class><br>' + 'class="wrap accent"> "…Well… it\'s quite useless to call it by name…"</class><br>' + 'class="wrap v_neg">"It?…"</class><br>' + 'class="wrap accent">"Yes "it". it\'s registred as Maxim Egorov at the civil registration… but it\'s more like a thing… a useless one to be honest. That means you can do anything to it, but not sex: that\'s a condition and there will be no deal about it."</class><br>' + 'class="wrap v_neg">"Never had this intention…"</class><br>' + 'class="wrap accent">"The we are ready… Shall we start?"</class>');
+    scene.actions([
+      { label: "Let's start", goto: ['hotel_anna_sex', 'slaveM'] },
+    ]);
+  }
+}
+
+function enter8OldLibrarian(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start0l.jpg"></center>');
+  scene.text('Anna leads you to the main room; she\'s wearing only a fishnet without any lingerie on… it\'s becoming a habit for you to see her naked. You cannot avoid to stare at her body and you wonder if you will stay in the same shape with aging… ' + 'class="wrap v_neg">"H-hi Anna…"</class> + \'. You suddenly remember your deal was to help Anna with her work… you don\'t know where this thing will lead you, and a little cold shake runs through your spine… <br>\' + \'class="wrap accent"> "Oh my dear! I\'m so happy to have you here. I\'ve got everything we\'ll need and more! They brought me even "The apocryphal Gor"…!" \' + \'<br>…You don\'t know what Anna is talking about and you don\'t care. Your only thoughts are focused on what she will expect from you now… no word comes out from your mouth.\'');
+  scene.actions([
+    { label: '…', goto: ['hotel_anna', '8_old_librarian2'] },
+  ]);
+}
+
+function enter8OldLibrarian2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  const nickname = (s as any).pcs_nickname ?? '';
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start1l.jpg"></center>');
+  scene.text('Anna notices your worries…' + 'class="wrap accent">"…<' + nickname + '>…I know that sight on the eyes. That sight that cannot be seen because of your lowered head…"</class>She hit the point…<br>' + 'class="wrap v_neg">"N-no… no… it\'s ok…"</class><br>' + 'class="wrap accent">"Listen: you can stop it now if you want and make another choice. If something seems too hard for you, you can always use the safe word or the safe action. Honestly there\'s no need to be worried: just focus on the task I will give you and things will run smoothly."</class><br>' + 'class="wrap v_neg">"Maybe… you are right…"</class><br>Anna starts playing with her heel…' + 'class="wrap accent">"…or… you can decide to play the "bad girl" that need some correction… it\'s up to you at the end."</class><br>' + 'class="wrap v_neg">"…"</class> You don\'t want to follow Anna\'s last advice… do you?<br>' + 'class="wrap accent">"Ok if you decide to follow the deal we\'ll go straight to change into something more appropriate for our roleplay… ready?"</class>');
+  scene.actions([
+    { label: 'A… deal is a deal…', goto: ['hotel_anna_sex', 'librarian'] },
+    { label: "I'd like to think better at my choice Anna…", goto: ['hotel_anna_sex', 'Anna_path_choice'] },
+  ]);
+}
+
+function enter8OldDefault(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start0.jpg"></center>');
+  scene.text('Anna leads you to the main room; she\'s wearing only a fishnet without any lingerie on… it\'s becoming a habit for you to see her naked. You cannot avoid to stare at her body and you wonder if you will stay in the same shape with aging… ' + 'class="wrap v_neg">"Hi Anna… you look… great… \' …and naked…\'…"</class><br>' + 'class="wrap accent"> "Thanks sweetie! But we are not here to make compliments… have you thought about today?"</class>');
+  scene.actions([
+    { label: 'Yes and no… could you remind me something?', goto: ['hotel_anna_sex', 'Anna_path_choice'] },
+    { label: "Sorry Anna, I'm not ready for this…", goto: ['hotel_anna', '8_old_notready'] },
+  ]);
+}
+
+function enter8OldNotReady(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><img src="images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start0a.jpg"></center>');
+  scene.text('class="wrap accent"> "Understandable. Well in that case we can only talk about how things are going in the world…" ' + ' Both you and Anna spend an hour speaking of various thing, sometimes the arguments drop on the BDSM but mostly it\'s unrelated to it… It seems that Anna couldn\'t teach you nothing more without practice… At the end she leads you to the exit letting you know she\'s avaible for further experimentation… ' + 'class="wrap accent"> "…and… if you want to return on our steps… feel free to pass anytime."</class> Then she give you two great kisses on your cheeck and you go on your own way…');
+  scene.actions([
+    { label: 'Thanks Anna, see you…', goto: ['pav_hotel', ''] },
   ]);
 }
 
@@ -1173,6 +1546,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'scanning_path':
       enterScanningPath(s, scene);
       break;
+    case 'scanning_man':
+      enterScanningMan(s, scene);
+      break;
+    case 'scanning_woman':
+      enterScanningWoman(s, scene);
+      break;
+    case 'scanning_next':
+      enterScanningNext(s, scene);
+      break;
+    case 'scanning_work_intro':
+      enterScanningWorkIntro(s, scene);
+      break;
+    case 'scanning_work':
+      enterScanningWork(s, scene);
+      break;
+    case 'scanning_scary':
+      enterScanningScary(s, scene);
+      break;
     case 'text':
       enterText(s, scene);
       break;
@@ -1185,8 +1576,47 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'table2':
       enterTable2(s, scene);
       break;
+    case 'table2_pre':
+      enterTable2Pre(s, scene);
+      break;
     case 'table2game':
       enterTable2game(s, scene);
+      break;
+    case 'table3':
+      enterTable3(s, scene);
+      break;
+    case 'table3_pre':
+      enterTable3Pre(s, scene);
+      break;
+    case 'table3game':
+      enterTable3game(s, scene);
+      break;
+    case 'end':
+      enterEnd(s, scene);
+      break;
+    case '8_old':
+      enter8Old(s, scene);
+      break;
+    case '8_old_check':
+      enter8OldCheck(s, scene);
+      break;
+    case '8_old_slave':
+      enter8OldSlave(s, scene);
+      break;
+    case '8_old_slave2':
+      enter8OldSlave2(s, scene);
+      break;
+    case '8_old_librarian':
+      enter8OldLibrarian(s, scene);
+      break;
+    case '8_old_librarian2':
+      enter8OldLibrarian2(s, scene);
+      break;
+    case '8_old_default':
+      enter8OldDefault(s, scene);
+      break;
+    case '8_old_notready':
+      enter8OldNotReady(s, scene);
       break;
     default:
       enterDefault(s, scene);
