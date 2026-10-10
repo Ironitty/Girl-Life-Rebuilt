@@ -663,7 +663,7 @@ function enterViewListsList(s: GameState, scene: SceneBuilder): void {
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'wardrobe'  ||  String((s as any).locArgs?.[1] ?? '') === ''  &&  ((s as any).ward_list_page ?? 0) === 'wardrobe') {
     (s as any).ward_list_page = 'wardrobe';
-    scene.img('images/system/icons/clothing/clothes.png');
+    scene.text(`<center><table><th><a href="#" onclick="window.__gameStore.setState((s) => { delete s.ward_list_page; return s; }); window.__gameStore.getState().doGoto('wardrobe', 'main'); return false;"><img src="images/system/icons/clothing/clothes.png" height="50"></th><th><a href="#" onclick="window.__gameStore.setState((s) => { delete s.ward_list_page; return s; }); window.__gameStore.getState().doGoto('wardrobe', window.__gameStore.getState().wloc); return false;"><img src="images/system/icons/clothing/default.png" height="50"></a></th><th><b>Your Wardrobe</b></th></table></center>`);
     if (((s as any).wardrobeDefaultPagePref ?? 0) === 'viewClothing') {
       (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* wardrobeDefaultPagePref */ return s; }); window.__gameStore.getState().doGoto(\u0027clothing_view\u0027, \u0027view_lists_list\u0027, \u0027wardrobe\u0027); return false;">Unset as default wardrobe page</a>';
     } else {
