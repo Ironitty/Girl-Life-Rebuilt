@@ -307,14 +307,14 @@ function enterDefaultClothingLine(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
   } else {
     qspCall(s, 'clothing_attributes', '', (((s as any).defclothingtype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defclothingnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$clothing_image', (((s as any).defclothingtype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defclothingnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$clothing_image', '', (((s as any).defclothingtype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defclothingnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
   }
   if (((s as any).defunderwear ?? 0)?.[String((s as any).default_entry ?? 0)] === 2) {
     if (((s as any).defbodysuitnumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
       (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
     } else {
       qspCall(s, 'underwear_attributes', '', (((s as any).defbodysuittype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0) + '_bodysuits', (((s as any).defbodysuitnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-      (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$pcs_outfit_image', (((s as any).defbodysuittype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0) + '_bodysuits', (((s as any).defbodysuitnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
+      (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$pcs_outfit_image', '', (((s as any).defbodysuittype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0) + '_bodysuits', (((s as any).defbodysuitnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
     }
     (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
   } else {
@@ -322,32 +322,32 @@ function enterDefaultClothingLine(s: GameState, scene: SceneBuilder): void {
       (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
     } else {
       qspCall(s, 'underwear_attributes', '', (((s as any).defbratype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0) + '_bras', (((s as any).defbranumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-      (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$bra_image', (((s as any).defbratype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defbranumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
+      (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$bra_image', '', (((s as any).defbratype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defbranumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
     }
     if (((s as any).defpantynumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
       (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
     } else {
       qspCall(s, 'underwear_attributes', '', (((s as any).defpantytype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0) + '_panties', (((s as any).defpantynumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-      (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$panty_image', (((s as any).defpantytype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defpantynumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
+      (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$panty_image', '', (((s as any).defpantytype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defpantynumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
     }
   }
   if (((s as any).defshoenumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
     (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
   } else {
     qspCall(s, 'shoe_attributes', '', '', (((s as any).defshoetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defshoenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$shoe_image', (((s as any).defshoetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defshoenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$shoe_image', '', (((s as any).defshoetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defshoenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
   }
   if (((s as any).defcoatnumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
     (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
   } else {
     qspCall(s, 'coat_attributes', '', (((s as any).defcoattype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defcoatnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$coat_image', (((s as any).defcoattype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defcoatnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$coat_image', '', (((s as any).defcoattype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defcoatnumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
   }
   if (((s as any).defpursenumber ?? 0)?.[String((s as any).default_entry ?? 0)] === 0) {
     (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="images/pc/items/blank.jpg"></TD>');
   } else {
     qspCall(s, 'purse_attributes', '', (((s as any).defpursetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defpursenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0));
-    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$purse_image', (((s as any).defpursetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defpursenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
+    (s as any).result = ((s as any).result ?? 0) + ('<TD><img width="100" src="' + qspFunc(s, '$purse_image', '', (((s as any).defpursetype ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0), (((s as any).defpursenumber ?? 0)?.[String((s as any).default_entry ?? 0)] ?? 0)) + '"></TD>');
   }
   (s as any).result = ((s as any).result ?? 0) + ('<TD><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027default_entry_wear\u0027, String((s as any).default_entry ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/wear.png"></a></TD>');
   (s as any).result = ((s as any).result ?? 0) + ('<TD><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027default_entry_set\u0027, String((s as any).default_entry ?? \u0027\u0027)); return false;"><img src="images/system/icons/clothing/overwrite.png"></a></TD>');

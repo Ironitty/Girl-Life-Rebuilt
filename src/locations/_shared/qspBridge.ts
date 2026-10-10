@@ -1070,7 +1070,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
         } else {
           const cloType = str(st.defclothingtype?.[entry] ?? '');
           qspCall(s, 'clothing_attributes', '', cloType, cloNum);
-          const img = qspFunc(s, '$clothing_image', cloType, cloNum);
+          const img = qspFunc(s, '$clothing_image', '', cloType, cloNum);
           result += `<TD><img width="100" src="${img}"></TD>`;
         }
         const underw = num(st.defunderwear?.[entry] ?? 0);
@@ -1081,7 +1081,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
           } else {
             const bsType = str(st.defbodysuittype?.[entry] ?? '');
             qspCall(s, 'underwear_attributes', '', bsType + '_bodysuits', bsNum);
-            const img = qspFunc(s, '$pcs_outfit_image', bsType + '_bodysuits', bsNum);
+            const img = qspFunc(s, '$pcs_outfit_image', '', bsType + '_bodysuits', bsNum);
             result += `<TD><img width="100" src="${img}"></TD>`;
           }
           result += `<TD><img width="100" src="images/pc/items/blank.jpg"></TD>`;
@@ -1092,7 +1092,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
           } else {
             const braType = str(st.defbratype?.[entry] ?? '');
             qspCall(s, 'underwear_attributes', '', braType + '_bras', braNum);
-            const img = qspFunc(s, '$bra_image', braType, braNum);
+            const img = qspFunc(s, '$bra_image', '', braType, braNum);
             result += `<TD><img width="100" src="${img}"></TD>`;
           }
           const panNum = num(st.defpantynumber?.[entry] ?? 0);
@@ -1101,7 +1101,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
           } else {
             const panType = str(st.defpantytype?.[entry] ?? '');
             qspCall(s, 'underwear_attributes', '', panType + '_panties', panNum);
-            const img = qspFunc(s, '$panty_image', panType, panNum);
+            const img = qspFunc(s, '$panty_image', '', panType, panNum);
             result += `<TD><img width="100" src="${img}"></TD>`;
           }
         }
@@ -1111,7 +1111,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
         } else {
           const shoeType = str(st.defshoetype?.[entry] ?? '');
           qspCall(s, 'shoe_attributes', '', shoeType, shoeNum);
-          const img = qspFunc(s, '$shoe_image', shoeType, shoeNum);
+          const img = qspFunc(s, '$shoe_image', '', shoeType, shoeNum);
           result += `<TD><img width="100" src="${img}"></TD>`;
         }
         const coatNum = num(st.defcoatnumber?.[entry] ?? 0);
@@ -1120,7 +1120,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
         } else {
           const coatType = str(st.defcoattype?.[entry] ?? '');
           qspCall(s, 'coat_attributes', '', coatType, coatNum);
-          const img = qspFunc(s, '$coat_image', coatType, coatNum);
+          const img = qspFunc(s, '$coat_image', '', coatType, coatNum);
           result += `<TD><img width="100" src="${img}"></TD>`;
         }
         const purseNum = num(st.defpursenumber?.[entry] ?? 0);
@@ -1129,7 +1129,7 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
         } else {
           const purseType = str(st.defpursetype?.[entry] ?? '');
           qspCall(s, 'purse_attributes', '', purseType, purseNum);
-          const img = qspFunc(s, '$purse_image', purseType, purseNum);
+          const img = qspFunc(s, '$purse_image', '', purseType, purseNum);
           result += `<TD><img width="100" src="${img}"></TD>`;
         }
         result += `<TD><a href="#" onclick="window.__gameStore.getState().doGoto('wardrobe', 'default_entry_wear', ${entry}); return false;"><img src="images/system/icons/clothing/wear.png"></a></TD>`;
