@@ -616,6 +616,10 @@ export const initialState = {
   theme_hex: { table_bg: '#ffffff', table_bg_alt: '#f0f0f0', accent: '#38C0D6', v_pos: '#a6da95', pos: '#eed49f', neutral: '#f5a97f', neg: '#ee99a0', v_neg: '#ed8796', punk: '#c6a0f6', bimbo: '#f5bde6', goth: '#a5adcb', hypno: '#f5a97f' } as Record<string, string>,
   bodysuitworntype: 'none', bodysuitwornnumber: 0,
   default_entry: 0,
+  default_entry_max: 0,
+  default_entry_name: '',
+  clothing_default_page: {} as Record<string, string>,
+  clothing_default_page_num: 0,
   default_sport_number: {} as Record<string, number>,
   default_school_number: {} as Record<string, number>,
 

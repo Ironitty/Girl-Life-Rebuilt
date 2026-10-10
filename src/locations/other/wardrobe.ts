@@ -6,6 +6,12 @@ import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function defaultClothingSuma(s: GameState, entry: number): number {
+  const a = s as any;
+  const n = (v: any) => Number(v?.[entry] ?? 0) || 0;
+  return n(a.defclothingnumber) + n(a.defbranumber) + n(a.defpantynumber) + n(a.defshoenumber) + n(a.defpursenumber) + n(a.defcoatnumber);
+}
+
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
@@ -290,8 +296,6 @@ function enterRemoveall(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shoes', 'strip');
   qspCall(s, 'purses', 'remove');
   qspCall(s, 'coats', 'remove');
-  (s as any).default_clothing_suma = qspUntranslated(s, "{", { location: "wardrobe" });
-  (s as any).result = ((s as any).defclothingnumber ?? 0)[((s as any).locArgs?.[0] ?? 0)]+ ((s as any).defbranumber ?? 0)[((s as any).locArgs?.[0] ?? 0)] + ((s as any).defpantynumber ?? 0)[((s as any).locArgs?.[0] ?? 0)] + ((s as any).defshoenumber ?? 0)[((s as any).locArgs?.[0] ?? 0)] + ((s as any).defpursenumber ?? 0)[((s as any).locArgs?.[0] ?? 0)] + ((s as any).defcoatnumber ?? 0)[((s as any).locArgs?.[0] ?? 0)];
   scene.build();
 }
 
@@ -409,40 +413,38 @@ function enterDefaultNameInitialise(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefaultTemplate(s: GameState, scene: SceneBuilder): void {
-  (s as any).clothing_default_page = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).clothing_default_page_num = ((s as any).locArgs?.[1] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefaultNameInitialise(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
-  scene.img('images/system/icons/clothing/clothes.png');
-  if (((s as any).wardrobeDefaultPagePref ?? 0) === ((s as any).wloc ?? 0)) {
-    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any).wardrobeDefaultPagePref; return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, String((s as any).wloc ?? \u0027\u0027)); return false;">Remove saved default wardrobe page</a>';
-  } else {
-    (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* wardrobeDefaultPagePref=wloc */ return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, String((s as any).wloc ?? \u0027\u0027)); return false;">Set here as default wardrobe page</a>';
-  }
-  scene.text(`<center>${((s as any).wardrobeSetDefault ?? '')}</center>`);
-  (s as any).wardrobeSetDefault = undefined;
+  scene.text('<center><table><tr><td><a href="#" onclick="window.__gameStore.getState().doGoto(\'wardrobe\', \'main\'); return false;"><img src="images/system/icons/clothing/clothes.png" height="50"></a></td><td><center><b>Current set: ' + String((s as any).default_entry_name ?? '') + '</b><br><a href="#" onclick="window.__gameStore.getState().doGoto(\'wardrobe\', \'default_set_name\'); return false;">Rename set</a></center></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\'clothing_view\', \'view_lists_list\', \'wardrobe\'); return false;"><img src="images/system/icons/clothing/organize.png" height="50"></a></td></tr><tr><td></td></table></center>');
+  const wloc = String((s as any).wloc ?? '');
+  const wardrobeSetDefault = String((s as any).wardrobeDefaultPagePref ?? '') === wloc
+    ? '<a href="#" onclick="window.__gameStore.setState((st) => { delete st.wardrobeDefaultPagePref; return st; }); window.__gameStore.getState().doGoto(\'wardrobe\', \'' + wloc + '\'); return false;">Remove saved default wardrobe page</a>'
+    : '<a href="#" onclick="window.__gameStore.setState((st) => { st.wardrobeDefaultPagePref = \'' + wloc + '\'; return st; }); window.__gameStore.getState().doGoto(\'wardrobe\', \'' + wloc + '\'); return false;">Set here as default wardrobe page</a>';
+  scene.text('<center>' + wardrobeSetDefault + '</center>');
   scene.text('<center><table><th>Name</th><th>Outfit</th><th>Bra/Bodysuit</th><th>Panties</th><th>Shoes</th><th>Coat</th><th>Purse</th><th></th><th></th><th></th><th></th><th></th><tr>');
-  (s as any).temp = ((s as any).default_entry ?? 0);
+  (s as any).temp = Number((s as any).default_entry ?? 0);
   do {
-    if ((0 as any) !== 0) {
-      scene.text(qspFunc(s, 'wardrobe', 'default_clothing_line'));
+    if (defaultClothingSuma(s, Number((s as any).default_entry)) !== 0) {
+      scene.text(String(qspFunc(s, 'wardrobe', 'default_clothing_line') ?? ''));
     }
-    (s as any).default_entry = ((s as any).default_entry ?? 0) + (1);
-    (s as any).default_entry = ((s as any).temp ?? 0);
-    do {
-      if ((!(0 as any))) {
-        scene.text(qspFunc(s, 'wardrobe', 'default_clothing_line'));
-      }
-      (s as any).default_entry = ((s as any).default_entry ?? 0) + (1);
-      scene.text('</table></center>');
-      (s as any).temp_bcolor = undefined;
-    } while (((s as any).default_entry ?? 0) <= ((s as any).default_entry ?? 0)[1]);
-  } while (((s as any).default_entry ?? 0) <= ((s as any).default_entry ?? 0)[1]);
+    (s as any).default_entry = Number((s as any).default_entry) + 1;
+  } while (Number((s as any).default_entry) <= Number((s as any).default_entry_max ?? 0));
+  (s as any).default_entry = Number((s as any).temp ?? 0);
+  do {
+    if (defaultClothingSuma(s, Number((s as any).default_entry)) === 0) {
+      scene.text(String(qspFunc(s, 'wardrobe', 'default_clothing_line') ?? ''));
+    }
+    (s as any).default_entry = Number((s as any).default_entry) + 1;
+  } while (Number((s as any).default_entry) <= Number((s as any).default_entry_max ?? 0));
+  scene.text('</table></center>');
+  (s as any).temp_bcolor = undefined;
   scene.build();
 }
 
 function enterDefaultSetName(s: GameState, scene: SceneBuilder): void {
-  ((s as any).clothing_default_page = (s as any).clothing_default_page ?? {})[String((s as any).clothing_default_page ?? 0)] = window.prompt("Enter new name for this set") ?? '';
-  qspGoto(s, 'wardrobe', 'default' + ((s as any).clothing_default_page ?? 0) + '');
+  ((s as any).clothing_default_page = (s as any).clothing_default_page ?? {})[String((s as any).clothing_default_page_num ?? 0)] = window.prompt("Enter new name for this set") ?? '';
+  qspGoto(s, 'wardrobe', 'default' + String((s as any).clothing_default_page_num ?? 0));
   scene.build();
 }
 
@@ -453,19 +455,21 @@ function enterDefaultActions(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     { label: 'Select outfit to wear', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDefaultActionsWear(st, scene); (st as any).locArgs = __savedLocArgs; }
+    scene.curActs.length = 0;
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'wardrobe', ((st as any).wardrobeDefaultPagePref ?? '')); } },
+      { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'wardrobe', String((st as any).wardrobeDefaultPagePref ?? '')); } },
     ]);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDefaultActionsWear(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Choose another page', handler: (st: GameState) => {
-    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDefaultActionsPage(st, scene); (st as any).locArgs = __savedLocArgs; }
+    scene.curActs.length = 0;
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'wardrobe', ((st as any).wardrobeDefaultPagePref ?? '')); } },
+      { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'wardrobe', String((st as any).wardrobeDefaultPagePref ?? '')); } },
     ]);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDefaultActionsPage(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Rename this set', handler: (st: GameState) => {
-    qspCall(st, 'wardrobe', '');
+    qspCall(st, 'wardrobe', 'default_set_name');
   } },
   ]);
   scene.build();
@@ -526,25 +530,27 @@ function enterDefaultActionsPage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefaultActionsWear(s: GameState, scene: SceneBuilder): void {
-  (s as any).default_entry = ((s as any).default_entry ?? 0) - (10);
-  (s as any).i = ((s as any).default_entry ?? 0);
+  (s as any).default_entry = Number((s as any).default_entry ?? 0) - 10;
+  (s as any).i = (s as any).default_entry;
   do {
-    if ((0 as any) !== 0) {
-      (s as any).var_default_actions_wear = 0;
-      dynamicGoto(s, String((s as any).var_default_actions_wear || ''));
+    const entry = Number((s as any).i);
+    if (defaultClothingSuma(s, entry) !== 0) {
+      scene.action({
+        label: 'Wear ' + String((((s as any).def_clothing_name ?? {}) as any)[entry] ?? ''),
+        handler: (st: GameState) => { qspGoto(st, 'wardrobe', 'default_entry_wear', String(entry)); },
+      });
     }
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    (s as any).i = undefined;
-    (s as any).var_default_actions_wear = undefined;
-  } while (((s as any).i ?? 0) <= ((s as any).default_entry ?? 0)[1]);
+    (s as any).i = entry + 1;
+  } while (Number((s as any).i) <= Number((s as any).default_entry_max ?? 0));
+  (s as any).i = undefined;
   scene.build();
 }
 
 function enterDefault1(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default1';
   (s as any).default_entry = 1;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 10;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[1] ?? 0);
+  (s as any).default_entry_max = 10;
+  (s as any).default_entry_name = ((s as any).clothing_default_page ?? 0)?.[1] ?? '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
@@ -553,8 +559,8 @@ function enterDefault1(s: GameState, scene: SceneBuilder): void {
 function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default2';
   (s as any).default_entry = 11;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 20;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[2] ?? 0);
+  (s as any).default_entry_max = 20;
+  (s as any).default_entry_name = ((s as any).clothing_default_page ?? 0)?.[2] ?? '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
@@ -563,8 +569,8 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
 function enterDefault3(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default3';
   (s as any).default_entry = 21;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 30;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[3] ?? 0);
+  (s as any).default_entry_max = 30;
+  (s as any).default_entry_name = ((s as any).clothing_default_page ?? 0)?.[3] ?? '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
@@ -573,8 +579,8 @@ function enterDefault3(s: GameState, scene: SceneBuilder): void {
 function enterDefault4(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default4';
   (s as any).default_entry = 31;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 40;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[4] ?? 0);
+  (s as any).default_entry_max = 40;
+  (s as any).default_entry_name = ((s as any).clothing_default_page ?? 0)?.[4] ?? '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
@@ -583,8 +589,8 @@ function enterDefault4(s: GameState, scene: SceneBuilder): void {
 function enterDefault5(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default5';
   (s as any).default_entry = 41;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 50;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[5] ?? 0);
+  (s as any).default_entry_max = 50;
+  (s as any).default_entry_name = ((s as any).clothing_default_page ?? 0)?.[5] ?? '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 5]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 5]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
@@ -593,8 +599,8 @@ function enterDefault5(s: GameState, scene: SceneBuilder): void {
 function enterDefault6(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default6';
   (s as any).default_entry = 51;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 60;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[6] ?? 0);
+  (s as any).default_entry_max = 60;
+  (s as any).default_entry_name = ((s as any).clothing_default_page ?? 0)?.[6] ?? '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 6]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 6]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
@@ -603,8 +609,8 @@ function enterDefault6(s: GameState, scene: SceneBuilder): void {
 function enterDefault7(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default7';
   (s as any).default_entry = 61;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 70;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[7] ?? 0);
+  (s as any).default_entry_max = 70;
+  (s as any).default_entry_name = ((s as any).clothing_default_page ?? 0)?.[7] ?? '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 7]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 7]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
@@ -613,8 +619,8 @@ function enterDefault7(s: GameState, scene: SceneBuilder): void {
 function enterDefault8(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default8';
   (s as any).default_entry = 71;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 80;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[8] ?? 0);
+  (s as any).default_entry_max = 80;
+  (s as any).default_entry_name = ((s as any).clothing_default_page ?? 0)?.[8] ?? '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 8]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 8]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
@@ -623,8 +629,8 @@ function enterDefault8(s: GameState, scene: SceneBuilder): void {
 function enterDefault9(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default9';
   (s as any).default_entry = 81;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 90;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[9] ?? 0);
+  (s as any).default_entry_max = 90;
+  (s as any).default_entry_name = ((s as any).clothing_default_page ?? 0)?.[9] ?? '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 9]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 9]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
@@ -633,8 +639,8 @@ function enterDefault9(s: GameState, scene: SceneBuilder): void {
 function enterDefault10(s: GameState, scene: SceneBuilder): void {
   (s as any).wloc = 'default10';
   (s as any).default_entry = 91;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[1] = 100;
-  ((s as any).default_entry = (s as any).default_entry ?? {})[2] = (((s as any).clothing_default_page ?? 0)?.[10] ?? 0);
+  (s as any).default_entry_max = 100;
+  (s as any).default_entry_name = ((s as any).clothing_default_page ?? 0)?.[10] ?? '';
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 10]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 10]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();

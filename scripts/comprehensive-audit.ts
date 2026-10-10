@@ -343,6 +343,9 @@ const TEST_STATE: Record<string, unknown> = {
   theme_hex: {} as Record<string, string>,
   bodysuitworntype: 'none', bodysuitwornnumber: 0,
   default_entry: 0,
+  default_entry_max: 0,
+  default_entry_name: '',
+  clothing_default_page_num: 1, // default_actions is a sub-routine (no :location boundary); in real play it is only reached from default_template with the page pre-set, so 0 would send "Rename this set" to empty default0
   default_sport_number: {} as Record<string, number>,
   default_school_number: {} as Record<string, number>,
   def_clothing_name: [] as string[],
