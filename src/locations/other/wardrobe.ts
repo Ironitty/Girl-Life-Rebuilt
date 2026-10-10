@@ -170,15 +170,15 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><font color="maroon">These are the clothes you are currently wearing - Click on an item to change it</font></center><center><table border=0 cellspacing=${((s as any).ward_img_hgt ?? '')/25} cellpadding=5>`);
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     scene.text('<th>Bra worn</th><th>Outfit worn</th><th>Coat (only worn outside when cold)</th>');
-    scene.img(`${qspFunc(s, '$body_image', 'bra')}`);
+    scene.img(`${qspFunc(s, '$body_image', '', 'bra')}`);
   } else {
     scene.text('<th>Bodysuit worn</th><th>Outfit worn</th><th>Coat (only worn outside when cold)</th>');
-    scene.img(`${qspFunc(s, '$body_image', 'bodysuit')}`);
+    scene.img(`${qspFunc(s, '$body_image', '', 'bodysuit')}`);
   }
   if (((s as any).coatworntype ?? 0) === 'none') {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027coat_view\u0027, \u0027view_grid\u0027, \u0027wardrobe\u0027); return false;">Search the wardrobe</a>');
   } else {
-    scene.img(`${qspFunc(s, '$body_image', 'coat')}`);
+    scene.img(`${qspFunc(s, '$body_image', '', 'coat')}`);
   }
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     scene.text('</center></td><tr><td><center>');
@@ -205,13 +205,13 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   scene.text('</center></td>');
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     scene.text('<tr><th>Panties worn</th><th>Shoes (Only worn outside)</th><th>Purse worn</th>');
-    scene.img(`${qspFunc(s, '$body_image', 'panties')}`);
+    scene.img(`${qspFunc(s, '$body_image', '', 'panties')}`);
   } else {
     scene.text('<tr><th>Shoes (Only worn outside)</th><th>Purse worn</th>');
-    scene.img(`${qspFunc(s, '$body_image', 'shoes')}`);
+    scene.img(`${qspFunc(s, '$body_image', '', 'shoes')}`);
   }
   if (((s as any).bag ?? 0) === 1) {
-    scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+    scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   } else {
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027purse_view\u0027, \u0027view_grid\u0027, \u0027wardrobe\u0027); return false;">Search the wardrobe</a>');
   }

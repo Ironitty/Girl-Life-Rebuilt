@@ -35,7 +35,7 @@ function enterMobileCheck(s: GameState, scene: SceneBuilder): void {
 
 function enterDSalf(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Tissues</h1></center>');
-  scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   if (((s as any).cumloc ?? 0)[13] > 0  ||  ((s as any).cumloc ?? 0)[11] > 0  ||  ((s as any).cumloc ?? 0)[16] > 0) {
@@ -66,7 +66,7 @@ function enterDSalf(s: GameState, scene: SceneBuilder): void {
 
 function enterDMouthwash(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Mouth Wash</h1></center>');
-  scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   (s as any).cumspclnt = 2;
@@ -90,7 +90,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   (s as any).BACKIMAGE = '';
   qspCall(s, 'stat', '');
   scene.text('<center><h1>Purse</h1></center>');
-  scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] > 0) {
@@ -347,7 +347,7 @@ function enterDinalkowin2(s: GameState, scene: SceneBuilder): void {
 function enterDin_Switch_Condom_Menu(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDin_Update_Condom_Counts(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Condoms</h1></center>');
-  scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   (s as any).i = 0;
@@ -403,7 +403,7 @@ function enterDin_Table_Condom_Menu(s: GameState, scene: SceneBuilder): void {
 
 function enterDin_Do_Condom_Counts(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Condoms</h1></center>');
-  scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   if (String((s as any).locArgs?.[1] ?? '') === '1') {
@@ -533,7 +533,7 @@ function enterDin_Update_Condom_Counts(s: GameState, scene: SceneBuilder): void 
 
 function enterDTabletkied(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Birth Control</h1></center>');
-  scene.img(`${qspFunc(s, '$purse_image', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   (s as any).tabloc = 0;

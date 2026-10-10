@@ -932,7 +932,7 @@ function enterDima52(s: GameState, scene: SceneBuilder): void {
 function enterDima53(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'arousal', 'end');
-  scene.img(`${qspFunc(s, '$clothing_image', ((s as any).clothingworntype ?? ''), ((s as any).clothingwornnumber ?? ''))}`);
+  scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).clothingworntype ?? ''), ((s as any).clothingwornnumber ?? ''))}`);
   scene.text('Enraged by your refusal, man pushes you, but you stand firm. Realizing that you\'re not to be messed with, he runs away.');
   scene.text('You sort out you clothing and dress yourself in the outfit you were wearing when this all started.');
   scene.actions([
