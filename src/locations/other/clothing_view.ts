@@ -765,7 +765,9 @@ function enterViewListsList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplayListLink(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${qspFunc(s, '$shop_icon_image', '', '' + ((s as any).locArgs?.[1] ?? '') + '')}`);
+  const shop = String((s as any).locArgs?.[1] ?? '');
+  const img = qspFunc(s, '$shop_icon_image', '', shop);
+  scene.text(`<center><a href="#" onclick="window.__gameStore.setState((s) => { s.ward_list_store = '${shop}'; return s; }); window.__gameStore.getState().doGoto('clothing_view', 'view_list', '${shop}'); return false;"><img width="300px" src="${img}"></a></center>`);
   return;
   scene.build();
 }
@@ -864,7 +866,9 @@ function enterViewGridsList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplayGridLink(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${qspFunc(s, '$shop_icon_image', '', '' + ((s as any).locArgs?.[1] ?? '') + '')}`);
+  const shop = String((s as any).locArgs?.[1] ?? '');
+  const img = qspFunc(s, '$shop_icon_image', '', shop);
+  scene.text(`<center><a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'view_grid', 'wardrobe', '${shop}'); return false;"><img src="${img}"></a></center>`);
   return;
   scene.build();
 }
