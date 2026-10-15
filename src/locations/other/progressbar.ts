@@ -344,12 +344,12 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
           (s as any).bar_html = ((s as any).bar_html ?? 0) + (' <font color=' + (((s as any).progressbar ?? 0)?.['overlay_color']) + '>(' + (((s as any).progressbar ?? 0)?.['overlay']) + ')</font>');
         }
         (s as any).result = ((s as any).bar_html ?? 0);
+      } while (((s as any).bar_char_index ?? 0) < 100);
         (s as any).bar_html = undefined;
         (s as any).bar_font_size = undefined;
         (s as any).bar_char_index = undefined;
         (s as any).bar_char_step = undefined;
         (s as any).bar_phantom_end = undefined;
-      } while (((s as any).bar_char_index ?? 0) < 100);
     } else {
       (s as any).bar_bg_pct = 100 - (((s as any).progressbar ?? {})?.['value'] ?? 0) - (((s as any).progressbar ?? {})?.['phantom'] ?? 0);
       (s as any).bar_html = '';

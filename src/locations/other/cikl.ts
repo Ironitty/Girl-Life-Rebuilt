@@ -92,7 +92,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).streetevent_hour = (-2);
-  (s as any).Clothingstock = (Math.floor(Math.random() * 120) + 0);
+  (s as any).Clothingstock = { 0: (Math.floor(Math.random() * 120) + 0) };
   ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = 1;
   do {
     ((s as any).Clothingstock = (s as any).Clothingstock ?? {})[(((s as any).ciklVars ?? 0)?.['i'])] = (Math.floor(Math.random() * 101) + 0);

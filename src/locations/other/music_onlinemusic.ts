@@ -272,12 +272,6 @@ function enterDeleting(s: GameState, scene: SceneBuilder): void {
       (s as any).ml_uploadablemusic = ((s as any).ml_uploadablemusic ?? 0) - (1);
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    (s as any).ml_onlinesong_freshness = undefined;
-    (s as any).ml_onlinesong_lastcalcday = undefined;
-    (s as any).ml_onlinesong_hotcat = undefined;
-    (s as any).ml_onlinesong_skilllevel = undefined;
-    (s as any).ml_onlinesong_uploaded = undefined;
-    (s as any).i = undefined;
     (s as any).ml_onlinesongcount = 0;
     (s as any).ml_uploadablemusic = 0;
     if (((s as any).j ?? 0) >= 0) {
@@ -300,6 +294,12 @@ function enterDeleting(s: GameState, scene: SceneBuilder): void {
     (s as any).ml_tempsong_uploaded = undefined;
     (s as any).ml_threshold_skilllevel = undefined;
   } while (((s as any).i ?? 0) < ((s as any).ml_onlinesongcount ?? 0));
+    (s as any).ml_onlinesong_freshness = undefined;
+    (s as any).ml_onlinesong_lastcalcday = undefined;
+    (s as any).ml_onlinesong_hotcat = undefined;
+    (s as any).ml_onlinesong_skilllevel = undefined;
+    (s as any).ml_onlinesong_uploaded = undefined;
+    (s as any).i = undefined;
   scene.build();
 }
 

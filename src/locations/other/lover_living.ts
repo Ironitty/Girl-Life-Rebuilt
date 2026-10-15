@@ -31,7 +31,7 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).spouseVars ?? 0)?.['sexday'] < 4) {
     if (((s as any).husID ?? 0) !== '') {
       scene.actions([
-        { label: 'Sex with your husband', goto: ['husbsex', 'room'] },
+        { label: 'Sex with your husband', goto: ['husbSex', 'room'] },
       ]);
     }
   }

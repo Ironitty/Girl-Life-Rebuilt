@@ -64,9 +64,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         }
         (s as any).orgasm_i = ((s as any).orgasm_i ?? 0) + (1);
+      } while (((s as any).orgasm_i ?? 0) < Object.keys((s as any).fetish_name ?? {}).length);
         (s as any).temp_fetish_name = undefined;
         (s as any).orgasm_i = undefined;
-      } while (((s as any).orgasm_i ?? 0) < Object.keys((s as any).fetish_name ?? {}).length);
     }
     if (((s as any).orgasm_or ?? 0) === 'custom'  ||  ((s as any).orgasm_txt ?? 0) !== '') {
     } else {

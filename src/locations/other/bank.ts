@@ -562,8 +562,8 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
                 scene.text('l $internet_action_messages[bank_i]');
               }
               (s as any).bank_i = ((s as any).bank_i ?? 0) + (1);
-              (s as any).bank_i = undefined;
             } while (((s as any).bank_i ?? 0) < ((s as any).bank_max_i ?? 0));
+              (s as any).bank_i = undefined;
           }
           (s as any).bank_max_i = undefined;
         }
@@ -740,8 +740,8 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).bank_i = ((s as any).bank_i ?? 0) + (1);
       qspCall(s, 'homes_properties', 'clean_up_property_data');
-      (s as any).bank_i = undefined;
     } while (((s as any).bank_i ?? 0) < ((s as any).bank_max_i ?? 0));
+      (s as any).bank_i = undefined;
   }
   (s as any).bank_max_i = undefined;
   scene.build();

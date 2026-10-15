@@ -535,14 +535,13 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
       do {
         if (((s as any).university ?? 0)['elective_semester_' + (((s as any).temp_uni_funcs ?? 0)?.['i']) + '_' + (((s as any).temp_uni_funcs ?? 0)?.['j'])] === String((s as any).locArgs?.[2] ?? '')) {
           (s as any).result = 1;
-          (s as any).temp_uni_funcs = undefined;
           return;
         }
         ((s as any).temp_uni_funcs = (s as any).temp_uni_funcs ?? {})['j'] = ((s as any).temp_uni_funcs['j'] ?? 0) + (1);
         ((s as any).temp_uni_funcs = (s as any).temp_uni_funcs ?? {})['i'] = ((s as any).temp_uni_funcs['i'] ?? 0) + (1);
-        (s as any).temp_uni_funcs = undefined;
       } while (((s as any).temp_uni_funcs ?? 0)?.['j'] < 4);
     } while (((s as any).temp_uni_funcs ?? 0)?.['i'] < 5);
+          (s as any).temp_uni_funcs = undefined;
   }
   return;
   scene.build();

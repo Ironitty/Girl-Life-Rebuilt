@@ -23,7 +23,6 @@ function enterCalc(s: GameState, scene: SceneBuilder): void {
       ((s as any).pain = (s as any).pain ?? {})['total'] = 0;
     }
     ((s as any).pain = (s as any).pain ?? {})['damage'] = (((s as any).pain ?? 0)?.['total']);
-    (s as any).temppain = undefined;
     if (((s as any).pain ?? 0)?.['total'] <= 0) {
       return;
     }
@@ -36,6 +35,7 @@ function enterCalc(s: GameState, scene: SceneBuilder): void {
     }
     return;
   } while (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']);
+    (s as any).temppain = undefined;
   scene.build();
 }
 
@@ -69,13 +69,13 @@ function enterManage(s: GameState, scene: SceneBuilder): void {
         ((s as any).pain = (s as any).pain ?? {})[(((s as any).temppain ?? 0)?.['i'])] = 0;
       }
       ((s as any).temppain = (s as any).temppain ?? {})['i'] = ((s as any).temppain['i'] ?? 0) + (1);
-      (s as any).temppain = undefined;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStatChanges(s, scene); (s as any).locArgs = __savedLocArgs; }
       ((s as any).pain = (s as any).pain ?? {})['timer'] = ((s as any).totminut ?? 0) + 10;
       return;
     } while (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']);
   } while (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']);
+      (s as any).temppain = undefined;
   scene.build();
 }
 

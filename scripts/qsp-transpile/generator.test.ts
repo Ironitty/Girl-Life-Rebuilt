@@ -38,7 +38,7 @@ describe('array-access values (arithmetic)', () => {
   });
   it('handles <<i>> dynamic keys in arithmetic', () => {
     const code = gen("# x\nKGD['needExp_<<i>>'] = KGD['needExpNextLvl_<<i>>'] - KGD['exp_<<i>>']\n--- x ---");
-    expect(code).toContain('String((s as any).i');
+    expect(code).toContain('String(((s as any).i ?? 0))');
     expect(code).not.toContain("\\'");
     expect(code).not.toMatch(/[^.\w]KGD\[/);
   });
@@ -55,21 +55,21 @@ describe('dollar-prefixed vars in expressions', () => {
 describe('dynamic text (segment IR)', () => {
   it('emits a template literal with ${} interpolation', () => {
     const code = gen("# x\n'Hello <<npc_name>>.'\n--- x ---");
-    expect(code).toContain('${((s as any).npc_name ?? 0)}');
+    expect(code).toContain('${((s as any).npc_name ?? \'\')}');
     // must NOT render the raw expression as literal text (old bug: backtick without ${})
     expect(code).not.toMatch(/`Hello \(\(s as any\)/);
   });
   it('handles literal + expr + literal segments', () => {
     const code = gen("# x\n'You have <<count>> items, <<npc_name>>.'\n--- x ---");
-    expect(code).toContain('You have ${((s as any).count ?? 0)} items, ${((s as any).npc_name ?? 0)}.');
+    expect(code).toContain('You have ${((s as any).count ?? \'\')} items, ${((s as any).npc_name ?? \'\')}.');
   });
   it('handles multiple <<...>> blocks in one string', () => {
     const code = gen("# x\n'<<a>> and <<b>> end'\n--- x ---");
-    expect(code).toContain('${((s as any).a ?? 0)} and ${((s as any).b ?? 0)} end');
+    expect(code).toContain('${((s as any).a ?? \'\')} and ${((s as any).b ?? \'\')} end');
   });
   it('handles a $-prefixed dynamic name', () => {
     const code = gen("# x\n'Hi <<$npc_name>>'\n--- x ---");
-    expect(code).toContain('${((s as any).npc_name ?? 0)}');
+    expect(code).toContain('${((s as any).npc_name ?? \'\')}');
   });
 });
 

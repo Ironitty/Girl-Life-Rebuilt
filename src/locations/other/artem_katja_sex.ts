@@ -1765,7 +1765,7 @@ function enterAfterHomeWorkBed(s: GameState, scene: SceneBuilder): void {
       scene.text(`"I'm sorry, ${((st as any).pcs_nickname ?? '')}. I know he's your boyfriend, and he does have a nice cock, but he needs to learn to pay better attention to his sex partners. I know he wanted to fuck you, but I didn't get to cum," she says, radiating frustration.`);
       scene.actions([
         { label: 'Help Katja get the orgasm she deserves', goto: ['KatjaEvDin', 'kiss'] },
-        { label: 'Talk about something else', goto: ['katjaHomeTalk', 'chat'] },
+        { label: 'Talk about something else', goto: ['KatjaHomeTalk', 'chat'] },
       ]);
     } else {
       scene.text('"That\'s a great boyfrind you have, ' + ((((st as any).katjaQW ?? 0)?.['slut'] >= 100) ? ('He hammered my pussy so good, I came until I saw stars.') : ('He made me feel great, and I had a huge orgasm')) + ' We should invite him again some other time," Katja says.');
@@ -1780,7 +1780,7 @@ function enterAfterHomeWorkBed(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: 'Talk about something else', goto: ['katjaHomeTalk', 'chat'] },
+        { label: 'Talk about something else', goto: ['KatjaHomeTalk', 'chat'] },
       ]);
     }
   } },

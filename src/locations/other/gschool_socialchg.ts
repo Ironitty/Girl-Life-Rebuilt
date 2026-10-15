@@ -770,8 +770,8 @@ function enterGroupRelChange(s: GameState, scene: SceneBuilder): void {
       }
     }
     ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['i'] = ((s as any).temp_gsc_grl['i'] ?? 0) + (1);
-    (s as any).temp_gsc_grl = undefined;
   } while (((s as any).temp_gsc_grl ?? 0)?.['i'] < ((s as any).aarraynumber ?? 0));
+    (s as any).temp_gsc_grl = undefined;
   scene.build();
 }
 

@@ -82,11 +82,11 @@ function enterFindInNpcStat(s: GameState, scene: SceneBuilder): void {
       (s as any).result = '' + (String('abcdefghijklmnopqrstuvwxyz').slice((((s as any).temp_npc_i ?? 0))-1, ((((s as any).temp_npc_i ?? 0))-1)+(1))) + '';
     }
     (s as any).temp_npc_i = ((s as any).temp_npc_i ?? 0) + (1);
-    (s as any).temp_npc_i = undefined;
     if (((s as any).result ?? 0) === '') {
       (s as any).result = 'none';
     }
   } while (((s as any).temp_npc_i ?? 0) < 10  &&  ((s as any).result ?? 0) === '');
+    (s as any).temp_npc_i = undefined;
   scene.build();
 }
 

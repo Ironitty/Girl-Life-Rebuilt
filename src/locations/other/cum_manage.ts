@@ -449,7 +449,7 @@ function enterCumCompute(s: GameState, scene: SceneBuilder): void {
   (s as any).cumcount = undefined;
   (s as any).cumowner = undefined;
   if (Object.keys((s as any).sparrvol ?? {}).length > 0) {
-    (s as any).idx = 0;
+    (s as any).idx = Object.keys((s as any).sparrloc ?? {}).length - (1);
     do {
       (s as any).temp_cum_manage_i = (((s as any).sparrloc ?? 0)?.[String((s as any).idx ?? 0)] ?? 0);
       if ((!((s as any).temp_cum_manage_i ?? 0))) {
@@ -513,10 +513,10 @@ function enterCumCompute(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).idx = ((s as any).idx ?? 0) - (1);
-      (s as any).temp_cum_manage_i = undefined;
-      (s as any).idx = undefined;
-      (s as any).temp_cum_manage_j = undefined;
     } while (((s as any).idx ?? 0) >= 0);
+    (s as any).temp_cum_manage_i = undefined;
+    (s as any).idx = undefined;
+    (s as any).temp_cum_manage_j = undefined;
   }
   (s as any).cumloc = undefined;
   (s as any).cumsumbod = 0;
@@ -540,20 +540,19 @@ function enterCumCompute(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).temp_cum_manage_j = ((s as any).temp_cum_manage_j ?? 0) + (1);
-      (s as any).temp_cum_manage_i = ((s as any).temp_cum_manage_i ?? 0) + (1);
-      (s as any).temp_cum_manage_i = undefined;
-      (s as any).temp_cum_manage_j = undefined;
-      (s as any).stat_visible_cum = qspFunc(s, 'cum_manage', 'check_visible');
-      (s as any).temp_cum_manage_i = 0;
-      do {
-        ((s as any).cum_vol = (s as any).cum_vol ?? {})[(((s as any).cum_names ?? 0)?.[String((s as any).temp_cum_manage_i ?? 0)] ?? 0)] = (((s as any).cumvol ?? 0)?.[String((s as any).temp_cum_manage_i ?? 0)] ?? 0);
-        ((s as any).cum_loc = (s as any).cum_loc ?? {})[(((s as any).cum_names ?? 0)?.[String((s as any).temp_cum_manage_i ?? 0)] ?? 0)] = (((s as any).cumloc ?? 0)?.[String((s as any).temp_cum_manage_i ?? 0)] ?? 0);
-        (s as any).temp_cum_manage_i = ((s as any).temp_cum_manage_i ?? 0) + (1);
-        (s as any).temp_cum_manage_i = undefined;
-        return;
-      } while (((s as any).temp_cum_manage_i ?? 0) < 17);
     } while (((s as any).temp_cum_manage_j ?? 0) < 8);
+    (s as any).temp_cum_manage_i = ((s as any).temp_cum_manage_i ?? 0) + (1);
   } while (((s as any).temp_cum_manage_i ?? 0) < 19);
+  (s as any).temp_cum_manage_i = undefined;
+  (s as any).temp_cum_manage_j = undefined;
+  (s as any).stat_visible_cum = qspFunc(s, 'cum_manage', 'check_visible');
+  (s as any).temp_cum_manage_i = 0;
+  do {
+    ((s as any).cum_vol = (s as any).cum_vol ?? {})[(((s as any).cum_names ?? 0)?.[String((s as any).temp_cum_manage_i ?? 0)] ?? 0)] = (((s as any).cumvol ?? 0)?.[String((s as any).temp_cum_manage_i ?? 0)] ?? 0);
+    ((s as any).cum_loc = (s as any).cum_loc ?? {})[(((s as any).cum_names ?? 0)?.[String((s as any).temp_cum_manage_i ?? 0)] ?? 0)] = (((s as any).cumloc ?? 0)?.[String((s as any).temp_cum_manage_i ?? 0)] ?? 0);
+    (s as any).temp_cum_manage_i = ((s as any).temp_cum_manage_i ?? 0) + (1);
+  } while (((s as any).temp_cum_manage_i ?? 0) < 17);
+  (s as any).temp_cum_manage_i = undefined;
   scene.build();
 }
 
@@ -892,7 +891,6 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
         ((s as any).sd_cum = (s as any).sd_cum ?? {})['loc_check'] = 0;
       }
       ((s as any).sd_cum = (s as any).sd_cum ?? {})['i'] = ((s as any).sd_cum['i'] ?? 0) + (1);
-      (s as any).sd_cum = undefined;
       (s as any).cumvolume = undefined;
       (s as any).cumcount = undefined;
       (s as any).knownguy = undefined;
@@ -1033,9 +1031,9 @@ function enterCumeaterIcon(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).temp_cum_manage_j = ((s as any).temp_cum_manage_j ?? 0) + (1);
-    (s as any).temp_cum_manage_j = undefined;
     return;
   } while (((s as any).temp_cum_manage_j ?? 0) < 18);
+    (s as any).temp_cum_manage_j = undefined;
   scene.build();
 }
 
@@ -1313,7 +1311,6 @@ function enterCumDecay(s: GameState, scene: SceneBuilder): void {
       (s as any).sexvolume = 0;
       (s as any).cumnostd = 0;
       (s as any).idx = ((s as any).idx ?? 0) - (1);
-      (s as any).idx = undefined;
       (s as any).cumamount = undefined;
       if (((s as any).cumsumbod ?? 0) < 0) {
         (s as any).cumsumbod = 0;
@@ -1333,7 +1330,6 @@ function enterCumDecay(s: GameState, scene: SceneBuilder): void {
         ((s as any).cum_vol = (s as any).cum_vol ?? {})[(((s as any).cum_names ?? 0)?.[String((s as any).temp_cum_manage_i ?? 0)] ?? 0)] = (((s as any).cumvol ?? 0)?.[String((s as any).temp_cum_manage_i ?? 0)] ?? 0);
         ((s as any).cum_loc = (s as any).cum_loc ?? {})[(((s as any).cum_names ?? 0)?.[String((s as any).temp_cum_manage_i ?? 0)] ?? 0)] = (((s as any).cumloc ?? 0)?.[String((s as any).temp_cum_manage_i ?? 0)] ?? 0);
         (s as any).temp_cum_manage_i = ((s as any).temp_cum_manage_i ?? 0) + (1);
-        (s as any).temp_cum_manage_i = undefined;
       } while (((s as any).temp_cum_manage_i ?? 0) < 17);
     } while (((s as any).idx ?? 0) >= 0);
   }

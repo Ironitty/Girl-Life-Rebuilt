@@ -37,14 +37,14 @@ function enterGetMessage(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).loop_counter = ((s as any).loop_counter ?? 0) + (1);
     (s as any).result = '<span style="font-weight:normal">' + ((s as any).result ?? 0) + '</span>';
+    return;
+  } while (((s as any).loop_counter ?? 0) < ((s as any).tracked_values_size ?? 0));
     (s as any).tracked_stat = undefined;
     (s as any).tracked_stat_description = undefined;
     (s as any).loop_counter = undefined;
     (s as any).tracked_values_size = undefined;
     (s as any).exp_tracked_values = undefined;
     (s as any).exp_tracked_names = undefined;
-    return;
-  } while (((s as any).loop_counter ?? 0) < ((s as any).tracked_values_size ?? 0));
   scene.build();
 }
 

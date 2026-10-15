@@ -77,7 +77,7 @@ function enterToDate(s: GameState, scene: SceneBuilder): void {
   ((s as any).dateVars = (s as any).dateVars ?? {})['daystart'] = ((s as any).locArgs?.[1] ?? 0);
   ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['mod_daystart'] = (((s as any).dateVars ?? {})?.['daystart'] ?? 0) + 151574;
   ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['week_drift'] = 6;
-  ((s as any).dateVars = (s as any).dateVars ?? {})['odd_week'] = (((((s as any).temp_timeVars ?? {})?.['mod_daystart'] ?? 0) + 6 - (((s as any).temp_timeVars ?? {})?.['week_drift'] ?? 0)) / 7) % 2;
+  ((s as any).dateVars = (s as any).dateVars ?? {})['odd_week'] = Math.floor((((((s as any).temp_timeVars ?? {})?.['mod_daystart'] ?? 0) + 6 - (((s as any).temp_timeVars ?? {})?.['week_drift'] ?? 0)) / 7)) % 2;
   ((s as any).dateVars = (s as any).dateVars ?? {})['week'] = ((((s as any).temp_timeVars ?? {})?.['mod_daystart'] ?? 0) + 7 - (((s as any).temp_timeVars ?? {})?.['week_drift'] ?? 0)) % 7;
   if (((s as any).dateVars ?? 0)?.['week'] === 0) {
     ((s as any).dateVars = (s as any).dateVars ?? {})['week'] = 7;
@@ -85,13 +85,13 @@ function enterToDate(s: GameState, scene: SceneBuilder): void {
   ((s as any).dateVars = (s as any).dateVars ?? {})['weekName'] = qspUntranslated(s, "weekName[dateVars['week']]", { location: "time" });
   ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = (((s as any).temp_timeVars ?? 0)?.['mod_daystart']);
   ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = 1601;
-  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['400cycles'] = (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 146097;
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['400cycles'] = Math.floor((((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 146097);
   ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = ((s as any).dateVars['year'] ?? 0) + (400 * (((s as any).temp_timeVars ?? {})?.['400cycles'] ?? 0));
   ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (146097 * (((s as any).temp_timeVars ?? {})?.['400cycles'] ?? 0));
-  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['100cycles'] = (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 36524;
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['100cycles'] = Math.floor((((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 36524);
   ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = ((s as any).dateVars['year'] ?? 0) + (100 * (((s as any).temp_timeVars ?? {})?.['100cycles'] ?? 0));
   ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (36524 * (((s as any).temp_timeVars ?? {})?.['100cycles'] ?? 0));
-  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['4cycles'] = (((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 1461;
+  ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['4cycles'] = Math.floor((((s as any).temp_timeVars ?? {})?.['inner_daystart'] ?? 0) / 1461);
   ((s as any).dateVars = (s as any).dateVars ?? {})['year'] = ((s as any).dateVars['year'] ?? 0) + (4 * (((s as any).temp_timeVars ?? {})?.['4cycles'] ?? 0));
   ((s as any).temp_timeVars = (s as any).temp_timeVars ?? {})['inner_daystart'] = ((s as any).temp_timeVars['inner_daystart'] ?? 0) - (1461 * (((s as any).temp_timeVars ?? {})?.['4cycles'] ?? 0));
   if (((s as any).temp_timeVars ?? 0)?.['inner_daystart'] >= 1095) {
@@ -401,8 +401,8 @@ function enterGet_CurTimeSun(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetDurationString(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_dur = (s as any).temp_dur ?? {})['days'] = ((s as any).locArgs?.[1] ?? 0) / 1440;
-  ((s as any).temp_dur = (s as any).temp_dur ?? {})['hours'] = (((s as any).locArgs?.[1] ?? 0) % 1440) / 60;
+  ((s as any).temp_dur = (s as any).temp_dur ?? {})['days'] = Math.floor(((s as any).locArgs?.[1] ?? 0) / 1440);
+  ((s as any).temp_dur = (s as any).temp_dur ?? {})['hours'] = Math.floor((((s as any).locArgs?.[1] ?? 0) % 1440) / 60);
   ((s as any).temp_dur = (s as any).temp_dur ?? {})['mins'] = ((s as any).locArgs?.[1] ?? 0) % 60;
   ((s as any).temp_dur = (s as any).temp_dur ?? {})['n'] = 0;
   if (((s as any).temp_dur ?? 0)?.['days'] > 0) {

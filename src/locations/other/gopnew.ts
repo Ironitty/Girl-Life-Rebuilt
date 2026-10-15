@@ -280,7 +280,7 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
 
 function enterStart5(s: GameState, scene: SceneBuilder): void {
   (s as any).gnewQW = 5;
-  qspGoto(s, 'alkrand = rand(0, 4)', '');
+  (s as any).gtalkrand = (Math.floor(Math.random() * 5) + 0);
   if ((!((s as any).gtalkrand ?? 0))) {
     (s as any).goptalk = 'slut';
   }
@@ -296,7 +296,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gtalkrand ?? 0) === 4) {
     (s as any).goptalk = '' + ((s as any).pcs_nickname ?? 0) + '';
   }
-  qspGoto(s, 'alkrand = rand(0, 4)', '');
+  (s as any).gtalkrand = (Math.floor(Math.random() * 5) + 0);
   if ((!((s as any).gtalkrand ?? 0))) {
     (s as any).goptalk2 = 'How many cocks have you sucked today?';
   }

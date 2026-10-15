@@ -129,14 +129,14 @@ function enterViewRecords(s: GameState, scene: SceneBuilder): void {
     scene.text(`<td>${(((s as any).box_wod_record_holder ?? 0)?.[String((s as any).crossfit_wod ?? 0)] ?? '')}</td></tr>`);
     (s as any).record_table_counter = ((s as any).record_table_counter ?? 0) + (1);
     scene.text('</table></center>');
-    (s as any).record_table_counter = undefined;
-    (s as any).crossfit_wod = undefined;
     scene.actions([
       { label: 'Go back', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } while (((s as any).record_table_counter ?? 0) < Object.keys((s as any).crossfit_wods ?? {}).length);
+    (s as any).record_table_counter = undefined;
+    (s as any).crossfit_wod = undefined;
   scene.build();
 }
 

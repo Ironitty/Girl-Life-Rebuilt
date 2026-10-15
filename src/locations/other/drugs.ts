@@ -480,7 +480,6 @@ function enterAlcohol(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).temp_alc_count = ((s as any).temp_alc_count ?? 0) + (1);
-    (s as any).temp_alc_count = undefined;
     if (((s as any).drugVars ?? 0)?.['painkiller_points'] >= 50) {
       if (((s as any).alko ?? 0) >= 12) {
         (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (150);
@@ -496,6 +495,7 @@ function enterAlcohol(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     return;
   } while (((s as any).temp_alc_count ?? 0) < String((s as any).locArgs?.[2] ?? ''));
+    (s as any).temp_alc_count = undefined;
   scene.build();
 }
 
@@ -1139,8 +1139,8 @@ function enterRefreshPainkillerTimer(s: GameState, scene: SceneBuilder): void {
       } else {
         (s as any).temp_pk_index = ((s as any).temp_pk_index ?? 0) + (1);
       }
-      (s as any).temp_pk_index = undefined;
     } while (((s as any).temp_pk_index ?? 0) < Object.keys((s as any).painkiller_timer ?? {}).length);
+      (s as any).temp_pk_index = undefined;
   }
   (s as any).temp_pk_gap = undefined;
   return;

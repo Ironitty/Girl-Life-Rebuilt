@@ -218,8 +218,8 @@ function enterDispEvt3(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).act_tracker = ((s as any).act_tracker ?? 0) + (1);
-    (s as any).act_tracker = undefined;
   } while (((s as any).act_tracker ?? 0) < Object.keys((s as any).evt_event ?? {}).length);
+    (s as any).act_tracker = undefined;
   scene.build();
 }
 

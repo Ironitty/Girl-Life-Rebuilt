@@ -104,7 +104,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                               if (Math.min(((s as any).katjaQW ?? 0)?.['horny'], 100) > (Math.floor(Math.random() * 361) + 40)  ||  (((s as any).katjaQW ?? 0)?.['QWstage'] === 2  &&  Math.min(((s as any).katjaQW ?? 0)?.['horny'], 100) > (Math.floor(Math.random() * 121) + 40))  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
                                 if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  (((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13)  &&  (Math.floor(Math.random() * 7) + 0) ===0  &&  ((s as any).katjaQW ?? 0)?.['Marcus_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0  &&  ((s as any).katjaQW ?? 0)?.['marcus_pussy'] > 0) {
                                   ((s as any).katjaQW = (s as any).katjaQW ?? {})['Marcus_day'] = ((s as any).daystart ?? 0);
-                                  qspGoto(s, 'katjaHomeTalk', 'marcus_kiss');
+                                  qspGoto(s, 'KatjaHomeTalk', 'marcus_kiss');
                                 } else {
                                   if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
                                     qspGoto(s, 'KatjaHomeTalk', 'hornykiss');
@@ -136,7 +136,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                                     }
                                   }
                                 } else {
-                                  qspGoto(s, 'katjaHomeTalk', 'chat');
+                                  qspGoto(s, 'KatjaHomeTalk', 'chat');
                                 }
                               }
                             }
@@ -978,7 +978,7 @@ function enterTamVal(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'kiss', 10);
     qspCall(st, 'stat', '');
     scene.actions([
-      { label: 'Time to leave', goto: ['katjaHomeTalk', 'TamVal_2'] },
+      { label: 'Time to leave', goto: ['KatjaHomeTalk', 'TamVal_2'] },
     ]);
   } },
       ]);
@@ -1011,7 +1011,7 @@ function enterTamVal(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'kiss', 10);
     qspCall(st, 'stat', '');
     scene.actions([
-      { label: 'Time to leave', goto: ['katjaHomeTalk', 'TamVal_2'] },
+      { label: 'Time to leave', goto: ['KatjaHomeTalk', 'TamVal_2'] },
     ]);
   } },
       ]);
@@ -1087,7 +1087,7 @@ function enterTamVal(s: GameState, scene: SceneBuilder): void {
     (st as any).sucabslez = 1;
     qspCall(st, 'stat', '');
     scene.actions([
-      { label: 'Time to leave', goto: ['katjaHomeTalk', 'TamVal_2'] },
+      { label: 'Time to leave', goto: ['KatjaHomeTalk', 'TamVal_2'] },
     ]);
   } },
     ]);
@@ -1113,7 +1113,7 @@ function enterTamVal(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.actions([
-      { label: 'Time to leave', goto: ['katjaHomeTalk', 'TamVal_2'] },
+      { label: 'Time to leave', goto: ['KatjaHomeTalk', 'TamVal_2'] },
     ]);
   } },
     ]);

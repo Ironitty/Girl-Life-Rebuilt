@@ -338,12 +338,12 @@ function enterPickupMail(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You have collected all your mail.');
     }
+  } while (((s as any).po_i ?? 0) < Object.keys((s as any).temp_mail_region ?? {}).length);
     (s as any).po_i = undefined;
     (s as any).temp_mail_counter = undefined;
     (s as any).temp_mail_region = undefined;
     (s as any).temp_mail_code = undefined;
     (s as any).temp_mail_time = undefined;
-  } while (((s as any).po_i ?? 0) < Object.keys((s as any).temp_mail_region ?? {}).length);
   scene.actions([
     { label: 'Go back', goto: ['post_office', 'counter'] },
     { label: 'Leave', handler: (st: GameState) => {

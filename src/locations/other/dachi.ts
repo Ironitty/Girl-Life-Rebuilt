@@ -29,9 +29,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text(`<b>Near the entrance you expect <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, String((s as any).temp_npcid ?? /u0027/u0027)); return false;">${(((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? '')}</a></b>`);
         }
         (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
+      } while (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0));
         (s as any).temp_i = undefined;
         (s as any).temp_max_i = undefined;
-      } while (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0));
     }
   }
   if (qspFunc(s, 'homes_properties', 'is_current_home', 'village_cottage')) {
@@ -50,9 +50,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, String((s as any).temp_npcid ?? /u0027/u0027)); return false;">${(((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? '')}</a> is waiting at the entrance to your yard.</b>`);
         }
         (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
+      } while (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0));
         (s as any).temp_i = undefined;
         (s as any).temp_max_i = undefined;
-      } while (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0));
     }
   }
   if (((s as any).exhib ?? 0)?.['status'] < 13) {

@@ -194,11 +194,11 @@ function enterLongAdd(s: GameState, scene: SceneBuilder): void {
       (s as any).result = '-' + ((s as any).result ?? 0);
     }
     // LABEL: long_add_cleanup
+  } while (((s as any).math_i ?? 0) > 0);
     (s as any).math_i = undefined;
     (s as any).temp_add_sign = undefined;
     (s as any).temp_add_res = undefined;
     (s as any).temp_add_carry = undefined;
-  } while (((s as any).math_i ?? 0) > 0);
   scene.build();
 }
 
@@ -285,12 +285,12 @@ function enterLongSub(s: GameState, scene: SceneBuilder): void {
       (s as any).result = '-' + ((s as any).result ?? 0);
     }
     // LABEL: long_sub_cleanup
+  } while (((s as any).math_i ?? 0) > 0);
     (s as any).math_i = undefined;
     (s as any).temp_sub_sign = undefined;
     (s as any).temp_sub_res = undefined;
     (s as any).temp_sub_carry = undefined;
     (s as any).temp_flip_know = undefined;
-  } while (((s as any).math_i ?? 0) > 0);
   scene.build();
 }
 

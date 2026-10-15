@@ -515,9 +515,9 @@ function enterSection1Lobby(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_i = 0;
     do {
       (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
+    } while (((s as any).temp_i ?? 0) < Object.keys((s as any).temp_text ?? {}).length);
       (s as any).temp_i = undefined;
       (s as any).temp_text = undefined;
-    } while (((s as any).temp_i ?? 0) < Object.keys((s as any).temp_text ?? {}).length);
   }
   scene.actions([
     { label: 'Go to the girl\'s room', goto: ['brothel', 'brothel_dressingroom'] },
@@ -702,9 +702,9 @@ function enterSection2Lobby(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_i = 0;
     do {
       (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
+    } while (((s as any).temp_i ?? 0) < Object.keys((s as any).temp_text ?? {}).length);
       (s as any).temp_i = undefined;
       (s as any).temp_text = undefined;
-    } while (((s as any).temp_i ?? 0) < Object.keys((s as any).temp_text ?? {}).length);
   }
   scene.actions([
     { label: 'Go to the girl\'s room', goto: ['brothel', 'brothel_dressingroom'] },

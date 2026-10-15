@@ -47,7 +47,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'skill', 'magik', 'self', 'medium');
     qspCall(st, 'willpower', 'pay', 'self');
     (st as any).serpent_path = 1;
-    qspGoto(st, 'serpent', '');
+    qspGoto(st, 'Serpent', '');
   } },
       ]);
     }

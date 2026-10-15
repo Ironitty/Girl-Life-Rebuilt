@@ -26,7 +26,7 @@ function enterStartDoor(s: GameState, scene: SceneBuilder): void {
       (st as any).petersexday = ((st as any).petersexday ?? 0) + (1);
       scene.text('You ring the doorbell and wait. After a few seconds, Peter opens the door and smiles. "Come in and get changed."');
       scene.actions([
-        { label: 'Enter the apartment', goto: ['peterroom', 'start'] },
+        { label: 'Enter the apartment', goto: ['Peterroom', 'start'] },
       ]);
     } else {
       scene.text('You ring the doorbell a few times, but no one answers.');
@@ -53,13 +53,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'I am, Master', handler: (st: GameState) => {
     (st as any).petersex = ((st as any).petersex ?? 0) + 1;
     if (((st as any).analPlugIn ?? 0) === 1) {
-      qspGoto(st, 'peterroom', 'klap');
+      qspGoto(st, 'Peterroom', 'klap');
     }
     if (((st as any).peterrand ?? 0) < 2) {
-      qspGoto(st, 'peterroom', 'd1');
+      qspGoto(st, 'Peterroom', 'd1');
     }
     if (((st as any).peterrand ?? 0) > 1) {
-      qspGoto(st, 'peterroom', 'd2');
+      qspGoto(st, 'Peterroom', 'd2');
     }
   } },
     ]);
@@ -105,7 +105,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Beg me to fuck you, whore!" he snarls as he whips you extra hard.');
     scene.text('"Please fuck me, Master! Fuck me like the dirty little whore I am!" you beg through your tears and you see a faint smile on his face.');
     scene.actions([
-      { label: 'Continue', goto: ['peterroom', 'klap'] },
+      { label: 'Continue', goto: ['Peterroom', 'klap'] },
     ]);
   } },
       ]);
@@ -125,7 +125,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal', 5, 'sub');
     qspCall(st, 'stat', '');
     scene.actions([
-      { label: 'Crawl', goto: ['peterroom', 'klap'] },
+      { label: 'Crawl', goto: ['Peterroom', 'klap'] },
     ]);
   } },
     ]);
@@ -178,7 +178,7 @@ function enterKlap(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Your ass makes a loud squelching noise when he pulls his dick out. Peter sits on the bed, breathing heavily while you remain bound, his cum slowly leaking from your asshole.');
     scene.actions([
-      { label: 'Relax', goto: ['peterroom', 'end'] },
+      { label: 'Relax', goto: ['Peterroom', 'end'] },
     ]);
   } },
     ]);
@@ -261,7 +261,7 @@ function enterD1(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Your ass makes a loud squelching noise when he pulls his dick out. Peter sits on the bed, breathing heavily while you remain kneeling with your ass in the air, his cum trickling down your leg.');
     scene.actions([
-      { label: 'Further', goto: ['peterroom', 'end'] },
+      { label: 'Further', goto: ['Peterroom', 'end'] },
     ]);
   } },
     ]);
@@ -301,7 +301,7 @@ function enterD2(s: GameState, scene: SceneBuilder): void {
       scene.text('Your orgasm suddenly hits you. Waves of pleasure ripple through your body, and you moan and shudder with release, but Peter holds you in place and refuses to allow his cock out of your mouth.');
     }
     scene.actions([
-      { label: 'Swallow', goto: ['peterroom', 'end'] },
+      { label: 'Swallow', goto: ['Peterroom', 'end'] },
     ]);
   } },
     ]);

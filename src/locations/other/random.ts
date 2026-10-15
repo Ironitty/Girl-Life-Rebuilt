@@ -91,9 +91,9 @@ function enterRoll(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).temp_randomVars = (s as any).temp_randomVars ?? {})['i'] = ((s as any).temp_randomVars['i'] ?? 0) + (1);
     (s as any).result = (((s as any).temp_randomVars ?? 0)?.['roll']);
-    (s as any).temp_randomVars = undefined;
     return;
   } while (((s as any).temp_randomVars ?? 0)?.['i'] < String((s as any).locArgs?.[4] ?? ''));
+    (s as any).temp_randomVars = undefined;
   scene.build();
 }
 
@@ -103,9 +103,9 @@ function enterMultirand(s: GameState, scene: SceneBuilder): void {
   do {
     (s as any).result = ((s as any).result ?? 0) + ((Math.floor(Math.random() * (((s as any).locArgs?.[2] ?? 0) - ((s as any).locArgs?.[1] ?? 0) + 1)) + (((s as any).locArgs?.[1] ?? 0))));
     (s as any).temp_mr_count = ((s as any).temp_mr_count ?? 0) + (1);
-    (s as any).temp_mr_count = undefined;
     return;
   } while (((s as any).temp_mr_count ?? 0) < String((s as any).locArgs?.[3] ?? ''));
+    (s as any).temp_mr_count = undefined;
   scene.build();
 }
 

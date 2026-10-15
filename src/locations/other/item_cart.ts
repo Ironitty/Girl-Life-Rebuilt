@@ -84,7 +84,7 @@ function enterSimpleAdd(s: GameState, scene: SceneBuilder): void {
 function enterCartTotal(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><table border=5 cellspacing=0 cellpadding=5 bgcolor="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor ?? ''))}"><td>&nbsp;<b>Total cost of items in cart: ` + qspFunc(s, 'money', 'string_price', ((s as any).cart_tally ?? '')) + '</b>&nbsp;</td></table></center>');
   scene.text('<center><table border=5 cellspacing=0 cellpadding=5 bgcolor=' + qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor ?? '')) + '><tr>');
-  ((s as any).item_line = (s as any).item_line ?? {})[2] = '';
+  ((s as any).item_line = {})[2] = '';
   if (((s as any).cart_tally ?? 0) > 0) {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).cart_tally ?? 0)) === 1) {
       ((s as any).item_line = (s as any).item_line ?? {})[2] = '<td>&nbsp;<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027item_cart\u0027, \u0027purchase\u0027); return false;">Buy</a>&nbsp;</td>';

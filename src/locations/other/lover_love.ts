@@ -66,7 +66,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).npcID ?? 0)]; enterMarry(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('The wedding reception takes place at a cafe. There aren\'t many guests since neither you nor the groom have that many friends or family members. There is a lot of congratulations, toasts, merrymaking and crying. By the evening, everybody is drunk and you and your husband stagger into a taxi, which takes you home.');
     scene.actions([
-      { label: 'Wedding night', goto: ['husbsex', 'room'] },
+      { label: 'Wedding night', goto: ['husbSex', 'room'] },
     ]);
   } },
       ]);

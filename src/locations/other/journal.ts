@@ -354,9 +354,6 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
       }
       scene.text(`${((s as any).grupbar_name ?? '')}`);
       (s as any).i = ((s as any).i ?? 0) + (1);
-      (s as any).grupbar_name = undefined;
-      (s as any).grupbar_standing = undefined;
-      (s as any).i = undefined;
       scene.text('<center><h2>Popular Kids Relations</h2></center>');
       if (((s as any).npc_known ?? 0)?.['A1'] === 1) {
         scene.text('Friendship with Dimka:');
@@ -622,6 +619,9 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_known ?? 0)?.['A93'] === 1  ||  ((s as any).npc_rel ?? 0)?.['A41'] > 0  ||  ((s as any).npc_rel ?? 0)?.['A42'] > 0  ||  ((s as any).npc_known ?? 0)?.['A43'] === 1  ||  ((s as any).gosh ?? 0) > 0  ||  ((s as any).npc_known ?? 0)?.['A220'] === 1  ||  ((s as any).npc_known ?? 0)?.['A219'] === 1  ||  ((s as any).npc_QW ?? 0)?.['A192'] > 0  ||  ((s as any).npc_known ?? 0)?.['A218'] === 1) {
       }
     } while (((s as any).i ?? 0) <= 4);
+      (s as any).grupbar_name = undefined;
+      (s as any).grupbar_standing = undefined;
+      (s as any).i = undefined;
   }
   if (((s as any).university ?? 0)?.['student'] === 1) {
     scene.text('<center><h2>University Students from Pavlovsk</h2></center>');

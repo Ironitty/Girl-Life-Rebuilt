@@ -186,10 +186,10 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'KatjaHomeTalk', 'Artem_break_up_talk');
     } else {
       if ((((s as any).katjaQW ?? 0)?.['lazer_pussy_talk'] === 0  ||  (((s as any).katjaQW ?? 0)?.['lazer_pussy_talk'] === 2  &&  ((s as any).katjaQW ?? 0)?.['knows_sex'] === 1  &&  (Math.floor(Math.random() * 5) + 0) === 0))  &&  ((s as any).katjaQW ?? 0)?.['lazer_pussy'] === 0  &&  ((s as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  ((s as any).katjaQW ?? 0)?.['slut'] >= 50  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= 40  &&  ((s as any).katjaQW ?? 0)?.['lazar_uni_meet'] === 1  &&  ((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0) {
-        qspGoto(s, 'Katja_dorm', 'lazar_pussy_talk');
+        qspGoto(s, 'katja_dorm', 'lazar_pussy_talk');
       } else {
         if (((s as any).katjaQW ?? 0)?.['lazer_anal_talk'] === 0  &&  ((s as any).katjaQW ?? 0)?.['lazer_anal'] === 0  &&  ((s as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  ((s as any).katjaQW ?? 0)?.['slut'] >= 60  &&  ((s as any).katjaQW ?? 0)?.['lazar_uni_meet'] === 1  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= 40  &&  ((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0) {
-          qspGoto(s, 'Katja_dorm', 'lazar_anal_talk');
+          qspGoto(s, 'katja_dorm', 'lazar_anal_talk');
         } else {
           if (Math.min(((s as any).katjaQW ?? 0)?.['horny'], 100) > (Math.floor(Math.random() * 361) + 40)  ||  (((s as any).katjaQW ?? 0)?.['QWstage'] === 2  &&  ((s as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  Math.min(((s as any).katjaQW ?? 0)?.['horny'], 100) > (Math.floor(Math.random() * 121) + 40))  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
             if (((s as any).katjaQW ?? 0)?.['lazer_anal'] + ((s as any).katjaQW ?? 0)?.['lazer_pussy'] >= 2  &&  ((s as any).katjaQW ?? 0)?.['lazar_day'] !== ((s as any).daystart ?? 0)  &&  (Math.floor(Math.random() * 7) + 0) === 0  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0) {
@@ -942,12 +942,12 @@ function enterLazarAgree(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).katjajQW ?? 0)?.['slut'] > 60  &&  ((s as any).katjaQW ?? 0)?.['anal_quest'] === 0) {
     scene.actions([
-      { label: 'Katja has something more to say', goto: ['Katja_dorm', 'lazar_anal_talk'] },
+      { label: 'Katja has something more to say', goto: ['katja_dorm', 'lazar_anal_talk'] },
     ]);
   } else {
     if (((s as any).katjajQW ?? 0)?.['slut'] > 50  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] < 5) {
       scene.actions([
-        { label: 'Katja has something more to say', goto: ['Katja_dorm', 'lazar_pussy_talk'] },
+        { label: 'Katja has something more to say', goto: ['katja_dorm', 'lazar_pussy_talk'] },
       ]);
     } else {
       scene.actions([

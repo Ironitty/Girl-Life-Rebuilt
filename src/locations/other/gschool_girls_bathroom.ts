@@ -574,7 +574,7 @@ function enterToyBunny(s: GameState, scene: SceneBuilder): void {
 
 function enterCompany(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gschool_randperson', 'couple_generator');
-  qspGoto(s, 'oilet_rand = rand(1, 100)', '');
+  (s as any).gtoilet_rand = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).gtoilet_rand ?? 0) <= 30) {
     (s as any).gtoilet_rand = undefined;
     (s as any).rand_boy = 'a boy you don\'t know';
@@ -852,7 +852,7 @@ function enterCompany4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCaught(s: GameState, scene: SceneBuilder): void {
-  qspGoto(s, 'oilet_rand = rand(1, 75)', '');
+  (s as any).gtoilet_rand = (Math.floor(Math.random() * 75) + 1);
   if (((s as any).gtoilet_rand ?? 0) <= 25) {
     (s as any).gtoilet_rand = undefined;
     qspGoto(s, 'gschool_girls_bathroom', 'caught1');

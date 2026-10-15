@@ -681,6 +681,8 @@ function enterGetShiftFromRecurrence(s: GameState, scene: SceneBuilder): void {
     (s as any).result_arrival = 0;
     (s as any).result_start = 0;
     (s as any).result_duration = 0;
+    return;
+  } while (((s as any).temp_pos ?? 0) <= (String(((s as any).locArgs?.[1] ?? 0)).length));
     (s as any).check_day = undefined;
     (s as any).temp_weekday = undefined;
     (s as any).temp_pos = undefined;
@@ -693,8 +695,6 @@ function enterGetShiftFromRecurrence(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_arrival = undefined;
     (s as any).temp_start = undefined;
     (s as any).temp_duration = undefined;
-    return;
-  } while (((s as any).temp_pos ?? 0) <= (String(((s as any).locArgs?.[1] ?? 0)).length));
   scene.build();
 }
 
@@ -1580,10 +1580,10 @@ function enterFormatDays(s: GameState, scene: SceneBuilder): void {
       (s as any).result = ((s as any).result ?? 0) + ((((s as any).fd_names ?? 0)?.[String((s as any).fd_i ?? 0)] ?? 0));
     }
     (s as any).fd_i = ((s as any).fd_i ?? 0) + (1);
-    (s as any).fd_names = undefined;
-    (s as any).fd_i = undefined;
     return;
   } while (((s as any).fd_i ?? 0) <= 7);
+    (s as any).fd_names = undefined;
+    (s as any).fd_i = undefined;
   scene.build();
 }
 

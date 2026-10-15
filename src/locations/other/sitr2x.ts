@@ -60,7 +60,7 @@ function enterMasturbate(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
   }
   if (((s as any).husID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  (((s as any).week ?? 0) >= 5  ||  ((s as any).hour ?? 0) >= 17)) {
-    qspGoto(s, 'husbsex', 'husb_mastr_vtor');
+    qspGoto(s, 'husbSex', 'husb_mastr_vtor');
   } else {
     qspCall(s, 'npcStat', 'D1');
     scene.img('images/shared/sex/mast/mastr.mp4');

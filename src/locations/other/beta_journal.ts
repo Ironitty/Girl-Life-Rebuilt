@@ -73,12 +73,12 @@ function enterNavConstruct(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    (s as any).i = undefined;
-    (s as any).nav_i = undefined;
     scene.text(`<center><h1>${((s as any).nav_banner ?? '')}</h1>`);
     scene.text(`<table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>${((s as any).tablebody ?? '')}</tr></table></center>`);
     qspCall(s, 'journal', 'leaveactions');
   } while (((s as any).i ?? 0) < ((s as any).nav_i ?? 0));
+    (s as any).i = undefined;
+    (s as any).nav_i = undefined;
   scene.build();
 }
 

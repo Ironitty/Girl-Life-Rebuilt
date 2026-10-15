@@ -309,21 +309,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_current_save_version ?? 0) < 80504) {
     ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A18'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027gschool_jock_chats\u0027, \u0027\u0027 + $lcase($npc_usedname[\u0027A18\u0027]) + \u0027\u0027); return false;">' + (((s as any).npc_usedname ?? 0)?.['A18']) + '</a>';
     if (((s as any).storyline ?? 0) === 1  &&  ((s as any).magikDostup ?? 0) === 1) {
-      (s as any).start_type = 'sg';
+      (s as any).start_type = { 0: 'sg' };
       ((s as any).start_type = (s as any).start_type ?? {})[1] = 'nomagic';
     } else {
       if (((s as any).start_type ?? 0) === 'csb') {
-        (s as any).start_type = 'sg_tg';
+        (s as any).start_type = { 0: 'sg_tg' };
         ((s as any).start_type = (s as any).start_type ?? {})[1] = 'tg';
       } else {
         if (((s as any).storyline ?? 0) === 1) {
           (s as any).start_type = 'sg_m';
         } else {
           if (((s as any).magikDostup ?? 0) === 1) {
-            (s as any).start_type = 'city';
+            (s as any).start_type = { 0: 'city' };
             ((s as any).start_type = (s as any).start_type ?? {})[1] = 'nomagic';
           } else {
-            (s as any).start_type = 'city_tg';
+            (s as any).start_type = { 0: 'city_tg' };
             ((s as any).start_type = (s as any).start_type ?? {})[1] = 'tg';
           }
         }
@@ -3686,7 +3686,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).su_i = ((s as any).su_i ?? 0) + (1);
-      (s as any).su_i = undefined;
       (s as any).hotcat_rating ? (s as any).hotcat_rating = { ...(s as any).npc_hotcat } : (s as any).hotcat_rating = { ...(s as any).npc_hotcat };
       (s as any).hotcat_rating = undefined;
       if (((s as any).hotcat ?? 0)  !== 0) {
@@ -4160,6 +4159,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).ds_diff = undefined;
     } while (((s as any).su_i ?? 0) < Object.keys((s as any).npc_apprnc ?? {}).length);
+      (s as any).su_i = undefined;
   }
   if (((s as any).temp_current_save_version ?? 0) < 90303) {
     if (((s as any).pcs_traits ?? 0)?.['easy_orgams'] !== 0) {
@@ -5374,11 +5374,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
               break;
             } while (true);
-            (s as any).su_i = undefined;
-            (s as any).su_max_i = undefined;
           } while (((s as any).su_i ?? 0) < ((s as any).su_max_i ?? 0));
         } while (((s as any).su_i ?? 0) < ((s as any).su_max_i ?? 0));
       } while (((s as any).su_i ?? 0) < ((s as any).su_max_i ?? 0));
+            (s as any).su_i = undefined;
+            (s as any).su_max_i = undefined;
   }
   if (((s as any).temp_current_save_version ?? 0) < 90401) {
     if (((s as any).npc_lastname ?? 0)?.['A29'] === '') {

@@ -28,7 +28,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod understandingly and the girl continues: "And then there\'s the bandits! They sometimes extort us too, because we\'re easy prey. Stella doesn\'t have that much influence around here, but I wouldn\'t mess with the bandits if I were you! They mean business…"');
     scene.text('She also points out: "By the way, it may sound obvious but <b>if you want to pick up customers, you need to be dressed like a prostitute.</b> If it\'s not very obvious to guys that you\'re a working girl, none of them will approach you! You can buy some in a sex shop."');
     scene.actions([
-      { label: 'Thank her and move away', goto: ['prostitute', 'start'] },
+      { label: 'Thank her and move away', goto: ['Prostitute', 'start'] },
     ]);
   } },
       ]);
@@ -49,12 +49,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You raise your hands disarmingly and say: "Whoa, relax! I only wanted to ask… how do I become one of you? I want to work here!"');
     scene.text('The prostitute grins meanly and spits on the ground before you, saying: "That\'s what I thought, bitch. Stella runs this area! You pay her if you want to work here, you got that?"');
     scene.actions([
-      { label: 'Shrug and leave', goto: ['prostitute', 'start'] },
+      { label: 'Shrug and leave', goto: ['Prostitute', 'start'] },
       { label: 'Nod understandingly', handler: (st: GameState) => {
     (st as any).whoreQW = 2;
     scene.text('When you nod, the prostitute adds: "By the way: <b>you need to look like a whore, if you want to work as a whore</b>. The sex shop sells outfits. And remember: you work here, you pay Stella! Otherwise you\'re in deep trouble!"');
     scene.actions([
-      { label: 'Move away from her', goto: ['prostitute', 'start'] },
+      { label: 'Move away from her', goto: ['Prostitute', 'start'] },
     ]);
   } },
     ]);
@@ -70,7 +70,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * ((((st as any).pcs_apprnc ?? 0)/4 + ((st as any).hour ?? 0) - 0 + 1)) + (0)) * 2) < 20) {
       scene.text('You walk around for a while, trying to find a customer. Unfortunately, no one is interested in you right now.');
       scene.actions([
-        { label: 'Continue', goto: ['prostitute', 'start'] },
+        { label: 'Continue', goto: ['Prostitute', 'start'] },
       ]);
     } else {
       (st as any).proseventrand = (Math.floor(Math.random() * 20) + 1);
@@ -83,7 +83,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'pay', 1000, 'cash');
     scene.text(`You give the man ${qspFunc(s, 'money', 'string_price', 1000)}, which he pockets right away. Then he drives off, without saying another word.`);
     scene.actions([
-      { label: 'Continue', goto: ['prostitute', 'start'] },
+      { label: 'Continue', goto: ['Prostitute', 'start'] },
     ]);
   } },
           ]);
@@ -125,7 +125,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('As you give her the money, you\'d swear you see a twinge of relief in her eyes. The girl was clearly worried you were going to give her a hard time.');
     scene.text('She quickly walks away, not saying anything else.');
     scene.actions([
-      { label: 'Continue', goto: ['prostitute', 'start'] },
+      { label: 'Continue', goto: ['Prostitute', 'start'] },
     ]);
   } },
             ]);
@@ -136,7 +136,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You begin to explain that you haven\'t earned much money yet, but she\'s not interested in your story.');
     scene.text('She quickly rummages through your belongings, and takes all the money you have on you. Then she leaves quickly, before you can object.');
     scene.actions([
-      { label: 'Continue', goto: ['prostitute', 'start'] },
+      { label: 'Continue', goto: ['Prostitute', 'start'] },
     ]);
   } },
             ]);
@@ -166,12 +166,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           if (((st as any).ProsMoney ?? 0) > 0) {
             scene.actions([
               { label: '', labelFn: (s: GameState) => String(qspFunc(s, 'money', 'string_profit', ((st as any).ProsMoney ?? '') * 100) ?? ''), handler: (st: GameState) => {
-    qspGoto(st, 'prostitute', 'work1', ((((st as any).proseventrand ?? 0) <= 8) ? ('blow job') : (((((st as any).proseventrand ?? 0) <= 14) ? ('sex') : ('anal')))));
+    qspGoto(st, 'Prostitute', 'work1', ((((st as any).proseventrand ?? 0) <= 8) ? ('blow job') : (((((st as any).proseventrand ?? 0) <= 14) ? ('sex') : ('anal')))));
   } },
             ]);
           }
           scene.actions([
-            { label: 'Walk away from him', goto: ['prostitute', 'start'] },
+            { label: 'Walk away from him', goto: ['Prostitute', 'start'] },
             { label: 'Change the price', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     (st as any).ProsMoney = window.prompt("Enter a number below, which will be multiplied by " + (qspFunc(s, 'money', 'string_profit', 100))) ?? '';
@@ -179,10 +179,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('"Are you making a joke or something? I\'m not in the mood for jokes!" the customer sighs wearily. He starts his car again and drives away without saying another word.');
       scene.text('The price you set was too low for the man to take you seriously.');
       scene.actions([
-        { label: 'Continue', goto: ['prostitute', 'start'] },
+        { label: 'Continue', goto: ['Prostitute', 'start'] },
       ]);
     } else {
-      qspGoto(st, 'prostitute', 'work1', ((((st as any).proseventrand ?? 0) <= 8) ? ('blow job') : (((((st as any).proseventrand ?? 0) <= 14) ? ('sex') : ('anal')))));
+      qspGoto(st, 'Prostitute', 'work1', ((((st as any).proseventrand ?? 0) <= 8) ? ('blow job') : (((((st as any).proseventrand ?? 0) <= 14) ? ('sex') : ('anal')))));
     }
   } },
           ]);
@@ -307,7 +307,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).vnpr ?? 0) >= 0) {
     if (((s as any).ProsMoney ?? 0) === 1) {
-      qspGoto(s, 'prostitute', 'work2', String((s as any).locArgs?.[1] ?? ''));
+      qspGoto(s, 'Prostitute', 'work2', String((s as any).locArgs?.[1] ?? ''));
     }
     if ((Math.floor(Math.random() * 31) + 0) < ((s as any).vnpr ?? 0)) {
       if (String((s as any).locArgs?.[1] ?? '') === 'blow job') {
@@ -321,7 +321,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).KlientMON ?? 0) >= ((s as any).ProsMoney ?? 0)) {
         (s as any).KlientMON = undefined;
-        qspGoto(s, 'prostitute', 'work2', String((s as any).locArgs?.[1] ?? ''));
+        qspGoto(s, 'Prostitute', 'work2', String((s as any).locArgs?.[1] ?? ''));
       }
       if ((Math.floor(Math.random() * 2) + 0) === 1) {
         scene.text(`The client smiles and offers: "I only have ${((s as any).KlientMON ?? '') * 100}… what do you say?"`);
@@ -329,13 +329,13 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
           { label: 'Agree', handler: (st: GameState) => {
     (st as any).ProsMoney = ((st as any).KlientMON ?? 0);
     (st as any).KlientMON = undefined;
-    qspGoto(st, 'prostitute', 'work2', '' + ((st as any).locArgs?.[1] ?? 0) + '');
+    qspGoto(st, 'Prostitute', 'work2', '' + ((st as any).locArgs?.[1] ?? 0) + '');
   } },
         ]);
         scene.actions([
 { label: 'Refuse', handler: (st: GameState) => {
     (st as any).KlientMON = undefined;
-    qspGoto(st, 'prostitute', 'start');
+    qspGoto(st, 'Prostitute', 'start');
   } },
 ]);
         return;
@@ -345,7 +345,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
   scene.text('The client examines you hesitantly, a bit startled by the amount you asked for. He shakes his head as he starts his car: "Too much."');
   scene.text('Then he drives away before you can get another word in. Doesn\'t he understand how bartering works!?');
   scene.actions([
-    { label: 'Continue', goto: ['prostitute', 'start'] },
+    { label: 'Continue', goto: ['Prostitute', 'start'] },
   ]);
   scene.build();
 }
@@ -388,7 +388,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'arousal', 'bj', 5, 'prostitution', 'unknown');
       qspCall(st, 'arousal', 'end');
       scene.actions([
-        { label: 'Get out of the car', goto: ['prostitute', 'start'] },
+        { label: 'Get out of the car', goto: ['Prostitute', 'start'] },
       ]);
     } else {
       if (String((st as any).locArgs?.[1] ?? '') === 'sex') {
@@ -421,7 +421,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     (st as any).protect = 0;
     scene.actions([
-      { label: 'Get out of the car', goto: ['prostitute', 'start'] },
+      { label: 'Get out of the car', goto: ['Prostitute', 'start'] },
     ]);
   } },
         ]);
@@ -460,7 +460,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     (st as any).protect = 0;
     qspCall(st, 'arousal', 'end');
     scene.actions([
-      { label: 'Get out of the car', goto: ['prostitute', 'start'] },
+      { label: 'Get out of the car', goto: ['Prostitute', 'start'] },
     ]);
   } },
           ]);
@@ -559,7 +559,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
       (st as any).bjrand = undefined;
       qspCall(st, 'arousal', 'end');
       scene.actions([
-        { label: 'Get out of his car', goto: ['prostitute', 'start'] },
+        { label: 'Get out of his car', goto: ['Prostitute', 'start'] },
       ]);
     } else {
       if (String((st as any).locArgs?.[1] ?? '') === 'sex') {
@@ -598,7 +598,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     scene.text('With a satisfied smile on his face, he gives you the money he owes you and drives off.');
     qspCall(st, 'arousal', 'end');
     scene.actions([
-      { label: 'Continue', goto: ['prostitute', 'start'] },
+      { label: 'Continue', goto: ['Prostitute', 'start'] },
     ]);
   } },
         ]);
@@ -669,7 +669,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'vaginal', 5, 'prostitution', 'unknown', 'sub', 'humiliation');
     qspCall(st, 'arousal', 'end');
     scene.actions([
-      { label: 'Collect the money and get up', goto: ['prostitute', 'start'] },
+      { label: 'Collect the money and get up', goto: ['Prostitute', 'start'] },
     ]);
   } },
     ]);
@@ -677,7 +677,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Leave quietly', goto: ['prostitute', 'start'] },
+      { label: 'Leave quietly', goto: ['Prostitute', 'start'] },
       { label: 'Insist he pays you anyway', handler: (st: GameState) => {
     qspCall(st, 'money', 'earn', ((st as any).ProsMoney ?? 0) * 100, 'cash');
     qspCall(st, 'mood', 'lower', 'large');
@@ -699,7 +699,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'bj', 5, 'prostitution', 'unknown', 'sub', 'humiliation');
     qspCall(st, 'stat', '');
     scene.actions([
-      { label: 'Collect the money and get up', goto: ['prostitute', 'start'] },
+      { label: 'Collect the money and get up', goto: ['Prostitute', 'start'] },
     ]);
   } },
     ]);
@@ -728,7 +728,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
       (st as any).cumanalRand = undefined;
       qspCall(st, 'arousal', 'end');
       scene.actions([
-        { label: 'Take his money and straighten your clothes', goto: ['prostitute', 'start'] },
+        { label: 'Take his money and straighten your clothes', goto: ['Prostitute', 'start'] },
       ]);
     }
   } },

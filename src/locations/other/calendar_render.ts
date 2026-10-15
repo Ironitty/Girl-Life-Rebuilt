@@ -214,6 +214,8 @@ function enterRenderCalendar(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cal_ts = ((s as any).temp_cal_ts ?? 0) + (1);
     (s as any).result = ((s as any).result ?? 0) + ('</table></div>');
     (s as any).result = ((s as any).result ?? 0) + ('<center><small>❀ = Current timeslot, ⚘ = Busy timeslot today, Timeslot = 15 minute period.<br>Hatched area = Flexible arrival time. The calendar may shift flexible events to fit in as many as possible.</small></center>');
+    return;
+  } while (((s as any).temp_cal_ts ?? 0) < 96);
     (s as any).temp_cal_ts = undefined;
     (s as any).temp_cal_first_slot = undefined;
     (s as any).temp_rtr_ts = undefined;
@@ -255,8 +257,6 @@ function enterRenderCalendar(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_window_end_hours = undefined;
     (s as any).temp_window_end_minutes = undefined;
     (s as any).temp_window_time = undefined;
-    return;
-  } while (((s as any).temp_cal_ts ?? 0) < 96);
   scene.build();
 }
 
@@ -359,6 +359,8 @@ function enterRenderHeader(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).result ?? 0) + (((s as any).temp_hdr_day_name ?? 0) + '<br>' + ((s as any).temp_hdr_date_str ?? 0) + '</th>');
     (s as any).temp_hdr_d = ((s as any).temp_hdr_d ?? 0) + (1);
     (s as any).result = ((s as any).result ?? 0) + ('</tr>');
+    return;
+  } while (((s as any).temp_hdr_d ?? 0) <= 7);
     (s as any).temp_hdr_first_slot = undefined;
     (s as any).temp_hdr_bg = undefined;
     (s as any).temp_hdr_d = undefined;
@@ -371,8 +373,6 @@ function enterRenderHeader(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_hdr_date_str = undefined;
     (s as any).temp_hdr_max_cols = undefined;
     (s as any).temp_hdr_style = undefined;
-    return;
-  } while (((s as any).temp_hdr_d ?? 0) <= 7);
   scene.build();
 }
 
@@ -448,6 +448,9 @@ function enterRenderAlldaySection(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_ad_d = ((s as any).temp_ad_d ?? 0) + (1);
       (s as any).result = ((s as any).result ?? 0) + ('</tr>');
       (s as any).temp_ad_row = ((s as any).temp_ad_row ?? 0) + (1);
+      return;
+    } while (((s as any).temp_ad_d ?? 0) <= 7);
+  } while (((s as any).temp_ad_row ?? 0) < ((s as any).temp_ad_max_rows ?? 0));
       (s as any).temp_ad_first_slot = undefined;
       (s as any).temp_ad_empty_bg = undefined;
       (s as any).temp_ad_max_rows = undefined;
@@ -468,9 +471,6 @@ function enterRenderAlldaySection(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_ad_check_continued = undefined;
       (s as any).temp_ad_check_cols = undefined;
       (s as any).temp_ad_color_rgb = undefined;
-      return;
-    } while (((s as any).temp_ad_d ?? 0) <= 7);
-  } while (((s as any).temp_ad_row ?? 0) < ((s as any).temp_ad_max_rows ?? 0));
   scene.build();
 }
 
@@ -490,14 +490,14 @@ function enterGetFirstTimeslot(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_gfs_t = ((s as any).temp_gfs_t ?? 0) + (1);
       (s as any).temp_gfs_d = ((s as any).temp_gfs_d ?? 0) + (1);
       (s as any).result = ((s as any).temp_gfs_first ?? 0);
+      return;
+    } while (((s as any).temp_gfs_t ?? 0) < 96);
+  } while (((s as any).temp_gfs_d ?? 0) <= 7);
       (s as any).temp_gfs_first = undefined;
       (s as any).temp_gfs_d = undefined;
       (s as any).temp_gfs_t = undefined;
       (s as any).temp_gfs_count = undefined;
       (s as any).temp_gfs_event_hour = undefined;
-      return;
-    } while (((s as any).temp_gfs_t ?? 0) < 96);
-  } while (((s as any).temp_gfs_d ?? 0) <= 7);
   scene.build();
 }
 

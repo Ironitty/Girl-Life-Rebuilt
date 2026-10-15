@@ -714,6 +714,11 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
   }
 }
 
+// Test hook for scripts/test-qspcall-triage.ts: drive the exact qspCall path (whose default
+// case invokes a location's enter() with no goto loop-guard, the source of the recursion/hang
+// failures) from the browser.
+if (typeof window !== 'undefined') (window as any).__qspCall = qspCall;
+
 const CLO_VAR: Record<string, { owned: (t: string) => string; storage?: (t: string) => string; health?: (t: string) => string; body?: (t: string) => string; wardrobeVal: number }> = {
   clothing: { owned: (t) => t, storage: (t) => t + '_s', health: (t) => t + '_h', body: (t) => t + '_b', wardrobeVal: 1 },
   bras: { owned: (t) => t + '_bras', storage: (t) => t + '_brasS', health: (t) => t + '_bras_h', wardrobeVal: 0 },

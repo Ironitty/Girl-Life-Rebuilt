@@ -42,7 +42,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Think about the opportunity', handler: (st: GameState) => {
     (st as any).letter_delay = ((st as any).daystart ?? 0);
-    qspGoto(st, 'kuhrpar', '');
+    qspGoto(st, 'kuhrPar', '');
   } },
       ]);
     }
@@ -50,7 +50,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
       { label: 'Reject the opportunity', handler: (st: GameState) => {
     qspCall(st, 'pushkin_ballet_init', 'cleanup_var');
     ((st as any).balletqw = (st as any).balletqw ?? {})['blocker'] = 1;
-    qspGoto(st, 'kuhrpar', '');
+    qspGoto(st, 'kuhrPar', '');
   } },
     ]);
   } },

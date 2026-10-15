@@ -302,7 +302,7 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
     if (((st as any).katjaQW ?? 0)?.['horny'] >= 50  &&  ((st as any).katjaQW ?? 0)?.['QWstage'] > 2  &&  ((st as any).katjaQW ?? 0)?.['slut'] >= 20) {
       scene.text('"So what would you do if that situation was to come up. For example right now?" she asks in a seductive voice.');
       scene.actions([
-        { label: 'See what she does', goto: ['katjaHomeTalk', 'hornykiss'] },
+        { label: 'See what she does', goto: ['KatjaHomeTalk', 'hornykiss'] },
         { label: 'Stop her from doing anything', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     scene.text('"It would definitely not happen right now. Right?" you say, a little unsure of how Katja will react.');
@@ -407,7 +407,7 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue talking', handler: (st: GameState) => {
     if (((st as any).katjaQW ?? 0)?.['fisted_vag'] === 0  &&  ((st as any).npc_vag ?? 0)?.['A14'] > 3  &&  ((st as any).katjaQW ?? 0)?.['slut'] >= 70  &&  ((st as any).katjaQW ?? 0)?.['horny'] >= 50  &&  ((st as any).npc_had_sex ?? 0)?.['A14']) {
-      qspGoto(st, 'katjaHomeTalk', 'fisting_ask');
+      qspGoto(st, 'KatjaHomeTalk', 'fisting_ask');
     } else {
       (st as any).minut = ((st as any).minut ?? 0) + 5;
       if (((st as any).loc ?? 0) === 'katja_dorm') {

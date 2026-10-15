@@ -92,13 +92,13 @@ function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+    return;
+  } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length);
     (s as any).mod_i = undefined;
     (s as any).mod_system_loc = undefined;
     (s as any).mod_warning = undefined;
     (s as any).modARGS = undefined;
     (s as any).mod_su_name = undefined;
-    return;
-  } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length);
   scene.build();
 }
 
@@ -124,9 +124,9 @@ function enterSaveupdater(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+  } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length);
     (s as any).mod_i = undefined;
     (s as any).mod_su_name = undefined;
-  } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length);
   scene.build();
 }
 
@@ -262,9 +262,9 @@ function enterDeleteAllMods(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+    } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length);
       (s as any).mod_su_name = undefined;
       (s as any).mod_i = undefined;
-    } while (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length);
   }
   if (((s as any).qspver ?? 0) < '5.8.0') {
   }

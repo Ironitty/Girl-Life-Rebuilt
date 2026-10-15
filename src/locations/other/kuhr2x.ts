@@ -93,7 +93,7 @@ function enterDildo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   if (((s as any).husID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  (((s as any).week ?? 0) >= 6  ||  ((s as any).hour ?? 0) >= 17)) {
-    qspGoto(s, 'husbsex', 'husb_mastr_vtor');
+    qspGoto(s, 'husbSex', 'husb_mastr_vtor');
   } else {
     qspCall(s, 'npcStat', 'D1');
     scene.img('images/shared/sex/mast/mastr.mp4');

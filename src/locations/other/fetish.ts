@@ -17,8 +17,8 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     ((s as any).fetishes = (s as any).fetishes ?? {})[(((s as any).tempFetish ?? 0)?.['name']) + '_pref'] = Math.max((-100), Math.min((((s as any).fetishes ?? 0)?.[(((s as any).tempFetish ?? 0)?.['name']) + '_pref'] ?? 0), 100));
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', (((s as any).tempFetish ?? 0)?.['name'])]; enterCheckForTraits(s, scene); (s as any).locArgs = __savedLocArgs; }
     ((s as any).tempFetish = (s as any).tempFetish ?? {})['i'] = ((s as any).tempFetish['i'] ?? 0) + (1);
-    (s as any).tempFetish = undefined;
   } while (((s as any).tempFetish ?? 0)?.['i'] < ((s as any).tempFetish ?? 0)?.['maxi']);
+    (s as any).tempFetish = undefined;
   scene.build();
 }
 

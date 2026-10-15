@@ -231,8 +231,8 @@ function enterRemovePreg(s: GameState, scene: SceneBuilder): void {
       (s as any).BabyEmbryo = ((s as any).BabyEmbryo ?? 0) - (1);
     }
     (s as any).nextBaby = ((s as any).nextBaby ?? 0) - (1);
-    (s as any).nextBaby = undefined;
   } while (((s as any).nextBaby ?? 0) > 0);
+    (s as any).nextBaby = undefined;
   scene.build();
 }
 

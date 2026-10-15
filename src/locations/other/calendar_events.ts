@@ -220,17 +220,14 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
           (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', ((s as any).temp_check_day ?? 0));
           if (((String(' ' + ((s as any).new_ev ?? 0)?.['recur'] + ' ').indexOf(String(' ' + String(((s as any).temp_weekday ?? 0)) + ' '))) + 1) > 0) {
             (s as any).result = ((s as any).temp_check_day ?? 0);
-            (s as any).temp_weekday = undefined;
-            (s as any).temp_check_day = undefined;
-            (s as any).temp_days_scanned = undefined;
             return;
           }
           (s as any).temp_check_day = ((s as any).temp_check_day ?? 0) + (1);
           (s as any).temp_days_scanned = ((s as any).temp_days_scanned ?? 0) + (1);
-          (s as any).temp_weekday = undefined;
-          (s as any).temp_check_day = undefined;
-          (s as any).temp_days_scanned = undefined;
         } while (((s as any).temp_days_scanned ?? 0) < 7);
+            (s as any).temp_weekday = undefined;
+            (s as any).temp_check_day = undefined;
+            (s as any).temp_days_scanned = undefined;
       }
       (s as any).temp_weekday = undefined;
     }
@@ -586,9 +583,9 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
         }
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 0]; enterLoadNewEv(s, scene); (s as any).locArgs = __savedLocArgs; }
         (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
-        (s as any).temp_i = undefined;
         break;
       } while (((s as any).temp_i ?? 0) < Object.keys((s as any).blocking_events_list ?? {}).length);
+        (s as any).temp_i = undefined;
     }
     break;
   }

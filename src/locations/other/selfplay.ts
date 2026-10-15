@@ -66,7 +66,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).selfplaytime = ((st as any).selfplaytime ?? 0) + (15);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSisProv(st, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).husID ?? 0) !== ''  &&  ((st as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((st as any).loc ?? 0) === 'bedr') {
-      qspGoto(st, 'husbsex', 'husb_mastr_vtor');
+      qspGoto(st, 'husbSex', 'husb_mastr_vtor');
     }
     if (((st as any).loc ?? 0) === 'vanrPar') {
       scene.img('images/shared/sex/mast/dildovann.jpg');
@@ -86,7 +86,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (st as any).selfplaytime = ((st as any).selfplaytime ?? 0) + (15);
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSisProv(st, scene); (st as any).locArgs = __savedLocArgs; }
       if (((st as any).husID ?? 0) !== ''  &&  ((st as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((st as any).loc ?? 0) === 'bedr') {
-        qspGoto(st, 'husbsex', 'husb_mastr_vtor');
+        qspGoto(st, 'husbSex', 'husb_mastr_vtor');
       }
       if (((st as any).loc ?? 0) === 'vanrPar') {
         scene.img('images/shared/sex/mast/dildovann.jpg');

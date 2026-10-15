@@ -760,8 +760,6 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).temp_succubus_i = ((s as any).temp_succubus_i ?? 0) + (1);
       (s as any).temp_succubus_j = ((s as any).temp_succubus_j ?? 0) + (1);
-      (s as any).temp_succubus_i = undefined;
-      (s as any).temp_succubus_j = undefined;
       if (((s as any).succublvl ?? 0) < 3) {
         do {
           (s as any).clopickrand = (Math.floor(Math.random() * (((s as any).temp_succubus_x ?? 0) - 1 - 0 + 1)) + (0));
@@ -885,6 +883,8 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
       } while (((s as any).scclocatcnt ?? 0) <= 6);
     } while (((s as any).temp_succubus_i ?? 0) <= ((s as any).total ?? 0));
   } while (((s as any).temp_succubus_j ?? 0) < Object.keys((s as any).succlocat ?? {}).length);
+      (s as any).temp_succubus_i = undefined;
+      (s as any).temp_succubus_j = undefined;
   scene.build();
 }
 

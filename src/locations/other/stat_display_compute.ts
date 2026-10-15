@@ -1824,9 +1824,9 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
     }
     // LABEL: sd_compute_images_next
     ((s as any).sd_ci = (s as any).sd_ci ?? {})['i'] = ((s as any).sd_ci['i'] ?? 0) + (1);
-    (s as any).sd_ci = undefined;
     return;
   } while (((s as any).sd_ci ?? 0)?.['i'] < ((s as any).sd_ci ?? 0)?.['max']);
+    (s as any).sd_ci = undefined;
   scene.build();
 }
 

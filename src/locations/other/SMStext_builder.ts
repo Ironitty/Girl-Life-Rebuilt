@@ -150,10 +150,10 @@ function enterPrivateSetReplies(s: GameState, scene: SceneBuilder): void {
     ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['replies'] = ((s as any).SMSBuilderVars['replies'] ?? 0) + ('<tr><td>' + (((s as any).SMSBuilderReplies ?? 0)?.[String((s as any).stb_i ?? 0)] ?? 0) + '</td></tr>');
     (s as any).stb_i = ((s as any).stb_i ?? 0) + (1);
     ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['replies'] = ((s as any).SMSBuilderVars['replies'] ?? 0) + ('</table>');
+  } while (((s as any).stb_i ?? 0) < ((s as any).stb_maxi ?? 0));
     (s as any).SMSBuilderReplies = undefined;
     (s as any).stb_i = undefined;
     (s as any).stb_maxi = undefined;
-  } while (((s as any).stb_i ?? 0) < ((s as any).stb_maxi ?? 0));
   scene.build();
 }
 

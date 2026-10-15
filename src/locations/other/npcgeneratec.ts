@@ -32,19 +32,19 @@ function enterAssignIndex(s: GameState, scene: SceneBuilder): void {
       (s as any).ngc_scheck = 0;
       (s as any).npclastgenerated = 'C' + '' + ((s as any).carraynumber ?? 0) + '';
       ((s as any).npcgeneratecVars = (s as any).npcgeneratecVars ?? {})['npcID'] = 'C' + '' + ((s as any).carraynumber ?? 0)-1 + '';
-      if (((s as any).npc_perstype ?? 0)[((s as any).npcgeneratecVars ?? 0)?.['npcID']] === ''  &&  ((s as any).carraynumber ?? 0) > 0) {
+      if ((((s as any).npc_perstype ?? {})['' + (((s as any).npcgeneratecVars ?? 0)?.['npcID'] ?? '')] ?? '') === ''  &&  ((s as any).carraynumber ?? 0) > 0) {
         (s as any).carraynumber = ((s as any).carraynumber ?? 0) - (1);
         (s as any).ngc_scheck = 1;
       } else {
-        if (((s as any).npc_perstype ?? 0)?.[String((s as any).npclastgenerated ?? 0)] === '') {
+        if ((((s as any).npc_perstype ?? {})[String((s as any).npclastgenerated ?? 0)] ?? '') === '') {
           (s as any).ngc_scheck = 0;
         } else {
           (s as any).carraynumber = ((s as any).carraynumber ?? 0) + (1);
           (s as any).ngc_scheck = 1;
         }
       }
-      (s as any).ngc_scheck = undefined;
     } while (((s as any).ngc_scheck ?? 0) === 1);
+      (s as any).ngc_scheck = undefined;
   }
   (s as any).carraynumber = ((s as any).carraynumber ?? 0) + (1);
   ((s as any).npc_index = (s as any).npc_index ?? {})[String((s as any).npclastgenerated ?? 0)] = ((s as any).npclastgenerated ?? 0);

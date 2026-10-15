@@ -68,8 +68,8 @@ function enterRebuildPreferences(s: GameState, scene: SceneBuilder): void {
     scene.text('');
     ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['i'] = ((s as any).temp_nsprefVars['i'] ?? 0) + (1);
     ((s as any).npc_preferences = (s as any).npc_preferences ?? {})[((s as any).locArgs?.[1] ?? 0)] = (String((((s as any).temp_nsprefVars ?? 0)?.['pref_string'])).split('  ').join(''));
-    (s as any).temp_nsprefVars = undefined;
   } while (((s as any).temp_nsprefVars ?? 0)?.['i'] < ((s as any).temp_nsprefVars ?? 0)?.['max_i']);
+    (s as any).temp_nsprefVars = undefined;
   scene.build();
 }
 

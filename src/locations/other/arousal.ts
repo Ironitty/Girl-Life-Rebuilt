@@ -2047,7 +2047,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arousal_overcall ?? 0)?.['args'] === String((s as any).locArgs?.[0] ?? '') + String((s as any).locArgs?.[1] ?? '') + String((s as any).locArgs?.[2] ?? '') + String((s as any).locArgs?.[3] ?? '') + String((s as any).locArgs?.[4] ?? '') + String((s as any).locArgs?.[5] ?? '') + String((s as any).locArgs?.[6] ?? '') + String((s as any).locArgs?.[7] ?? '') + String((s as any).locArgs?.[8] ?? '')) {
     (s as any).arousal_overcall = 1;
   } else {
-    (s as any).arousal_overcall = 0;
     ((s as any).arousal_overcall = (s as any).arousal_overcall ?? {})['args'] = ((s as any).locArgs?.[0] ?? 0) + ((s as any).locArgs?.[1] ?? 0) + ((s as any).locArgs?.[2] ?? 0) + ((s as any).locArgs?.[3] ?? 0) + ((s as any).locArgs?.[4] ?? 0) + ((s as any).locArgs?.[5] ?? 0) + ((s as any).locArgs?.[6] ?? 0) + ((s as any).locArgs?.[7] ?? 0) + ((s as any).locArgs?.[8] ?? 0);
   }
   (s as any).temp_time = [0,1,2,3,4,5,6,7,8].reduce((sum: number, i: number) => { const v = Number((s as any).locArgs?.[i]); return sum + (isNaN(v) ? 0 : v); }, 0);

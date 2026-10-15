@@ -73,10 +73,10 @@ function enterSumInner(s: GameState, scene: SceneBuilder): void {
       (s as any).result = ((s as any).result ?? 0) + (1);
     }
     (s as any).bras_i = ((s as any).bras_i ?? 0) + (1);
-    (s as any).bras_i = undefined;
-    (s as any).bras_max_i = undefined;
     return;
   } while (((s as any).bras_i ?? 0) < ((s as any).bras_max_i ?? 0));
+    (s as any).bras_i = undefined;
+    (s as any).bras_max_i = undefined;
   scene.build();
 }
 

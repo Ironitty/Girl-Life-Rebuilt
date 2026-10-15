@@ -136,8 +136,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           }
         }
         (s as any).i = ((s as any).i ?? 0) + (1);
-        (s as any).i = undefined;
       } while (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
+        (s as any).i = undefined;
     } else {
       if (((s as any).university ?? 0)?.['exam_week'] > 0) {
         (s as any).i = 0;
@@ -148,8 +148,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             }
           }
           (s as any).i = ((s as any).i ?? 0) + (1);
-          (s as any).i = undefined;
         } while (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
+          (s as any).i = undefined;
       }
     }
   }

@@ -248,7 +248,7 @@ export interface GameState {
   pcs_breath: number;
   deodorant_on: number;
   deodorant_time: number;
-  pcs_bmi: number;
+  pcs_bmi: Record<string, number>;
   clit_size: number;
   temper: number;
   weatherFall: number;
@@ -442,21 +442,21 @@ export interface GameState {
   rape: number[];
   lubonus: number;
 
-  lastwornclothingtype: string;
-  lastwornclothingnumber: number;
-  lastwornunderwear: number;
-  lastwornbodysuittype: string;
-  lastwornbodysuitnumber: number;
-  lastwornpantytype: string;
-  lastwornpantynumber: number;
-  lastwornbratype: string;
-  lastwornbranumber: number;
-  lastwornshoetype: string;
-  lastwornshoenumber: number;
-  lastwornpursetype: string;
-  lastwornpursenumber: number;
-  lastworncoattype: string;
-  lastworncoatnumber: number;
+  lastwornclothingtype: Record<string, string>;
+  lastwornclothingnumber: Record<string, string | number>;
+  lastwornunderwear: Record<string, string | number>;
+  lastwornbodysuittype: Record<string, string | number>;
+  lastwornbodysuitnumber: Record<string, string | number>;
+  lastwornpantytype: Record<string, string | number>;
+  lastwornpantynumber: Record<string, string | number>;
+  lastwornbratype: Record<string, string | number>;
+  lastwornbranumber: Record<string, string | number>;
+  lastwornshoetype: Record<string, string | number>;
+  lastwornshoenumber: Record<string, string | number>;
+  lastwornpursetype: Record<string, string | number>;
+  lastwornpursenumber: Record<string, string | number>;
+  lastworncoattype: Record<string, string | number>;
+  lastworncoatnumber: Record<string, string | number>;
   lastworn_backups: Record<string, Record<string, string | number>>;
 
   PBimbo: number;

@@ -229,7 +229,7 @@ function enterPracticeGuitar(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).ml_not_alone ?? 0) === 0  ||  (!((s as any).will_cost ?? 0))) {
         scene.actions([
-          { label: 'Practice guitar (15 minutes)', goto: ['music_bedroomPractice', 'guitar'] },
+          { label: 'Practice guitar (15 minutes)', goto: ['music_bedroompractice', 'guitar'] },
         ]);
       } else {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -244,7 +244,7 @@ function enterPracticeGuitar(s: GameState, scene: SceneBuilder): void {
     (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     qspCall(st, 'willpower', 'pay', 'self');
     qspCall(st, 'stat', '');
-    qspGoto(st, 'music_bedroomPractice', 'guitar');
+    qspGoto(st, 'music_bedroompractice', 'guitar');
   } },
           ]);
         }

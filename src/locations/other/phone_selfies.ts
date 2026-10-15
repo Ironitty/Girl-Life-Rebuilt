@@ -429,10 +429,10 @@ function enterGetSelfieLayout(s: GameState, scene: SceneBuilder): void {
       (s as any).result = ((s as any).result ?? 0) + ('<tr><td><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027phone_selfies\u0027, \u0027pavlovsk\u0027); return false;">Pavlovsk friends</a></td></tr>');
       (s as any).result = ((s as any).result ?? 0) + ('<tr><td><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027phone_selfies\u0027, \u0027city\u0027); return false;">City friends</a></td></tr>');
     }
-    (s as any).temp_locationCnt = undefined;
     (s as any).result = ((s as any).result ?? 0) + ('</table>');
     return;
   } while (((s as any).temp_locationCnt ?? 0) < Object.keys((s as any).selfieLoc ?? {}).length);
+    (s as any).temp_locationCnt = undefined;
   scene.build();
 }
 
@@ -484,9 +484,9 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
         (s as any).result = ((s as any).result ?? '') + '<td></td>';
       }
       (s as any).result = ((s as any).result ?? 0) + ('</tr><tr></tr>');
+    } while (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieCloTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
       (s as any).temp_cnum = undefined;
       (s as any).temp_clocnt = undefined;
-    } while (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieCloTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
   }
   return;
   scene.build();
@@ -513,9 +513,9 @@ function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
         (s as any).result = ((s as any).result ?? '') + '<td></td>';
       }
       (s as any).result = ((s as any).result ?? 0) + ('</tr><tr></tr>');
+    } while (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
       (s as any).temp_cnum = undefined;
       (s as any).temp_swicnt = undefined;
-    } while (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
   }
   return;
   scene.build();
@@ -542,9 +542,9 @@ function enterRetrieveUnderwearSelfies(s: GameState, scene: SceneBuilder): void 
         (s as any).result = ((s as any).result ?? '') + '<td></td>';
       }
       (s as any).result = ((s as any).result ?? 0) + ('</tr><tr></tr>');
+    } while (((s as any).temp_undcnt ?? 0) <= ((s as any).selfieUndTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
       (s as any).temp_cnum = undefined;
       (s as any).temp_undcnt = undefined;
-    } while (((s as any).temp_undcnt ?? 0) <= ((s as any).selfieUndTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
   }
   return;
   scene.build();
@@ -571,9 +571,9 @@ function enterRetrieveNudeSelfies(s: GameState, scene: SceneBuilder): void {
         (s as any).result = ((s as any).result ?? '') + '<td></td>';
       }
       (s as any).result = ((s as any).result ?? 0) + ('</tr><tr></tr>');
+    } while (((s as any).temp_nudcnt ?? 0) <= ((s as any).selfieNudTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
       (s as any).temp_cnum = undefined;
       (s as any).temp_nudcnt = undefined;
-    } while (((s as any).temp_nudcnt ?? 0) <= ((s as any).selfieNudTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
   }
   return;
   scene.build();
@@ -600,9 +600,9 @@ function enterRetrieveBathSelfies(s: GameState, scene: SceneBuilder): void {
         (s as any).result = ((s as any).result ?? '') + '<td></td>';
       }
       (s as any).result = ((s as any).result ?? 0) + ('</tr><tr></tr>');
+    } while (((s as any).temp_bathcnt ?? 0) <= ((s as any).selfieBathTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
       (s as any).temp_cnum = undefined;
       (s as any).temp_bathcnt = undefined;
-    } while (((s as any).temp_bathcnt ?? 0) <= ((s as any).selfieBathTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
   }
   return;
   scene.build();
@@ -629,9 +629,9 @@ function enterRetrieveShowerSelfies(s: GameState, scene: SceneBuilder): void {
         (s as any).result = ((s as any).result ?? '') + '<td></td>';
       }
       (s as any).result = ((s as any).result ?? 0) + ('</tr><tr></tr>');
+    } while (((s as any).temp_showercnt ?? 0) <= ((s as any).selfieShowerTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
       (s as any).temp_cnum = undefined;
       (s as any).temp_showercnt = undefined;
-    } while (((s as any).temp_showercnt ?? 0) <= ((s as any).selfieShowerTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
   }
   return;
   scene.build();
@@ -658,9 +658,9 @@ function enterRetrieveTitflashSelfies(s: GameState, scene: SceneBuilder): void {
         (s as any).result = ((s as any).result ?? '') + '<td></td>';
       }
       (s as any).result = ((s as any).result ?? 0) + ('</tr><tr></tr>');
+    } while (((s as any).temp_flashtitscnt ?? 0) <= ((s as any).selfieTitFlashTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
       (s as any).temp_cnum = undefined;
       (s as any).temp_flashtitscnt = undefined;
-    } while (((s as any).temp_flashtitscnt ?? 0) <= ((s as any).selfieTitFlashTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
   }
   return;
   scene.build();
@@ -687,9 +687,9 @@ function enterRetrieveAssflashSelfies(s: GameState, scene: SceneBuilder): void {
         (s as any).result = ((s as any).result ?? '') + '<td></td>';
       }
       (s as any).result = ((s as any).result ?? 0) + ('</tr><tr></tr>');
+    } while (((s as any).temp_flashasscnt ?? 0) <= ((s as any).selfieAssFlashTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
       (s as any).temp_cnum = undefined;
       (s as any).temp_flashasscnt = undefined;
-    } while (((s as any).temp_flashasscnt ?? 0) <= ((s as any).selfieAssFlashTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
   }
   return;
   scene.build();
@@ -716,9 +716,9 @@ function enterRetrievePussyflashSelfies(s: GameState, scene: SceneBuilder): void
         (s as any).result = ((s as any).result ?? '') + '<td></td>';
       }
       (s as any).result = ((s as any).result ?? 0) + ('</tr><tr></tr>');
+    } while (((s as any).temp_flashpussycnt ?? 0) <= ((s as any).selfiePussyFlashTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
       (s as any).temp_cnum = undefined;
       (s as any).temp_flashpussycnt = undefined;
-    } while (((s as any).temp_flashpussycnt ?? 0) <= ((s as any).selfiePussyFlashTot ?? 0)[String((s as any).locArgs?.[1] ?? '')]);
   }
   return;
   scene.build();

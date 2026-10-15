@@ -218,9 +218,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ((s as any).ngpPrefResult = (s as any).ngpPrefResult ?? {})['NotNeg'] = (((s as any).ngpVars ?? 0)?.['trait']);
         (s as any).temp_ngpPrefNotNeg = undefined;
       }
+    } while (((s as any).ngpVars ?? 0)?.['i'] < ((s as any).ngpVars ?? 0)?.['max']);
       (s as any).ngpVars = undefined;
       (s as any).ngp_pref = undefined;
-    } while (((s as any).ngpVars ?? 0)?.['i'] < ((s as any).ngpVars ?? 0)?.['max']);
   }
   (s as any).npc_ngp_pref_traits = undefined;
   (s as any).npc_ngp_pref_values = undefined;

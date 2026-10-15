@@ -446,9 +446,9 @@ function enterSecMenuBar(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).result = '';
     }
-    (s as any).sd_mb = undefined;
     return;
   } while (((s as any).sd_mb ?? 0)?.['i'] < ((s as any).sd_mb ?? 0)?.['max']);
+    (s as any).sd_mb = undefined;
   scene.build();
 }
 
@@ -569,9 +569,9 @@ function enterSecStatus(s: GameState, scene: SceneBuilder): void {
       (s as any).result = qspFunc(s, 'stat_display', 'helper_font_wrap', ((s as any).result ?? 0));
     }
     (s as any).result = qspFunc(s, 'stat_display', 'helper_align_wrap', 'status', ((s as any).result ?? 0));
-    (s as any).sd_s = undefined;
     return;
   } while (((s as any).sd_s ?? 0)?.['i'] < ((s as any).sd_s ?? 0)?.['max']);
+    (s as any).sd_s = undefined;
   scene.build();
 }
 
@@ -714,9 +714,9 @@ function enterSecAttributes(s: GameState, scene: SceneBuilder): void {
       (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'stat_display', 'helper_font_wrap', (((s as any).sd_a ?? 0)?.['bars'])));
     }
     (s as any).result = qspFunc(s, 'stat_display', 'helper_align_wrap', 'attributes', ((s as any).result ?? 0));
-    (s as any).sd_a = undefined;
     return;
   } while (((s as any).sd_a ?? 0)?.['i'] < ((s as any).sd_a ?? 0)?.['max']);
+    (s as any).sd_a = undefined;
   scene.build();
 }
 
@@ -765,9 +765,9 @@ function enterSecIcons(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).result = '<table width="100%" cellpadding="0" cellspacing="0"><tr><td' + (((s as any).sd_ic ?? 0)?.['td_attr']) + '><table cellpadding="0" cellspacing="0">' + (((s as any).sd_ic ?? 0)?.['rows']) + '</table></td></tr></table>';
     }
-    (s as any).sd_ic = undefined;
     return;
   } while (((s as any).sd_ic ?? 0)?.['row'] <= 4);
+    (s as any).sd_ic = undefined;
   scene.build();
 }
 
@@ -931,9 +931,9 @@ function enterSecSkills(s: GameState, scene: SceneBuilder): void {
       }
     }
     ((s as any).stat_cfg = (s as any).stat_cfg ?? {})['bar_width'] = (((s as any).sd_sk ?? 0)?.['save_barwidth']);
-    (s as any).sd_sk = undefined;
     return;
   } while (((s as any).sd_sk ?? 0)?.['gi'] < ((s as any).sd_sk ?? 0)?.['gmax']);
+    (s as any).sd_sk = undefined;
   scene.build();
 }
 
@@ -1078,9 +1078,9 @@ function enterSecRelations(s: GameState, scene: SceneBuilder): void {
       }
     }
     ((s as any).stat_cfg = (s as any).stat_cfg ?? {})['bar_width'] = (((s as any).sd_rl ?? 0)?.['save_barwidth']);
-    (s as any).sd_rl = undefined;
     return;
   } while (((s as any).sd_rl ?? 0)?.['gi'] < ((s as any).sd_rl ?? 0)?.['gmax']);
+    (s as any).sd_rl = undefined;
   scene.build();
 }
 
@@ -1203,9 +1203,9 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_si = (s as any).sd_si ?? {})['ci'] = ((s as any).sd_si['ci'] ?? 0) + (1);
       (s as any).result = ((s as any).result ?? 0) + ('</div>');
       (s as any).result = qspFunc(s, 'stat_display', 'helper_align_wrap', 'images', ((s as any).result ?? 0));
-      (s as any).sd_si = undefined;
       return;
     } while (((s as any).sd_si ?? 0)?.['ci'] < ((s as any).sd_img ?? 0)?.['count']);
+      (s as any).sd_si = undefined;
   }
   if (((s as any).sd_si ?? 0)?.['fit_width'] === 1) {
     (s as any).result = '<table width="100%" cellspacing="' + (((s as any).sd_si ?? 0)?.['cellspacing']) + '" cellpadding="' + (((s as any).sd_si ?? 0)?.['cellpadding']) + '">';
@@ -1278,9 +1278,9 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
     ((s as any).sd_si = (s as any).sd_si ?? {})['ci'] = ((s as any).sd_si['ci'] ?? 0) + (1);
     (s as any).result = ((s as any).result ?? 0) + ('</table>');
     (s as any).result = qspFunc(s, 'stat_display', 'helper_align_wrap', 'images', ((s as any).result ?? 0));
-    (s as any).sd_si = undefined;
     return;
   } while (((s as any).sd_si ?? 0)?.['ci'] < ((s as any).sd_img ?? 0)?.['count']);
+    (s as any).sd_si = undefined;
   scene.build();
 }
 
@@ -1761,9 +1761,9 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).stat_msg = ((s as any).stat_msg ?? 0) + ((((s as any).sd_d ?? 0)?.['res']));
     ((s as any).sd_d = (s as any).sd_d ?? {})['i'] = ((s as any).sd_d['i'] ?? 0) + (1);
-    (s as any).sd_d = undefined;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFinalize(s, scene); (s as any).locArgs = __savedLocArgs; }
   } while (((s as any).sd_d ?? 0)?.['i'] < ((s as any).sd_d ?? 0)?.['max']);
+    (s as any).sd_d = undefined;
   scene.build();
 }
 

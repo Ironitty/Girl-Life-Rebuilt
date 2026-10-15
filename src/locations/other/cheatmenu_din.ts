@@ -1353,11 +1353,11 @@ function enterSetAttrs(s: GameState, scene: SceneBuilder): void {
   do {
     qspCall(s, 'shortgs', 'setStat', (((s as any).att_name ?? 0)?.[String((s as any).loop_index ?? 0)] ?? 0), ((s as any).locArgs?.[1] ?? 0));
     (s as any).loop_index = ((s as any).loop_index ?? 0) + (1);
-    (s as any).loop_index = undefined;
-    (s as any).loop_index_max = undefined;
     qspGoto(s, 'cheatmenu_din', 'stats');
     ((s as any).cheatmenu = (s as any).cheatmenu ?? {})['setSkills'] = 'gs \'cheatmenu_din\', \'setSkills\', ARGS[0]';
   } while (((s as any).loop_index ?? 0) < ((s as any).loop_index_max ?? 0));
+    (s as any).loop_index = undefined;
+    (s as any).loop_index_max = undefined;
   scene.build();
 }
 
@@ -1369,11 +1369,11 @@ function enterSetSkills(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'shortgs', 'setStat', (((s as any).skl_name ?? 0)?.[String((s as any).loop_index ?? 0)] ?? 0), ((s as any).locArgs?.[1] ?? 0));
     }
     (s as any).loop_index = ((s as any).loop_index ?? 0) + (1);
-    (s as any).loop_index = undefined;
-    (s as any).loop_index_max = undefined;
     qspGoto(s, 'cheatmenu_din', 'stats');
     ((s as any).cheatmenu = (s as any).cheatmenu ?? {})['printStatLinks'] = 'gs \'cheatmenu_din\', \'printStatLinks\', $ARGS[0], $ARGS[1]';
   } while (((s as any).loop_index ?? 0) < ((s as any).loop_index_max ?? 0));
+    (s as any).loop_index = undefined;
+    (s as any).loop_index_max = undefined;
   scene.build();
 }
 

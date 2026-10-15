@@ -115,6 +115,46 @@ Exclusion sets at top of file: `EXCLUDE_EXEC_DATA`, `EXCLUDE_FUNC_LITERAL`, `EXC
 
 Run it after any change that adds or edits asset paths. It catches broken images/audio the render/interaction audit misses (that audit's 404 filter hides them).
 
+### Bug Testers (5)
+Five standalone Playwright regression testers, each on its own port, each asserting **actual state values** (not just "no crash"). Run against a `npx vite build` output. All DONE.
+
+| # | Tester | Script | Port | Catches | Status |
+|---|--------|--------|------|---------|--------|
+| 1 | Save/Load round-trip | `scripts/test-save-load.ts` | 4176 | state survives save→load (IndexedDB) | DONE 34/0 |
+| 2 | Navigation graph / reachability | `scripts/test-nav-graph.ts` | 4177 | every `qspGoto`/act destination resolves; no dead ends | DONE 12/0 |
+| 3 | qspCall fallback triage | `scripts/test-qspcall-triage.ts` | 4178 | `qspCall` default-case recurse/hang/error | DONE 0/0/0 |
+| 4 | Time-advancement | `scripts/test-time-advance.ts` | 4180 | `minut`/`totminut` deltas + day/week/month rollover | DONE 28/0 |
+| 5 | State-mutation semantic diff | `scripts/test-semantic-diff.ts` | 4179 | handler writes the right vars to the right values | DONE 497/0 |
+
+Run one: `npx tsx scripts/test-<name>.ts` (build first). These are standalone — **not** part of the render-interaction audit. Free the port first with `lsof -ti:<port> | xargs kill -9`.
+
+**Tester #1 methodology** (`scripts/test-save-load.ts`): Phase A–C save/load round-trip on 3 slots. Phase D saves+loads **all 10 slots** (city_center, city_park, pav_park, pav_cafe, pav_lake, pav_church, pav_market, pav_station, city_metro, city_club) and verifies slot isolation. Phase E injects a corrupted JSON string into the IndexedDB `saves` store and asserts `loadGame` rejects with a formatted `SaveError` (no unhandled crash).
+
+**Tester #5 methodology** (`scripts/semantic-extract.ts` + `scripts/test-semantic-diff.ts`): extracts clean QSP act contracts (pure self-arithmetic writes, no `qspCall`/nav; blank lines do **not** end an act body), invokes each TS handler directly with the contract vars seeded to a baseline, and asserts the exact write delta. The extractor also captures `gs 'target', 'label'` calls (2089 total contracts: 976 write-only + 1113 call); call contracts are skipped in the test (call targets' enters override handler writes — expected QSP behavior). Soundness guards: goto-contamination skip (handler changes `loc`/`locArg`), qspCall exclusion, label-collision (`ambiguous`) skip, and a Node-side `setTimeout` in a `Promise.race` for hang detection (Playwright's page-side timeout can't interrupt a blocked main thread) with context recycle.
+
+### System Unit Tests (vitest)
+Five vitest files under `src/systems/__tests__/` + `src/core/__tests__/`, run with `npx vitest run`. Standalone — **not** part of the render-interaction audit or the 5 bug testers. No browser, no build required. All DONE.
+
+| # | System | File | Tests | Catches |
+|---|--------|------|-------|---------|
+| 1 | Combat | `src/systems/__tests__/combat.test.ts` | 55 | damage calc, hit chance, effects (fog/shield/clone/stun), AI targeting, turn resolution, victory/defeat |
+| 2 | Mood | `src/systems/__tests__/mood.test.ts` | 48 | interpret/raise/lower, disposition clamp 20–70, trauma 0–15, SE add/pop/clear, decay momentum/inertia, cheat multipliers |
+| 3 | Calendar | `src/systems/__tests__/calendar.test.ts` | 19 | event CRUD, recurrence (daily/weekly/weekdays/weekends), reminder window, player event count |
+| 4 | NPC | `src/systems/__tests__/npc.test.ts` | 8 | DOB encoding (`day+month*100+year*10000`), NPC ID validation, lookup, stat copy |
+| 5 | Clothing | `src/systems/__tests__/clothing.test.ts` | 25 | 5-slot wear/remove/strip, isNude/isFullyClothed, warmth (coat+3, clothing+2, shoes+1, panty/bra+0.5 each=7), visible layers |
+
+Run all: `npx vitest run`. Run one: `npx vitest run src/systems/__tests__/combat.test.ts`.
+
+**Combat test methodology**: mocks `Math.random` via a queue (`mockRandom(...values)`) for deterministic hit/miss/damage. Tests all 6 combat modules (`combat.ts`, `damage.ts`, `effects.ts`, `ai.ts`). Key invariants: `applyDamage` returns full damage as `healthLost` (not clamped delta); `findNextActor` with tied timers picks the first found (player before enemy); round reset requires both combatants dead.
+
+**Mood test methodology**: `moodVars` is a `MoodVars` object on GameState (`disp_base`, `disp`, `momentum`, `inertia`, `max`, `min`, `hold_minut`, `leftover_mood`). Numeric disposition values used directly (no /5 scaling); /5 only applies to string degrees via `moodInterpret`. `moodClamp` clamps `disp_base` to 20–70. SE `add`/`pop`/`clear` for gerpes/sifilis/triper adjusts `disp_base` by ±5 (raw value).
+
+**Calendar test methodology**: uses flat records on GameState (`events_list`, `event_title`, `event_daystart`, etc. — all `Record<string, ...>`). `addEvent(s, event: Omit<EventDef, 'id'>)` takes a single event object. `getEventsForDay(s, daystart: number)`. `checkReminders(s)` takes just state. `timeToTs(hour, minute) = hour * 4 + Math.floor(minute / 15)`.
+
+**NPC test methodology**: DOB encoding is `day + month*100 + year*10000` (e.g. Jan 15 1990 = 19900115). `getAge` reads from `s.dateVars` (not top-level `day`/`month`/`year`).
+
+**Clothing test methodology**: 5 slots (panty, clothing, bra, shoes, coat). `getWarmth` with all layers worn = 7 (3+2+1+0.5+0.5).
+
 ## Evidence Before Action
 
 For any non-trivial debugging, coding, configuration, architecture, or project-state

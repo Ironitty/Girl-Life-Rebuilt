@@ -27,7 +27,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', goto: ['Military', 'start'] },
     { label: 'Sleep', handler: (st: GameState) => {
     qspCall(st, 'sleep_simple', 'forced', 480);
-    qspGoto(st, 'palatka', 'start');
+    qspGoto(st, 'Palatka', 'start');
   } },
   ]);
   scene.build();
@@ -50,7 +50,7 @@ function enterPal0(s: GameState, scene: SceneBuilder): void {
       { label: 'Send', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
-    qspGoto(st, 'palatka', 'start');
+    qspGoto(st, 'Palatka', 'start');
   } },
     ]);
   }
@@ -86,7 +86,7 @@ function enterPal1(s: GameState, scene: SceneBuilder): void {
       { label: 'Say thank you ', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
-    qspGoto(st, 'palatka', 'start');
+    qspGoto(st, 'Palatka', 'start');
   } },
     ]);
   }

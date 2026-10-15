@@ -33,10 +33,10 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Give him a blowjob', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', '');
-  }, goto: ['husbsex', 'minet'] },
+  }, goto: ['husbSex', 'minet'] },
       { label: 'Not now. Let\'s do another position.', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', '');
-  }, goto: ['husbsex', 'variant'] },
+  }, goto: ['husbSex', 'variant'] },
     ]);
   } else {
     if (((s as any).sexrand ?? 0) === 1) {
@@ -44,28 +44,28 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Anal', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', '');
-  }, goto: ['husbsex', 'anal'] },
+  }, goto: ['husbSex', 'anal'] },
         { label: 'Fuck that. Let\'s do something else.', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', '');
-  }, goto: ['husbsex', 'variant'] },
+  }, goto: ['husbSex', 'variant'] },
       ]);
     } else {
       if (((s as any).sexrand ?? 0) === 2) {
         scene.text(`"Lie down ${((s as any).pcs_nickname ?? '')} and open your legs for me."`);
         scene.actions([
-          { label: 'Open your legs', goto: ['husbsex', 'miss'] },
+          { label: 'Open your legs', goto: ['husbSex', 'miss'] },
           { label: 'Let\'s do another position.', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', '');
-  }, goto: ['husbsex', 'variant'] },
+  }, goto: ['husbSex', 'variant'] },
         ]);
       } else {
         if (((s as any).sexrand ?? 0) === 3) {
           scene.text(`"I want to take you from behind ${((s as any).pcs_nickname ?? '')}."`);
           scene.actions([
-            { label: 'Doggy style', goto: ['husbsex', 'dog'] },
+            { label: 'Doggy style', goto: ['husbSex', 'dog'] },
             { label: 'Let\'s do another position.', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', '');
-  }, goto: ['husbsex', 'variant'] },
+  }, goto: ['husbSex', 'variant'] },
           ]);
         }
       }
@@ -226,20 +226,20 @@ function enterVariant(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).npcdesc ?? '')} He is looking at you and waiting for what you say`);
   if (((s as any).kundayH ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
-      { label: 'Ask him to lick you', goto: ['husbsex', 'kuni'] },
+      { label: 'Ask him to lick you', goto: ['husbSex', 'kuni'] },
     ]);
   }
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).npc_pervert ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).mc_inventory ?? 0)?.['strapon'] > 0) {
     scene.actions([
-      { label: 'Use a strapon', goto: ['husbsex', 'strapon'] },
+      { label: 'Use a strapon', goto: ['husbSex', 'strapon'] },
     ]);
   }
   scene.actions([
-    { label: 'Open your legs', goto: ['husbsex', 'miss'] },
-    { label: 'Get into doggy position', goto: ['husbsex', 'dog'] },
-    { label: 'Anal', goto: ['husbsex', 'anal'] },
-    { label: 'Give him a blowjob', goto: ['husbsex', 'minet'] },
-    { label: 'Give him a handjob', goto: ['husbsex', 'hand'] },
+    { label: 'Open your legs', goto: ['husbSex', 'miss'] },
+    { label: 'Get into doggy position', goto: ['husbSex', 'dog'] },
+    { label: 'Anal', goto: ['husbSex', 'anal'] },
+    { label: 'Give him a blowjob', goto: ['husbSex', 'minet'] },
+    { label: 'Give him a handjob', goto: ['husbSex', 'hand'] },
   ]);
   scene.build();
 }
@@ -318,7 +318,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'end');
   scene.actions([
-    { label: 'Further', goto: ['husbsex', 'variant'] },
+    { label: 'Further', goto: ['husbSex', 'variant'] },
   ]);
   scene.build();
 }

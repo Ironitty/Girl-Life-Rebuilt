@@ -737,14 +737,14 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
       (s as any).property = undefined;
       (s as any).i = ((s as any).i ?? 0) + (1);
       qspCall(s, 'homes_properties', 'clean_up_property_data');
-      (s as any).i = undefined;
-      (s as any).count = undefined;
       if (((s as any).title ?? 0) !== '') {
         scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
       }
       (s as any).line = undefined;
       (s as any).title = undefined;
     } while (((s as any).i ?? 0) < ((s as any).count ?? 0));
+      (s as any).i = undefined;
+      (s as any).count = undefined;
   }
   (s as any).title = '<center><h4>Mobile Internet Subscription</h4></center>';
   (s as any).price = 1200;

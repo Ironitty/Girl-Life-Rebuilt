@@ -770,7 +770,7 @@ function enterCorruptChoices(s: GameState, scene: SceneBuilder): void {
         { label: 'Make her fuck Kolka', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'sex', 'force', 'easy');
     qspCall(st, 'willpower', 'pay', 'force');
-    qspGoto(st, 'natkolev', 'kolkabj');
+    qspGoto(st, 'natkolEv', 'kolkabj');
   } },
       ]);
     }

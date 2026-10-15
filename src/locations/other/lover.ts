@@ -379,9 +379,9 @@ function enterClearAll(s: GameState, scene: SceneBuilder): void {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_lover_id ?? 0)]; enterGenerateHotelLink(s, scene); (s as any).locArgs = __savedLocArgs; }
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_lover_id ?? 0)]; enterGenerateOldDateLink(s, scene); (s as any).locArgs = __savedLocArgs; }
           (s as any).temp_lover_i = ((s as any).temp_lover_i ?? 0) + (1);
+        } while (((s as any).temp_lover_i ?? 0) < Object.keys((s as any).lover ?? {}).length);
           (s as any).temp_lover_i = undefined;
           (s as any).temp_lover_id = undefined;
-        } while (((s as any).temp_lover_i ?? 0) < Object.keys((s as any).lover ?? {}).length);
       }
       return;
     }

@@ -445,10 +445,10 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).temp_grades_i = ((s as any).temp_grades_i ?? 0) + (1);
+  } while (((s as any).temp_grades_i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
     (s as any).temp_grades_modifier = undefined;
     (s as any).temp_grades_mult_fact = undefined;
     (s as any).temp_grades_i = undefined;
-  } while (((s as any).temp_grades_i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length);
   scene.build();
 }
 

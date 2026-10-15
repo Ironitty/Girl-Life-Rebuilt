@@ -214,10 +214,10 @@ function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
       } while (((s as any).temp_tailorVars ?? 0)?.['number'] < ((s as any).temp_tailorVars ?? 0)?.['total']);
     }
     ((s as any).temp_tailorVars = (s as any).temp_tailorVars ?? {})['j'] = ((s as any).temp_tailorVars['j'] ?? 0) + (1);
-    (s as any).temp_tailorVars = undefined;
-    (s as any).shop_display_types = undefined;
     return;
   } while (((s as any).temp_tailorVars ?? 0)?.['j'] < ((s as any).temp_tailorVars ?? 0)?.['j_max']);
+    (s as any).temp_tailorVars = undefined;
+    (s as any).shop_display_types = undefined;
   scene.build();
 }
 

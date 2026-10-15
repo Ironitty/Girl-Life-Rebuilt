@@ -116,7 +116,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         { label: 'You really don\'t need it', goto: ['katjaEv', 'kathan'] },
       ]);
     } else {
-      qspGoto(st, 'KatjaEv', 'kathan');
+      qspGoto(st, 'katjaEv', 'kathan');
     }
   } },
   ]);
@@ -218,7 +218,7 @@ function enterKathan(s: GameState, scene: SceneBuilder): void {
     if (((st as any).loc ?? 0) === 'mey_home') {
       qspGoto(st, 'KatjaHomeTalk', 'homework');
     } else {
-      qspGoto(st, 'KatjaEv', '1');
+      qspGoto(st, 'katjaEv', '1');
     }
   } },
       ]);

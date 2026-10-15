@@ -385,11 +385,11 @@ function enterSetActive(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'calendar', 'pack', 'add', 'church');
     }
     ((s as any).arch_vars = (s as any).arch_vars ?? {})['main_active'] = ((s as any).temp_sa_active ?? 0);
+    return;
+  } while (((s as any).temp_sa_index ?? 0) < 5);
     (s as any).temp_archetype = undefined;
     (s as any).temp_sa_active = undefined;
     (s as any).temp_sa_index = undefined;
-    return;
-  } while (((s as any).temp_sa_index ?? 0) < 5);
   scene.build();
 }
 
@@ -778,14 +778,14 @@ function enterDecay(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_decay_archetype ?? 0), 'decay', '', ((s as any).temp_decay_delta ?? 0)]; enterLogEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     (s as any).temp_decay_i = ((s as any).temp_decay_i ?? 0) + (1);
+    return;
+  } while (((s as any).temp_decay_i ?? 0) < 5);
     (s as any).temp_decay_i = undefined;
     (s as any).temp_decay_before = undefined;
     (s as any).temp_decay_rate = undefined;
     (s as any).temp_decay_after = undefined;
     (s as any).temp_decay_delta = undefined;
     (s as any).temp_decay_archetype = undefined;
-    return;
-  } while (((s as any).temp_decay_i ?? 0) < 5);
   scene.build();
 }
 
@@ -1099,13 +1099,13 @@ function enterSeedSnapshots(s: GameState, scene: SceneBuilder): void {
       ((s as any).arch_vars = (s as any).arch_vars ?? {})[String(((s as any).temp_ss_archetype ?? 0)) + '_avg'] = ((s as any).temp_ss_val ?? 0);
       (s as any).temp_ss_i = ((s as any).temp_ss_i ?? 0) + (1);
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeWithdrawal(s, scene); (s as any).locArgs = __savedLocArgs; }
+      return;
+    } while (((s as any).temp_ss_j ?? 0) < 7);
+  } while (((s as any).temp_ss_i ?? 0) < 5);
       (s as any).temp_ss_i = undefined;
       (s as any).temp_ss_j = undefined;
       (s as any).temp_ss_val = undefined;
       (s as any).temp_ss_archetype = undefined;
-      return;
-    } while (((s as any).temp_ss_j ?? 0) < 7);
-  } while (((s as any).temp_ss_i ?? 0) < 5);
   scene.build();
 }
 
@@ -1444,9 +1444,9 @@ function enterDisplayPage(s: GameState, scene: SceneBuilder): void {
     scene.text(String(qspFunc(s, 'temp_tv', 'html') || ''));
     ((s as any).stat_cfg = (s as any).stat_cfg ?? {})['bar_width'] = (((s as any).temp_tv ?? 0)?.['saved_bar_width']);
     scene.text('<center><font size="2" color="#888888">Archetypes are shaped by clothing, makeup, and other presentation choices, as well as social cliques and many decisions you can make.<br>Each archetype has two opposites, with opposing effects. Gaining points in a archetype reduces an equal amount of points in its opposites.<br>Bimbo opposes Prude &amp; Punk, Preppy opposes Punk &amp; Goth, Prude opposes Goth &amp; Bimbo, Punk opposes Bimbo &amp; Preppy, and Goth opposes Preppy &amp; Prude.<br>The more points you have in your active archetype, the stronger its effects.</font></center>');
-    (s as any).temp_tv = undefined;
     return;
   } while (((s as any).temp_tv ?? 0)?.['i'] < 5);
+    (s as any).temp_tv = undefined;
   scene.build();
 }
 
@@ -1609,12 +1609,12 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
         (s as any).thp_story_labels = undefined;
         ((s as any).thp = (s as any).thp ?? {})['ti'] = ((s as any).thp['ti'] ?? 0) + (1);
         scene.text('</div></center>');
-        (s as any).agg = undefined;
-        (s as any).thp = undefined;
         return;
       }
     } while (((s as any).thp ?? 0)?.['ci'] < 9);
   } while (((s as any).thp ?? 0)?.['ti'] < 5);
+        (s as any).agg = undefined;
+        (s as any).thp = undefined;
   scene.build();
 }
 
@@ -2598,6 +2598,9 @@ function enterGetArchetypeMessage(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).tnotif_i = ((s as any).tnotif_i ?? 0) + (1);
     (s as any).result = '<span style="font-weight:normal">' + ((s as any).result ?? 0) + '</span>';
+    (s as any).tnotif_window_start = ((s as any).totminut ?? 0);
+    return;
+  } while (((s as any).tnotif_i ?? 0) < Object.keys((s as any).tnotif_archetype_names ?? {}).length);
     (s as any).tnotif_i = undefined;
     (s as any).tnotif_t = undefined;
     (s as any).tnotif_abs = undefined;
@@ -2606,9 +2609,6 @@ function enterGetArchetypeMessage(s: GameState, scene: SceneBuilder): void {
     (s as any).tnotif_disp = undefined;
     (s as any).tnotif_archetype_delta = undefined;
     (s as any).tnotif_archetype_names = undefined;
-    (s as any).tnotif_window_start = ((s as any).totminut ?? 0);
-    return;
-  } while (((s as any).tnotif_i ?? 0) < Object.keys((s as any).tnotif_archetype_names ?? {}).length);
   scene.build();
 }
 

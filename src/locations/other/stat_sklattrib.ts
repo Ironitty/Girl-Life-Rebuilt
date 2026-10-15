@@ -36,9 +36,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     do {
       ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
       ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
-      (s as any).temp_sklattrib = undefined;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDegradationLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
     } while (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).att_name ?? {}).length);
+      (s as any).temp_sklattrib = undefined;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterAdvancementLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat_sklattrib_lvlset', '');
@@ -53,9 +53,9 @@ function enterDaycall(s: GameState, scene: SceneBuilder): void {
     do {
       ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
       ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['index'] = ((s as any).temp_sklattrib['index'] ?? 0) + (1);
-      (s as any).temp_sklattrib = undefined;
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDegradationLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
     } while (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).att_name ?? {}).length);
+      (s as any).temp_sklattrib = undefined;
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterAdvancementLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat_sklattrib_lvlset', '');
@@ -95,11 +95,11 @@ function enterDegradationLoop(s: GameState, scene: SceneBuilder): void {
           }
           ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'END';
         }
-        (s as any).temp_sklattrib = undefined;
         return;
       } while (((s as any).temp_sklattrib ?? 0)?.['trait_index'] < Object.keys((s as any).traitattskl ?? {}).length);
     }
   } while (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'skill');
+        (s as any).temp_sklattrib = undefined;
   scene.build();
 }
 
@@ -133,10 +133,10 @@ function enterAdvancementLoop(s: GameState, scene: SceneBuilder): void {
         }
         ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'END';
       }
-      (s as any).temp_sklattrib = undefined;
       return;
     }
   } while (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'skill');
+      (s as any).temp_sklattrib = undefined;
   scene.build();
 }
 
@@ -172,10 +172,10 @@ function enterInitLoop(s: GameState, scene: SceneBuilder): void {
         }
         ((s as any).temp_sklattrib = (s as any).temp_sklattrib ?? {})['stat_type'] = 'END';
       }
-      (s as any).temp_sklattrib = undefined;
       return;
     }
   } while (((s as any).temp_sklattrib ?? 0)?.['stat_type'] === 'skill');
+      (s as any).temp_sklattrib = undefined;
   scene.build();
 }
 

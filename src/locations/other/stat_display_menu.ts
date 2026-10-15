@@ -606,9 +606,9 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
     ((s as any).ro = (s as any).ro ?? {})['i'] = ((s as any).ro['i'] ?? 0) + (1);
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</table></center></td></tr>');
     (s as any).result = (((s as any).ro ?? 0)?.['html']);
-    (s as any).ro = undefined;
     return;
   } while (((s as any).ro ?? 0)?.['i'] < Object.keys((s as any)['$' + ((s as any).locArgs?.[1] ?? 0)] ?? {}).length);
+    (s as any).ro = undefined;
   scene.build();
 }
 
@@ -679,9 +679,9 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
     ((s as any).ro = (s as any).ro ?? {})['gi'] = ((s as any).ro['gi'] ?? 0) + (1);
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</table></center></td></tr>');
     (s as any).result = (((s as any).ro ?? 0)?.['html']);
-    (s as any).ro = undefined;
     return;
   } while (((s as any).ro ?? 0)?.['gi'] < Object.keys((s as any).skill_group_order ?? {}).length);
+    (s as any).ro = undefined;
   scene.build();
 }
 
@@ -811,9 +811,9 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
     ((s as any).ro = (s as any).ro ?? {})['gi'] = ((s as any).ro['gi'] ?? 0) + (1);
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</table></center></td></tr>');
     (s as any).result = (((s as any).ro ?? 0)?.['html']);
-    (s as any).ro = undefined;
     return;
   } while (((s as any).ro ?? 0)?.['gi'] < Object.keys((s as any).rel_group_order ?? {}).length);
+    (s as any).ro = undefined;
   scene.build();
 }
 
@@ -850,9 +850,9 @@ function enterReorderMenuBar(s: GameState, scene: SceneBuilder): void {
     // LABEL: _rmb_next
     ((s as any).ro = (s as any).ro ?? {})['i'] = ((s as any).ro['i'] ?? 0) + (1);
     (s as any).result = ((s as any).result ?? 0) + ('</tr></table></center></td></tr>');
-    (s as any).ro = undefined;
     return;
   } while (((s as any).ro ?? 0)?.['i'] < Object.keys((s as any).menu_bar_order ?? {}).length);
+    (s as any).ro = undefined;
   scene.build();
 }
 

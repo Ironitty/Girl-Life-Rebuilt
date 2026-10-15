@@ -35,11 +35,11 @@ function enterCalculateRentablePropertyCount(s: GameState, scene: SceneBuilder):
       }
     }
     ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['i'] = ((s as any).temp_hpVars['i'] ?? 0) + (1);
-    (s as any).temp_hpVars = undefined;
     ((s as any).accessible_property = (s as any).accessible_property ?? {})['available_for_rent_home_count'] = (((s as any).accessible_property ?? 0)?.['rentable_home_count']);
     ((s as any).accessible_property = (s as any).accessible_property ?? {})['available_for_rent_business_count'] = (((s as any).accessible_property ?? 0)?.['rentable_business_count']);
     return;
   } while (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['max_i']);
+    (s as any).temp_hpVars = undefined;
   scene.build();
 }
 
@@ -504,9 +504,9 @@ function enterGetPropertiesForSale(s: GameState, scene: SceneBuilder): void {
       (s as any).property = undefined;
     }
     ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['i'] = ((s as any).temp_hpVars['i'] ?? 0) + (1);
+  } while (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['max_i']);
     (s as any).checked_homes = undefined;
     (s as any).temp_hpVars = undefined;
-  } while (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['max_i']);
   scene.build();
 }
 
@@ -549,10 +549,10 @@ function enterGetPropertiesForRent(s: GameState, scene: SceneBuilder): void {
       (s as any).property = undefined;
     }
     ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['i'] = ((s as any).temp_hpVars['i'] ?? 0) + (1);
-    (s as any).checked_homes = undefined;
-    (s as any).temp_hpVars = undefined;
     return;
   } while (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['max_i']);
+    (s as any).checked_homes = undefined;
+    (s as any).temp_hpVars = undefined;
   scene.build();
 }
 
@@ -603,10 +603,10 @@ function enterGetInternetEnabledProperties(s: GameState, scene: SceneBuilder): v
       (s as any).property = undefined;
     }
     ((s as any).temp_hpVars = (s as any).temp_hpVars ?? {})['i'] = ((s as any).temp_hpVars['i'] ?? 0) + (1);
-    (s as any).checked_homes = undefined;
-    (s as any).temp_hpVars = undefined;
     return;
   } while (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['max_i']);
+    (s as any).checked_homes = undefined;
+    (s as any).temp_hpVars = undefined;
   scene.build();
 }
 

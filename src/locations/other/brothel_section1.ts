@@ -1810,8 +1810,8 @@ function enterSection1End(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['orgasm_meter'] = Math.min(100, (((s as any).brothel_vars ?? 0)?.['orgasm_meter']));
-  ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['rage_meter'] = Math.min(100, (((s as any).brothel_vars ?? 0)?.['rage_meter']));
+  ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['orgasm_meter'] = Math.min(100, (((s as any).brothel_vars ?? 0)?.['orgasm_meter'] ?? 0));
+  ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['rage_meter'] = Math.min(100, (((s as any).brothel_vars ?? 0)?.['rage_meter'] ?? 0));
   const arg = s.locArg;
   switch (arg) {
     case 'print_stats':

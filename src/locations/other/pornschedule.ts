@@ -308,6 +308,7 @@ function enterContracting(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).ps_i = ((s as any).ps_i ?? 0) + (1);
+  } while (((s as any).ps_i ?? 0) < ((s as any).job_booking_window_days ?? 0)?.['city_pornstudio_actress'] + 1);
     (s as any).ps_i = undefined;
     (s as any).porns = undefined;
     (s as any).edit_button = undefined;
@@ -317,7 +318,6 @@ function enterContracting(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_ps_conflict = undefined;
     (s as any).temp_ps_gap = undefined;
     (s as any).temp_pc_booking = undefined;
-  } while (((s as any).ps_i ?? 0) < ((s as any).job_booking_window_days ?? 0)?.['city_pornstudio_actress'] + 1);
   scene.build();
 }
 

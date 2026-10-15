@@ -27,6 +27,7 @@ function createTestState(overrides: Partial<GameState> = {}): GameState {
     locationType: '',
     scene: { mainText: '', statText: '', curActs: [], curobjs: '', backimage: '', menuOff: false },
     stateStack: [],
+    navigationVersion: 0,
     pcs_mood: 50,
     pcs_energy: 80,
     pcs_hydra: 50,

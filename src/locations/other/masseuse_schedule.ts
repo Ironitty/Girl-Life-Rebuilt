@@ -22,10 +22,10 @@ function enterScheduleReset(s: GameState, scene: SceneBuilder): void {
         ((s as any).masseuse = (s as any).masseuse ?? {})['next_' + String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
         (s as any).ms_j = ((s as any).ms_j ?? 0) + (1);
         (s as any).ms_i = ((s as any).ms_i ?? 0) + (1);
-        (s as any).ms_i = undefined;
-        (s as any).ms_j = undefined;
       } while (((s as any).ms_j ?? 0) < 4);
     } while (((s as any).ms_i ?? 0) < 8);
+        (s as any).ms_i = undefined;
+        (s as any).ms_j = undefined;
   }
   scene.build();
 }

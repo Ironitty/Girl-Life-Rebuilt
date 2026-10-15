@@ -57,7 +57,7 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_arg = 'bar';
   if (((s as any).orderDrink ?? 0) < ((s as any).pcs_drank ?? 0)) {
     (s as any).orderDrink = ((s as any).pcs_drank ?? 0);
-    qspGoto(s, 'qwbarPolet', 'DrinkingBooze');
+    qspGoto(s, 'qwBarPolet', 'DrinkingBooze');
   }
   scene.text('<center><b>Bar "Rabotnik"</b></center>');
   scene.img('images/locations/city/industrial/bar/bar.jpg');

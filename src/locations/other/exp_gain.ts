@@ -100,7 +100,6 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).expgainVars ?? 0)?.['exp_gain_mult'] <= 0) {
-      (s as any).expgainVars = undefined;
       return;
     }
     if (((s as any).expgainVars ?? 0)?.['exp_gain'] <= 0) {
@@ -115,6 +114,7 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
       }
     }
   } while (((s as any).expgainVars ?? 0)?.['trait_index'] < Object.keys((s as any).traitattskl ?? {}).length);
+      (s as any).expgainVars = undefined;
   scene.build();
 }
 

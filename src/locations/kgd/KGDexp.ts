@@ -14,8 +14,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 2;
   while (true) {
-    ((s as any).KGD = (s as any).KGD ?? {})['needExpNextLvl_' + String(((s as any).i ?? 0))] = (((s as any).KGD ?? 0)['lvl_' + ((s as any).i ?? 0) + ''] * 10) * ((s as any).KGD ?? 0)['lvl_' + ((s as any).i ?? 0) + ''];
-    ((s as any).KGD = (s as any).KGD ?? {})['needExp_' + String(((s as any).i ?? 0))] = ((s as any).KGD ?? 0)['needExpNextLvl_' + ((s as any).i ?? 0) + ''] - ((s as any).KGD ?? 0)['exp_' + ((s as any).i ?? 0) + ''];
+    ((s as any).KGD = (s as any).KGD ?? {})['needExpNextLvl_' + String(((s as any).i ?? 0))] = ((((s as any).KGD ?? 0)['lvl_' + ((s as any).i ?? 0) + ''] ?? 0) * 10) * (((s as any).KGD ?? 0)['lvl_' + ((s as any).i ?? 0) + ''] ?? 0);
+    ((s as any).KGD = (s as any).KGD ?? {})['needExp_' + String(((s as any).i ?? 0))] = (((s as any).KGD ?? 0)['needExpNextLvl_' + ((s as any).i ?? 0) + ''] ?? 0) - (((s as any).KGD ?? 0)['exp_' + ((s as any).i ?? 0) + ''] ?? 0);
     if (((s as any).KGD ?? 0)['needExp_' + (((s as any).i ?? 0))] <= 0  &&  ((s as any).KGD ?? 0)['lvl_' + (((s as any).i ?? 0))] > ((s as any).KGD ?? 0)['lvlr_' + (((s as any).i ?? 0))]) {
       ((s as any).KGD = (s as any).KGD ?? {})['lvlr_' + String(((s as any).i ?? 0))] = (((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))]);
       ((s as any).KGD = (s as any).KGD ?? {})['lvl_' + String(((s as any).i ?? 0))] = ((s as any).KGD['lvl_' + String(((s as any).i ?? 0))] ?? 0) + (1);

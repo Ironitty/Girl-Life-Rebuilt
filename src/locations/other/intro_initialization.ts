@@ -523,9 +523,6 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).stat_fix_loop_times = ((s as any).stat_fix_loop_times ?? 0) + (1);
-    (s as any).stat_fix_loop_times = undefined;
-    (s as any).temp_stats_changed = undefined;
-    (s as any).temp_stat_diff = undefined;
     ((s as any).stat = (s as any).stat ?? {})['male_sexual_partners'] = Math.max((((s as any).stat ?? 0)?.['male_sexual_partners']), (((s as any).stat ?? 0)?.['men_jerked']), (((s as any).stat ?? 0)?.['men_feetfucked']), (((s as any).stat ?? 0)?.['men_titfucked']), (((s as any).stat ?? 0)?.['men_blown']), (((s as any).stat ?? 0)?.['men_fucked']));
     ((s as any).stat = (s as any).stat ?? {})['male_sexual_times'] = Math.max((((s as any).stat ?? 0)?.['male_sexual_times']), (((s as any).stat ?? 0)?.['men_jerked_times']), (((s as any).stat ?? 0)?.['men_feetfucked_times']), (((s as any).stat ?? 0)?.['men_titfucked_times']), (((s as any).stat ?? 0)?.['men_blown_times']), (((s as any).stat ?? 0)?.['men_fucked_times']));
     ((s as any).stat = (s as any).stat ?? {})['female_sexual_partners'] = Math.max((((s as any).stat ?? 0)?.['female_sexual_partners']), (((s as any).stat ?? 0)?.['women_fingered']), (((s as any).stat ?? 0)?.['women_feetfucked']), (((s as any).stat ?? 0)?.['women_titfucked']), (((s as any).stat ?? 0)?.['women_munched']), (((s as any).stat ?? 0)?.['women_fucked']));
@@ -534,6 +531,9 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     ((s as any).stat = (s as any).stat ?? {})['herm_sexual_times'] = Math.max((((s as any).stat ?? 0)?.['herm_sexual_times']), (((s as any).stat ?? 0)?.['herm_jerked_times']), (((s as any).stat ?? 0)?.['herm_feetfucked_times']), (((s as any).stat ?? 0)?.['herm_titfucked_times']), (((s as any).stat ?? 0)?.['herm_blown_times']), (((s as any).stat ?? 0)?.['herm_fucked_times']));
     return;
   } while (((s as any).stat_fix_loop_times ?? 0) < 10  &&  ((s as any).temp_stats_changed ?? 0) === 1);
+    (s as any).stat_fix_loop_times = undefined;
+    (s as any).temp_stats_changed = undefined;
+    (s as any).temp_stat_diff = undefined;
   scene.build();
 }
 

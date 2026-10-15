@@ -23,13 +23,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).tabhead_i = ((s as any).tabhead_i ?? 0) + (1);
     (s as any).tabhead_table = ((s as any).tabhead_table ?? 0) + ('</tr></table></b></center>');
+  } while (((s as any).tabhead_i ?? 0) < ((s as any).tabhead_max_i ?? 0));
     (s as any).tabhead_i = undefined;
     (s as any).tabhead_max_i = undefined;
     (s as any).tabhead_table = undefined;
     (s as any).tabsname = undefined;
     (s as any).tabsaction = undefined;
     (s as any).tabsrow = undefined;
-  } while (((s as any).tabhead_i ?? 0) < ((s as any).tabhead_max_i ?? 0));
   scene.build();
 }
 

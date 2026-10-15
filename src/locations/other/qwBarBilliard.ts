@@ -542,7 +542,7 @@ function enterBilliardEv2(s: GameState, scene: SceneBuilder): void {
     scene.text('You agree to playing a friendly match instead, though you have to admit you would have liked to maybe make a little money this way.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBilliardFriendly(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-          { label: 'Sounds boring - Return to the bar', goto: ['qwbarPolet', ''] },
+          { label: 'Sounds boring - Return to the bar', goto: ['qwBarPolet', ''] },
         ]);
       }
     }

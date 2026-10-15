@@ -254,8 +254,6 @@ function enter6(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'breasts', ((s as any).npcID ?? 0));
     qspCall(s, 'cum_call', 'hair', ((s as any).npcID ?? 0));
     (s as any).guyondisco = ((s as any).guyondisco ?? 0) - (1);
-    (s as any).guyondisco = undefined;
-    (s as any).guyondiscotime = undefined;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/sex/6.1.jpg');
     scene.text('You barely remember what happened. You were standing against the wall at the disco, quietly enjoying the admittedly rather outdated music when a guy approached you. He started groping you, but you were too drunk to stop him. It also felt kind of nice to be wanted, so you just went along with it.');
@@ -267,6 +265,8 @@ function enter6(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to the Pavlovsk streets', goto: ['pav_residential', ''] },
     ]);
   } while (((s as any).guyondisco ?? 0) > 0);
+    (s as any).guyondisco = undefined;
+    (s as any).guyondiscotime = undefined;
   scene.build();
 }
 
