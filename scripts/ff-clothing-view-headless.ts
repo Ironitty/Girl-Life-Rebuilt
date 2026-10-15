@@ -75,15 +75,17 @@ await page.keyboard.press('KeyQ');
 await page.keyboard.up('Shift');
 await sleep(1500);
 
-const idx = target.indexOf(':');
-const loc = idx >= 0 ? target.slice(0, idx) : target;
-const arg = idx >= 0 ? target.slice(idx + 1) : '';
-await page.evaluate((l, a) => {
+const parts = target.split(':');
+const loc = parts[0];
+const arg = parts[1] ?? '';
+const arg2 = parts[2] ?? undefined;
+const arg3 = parts[3] ?? undefined;
+await page.evaluate((l, a, a2, a3) => {
   const store = (window as any).__gameStore;
   if (store) {
-    store.getState().doGoto(l, a);
+    store.getState().doGoto(l, a, a2, a3);
   }
-}, loc, arg);
+}, loc, arg, arg2, arg3);
 
 await sleep(2000);
 await page.screenshot({ path: out, fullPage: false });

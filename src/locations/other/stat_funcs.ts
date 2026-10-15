@@ -29,8 +29,10 @@ function enterGetMaxDeg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddAttToList(s: GameState, scene: SceneBuilder): void {
-  if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
-    (s as any).att_name = [...((s as any).att_name ?? []), ((s as any).locArgs?.[1] ?? 0)];
+  const existing = (s as any).att_name;
+  const inList = Array.isArray(existing) ? existing.indexOf(String((s as any).locArgs?.[1] ?? '')) : (existing ? Object.values(existing).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1);
+  if (inList < 0) {
+    (s as any).att_name = [...(Array.isArray(existing) ? existing : existing ? Object.values(existing) : []), ((s as any).locArgs?.[1] ?? 0)];
   }
   if (String((s as any).locArgs?.[2] ?? '') !== '') {
     ((s as any).att_desc = (s as any).att_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).locArgs?.[2] ?? 0);
@@ -40,8 +42,10 @@ function enterAddAttToList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddSklToList(s: GameState, scene: SceneBuilder): void {
-  if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) < 0) {
-    (s as any).skl_name = [...((s as any).skl_name ?? []), ((s as any).locArgs?.[1] ?? 0)];
+  const existing = (s as any).skl_name;
+  const inList = Array.isArray(existing) ? existing.indexOf(String((s as any).locArgs?.[1] ?? '')) : (existing ? Object.values(existing).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1);
+  if (inList < 0) {
+    (s as any).skl_name = [...(Array.isArray(existing) ? existing : existing ? Object.values(existing) : []), ((s as any).locArgs?.[1] ?? 0)];
   }
   if (String((s as any).locArgs?.[2] ?? '') !== '') {
     ((s as any).skl_desc = (s as any).skl_desc ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).locArgs?.[2] ?? 0);

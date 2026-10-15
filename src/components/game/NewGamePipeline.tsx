@@ -169,6 +169,36 @@ export default function NewGamePipeline({ onComplete }: { onComplete: () => void
     onComplete();
   }, [s, set, doGoto, onComplete]);
 
+  const quickStart = useCallback(() => {
+    const g = SOCIAL_GROUPS[Math.floor(Math.random() * SOCIAL_GROUPS.length)];
+    const subs = g.subs.filter(sub => !sub.sgOnly);
+    const sub = subs[Math.floor(Math.random() * subs.length)];
+    set({
+      start_type: { loc: 'sg', magic: 'nomagic', group: g.id, cat: sub.id },
+      pcs_firstname: 'Elena',
+      pcs_lastname: 'Ivanova',
+      pcs_nickname: 'Elena',
+      birthday: 15,
+      birthmonth: 8,
+      birthyear: 1999,
+      pcs_dob: 19990815,
+      age: 17,
+      vidage: 17,
+      daystart: 239,
+      tsg: 1,
+      start_location: 0,
+      pcs_haircol: 0,
+      pcs_hairlng: 480,
+      curly: 0,
+      pcs_eyecol: 0,
+      pcs_lashes: 1,
+      pcs_eyesize: 1,
+      glass: 0,
+    });
+    doGoto('intro_game_start', 'quick_start');
+    onComplete();
+  }, [set, doGoto, onComplete]);
+
   const update = (partial: Partial<PipelineState>) => setS(prev => ({ ...prev, ...partial }));
 
   switch (s.step) {
@@ -183,7 +213,7 @@ export default function NewGamePipeline({ onComplete }: { onComplete: () => void
           </div>
           <div className="flex gap-4 mt-8">
             <button onClick={() => update({ step: 'start_type' })} className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded">Continue</button>
-            <button onClick={() => update({ step: 'name', pcsFirstname: 'Elena', pcsLastname: 'Ivanova', pcsNickname: 'Elena' })} className="px-6 py-3 bg-gray-600 hover:bg-gray-700 rounded">Quick Start</button>
+            <button onClick={quickStart} className="px-6 py-3 bg-gray-600 hover:bg-gray-700 rounded">Quick Start</button>
           </div>
         </div>
       );

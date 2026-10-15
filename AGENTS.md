@@ -15,6 +15,7 @@
 - **After any failure, research online** (web docs, GitHub issues, StackOverflow) before trying the next approach.
 - **If still stuck**, ask the user to pass the problem to ChatGPT. Sanitize for SFW: replace adult terms with neutral equivalents ("intimate scene" → "scene", "arousal" → "stat", "nude" → "unclothed").
 - **Debug requests**: Read `debug-log.txt` (last 20 actions with timestamps + button labels). User plays via `./debug-launch.sh`. Also check `window.__debugLog` via Playwright or ask user to press F9 and screenshot.
+- **`pkill` is unreliable** on this system. To free a port, use `lsof -ti:<port> | xargs kill -9` instead.
 
 ## Verify Before Claiming
 Inspect before you claim. If you can check it cheaply, checking is mandatory.
@@ -60,18 +61,26 @@ GL/
 0. **Post-compact check**: If compacted since last read, re-read this file in full.
 1. **Edit** code in `src/`
 2. **Smoke test**: `npx vite build && npx tsx scripts/smoke-test.ts`
-3. **Visual inspection**: Headless Chromium + Firefox screenshots. Use separate Firefox profile (don't kill user's). Firefox: `xvfb-run -a -s "-screen 0 1400x900x24" npx tsx scripts/ff-screenshot.ts [url] [output] [width] [height] [delay_ms]`.
-4. **If issues found**: go back to step 1.
-5. **Verify**: Re-read this file in full. Confirm steps 1–4 completed.
+3. **Targeted test** : Write a Playwright test in `scripts/test-<name>.ts` that checks the **actual state values** affected by the fix, not just "no crash". Use `page.evaluate` to read Zustand store state. Run it and confirm the values are correct.
+4. **Visual inspection**: Headless Chromium + Firefox screenshots. Use separate Firefox profile (don't kill user's). Firefox: `xvfb-run -a -s "-screen 0 1400x900x24" npx tsx scripts/ff-screenshot.ts [url] [output] [width] [height] [delay_ms]`.
+5. **If issues found**: go back to step 1.
+6. **Verify**: Re-read this file in full. Confirm steps 1–5 completed.
 
 Do NOT report "done" until all steps pass.
 
-**Batch policy**: Port 3 locations per batch, then run the full test cycle once. Only run LSP/typecheck per location within a batch.
-
-### Comprehensive Audit
-`npx tsx scripts/comprehensive-audit.ts` — 3-phase (static, render, interaction). Requires `npx vite build` first. Port 4174. Give it **7200000 ms timeout**.
+### Render and Interaction Audit
+`npx tsx scripts/render-interaction-audit.ts` — 5-phase (static, render, interaction, excluded render, excluded interaction). Requires `npx vite build` first. Port 4174. Give it **7200000 ms timeout**.
 
 **Default: continue on failure** — tests all targets, reports every failure at the end. Use `--stop-on-fail` to stop at the first failure (old behavior).
+
+**Nothing is allowed to fail the audit.** The audit passes ONLY when all 5 phases report zero failures. There is no "warning" tier — a warning is an unresolved failure. Phase 4/5 failures are bugs by default: every one must be investigated and fixed. If a location is genuinely bug-free (Cat 3), fix the root cause — typically by adding the missing state variables to `TEST_STATE` so state-dependent buttons appear (Cat 1) — rather than skipping the check. Only after exhausting Cat 1/2 fixes may the phase logic itself be modified to handle the case. Never treat "excluded" or "warning" as "passing."
+
+**Default procedure (filtered → full):**
+A full audit can take an hour or more. Full audits should only be run after all known issues have been adressed.
+1. After fixing specific issues, run **filtered audit** on affected locations first: `npx tsx scripts/render-interaction-audit.ts --filter "<regex>"` to confirm the fixes.
+2. Only after filtered audit passes, run **full audit** to verify no regressions.
+3. Timeouts count as errors — investigate and fix them, don't just increase the timeout. This is a text based game, nothing should take that long.
+4. **NEVER re-run a full audit when a recent log already exists.** Check `logs/audit-*.log` for the most recent complete audit before running a new one. The audit script writes timestamped logs to `logs/`. Use `grep -E "^(PASS|FAIL|Phase|===|[0-9]+ failure)" logs/audit-<latest>.log` to read results. Only run a new full audit if no recent log covers the current code state.
 
 Flags: `--skip-static`, `--skip-render`, `--skip-interaction`, `--filter <regex>`, `--start-after <loc>`, `--check-todo`, `--verbose`, `--stop-on-fail`.
 
@@ -87,7 +96,7 @@ Exclusion sets at top of file: `EXCLUDE_EXEC_DATA`, `EXCLUDE_FUNC_LITERAL`, `EXC
 3. Classify:
    - **Cat 1 — Missing TEST_STATE var**: Add to `TEST_STATE` + `initialState` in `store.ts`. Rebuild, re-run audit.
    - **Cat 2 — Translatable bug**: Hand-edit the generated `.ts` file to fix the logic. Verify against QSP source semantics. If the same pattern appears in 3+ files, grep for it and fix all instances.
-   - **Cat 3 — Genuinely special**: Add to the appropriate exclusion set in `comprehensive-audit.ts` with a comment citing evidence.
+   - **Cat 3 — Genuinely special**: Add to the appropriate exclusion set in `render-interaction-audit.ts` with a comment citing evidence.
 4. After each fix (or batch of related fixes): `npx vite build && npx tsx scripts/smoke-test.ts`.
 5. Periodically run the full audit to verify no regressions.
 
@@ -96,6 +105,15 @@ Exclusion sets at top of file: `EXCLUDE_EXEC_DATA`, `EXCLUDE_FUNC_LITERAL`, `EXC
 - `empty destination` → check unimplemented `qspCall` targets or redirect chains (Cat 2)
 - Only exclude as Cat 3 when QSP source is genuinely broken/deprecated or the asset never existed.
 - The exclusion comment must cite specific evidence ("deprecated in QSP source", "no act commands"), not just restate the symptom.
+
+### Asset Integrity Audit
+`npx tsx scripts/asset-audit.ts` — standalone (NOT part of the render/interaction audit). Walks `src/locations/**`, extracts static + random-suffix + dynamic asset references, resolves each against `public/` (symlinks to `images/` and `sound/`), and reports every missing asset with `file:line`. Logs to `logs/asset-audit-*.log`.
+
+- **Typo** (a near-match exists — case mismatch, doubled path segment, or a numbered sequence gap): hard fail, exit 1. Fix the code path to point at the real asset.
+- **Absent** (no near-match; genuinely not in the shipped bundle): documented Cat 3, reported but NOT a hard fail. The QSP main asset bundle is absent from this repo, so these are not recoverable — 193 are currently documented.
+- **Dynamic** refs (asset prefix built from non-`Math.random` state, e.g. `s.npc + '_portrait'`): listed for manual review, never a hard fail.
+
+Run it after any change that adds or edits asset paths. It catches broken images/audio the render/interaction audit misses (that audit's 404 filter hides them).
 
 ## Evidence Before Action
 

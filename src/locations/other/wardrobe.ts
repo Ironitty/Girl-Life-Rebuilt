@@ -22,9 +22,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'shop_utils', 'cleanup');
   scene.text('<center><b>Please select an option</b></center>');
-  scene.img('images/system/icons/clothing/clothes.png');
-  scene.img('images/system/icons/clothing/default.png');
-  scene.img('images/system/icons/clothing/organize.png');
+  scene.text(`<br><br><br><center><a href="#" onclick="window.__gameStore.getState().doGoto('wardrobe', 'main'); return false;"><img src="images/system/icons/clothing/clothes.png" height="150"></a></center><br><br><br><center><a href="#" onclick="window.__gameStore.getState().doGoto('wardrobe', '${(s as any).wloc ?? 'default1'}'); return false;"><img src="images/system/icons/clothing/default.png" height="150"></a></center><br><br><br><center><a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'view_lists_list', 'wardrobe'); return false;"><img src="images/system/icons/clothing/organize.png" height="150"></a></center>`);
   if (((s as any).pursepantytype ?? 0) !== ''  ||  ((s as any).pursebratype ?? 0) !== '') {
     scene.text('<center><b>You put the ' + ((((s as any).pursepantytype ?? 0) !== '') ? ('panties') : ('')) + ((((s as any).pursepantytype ?? 0) !== ''  &&  ((s as any).pursebratype ?? 0) !== '') ? (' and ') : ('')) + ((((s as any).pursebratype ?? 0) !== '') ? ('bra') : ('')) + ' from your purse back in the wardrobe.</b></center><br>');
     (s as any).pursepantytype = undefined;
@@ -152,7 +150,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).ward_img_hgt ?? 0))) {
     (s as any).ward_img_hgt = 150;
   }
-  scene.img('images/system/icons/clothing/default.png');
+  scene.text(`<center><table><th><b>Your Clothes</b></th><th><a href="#" onclick="window.__gameStore.getState().doGoto('wardrobe', '${(s as any).wloc ?? 'default1'}'); return false;"><img src="images/system/icons/clothing/default.png" height="50"></a></th><th><a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'view_lists_list', 'wardrobe'); return false;"><img src="images/system/icons/clothing/organize.png" height="50"></a></th></table></center>`);
   if (((s as any).wardrobeDefaultPagePref ?? 0) === 'currentOutfit') {
     (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { delete (s as any).wardrobeDefaultPagePref; return s; }); window.__gameStore.getState().doGoto(\u0027wardrobe\u0027, \u0027main\u0027); return false;">Remove saved default wardrobe page</a>';
   } else {
@@ -170,15 +168,15 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><font color="maroon">These are the clothes you are currently wearing - Click on an item to change it</font></center><center><table border=0 cellspacing=${((s as any).ward_img_hgt ?? '')/25} cellpadding=5>`);
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     scene.text('<th>Bra worn</th><th>Outfit worn</th><th>Coat (only worn outside when cold)</th>');
-    scene.img(`${qspFunc(s, '$body_image', '', 'bra')}`);
+    scene.text(`<tr><td><center><a href="#" onclick="window.__gameStore.getState().doGoto('wardrobe', 'underwear_options', 'bra'); return false;"><img Height=${((s as any).ward_img_hgt ?? 150)} src="${qspFunc(s, '$body_image', '', 'bra')}"></a></center></td><td><center><a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'view_grids_list'); return false;"><img Height=${((s as any).ward_img_hgt ?? 150) * 2} src="${qspFunc(s, '$body_image', '', 'clothes')}"></a></center></td><td><center>`);
   } else {
     scene.text('<th>Bodysuit worn</th><th>Outfit worn</th><th>Coat (only worn outside when cold)</th>');
-    scene.img(`${qspFunc(s, '$body_image', '', 'bodysuit')}`);
+    scene.text(`<tr><td ROWSPAN=4><center><a href="#" onclick="window.__gameStore.getState().doGoto('wardrobe', 'underwear_options', 'full'); return false;"><img Height=${((s as any).ward_img_hgt ?? 150) * 2} src="${qspFunc(s, '$body_image', '', 'bodysuit')}"></a></center></td><td><center><a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'view_grids_list'); return false;"><img Height=${((s as any).ward_img_hgt ?? 150) * 2} src="${qspFunc(s, '$body_image', '', 'clothes')}"></a></center></td><td><center>`);
   }
   if (((s as any).coatworntype ?? 0) === 'none') {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027coat_view\u0027, \u0027view_grid\u0027, \u0027wardrobe\u0027); return false;">Search the wardrobe</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\'coat_view\', \'view_grid\', \'wardrobe\'); return false;">Search the wardrobe</a>');
   } else {
-    scene.img(`${qspFunc(s, '$body_image', '', 'coat')}`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('coat_view', 'view_grid', 'wardrobe'); return false;"><img Height=${((s as any).ward_img_hgt ?? 150) * 2} src="${qspFunc(s, '$body_image', '', 'coat')}"></a>`);
   }
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     scene.text('</center></td><tr><td><center>');
@@ -205,15 +203,15 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   scene.text('</center></td>');
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     scene.text('<tr><th>Panties worn</th><th>Shoes (Only worn outside)</th><th>Purse worn</th>');
-    scene.img(`${qspFunc(s, '$body_image', '', 'panties')}`);
+    scene.text(`<tr><td><center><a href="#" onclick="window.__gameStore.getState().doGoto('wardrobe', 'underwear_options', 'panties'); return false;"><img Height=${((s as any).ward_img_hgt ?? 150)} src="${qspFunc(s, '$body_image', '', 'panties')}"></a></center></td><td><center><a href="#" onclick="window.__gameStore.getState().doGoto('shoe_view', 'view_list', 'wardrobe'); return false;"><img Height=${((s as any).ward_img_hgt ?? 150)} src="${qspFunc(s, '$body_image', '', 'shoes')}"></a></center></td><td><center>`);
   } else {
     scene.text('<tr><th>Shoes (Only worn outside)</th><th>Purse worn</th>');
-    scene.img(`${qspFunc(s, '$body_image', '', 'shoes')}`);
+    scene.text(`<tr><td><center><a href="#" onclick="window.__gameStore.getState().doGoto('shoe_view', 'view_list', 'wardrobe'); return false;"><img Height=${((s as any).ward_img_hgt ?? 150)} src="${qspFunc(s, '$body_image', '', 'shoes')}"></a></center></td><td><center>`);
   }
   if (((s as any).bag ?? 0) === 1) {
-    scene.img(`${qspFunc(s, '$purse_image', '', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('purse_view', 'view_grid', 'wardrobe'); return false;"><img Height=${((s as any).ward_img_hgt ?? 150)} src="${qspFunc(s, '$purse_image', '', ((s as any).currentpursetype ?? ''), ((s as any).currentpursenumber ?? ''))}"></a>`);
   } else {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\u0027purse_view\u0027, \u0027view_grid\u0027, \u0027wardrobe\u0027); return false;">Search the wardrobe</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\'purse_view\', \'view_grid\', \'wardrobe\'); return false;">Search the wardrobe</a>');
   }
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     scene.text('</center></td><tr><td><center>');
@@ -276,12 +274,12 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
 
 function enterUnderwearOptions(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Please select an option</b></center>');
-  scene.img('images/system/icons/clothing/bodysuits.png');
+  scene.text(`<br><br><br><center><a href="#" onclick="window.__gameStore.getState().doGoto('underwear_bodysuit_view', 'view_grid', 'wardrobe'); return false;"><img src="images/system/icons/clothing/bodysuits.png" height="150"></a></center>`);
   if (String((s as any).locArgs?.[1] ?? '') === 'bra'  ||  String((s as any).locArgs?.[1] ?? '') === 'full') {
-    scene.img('images/system/icons/clothing/bras.png');
+    scene.text(`<br><br><br><center><a href="#" onclick="window.__gameStore.getState().doGoto('bra_view', 'view_grid', 'wardrobe'); return false;"><img src="images/system/icons/clothing/bras.png" height="150"></a></center>`);
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'panties'  ||  String((s as any).locArgs?.[1] ?? '') === 'full') {
-    scene.img('images/system/icons/clothing/panties.png');
+    scene.text(`<br><br><br><center><a href="#" onclick="window.__gameStore.getState().doGoto('panty_view', 'view_grid', 'wardrobe'); return false;"><img src="images/system/icons/clothing/panties.png" height="150"></a></center>`);
   }
   scene.actions([
     { label: 'Return', goto: ['wardrobe', 'main'] },
@@ -803,13 +801,13 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Put them on anyways', handler: (st: GameState) => {
+          { label: 'Put them on anyways' + qspFunc(s, 'willpower', 'get_willcost_string'), handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Put them on anyways', handler: (st: GameState) => {
+          { label: 'Put them on anyways' + qspFunc(s, 'willpower', 'get_willcost_string'), handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     if (((st as any).braworntype ?? 0) !== ((st as any).defbratype ?? 0)?.[String((st as any).default_entry ?? 0)]) {
       qspCall(st, 'bras', 'wear', (((st as any).defbratype ?? 0)?.[String((st as any).default_entry ?? 0)] ?? 0), (((st as any).defbranumber ?? 0)?.[String((st as any).default_entry ?? 0)] ?? 0));
@@ -892,28 +890,28 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).temp_clo_not_wear_reason ?? 0) === 'not_owned') {
-    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/strip/strip2.jpg');
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev/school/strip/strip2.jpg"></center>`);
     scene.text(`As you go to pull your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit out of your wardrobe you remember you don't own that piece of clothing anymore. Maybe you should buy it again? Guess you will have to find something else to wear.`);
     scene.actions([
       { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'wardrobe', ((st as any).wloc ?? '')); } },
     ]);
   } else {
     if (((s as any).temp_clo_not_wear_reason ?? 0) === 'is_lost') {
-      scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/strip/strip2.jpg');
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev/school/strip/strip2.jpg"></center>`);
       scene.text(`As you go to pull your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit out of your wardrobe you remember that you lost that piece of clothing. Maybe you can find the missing clothes somewhere? Guess you will have to find something else to wear.`);
       scene.actions([
         { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'wardrobe', ((st as any).wloc ?? '')); } },
       ]);
     } else {
       if (((s as any).temp_clo_not_wear_reason ?? 0) === 'not_in_wardrobe') {
-        scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/strip/strip2.jpg');
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/boy/niko/nikoev/school/strip/strip2.jpg"></center>`);
         scene.text(`As you go to pull your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit out of your wardrobe you notice that it's not there. You should move it back into your wardrobe from your storage or unwanted pile.`);
         scene.actions([
           { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'wardrobe', ((st as any).wloc ?? '')); } },
         ]);
       } else {
         if (((s as any).temp_clo_not_wear_reason ?? 0) === 'low_strength') {
-          scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip16.mp4');
+          scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip16.mp4"></video></center>`);
           scene.text(`Your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit has worn out and can't be used anymore. Guess you will have to find something else to wear.`);
           scene.actions([
             { label: 'Strip out of worn out clothing', handler: (st: GameState) => {
@@ -924,7 +922,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).temp_clo_not_wear_reason ?? 0) === 'low_inhib') {
-            scene.img('images/locations/pavlovsk/trainstation/bimbo.strip6.mp4');
+            scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/bimbo.strip6.mp4"></video></center>`);
             scene.text(`You don't feel daring enough to wear your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit. Maybe you will be confident enough in the future? Guess you will have to find something else to wear.`);
             scene.actions([
               { label: 'Strip out of revealing clothing', handler: (st: GameState) => {
@@ -935,9 +933,9 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).temp_clo_not_wear_reason ?? 0) === 'too_small'  ||  ((s as any).temp_clo_not_wear_reason ?? 0) === 'too_large') {
               if (((s as any).temp_clo_not_wear_reason ?? 0) === 'too_small') {
-                scene.img('images/locations/pavlovsk/clinic/therapist/dressup.mp4');
+                scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/clinic/therapist/dressup.mp4"></video></center>`);
               } else {
-                scene.img(`images/locations/pavlovsk/clinic/therapist/stripping${(Math.floor(Math.random() * 4) + 1)}.mp4`);
+                scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/clinic/therapist/stripping${(Math.floor(Math.random() * 4) + 1)}.mp4"></video></center>`);
               }
               scene.text(`As you put on your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit you notice it doesn't fit correctly anymore. It's ` + ((((s as any).temp_clo_not_wear_reason ?? 0) === 'too_small') ? ('unbearably tight and uncomfortable to wear.') : ('extremely loose and won\'t stay in place no matter how hard you try.')) + ' You must have ' + ((((s as any).temp_clo_not_wear_reason ?? 0) === 'too_small') ? ('gained') : ('lost')) + ' some weight since this was purchased or last tailored. You will have to get this clothing resized before you can wear it again.');
               (s as any).temp4 = undefined;
@@ -949,7 +947,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).temp_clo_not_wear_reason ?? 0) === 'hypno') {
-                scene.img('images/locations/pavlovsk/trainstation/bimbo.strip6.mp4');
+                scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/trainstation/bimbo.strip6.mp4"></video></center>`);
                 scene.text('You pick up the outfit and think about trying them on… but you don\'t really like wearing these type of outfits');
                 qspCall(s, 'willpower', 'misc', 'resist', 'easy');
                 if (((s as any).cheatVars ?? 0)?.['willpower'] === 0) {
@@ -957,13 +955,13 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
                 }
                 if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                   scene.actions([
-                    { label: 'Put them on anyways', handler: (st: GameState) => {
+                    { label: 'Put them on anyways' + qspFunc(s, 'willpower', 'get_willcost_string'), handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                   ]);
                 } else {
                   scene.actions([
-                    { label: 'Put them on anyways', handler: (st: GameState) => {
+                    { label: 'Put them on anyways' + qspFunc(s, 'willpower', 'get_willcost_string'), handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'clothing', 'wear', (((st as any).defclothingtype ?? 0)?.[String((st as any).default_entry ?? 0)] ?? 0), (((st as any).defclothingnumber ?? 0)?.[String((st as any).default_entry ?? 0)] ?? 0));
     qspGoto(st, 'wardrobe', ((st as any).wloc ?? ''));
@@ -985,7 +983,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
                     { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'wardrobe', ((st as any).wloc ?? '')); } },
                   ]);
                 } else {
-                  scene.img('images/pc/activities/misc/dress_1.mp4');
+                  scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/pc/activities/misc/dress_1.mp4"></video></center>`);
                   if (((s as any).temp_panties_not_wear_reason ?? 0) === 'hypno'  ||  ((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno') {
                     scene.text(`You put on your ${(((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? '')} outfit, but couldn't bring yourself to put on your ` + ((((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno'  &&  ((s as any).temp_panties_not_wear_reason ?? 0) === 'hypno') ? ('bra or panties') : (((((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno') ? ('bra') : ('panties')))) + '.');
                   } else {

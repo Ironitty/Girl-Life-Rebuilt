@@ -26,7 +26,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).npcdesc ?? '')} looks very excited and suddenly pulls a ring out of a box.`);
       scene.text(`${((s as any).npcdesc ?? '')} says "${((s as any).pcs_nickname ?? '')}. I offer you my hand and heart. Would you marry me?"`);
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'No (turn ' + String(((s as any).xem ?? '') ?? '') + ' down)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'No (turn ' + String(((s as any).xem ?? {})[String((s as any).npcID ?? 0)] ?? '') + ' down)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     (st as any).pregtalk = 0;
     qspCall(st, 'lover', '', 'remove_' + (((st as any).npc_rel_type ?? 0)?.[String((st as any).npcID ?? 0)] ?? 0), ((st as any).npcID ?? 0));

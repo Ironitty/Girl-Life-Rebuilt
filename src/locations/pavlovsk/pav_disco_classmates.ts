@@ -57,9 +57,10 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    (s as any).i = 1;
-    do {
-      if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 2  &&  ((s as any).discoenable ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)['A' + (((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
+  } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
+  (s as any).i = 1;
+  do {
+    if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 2  &&  ((s as any).discoenable ?? 0)['A' + (((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)['A' + (((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
         if ((!((s as any).i2 ?? 0))) {
           (s as any).table_disco = ((s as any).table_disco ?? '') + '<tr>';
         }
@@ -76,14 +77,17 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      if (((s as any).i2 ?? 0) % 6 !== 0) {
-        do {
-          (s as any).i2 = ((s as any).i2 ?? 0) + (1);
-          (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<td></td>');
-        } while (!(((s as any).i2 ?? 0) % 6 === 0));
+    } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
+    if (((s as any).i2 ?? 0) % 6 !== 0) {
+      while (((s as any).i2 ?? 0) % 6 !== 0) {
+        (s as any).i2 = ((s as any).i2 ?? 0) + (1);
+        (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<td></td>');
       }
-      (s as any).table_disco = ((s as any).table_disco ?? 0) + ('</table></center>');
-      s.scene = { ...s.scene, mainText: String((s as any).table_disco || ''), curActs: [] };
+      (s as any).i2 = 0;
+      (s as any).table_disco = ((s as any).table_disco ?? '') + '</tr>';
+    }
+    (s as any).table_disco = ((s as any).table_disco ?? 0) + ('</table></center>');
+      scene.text(String((s as any).table_disco ?? ''));
       if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).day ?? 0) >= 15  &&  ((s as any).day ?? 0) <= 21  &&  (((s as any).kanikuli ?? 0) < 6  ||  ((s as any).gschoolVars ?? 0)?.['school_diploma'] !== 0)) {
         if (((s as any).grupTipe ?? 0) === 4) {
           scene.text('You check where the gopniks normally hang out and you don\'t see any of them. They must be at fight night tonight.');
@@ -115,13 +119,15 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
             }
           }
           (s as any).i = ((s as any).i ?? 0) + (1);
-          if (((s as any).i2 ?? 0) % 6 !== 0) {
-            do {
-              (s as any).i2 = ((s as any).i2 ?? 0) + (1);
-              (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<td></td>');
-            } while (!(((s as any).i2 ?? 0) % 6 === 0));
-          }
-        } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
+           if (((s as any).i2 ?? 0) % 6 !== 0) {
+             while (((s as any).i2 ?? 0) % 6 !== 0) {
+               (s as any).i2 = ((s as any).i2 ?? 0) + (1);
+               (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<td></td>');
+             }
+             (s as any).i2 = 0;
+             (s as any).table_disco = ((s as any).table_disco ?? '') + '</tr>';
+           }
+         } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
       }
       if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  ((s as any).discoenable ?? 0)?.['A25'] === 1  &&  ((s as any).discobloc ?? 0)?.['A25'] !== ((s as any).daystart ?? 0)  &&  ((s as any).soniaQW ?? 0)?.['hate'] < 1  &&  (((s as any).soniaQW ?? 0)?.['fallenangel'] < 1  ||  ((s as any).daystart ?? 0) > ((s as any).soniaQW ?? 0)?.['fallday'] + 7)) {
         if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).day ?? 0) >= 15  &&  ((s as any).day ?? 0) <= 21  &&  (((s as any).kanikuli ?? 0) < 6  ||  ((s as any).gschoolVars ?? 0)?.['school_diploma'] !== 0)) {
@@ -135,7 +141,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
         (s as any).table_disco = ((s as any).table_disco ?? 0) + ('<tr><td align=center><a href="#" onclick="window.__gameStore.getState().doGoto(\u0027pav_disco_coolkids\u0027, \u0027sonia_outcast\u0027); return false;"><img height="100" src="images/characters/shared/headshots_main/25.jpg"></a></td></tr><tr><td align=center>' + (((s as any).npc_usedname ?? 0)?.['A25']) + '</td></tr></table></td><td colspan=7></td></tr>');
       }
       (s as any).table_disco = ((s as any).table_disco ?? 0) + ('</table></center>');
-      s.scene = { ...s.scene, mainText: String((s as any).table_disco || ''), curActs: [] };
+      scene.text(String((s as any).table_disco ?? ''));
       if (((s as any).hour ?? 0) >= 21  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).week ?? 0)===5) {
         scene.text('Coach Mikhail Nikolayevich stands at the entrance of the hall.');
         (s as any).table_disco = '<center><table>';
@@ -154,8 +160,6 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
-    } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
-  } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
   scene.build();
 }
 

@@ -34,9 +34,10 @@ function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      (s as any).i = 1;
-      do {
-        if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 2  &&  ((s as any).i ?? 0) !== 141) {
+    } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
+    (s as any).i = 1;
+    do {
+      if (((s as any).npc_grupTipe ?? 0)['A' + (((s as any).i ?? 0))] === 2  &&  ((s as any).i ?? 0) !== 141) {
           if ((!((s as any).i2 ?? 0))) {
             (s as any).table_beach = ((s as any).table_beach ?? '') + '<tr>';
           }
@@ -48,19 +49,20 @@ function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
           }
         }
         (s as any).i = ((s as any).i ?? 0) + (1);
-        if (((s as any).i2 ?? 0) % 6 !== 0) {
-          do {
-            (s as any).i2 = ((s as any).i2 ?? 0) + (1);
-            (s as any).table_beach = ((s as any).table_beach ?? 0) + ('<td></td>');
-          } while (!(((s as any).i2 ?? 0) % 6 === 0));
+      } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
+      if (((s as any).i2 ?? 0) % 6 !== 0) {
+        while (((s as any).i2 ?? 0) % 6 !== 0) {
+          (s as any).i2 = ((s as any).i2 ?? 0) + (1);
+          (s as any).table_beach = ((s as any).table_beach ?? 0) + ('<td></td>');
         }
-        (s as any).table_beach = ((s as any).table_beach ?? 0) + ('</table>');
+        (s as any).i2 = 0;
+        (s as any).table_beach = ((s as any).table_beach ?? '') + '</tr>';
+      }
+      (s as any).table_beach = ((s as any).table_beach ?? 0) + ('</table>');
         scene.text(String((s as any).table_beach ?? ''));
         scene.actions([
           { label: 'Go back', goto: ['pav_lake', ''] },
         ]);
-      } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
-    } while (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0));
   } else {
     scene.text('It seems everyone has had their fill of hanging out at the beach today. You see several of them have already left and the rest are either walking away or are gathering up their stuff and saying their goodbyes to each another. You are soon the last person left.');
     scene.actions([

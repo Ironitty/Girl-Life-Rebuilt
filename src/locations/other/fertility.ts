@@ -309,13 +309,13 @@ function enterCumArrcheat(s: GameState, scene: SceneBuilder): void {
     ((s as any).cycletemp = (s as any).cycletemp ?? {})[1] = 'menstruating with ' + ((s as any).mesec ?? 0) + ' hours remaining';
   } else {
     if (((s as any).cycle ?? 0) === 1) {
-      ((s as any).cycletemp = (s as any).cycletemp ?? {})[1] = 'in your follicular phase with an egg release hormone level of ' + ((s as any).EggRH ?? 0) + ' with around ' + ((s as any).focH_max ?? 0) - ((s as any).focH ?? 0) + ' hours remaining until ovulation';
+      ((s as any).cycletemp = (s as any).cycletemp ?? {})[1] = 'in your follicular phase with an egg release hormone level of ' + ((s as any).EggRH ?? 0) + ' with around ' + (((s as any).focH_max ?? 0) - ((s as any).focH ?? 0)) + ' hours remaining until ovulation';
     } else {
       if (((s as any).cycle ?? 0) === 2) {
         ((s as any).cycletemp = (s as any).cycletemp ?? {})[1] = 'ovulating with around ' + ((s as any).Ovulate ?? 0) + ' hours remaining until your luteal phase begins and ' + ((s as any).EggRH ?? 0) + ' remaining egg release hormone. You have ' + ((s as any).UnfertEgg ?? 0) + ' unfertilized egg and ' + ((s as any).FertEgg ?? 0) + ' unimplanted zygote. It has been ' + ((s as any).ferteggage ?? 0) + ' hours since ovulation began';
       } else {
         if (((s as any).cycle ?? 0) === 3) {
-          ((s as any).cycletemp = (s as any).cycletemp ?? {})[1] = 'in your luteal phase with ' + ((s as any).BabyEmbryo ?? 0) + ' foetus and ' + ((s as any).FertEgg ?? 0) + ' unimplanted zygote. Your body currently has a pregnancy chemical level of ' + ((s as any).pregChem ?? 0) + '. It has been ' + ((s as any).ferteggage ?? 0) + ' hours since you ovulated. You have around ' + ((s as any).lutH_max ?? 0) - ((s as any).lutH ?? 0) + ' hours remaining until menstruation or official pregnancy';
+          ((s as any).cycletemp = (s as any).cycletemp ?? {})[1] = 'in your luteal phase with ' + ((s as any).BabyEmbryo ?? 0) + ' foetus and ' + ((s as any).FertEgg ?? 0) + ' unimplanted zygote. Your body currently has a pregnancy chemical level of ' + ((s as any).pregChem ?? 0) + '. It has been ' + ((s as any).ferteggage ?? 0) + ' hours since you ovulated. You have around ' + (((s as any).lutH_max ?? 0) - ((s as any).lutH ?? 0)) + ' hours remaining until menstruation or official pregnancy';
         } else {
           if (((s as any).cycle ?? 0) === 4) {
             ((s as any).cycletemp = (s as any).cycletemp ?? {})[1] = 'in your post pregnancy recovery phase. You have around ' + ((s as any).RecovH ?? 0) + ' hours remaining before your follicular phase begins';

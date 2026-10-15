@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 // Load and evaluate TEST_STATE in Node (TS-aware)
-const auditContent = fs.readFileSync('/home/depressedtsukasa/Documents/GL/scripts/comprehensive-audit.ts', 'utf8');
+const auditContent = fs.readFileSync('/home/depressedtsukasa/Documents/GL/scripts/render-interaction-audit.ts', 'utf8');
 const testStateMatch = auditContent.match(/const TEST_STATE: Record<string, unknown> = \{[\s\S]*?\n\};/);
 if (!testStateMatch) throw new Error('TEST_STATE not found');
 const testStateCode = testStateMatch[0].replace('const TEST_STATE: Record<string, unknown> = ', '').replace(/;\s*$/, '');

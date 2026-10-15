@@ -73,60 +73,11 @@ async function main() {
     const warnBody = await page.textContent('body');
     check('Warning screen shows after Start', warnBody?.includes('Warning') ?? false);
 
-    // 5. Quick Start → name screen
+    // 5. Quick Start → game screen (directly, no pipeline)
     await page.locator('button', { hasText: 'Quick Start' }).click();
-    await sleep(500);
-    const nameBody = await page.textContent('body');
-    check('Name screen shows after Quick Start', nameBody?.includes('Character Name') ?? false);
-
-    // 6. Fill name → Continue → birthday
-    await page.locator('input[placeholder="Elena"]').first().fill('Test');
-    await page.locator('button', { hasText: /^Continue$/ }).click();
-    await sleep(500);
-    const bdBody = await page.textContent('body');
-    check('Birthday screen shows', bdBody?.includes('Birthday') ?? false);
-
-    // 7. Continue → start date (SG)
-    await page.locator('button', { hasText: /^Continue$/ }).click();
-    await sleep(500);
-    const sdBody = await page.textContent('body');
-    check('Start date screen shows', sdBody?.includes('Start Date') ?? false);
-
-    // 8. Pick start date → location
-    await page.locator('button', { hasText: /End of August/ }).click();
-    await sleep(500);
-    const slBody = await page.textContent('body');
-    check('Location screen shows', slBody?.includes('Starting Location') ?? false);
-
-    // 9. Pick location → social group
-    await page.locator('button', { hasText: 'Pavlovsk' }).first().click();
-    await sleep(500);
-    const sgBody = await page.textContent('body');
-    check('Social group screen shows', sgBody?.includes('Social Group') ?? false);
-
-    // 10. Pick group → sub
-    await page.locator('button', { hasText: 'Popular' }).first().click();
-    await sleep(500);
-    const ssBody = await page.textContent('body');
-    check('Social sub screen shows', ssBody?.includes('Sociable') ?? false);
-
-    // 11. Pick sub → appearance
-    await page.locator('button', { hasText: 'Sociable' }).first().click();
-    await sleep(500);
-    const apBody = await page.textContent('body');
-    check('Appearance screen shows', apBody?.includes('Appearance') ?? false);
-
-    // 12. Continue → overview
-    await page.locator('button', { hasText: /^Continue$/ }).click();
-    await sleep(500);
-    const ovBody = await page.textContent('body');
-    check('Overview screen shows', ovBody?.includes('Character Overview') ?? false);
-
-    // 13. Start Game → game screen
-    await page.locator('button', { hasText: 'Start Game' }).click();
-    await sleep(500);
+    await sleep(1000);
     const gameBody = await page.textContent('body');
-    check('Game screen shows after pipeline', (gameBody?.length ?? 0) > 50);
+    check('Game screen shows after Quick Start', (gameBody?.length ?? 0) > 50);
     check('Shows status bar', gameBody?.includes('Status') ?? false);
     await page.screenshot({ path: '/tmp/opencode/smoke-game.png', fullPage: true });
 

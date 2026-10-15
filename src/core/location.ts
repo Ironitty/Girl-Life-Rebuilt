@@ -39,7 +39,7 @@ export function inferLegacyLocationType(loc: string): string | undefined {
   return undefined;
 }
 
-export function setloc(s: GameState, loc: string, arg: string, arg2?: string, arg3?: string): void {
+export function setloc(s: GameState, loc: string, arg: string, arg2?: string, arg3?: string, arg4?: string, arg5?: string): void {
   s.prevLoc = s.loc;
   s.prevArg = s.locArg;
   s.loc = loc;
@@ -47,8 +47,8 @@ export function setloc(s: GameState, loc: string, arg: string, arg2?: string, ar
   s.locArg = arg;
   s.locArg2 = arg2 ?? '';
   s.locArg3 = arg3 ?? '';
-  (s as any).locArgs = [arg, arg2 ?? '', arg3 ?? ''];
-  (s as any).ARGS = [arg, arg2 ?? '', arg3 ?? ''];
+  (s as any).locArgs = [arg, arg2 ?? '', arg3 ?? '', arg4 ?? '', arg5 ?? ''];
+  (s as any).ARGS = [arg, arg2 ?? '', arg3 ?? '', arg4 ?? '', arg5 ?? ''];
   s.menuArg = arg;
 
   const def = getLocation(loc);
@@ -61,7 +61,28 @@ export function setloc(s: GameState, loc: string, arg: string, arg2?: string, ar
   }
 }
 
-export function goto(s: GameState, loc: string, arg: string, arg2?: string, arg3?: string): void {
+export function goto(s: GameState, loc: string, arg: string, arg2?: string, arg3?: string, arg4?: string, arg5?: string): void {
+  if (!loc) {
+    if (s.loc) {
+      if ((s as any).__reentering === s.loc) {
+        if (import.meta.env.DEV) console.warn(`[goto] empty-loc loop detected at ${s.loc}`);
+        return;
+      }
+      (s as any).__reentering = s.loc;
+      const def = getLocation(s.loc);
+      if (def?.enter) {
+        const scene = new SceneBuilder();
+        _currentScene = scene;
+        if (def.background) scene.background(def.background);
+        def.enter(s, scene);
+        _currentScene = null;
+        s.scene = scene.build();
+        s.navigationVersion++;
+      }
+      (s as any).__reentering = undefined;
+    }
+    return;
+  }
   const visited: Set<string> | undefined = (s as any).__gotoVisited;
   const isOuter = !visited;
   const vis = visited ?? new Set<string>();
@@ -81,7 +102,7 @@ export function goto(s: GameState, loc: string, arg: string, arg2?: string, arg3
       }
     }
 
-    setloc(s, loc, arg, arg2, arg3);
+    setloc(s, loc, arg, arg2, arg3, arg4, arg5);
     s.navigationVersion++;
     const navBefore = s.navigationVersion;
     const def = getLocation(loc);

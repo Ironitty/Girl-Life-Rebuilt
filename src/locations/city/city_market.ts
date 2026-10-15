@@ -117,7 +117,7 @@ function enterClo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_market', 'clo');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
-  if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
+  if (!qspFunc(s, 'shop_utils', 'is_init')) {
     qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
     qspCall(s, 'shop_utils', 'init', 'add_type', 'market_outfits');
     qspCall(s, 'shop_utils', 'init', 'end');

@@ -1,5 +1,6 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import { SceneBuilder } from '../../core/scene';
+import { isMenuLoc } from '../../core/location';
 import { AREAS, WORLD_IMAGE, WORLD_AREAS } from './areaData';
 
 function resolveAreaId(arg: string): string {
@@ -54,9 +55,14 @@ function buildAreaView(s: GameState, areaId: string, backLoc: string, backArg: s
 }
 
 function mapViewEnter(s: GameState, scene: SceneBuilder): void {
+  if (s.prevLoc && !isMenuLoc(s.prevLoc)) {
+    s.mapOriginLoc = s.prevLoc;
+    s.mapOriginArg = s.prevArg || '';
+  }
   const arg = s.locArg;
-  const backLoc = s.prevLoc || 'start';
-  const backArg = s.prevArg || '';
+  const hasOrigin = !!s.mapOriginLoc;
+  const backLoc = hasOrigin ? s.mapOriginLoc : (s.prevLoc || 'start');
+  const backArg = hasOrigin ? (s.mapOriginArg || '') : (s.prevArg || '');
 
   if (arg === 'world' || arg === '') {
     buildWorldView(s, backLoc, backArg, scene);

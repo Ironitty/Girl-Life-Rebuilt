@@ -1,33 +1,60 @@
-# React + TypeScript + Vite
+# Girl-Life-Rebuilt
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A browser port of the original **Girl Life** game, which was written in QSP (Quest Scripting Program). This repository reimplements the game in modern web technologies so it runs in any browser — no QSP player required.
 
-Currently, two official plugins are available:
+> **This is a fan port.** The original game's QSP source and the `qspgui` player are *not* included in this repository. Everything you need to play is here: the game code plus all bundled image and sound assets.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What is the game?
 
-## React Compiler
+Girl Life is a life-simulation / visual novel set in the Russian city of Pavlovsk. You play a young woman managing her daily life — tracking stats such as health, willpower, stamina, mood, hunger and thirst, building relationships, working and studying, and exploring the city and its surroundings.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> **Content note:** the game contains mature/adult themes and is intended for players 18+.
 
-## Expanding the Oxlint configuration
+## Requirements
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- [Node.js](https://nodejs.org/) (LTS) and npm
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Getting the game
+
+Clone the repository from GitHub, then install dependencies:
+
+```bash
+git clone https://github.com/Ironitty/Girl-Life-Rebuilt.git
+cd Girl-Life-Rebuilt
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
-# Girl-Life-Rebuilt
+## Playing
+
+### Option A — build a standalone file (recommended)
+
+```bash
+npx vite build
+```
+
+This produces a single self-contained `index.html` at the root of the repository (all JavaScript and CSS inlined; it loads the bundled `images/` and `sound/` folders that ship with the repo). Open that file in any browser:
+
+- double-click `index.html`, or
+- on Linux: `npm run play`
+
+The game works fully offline over `file://` in both Chrome and Firefox.
+
+### Option B — dev server
+
+```bash
+npm run dev
+```
+
+Then open the local URL Vite prints (typically `http://localhost:5173`). This is handy if you want live reload while tinkering with the code.
+
+## Tech stack
+
+React 19 + TypeScript, built with Vite. Styling via Tailwind CSS, state via Zustand, audio via Howler.js. The build is bundled into one HTML file with `vite-plugin-singlefile`.
+
+## Repository layout
+
+- `src/core/` — the game engine (state, save/load, location registry)
+- `src/locations/` — the game's locations and events
+- `src/components/` — the UI
+- `images/`, `sound/` — game assets (also symlinked into `public/`)
+- `scripts/` — build, test, and audit tooling

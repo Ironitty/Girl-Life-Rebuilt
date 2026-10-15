@@ -761,7 +761,7 @@ function enterBuyPregTest(s: GameState, scene: SceneBuilder): void {
       scene.text('"I guess we all make those," she sighs before taking a small box off the shelf. "Goodness knows your sister\'s living proof of that. Literally."');
     }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Don\'t tell ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => ('Don\'t tell ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? '')).trim(), handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     ((st as any).LudaQW = (st as any).LudaQW ?? {})['dont_tell'] = 1;
     if (((st as any).momslut ?? 0) >= 1) {
@@ -1225,7 +1225,7 @@ function enterBuyMorningAfterEnd(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue shopping', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
   } },
-    { label: '', labelFn: (s: GameState) => 'Don\'t tell ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? ''), handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => ('Don\'t tell ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? '')).trim(), handler: (st: GameState) => {
     scene.text('<center><b>Pharmacy</b></center>');
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     if (((st as any).LudaQW ?? 0)?.['momslut_know'] === 1) {
@@ -1393,7 +1393,7 @@ function enterOintment(s: GameState, scene: SceneBuilder): void {
 function enterDontTell(s: GameState, scene: SceneBuilder): void {
   if (((s as any).LudaQW ?? 0)?.['dont_tell'] === 0) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Don\'t tell ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => ('Don\'t tell ' + String((((s as any).npc_nickname ?? 0)?.['A29'] ?? '') ?? '')).trim(), handler: (st: GameState) => {
     ((st as any).LudaQW = (st as any).LudaQW ?? {})['dont_tell'] = 1;
     scene.text('<center><b>Pharmacy</b></center>');
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');

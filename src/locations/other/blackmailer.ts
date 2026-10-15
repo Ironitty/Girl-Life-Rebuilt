@@ -1447,8 +1447,8 @@ function enterPackage1(s: GameState, scene: SceneBuilder): void {
           (st as any).bm_i = 300;
         }
         (st as any).bm_i = ((st as any).bm_i ?? 0) + (1);
-        (st as any).bm_i = undefined;
       } while (((st as any).bm_i ?? 0) < 200);
+      (st as any).bm_i = undefined;
     }
     (st as any).temp_bm_out_img = qspFunc(s, 'blackmailer', 'open_package');
     ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['cosplay_stage'] = 1;

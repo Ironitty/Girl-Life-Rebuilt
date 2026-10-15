@@ -109,7 +109,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
     (s as any).start_location = qspFunc(s, 'intro_character_creation', 'get_random', 'location');
   }
   qspCall(s, 'intro_character_templates', 'set_random_template');
-  qspGoto(s, 'intro_overview', '');
+  qspGoto(s, 'intro_end', 'quick_start');
   scene.build();
 }
 

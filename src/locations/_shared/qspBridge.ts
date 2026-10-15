@@ -51,8 +51,8 @@ export function dynamicGoto(s: GameState, targetVar: string, argVar?: string): v
   goto(s, t, a);
 }
 
-export function qspGoto(s: GameState, target: string, arg: string, arg2?: string, arg3?: string): void {
-  goto(s, target, arg, arg2, arg3);
+export function qspGoto(s: GameState, target: string, arg: string, arg2?: string, arg3?: string, arg4?: string, arg5?: string): void {
+  goto(s, target, arg, arg2, arg3, arg4, arg5);
 }
 
 export function qspSave(slot: string, s: GameState): void {
@@ -301,8 +301,28 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
         delete (s as any).outfitfilter_check;
         return;
       }
-      warn(module, func, args);
-      return;
+      {
+        let def = getLocation(module);
+        let locName = module;
+        if (def?.enter) {
+          const savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+          const savedLocArgs = (s as any).locArgs;
+          const savedArgs = (s as any).ARGS;
+          s.locArg = func;
+          (s as any).locArgs = [func, ...args];
+          const _argsObj: Record<number, any> = {};
+          const _la = (s as any).locArgs;
+          for (let _i = 1; _i < _la.length; _i++) { _argsObj[_i] = _la[_i]; }
+          (s as any).ARGS = _argsObj;
+          invoke(s, locName, func);
+          s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+          (s as any).locArgs = savedLocArgs;
+          (s as any).ARGS = savedArgs;
+          return;
+        }
+        warn(module, func, args);
+        return;
+      }
     }
     case 'themes': {
       if (func === 'clothing') {
@@ -671,13 +691,19 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
       return;
     }
     default: {
-      const def = getLocation(module);
+      let def = getLocation(module);
+      let locName = module;
+      if (!def && module.startsWith('$')) {
+        const alt = '_' + module.slice(1);
+        def = getLocation(alt);
+        if (def) locName = alt;
+      }
       if (def?.enter) {
         const savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
         const savedLocArgs = (s as any).locArgs;
         s.locArg = func;
         (s as any).locArgs = [func, ...args];
-        invoke(s, module, func);
+        invoke(s, locName, func);
         s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
         (s as any).locArgs = savedLocArgs;
         return;
@@ -943,6 +969,48 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
         }
         return `images/pc/body/pussy/shave/${color}/${pubestyle}.jpg`;
       }
+      if (part === 'ass' || part === 'butt') {
+        const bodyVars = (s as any).bodyVars ?? {};
+        if (num(bodyVars['butt_silicone']) > 0) return 'images/pc/body/ass/9s.jpg';
+        const butt = num((s as any).pcs_buttsize);
+        const n = butt <= 7 ? 1 : butt <= 14 ? 2 : butt <= 21 ? 3 : butt <= 29 ? 4 : butt <= 36 ? 5 : butt <= 44 ? 6 : butt <= 51 ? 7 : butt <= 59 ? 8 : 9;
+        return `images/pc/body/ass/${n}.jpg`;
+      }
+      if (part === 'coat') {
+        const coatType = str((s as any).coatworntype);
+        if (coatType === 'none') return '';
+        return `images/pc/items/${coatType}/coats/${num((s as any).coatwornnumber)}.jpg`;
+      }
+      if (part === 'clothes') {
+        const clothType = str((s as any).clothingworntype);
+        const clothNum = num((s as any).clothingwornnumber);
+        const pantyType = str((s as any).pantyworntype);
+        if (clothType === 'nude' && num((s as any).towel) === 1 && pantyType === 'none') return 'images/pc/body/towel.jpg';
+        if (clothType === 'nude' && num((s as any).robe) === 1) return 'images/pc/body/robe.jpg';
+        if (clothType === 'nude' && pantyType !== 'none') return 'images/pc/body/nude.jpg';
+        if (clothType === 'nude' && pantyType === 'none') return 'images/pc/body/nude1.jpg';
+        return qspFunc(s, '$clothing_image', '', clothType, clothNum);
+      }
+      if (part === 'panties') {
+        const pantyType = str((s as any).pantyworntype);
+        if (pantyType === 'none') return qspFunc(s, '$body_image', '', 'pussy');
+        return qspFunc(s, '$panty_image', '', pantyType, num((s as any).pantywornnumber));
+      }
+      if (part === 'bra') {
+        const braType = str((s as any).braworntype);
+        if (braType === 'none') return qspFunc(s, '$body_image', '', 'tits');
+        return qspFunc(s, '$bra_image', '', braType, num((s as any).brawornnumber));
+      }
+      if (part === 'bodysuit') {
+        const braType = str((s as any).braworntype);
+        if (braType === 'none') return qspFunc(s, '$body_image', '', 'tits');
+        return qspFunc(s, '$pcs_outfit_image', '', str((s as any).bodysuitworntype) + '_bodysuits', num((s as any).bodysuitwornnumber));
+      }
+      if (part === 'shoes') {
+        const shoeType = str((s as any).shoeworntype);
+        if (shoeType === 'none') return 'images/pc/body/feet.jpg';
+        return qspFunc(s, '$shoe_image', '', shoeType, num((s as any).shoewornnumber));
+      }
       return '';
     }
     case '$clothing_image': {
@@ -1053,8 +1121,22 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
       if (func === 'not_wear_reason') {
         return notWearReason(s, module, str(args[0]), num(args[1]));
       }
-      warn(module, func, args);
-      return 0;
+      {
+        const def = getLocation(module);
+        if (def?.enter) {
+          const savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+          const savedLocArgs = (s as any).locArgs;
+          s.locArg = func;
+          (s as any).locArgs = [func, ...args];
+          invoke(s, module, func);
+          const _ret = (s as any).result;
+          s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+          (s as any).locArgs = savedLocArgs;
+          return _ret ?? 0;
+        }
+        warn(module, func, args);
+        return 0;
+      }
     }
     case 'wardrobe': {
       if (func === 'default_clothing_line') {

@@ -16,17 +16,17 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, (s as any).locArgs?.[1] ?? '', 'add_item', ((s as any).temp_type ?? 0), ((s as any).locArgs?.[3] ?? 0));
   if (String((s as any).locArgs?.[1] ?? '') === 'clothing') {
-    if (String((s as any).locArgs?.[4] ?? '') > 0) {
-      scene.text('' + ((s as any).locArgs?.[2] ?? 0) + '_h[' + ((s as any).locArgs?.[3] ?? 0) + '] = ' + ((s as any).locArgs?.[4] ?? 0) + '');
+    if (Number((s as any).locArgs?.[4] ?? 0) > 0) {
+      const __t = String((s as any).locArgs?.[2] ?? ''); const __n = String((s as any).locArgs?.[3] ?? ''); (s as any)[__t + '_h'] = (s as any)[__t + '_h'] ?? {}; (s as any)[__t + '_h'][__n] = Number((s as any).locArgs?.[4] ?? 0);
     }
-    if (String((s as any).locArgs?.[5] ?? '') > 0) {
-      scene.text('' + ((s as any).locArgs?.[2] ?? 0) + '_b[' + ((s as any).locArgs?.[3] ?? 0) + '] = ' + ((s as any).locArgs?.[5] ?? 0) + '');
+    if (Number((s as any).locArgs?.[5] ?? 0) > 0) {
+      const __t = String((s as any).locArgs?.[2] ?? ''); const __n = String((s as any).locArgs?.[3] ?? ''); (s as any)[__t + '_b'] = (s as any)[__t + '_b'] ?? {}; (s as any)[__t + '_b'][__n] = Number((s as any).locArgs?.[5] ?? 0);
     }
-    if (String((s as any).locArgs?.[6] ?? '') > 0) {
-      scene.text('' + ((s as any).locArgs?.[2] ?? 0) + '_h[' + ((s as any).locArgs?.[3] ?? 0) + '] += rand(-' + ((s as any).locArgs?.[6] ?? 0) + ', ' + ((s as any).locArgs?.[6] ?? 0) + ')');
+    if (Number((s as any).locArgs?.[6] ?? 0) > 0) {
+      const __t = String((s as any).locArgs?.[2] ?? ''); const __n = String((s as any).locArgs?.[3] ?? ''); const __r = Number((s as any).locArgs?.[6] ?? 0); (s as any)[__t + '_h'] = (s as any)[__t + '_h'] ?? {}; (s as any)[__t + '_h'][__n] = ((s as any)[__t + '_h'] ?? {})[__n] ?? 0 + Math.floor(Math.random() * (2 * __r + 1)) - __r;
     }
-    if (String((s as any).locArgs?.[6] ?? '') < 0) {
-      scene.text('' + ((s as any).locArgs?.[2] ?? 0) + '_h[' + ((s as any).locArgs?.[3] ?? 0) + '] += rand(' + ((s as any).locArgs?.[6] ?? 0) + ', 0)');
+    if (Number((s as any).locArgs?.[6] ?? 0) < 0) {
+      const __t = String((s as any).locArgs?.[2] ?? ''); const __n = String((s as any).locArgs?.[3] ?? ''); const __r = Number((s as any).locArgs?.[6] ?? 0); (s as any)[__t + '_h'] = (s as any)[__t + '_h'] ?? {}; (s as any)[__t + '_h'][__n] = ((s as any)[__t + '_h'] ?? {})[__n] ?? 0 + Math.floor(Math.random() * (Math.abs(__r) + 1)) + __r;
     }
   }
   if (String((s as any).locArgs?.[7] ?? '') === '1') {
@@ -181,6 +181,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['debug'] = 1;
   qspCall(s, 'obj_din', 'old');
+  qspCall(s, 'outfit', 'stat', 0);
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
     qspCall(s, 'stat', '');
   }

@@ -120,7 +120,9 @@ function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).result = 0;
+    const __type = String((s as any).locArgs?.[1] ?? '');
+    const __num = Number((s as any).locArgs?.[2] ?? 0);
+    (s as any).result = (s as any)[__type + '_pursesS']?.[__num] === 0 ? 1 : 0;
   }
   return;
   scene.build();
@@ -135,7 +137,9 @@ function enterInStorage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).result = 0;
+    const __type = String((s as any).locArgs?.[1] ?? '');
+    const __num = Number((s as any).locArgs?.[2] ?? 0);
+    (s as any).result = (s as any)[__type + '_pursesS']?.[__num] === 1 ? 1 : 0;
   }
   return;
   scene.build();
@@ -150,7 +154,9 @@ function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).result = 0;
+    const __type = String((s as any).locArgs?.[1] ?? '');
+    const __num = Number((s as any).locArgs?.[2] ?? 0);
+    (s as any).result = (s as any)[__type + '_pursesS']?.[__num] === 2 ? 1 : 0;
   }
   return;
   scene.build();

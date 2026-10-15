@@ -589,7 +589,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
       qspCall(s, 'clothing_attributes', '', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
-        scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
+        scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'view_item', '${(s as any).locArgs?.[3] ?? ''}', '${(s as any).locArgs?.[4] ?? ''}', ${(s as any).locArgs?.[5] ?? ''}, ${(s as any).locArgs?.[6] ?? ''}); return false;"><img height="250" src="${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}"></a>`);
       }
       return;
     }
@@ -607,7 +607,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
       qspCall(s, 'clothing_attributes', '', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
-        scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
+        scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'view_item', '${(s as any).locArgs?.[3] ?? ''}', '${(s as any).locArgs?.[4] ?? ''}', ${(s as any).locArgs?.[5] ?? ''}, ${(s as any).locArgs?.[6] ?? ''}); return false;"><img height="150" src="${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}"></a>`);
       }
       return;
     }
@@ -625,9 +625,9 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
       qspCall(s, 'clothing_attributes', '', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
-      if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
+      { const __fa = qspFunc(s, 'shop_utils', 'filter', 'apply'); if (__fa) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0)]; enterListLine(s, scene); (s as any).locArgs = __savedLocArgs; }
-      }
+      } }
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'footer') {
@@ -640,19 +640,22 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplayGridShop(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  qspCall(s, 'shop_utils', 'display', 'init', 'grid_shop', 0);
+  qspCall(s, 'shop_utils', 'display', 'main');
   return;
   scene.build();
 }
 
 function enterDisplayGridWardrobe(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
+  qspCall(s, 'shop_utils', 'display', 'init', 'grid_wardrobe', 1);
+  qspCall(s, 'shop_utils', 'display', 'main');
   return;
   scene.build();
 }
 
 function enterDisplayListWardrobe(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'list_wardrobe');
+  qspCall(s, 'shop_utils', 'display', 'init', 'list_wardrobe', 0);
+  qspCall(s, 'shop_utils', 'display', 'main');
   return;
   scene.build();
 }
@@ -683,6 +686,7 @@ function enterViewListsList(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<center><b>Choose to view all or select by shop</b></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'all']; enterDisplayListLink(s, scene); (s as any).locArgs = __savedLocArgs; }
+
   if (Object.keys((s as any).gm_outfits ?? {}).length + Object.keys((s as any).gm_dress ?? {}).length > 0) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gm']; enterDisplayListLink(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
@@ -774,9 +778,9 @@ function enterDisplayListLink(s: GameState, scene: SceneBuilder): void {
 
 function enterViewList(s: GameState, scene: SceneBuilder): void {
   (s as any).ward_list_store = ((s as any).locArgs?.[1] ?? 0);
-  if (((s as any).shop_display ?? 0)?.['init'] === 0) {
+  if ((((s as any).shop_display ?? {})['init'] ?? 0) === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'owned');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'add_types', ((s as any).ward_list_store ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'add_types', 'all']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'shop_utils', 'init', 'set_return', 'wardrobe', 'main');
     qspCall(s, 'shop_utils', 'init', 'end');
   }
@@ -877,9 +881,9 @@ function enterViewGrid(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') !== '') {
     (s as any).ward_list_store = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (((s as any).shop_display ?? 0)?.['init'] === 0) {
+  if ((((s as any).shop_display ?? {})['init'] ?? 0) === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'clothing', ((s as any).locArgs?.[1] ?? 0));
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'add_types', ((s as any).ward_list_store ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'add_types', 'all']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'shop_utils', 'init', 'set_return', 'wardrobe', 'main');
     qspCall(s, 'shop_utils', 'init', 'end');
   }
@@ -902,15 +906,16 @@ function enterListLine(s: GameState, scene: SceneBuilder): void {
   (s as any).swimwear_description = undefined;
   qspCall(s, 'clothing_attributes', '', (s as any).locArgs?.[2] ?? '', ((s as any).locArgs?.[3] ?? 0));
   scene.text('<tr bgcolor=' + ((s as any).temp_bcolor ?? '') + '>');
-  scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[2] ?? ''), ((s as any).locArgs?.[3] ?? ''))}`);
+  scene.text(`<td><a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'view_item', '${(s as any).locArgs?.[1] ?? ''}', '${(s as any).locArgs?.[2] ?? ''}', ${(s as any).locArgs?.[3] ?? ''}); return false;"><img width="100" src="${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[2] ?? ''), ((s as any).locArgs?.[3] ?? ''))}"></a></td>`);
   if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0))) {
     scene.text('<td colspan="2"></td>');
   } else {
     scene.text('<td>');
-    scene.text(`dyneval('result = ${((s as any).locArgs?.[2] ?? '')}_h[${((s as any).locArgs?.[3] ?? '')}]')`);
+    const __str = (s as any)[`${((s as any).locArgs?.[2] ?? '')}_h`]?.[String((s as any).locArgs?.[3] ?? '')] ?? 0;
+    scene.text(__str >= 1000 ? (__str / 1000).toFixed(1) + 'k' : String(__str));
     scene.text('</td><td>');
     if (((s as any).CloStyle ?? 0) !== 5  &&  ((s as any).CloStyle2 ?? 0) !== 6) {
-      scene.text(`dyneval('result = ${((s as any).locArgs?.[2] ?? '')}_b[${((s as any).locArgs?.[3] ?? '')}]')`);
+      scene.text(String((s as any)[`${((s as any).locArgs?.[2] ?? '')}_b`]?.[String((s as any).locArgs?.[3] ?? '')] ?? 0));
     }
     scene.text('</td>');
   }
@@ -918,7 +923,7 @@ function enterListLine(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[2] ?? '') === 'misc_outfits'  &&  String((s as any).locArgs?.[1] ?? '') === '1') {
     scene.text('A hessian sack the hunters gave you.');
   } else {
-    if (((s as any).swimwear_description ?? 0) !== '') {
+    if (((s as any).swimwear_description ?? '') !== '') {
       scene.text(String((s as any).swimwear_description ?? ''));
     } else {
       qspCall(s, 'clothing_descriptions', '');
@@ -962,51 +967,51 @@ function enterListLine(s: GameState, scene: SceneBuilder): void {
     scene.text('<td colspan="4"></td>');
     scene.text('<td><center>');
     if (qspFunc(s, 'clothing', 'does_fit', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0))  ||  (! qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)))  ||  ((s as any).pcs_sewng ?? 0) < 50  ||  ((s as any).mc_inventory ?? 0)?.['sewing_fabric'] <= 0) {
-      scene.img('images/system/icons/clothing/resize_off.png');
+      scene.text('<img src="images/system/icons/clothing/resize_off.png">');
     } else {
-      scene.img('images/system/icons/clothing/resize.png');
+      scene.text('<img src="images/system/icons/clothing/resize.png">');
     }
     scene.text('</center></td>');
     scene.text('<td></td>');
   } else {
     scene.text('<td><center>');
     if (qspFunc(s, 'clothing', 'in_wardrobe', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0))) {
-      scene.img('images/system/icons/clothing/wardrobe.png');
+      scene.text('<img src="images/system/icons/clothing/wardrobe.png">');
     } else {
-      scene.img('images/system/icons/clothing/wardrobe_off.png');
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'list_line_move_to_wardrobe', '${(s as any).locArgs?.[2] ?? ''}', ${(s as any).locArgs?.[3] ?? 0}); return false;"><img src="images/system/icons/clothing/wardrobe_off.png"></a>`);
     }
     scene.text('</center></td>');
     scene.text('<td><center>');
     if (qspFunc(s, 'clothing', 'in_storage', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0))) {
-      scene.img('images/system/icons/clothing/storage.png');
+      scene.text('<img src="images/system/icons/clothing/storage.png">');
     } else {
-      scene.img('images/system/icons/clothing/storage_off.png');
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'list_line_move_to_storage', '${(s as any).locArgs?.[2] ?? ''}', ${(s as any).locArgs?.[3] ?? 0}); return false;"><img src="images/system/icons/clothing/storage_off.png"></a>`);
     }
     scene.text('</center></td>');
     scene.text('<td><center>');
     if (qspFunc(s, 'clothing', 'in_unwanted', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0))) {
-      scene.img('images/system/icons/clothing/unwanted.png');
+      scene.text('<img src="images/system/icons/clothing/unwanted.png">');
     } else {
-      scene.img('images/system/icons/clothing/unwanted_off.png');
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'list_line_move_to_unwanted', '${(s as any).locArgs?.[2] ?? ''}', ${(s as any).locArgs?.[3] ?? 0}); return false;"><img src="images/system/icons/clothing/unwanted_off.png"></a>`);
     }
     scene.text('</center></td>');
     scene.text('<td><center>');
     if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0))  ||  qspFunc(s, 'clothing', 'is_strength_low', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)) === 0  ||  ((s as any).pcs_sewng ?? 0) < 60  ||  ((s as any).mc_inventory ?? 0)?.['sewing_fabric'] <= 0) {
-      scene.img('images/system/icons/clothing/repair_off.png');
+      scene.text('<img src="images/system/icons/clothing/repair_off.png">');
     } else {
-      scene.img('images/system/icons/clothing/repair.png');
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'list_line_repair', '${(s as any).locArgs?.[2] ?? ''}', ${(s as any).locArgs?.[3] ?? 0}); return false;"><img src="images/system/icons/clothing/repair.png"></a>`);
     }
     scene.text('</center></td>');
     scene.text('<td><center>');
     if (qspFunc(s, 'clothing', 'does_fit', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0))  ||  (! qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)))  ||  ((s as any).pcs_sewng ?? 0) < 50  ||  qspFunc(s, 'money', 'can_afford', 500) === 0) {
-      scene.img('images/system/icons/clothing/resize_off.png');
+      scene.text('<img src="images/system/icons/clothing/resize_off.png">');
     } else {
-      scene.img('images/system/icons/clothing/resize.png');
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'list_line_resize', '${(s as any).locArgs?.[2] ?? ''}', ${(s as any).locArgs?.[3] ?? 0}); return false;"><img src="images/system/icons/clothing/resize.png"></a>`);
     }
     scene.text('</center></td>');
     scene.text('<td><center>');
     if (! qspFunc(s, 'clothing', 'is_immutable', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0))) {
-      scene.img('images/system/icons/clothing/delete_on.png');
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('clothing_view', 'list_line_delete', '${(s as any).locArgs?.[2] ?? ''}', ${(s as any).locArgs?.[3] ?? 0}); return false;"><img src="images/system/icons/clothing/delete_on.png"></a>`);
     }
     scene.text('</center></td>');
   }
@@ -1084,8 +1089,9 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount'] = ((s as any).locArgs?.[4] ?? 0);
   qspCall(s, 'stat', '');
   (s as any).swimwear_description = '';
-  scene.img(`${qspFunc(s, '$clothing_image', '', (((s as any).shop_utils_view ?? 0)?.['type'] ?? ''), (((s as any).shop_utils_view ?? 0)?.['number'] ?? ''))}`);
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="${qspFunc(s, '$clothing_image', '', (((s as any).shop_utils_view ?? 0)?.['type'] ?? ''), (((s as any).shop_utils_view ?? 0)?.['number'] ?? ''))}"></center>`);
   qspCall(s, 'clothing_attributes', '', '$shop_utils_view[\'type\']', (((s as any).shop_utils_view ?? 0)?.['number']));
+  scene.text(qspFunc(s, '$short_description', '', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'], (s as any).CloStyle2));
   if (((s as any).shop_utils_view ?? 0)?.['type'] === 'misc_outfits'  &&  ((s as any).shop_utils_view ?? 0)?.['number'] === 1) {
     scene.text('A hessian sack the hunters gave you.');
   } else {
@@ -1141,35 +1147,67 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
     scene.text('This is sport clothing.');
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop'  ||  ((s as any).shop_utils_view ?? 0)?.['link'] === 'cheat') {
-    qspGoto(s, 'clothing_view', 'view_item_shop');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_shop', '', '', '', ''];
+    enterViewItemShop(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     scene.text('(dirty ' + Math.min(Math.max(0, ((s as any).CloDirt ?? '') / 24), 100) + ', strength ' + ((s as any).CloStrength ?? ''));
     if (((s as any).CloSport ?? 0) === 0  &&  ((s as any).CloStyle ?? 0) !== 5) {
       /* dynamic text: hip size */
-      scene.text(', hip size ' + 0);
+      scene.text(', hip size ' + ((s as any)[`${((s as any).shop_utils_view ?? 0)?.['type'] ?? ''}_b`]?.[String(((s as any).shop_utils_view ?? 0)?.['number'] ?? '')] ?? 0));
     }
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'resize') {
-    qspGoto(s, 'clothing_view', 'view_item_resize');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_resize', '', '', '', ''];
+    enterViewItemResize(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   if (qspFunc(s, 'clothing', 'is_wearing', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
-    qspGoto(s, 'clothing_view', 'view_item_wearing');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_wearing', '', '', '', ''];
+    enterViewItemWearing(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'sell') {
-    qspGoto(s, 'clothing_view', 'view_item_sell');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_sell', '', '', '', ''];
+    enterViewItemSell(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'wardrobe') {
-    qspGoto(s, 'clothing_view', 'view_item_wardrobe');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_wardrobe', '', '', '', ''];
+    enterViewItemWardrobe(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'storage') {
-    qspGoto(s, 'clothing_view', 'view_item_storage');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_storage', '', '', '', ''];
+    enterViewItemStorage(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'unwanted') {
-    qspGoto(s, 'clothing_view', 'view_item_unwanted');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_unwanted', '', '', '', ''];
+    enterViewItemUnwanted(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'owned') {
-    qspGoto(s, 'clothing_view', 'view_item_owned');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_owned', '', '', '', ''];
+    enterViewItemOwned(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   scene.actions([
 { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'clothing_view', ((st as any).shop_display ?? {})['hub_subloc'] ?? '', ((st as any).ward_list_store ?? '')); } },
@@ -1220,7 +1258,7 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
 
 function enterViewItemResize(s: GameState, scene: SceneBuilder): void {
   if (((s as any).CloSport ?? 0) === 0  &&  ((s as any).CloStyle ?? 0) !== 5) {
-    if ((0 as any) !== ((s as any).pcs_hips ?? 0)  &&  qspFunc(s, 'money', 'can_afford', 500)) {
+    if (((s as any)[`${((s as any).shop_utils_view ?? 0)?.['type'] ?? ''}_b`]?.[String(((s as any).shop_utils_view ?? 0)?.['number'] ?? '')] ?? 0) !== ((s as any).pcs_hips ?? 0)  &&  qspFunc(s, 'money', 'can_afford', 500)) {
       scene.text('\'You can have this resized for 500₽.\'');
       scene.actions([
         { label: 'Resize', handler: (st: GameState) => {
@@ -1261,7 +1299,7 @@ function enterViewItemSell(s: GameState, scene: SceneBuilder): void {
     scene.text('You can\'t sell these clothes.');
     return;
   }
-  (s as any).temp_cloStrength = 0;
+  (s as any).temp_cloStrength = (s as any)[`${((s as any).shop_utils_view ?? 0)?.['type'] ?? ''}_h`]?.[String(((s as any).shop_utils_view ?? 0)?.['number'] ?? '')] ?? 0;
   if (((s as any).temp_cloStrength ?? 0) > 45) {
     scene.text('You can sell this item for ' + qspFunc(s, 'money', 'string_profit', 500) + '.');
     scene.actions([
@@ -1481,13 +1519,13 @@ function enterViewItemWearHypno(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Put them on anyways', handler: (st: GameState) => {
+      { label: 'Put them on anyways' + qspFunc(s, 'willpower', 'get_willcost_string'), handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Put them on anyways', handler: (st: GameState) => {
+      { label: 'Put them on anyways' + qspFunc(s, 'willpower', 'get_willcost_string'), handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
     qspCall(st, 'clothing', 'wear', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
@@ -1527,7 +1565,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move to wardrobe', handler: (st: GameState) => {
     qspCall(st, 'clothing', 'move_to_wardrobe', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
-    qspGoto(st, 'clothing_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
+    qspGoto(st, 'clothing_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']), (((st as any).shop_utils_view ?? {})['number']), (((st as any).shop_utils_view ?? {})['discount']));
   } },
     ]);
   }
@@ -1538,7 +1576,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move to storage', handler: (st: GameState) => {
     qspCall(st, 'clothing', 'move_to_storage', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
-    qspGoto(st, 'clothing_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
+    qspGoto(st, 'clothing_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']), (((st as any).shop_utils_view ?? {})['number']), (((st as any).shop_utils_view ?? {})['discount']));
   } },
     ]);
   }
@@ -1546,7 +1584,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move to unwanted', handler: (st: GameState) => {
     qspCall(st, 'clothing', 'move_to_unwanted', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
-    qspGoto(st, 'clothing_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
+    qspGoto(st, 'clothing_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']), (((st as any).shop_utils_view ?? {})['number']), (((st as any).shop_utils_view ?? {})['discount']));
   } },
     ]);
   }

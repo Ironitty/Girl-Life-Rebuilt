@@ -173,7 +173,9 @@ function enterGetTotal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTotals(s: GameState, scene: SceneBuilder): void {
-  (s as any).total = qspFunc(s, 'clothing', 'get_total', ((s as any).locArgs?.[1] ?? 0));
+  const __type = ((s as any).locArgs?.[1] ?? 0);
+  const __result = qspFunc(s, 'clothing', 'get_total', __type);
+  (s as any).total = __result;
   return;
   scene.build();
 }
@@ -279,13 +281,18 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsOwned(s: GameState, scene: SceneBuilder): void {
-  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
+  const __args = (s as any).locArgs ?? [];
+  let __type = __args[1];
+  let __number = __args[2];
+  if (__args.length <= 1) {
+    __type = ((s as any).clothingworntype ?? 0);
   }
-  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
+  if (__args.length <= 2) {
+    __number = ((s as any).clothingwornnumber ?? 0);
   }
-  (s as any).result = 0;
+  const __inv = (s as any)[__type];
+  const __result = (__inv?.[__number] ?? 0) > 0 ? 1 : 0;
+  (s as any).result = __result;
   return;
   scene.build();
 }
@@ -299,9 +306,8 @@ function enterIsLost(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).result = ((Array.isArray((s as any).CloLosTyp) ? ((s as any).CloLosTyp as any[]).indexOf(String((s as any).locArgs?.[1] ?? '')) : -1) >= 0  &&  (Array.isArray((s as any).CloLosNum) ? ((s as any).CloLosNum as any[]).indexOf(String((s as any).locArgs?.[2] ?? '')) : -1) >= 0);
+    (s as any).result = 1;
   }
-  return;
   scene.build();
 }
 
@@ -329,7 +335,9 @@ function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).result = 0;
+    const __type = String((s as any).locArgs?.[1] ?? '');
+    const __num = Number((s as any).locArgs?.[2] ?? 0);
+    (s as any).result = (s as any)[__type + '_s']?.[__num] === 0 ? 1 : 0;
   }
   return;
   scene.build();
@@ -344,7 +352,9 @@ function enterInStorage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).result = 0;
+    const __type = String((s as any).locArgs?.[1] ?? '');
+    const __num = Number((s as any).locArgs?.[2] ?? 0);
+    (s as any).result = (s as any)[__type + '_s']?.[__num] === 1 ? 1 : 0;
   }
   return;
   scene.build();
@@ -359,7 +369,9 @@ function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).result = 0;
+    const __type = String((s as any).locArgs?.[1] ?? '');
+    const __num = Number((s as any).locArgs?.[2] ?? 0);
+    (s as any).result = (s as any)[__type + '_s']?.[__num] === 2 ? 1 : 0;
   }
   return;
   scene.build();
@@ -535,13 +547,25 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     return;
   }
-  if (String((s as any).locArgs?.[0] ?? '') === '0') {
+  if (String((s as any).locArgs?.[2] ?? '') === '0') {
     return;
   }
   qspCall(s, 'clothing_attributes', '', (s as any).locArgs?.[1] ?? '', ((s as any).locArgs?.[2] ?? 0));
   if ((!((s as any).CloQuality ?? 0))) {
     return;
   }
+  const type = String((s as any).locArgs?.[1] ?? '');
+  const num = String((s as any).locArgs?.[2] ?? '');
+  (s as any)[type] = (s as any)[type] ?? {};
+  (s as any)[type][num] = 1;
+  (s as any)[type + '_b'] = (s as any)[type + '_b'] ?? {};
+  (s as any)[type + '_b'][num] = (s as any).pcs_hips;
+  (s as any)[type + '_s'] = (s as any)[type + '_s'] ?? {};
+  (s as any)[type + '_s'][num] = 0;
+  (s as any)[type + '_dirt'] = (s as any)[type + '_dirt'] ?? {};
+  (s as any)[type + '_dirt'][num] = 0;
+  (s as any)[type + '_h'] = (s as any)[type + '_h'] ?? {};
+  (s as any)[type + '_h'][num] = (s as any).CloMaxStrength;
   return;
   scene.build();
 }
@@ -556,6 +580,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === ''  ||  String((s as any).locArgs?.[1] ?? '') === 'nude') {
     return;
   }
+  { const type = String((s as any).locArgs?.[1] ?? ''); const num = String((s as any).locArgs?.[2] ?? ''); (s as any)[type] = (s as any)[type] ?? {}; (s as any)[type][num] = 0; (s as any)[type + '_b'] = (s as any)[type + '_b'] ?? {}; (s as any)[type + '_b'][num] = 0; (s as any)[type + '_s'] = (s as any)[type + '_s'] ?? {}; (s as any)[type + '_s'][num] = 0; (s as any)[type + '_dirt'] = (s as any)[type + '_dirt'] ?? {}; (s as any)[type + '_dirt'][num] = 0; (s as any)[type + '_h'] = (s as any)[type + '_h'] ?? {}; (s as any)[type + '_h'][num] = 0; }
   if (String((s as any).locArgs?.[1] ?? '') === ((s as any).clothingworntype ?? 0)  &&  String((s as any).locArgs?.[2] ?? '') === ((s as any).clothingwornnumber ?? 0)) {
     qspCall(s, 'clothing', 'strip_code');
     (s as any).lastwornclothingtype = 'nude';
@@ -571,7 +596,7 @@ function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
   ((s as any).gm_outfits_s = (s as any).gm_outfits_s ?? {})[3] = 0;
   ((s as any).gm_outfits_dirt = (s as any).gm_outfits_dirt ?? {})[3] = 1440;
   ((s as any).gm_outfits_h = (s as any).gm_outfits_h ?? {})[3] = 10000;
-  if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
+  if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars?.['school_diploma'] ?? 0) === 0  &&  ((s as any).gschoolVars?.['block'] ?? 0) === 0) {
     ((s as any).gm_school = (s as any).gm_school ?? {})[6] = 1;
     ((s as any).gm_school_b = (s as any).gm_school_b ?? {})[6] = ((s as any).pcs_hips ?? 0);
     ((s as any).gm_school_s = (s as any).gm_school_s ?? {})[6] = 0;
@@ -594,14 +619,54 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
-  if (String((s as any).locArgs?.[1] ?? '') === '') {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
+  let type = String((s as any).locArgs?.[1] ?? '');
+  let number = (s as any).locArgs?.[2] ?? 0;
+  if (type === '') type = String((s as any).clothingworntype ?? '');
+  if (number === 0) number = (s as any).clothingwornnumber ?? 0;
+  if (qspFunc(s, 'clothing', 'is_owned', type, number)) {
+    (s as any)[type + '_s'] = (s as any)[type + '_s'] ?? {};
+    (s as any)[type + '_s'][number] = 0;
   }
-  if (String((s as any).locArgs?.[0] ?? '') === '0') {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
+  return;
+  scene.build();
+}
+
+function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
+  let type = String((s as any).locArgs?.[1] ?? '');
+  let number = (s as any).locArgs?.[2] ?? 0;
+  if (type === '') type = String((s as any).clothingworntype ?? '');
+  if (number === 0) number = (s as any).clothingwornnumber ?? 0;
+  if (qspFunc(s, 'clothing', 'is_owned', type, number)) {
+    (s as any)[type + '_s'] = (s as any)[type + '_s'] ?? {};
+    (s as any)[type + '_s'][number] = 1;
   }
-  if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
+  return;
+  scene.build();
+}
+
+function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
+  let type = String((s as any).locArgs?.[1] ?? '');
+  let number = (s as any).locArgs?.[2] ?? 0;
+  if (type === '') type = String((s as any).clothingworntype ?? '');
+  if (number === 0) number = (s as any).clothingwornnumber ?? 0;
+  if (qspFunc(s, 'clothing', 'is_owned', type, number)) {
+    (s as any)[type + '_s'] = (s as any)[type + '_s'] ?? {};
+    (s as any)[type + '_s'][number] = 2;
   }
+  return;
+  scene.build();
+}
+
+function enterResizeClothes(s: GameState, scene: SceneBuilder): void {
+  let type = String((s as any).locArgs?.[1] ?? '');
+  let number = (s as any).locArgs?.[2] ?? 0;
+  if (type === '') type = String((s as any).clothingworntype ?? '');
+  if (number === 0) number = (s as any).clothingwornnumber ?? 0;
+  if (qspFunc(s, 'clothing', 'is_owned', type, number)) {
+    (s as any)[type + '_b'] = (s as any)[type + '_b'] ?? {};
+    (s as any)[type + '_b'][number] = (s as any).pcs_hips ?? 0;
+  }
+  return;
   scene.build();
 }
 
@@ -936,6 +1001,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'move_to_wardrobe':
       enterMoveToWardrobe(s, scene);
+      break;
+    case 'move_to_storage':
+      enterMoveToStorage(s, scene);
+      break;
+    case 'move_to_unwanted':
+      enterMoveToUnwanted(s, scene);
+      break;
+    case 'resize_clothes':
+      enterResizeClothes(s, scene);
       break;
     case 'wear':
       enterWear(s, scene);

@@ -21,7 +21,7 @@ function logAction(type: string, detail: string) {
 interface GameStore extends GameState {
   reminders: Reminder[];
   set: (partial: Partial<GameState> | ((state: GameState) => Partial<GameState> | void)) => void;
-  doGoto: (loc: string, arg: string, arg2?: string, arg3?: string) => void;
+  doGoto: (loc: string, arg: string, arg2?: string, arg3?: string, arg4?: string, arg5?: string) => void;
   doCall: (loc: string, arg: string) => void;
   doPush: () => void;
   doPop: () => void;
@@ -51,6 +51,8 @@ export const initialState = {
   menuArg: '',
   prevLoc: '',
   prevArg: '',
+  mapOriginLoc: '',
+  mapOriginArg: '',
   loc_s: '',
   args_s: '',
   locationType: 'public',
@@ -199,6 +201,8 @@ export const initialState = {
   pcs_breath: 1,
   deodorant_on: 1,
   pcs_bmi: 21,
+  pcs_hgt: 165,
+  pcs_mass: { body: 60, bust_gen: 17, butt_gen: 22 } as Record<string, number>,
   clit_size: 0,
   temper: 0,
   weatherFall: 0,
@@ -646,12 +650,14 @@ export const initialState = {
   KGD: {} as Record<string, any>,
 };
 
-const GAME_STATE_KEYS = Object.keys(initialState) as (keyof GameState)[];
+const STORE_METHOD_KEYS = new Set(['reminders', 'set', 'doGoto', 'doCall', 'doPush', 'doPop', 'doAdvanceTime', 'doAction', 'undoAction', 'redoAction', 'clearDebugHistory', 'dismissReminders', 'saveGame', 'loadGame']);
 
 function extractState(s: GameStore): GameState {
   const state = {} as GameState;
-  for (const key of GAME_STATE_KEYS) {
-    state[key] = s[key] as never;
+  for (const key of Object.keys(s)) {
+    if (!STORE_METHOD_KEYS.has(key)) {
+      (state as any)[key] = (s as any)[key];
+    }
   }
   return state;
 }
@@ -671,12 +677,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }
   },
 
-  doGoto: (loc, arg, arg2?, arg3?) => {
+  doGoto: (loc, arg, arg2?, arg3?, arg4?, arg5?) => {
     logAction('GOTO', `${loc}${arg ? ':' + arg : ''}`);
     const s = extractState(get());
     try { pushSnapshot(s, s.loc, `GOTO ${loc}${arg ? ':' + arg : ''}`); } catch (e) { console.error('pushSnapshot error:', e); }
     try {
-      try { goto(s, loc, arg, arg2, arg3); } catch (e) { console.error('goto error:', e); throw e; }
+      try { goto(s, loc, arg, arg2, arg3, arg4, arg5); } catch (e) { console.error('goto error:', e); throw e; }
       computeStats(s);
       let soundOn = true;
       try {

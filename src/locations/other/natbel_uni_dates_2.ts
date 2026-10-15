@@ -509,7 +509,7 @@ function enterCollectTailor(s: GameState, scene: SceneBuilder): void {
       { label: 'Julia takes the photos', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'stat', '');
-    scene.img('images/characters/characters/shared/headshots_main/12.jpg');
+    scene.img('images/characters/shared/headshots_main/12.jpg');
     scene.text('On arriving you spend some time on general chat and catching up before Julia asks. "So what\'s going on with you two and how come you want me to take photos of Natasha?"');
     scene.text('You explain that you\'ve had some of Natasha\'s designs made and would like some photos of her wearing them for her portfolio.');
     scene.text('Julia is only too pleased to help and directs Natasha into various poses with her wearing each of the new dresses and outfits.');
@@ -529,7 +529,7 @@ function enterCollectTailor(s: GameState, scene: SceneBuilder): void {
       { label: 'Julia asks a question', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'stat', '');
-    scene.img('images/characters/characters/shared/headshots_main/12.jpg');
+    scene.img('images/characters/shared/headshots_main/12.jpg');
     scene.text('"So, what are you going to do with them now?" Julia asks.');
     scene.text('"We\'re not really sure. To go further we really need some sort of sponsorship and it\'s not really practical to go running around asking companies and clothing manufacturers. Apart from anything else we need to be able to concentrate on university so we can\'t get too distracted." You reply, whilst looking at Natasha who is nodding along in agreement.');
     scene.text('Julia looks thoughtful then suggests. "Why not wear the most glamorous dress out somewhere like the ballet or Babel? All sorts of famous people go there so you never know your luck."');

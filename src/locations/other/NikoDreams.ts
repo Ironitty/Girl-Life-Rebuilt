@@ -91,7 +91,7 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
 
 function enterWoods(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
-    (s as any).track_loop = 'sound/happyhome/HappyHome.mp3';
+    (s as any).track_loop = 'sound/happyhome/happyhome.mp3';
     (s as any).volume = 100;
     (s as any).music_loop = 1;
   }

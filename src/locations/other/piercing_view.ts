@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -65,7 +65,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
       qspCall(s, 'piercing_attributes', '', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
-      scene.img(`${qspFunc(s, 'piercing_management', ((s as any).locArgs?.[4] ?? '') + '_image', ((s as any).locArgs?.[5] ?? ''))}`);
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('piercing_view', 'view_item', '${(s as any).locArgs?.[3] ?? ''}', '${(s as any).locArgs?.[4] ?? ''}', ${(s as any).locArgs?.[5] ?? ''}, ${(s as any).locArgs?.[6] ?? ''}); return false;"><img height="250" src="${qspFunc(s, 'piercing_management', ((s as any).locArgs?.[4] ?? '') + '_image', ((s as any).locArgs?.[5] ?? ''))}"></a>`);
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'footer') {
@@ -83,9 +83,13 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['number'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount'] = ((s as any).locArgs?.[4] ?? 0);
   qspCall(s, 'piercing_attributes', '', '$shop_utils_view[\'type\']', (((s as any).shop_utils_view ?? 0)?.['number']));
-  scene.img(`${qspFunc(s, 'piercing_management', (((s as any).shop_utils_view ?? 0)?.['type'] ?? '') + '_image', (((s as any).shop_utils_view ?? 0)?.['number'] ?? ''))}`);
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="${qspFunc(s, 'piercing_management', (((s as any).shop_utils_view ?? 0)?.['type'] ?? '') + '_image', (((s as any).shop_utils_view ?? 0)?.['number'] ?? ''))}"></center>`);
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop') {
-    qspGoto(s, 'piercing_view', 'view_item_shop');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_shop', '', '', '', ''];
+    enterViewItemShop(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   scene.actions([
 { label: 'Return', handler: (st: GameState) => {
@@ -126,7 +130,7 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Get your ' + String((((s as any).shop_utils_view ?? 0)?.['type'] ?? '') ?? '') + ' pierced and buy this piercing (0:05, ' + String((((s as any).shop_utils_view ?? 0)?.['price_string'] ?? '') ?? '') + ')', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
-    scene.img(`${qspFunc(s, 'piercing_management', (((st as any).shop_utils_view ?? 0)?.['type'] ?? '') + '_image', (((st as any).shop_utils_view ?? 0)?.['number'] ?? ''))}`);
+    scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="${qspFunc(st, 'piercing_management', (((st as any).shop_utils_view ?? 0)?.['type'] ?? '') + '_image', (((st as any).shop_utils_view ?? 0)?.['number'] ?? ''))}"></center>`);
     scene.text(`The tattooist disinfects the area, pierces your ${(((st as any).shop_utils_view ?? 0)?.['type'] ?? '')} and inserts your chosen piercing.`);
     qspCall(st, 'money', 'pay', (((st as any).shop_utils_view ?? 0)?.['price']));
     qspCall(st, 'piercing_management', 'add', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));

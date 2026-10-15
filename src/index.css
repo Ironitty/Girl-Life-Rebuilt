@@ -27,3 +27,11 @@ body {
 #root {
   min-height: 100vh;
 }
+
+main img {
+  max-width: none;
+}
+
+main img[height] {
+  height: attr(height px);
+}

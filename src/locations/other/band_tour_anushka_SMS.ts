@@ -176,7 +176,7 @@ function enterWeek9(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'Add SMS') {
     qspCall(s, 'SMStext_builder', 'start');
     qspCall(s, 'SMStext_builder', 'receive', (((s as any).SMSTree ?? 0)?.['0']));
-    qspCall(s, 'SMStext_builder', 'receive_img', 'images/characters/pavlovsk/school/girl/anushka/tour/week9.jpg');
+    qspCall(s, 'SMStext_builder', 'receive_img', 'images/characters/pavlovsk/school/girl/anushka/tour/week9.JPG');
     qspCall(s, 'SMStext_builder', 'add_sms', 'A144');
     qspCall(s, 'SMStext_builder', 'end');
   }

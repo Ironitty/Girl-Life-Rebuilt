@@ -90,6 +90,8 @@ export interface GameState {
   menuArg: string;
   prevLoc: string;
   prevArg: string;
+  mapOriginLoc: string;
+  mapOriginArg: string;
   locationType: string;
 
   scene: SceneState;

@@ -111,7 +111,7 @@ function enterBody(s: GameState, scene: SceneBuilder): void {
     (s as any).img_temp = qspFunc(s, '$body_image', '', 'body');
   }
   scene.img(`${((s as any).img_temp ?? '')}`);
-  if (((s as any).modApi_body_image_msg ?? 0) === '') {
+  if (((s as any).modApi_body_image_msg ?? '') === '') {
   }
   (s as any).img_temp = undefined;
   (s as any).body_image_msg = undefined;
@@ -158,16 +158,16 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).modApi_clothes_image ?? 0) !== '') {
     (s as any).img_temp = ((s as any).modApi_clothes_image ?? 0);
   }
-  if (((s as any).modApi_clothes_image_msg ?? 0) === '') {
+  if (((s as any).modApi_clothes_image_msg ?? '') === '') {
     (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>' + ((s as any).body_image_msg ?? 0) + '</center></td>');
   } else {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>' + ((s as any).modApi_clothes_image_msg ?? 0) + '</center></td>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>' + ((s as any).modApi_clothes_image_msg ?? '') + '</center></td>');
   }
   qspCall(s, '$body_image', 'coat');
-  if (((s as any).modApi_coat_image_msg ?? 0) === '') {
+  if (((s as any).modApi_coat_image_msg ?? '') === '') {
     (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>' + ((s as any).body_image_msg ?? 0) + '</center></td>');
   } else {
-    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>' + ((s as any).modApi_coat_image_msg ?? 0) + '</center></td>');
+    (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>' + ((s as any).modApi_coat_image_msg ?? '') + '</center></td>');
   }
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr><tr>');
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
@@ -205,6 +205,7 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_table = ((s as any).temp_table ?? 0) + ('<td><center>You do not have a purse equipped</center></td>');
   }
   (s as any).temp_table = ((s as any).temp_table ?? 0) + ('</tr></table></center>');
+  scene.text(String((s as any).temp_table ?? ''));
   (s as any).temp_table = undefined;
   scene.build();
 }
@@ -218,7 +219,7 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
     (s as any).img_temp = ((s as any).modApi_shoes_image ?? 0);
   }
   scene.img(`${((s as any).img_temp ?? '')}`);
-  if (((s as any).modApi_shoes_image_msg ?? 0) === '') {
+  if (((s as any).modApi_shoes_image_msg ?? '') === '') {
     scene.text(`${((s as any).body_image_msg ?? '')}`);
   } else {
     scene.text(`${((s as any).modApi_shoes_image_msg ?? '')}`);

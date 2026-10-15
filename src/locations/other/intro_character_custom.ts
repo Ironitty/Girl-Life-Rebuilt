@@ -726,7 +726,7 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModcloLoop(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).shop_display ?? 0)?.['init'] === 0) {
+  if ((((s as any).shop_display ?? {})['init'] ?? 0) === 0) {
     ((s as any).intro_custom_shop = (s as any).intro_custom_shop ?? {})['slot'] = ((s as any).locArgs?.[1] ?? 0);
     qspCall(s, 'core_library', 'setloc', 'intro_character_custom', 'modclo_loop');
     (s as any).shop_display_exceptions = undefined;

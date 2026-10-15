@@ -662,7 +662,6 @@ function enterAnalInstead(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
   ]);
-  scene.build();
 }
 
 function enterVirginForceStop(s: GameState, scene: SceneBuilder): void {
@@ -2950,6 +2949,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'anal_instead':
       enterAnalInstead(s, scene);
+      scene.build();
       break;
     case 'virgin_force_stop':
       enterVirginForceStop(s, scene);

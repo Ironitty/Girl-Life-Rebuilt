@@ -105,19 +105,15 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_initialization', 'init');
   (s as any).music_loop = 0;
   qspSave(1, s);
-  scene.actions([
-    { label: 'Start the game', handler: (st: GameState) => {
-    if (((st as any).start_type ?? 0)?.['loc'] === 'sg') {
-      qspGoto(st, 'intro_sg', 'quick_start', ((st as any).start_location ?? ''));
+  if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
+    qspGoto(s, 'intro_sg', 'quick_start', ((s as any).start_location ?? ''));
+  } else {
+    if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
+      qspGoto(s, 'uni_grounds', '');
     } else {
-      if (((st as any).start_type ?? 0)?.['loc'] === 'uni') {
-        qspGoto(st, 'uni_grounds', '');
-      } else {
-        qspGoto(st, 'korr', '');
-      }
+      qspGoto(s, 'korr', '');
     }
-  } },
-  ]);
+  }
   scene.build();
 }
 

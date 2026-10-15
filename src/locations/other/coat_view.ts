@@ -83,7 +83,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
       qspCall(s, 'coat_attributes', '', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
-      scene.img(`${qspFunc(s, '$coat_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('coat_view', 'view_item', '${(s as any).locArgs?.[3] ?? ''}', '${(s as any).locArgs?.[4] ?? ''}', ${(s as any).locArgs?.[5] ?? ''}, ${(s as any).locArgs?.[6] ?? ''}); return false;"><img height="250" src="${qspFunc(s, '$coat_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}"></a>`);
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'footer') {
@@ -99,7 +99,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'main') {
       qspCall(s, 'coat_attributes', '', (s as any).locArgs?.[4] ?? '', ((s as any).locArgs?.[5] ?? 0));
-      scene.img(`${qspFunc(s, '$coat_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}`);
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto('coat_view', 'view_item', '${(s as any).locArgs?.[3] ?? ''}', '${(s as any).locArgs?.[4] ?? ''}', ${(s as any).locArgs?.[5] ?? ''}, ${(s as any).locArgs?.[6] ?? ''}); return false;"><img height="250" src="${qspFunc(s, '$coat_image', '', ((s as any).locArgs?.[4] ?? ''), ((s as any).locArgs?.[5] ?? ''))}"></a>`);
       return;
     }
     if (String((s as any).locArgs?.[2] ?? '') === 'footer') {
@@ -124,7 +124,7 @@ function enterDisplayGridWardrobe(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewGrid(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).shop_display ?? 0)?.['init'] === 0) {
+  if ((((s as any).shop_display ?? {})['init'] ?? 0) === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'coats', ((s as any).locArgs?.[1] ?? 0));
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'add_types', 'all']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (String((s as any).locArgs?.[1] ?? '') === 'wardrobe'  ||  String((s as any).locArgs?.[1] ?? '') === 'storage'  ||  String((s as any).locArgs?.[1] ?? '') === 'unwanted') {
@@ -156,7 +156,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['number'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount'] = ((s as any).locArgs?.[4] ?? 0);
   qspCall(s, 'stat', '');
-  scene.img(`${qspFunc(s, '$coat_image', '', (((s as any).shop_utils_view ?? 0)?.['type'] ?? ''), (((s as any).shop_utils_view ?? 0)?.['number'] ?? ''))}`);
+  scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="${qspFunc(s, '$coat_image', '', (((s as any).shop_utils_view ?? 0)?.['type'] ?? ''), (((s as any).shop_utils_view ?? 0)?.['number'] ?? ''))}"></center>`);
   qspCall(s, 'coat_attributes', '', '$shop_utils_view[\'type\']', (((s as any).shop_utils_view ?? 0)?.['number']));
   if (((s as any).CoatWarm ?? 0) === 1) {
     scene.text('It\'ll keep you fairly warm down to -10C.');
@@ -170,19 +170,39 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop'  ||  ((s as any).shop_utils_view ?? 0)?.['link'] === 'cheat') {
-    qspGoto(s, 'coat_view', 'view_item_shop');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_shop', '', '', '', ''];
+    enterViewItemShop(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   if (qspFunc(s, 'coats', 'is_wearing', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
-    qspGoto(s, 'coat_view', 'view_item_wearing');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_wearing', '', '', '', ''];
+    enterViewItemWearing(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'wardrobe') {
-    qspGoto(s, 'coat_view', 'view_item_wardrobe');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_wardrobe', '', '', '', ''];
+    enterViewItemWardrobe(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'storage') {
-    qspGoto(s, 'coat_view', 'view_item_storage');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_storage', '', '', '', ''];
+    enterViewItemStorage(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'unwanted') {
-    qspGoto(s, 'coat_view', 'view_item_unwanted');
+    const __savedLocArgs = (s as any).locArgs;
+    (s as any).locArgs = ['view_item_unwanted', '', '', '', ''];
+    enterViewItemUnwanted(s, scene);
+    (s as any).locArgs = __savedLocArgs;
+    return;
   }
   scene.actions([
 { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'coat_view', 'view_grid', ((st as any).shop_utils_view ?? {})['link'] ?? ''); } },
@@ -287,7 +307,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move to wardrobe', handler: (st: GameState) => {
     qspCall(st, 'coats', 'move_to_wardrobe', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
-    qspGoto(st, 'coat_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
+    qspGoto(st, 'coat_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']), (((st as any).shop_utils_view ?? {})['number']), (((st as any).shop_utils_view ?? {})['discount']));
   } },
     ]);
   }
@@ -298,7 +318,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move to storage', handler: (st: GameState) => {
     qspCall(st, 'coats', 'move_to_storage', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
-    qspGoto(st, 'coat_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
+    qspGoto(st, 'coat_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']), (((st as any).shop_utils_view ?? {})['number']), (((st as any).shop_utils_view ?? {})['discount']));
   } },
     ]);
   }
@@ -306,7 +326,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move to unwanted', handler: (st: GameState) => {
     qspCall(st, 'coats', 'move_to_unwanted', (((st as any).shop_utils_view ?? 0)?.['type']), (((st as any).shop_utils_view ?? 0)?.['number']));
-    qspGoto(st, 'coat_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']));
+    qspGoto(st, 'coat_view', 'view_item', (((st as any).shop_utils_view ?? {})['link']), (((st as any).shop_utils_view ?? {})['type']), (((st as any).shop_utils_view ?? {})['number']), (((st as any).shop_utils_view ?? {})['discount']));
   } },
     ]);
   }

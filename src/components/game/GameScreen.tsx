@@ -13,6 +13,8 @@ export default function GameScreen() {
   const loc = useGameStore(s => s.loc);
   const prevLoc = useGameStore(s => s.prevLoc);
   const prevArg = useGameStore(s => s.prevArg);
+  const mapOriginLoc = useGameStore(s => s.mapOriginLoc);
+  const mapOriginArg = useGameStore(s => s.mapOriginArg);
   const scene = useGameStore(s => s.scene);
   const reminders = useGameStore(s => s.reminders);
   const doGoto = useGameStore(s => s.doGoto);
@@ -109,7 +111,10 @@ export default function GameScreen() {
           {prevLoc && (
             <button
               onClick={() => {
-                if (typeof prevLoc === 'string' && isMenuLoc(prevLoc)) {
+                const onMap = typeof loc === 'string' && loc.startsWith('map_');
+                if (onMap && mapOriginLoc) {
+                  doGoto(mapOriginLoc, mapOriginArg);
+                } else if (typeof prevLoc === 'string' && isMenuLoc(prevLoc)) {
                   goMap();
                 } else {
                   doGoto(prevLoc, prevArg);
@@ -147,7 +152,7 @@ export default function GameScreen() {
             }
             return (
               <div
-                className="p-4 rounded-lg max-w-3xl mx-auto"
+                className="p-4 rounded-lg max-w-7xl mx-auto"
                 style={{ background: 'rgba(0,0,0,0.7)', color: 'var(--gl-fg)' }}
               >
                 {!scene.mainText && !scene.backimage && scene.curActs.length === 0 ? (

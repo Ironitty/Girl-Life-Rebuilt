@@ -1,5 +1,5 @@
 #!/bin/bash
-# Run comprehensive audit in 5 batches to avoid memory leak
+# Run render and interaction audit in 5 batches to avoid memory leak
 set -e
 
 BATCHES=(
@@ -16,7 +16,7 @@ for i in "${!BATCHES[@]}"; do
   echo "========================================"
   echo "BATCH $((i+1))/${#BATCHES[@]}: filter=$FILTER"
   echo "========================================"
-  npx tsx scripts/comprehensive-audit.ts --filter "$FILTER" 2>&1 | grep -E "Render targets|MEM|FAIL|PASS|failure|BROWSER"
+  npx tsx scripts/render-interaction-audit.ts --filter "$FILTER" 2>&1 | grep -E "Render targets|MEM|FAIL|PASS|failure|BROWSER"
 done
 
 echo ""
