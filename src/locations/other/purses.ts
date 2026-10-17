@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspNumFrom } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -245,7 +245,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
       (s as any).purselastwornnumber = 0;
     }
     arg1 = String((s as any).purselastworntype ?? '');
-    arg2 = (s as any).purselastwornnumber ?? 0;
+    arg2 = qspNumFrom((s as any).purselastwornnumber);
   }
   if (arg1 === '' || arg1 === 'none') return;
   qspCall(s, 'purses', 'strip');

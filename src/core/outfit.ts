@@ -4,6 +4,23 @@ function rand(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// lastworn*number vars are QSP scalar/array duals: the no-slot backup writes a scalar
+// (lastworncoatnumber = coatwornnumber) while the with-slot backup writes an object
+// (lastworncoatnumber[$i] = coatwornnumber). Restoring a scalar target from an object
+// source would alias the object and, when re-indexed, self-reference into a cycle.
+// Extract a plain number so worn-number vars never hold the lastworn* object.
+function numFrom(v: unknown): number {
+  if (typeof v === 'number' && Number.isFinite(v)) return v;
+  if (typeof v === 'string' && v.trim() !== '' && !Number.isNaN(Number(v))) return Number(v);
+  if (v && typeof v === 'object') {
+    for (const k of Object.keys(v as Record<string, unknown>)) {
+      const n = (v as Record<string, unknown>)[k];
+      if (typeof n === 'number' && Number.isFinite(n)) return n;
+    }
+  }
+  return 0;
+}
+
 export function outfitClearAll(s: GameState): void {
   s.clothingworntype = 'nude';
   s.clothingwornnumber = 0;
@@ -158,21 +175,21 @@ export function outfitRestore(s: GameState, slot?: string): void {
   if (!key) {
     if (s.lastwornunderwear === 2) {
       s.bodysuitworntype = s.lastwornbodysuittype;
-      s.bodysuitwornnumber = s.lastwornbodysuitnumber;
+      s.bodysuitwornnumber = numFrom(s.lastwornbodysuitnumber);
     } else {
       s.pantyworntype = s.lastwornpantytype;
-      s.pantywornnumber = s.lastwornpantynumber;
+      s.pantywornnumber = numFrom(s.lastwornpantynumber);
       s.braworntype = s.lastwornbratype;
-      s.brawornnumber = s.lastwornbranumber;
+      s.brawornnumber = numFrom(s.lastwornbranumber);
     }
     s.clothingworntype = s.lastwornclothingtype;
-    s.clothingwornnumber = s.lastwornclothingnumber;
+    s.clothingwornnumber = numFrom(s.lastwornclothingnumber);
     s.shoeworntype = s.lastwornshoetype;
-    s.shoewornnumber = s.lastwornshoenumber;
+    s.shoewornnumber = numFrom(s.lastwornshoenumber);
     s.currentpursetype = s.lastwornpursetype;
-    s.currentpursenumber = s.lastwornpursenumber;
+    s.currentpursenumber = numFrom(s.lastwornpursenumber);
     s.coatworntype = s.lastworncoattype;
-    s.coatwornnumber = s.lastworncoatnumber;
+    s.coatwornnumber = numFrom(s.lastworncoatnumber);
   } else {
     const b = s.lastworn_backups[key];
     if (b) {

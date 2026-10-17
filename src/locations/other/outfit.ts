@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspNumFrom } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -184,36 +184,36 @@ function enterNudeBackup(s: GameState, scene: SceneBuilder): void {
 function enterBackup(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     (s as any).lastwornclothingtype = ((s as any).clothingworntype ?? 0);
-    (s as any).lastwornclothingnumber = ((s as any).clothingwornnumber ?? 0);
+    (s as any).lastwornclothingnumber = qspNumFrom((s as any).clothingwornnumber);
     (s as any).lastwornunderwear = (((s as any).underwear ?? 0)?.['type']);
     (s as any).lastwornbodysuittype = ((s as any).bodysuitworntype ?? 0);
-    (s as any).lastwornbodysuitnumber = ((s as any).bodysuitwornnumber ?? 0);
+    (s as any).lastwornbodysuitnumber = qspNumFrom((s as any).bodysuitwornnumber);
     (s as any).lastwornpantytype = ((s as any).pantyworntype ?? 0);
-    (s as any).lastwornpantynumber = ((s as any).pantywornnumber ?? 0);
+    (s as any).lastwornpantynumber = qspNumFrom((s as any).pantywornnumber);
     (s as any).lastwornbratype = ((s as any).braworntype ?? 0);
-    (s as any).lastwornbranumber = ((s as any).brawornnumber ?? 0);
+    (s as any).lastwornbranumber = qspNumFrom((s as any).brawornnumber);
     (s as any).lastwornshoetype = ((s as any).shoeworntype ?? 0);
-    (s as any).lastwornshoenumber = ((s as any).shoewornnumber ?? 0);
+    (s as any).lastwornshoenumber = qspNumFrom((s as any).shoewornnumber);
     (s as any).lastwornpursetype = ((s as any).currentpursetype ?? 0);
-    (s as any).lastwornpursenumber = ((s as any).currentpursenumber ?? 0);
+    (s as any).lastwornpursenumber = qspNumFrom((s as any).currentpursenumber);
     (s as any).lastworncoattype = ((s as any).coatworntype ?? 0);
-    (s as any).lastworncoatnumber = ((s as any).coatwornnumber ?? 0);
+    (s as any).lastworncoatnumber = qspNumFrom((s as any).coatwornnumber);
   } else {
     ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).clothingworntype ?? 0);
-    ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).clothingwornnumber ?? 0);
+    ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).clothingwornnumber);
     ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).underwear ?? 0)?.['type']);
     ((s as any).lastwornbodysuittype = (s as any).lastwornbodysuittype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).bodysuitworntype ?? 0);
-    ((s as any).lastwornbodysuitnumber = (s as any).lastwornbodysuitnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).lastwornbodysuitnumber = (s as any).lastwornbodysuitnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).bodysuitwornnumber);
     ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).pantyworntype ?? 0);
-    ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).pantywornnumber ?? 0);
+    ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).pantywornnumber);
     ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).braworntype ?? 0);
-    ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).brawornnumber ?? 0);
+    ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).brawornnumber);
     ((s as any).lastwornshoetype = (s as any).lastwornshoetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).shoeworntype ?? 0);
-    ((s as any).lastwornshoenumber = (s as any).lastwornshoenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).shoewornnumber ?? 0);
+    ((s as any).lastwornshoenumber = (s as any).lastwornshoenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).shoewornnumber);
     ((s as any).lastwornpursetype = (s as any).lastwornpursetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).currentpursetype ?? 0);
-    ((s as any).lastwornpursenumber = (s as any).lastwornpursenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).currentpursenumber ?? 0);
+    ((s as any).lastwornpursenumber = (s as any).lastwornpursenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).currentpursenumber);
     ((s as any).lastworncoattype = (s as any).lastworncoattype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).coatworntype ?? 0);
-    ((s as any).lastworncoatnumber = (s as any).lastworncoatnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).coatwornnumber ?? 0);
+    ((s as any).lastworncoatnumber = (s as any).lastworncoatnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).coatwornnumber);
   }
   return;
   scene.build();
@@ -223,66 +223,66 @@ function enterSafeBackup(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === '') {
     if (qspFunc(s, 'clothing', 'is_wearing_any')) {
       (s as any).lastwornclothingtype = ((s as any).clothingworntype ?? 0);
-      (s as any).lastwornclothingnumber = ((s as any).clothingwornnumber ?? 0);
+      (s as any).lastwornclothingnumber = qspNumFrom((s as any).clothingwornnumber);
     }
     if (qspFunc(s, 'underwear_bodysuits', 'is_wearing_any')) {
       (s as any).lastwornunderwear = (((s as any).underwear ?? 0)?.['type']);
       (s as any).lastwornbodysuittype = ((s as any).bodysuitworntype ?? 0);
-      (s as any).lastwornbodysuitnumber = ((s as any).bodysuitwornnumber ?? 0);
+      (s as any).lastwornbodysuitnumber = qspNumFrom((s as any).bodysuitwornnumber);
     }
     if (qspFunc(s, 'panties', 'is_wearing_any')) {
       (s as any).lastwornunderwear = (((s as any).underwear ?? 0)?.['type']);
       (s as any).lastwornpantytype = ((s as any).pantyworntype ?? 0);
-      (s as any).lastwornpantynumber = ((s as any).pantywornnumber ?? 0);
+      (s as any).lastwornpantynumber = qspNumFrom((s as any).pantywornnumber);
     }
     if (qspFunc(s, 'bras', 'is_wearing_any')) {
       (s as any).lastwornunderwear = (((s as any).underwear ?? 0)?.['type']);
       (s as any).lastwornbratype = ((s as any).braworntype ?? 0);
-      (s as any).lastwornbranumber = ((s as any).brawornnumber ?? 0);
+      (s as any).lastwornbranumber = qspNumFrom((s as any).brawornnumber);
     }
     if (qspFunc(s, 'shoes', 'is_wearing_any')) {
       (s as any).lastwornshoetype = ((s as any).shoeworntype ?? 0);
-      (s as any).lastwornshoenumber = ((s as any).shoewornnumber ?? 0);
+      (s as any).lastwornshoenumber = qspNumFrom((s as any).shoewornnumber);
     }
     if (qspFunc(s, 'purses', 'is_wearing_any')) {
       (s as any).lastwornpursetype = ((s as any).currentpursetype ?? 0);
-      (s as any).lastwornpursenumber = ((s as any).currentpursenumber ?? 0);
+      (s as any).lastwornpursenumber = qspNumFrom((s as any).currentpursenumber);
     }
     if (qspFunc(s, 'coats', 'is_wearing_any')) {
       (s as any).lastworncoattype = ((s as any).coatworntype ?? 0);
-      (s as any).lastworncoatnumber = ((s as any).coatwornnumber ?? 0);
+      (s as any).lastworncoatnumber = qspNumFrom((s as any).coatwornnumber);
     }
   } else {
     if (qspFunc(s, 'clothing', 'is_wearing_any')) {
       ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).clothingworntype ?? 0);
-      ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).clothingwornnumber ?? 0);
+      ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).clothingwornnumber);
     }
     if (qspFunc(s, 'underwear_bodysuits', 'is_wearing_any')) {
       ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).underwear ?? 0)?.['type']);
       ((s as any).lastwornbodysuittype = (s as any).lastwornbodysuittype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).bodysuitworntype ?? 0);
-      ((s as any).lastwornbodysuitnumber = (s as any).lastwornbodysuitnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).bodysuitwornnumber ?? 0);
+      ((s as any).lastwornbodysuitnumber = (s as any).lastwornbodysuitnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).bodysuitwornnumber);
     }
     if (qspFunc(s, 'panties', 'is_wearing_any')) {
       ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).underwear ?? 0)?.['type']);
       ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).pantyworntype ?? 0);
-      ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).pantywornnumber ?? 0);
+      ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).pantywornnumber);
     }
     if (qspFunc(s, 'bras', 'is_wearing_any')) {
       ((s as any).lastwornunderwear = (s as any).lastwornunderwear ?? {})[((s as any).locArgs?.[1] ?? 0)] = (((s as any).underwear ?? 0)?.['type']);
       ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).braworntype ?? 0);
-      ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).brawornnumber ?? 0);
+      ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).brawornnumber);
     }
     if (qspFunc(s, 'shoes', 'is_wearing_any')) {
       ((s as any).lastwornshoetype = (s as any).lastwornshoetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).shoeworntype ?? 0);
-      ((s as any).lastwornshoenumber = (s as any).lastwornshoenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).shoewornnumber ?? 0);
+      ((s as any).lastwornshoenumber = (s as any).lastwornshoenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).shoewornnumber);
     }
     if (qspFunc(s, 'purses', 'is_wearing_any')) {
       ((s as any).lastwornpursetype = (s as any).lastwornpursetype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).currentpursetype ?? 0);
-      ((s as any).lastwornpursenumber = (s as any).lastwornpursenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).currentpursenumber ?? 0);
+      ((s as any).lastwornpursenumber = (s as any).lastwornpursenumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).currentpursenumber);
     }
     if (qspFunc(s, 'coats', 'is_wearing_any')) {
       ((s as any).lastworncoattype = (s as any).lastworncoattype ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).coatworntype ?? 0);
-      ((s as any).lastworncoatnumber = (s as any).lastworncoatnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = ((s as any).coatwornnumber ?? 0);
+      ((s as any).lastworncoatnumber = (s as any).lastworncoatnumber ?? {})[((s as any).locArgs?.[1] ?? 0)] = qspNumFrom((s as any).coatwornnumber);
     }
   }
   return;

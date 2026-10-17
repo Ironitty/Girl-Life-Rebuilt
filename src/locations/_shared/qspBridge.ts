@@ -38,6 +38,23 @@ import { applyTheme } from '../../core/theme';
 import { saveGame, loadGame } from '../../core/save';
 
 const num = (v: unknown): number => (typeof v === 'number' ? v : parseFloat(String(v ?? '')) || 0);
+
+// lastworn*number vars are QSP scalar/array duals. When a wear handler reads one as a
+// scalar (e.g. `coats wear last_worn` -> arg2 = lastworncoatnumber ?? 0) and the var
+// holds the object form, assigning it to a worn-number field aliases the object and,
+// when re-indexed by a later backup, self-references into a JSON cycle. Extract a plain
+// number so worn-number fields never hold the lastworn* object.
+export function qspNumFrom(v: unknown): number {
+  if (typeof v === 'number' && Number.isFinite(v)) return v;
+  if (typeof v === 'string' && v.trim() !== '' && !Number.isNaN(Number(v))) return Number(v);
+  if (v && typeof v === 'object') {
+    for (const k of Object.keys(v as Record<string, unknown>)) {
+      const n = (v as Record<string, unknown>)[k];
+      if (typeof n === 'number' && Number.isFinite(n)) return n;
+    }
+  }
+  return 0;
+}
 const str = (v: unknown): string => String(v ?? '');
 const sval = (v: unknown): string | number => (typeof v === 'number' ? v : str(v));
 
@@ -1622,3 +1639,4 @@ export function qspEval(expr: string, s: GameState): string {
     return expr;
   }
 }
+if (typeof window !== 'undefined') (window as any).__qspEval = qspEval;
