@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -480,13 +480,13 @@ function enterBoyMorningPillTalk1(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    scene.text(`iif(cum_loc['vagina'] > 0, '${((s as any).npcdesc ?? '')} glances between your legs with a concerned look, watching his cum seep from your pussy.', '${((s as any).npcdesc ?? '')} glances between your legs with a concerned look, as if he can see his sperm swimming up your pussy right now.')`);
+    scene.text(qspEval(`iif(cum_loc['vagina'] > 0, 1, 0)`, s) ? `${((s as any).npcdesc ?? '')} glances between your legs with a concerned look, watching his cum seep from your pussy.` : `${((s as any).npcdesc ?? '')} glances between your legs with a concerned look, as if he can see his sperm swimming up your pussy right now.`);
   } else {
     scene.text(`"It's a good thing you had that morning after pill," ${((s as any).npcdesc ?? '')} says, ` + ((((s as any).cum_loc ?? 0)?.['vagina'] > 0) ? ('glancing at your pussy and the cum seeping from it.') : ('glancing at your pussy where he deposited his load earlier.')));
     if (((s as any).LudaQW ?? 0)?.['free_condoms'] === 1  &&  ((s as any).LudaQW ?? 0)?.['luda_ma_pill'] === 0) {
       scene.actions([
         { label: 'Thank my aunt', handler: (st: GameState) => {
-    scene.text('iif(sex_ev[\'aunt_pill\'] = 0, \'"You can thank my aunt for that," you say with a wry smirk. "She gave it to me for emergencies."\', \'"Thank my aunt instead," you say with a wry smirk.\')');
+    scene.text(qspEval(`iif(sex_ev['aunt_pill'] = 0, '"You can thank my aunt for that," you say with a wry smirk. "She gave it to me for emergencies."', '"Thank my aunt instead," you say with a wry smirk.')`, s));
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBoyAccidentalCreampieTalk2(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);

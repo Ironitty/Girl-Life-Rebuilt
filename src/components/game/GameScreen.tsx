@@ -16,6 +16,7 @@ export default function GameScreen() {
   const mapOriginLoc = useGameStore(s => s.mapOriginLoc);
   const mapOriginArg = useGameStore(s => s.mapOriginArg);
   const scene = useGameStore(s => s.scene);
+  const navVersion = useGameStore(s => s.navigationVersion);
   const reminders = useGameStore(s => s.reminders);
   const doGoto = useGameStore(s => s.doGoto);
   const dismissReminders = useGameStore(s => s.dismissReminders);
@@ -197,7 +198,7 @@ export default function GameScreen() {
         className="border-t px-4 py-3"
         style={{ background: 'var(--gl-panel)', borderColor: 'var(--gl-border)' }}
       >
-        <ActionBar actions={scene.curActs} />
+        <ActionBar key={navVersion} actions={scene.curActs} />
       </footer>
 
       {reminders.length > 0 && (

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -67,7 +67,7 @@ function enterAnalDoggySwitch(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['anal'] === 0) {
       scene.text('"I want to try anal."');
     } else {
-      scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"That\'s enough of that. Time for you to shove it up my ass.\', \'That\'s enough of that. Time for you to put it in my butthole."\')');
+      scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"That's enough of that. Time for you to shove it up my ass.', 'That's enough of that. Time for you to put it in my butthole."')`, s));
     }
     scene.actions([
       { label: 'Get fucked in the ass', goto: ['sex_ev_anal', 'anal_doggy_insert_slow'] },
@@ -101,9 +101,9 @@ function enterAnalPresentAss(s: GameState, scene: SceneBuilder): void {
     scene.text('"I want to try anal."');
   } else {
     if (((s as any).sex_ev ?? 0)?.['anal_count'] > 0) {
-      scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"That\'s enough of that. Time for you to shove it in my ass again.\', \'That\'s enough of that. Time for you to put it back in my butthole."\')');
+      scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"That's enough of that. Time for you to shove it in my ass again.', 'That's enough of that. Time for you to put it back in my butthole."')`, s));
     } else {
-      scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"That\'s enough of that. Time for you to shove it in my ass again.\', \'That\'s enough of that. Time for you to put it in my butthole."\')');
+      scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"That's enough of that. Time for you to shove it in my ass again.', 'That's enough of that. Time for you to put it in my butthole."')`, s));
     }
   }
   if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0  ||  ((s as any).sex_ev ?? 0)?.['first_anal_insertion'] === 0) {
@@ -813,7 +813,7 @@ function enterAnalPain2(s: GameState, scene: SceneBuilder): void {
 function enterAnalPain3(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  (Math.floor(Math.random() * 3) + 1) >= 2))  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] !== 1) {
     scene.text('"Ouch! Hey! Ow!" you yell. "Wait! That hurts!"');
-    scene.text(`iif(sex_ev['speed'] < 3, '"It'll get better," ${((s as any).npcdesc ?? '')} says uncaringly and continues to fuck you without breaking stride.', '"It'll get better," ${((s as any).npcdesc ?? '')} grunts uncaringly and continues to fuck you without breaking stride.')`);
+    scene.text(qspEval(`iif(sex_ev['speed'] < 3, 1, 0)`, s) ? `"It'll get better," ${((s as any).npcdesc ?? '')} says uncaringly and continues to fuck you without breaking stride.` : `"It'll get better," ${((s as any).npcdesc ?? '')} grunts uncaringly and continues to fuck you without breaking stride.`);
     scene.actions([
       { label: 'Get assfucked', handler: (st: GameState) => { qspGoto(st, 'sex_ev_anal', ((st as any).sex_ev?.['pos_speed'] ?? '')); } },
     ]);

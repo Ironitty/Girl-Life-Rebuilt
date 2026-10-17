@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -2083,7 +2083,7 @@ function enterSittingParkBench(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).location_type = 'public_outdoors';
     if (((s as any).PCloStyle2 ?? 0) === 4  ||  ((s as any).PCloSchool ?? 0) === 1) {
-      scene.text(`iif(rand(0, 1)=1, '<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/park/bench_5.jpg"></center>', '<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/park/bench_6.jpg"></center>')`);
+      scene.text(qspEval(`iif(rand(0, 1)=1, 1, 0)`, s) ? `<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/park/bench_5.jpg"></center>` : `<center><img ${((s as any).set_imgh ?? '')} src="images/locations/shared/park/bench_6.jpg"></center>`);
     } else {
       if (((s as any).PCloSkirt ?? 0) > 0) {
         scene.img('images/locations/shared/park/bench_2.jpg');

@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -391,13 +391,13 @@ function enterChangeIntoRegularClothes(s: GameState, scene: SceneBuilder): void 
 function enterChangeToWork(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   if (String((s as any).locArgs?.[1] ?? '') === 'car') {
-    scene.text('iif($loc_desc = \', \'You quickly change into your working outfit in your car.\', $loc_desc)');
+    scene.text(qspEval(`iif($loc_desc = ', 'You quickly change into your working outfit in your car.', $loc_desc)`, s));
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'restroom') {
-    scene.text('iif($loc_desc = \', \'You slip into a stall and quickly change into your working outfit, trying to avoid your clothes touching the floor or, really, anything before you place them safely in your bag.\', $loc_desc)');
+    scene.text(qspEval(`iif($loc_desc = ', 'You slip into a stall and quickly change into your working outfit, trying to avoid your clothes touching the floor or, really, anything before you place them safely in your bag.', $loc_desc)`, s));
   }
   if (String((s as any).locArgs?.[1] ?? '') === 'road_side') {
-    scene.text('iif($loc_desc = \', \'You quickly change into your working outfit behind some bushes by the road.\', $loc_desc)');
+    scene.text(qspEval(`iif($loc_desc = ', 'You quickly change into your working outfit behind some bushes by the road.', $loc_desc)`, s));
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'work']; enterChangeIntoProstituteOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([

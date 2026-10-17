@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -475,7 +475,7 @@ function enterPussyCatOutfit1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_1_2.jpg');
       scene.text('"Come on, turn around and let me see you from behind," you say.');
-      scene.text(`iif(katjaQW['slut'] >= 80, '"Of course," she says. "I'm sure you'll enjoy the view!"', '"Really, ${((st as any).pcs_nickname ?? '')}?!"')`);
+      scene.text(qspEval(`iif(katjaQW['slut'] >= 80, 1, 0)`, s) ? `"Of course," she says. "I'm sure you'll enjoy the view!"` : `"Really, ${((st as any).pcs_nickname ?? '')}?!"`);
       scene.text('"Come on, it\'s just me," you answer.');
       scene.text('After a moment\'s hesitation, she answers, "Okay."');
       scene.text('She turns around and shows you a sight that barely leaves anything to the imagination as the shorts have crept up her butt crack. "Damn that looks good on you," you say. "Great ass!"');
@@ -760,7 +760,7 @@ function enterPussyCatOutfit2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_2_3.jpg');
       scene.text('"So do your panties match the bra?" you ask.');
-      scene.text(`iif(katjaQW['slut'] >= 80, '"Are you assuming I'm wearing panties?" she asks slyly.', '"Really, ${((st as any).pcs_nickname ?? '')}?! You don't ask a good girl such a question!" she says with a wink.')`);
+      scene.text(qspEval(`iif(katjaQW['slut'] >= 80, 1, 0)`, s) ? `"Are you assuming I'm wearing panties?" she asks slyly.` : `"Really, ${((st as any).pcs_nickname ?? '')}?! You don't ask a good girl such a question!" she says with a wink.`);
       scene.text('"Come on, be a really good girl and show me," you answer.');
       scene.text('After a moment\'s hesitation, she relents. "Okay."');
       scene.text('She slowly pulls up the skirt to reveal her smoothly shaved pussy.');

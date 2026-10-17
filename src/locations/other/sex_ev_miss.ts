@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -756,7 +756,7 @@ function enterMissPain2(s: GameState, scene: SceneBuilder): void {
 function enterMissPain3(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  (Math.floor(Math.random() * 3) + 1) >= 2))  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] !== 1) {
     scene.text('"Ouch! Hey! Ow!" you yelp. "Wait! That hurts!"');
-    scene.text(`iif(sex_ev['speed'] < 3, '"It'll get better," ${((s as any).npcdesc ?? '')} says uncaringly and continues to fuck you without breaking stride.', '"It'll get better," ${((s as any).npcdesc ?? '')} grunts uncaringly and continues to fuck you without breaking stride.')`);
+    scene.text(qspEval(`iif(sex_ev['speed'] < 3, 1, 0)`, s) ? `"It'll get better," ${((s as any).npcdesc ?? '')} says uncaringly and continues to fuck you without breaking stride.` : `"It'll get better," ${((s as any).npcdesc ?? '')} grunts uncaringly and continues to fuck you without breaking stride.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'sex_ev_' + String((((st as any).sex_ev ?? {})['position'])), String((((st as any).sex_ev ?? {})['pos_speed'])) + '.2');
@@ -2682,41 +2682,41 @@ function enterMiss1_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev = (s as any).sex_ev ?? {})['dirty_talk_count'] = ((s as any).sex_ev['dirty_talk_count'] ?? 0) + (1);
   if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'cock') {
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
-      scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fuck~! Oh fuck~!"\', \'<i>"Nngh~!"</i> you groan. "You\'re so hard inside me~! <i>Mmph~!</i> It feels so good~!"\')');
+      scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fuck~! Oh fuck~!"', '<i>"Nngh~!"</i> you groan. "You're so hard inside me~! <i>Mmph~!</i> It feels so good~!"')`, s));
     } else {
       if ((Math.floor(Math.random() * 2) + 1) === 1) {
         if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Fuck~! Yes~! Just like that~!" you moan. "Fuck me with your tiny dick!"\', \'"Fuck~! Yes~! Just like that~!" you moan. "Your tiny dick feels so good~!"\')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Fuck~! Yes~! Just like that~!" you moan. "Fuck me with your tiny dick!"', '"Fuck~! Yes~! Just like that~!" you moan. "Your tiny dick feels so good~!"')`, s));
         } else {
           if (((s as any).dick_desc ?? 0) === 'chode') {
-            scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Fuck~! Yes~! Just like that~!" you moan. "Don\'t stop! Fuck me with your fat chode!"\', \'"Ah~! You\'re so <i>thick</i>~!" you moan. "You feel so good~!"\')');
+            scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Fuck~! Yes~! Just like that~!" you moan. "Don't stop! Fuck me with your fat chode!"', '"Ah~! You're so <i>thick</i>~!" you moan. "You feel so good~!"')`, s));
           } else {
             if (((s as any).dick_desc ?? 0) === 'skinny') {
-              scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Fuck~! Yes~! Just like that~!" you moan. "Fuck me with your skinny dick~!"\', \'"Ah~! You slide in so easily~!" you moan. "Ahh~! Your skinny dick feels so good~!"\')');
+              scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Fuck~! Yes~! Just like that~!" you moan. "Fuck me with your skinny dick~!"', '"Ah~! You slide in so easily~!" you moan. "Ahh~! Your skinny dick feels so good~!"')`, s));
             } else {
               if (((s as any).dick_desc ?? 0) === 'normal') {
-                scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Fuck~! Yes~! Just like that~!" you moan. "Nngh~! So good~!"\', \'"Ah~! Your cock feels so good~!" you moan. "Nngh~! So good~!"\')');
+                scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Fuck~! Yes~! Just like that~!" you moan. "Nngh~! So good~!"', '"Ah~! Your cock feels so good~!" you moan. "Nngh~! So good~!"')`, s));
               } else {
                 if (((s as any).dick_desc ?? 0) === 'thick') {
-                  scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Oh fuck~! You\'re so <i>thick</i>!" you moan. "Ungh~! Fuck me with your big cock~!"\', \'"Ah~! You\'re so <i>thick</i>!" you moan. "Ungh~! You\'re stretching me out! It\'s so good!"\')');
+                  scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Oh fuck~! You're so <i>thick</i>!" you moan. "Ungh~! Fuck me with your big cock~!"', '"Ah~! You're so <i>thick</i>!" you moan. "Ungh~! You're stretching me out! It's so good!"')`, s));
                 } else {
                   if (((s as any).dick_desc ?? 0) === 'long') {
-                    scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! Fuck~! You\'re so deep~!" you groan. "Nngh~! Right there! Right fucking there~!"\', \'"Ungh~! You\'re so deep~!" you groan. "Nngh~! It\'s so deep inside me~! Ah~!"\')');
+                    scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! Fuck~! You're so deep~!" you groan. "Nngh~! Right there! Right fucking there~!"', '"Ungh~! You're so deep~!" you groan. "Nngh~! It's so deep inside me~! Ah~!"')`, s));
                   } else {
                     if (((s as any).dick_desc ?? 0) === 'huge') {
-                      scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ahh~! Yes~! Just like that~!" you groan. "Ungh~! Fuck me with your huge cock~!"\', \'"Ungh~! You\'re so <i>big</i>!" you groan. "Ohmygoodness~! It\'s driving me crazy~!"\')');
+                      scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ahh~! Yes~! Just like that~!" you groan. "Ungh~! Fuck me with your huge cock~!"', '"Ungh~! You're so <i>big</i>!" you groan. "Ohmygoodness~! It's driving me crazy~!"')`, s));
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'enormous') {
-                        scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! You\'re cock is <i>enormous</i>~!" you groan. "Ahhn~! It\'s amazing~!"\', \'"Ungh~! You\'re <i>enormous</i>~!" you groan. "It\'s filling me up~! It\'s stretching me out~! Unngh~! I can barely breathe~!"\')');
+                        scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! You're cock is <i>enormous</i>~!" you groan. "Ahhn~! It's amazing~!"', '"Ungh~! You're <i>enormous</i>~!" you groan. "It's filling me up~! It's stretching me out~! Unngh~! I can barely breathe~!"')`, s));
                       } else {
                         if (((s as any).dick_desc ?? 0) === 'lengthy') {
-                          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~!" you groan, your voice a hoarse with arousal. "Oh <i>fuck!</i> Your cock is so fucking long! I feel you in my stomach~!"\', \'"Ungh~! <i>Icanfeelyouinmystomach~!</i>" you groan, your voice a hoarse with arousal. "Oh <i>sugar~!</i> It\'s <i>so</i> deep inside me~!"\')');
+                          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~!" you groan, your voice a hoarse with arousal. "Oh <i>fuck!</i> Your cock is so fucking long! I feel you in my stomach~!"', '"Ungh~! <i>Icanfeelyouinmystomach~!</i>" you groan, your voice a hoarse with arousal. "Oh <i>sugar~!</i> It's <i>so</i> deep inside me~!"')`, s));
                         } else {
                           if (((s as any).dick_desc ?? 0) === 'gigantic') {
-                            scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! <i>Fuck!</i>" you groan, your voice a hoarse with arousal. "Oh <i>fuck!</i> You\'re so <i>fucking big</i>! I can feel you in my stomach~!"\', \'"Ungh~! Your cock is <i>gigantic!</i>" you groan, your voice a hoarse with arousal. "Ah~! <i>Icanfeelyouinmystomach~!</i> Mmph~! <i>Ohyouresobig~!</i>"\')');
+                            scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! <i>Fuck!</i>" you groan, your voice a hoarse with arousal. "Oh <i>fuck!</i> You're so <i>fucking big</i>! I can feel you in my stomach~!"', '"Ungh~! Your cock is <i>gigantic!</i>" you groan, your voice a hoarse with arousal. "Ah~! <i>Icanfeelyouinmystomach~!</i> Mmph~! <i>Ohyouresobig~!</i>"')`, s));
                           } else {
                             if (((s as any).dick_desc ?? 0) === 'monstrous') {
-                              scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! <i>Fuck!</i>" you groan, your voice a hoarse with arousal. "Oh <i>fuck!</i> You\'re so <i>fucking big</i>! You\'re gonna rip me in half~!"\', \'"Ungh~! Oh <i>sugar!</i>" you groan, your voice a hoarse with arousal. "Your cock is insane~! It\'s gonna tear me in half~! I\'m gonna go crazy~!"\')');
+                              scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! <i>Fuck!</i>" you groan, your voice a hoarse with arousal. "Oh <i>fuck!</i> You're so <i>fucking big</i>! You're gonna rip me in half~!"', '"Ungh~! Oh <i>sugar!</i>" you groan, your voice a hoarse with arousal. "Your cock is insane~! It's gonna tear me in half~! I'm gonna go crazy~!"')`, s));
                             }
                           }
                         }
@@ -2730,37 +2730,37 @@ function enterMiss1_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Haa~! Ahh~!" you moan. "I\'m addicted to your tiny dick!"\', \'"Haa~! Ahh~!" you moan. "I\'m addicted to your tiny dick!"\')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Haa~! Ahh~!" you moan. "I'm addicted to your tiny dick!"', '"Haa~! Ahh~!" you moan. "I'm addicted to your tiny dick!"')`, s));
         } else {
           if (((s as any).dick_desc ?? 0) === 'chode') {
-            scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah~! Your cock feels so good!" you moan. "Don\'t stop! Fuck me with your fat chode!"\', \'"Ahh~!" you moan. "Your chode is so thick~! It feels so good~!"\')');
+            scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah~! Your cock feels so good!" you moan. "Don't stop! Fuck me with your fat chode!"', '"Ahh~!" you moan. "Your chode is so thick~! It feels so good~!"')`, s));
           } else {
             if (((s as any).dick_desc ?? 0) === 'skinny') {
-              scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah~! Your cock feels so good!" you moan.\', \'"Ah~! Your cock feels so good!" you moan.\')');
+              scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah~! Your cock feels so good!" you moan.', '"Ah~! Your cock feels so good!" you moan.')`, s));
             } else {
               if (((s as any).dick_desc ?? 0) === 'normal') {
-                scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah~! I fucking love your cock~!" you moan. "Iloveit!Iloveit!Iloveit!Iloveit!"\', \'"You\'re a perfect fit for my pussy," you moan.\')');
+                scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah~! I fucking love your cock~!" you moan. "Iloveit!Iloveit!Iloveit!Iloveit!"', '"You're a perfect fit for my pussy," you moan.')`, s));
               } else {
                 if (((s as any).dick_desc ?? 0) === 'thick') {
-                  scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah~! You\'re so big!" you moan. "Ungh~! You\'re stretching me out! It\'s so good!"\', \'"Ah~! You\'re so big!" you moan. "Ungh~! You\'re stretching me out! It\'s so good!\')');
+                  scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah~! You're so big!" you moan. "Ungh~! You're stretching me out! It's so good!"', '"Ah~! You're so big!" you moan. "Ungh~! You're stretching me out! It's so good!')`, s));
                 } else {
                   if (((s as any).dick_desc ?? 0) === 'long') {
-                    scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~!" you groan. "You\'re so deep! Nngh~! Right there! Right there~!"\', \')');
+                    scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~!" you groan. "You're so deep! Nngh~! Right there! Right there~!"', ')`, s));
                   } else {
                     if (((s as any).dick_desc ?? 0) === 'huge') {
-                      scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~!" you groan. "Your cock is so <i>big</i>! You\'re so huge!"\', \')');
+                      scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~!" you groan. "Your cock is so <i>big</i>! You're so huge!"', ')`, s));
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'enormous') {
-                        scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~!" you groan. "I love your <i>big fucking cock</i>~! Nngh~! It\'s driving me crazy~!"\', \')');
+                        scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~!" you groan. "I love your <i>big fucking cock</i>~! Nngh~! It's driving me crazy~!"', ')`, s));
                       } else {
                         if (((s as any).dick_desc ?? 0) === 'lengthy') {
-                          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! <i>Fuck!</i>" you groan, your voice a hoarse with arousal. "I can feel you in my stomach~!"\', \')');
+                          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! <i>Fuck!</i>" you groan, your voice a hoarse with arousal. "I can feel you in my stomach~!"', ')`, s));
                         } else {
                           if (((s as any).dick_desc ?? 0) === 'gigantic') {
-                            scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! <i>Fuck!</i>" you groan, your voice a hoarse with arousal. "Oh <i>fuck!</i> You\'re so <i>fucking big</i>! I can feel you in my stomach~!"\', \')');
+                            scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! <i>Fuck!</i>" you groan, your voice a hoarse with arousal. "Oh <i>fuck!</i> You're so <i>fucking big</i>! I can feel you in my stomach~!"', ')`, s));
                           } else {
                             if (((s as any).dick_desc ?? 0) === 'monstrous') {
-                              scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! <i>Fuck!</i>" you groan, your voice a hoarse with arousal. "Oh <i>fuck!</i> You\'re so <i>fucking big</i>! You\'re gonna rip me in half~!"\', \')');
+                              scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! <i>Fuck!</i>" you groan, your voice a hoarse with arousal. "Oh <i>fuck!</i> You're so <i>fucking big</i>! You're gonna rip me in half~!"', ')`, s));
                             }
                           }
                         }
@@ -2778,23 +2778,23 @@ function enterMiss1_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'arousal') {
       if (((s as any).pcs_horny ?? 0) >= 70) {
         if ((Math.floor(Math.random() * 2) + 0) === 1) {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! Yes~! Fuck~!" you moan softly, barely louder than a whisper. "You\'re gonna make me come~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! Yes~! Fuck~!" you moan softly, barely louder than a whisper. "You're gonna make me come~!"', ')`, s));
         } else {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Oh <i>fuck</i>~! OhshitImgonnacum~!" you moan. "I\'m gonna cum~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Oh <i>fuck</i>~! OhshitImgonnacum~!" you moan. "I'm gonna cum~!"', ')`, s));
         }
       } else {
         if ((Math.floor(Math.random() * 2) + 0) === 1) {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! I\'m <i>so</i> wet..." you mew softly. "You feel so good inside me~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! I'm <i>so</i> wet..." you mew softly. "You feel so good inside me~!"', ')`, s));
         } else {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah~! That feels <i>so good</i>," you moan quietly. "I\'m gonna go crazy~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah~! That feels <i>so good</i>," you moan quietly. "I'm gonna go crazy~!"', ')`, s));
         }
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'technique') {
         if ((Math.floor(Math.random() * 2) + 0) === 1) {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Yes~! Just like that~!" you moan. "You\'re so good~! Don\'t stop~! Don\'t stop~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Yes~! Just like that~!" you moan. "You're so good~! Don't stop~! Don't stop~!"', ')`, s));
         } else {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Right there~! Right there~!" you moan hoarsely. "Keep going~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Right there~! Right there~!" you moan hoarsely. "Keep going~!"', ')`, s));
         }
       } else {
         if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'dirty_girl') {
@@ -3276,44 +3276,44 @@ function enterMiss2_2MoanDesc(s: GameState, scene: SceneBuilder): void {
 function enterMiss2_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'cock') {
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
-      scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fuck~! Oh fuck~!"\', \'<i>"Nngh~!"</i> you groan. "You\'re so hard inside me~! <i>Mmph~!</i> It feels so good~!"\')');
+      scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fuck~! Oh fuck~!"', '<i>"Nngh~!"</i> you groan. "You're so hard inside me~! <i>Mmph~!</i> It feels so good~!"')`, s));
     } else {
       if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
-        scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Fuck my pussy with your tiny dick! Oh fuck! Oh fuck!"\', \')');
+        scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Fuck my pussy with your tiny dick! Oh fuck! Oh fuck!"', ')`, s));
       } else {
         if (((s as any).dick_desc ?? 0) === 'chode') {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Fuck my pussy with your fat chode! Oh fuck! You\'re so thick!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Fuck my pussy with your fat chode! Oh fuck! You're so thick!"', ')`, s));
         } else {
           if (((s as any).dick_desc ?? 0) === 'skinny') {
-            scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah! <i>Fuck!</i>" you moan loudly. "Fuck my pussy with your skinny dick! Right there! Right there!"\', \')');
+            scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah! <i>Fuck!</i>" you moan loudly. "Fuck my pussy with your skinny dick! Right there! Right there!"', ')`, s));
           } else {
             if (((s as any).dick_desc ?? 0) === 'normal') {
-              scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah! <i>Fuck!</i>" you moan loudly. "You fill me up so perfectly! Fuck! It\'s so good!"\', \')');
+              scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah! <i>Fuck!</i>" you moan loudly. "You fill me up so perfectly! Fuck! It's so good!"', ')`, s));
             } else {
               if (((s as any).dick_desc ?? 0) === 'thick') {
                 if (((s as any).pcs_vag ?? 0) <= 10) {
-                  scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Fuck! You\'re stretching me out! You\'re stretching me out! It\'s so good! Fuck my pussy with your fat cock!"\', \')');
+                  scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Fuck! You're stretching me out! You're stretching me out! It's so good! Fuck my pussy with your fat cock!"', ')`, s));
                 } else {
-                  scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah! <i>Fuck!</i> Yes!" you moan loudly. "Fuck! You\'re so big! Fuck my pussy with your fat cock! It\'s so good!"\', \')');
+                  scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah! <i>Fuck!</i> Yes!" you moan loudly. "Fuck! You're so big! Fuck my pussy with your fat cock! It's so good!"', ')`, s));
                 }
               } else {
                 if (((s as any).dick_desc ?? 0) === 'long') {
-                  scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Ungh~! You\'re <i>so</i> deep! Ah~! It\'s so good!"\', \')');
+                  scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Ungh~! You're <i>so</i> deep! Ah~! It's so good!"', ')`, s));
                 } else {
                   if (((s as any).dick_desc ?? 0) === 'huge') {
-                    scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Fuck~! You\'re so big~! Fuck my pussy with your huge cock! Ungh~! You\'re <i>so</i> deep!"\', \')');
+                    scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Fuck~! You're so big~! Fuck my pussy with your huge cock! Ungh~! You're <i>so</i> deep!"', ')`, s));
                   } else {
                     if (((s as any).dick_desc ?? 0) === 'enormous') {
-                      scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Fuck~! You\'re so big~! You\'re <i>so</i> deep! You\'re <i>so big!</i>"\', \')');
+                      scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Fuck~! You're so big~! You're <i>so</i> deep! You're <i>so big!</i>"', ')`, s));
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'lengthy') {
-                        scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Oh <i>fuck!</i> You\'re so big~! I can feel you in my stomach~! It\'s so good!"\', \')');
+                        scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Oh <i>fuck!</i> You're so big~! I can feel you in my stomach~! It's so good!"', ')`, s));
                       } else {
                         if (((s as any).dick_desc ?? 0) === 'gigantic') {
-                          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Oh <i>fuck!</i> You\'re so <i>fucking big</i>! I can feel you in my stomach~! It feels so good!"\', \')');
+                          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah! <i>Fuck!</i> Just like that!" you moan loudly. "Oh <i>fuck!</i> You're so <i>fucking big</i>! I can feel you in my stomach~! It feels so good!"', ')`, s));
                         } else {
                           if (((s as any).dick_desc ?? 0) === 'monstrous') {
-                            scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! <i>Fuck!</i> Just like that!" you moan loudly. "Fuck me with your monster cock~! Oh <i>fuck!</i> You\'re so <i>fucking big</i>! You\'re tearing me in half! Don\'t stop~! Don\'t stop~! Don\'t stop~!"\', \')');
+                            scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! <i>Fuck!</i> Just like that!" you moan loudly. "Fuck me with your monster cock~! Oh <i>fuck!</i> You're so <i>fucking big</i>! You're tearing me in half! Don't stop~! Don't stop~! Don't stop~!"', ')`, s));
                           }
                         }
                       }
@@ -3330,23 +3330,23 @@ function enterMiss2_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'arousal') {
       if (((s as any).pcs_horny ?? 0) >= 70) {
         if ((Math.floor(Math.random() * 2) + 0) === 1) {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! Yes~! Fuck~!" you pant. "You\'re gonna make me come~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! Yes~! Fuck~!" you pant. "You're gonna make me come~!"', ')`, s));
         } else {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Oh fuck~! <i>I\'m gonna come~! I\'m gonna come~! I\'m gonna come~!</i>" you moan. "Don\'t stop!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Oh fuck~! <i>I'm gonna come~! I'm gonna come~! I'm gonna come~!</i>" you moan. "Don't stop!"', ')`, s));
         }
       } else {
         if ((Math.floor(Math.random() * 2) + 0) === 1) {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! I\'m <i>so</i> wet..." you moan. "You feel so good inside me~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! I'm <i>so</i> wet..." you moan. "You feel so good inside me~!"', ')`, s));
         } else {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"My pussy can\'t get enough of you," you moan. "You\'re making me so wet~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"My pussy can't get enough of you," you moan. "You're making me so wet~!"', ')`, s));
         }
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'technique') {
         if ((Math.floor(Math.random() * 2) + 0) === 1) {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Yes~! Just like that~!" you moan. "You\'re so fucking good~! Don\'t stop~! Don\'t stop~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Yes~! Just like that~!" you moan. "You're so fucking good~! Don't stop~! Don't stop~!"', ')`, s));
         } else {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ah~! You\'re so good~!" you moan. "You\'re driving me crazy~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ah~! You're so good~!" you moan. "You're driving me crazy~!"', ')`, s));
         }
       } else {
         if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'dirty_girl') {
@@ -3894,48 +3894,48 @@ function enterMiss3_2MoanDesc(s: GameState, scene: SceneBuilder): void {
 function enterMiss3_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'cock') {
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
-      scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fuck~! Oh fuck~!"\', \'<i>"Nngh~!"</i> you groan. "You\'re so hard inside me~! <i>Mmph~!</i> It feels so good~!"\')');
+      scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fuck~! Oh fuck~!"', '<i>"Nngh~!"</i> you groan. "You're so hard inside me~! <i>Mmph~!</i> It feels so good~!"')`, s));
     } else {
       if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
-        scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Yes! Yes! Just like that!" you scream at the top of your lungs. "Fuck me with your tiny cock! Pound my pussy with your pencil dick!"\', \')');
+        scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Yes! Yes! Just like that!" you scream at the top of your lungs. "Fuck me with your tiny cock! Pound my pussy with your pencil dick!"', ')`, s));
       } else {
         if (((s as any).dick_desc ?? 0) === 'chode') {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Yes! Yes! Just like that!" you scream at the top of your lungs. "Fuck me with your fat chode! Pound my pussy!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Yes! Yes! Just like that!" you scream at the top of your lungs. "Fuck me with your fat chode! Pound my pussy!"', ')`, s));
         } else {
           if (((s as any).dick_desc ?? 0) === 'skinny') {
-            scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Yes! Yes! Just like that!" you scream at the top of your lungs. "Fuck me with your skinny dick! Pound my pussy!"\', \')');
+            scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Yes! Yes! Just like that!" you scream at the top of your lungs. "Fuck me with your skinny dick! Pound my pussy!"', ')`, s));
           } else {
             if (((s as any).dick_desc ?? 0) === 'normal') {
-              scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Yes! Yes! Just like that!" you scream at the top of your lungs. "Fuck me with your cock! Pound my pussy!"\', \')');
+              scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Yes! Yes! Just like that!" you scream at the top of your lungs. "Fuck me with your cock! Pound my pussy!"', ')`, s));
             } else {
               if (((s as any).dick_desc ?? 0) === 'thick') {
                 if (((s as any).pcs_vag ?? 0) <= 10) {
-                  scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> You\'re gonna tear me in half! Don\'t stop! Don\'t stop!"\', \')');
+                  scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> You're gonna tear me in half! Don't stop! Don't stop!"', ')`, s));
                 } else {
-                  scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> Your cock is so big! Don\'t stop! Don\'t stop! Pound my pussy!"\', \')');
+                  scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> Your cock is so big! Don't stop! Don't stop! Pound my pussy!"', ')`, s));
                 }
               } else {
                 if (((s as any).dick_desc ?? 0) === 'long') {
-                  scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> You\'re <i>so</i> deep! Don\'t stop! Don\'t stop! Pound my pussy!"\', \')');
+                  scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> You're <i>so</i> deep! Don't stop! Don't stop! Pound my pussy!"', ')`, s));
                 } else {
                   if (((s as any).dick_desc ?? 0) === 'huge') {
-                    scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"OH FUCK!" you scream at the top of your lungs. "You\'re so big! You\'re <i>so</i> big! Don\'t stop! Pound my pussy with your huge cock!"\', \')');
+                    scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "You're so big! You're <i>so</i> big! Don't stop! Pound my pussy with your huge cock!"', ')`, s));
                   } else {
                     if (((s as any).dick_desc ?? 0) === 'enormous') {
                       if (((s as any).pcs_vag ?? 0) <= 10) {
-                        scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> You\'re <i>so</i> big! You\'re gonna tear me in half! Don\'t stop! Don\'t stop!"\', \')');
+                        scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> You're <i>so</i> big! You're gonna tear me in half! Don't stop! Don't stop!"', ')`, s));
                       } else {
-                        scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> You\'re so big! You\'re <i>so</i> big! Oh fuck! Don\'t stop! Don\'t stop! Don\'t fucking stop!"\', \')');
+                        scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> You're so big! You're <i>so</i> big! Oh fuck! Don't stop! Don't stop! Don't fucking stop!"', ')`, s));
                       }
                     } else {
                       if (((s as any).dick_desc ?? 0) === 'lengthy') {
-                        scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> I feel you in my stomach~! It\'s so good!!"\', \')');
+                        scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> I feel you in my stomach~! It's so good!!"', ')`, s));
                       } else {
                         if (((s as any).dick_desc ?? 0) === 'gigantic') {
-                          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"OH FUCK!" you scream at the top of your lungs. "Oh <i>fuck!</i> You\'re <i>so</i> deep! You\'re so <i>fucking big</i>! I can feel you in my stomach~! Don\'t stop~!"\', \')');
+                          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "Oh <i>fuck!</i> You're <i>so</i> deep! You're so <i>fucking big</i>! I can feel you in my stomach~! Don't stop~!"', ')`, s));
                         } else {
                           if (((s as any).dick_desc ?? 0) === 'monstrous') {
-                            scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> I feel you in my stomach~! Oh <i>fuck!</i> You\'re so big! You\'re <i>so</i> big! You\'re so <i>fucking big</i>! You\'re gonna tear me in half! Don\'t fucking stop!"\', \')');
+                            scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> I feel you in my stomach~! Oh <i>fuck!</i> You're so big! You're <i>so</i> big! You're so <i>fucking big</i>! You're gonna tear me in half! Don't fucking stop!"', ')`, s));
                           }
                         }
                       }
@@ -3952,30 +3952,30 @@ function enterMiss3_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'arousal') {
       if (((s as any).pcs_horny ?? 0) >= 70) {
         if ((Math.floor(Math.random() * 2) + 0) === 1) {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Yes~! Fuck~! Yes~!" you scream. "I love getting pounded~! You\'re gonna make me come~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Yes~! Fuck~! Yes~!" you scream. "I love getting pounded~! You're gonna make me come~!"', ')`, s));
         } else {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Oh <i>fuck</i>~!" you scream. "I\'m so fucking wet~! I\'m gonna come~! I\'m gonna come all over your cock~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Oh <i>fuck</i>~!" you scream. "I'm so fucking wet~! I'm gonna come~! I'm gonna come all over your cock~!"', ')`, s));
         }
       } else {
         if ((Math.floor(Math.random() * 2) + 0) === 1) {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! Don\'t stop~!" you scream. "Smash my sloppy wet pussy~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! Don't stop~!" you scream. "Smash my sloppy wet pussy~!"', ')`, s));
         } else {
-          scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"My pussy can\'t get enough of you~!" you scream. "I need more~! More~! It\'s so good~!"\', \')');
+          scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"My pussy can't get enough of you~!" you scream. "I need more~! More~! It's so good~!"', ')`, s));
         }
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'technique') {
         if (((s as any).pcs_horny ?? 0) >= 70) {
           if ((Math.floor(Math.random() * 2) + 0) === 1) {
-            scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Yes~! Fuck~! Yes~!" you scream. "Pound my fucking pussy~! Don\'t stop~! You\'re gonna make me come~!"\', \')');
+            scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Yes~! Fuck~! Yes~!" you scream. "Pound my fucking pussy~! Don't stop~! You're gonna make me come~!"', ')`, s));
           } else {
-            scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Oh <i>fuck</i>~!" you scream. "I\'m so fucking wet~! I\'m gonna come all over your cock~! You\'re driving me crazy~!"\', \')');
+            scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Oh <i>fuck</i>~!" you scream. "I'm so fucking wet~! I'm gonna come all over your cock~! You're driving me crazy~!"', ')`, s));
           }
         } else {
           if ((Math.floor(Math.random() * 2) + 0) === 1) {
-            scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Ungh~! Don\'t stop~!" you scream. "Fuck my fucking brains out~!"\', \')');
+            scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Ungh~! Don't stop~!" you scream. "Fuck my fucking brains out~!"', ')`, s));
           } else {
-            scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"I love having you between my legs," you moan. "You\'re making me so wet~!"\', \')');
+            scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"I love having you between my legs," you moan. "You're making me so wet~!"', ')`, s));
           }
         }
       } else {

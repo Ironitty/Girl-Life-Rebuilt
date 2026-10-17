@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -752,7 +752,7 @@ function enterDoggyPain2(s: GameState, scene: SceneBuilder): void {
 function enterDoggyPain3(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  (Math.floor(Math.random() * 3) + 1) >= 2))  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] !== 1) {
     scene.text('"Ouch! Hey! Ow!" you yelp. "Wait! That hurts!"');
-    scene.text(`iif(sex_ev['speed'] < 3, '"It'll get better," ${((s as any).npcdesc ?? '')} says uncaringly and continues to fuck you without breaking stride.', '"It'll get better," ${((s as any).npcdesc ?? '')} grunts uncaringly and continues to fuck you without breaking stride.')`);
+    scene.text(qspEval(`iif(sex_ev['speed'] < 3, 1, 0)`, s) ? `"It'll get better," ${((s as any).npcdesc ?? '')} says uncaringly and continues to fuck you without breaking stride.` : `"It'll get better," ${((s as any).npcdesc ?? '')} grunts uncaringly and continues to fuck you without breaking stride.`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDoggyGoto2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.img('images/shared/sex/vag/doggy/dog1.jpg');
@@ -2620,7 +2620,7 @@ function enterDoggy1_2MoanDesc(s: GameState, scene: SceneBuilder): void {
 function enterDoggy1_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'cock') {
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
-      scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fuck~! Oh fuck~!"\', \'<i>"Nngh~!"</i> you groan. "You\'re so hard inside me~! <i>Mmph~!</i> It feels so good~!"\')');
+      scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fuck~! Oh fuck~!"', '<i>"Nngh~!"</i> you groan. "You're so hard inside me~! <i>Mmph~!</i> It feels so good~!"')`, s));
     } else {
       if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
         scene.text(`"Ah~! Yes~! Just like that~!" you moan, your voice a hoarse with arousal as ${((s as any).npcdesc ?? '')} does an amazing job fucking you with his tiny cock. "You're so good! Right there~! Right there!"`);
@@ -3137,7 +3137,7 @@ function enterDoggy2_2MoanDesc(s: GameState, scene: SceneBuilder): void {
 function enterDoggy2_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'cock') {
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
-      scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fuck~! Oh fuck~!"\', \'<i>"Nngh~!"</i> you groan. "You\'re so hard inside me~! <i>Mmph~!</i> It feels so good~!"\')');
+      scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fuck~! Oh fuck~!"', '<i>"Nngh~!"</i> you groan. "You're so hard inside me~! <i>Mmph~!</i> It feels so good~!"')`, s));
     } else {
       if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
         scene.text('"Ah! <i>Fuck!</i> Yes! Yes! Fuck my pussy with your tiny dick! " you moan loudly. "Don\'t stop! You\'re so <i>fucking</i> good!"');
@@ -3779,7 +3779,7 @@ function enterDoggy3_2MoanDesc(s: GameState, scene: SceneBuilder): void {
 function enterDoggy3_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'cock') {
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
-      scene.text('iif(stat[\'no_sex_swearing\'] = 0, \'"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fuck~! Oh fuck~!"\', \'<i>"Nngh~!"</i> you groan. "You\'re so hard inside me~! <i>Mmph~!</i> It feels so good~!"\')');
+      scene.text(qspEval(`iif(stat['no_sex_swearing'] = 0, '"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fuck~! Oh fuck~!"', '<i>"Nngh~!"</i> you groan. "You're so hard inside me~! <i>Mmph~!</i> It feels so good~!"')`, s));
     } else {
       if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
         scene.text('"Yes! Fuck! Yes! Just like that!" you scream so hard it hurts. "Clap my fucking ass! Fuck me with your tiny cock!"');

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -2209,7 +2209,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                     (s as any).minut = ((s as any).minut ?? 0) + 2;
                     qspCall(s, 'dinsex', 'vaginal_sex', (-10), 'incest');
                     qspCall(s, 'brother_disc', 'pre_cum_chance_disc');
-                    scene.text('iif(pcs_horny >= 85, \'Lost in waves of pleasure from your teenage love making, you start to lose track of how long you have been going at it.\', \'The two of you are furiously fucking each other like the sex crazed teenagers you are.\')');
+                    scene.text(qspEval(`iif(pcs_horny >= 85, 'Lost in waves of pleasure from your teenage love making, you start to lose track of how long you have been going at it.', 'The two of you are furiously fucking each other like the sex crazed teenagers you are.')`, s));
                     qspCall(s, 'stat', '');
                     scene.actions([
                       { label: '', labelFn: (s: GameState) => String(((((s as any).losedare_sexcount ?? 0) === 4) ? ('<font color="red"><b>Eek-!</b></font>') : ('Keep fucking him')) ?? ''), handler: (st: GameState) => {
@@ -2239,7 +2239,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                           scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <i>hard</i>, as it goes in and out of your wide open mouth.`);
                           qspCall(s, 'dinsex', 'bj_random');
                           qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 2) + 1), 'incest');
-                          scene.text('iif(pcs_horny >= 85, \'Lost in waves of pleasure from your teenage love making, you start to lose track of how long you have been going at it.\', \')');
+                          scene.text(qspEval(`iif(pcs_horny >= 85, 'Lost in waves of pleasure from your teenage love making, you start to lose track of how long you have been going at it.', ')`, s));
                         } else {
                           if (((s as any).losedare_sexcount ?? 0) === 3) {
                             qspCall(s, 'brother2', 'dare_condom_ask');
@@ -2247,27 +2247,27 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                             scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <i>hard</i>, and starts filling you up fully as he thrusts him self into you.`);
                             qspCall(s, 'dinsex', 'vaginal_sex', (-10), 'incest');
                             qspCall(s, 'brother_disc', 'pre_cum_chance_disc');
-                            scene.text('iif(pcs_horny >= 85, \'Lost in waves of pleasure from your teenage love making, you start to lose track of how long you have been going at it.\', \'The two of you are furiously fucking each other like the sex crazed teenagers you are.\')');
+                            scene.text(qspEval(`iif(pcs_horny >= 85, 'Lost in waves of pleasure from your teenage love making, you start to lose track of how long you have been going at it.', 'The two of you are furiously fucking each other like the sex crazed teenagers you are.')`, s));
                           } else {
                             if (((s as any).losedare_sexcount ?? 0) === 4) {
                               scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <i>rock hard</i> and his skin is blushing red from arousal.`);
                               scene.text('His thighs slap against yours with each thrust.');
                               qspCall(s, 'dinsex', 'vaginal_sex', (-10), 'incest');
                               qspCall(s, 'brother_disc', 'pre_cum_chance_disc');
-                              scene.text('iif(pcs_horny >= 85, \'Lost in waves of pleasure from your teenage love making, you start to lose track of how long you have been going at it.\', \'The two of you are furiously fucking each other like the sex crazed teenagers you are.\')');
+                              scene.text(qspEval(`iif(pcs_horny >= 85, 'Lost in waves of pleasure from your teenage love making, you start to lose track of how long you have been going at it.', 'The two of you are furiously fucking each other like the sex crazed teenagers you are.')`, s));
                             } else {
                               if (((s as any).losedare_sexcount ?? 0) === 5) {
                                 scene.text(`Once more you glance across the ${((s as any).dare_location ?? '')} to keep an eye out and make sure you not about to get caught.`);
                                 scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <font color="maroon"><b>rock-hard</b>, his skin is blushing red from arousal. He has started breathing heavily as his thrusting becomes quicker.</font>.`);
                                 qspCall(s, 'dinsex', 'vaginal_sex', (-10), 'incest');
                                 qspCall(s, 'brother_disc', 'pre_cum_chance_disc');
-                                scene.text('iif(pcs_horny >= 85, \'Lost in waves of pleasure from your teenage love making, you start to lose track of how long you have been going at it.\', \'The two of you are furiously fucking each other like the sex crazed teenagers you are.\')');
+                                scene.text(qspEval(`iif(pcs_horny >= 85, 'Lost in waves of pleasure from your teenage love making, you start to lose track of how long you have been going at it.', 'The two of you are furiously fucking each other like the sex crazed teenagers you are.')`, s));
                               } else {
                                 if (((s as any).losedare_sexcount ?? 0) === 6) {
                                   scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <font color="red"><b>rock-hard. He starts furiously slamming himself into you as all the muscles in his body have start tensing up, signaling his oncoming <b>ORGASM!</b></font>.`);
                                   qspCall(s, 'dinsex', 'vaginal_sex', (-10), 'incest');
                                   qspCall(s, 'brother_disc', 'pre_cum_chance_disc');
-                                  scene.text('iif(pcs_horny >= 85, \'Lost in waves of pleasure from your teenage love making, you start to lose track of how long you have been going at it.\', \'The two of you are furiously fucking each other like the sex crazed teenagers you are.\')');
+                                  scene.text(qspEval(`iif(pcs_horny >= 85, 'Lost in waves of pleasure from your teenage love making, you start to lose track of how long you have been going at it.', 'The two of you are furiously fucking each other like the sex crazed teenagers you are.')`, s));
                                 }
                               }
                             }

@@ -110,6 +110,7 @@ export function goto(s: GameState, loc: string, arg: string, arg2?: string, arg3
       const scene = new SceneBuilder();
       _currentScene = scene;
       if (def.background) scene.background(def.background);
+      s.scene = scene.build();
       if (def.enter) {
         def.enter(s, scene);
       } else if (def.description && def.description.length > 0) {
@@ -160,7 +161,7 @@ export function invoke(s: GameState, name: string, arg: string): void {
     def.enter(s, target);
     if (s.navigationVersion !== version) return;
     if (!_currentScene && target.curActs.length > 0) {
-      s.scene = { ...savedScene, curActs: [...(savedScene.curActs ?? []), ...target.curActs] };
+      s.scene = { ...savedScene, curActs: [...target.curActs] };
     } else {
       s.scene = savedScene;
     }

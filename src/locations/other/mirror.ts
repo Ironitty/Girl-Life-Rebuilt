@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -462,17 +462,17 @@ function enterGetMaxCosmeticRoutines(s: GameState, scene: SceneBuilder): void {
 
 function enterRoutineManage(s: GameState, scene: SceneBuilder): void {
   scene.text('Select make-up level');
-  scene.text('iif(makeupSetting = 0,  \' none,\',    \'<a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">none</a>,\')');
-  scene.text('iif(makeupSetting = 1,  \' light,\',    \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">light</a>,\')');
-  scene.text('iif(makeupSetting = 2,  \' vibrant,\',  \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 2; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">vibrant</a>,\')');
-  scene.text('iif(makeupSetting = 3,  \' thick,\',    \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 3; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">thick</a>,\')');
-  scene.text('iif(makeupSetting = 4,  \' smeared,\',  \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 4; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">smeared</a>,\')');
-  scene.text('iif(makeupSetting = 5,  \' bimbo\',    \' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 5; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">bimbo</a>\')');
+  scene.text(qspEval(`iif(makeupSetting = 0,  ' none,',    '<a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 0; return s; }); window.__gameStore.getState().doGoto(u0027mirroru0027, u0027routine_manageu0027); return false;">none</a>,')`, s));
+  scene.text(qspEval(`iif(makeupSetting = 1,  ' light,',    ' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 1; return s; }); window.__gameStore.getState().doGoto(u0027mirroru0027, u0027routine_manageu0027); return false;">light</a>,')`, s));
+  scene.text(qspEval(`iif(makeupSetting = 2,  ' vibrant,',  ' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 2; return s; }); window.__gameStore.getState().doGoto(u0027mirroru0027, u0027routine_manageu0027); return false;">vibrant</a>,')`, s));
+  scene.text(qspEval(`iif(makeupSetting = 3,  ' thick,',    ' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 3; return s; }); window.__gameStore.getState().doGoto(u0027mirroru0027, u0027routine_manageu0027); return false;">thick</a>,')`, s));
+  scene.text(qspEval(`iif(makeupSetting = 4,  ' smeared,',  ' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 4; return s; }); window.__gameStore.getState().doGoto(u0027mirroru0027, u0027routine_manageu0027); return false;">smeared</a>,')`, s));
+  scene.text(qspEval(`iif(makeupSetting = 5,  ' bimbo',    ' <a href="#" onclick="window.__gameStore.setState((s) => { s.makeupSetting = 5; return s; }); window.__gameStore.getState().doGoto(u0027mirroru0027, u0027routine_manageu0027); return false;">bimbo</a>')`, s));
   scene.text('Choose if you will use lipbalm');
-  scene.text('iif(cust_lipbalm = 0, \'no,\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.cust_lipbalm = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">no</a>,\')');
+  scene.text(qspEval(`iif(cust_lipbalm = 0, 'no,', '<a href="#" onclick="window.__gameStore.setState((s) => { s.cust_lipbalm = 0; return s; }); window.__gameStore.getState().doGoto(u0027mirroru0027, u0027routine_manageu0027); return false;">no</a>,')`, s));
   scene.text('Choose lash options');
-  scene.text('iif(custlashes = 0, \'none,\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.custlashes = 0; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">none</a>,\')');
-  scene.text('iif(custlashes = 1, \' fake,\', \' <a href="#" onclick="window.__gameStore.setState((s) => { s.custlashes = 1; return s; }); window.__gameStore.getState().doGoto(\u0027mirror\u0027, \u0027routine_manage\u0027); return false;">fake</a>,\')');
+  scene.text(qspEval(`iif(custlashes = 0, 'none,', '<a href="#" onclick="window.__gameStore.setState((s) => { s.custlashes = 0; return s; }); window.__gameStore.getState().doGoto(u0027mirroru0027, u0027routine_manageu0027); return false;">none</a>,')`, s));
+  scene.text(qspEval(`iif(custlashes = 1, ' fake,', ' <a href="#" onclick="window.__gameStore.setState((s) => { s.custlashes = 1; return s; }); window.__gameStore.getState().doGoto(u0027mirroru0027, u0027routine_manageu0027); return false;">fake</a>,')`, s));
   (s as any).routine = String(((s as any).makeupSetting ?? 0)) + String(((s as any).cust_lipbalm ?? 0)) + String(((s as any).custlashes ?? 0));
   (s as any).temp_routine_index = 0;
   (s as any).temp_max_cosmetic_routines = qspFunc(s, 'mirror', 'get_max_cosmetic_routines');

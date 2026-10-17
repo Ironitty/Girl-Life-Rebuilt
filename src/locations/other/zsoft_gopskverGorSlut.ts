@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -1382,7 +1382,7 @@ function enterCumpussy(s: GameState, scene: SceneBuilder): void {
     scene.text('You sigh in frustration. Nevertheless… there\'s not a whole lot you can do about it now, and getting angry over it will probably just cause trouble with the guys.');
   }
   qspCall(s, 'cuminsidereact', '');
-  scene.text('iif(func(\'pregriskeval\', eff_contra) < 2 and succubusflag ! 1, \'You squat down and try to push his sperm out of you, while\', \'Done with you for now,\') + \' he pulls his pants back up and returns to drinking beer with his buddies, not giving you another thought.\'');
+  scene.text(qspEval(`iif(func('pregriskeval', eff_contra) < 2 and succubusflag ! 1, 'You squat down and try to push his sperm out of you, while', 'Done with you for now,') + ' he pulls his pants back up and returns to drinking beer with his buddies, not giving you another thought.'`, s));
   if (qspFunc(s, 'pregriskeval', ((s as any).eff_contra ?? 0)) === -1  &&  ((s as any).birth_control ?? 0)?.['implant_status'] <= 1) {
     scene.text('As you push your fingers inside your pussy trying to scoop out his load, you think to yourself: "Did I take my pill today? I sure hope so…"');
   }

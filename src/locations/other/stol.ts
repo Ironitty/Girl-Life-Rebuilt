@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -265,25 +265,25 @@ function enterStrapon(s: GameState, scene: SceneBuilder): void {
     scene.text('Your strapon harness doesn\'t have a dildo attached to it.');
   }
   if (((s as any).mc_inventory ?? 0)?.['dildo_small'] === 1) {
-    scene.text('iif(strapNumber = 1, \'Your 10cm dildo is attached to your strapon harness.\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 1; return s; }); window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027strapon\u0027); return false;">Attach</a> your 10cm long dildo.\')');
+    scene.text(qspEval(`iif(strapNumber = 1, 'Your 10cm dildo is attached to your strapon harness.', '<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 1; return s; }); window.__gameStore.getState().doGoto(u0027stolu0027, u0027straponu0027); return false;">Attach</a> your 10cm long dildo.')`, s));
   }
   if (((s as any).mc_inventory ?? 0)?.['dildo_normal'] === 1) {
-    scene.text('iif(strapNumber = 2, \'Your 15cm dildo is attached to your strapon harness.\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 2; return s; }); window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027strapon\u0027); return false;">Attach</a> your 15cm long dildo.\')');
+    scene.text(qspEval(`iif(strapNumber = 2, 'Your 15cm dildo is attached to your strapon harness.', '<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 2; return s; }); window.__gameStore.getState().doGoto(u0027stolu0027, u0027straponu0027); return false;">Attach</a> your 15cm long dildo.')`, s));
   }
   if (((s as any).mc_inventory ?? 0)?.['dildo_big'] === 1) {
-    scene.text('iif(strapNumber = 3, \'Your 20cm dildo is attached to your strapon harness.\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 3; return s; }); window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027strapon\u0027); return false;">Attach</a> your 20cm long dildo.\')');
+    scene.text(qspEval(`iif(strapNumber = 3, 'Your 20cm dildo is attached to your strapon harness.', '<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 3; return s; }); window.__gameStore.getState().doGoto(u0027stolu0027, u0027straponu0027); return false;">Attach</a> your 20cm long dildo.')`, s));
   }
   if (((s as any).mc_inventory ?? 0)?.['dildo_large'] === 1) {
-    scene.text('iif(strapNumber = 4, \'Your 25cm dildo is attached to your strapon harness.\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 4; return s; }); window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027strapon\u0027); return false;">Attach</a> your 25cm long dildo.\')');
+    scene.text(qspEval(`iif(strapNumber = 4, 'Your 25cm dildo is attached to your strapon harness.', '<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 4; return s; }); window.__gameStore.getState().doGoto(u0027stolu0027, u0027straponu0027); return false;">Attach</a> your 25cm long dildo.')`, s));
   }
   if (((s as any).mc_inventory ?? 0)?.['dildo_huge'] === 1) {
-    scene.text('iif(strapNumber = 5, \'Your 30cm dildo is attached to your strapon harness.\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 5; return s; }); window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027strapon\u0027); return false;">Attach</a> your 30cm long dildo.\')');
+    scene.text(qspEval(`iif(strapNumber = 5, 'Your 30cm dildo is attached to your strapon harness.', '<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 5; return s; }); window.__gameStore.getState().doGoto(u0027stolu0027, u0027straponu0027); return false;">Attach</a> your 30cm long dildo.')`, s));
   }
   if (((s as any).mc_inventory ?? 0)?.['dildo_enormous'] === 1) {
-    scene.text('iif(strapNumber = 6, \'Your 35cm dildo is attached to your strapon harness.\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 6; return s; }); window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027strapon\u0027); return false;">Attach</a> your 35cm long dildo.\')');
+    scene.text(qspEval(`iif(strapNumber = 6, 'Your 35cm dildo is attached to your strapon harness.', '<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 6; return s; }); window.__gameStore.getState().doGoto(u0027stolu0027, u0027straponu0027); return false;">Attach</a> your 35cm long dildo.')`, s));
   }
   if (((s as any).mc_inventory ?? 0)?.['dildo_gigantic'] === 1) {
-    scene.text('iif(strapNumber = 7, \'Your 40cm dildo is attached to your strapon harness.\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 7; return s; }); window.__gameStore.getState().doGoto(\u0027stol\u0027, \u0027strapon\u0027); return false;">Attach</a> your 40cm long dildo.\')');
+    scene.text(qspEval(`iif(strapNumber = 7, 'Your 40cm dildo is attached to your strapon harness.', '<a href="#" onclick="window.__gameStore.setState((s) => { s.strapNumber = 7; return s; }); window.__gameStore.getState().doGoto(u0027stolu0027, u0027straponu0027); return false;">Attach</a> your 40cm long dildo.')`, s));
   }
   scene.actions([
     { label: 'Back', handler: (st: GameState) => { qspGoto(st, 'stol', ((st as any).stol_loc_temp ?? '')); } },

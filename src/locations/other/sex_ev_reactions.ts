@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -220,7 +220,7 @@ function enterBaskCreampie1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cum_loc ?? 0)?.['anus'] > 0  &&  ((s as any).sex_ev ?? 0)?.['anal_creampie_count'] > 0) {
       scene.img('images/shared/sex/cum/both_holes1.jpg');
       if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
-        scene.text(`iif(sex_ev['catch_breath'] = 1, 'You lay back, panting in exhaustion from the simultaneous orgasm you just experienced as ${((s as any).npcdesc ?? '')}'s cum oozes slowly from your holes.', 'You lay back, shivering as you wind down from your simultaneous orgasm, feeling ${((s as any).npcdesc ?? '')}'s cum seep from your holes.')`);
+        scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 1, 0)`, s) ? `You lay back, panting in exhaustion from the simultaneous orgasm you just experienced as ${((s as any).npcdesc ?? '')}'s cum oozes slowly from your holes.` : `You lay back, shivering as you wind down from your simultaneous orgasm, feeling ${((s as any).npcdesc ?? '')}'s cum seep from your holes.`);
       } else {
         if (((s as any).orgasm ?? 0) - ((s as any).sex_ev ?? 0)?.['orgasm'] > 1) {
           scene.text(`You lay back, shivering as you wind down from your string of multiple orgasms, feeling ${((s as any).npcdesc ?? '')}'s cum seep from your holes.`);
@@ -231,7 +231,7 @@ function enterBaskCreampie1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/shared/sex/cum/vagcreampie/miss1.jpg');
       if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
-        scene.text(`iif(sex_ev['catch_breath'] = 1, 'You lay back, panting in exhaustion from the simultaneous orgasm you just experienced as ${((s as any).npcdesc ?? '')}'s cum oozes slowly from your pussy.', 'You lay back, shivering as you wind down from your simultaneous orgasm, feeling ${((s as any).npcdesc ?? '')}'s cum seep from your pussy.')`);
+        scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 1, 0)`, s) ? `You lay back, panting in exhaustion from the simultaneous orgasm you just experienced as ${((s as any).npcdesc ?? '')}'s cum oozes slowly from your pussy.` : `You lay back, shivering as you wind down from your simultaneous orgasm, feeling ${((s as any).npcdesc ?? '')}'s cum seep from your pussy.`);
       } else {
         if (((s as any).orgasm ?? 0) - ((s as any).sex_ev ?? 0)?.['orgasm'] > 1) {
           scene.text(`You lay back, shivering as you wind down from your string of multiple orgasms, feeling ${((s as any).npcdesc ?? '')}'s cum seep from your pussy.`);
@@ -327,7 +327,7 @@ function enterBaskAnalCreampie1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cum_loc ?? 0)?.['vagina'] > 0  &&  ((s as any).sex_ev ?? 0)?.['creampie_count'] > 0) {
       scene.img('images/shared/sex/cum/both_holes1.jpg');
       if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
-        scene.text(`iif(sex_ev['catch_breath'] = 1, 'You lay back, panting in exhaustion from the simultaneous orgasm you just experienced as ${((s as any).npcdesc ?? '')}'s cum oozes slowly from your holes.', 'You lay back, shivering as you wind down from your simultaneous orgasm, feeling ${((s as any).npcdesc ?? '')}'s cum seep from your holes.')`);
+        scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 1, 0)`, s) ? `You lay back, panting in exhaustion from the simultaneous orgasm you just experienced as ${((s as any).npcdesc ?? '')}'s cum oozes slowly from your holes.` : `You lay back, shivering as you wind down from your simultaneous orgasm, feeling ${((s as any).npcdesc ?? '')}'s cum seep from your holes.`);
       } else {
         if (((s as any).orgasm ?? 0) - ((s as any).sex_ev ?? 0)?.['orgasm'] > 1) {
           scene.text(`You lay back, shivering as you wind down from your string of multiple orgasms, feeling ${((s as any).npcdesc ?? '')}'s cum seep from your holes.`);
@@ -338,7 +338,7 @@ function enterBaskAnalCreampie1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/shared/sex/cum/analcreampie/after1.jpg');
       if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
-        scene.text(`iif(sex_ev['catch_breath'] = 1, 'You lay back, panting in exhaustion from the simultaneous orgasm you just experienced as ${((s as any).npcdesc ?? '')}'s cum oozes slowly from your pussy.', 'You lay back, shivering as you wind down from your simultaneous orgasm, feeling ${((s as any).npcdesc ?? '')}'s cum seep from your pussy.')`);
+        scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 1, 0)`, s) ? `You lay back, panting in exhaustion from the simultaneous orgasm you just experienced as ${((s as any).npcdesc ?? '')}'s cum oozes slowly from your pussy.` : `You lay back, shivering as you wind down from your simultaneous orgasm, feeling ${((s as any).npcdesc ?? '')}'s cum seep from your pussy.`);
       } else {
         if (((s as any).orgasm ?? 0) - ((s as any).sex_ev ?? 0)?.['orgasm'] > 1) {
           scene.text(`You lay back, shivering as you wind down from your string of multiple orgasms, feeling ${((s as any).npcdesc ?? '')}'s cum seep from your pussy.`);
@@ -413,7 +413,7 @@ function enterBaskCondom1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
     scene.img('images/shared/sex/after/pillow_talk1.jpg');
     if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
-      scene.text(`iif(sex_ev['catch_breath'] = 1, 'You lay back, cuddled up against ${((s as any).npcdesc ?? '')}, panting hard to catch your breath after the simultaneous orgasm you just experienced.', 'You lay back, cuddled up against ${((s as any).npcdesc ?? '')}, panting as you wind down from your simultaneous orgasm.')`);
+      scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 1, 0)`, s) ? `You lay back, cuddled up against ${((s as any).npcdesc ?? '')}, panting hard to catch your breath after the simultaneous orgasm you just experienced.` : `You lay back, cuddled up against ${((s as any).npcdesc ?? '')}, panting as you wind down from your simultaneous orgasm.`);
     } else {
       if (((s as any).orgasm ?? 0) - ((s as any).sex_ev ?? 0)?.['orgasm'] > 1) {
         scene.text(`You lay back, cuddled up against ${((s as any).npcdesc ?? '')}, panting as you wind down from your string of multiple orgasms.`);
@@ -644,36 +644,36 @@ function enterBaskExternalCum1(s: GameState, scene: SceneBuilder): void {
 function enterBaskExternalCum2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['last_cum'] === 'face_mouth') {
     scene.img('images/shared/sex/cum/facial/facial35.jpg');
-    scene.text(`iif(sex_ev['catch_breath'] = 1, 'You lay back, panting hard to catch your breath as you wind down, the warm mask of ${((s as any).npcdesc ?? '')}'s cum across your face, its salty taste on your tongue. It's several minutes before your breathing finally calms.', 'You lay back, panting as you wind down, the warm mask of ${((s as any).npcdesc ?? '')}'s cum across your face, its salty taste on your tongue. You didn't come, but that was <i>good</i>...')`);
+    scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 1, 0)`, s) ? `You lay back, panting hard to catch your breath as you wind down, the warm mask of ${((s as any).npcdesc ?? '')}'s cum across your face, its salty taste on your tongue. It's several minutes before your breathing finally calms.` : `You lay back, panting as you wind down, the warm mask of ${((s as any).npcdesc ?? '')}'s cum across your face, its salty taste on your tongue. You didn't come, but that was <i>good</i>...`);
   } else {
     if (((s as any).sex_ev ?? 0)?.['last_cum'] === 'spit') {
       scene.img('images/shared/sex/cum/facial/facial35.jpg');
-      scene.text(`iif(sex_ev['catch_breath'] = 1, 'You lay back, panting hard to catch your breath as you wind down, the salty taste of ${((s as any).npcdesc ?? '')}'s sperm on your tongue as it dribbles down your chin. It's several minutes before your breathing finally calms.', 'You lay back, panting as you wind down, the salty taste of ${((s as any).npcdesc ?? '')}'s sperm on your tongue as it dribbles down your chin. You didn't come, but that was <i>good</i>...')`);
+      scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 1, 0)`, s) ? `You lay back, panting hard to catch your breath as you wind down, the salty taste of ${((s as any).npcdesc ?? '')}'s sperm on your tongue as it dribbles down your chin. It's several minutes before your breathing finally calms.` : `You lay back, panting as you wind down, the salty taste of ${((s as any).npcdesc ?? '')}'s sperm on your tongue as it dribbles down your chin. You didn't come, but that was <i>good</i>...`);
     } else {
       if (((s as any).sex_ev ?? 0)?.['last_cum'] === 'swallow'  ||  ((s as any).sex_ev ?? 0)?.['last_cum'] === 'mouth') {
         scene.img('images/shared/sex/cum/facial/facial35.jpg');
-        scene.text(`iif(sex_ev['catch_breath'] = 1, 'You lay back, panting hard to catch your breath, the salty taste of ${((s as any).npcdesc ?? '')}'s sperm still on your lips. It's several minutes before your breathing finally calms.', 'You lay back, panting as you wind down, the salty taste of ${((s as any).npcdesc ?? '')}'s sperm still on your lips. You didn't come, but that was <i>good</i>...')`);
+        scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 1, 0)`, s) ? `You lay back, panting hard to catch your breath, the salty taste of ${((s as any).npcdesc ?? '')}'s sperm still on your lips. It's several minutes before your breathing finally calms.` : `You lay back, panting as you wind down, the salty taste of ${((s as any).npcdesc ?? '')}'s sperm still on your lips. You didn't come, but that was <i>good</i>...`);
       } else {
         if (((s as any).sex_ev ?? 0)?.['last_cum'] === 'facial') {
           scene.img('images/shared/sex/cum/facial/facial35.jpg');
-          scene.text(`iif(sex_ev['catch_breath'] = 1, 'You lay back, panting hard to catch your breath, the warm mask of ${((s as any).npcdesc ?? '')}'s cum across your face already beginning to cool. It's several minutes before your breathing finally calms.', 'You lay back, panting as you wind down, the warm mask of ${((s as any).npcdesc ?? '')}'s cum across your face already beginning to cool. You didn't come, but that was <i>good</i>...')`);
+          scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 1, 0)`, s) ? `You lay back, panting hard to catch your breath, the warm mask of ${((s as any).npcdesc ?? '')}'s cum across your face already beginning to cool. It's several minutes before your breathing finally calms.` : `You lay back, panting as you wind down, the warm mask of ${((s as any).npcdesc ?? '')}'s cum across your face already beginning to cool. You didn't come, but that was <i>good</i>...`);
         } else {
           if (((s as any).sex_ev ?? 0)?.['last_cum'] === 'tits') {
             scene.img('images/shared/sex/cum/chest/2.jpg');
-            scene.text(`iif(sex_ev['catch_breath'] = 1, 'You lay back, panting hard to catch your breath, the warm glaze of ${((s as any).npcdesc ?? '')}'s cum across your chest already beginning to cool. It's several minutes before your breathing finally calms.', 'You lay back, panting as you wind down, the warm glaze of ${((s as any).npcdesc ?? '')}'s cum across your chest already beginning to cool. You didn't come, but that was <i>good</i>...')`);
+            scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 1, 0)`, s) ? `You lay back, panting hard to catch your breath, the warm glaze of ${((s as any).npcdesc ?? '')}'s cum across your chest already beginning to cool. It's several minutes before your breathing finally calms.` : `You lay back, panting as you wind down, the warm glaze of ${((s as any).npcdesc ?? '')}'s cum across your chest already beginning to cool. You didn't come, but that was <i>good</i>...`);
           } else {
             if (((s as any).sex_ev ?? 0)?.['last_cum'] === 'pullout') {
               if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
                 scene.img('images/shared/sex/cum/stomach/bellycum3.jpg');
-                scene.text('iif(sex_ev[\'catch_breath\'] = 1, \'You lay back, panting hard to catch your breath, feeling the warm cum on your belly already beginning to cool. It\'s several minutes before your breathing finally calms.\', \'You lay back, panting as you wind down, feeling the warm cum on your belly already beginning to cool. You didn\'t come, but that was <i>good</i>...\')');
+                scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 'You lay back, panting hard to catch your breath, feeling the warm cum on your belly already beginning to cool. It's several minutes before your breathing finally calms.', 'You lay back, panting as you wind down, feeling the warm cum on your belly already beginning to cool. You didn't come, but that was <i>good</i>...')`, s));
               } else {
                 if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
                   scene.img('images/shared/sex/cum/back1.jpg');
-                  scene.text(`iif(sex_ev['catch_breath'] = 1, 'You just lay there, ${((s as any).npcdesc ?? '')}'s cum spattered across your ass, panting hard to catch your breath. It's several minutes before your breathing finally calms.', 'You just lay there, ${((s as any).npcdesc ?? '')}'s cum spattered across your ass, panting as you wind down. You didn't come, but that was <i>good</i>...')`);
+                  scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 1, 0)`, s) ? `You just lay there, ${((s as any).npcdesc ?? '')}'s cum spattered across your ass, panting hard to catch your breath. It's several minutes before your breathing finally calms.` : `You just lay there, ${((s as any).npcdesc ?? '')}'s cum spattered across your ass, panting as you wind down. You didn't come, but that was <i>good</i>...`);
                 } else {
                   if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
                     scene.img('images/shared/sex/vag/cowgirl/3.jpg');
-                    scene.text(`iif(sex_ev['catch_breath'] = 1, 'You sit back on top of ${((s as any).npcdesc ?? '')}, his cum spattered across your ass, his cock resting between your cheeks, panting hard to catch your breath. It's several minutes before your breathing finally calms.', 'You sit back on top of ${((s as any).npcdesc ?? '')}, his cum spattered across your ass, his cock resting between your cheeks, panting as you wind down. You didn't come, but that was <i>good</i>...')`);
+                    scene.text(qspEval(`iif(sex_ev['catch_breath'] = 1, 1, 0)`, s) ? `You sit back on top of ${((s as any).npcdesc ?? '')}, his cum spattered across your ass, his cock resting between your cheeks, panting hard to catch your breath. It's several minutes before your breathing finally calms.` : `You sit back on top of ${((s as any).npcdesc ?? '')}, his cum spattered across your ass, his cock resting between your cheeks, panting as you wind down. You didn't come, but that was <i>good</i>...`);
                   }
                 }
               }
@@ -943,7 +943,7 @@ function enterAnalCpFeltGreat(s: GameState, scene: SceneBuilder): void {
 function enterAnalCpFull(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'I feel full', handler: (st: GameState) => {
-    scene.text(`iif(sex_ev['cock_inserted'] = 1, '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/vag/doggy/1.jpg"></center>', '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/analcreampie/after1.jpg"></center>')`);
+    scene.text(qspEval(`iif(sex_ev['cock_inserted'] = 1, 1, 0)`, s) ? `<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/vag/doggy/1.jpg"></center>` : `<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/analcreampie/after1.jpg"></center>`);
     if (((st as any).sex_ev ?? 0)?.['came_together'] > 0) {
       if (((st as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
         scene.text('"I feel... <i>full</i>..." you gulp, shivering with orgasmic aftershocks and marveling at the warmth you feel inside your intestines.');
@@ -974,7 +974,7 @@ function enterLoveAnalCreampies(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['react'] = 1;
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
     qspCall(st, 'stat', '');
-    scene.text(`iif(sex_ev['cock_inserted'] = 1, '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/vag/doggy/1.jpg"></center>', '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/analcreampie/after1.jpg"></center>')`);
+    scene.text(qspEval(`iif(sex_ev['cock_inserted'] = 1, 1, 0)`, s) ? `<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/vag/doggy/1.jpg"></center>` : `<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/analcreampie/after1.jpg"></center>`);
     if (((st as any).npc_know_love_creampie ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       if (((st as any).sex_ev ?? 0)?.['came_together'] > 0) {
         scene.text('"I love it when you come inside my ass," you smile, shivering with orgasmic aftershocks.');
@@ -996,7 +996,7 @@ function enterLoveAnalCreampies(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['react'] = 1;
     (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 2));
     qspCall(st, 'stat', '');
-    scene.text(`iif(sex_ev['cock_inserted'] = 1, '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/vag/doggy/1.jpg"></center>', '<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/analcreampie/after1.jpg"></center>')`);
+    scene.text(qspEval(`iif(sex_ev['cock_inserted'] = 1, 1, 0)`, s) ? `<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/vag/doggy/1.jpg"></center>` : `<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/analcreampie/after1.jpg"></center>`);
     ((st as any).npc_know_love_analcreampie = (st as any).npc_know_love_analcreampie ?? {})[String((st as any).npcID ?? 0)] = 1;
     if (((st as any).sex_ev ?? 0)?.['came_together'] > 0) {
       scene.text('"I love it when guys come inside my ass," you sigh contently, still giddy from your orgasm. "It always makes me come too."');

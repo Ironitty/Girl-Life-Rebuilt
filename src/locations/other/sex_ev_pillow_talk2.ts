@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -1673,7 +1673,7 @@ function enterDickCompliment(s: GameState, scene: SceneBuilder): void {
           { label: 'Ruining sex with your boyfriend', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDickGrabImage(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"This thing is ruining sex with my boyfriend," you say ruefully.');
-    scene.text(`iif(npc_arrogant[$npcID] > 0, '"There's no cock like my cock, is there?" ${((st as any).npcdesc ?? '')} says with a smug grin.', '"Yeah?" he says with a smug grin.')`);
+    scene.text(qspEval(`iif(npc_arrogant[$npcID] > 0, 1, 0)`, s) ? `"There's no cock like my cock, is there?" ${((st as any).npcdesc ?? '')} says with a smug grin.` : `"Yeah?" he says with a smug grin.`);
     scene.text(`"You're <i>way</i> bigger," you say, staring hungrily at his ${((st as any).dick_desc ?? '')} manhood. "His dick feels like a <i>finger</i> by comparison..."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDickTalkTopics(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -1684,7 +1684,7 @@ function enterDickCompliment(s: GameState, scene: SceneBuilder): void {
           { label: 'Ruining sex with your girlfriend', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDickGrabImage(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"This thing is ruining sex with my girlfriend," you say ruefully.');
-    scene.text(`iif(npc_arrogant[$npcID] > 0, '"I bet," ${((st as any).npcdesc ?? '')} says with a smug grin.', '"Yeah?" he says with a smug grin.')`);
+    scene.text(qspEval(`iif(npc_arrogant[$npcID] > 0, 1, 0)`, s) ? `"I bet," ${((st as any).npcdesc ?? '')} says with a smug grin.` : `"Yeah?" he says with a smug grin.`);
     scene.text(`"Now when we sleep together, all I can think about is how much I want this cock inside me," you say, staring hungrily at his ${((st as any).dick_desc ?? '')} manhood. "Lesbian sex has never been so unsatisfying..."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDickTalkTopics(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -1694,7 +1694,7 @@ function enterDickCompliment(s: GameState, scene: SceneBuilder): void {
         { label: 'Its ruining other guys for you', handler: (st: GameState) => {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDickGrabImage(st, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text(`"This thing is ruining sex with other guys for me," you say, hungrily staring at ${((st as any).npcdesc ?? '')}'s ${((st as any).dick_desc ?? '')} manhood.`);
-    scene.text(`iif(npc_arrogant[$npcID] > 0, '"I bet," ${((st as any).npcdesc ?? '')} says with a smug grin.', '"Yeah?" he says with a smug grin.')`);
+    scene.text(qspEval(`iif(npc_arrogant[$npcID] > 0, 1, 0)`, s) ? `"I bet," ${((st as any).npcdesc ?? '')} says with a smug grin.` : `"Yeah?" he says with a smug grin.`);
     scene.text('"You\'re so big," you say with a rueful expression. "Other guys dicks feel like <i>fingers</i> inside me by comparison..."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDickTalkTopics(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },

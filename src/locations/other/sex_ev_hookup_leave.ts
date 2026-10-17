@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -470,7 +470,7 @@ function enterNpcDateRequest(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'sex_ev_stats', 'fuckbuddy_add');
       scene.text(`"Well... If it means I can see you again, then sure I guess." ${((st as any).npcdesc ?? '')} doesn't really seem satisfied with the results, but he still tells you his number while you tap it into your contact list.`);
       scene.text('"So uhh, yeah... Call me sometime?"');
-      scene.text(`iif($sex_ev['loc'] = 'house_party', 'With a shrug and an awkward wave goodbye, you head out back out into the party.', 'With a shrug and an awkward wave goodbye, you head out the door and out of ${((st as any).npcdesc ?? '')}'s apartment.')`);
+      scene.text(qspEval(`iif($sex_ev['loc'] = 'house_party', 1, 0)`, s) ? `With a shrug and an awkward wave goodbye, you head out back out into the party.` : `With a shrug and an awkward wave goodbye, you head out the door and out of ${((st as any).npcdesc ?? '')}'s apartment.`);
       scene.actions([
         { label: 'Leave', goto: ['sex_ev_leave', 'exit'] },
       ]);
@@ -480,7 +480,7 @@ function enterNpcDateRequest(s: GameState, scene: SceneBuilder): void {
         { label: 'It\'s to be expected', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_clothing', 'dress_loop');
     scene.text(`You nod to yourself, continuing ${(((st as any).sex_ev ?? 0)?.['dress_describe'] ?? '')}. It's to be expected from a guy like him. But if he wants something more, you just can't give it to him. You're only after pleasure, you don't want to get tangled up in a relationship.`);
-    scene.text(`iif($sex_ev['loc'] = 'house_party', '"Well, I guess I won't see you around then so... bye?" You wave to ${((st as any).npcdesc ?? '')} and head out back out into the party.', '"Well, I guess I won't see you around then so... bye?" You wave to ${((st as any).npcdesc ?? '')} and stride out the door, unable to feel that this little bit of fun took a bit of a damper turn right at the end.')`);
+    scene.text(qspEval(`iif($sex_ev['loc'] = 'house_party', 1, 0)`, s) ? `"Well, I guess I won't see you around then so... bye?" You wave to ${((st as any).npcdesc ?? '')} and head out back out into the party.` : `"Well, I guess I won't see you around then so... bye?" You wave to ${((st as any).npcdesc ?? '')} and stride out the door, unable to feel that this little bit of fun took a bit of a damper turn right at the end.`);
     scene.actions([
       { label: 'Leave', goto: ['sex_ev_leave', 'exit'] },
     ]);
@@ -488,7 +488,7 @@ function enterNpcDateRequest(s: GameState, scene: SceneBuilder): void {
         { label: 'Taken aback', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_clothing', 'dress_loop');
     scene.text(`You blink in surprise, stopping halfway through ${(((st as any).sex_ev ?? 0)?.['dress_describe'] ?? '')}. That response really wasn't what you saw coming. After all, what guy just gives up free access to sex?`);
-    scene.text(`iif($sex_ev['loc'] = 'house_party', '"Uhh well, uhh... Alright... Guess I won't see you later then..." you respond awkwardly. After giving yourself a once over, you give ${((st as any).npcdesc ?? '')} a strained smile and head out back out into the party.', '"Uhh well, uhh... Alright... Guess I won't see you later then..." you respond awkwardly. After giving yourself a once over, you give ${((st as any).npcdesc ?? '')} a strained smile and wave goodbye, quickly striding towards out the door.')`);
+    scene.text(qspEval(`iif($sex_ev['loc'] = 'house_party', 1, 0)`, s) ? `"Uhh well, uhh... Alright... Guess I won't see you later then..." you respond awkwardly. After giving yourself a once over, you give ${((st as any).npcdesc ?? '')} a strained smile and head out back out into the party.` : `"Uhh well, uhh... Alright... Guess I won't see you later then..." you respond awkwardly. After giving yourself a once over, you give ${((st as any).npcdesc ?? '')} a strained smile and wave goodbye, quickly striding towards out the door.`);
     scene.actions([
       { label: 'Leave', goto: ['sex_ev_leave', 'exit'] },
     ]);
@@ -553,7 +553,7 @@ function enterNpcSugarDaddyRefuse(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Nice try but no', handler: (st: GameState) => {
     scene.img('images/shared/romance/misc/depart_annoyed1.mp4');
-    scene.text('iif($sex_ev[\'loc\'] = \'house_party\', \'"Nice try but no," you grimace and pick up the rest of your things and head back out into the party.\', \'"Nice try but no," you grimace and pick up the rest of your things and head out the door.\')');
+    scene.text(qspEval(`iif($sex_ev['loc'] = 'house_party', '"Nice try but no," you grimace and pick up the rest of your things and head back out into the party.', '"Nice try but no," you grimace and pick up the rest of your things and head out the door.')`, s));
     scene.actions([
       { label: 'Leave', goto: ['sex_ev_leave', 'exit'] },
     ]);

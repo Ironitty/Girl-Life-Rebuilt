@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -233,7 +233,7 @@ function enterFirstTimeSeduction(s: GameState, scene: SceneBuilder): void {
           if (((st as any).artemQW ?? 0)?.['confidence'] < 20) {
             scene.text(`Artem looks at you to see your reaction, and when you smile back seductively, he grins. "I do like what I see, but are you sure about this, ${((st as any).pcs_nickname ?? '')}?"`);
             scene.text('"Katja is my friend and I like to share with my friends. I told her how amazing you are in bed, and she wanted to experience that. So just relax and enjoy the experience."');
-            scene.text('iif( katjaQW[\'QWstage\'] = 5, \'You notice Katja\'s hesitation. "Why don\'t you get his cock out and play with it?"\', \'Katja smiles. "Thanks for the compliment, Artem. Why don\'t I reward it by taking your nice cock out and giving it some attention?"\')');
+            scene.text(qspEval(`iif( katjaQW['QWstage'] = 5, 'You notice Katja's hesitation. "Why don't you get his cock out and play with it?"', 'Katja smiles. "Thanks for the compliment, Artem. Why don't I reward it by taking your nice cock out and giving it some attention?"')`, s));
           } else {
             scene.text(`Artem briefly looks at you to see your reaction, and when you just smiles back seductively, he grins. "I very much like what I see. This is a great view and I'm sure that things can only get better, but I'm a little surprised that ${((st as any).pcs_nickname ?? '')} wants to share me with you."`);
             scene.text('"Katja is my friend and I like to share with my friends. I told her how amazing you are in bed, and she wanted to experience that. How could her deny her that?" you answer.');
@@ -255,7 +255,7 @@ function enterFirstTimeSeduction(s: GameState, scene: SceneBuilder): void {
           if (((st as any).artemQW ?? 0)?.['confidence'] < 20) {
             scene.text(`Artem looks at you to see your reaction, and when you smile back seductively, he grins. "I do like what I see. Are you are you going to share all your friends with me, ${((st as any).pcs_nickname ?? '')}?"`);
             scene.text('"I like to share," you shrug. "I told her how amazing you are in bed, and she wanted to experience that. So just relax and enjoy the experience."');
-            scene.text('iif( katjaQW[\'QWstage\'] = 5, \'You notice Katja\'s hesitation. "Why don\'t you get his cock out and play with it?"\', \'Katja smiles. "Thanks for the compliment, Artem. Why don\'t I reward it by taking your nice cock out and giving it some attention?"\')');
+            scene.text(qspEval(`iif( katjaQW['QWstage'] = 5, 'You notice Katja's hesitation. "Why don't you get his cock out and play with it?"', 'Katja smiles. "Thanks for the compliment, Artem. Why don't I reward it by taking your nice cock out and giving it some attention?"')`, s));
           } else {
             scene.text(`Artem briefly looks at you to see your reaction, and when you smile back seductively, he grins. "I very much like what I see. This is a great view and I'm sure that things can only get better. I look forward to you sharing me with the rest of your friends, ${((st as any).pcs_nickname ?? '')}."`);
             scene.text('"I like to share," you shrug. "I told her how amazing you are in bed, and she wanted to experience that. How could her deny her that?" you reply.');

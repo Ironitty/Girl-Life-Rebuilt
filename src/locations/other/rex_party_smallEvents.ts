@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import {qspCall, dynamicGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -1512,7 +1512,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_fun_2_6_${(Math.floor(Math.random() * 5) + 1)}.jpg`);
       scene.text('You enthusiastically examine each other\'s breasts, when a couple of guys burst into the room. You decide that the guys should evaluate your boobs with their hands and call them closer.');
-      scene.text('iif(rex_love = 0, \'The guys have fun touching your boobs.\', \'Rex is right in front of you and gently squeezes your breasts with his hands.\')');
+      scene.text(qspEval(`iif(rex_love = 0, 'The guys have fun touching your boobs.', 'Rex is right in front of you and gently squeezes your breasts with his hands.')`, s));
       qspCall(st, 'willpower', 'sex', 'resist', 'medium');
       if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
@@ -1643,7 +1643,7 @@ function enterFun(s: GameState, scene: SceneBuilder): void {
           qspCall(st, 'stat', '');
           scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_fun_2_8_${(Math.floor(Math.random() * 2) + 2)}.jpg`);
           scene.text('You call in the guys and announce that you and the girls want to check out the contents of their pants. Excitedly they unzip their pants and pull out their dicks.');
-          scene.text('iif(reksMeet = 1, \'You have Rex\' member in front of you and compare it with your arm.\', \'One of the more persistent guys comes up to you and you compare his penis with your arm.\')');
+          scene.text(qspEval(`iif(reksMeet = 1, 'You have Rex' member in front of you and compare it with your arm.', 'One of the more persistent guys comes up to you and you compare his penis with your arm.')`, s));
           qspCall(st, 'willpower', 'bj', 'resist', 'medium');
           if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
             scene.actions([

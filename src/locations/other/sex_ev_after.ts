@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -2179,9 +2179,9 @@ function enterDrinkWater1(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((st as any).npc_gymrat ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
-      scene.text('iif(sex_ev[\'rough_fuck\'] > 0, \'"It was practically a workout," he agrees with no small amount of amusement.\', \'"Important to stay hydrated after cardio," he chuckles.\')');
+      scene.text(qspEval(`iif(sex_ev['rough_fuck'] > 0, '"It was practically a workout," he agrees with no small amount of amusement.', '"Important to stay hydrated after cardio," he chuckles.')`, s));
     } else {
-      scene.text('iif(rand(1, 2), \'"That\'s a good idea," he nods.\', \'"Me too," he huffs tiredly.\')');
+      scene.text(qspEval(`iif(rand(1, 2), '"That's a good idea," he nods.', '"Me too," he huffs tiredly.')`, s));
     }
     if (((st as any).cum_loc ?? 0)?.['mouth'] > 0) {
       scene.text(`${((st as any).npcdesc ?? '')} hands you a bottle from his nightstand. You take a few large gulps, swallowing with a pant and leaving your mouth feeling clean of cum before handing it back so he can take a drink himself.`);
@@ -2435,7 +2435,7 @@ function enterBirthControlPillTake(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((st as any).sex_ev ?? 0)?.['boy_asleep'] === 1) {
-      scene.text(`iif(cum_loc['vagina'] > 0, 'With ${((st as any).npcdesc ?? '')} snoring softly beside you and his cum leaking from your snatch, you dig into your purse and pull out your birth control, gulping the pill with a dry swallow.', 'With ${((st as any).npcdesc ?? '')} snoring softly beside you, you dig into your purse and pull out your birth control, gulping the pill with a dry swallow.')`);
+      scene.text(qspEval(`iif(cum_loc['vagina'] > 0, 1, 0)`, s) ? `With ${((st as any).npcdesc ?? '')} snoring softly beside you and his cum leaking from your snatch, you dig into your purse and pull out your birth control, gulping the pill with a dry swallow.` : `With ${((st as any).npcdesc ?? '')} snoring softly beside you, you dig into your purse and pull out your birth control, gulping the pill with a dry swallow.`);
     } else {
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBirthControlPillTake2(st, scene); (st as any).locArgs = __savedLocArgs; }
     }

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -324,7 +324,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).hour ?? 0) < 20) {
-        scene.text('iif($loc = \'gkafe\', \'You see Vitek, Dan and Vasily sitting at a table, drinking some beers\', \'You see Vitek, Dan and Vasily sitting on a park bench, drinking some beers.\')');
+        scene.text(qspEval(`iif($loc = 'gkafe', 'You see Vitek, Dan and Vasily sitting at a table, drinking some beers', 'You see Vitek, Dan and Vasily sitting on a park bench, drinking some beers.')`, s));
         (s as any).temp_fame = qspFunc(s, 'cardgame_durak', 'get_mod_fame');
         if (((s as any).temp_fame ?? 0) >= 250) {
           (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);

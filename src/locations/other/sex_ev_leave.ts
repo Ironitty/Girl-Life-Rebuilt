@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -559,7 +559,7 @@ function enterBreakupStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Break things off', handler: (st: GameState) => {
     scene.text(String(qspFunc(s, 'sex_ev', 'bed_room') || ''));
-    scene.text('iif($sex_ev[\'loc\'] ! \'pc_home\',\'"This is the last time I\'m coming over," you say, abruptly.\',\'"This is the last time you can come over," you say abruptly.\')');
+    scene.text(qspEval(`iif($sex_ev['loc'] ! 'pc_home','"This is the last time I'm coming over," you say, abruptly.','"This is the last time you can come over," you say abruptly.')`, s));
     scene.text(`"Huh?" ${((st as any).npcdesc ?? '')} looks at you oddly. "What are you talking about?"`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBreakupMid(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -830,9 +830,9 @@ function enterProstitutionWakeup1(s: GameState, scene: SceneBuilder): void {
     scene.text(`Gently, you shake ${((st as any).npcdesc ?? '')}'s shoulder until he starts awake.`);
     scene.text('"Huh-?" He looks around, blinking in confusion.');
     if (((st as any).sex_ev ?? 0)?.['sleepover'] === 1) {
-      scene.text('iif($npc_rel_type[$npcID] = \'sugar_daddy\', \'"Hey," you smile softly. "I had a great time last night but I really need to get going. Can your baby girl get her sugar?"\', \'"Hey," you smile softly. "I had a great time last night but I really need to get going. Can I uhm... get the money for it...?"\')');
+      scene.text(qspEval(`iif($npc_rel_type[$npcID] = 'sugar_daddy', '"Hey," you smile softly. "I had a great time last night but I really need to get going. Can your baby girl get her sugar?"', '"Hey," you smile softly. "I had a great time last night but I really need to get going. Can I uhm... get the money for it...?"')`, s));
     } else {
-      scene.text('iif($npc_rel_type[$npcID] = \'sugar_daddy\', \'"Hey," you smile softly. "I had a great time but I really need to get going. Can your baby girl get her sugar?"\', \'"Hey," you smile softly. "I had a great time but I really need to get going. Can I uhm... get the money for it...?"\')');
+      scene.text(qspEval(`iif($npc_rel_type[$npcID] = 'sugar_daddy', '"Hey," you smile softly. "I had a great time but I really need to get going. Can your baby girl get her sugar?"', '"Hey," you smile softly. "I had a great time but I really need to get going. Can I uhm... get the money for it...?"')`, s));
     }
     scene.text('"Oh. Yeah," he mumbles, sitting up slowly. "Just lemme..."');
     scene.text(`Very slowly, he pulls out some notes from his wallet, needing to recount several times before getting the right amount of ${qspFunc(s, 'money', 'string_profit', (((st as any).sex_ev ?? 0)?.['prostitution_paid'] ?? ''))}.`);
@@ -1428,7 +1428,7 @@ function enterSomethingToDo(s: GameState, scene: SceneBuilder): void {
       if ((Math.floor(Math.random() * 3) + 1) === 3  &&  (((st as any).npc_day_off ?? 0)?.[String((st as any).npcID ?? 0)] === ((st as any).week ?? 0)  ||  (((st as any).npc_day_off ?? 0)?.[String((st as any).npcID ?? 0)] === ((st as any).week ?? 0) + 1)  ||  (((st as any).week ?? 0) === 7  &&  ((st as any).npc_day_off ?? 0)?.[String((st as any).npcID ?? 0)] === 1))) {
         qspCall(st, 'sex_ev_dress_talking', 'sex_ev_invite_later');
       } else {
-        scene.text('iif($sex_ev[\'loc\'] = \'pc_home\',\'"It\'s fine. I get it."\',\'"No problem. It was fun."\')');
+        scene.text(qspEval(`iif($sex_ev['loc'] = 'pc_home','"It's fine. I get it."','"No problem. It was fun."')`, s));
         qspCall(st, 'sex_ev_morning', 'end_morning');
       }
     }

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -1250,7 +1250,7 @@ function enterDeodorantDo(s: GameState, scene: SceneBuilder): void {
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
   qspCall(s, 'sweat', 'deo');
   qspCall(s, 'stat', '');
-  scene.text(`iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img ${((s as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant_preg.jpg"></center>', '<center><img ${((s as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant.jpg"></center>')`);
+  scene.text(qspEval(`iif(func('body_din', 'pregnancyVisibility') = 1, 1, 0)`, s) ? `<center><img ${((s as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant_preg.jpg"></center>` : `<center><img ${((s as any).set_imgh ?? '')} src="images/shared/home/bathroom/deodorant.jpg"></center>`);
   scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
@@ -2525,15 +2525,15 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
   scene.text('Note: Choosing to never shave, or to shave legs only, will remove your chosen shave style.');
   scene.text('You can only choose a style if you currently have enough hair to support it.</b>');
   if ((!((s as any).pubestyle ?? 0))) {
-    scene.text('iif(shave_menu = 1, \'Everything&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027You must choose a shave style before you can choose to shave everything.\u0027); return s; }); return false;">Everything</a>&nbsp;|&nbsp;\')');
-    scene.text('iif(shave_menu = 2, \'Pussy only&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { alert(\u0027You must choose a shave style before you can choose to shave your pussy.\u0027); return s; }); return false;">Pussy only</a>&nbsp;|&nbsp;\')');
-    scene.text('iif(shave_menu = 3, \'Legs only&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 3; s.pubestyle = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Legs only</a>&nbsp;|&nbsp;\')');
-    scene.text('iif(shave_menu = 0, \'Never shave\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 0; s.pubestyle = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Never shave</a>\')');
+    scene.text(qspEval(`iif(shave_menu = 1, 'Everything&nbsp;|&nbsp;', '<a href="#" onclick="window.__gameStore.setState((s) => { alert(u0027You must choose a shave style before you can choose to shave everything.u0027); return s; }); return false;">Everything</a>&nbsp;|&nbsp;')`, s));
+    scene.text(qspEval(`iif(shave_menu = 2, 'Pussy only&nbsp;|&nbsp;', '<a href="#" onclick="window.__gameStore.setState((s) => { alert(u0027You must choose a shave style before you can choose to shave your pussy.u0027); return s; }); return false;">Pussy only</a>&nbsp;|&nbsp;')`, s));
+    scene.text(qspEval(`iif(shave_menu = 3, 'Legs only&nbsp;|&nbsp;', '<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 3; s.pubestyle = 0; return s; }); window.__gameStore.getState().doGoto(u0027din_vanu0027, u0027shave_optionsu0027); return false;">Legs only</a>&nbsp;|&nbsp;')`, s));
+    scene.text(qspEval(`iif(shave_menu = 0, 'Never shave', '<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 0; s.pubestyle = 0; return s; }); window.__gameStore.getState().doGoto(u0027din_vanu0027, u0027shave_optionsu0027); return false;">Never shave</a>')`, s));
   } else {
-    scene.text('iif(shave_menu = 1, \'Everything&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 1; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Everything</a>&nbsp;|&nbsp;\')');
-    scene.text('iif(shave_menu = 2, \'Pussy only&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 2; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Pussy only</a>&nbsp;|&nbsp;\')');
-    scene.text('iif(shave_menu = 3, \'Legs only&nbsp;|&nbsp;\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 3; s.pubestyle = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Legs only</a>&nbsp;|&nbsp;\')');
-    scene.text('iif(shave_menu = 0, \'Never shave\', \'<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 0; s.pubestyle = 0; return s; }); window.__gameStore.getState().doGoto(\u0027din_van\u0027, \u0027shave_options\u0027); return false;">Never shave</a>\')');
+    scene.text(qspEval(`iif(shave_menu = 1, 'Everything&nbsp;|&nbsp;', '<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 1; return s; }); window.__gameStore.getState().doGoto(u0027din_vanu0027, u0027shave_optionsu0027); return false;">Everything</a>&nbsp;|&nbsp;')`, s));
+    scene.text(qspEval(`iif(shave_menu = 2, 'Pussy only&nbsp;|&nbsp;', '<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 2; return s; }); window.__gameStore.getState().doGoto(u0027din_vanu0027, u0027shave_optionsu0027); return false;">Pussy only</a>&nbsp;|&nbsp;')`, s));
+    scene.text(qspEval(`iif(shave_menu = 3, 'Legs only&nbsp;|&nbsp;', '<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 3; s.pubestyle = 0; return s; }); window.__gameStore.getState().doGoto(u0027din_vanu0027, u0027shave_optionsu0027); return false;">Legs only</a>&nbsp;|&nbsp;')`, s));
+    scene.text(qspEval(`iif(shave_menu = 0, 'Never shave', '<a href="#" onclick="window.__gameStore.setState((s) => { s.shave_menu = 0; s.pubestyle = 0; return s; }); window.__gameStore.getState().doGoto(u0027din_vanu0027, u0027shave_optionsu0027); return false;">Never shave</a>')`, s));
   }
   if ((!((s as any).shave_menu ?? 0))) {
     scene.text('Your current routine doesn\'t include any shaving options.');

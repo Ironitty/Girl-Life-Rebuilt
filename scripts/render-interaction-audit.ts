@@ -162,7 +162,9 @@ const TEST_STATE: Record<string, unknown> = {
   KGD: { lvl: 1, HP: 100, damage: 10, Infantrie: 1, Cavalry: 1, Archers: 1, sput_2: 0, sput_3: 0, sput_4: 0, sput_5: 0, sput_6: 0 },
   KDG: { HP: 100, razm: 1 },
   hour: 12,
+  voyeurism_forest: 0,
   ReturnAdr: 'forest_edge',
+  artemQW: { nushart_oral: 0 },
   foto_persuade: 0,
   lib_book_loaned: '',
   lib_debt: 0,
@@ -1150,6 +1152,33 @@ async function phase2RenderAudit(
   return { passed: allFailures.length === 0, failures: allFailures };
 }
 
+async function readSettledActions(page: any, timeoutMs = 1200): Promise<string[]> {
+  const sample = () =>
+    evalT(page, () => {
+      const buttons = Array.from(document.querySelectorAll('button'));
+      return buttons
+        .filter((b) => {
+          const text = b.textContent?.trim() ?? '';
+          const title = b.getAttribute('title');
+          if (title) return false;
+          if (b.offsetParent === null) return false;
+          if (/^(Map|Back|Open Map)$/i.test(text)) return false;
+          if (text.length === 0 || text.length >= 80) return false;
+          return true;
+        })
+        .map((b) => b.textContent?.trim() ?? '');
+    });
+  let prev = await sample();
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    await sleep(100);
+    const cur = await sample();
+    if (JSON.stringify(cur) === JSON.stringify(prev)) return cur;
+    prev = cur;
+  }
+  return prev;
+}
+
 async function checkInteractionTarget(
   ctx: PageCtx,
   loc: string,
@@ -1184,29 +1213,16 @@ async function checkInteractionTarget(
       return { passed: false, error: `goto threw: ${e.message}`, loc: label };
     }
 
-    await sleep(50);
-
-    const actions = await evalT(page, () => {
-      const buttons = Array.from(document.querySelectorAll('button'));
-      return buttons
-        .filter((b) => {
-          const text = b.textContent?.trim() ?? '';
-          const title = b.getAttribute('title');
-          if (title) return false;
-          if (b.offsetParent === null) return false;
-          if (/^(Map|Back|Open Map)$/i.test(text)) return false;
-          if (text.length === 0 || text.length >= 80) return false;
-          return true;
-        })
-        .map((b) => b.textContent?.trim() ?? '');
-    });
+    const actions = await readSettledActions(page);
 
     for (const actionText of actions) {
       errors.length = 0;
 
       await evalT(page, ([fs, l, s, ts, ea]) => {
         const store = (window as any).__gameStore;
-        store.setState(fs);
+        const fns: Record<string, unknown> = {};
+        for (const [k, v] of Object.entries(store.getState())) if (typeof v === 'function') fns[k] = v;
+        store.setState({ ...fs, ...fns }, true);
         const st = store.getState();
         for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
         const origRandom = Math.random;
@@ -1214,7 +1230,7 @@ async function checkInteractionTarget(
         store.getState().doGoto(l, s, ea || undefined);
         Math.random = origRandom;
       }, [fullState, loc, sub, TEST_STATE, extraArg], opts?.timeout);
-      await sleep(50);
+      await readSettledActions(page);
 
       try {
         const clicked = await evalT(page, (at) => {

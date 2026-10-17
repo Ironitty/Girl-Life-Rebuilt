@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -1133,7 +1133,7 @@ function enterSugarMoney(s: GameState, scene: SceneBuilder): void {
 
 function enterBreakUpEv(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_clothing', 'dress_loop');
-  scene.text(`iif($sex_ev['loc'] ! 'pc_home', '"This is the last time I'm coming over," you say abruptly while ${(((s as any).sex_ev ?? 0)?.['dress_describe'] ?? '')}.', '"This is the last time you can come over," you say abruptly.')`);
+  scene.text(qspEval(`iif($sex_ev['loc'] ! 'pc_home', 1, 0)`, s) ? `"This is the last time I'm coming over," you say abruptly while ${(((s as any).sex_ev ?? 0)?.['dress_describe'] ?? '')}.` : `"This is the last time you can come over," you say abruptly.`);
   scene.text(`"Huh?" ${((s as any).npcdesc ?? '')} looks at you oddly. "What are you talking about?"`);
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'boyfriend') {
     scene.actions([

@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -252,7 +252,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t think it\'s a good idea, Katja," you say.');
     scene.text('"Why not? Never hurt me before," she ' + ((((st as any).katjaQW ?? 0)?.['coke_stage'] === 3) ? ('replies.') : ('snaps at you.')));
     scene.text('"No, but it might if you continue doing it this often," you respond.');
-    scene.text('iif(katjaQW[\'coke_stage\'] = 3, \'She looks at you. "Do you think I take too much?"\', \'She scowls at you. "Are you implying I can\'t control myself?"\')');
+    scene.text(qspEval(`iif(katjaQW['coke_stage'] = 3, 'She looks at you. "Do you think I take too much?"', 'She scowls at you. "Are you implying I can't control myself?"')`, s));
     scene.text('"I\'m just saying that maybe we should relax a little. Right now isn\'t the time for this," you say.');
     scene.text('She thinks about it for a moment. ' + ((((st as any).katjaQW ?? 0)?.['coke_stage'] === 3) ? ('"Okay. Not tonight," she says.') : ('"Fine," she says, clearly not happy about it.')));
     scene.text(`"Well, more for me then," ${((st as any).npcdesc ?? '')} says and does a few more lines before packing the drugs away.`);

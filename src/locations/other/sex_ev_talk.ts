@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -920,7 +920,7 @@ function enterCreampiePermission2(s: GameState, scene: SceneBuilder): void {
       { label: 'On birth control', handler: (st: GameState) => {
     ((st as any).npc_creampie_permission = (st as any).npc_creampie_permission ?? {})[String((st as any).npcID ?? 0)] = 2;
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['creampie_allowance'] = 1;
-    scene.text('iif(npc_know_bc[$npcID] = 0, \'"I\'m on birth control," you shrug. "Why should it matter?"\', \'"You know I\'m on birth control anyways," you shrug. "So what\'s the difference?"\')');
+    scene.text(qspEval(`iif(npc_know_bc[$npcID] = 0, '"I'm on birth control," you shrug. "Why should it matter?"', '"You know I'm on birth control anyways," you shrug. "So what's the difference?"')`, s));
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTopicExit(st, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);

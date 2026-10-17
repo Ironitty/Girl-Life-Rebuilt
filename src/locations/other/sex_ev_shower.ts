@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -829,7 +829,7 @@ function enterTogetherFuckDoggyRough1(s: GameState, scene: SceneBuilder): void {
 
 function enterShowerCumAsk(s: GameState, scene: SceneBuilder): void {
   scene.text(`"${((s as any).pcs_nickname ?? '')}-! I'm almost there!"`);
-  scene.text('iif(sex_ev[\'orgasm\'] < orgasm, \'"Me too-!" you gasp.\', \'"Mmmm-!" you hum back.\')');
+  scene.text(qspEval(`iif(sex_ev['orgasm'] < orgasm, '"Me too-!" you gasp.', '"Mmmm-!" you hum back.')`, s));
   if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
     if (((s as any).sex_ev ?? 0)?.['creampie_allowance'] !== 1  ||  (((s as any).npc_free_creampies ?? 0)?.[String((s as any).npcID ?? 0)] !== 'at_will'  &&  ((s as any).sex_ev ?? 0)?.['preg_risk'] !== 'danger')) {
       scene.actions([
@@ -1022,7 +1022,7 @@ function enterShowerCumTogether1(s: GameState, scene: SceneBuilder): void {
 function enterShowerCreampieAfter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Pull apart', handler: (st: GameState) => {
-    scene.text(`iif($sex_ev['position'] = 'miss','<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/shower/creampie1.mp4"></video></center>','<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/shower/creampie_after1.jpg"></video></center>')`);
+    scene.text(qspEval(`iif($sex_ev['position'] = 'miss', 1, 0)`, s) ? `<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/shared/sex/shower/creampie1.mp4"></video></center>` : `<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/shower/creampie_after1.jpg"></video></center>`);
     if (((st as any).sex_ev ?? 0)?.['orgasm'] < ((st as any).orgasm ?? 0)) {
       scene.text(`${((st as any).npcdesc ?? '')} slips his cock from your pussy and you shiver as a hot glob of cum immediately seeps out and dribbles down your leg.`);
     } else {

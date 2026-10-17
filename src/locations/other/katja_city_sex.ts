@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -934,7 +934,7 @@ function enterGoingHome(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['QWstage'] === 5) {
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['QWstage'] = 6;
     scene.text('"So? How was your first time having sex with a man?" you ask after you\'ve walked in silence for a few minutes.');
-    scene.text('iif(katjaQW[\'horny\'] = 0, \'"It was great, even better than I imagined," she says with a big smile. \', \'"It was okay, but I had imagined more," she says. \')+iif(npc_vag[\'A14\'] < dick, \'"It did hurt though"\', \'"I was surprised that it didn\'t hurt at all"\')+\', she continues.\'');
+    scene.text(qspEval(`iif(katjaQW['horny'] = 0, '"It was great, even better than I imagined," she says with a big smile. ', '"It was okay, but I had imagined more," she says. ')+iif(npc_vag['A14'] < dick, '"It did hurt though"', '"I was surprised that it didn't hurt at all"')+', she continues.'`, s));
     scene.text('"Does this mean you want to try again?" you ask.');
     scene.text(((((s as any).katjaQW ?? 0)?.['horny'] === 0) ? ('"Definitely,"') : ('"Probably,"')) + ' she answers. You continue your small talk until you reach the metro station.');
   } else {

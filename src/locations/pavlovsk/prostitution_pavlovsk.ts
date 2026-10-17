@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -582,7 +582,7 @@ function enterS1End(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).prostitute ?? 0)?.['pav_internal'] === 0  &&  ((s as any).prostitute ?? 0)?.['pav_condom'] === 0) {
             scene.text('"Yes, fill me up," you encourage him. This takes him over the edge and his throbbing cock fills your pussy with his warm seed.');
-            scene.text('iif($pro_brand[\'text_pubic\'] = \'cumslut\', \'"You made a good choice with your tat. Maybe you should add some more. Worthless cunt or stupid whore would fit perfectly as well."\', \')');
+            scene.text(qspEval(`iif($pro_brand['text_pubic'] = 'cumslut', '"You made a good choice with your tat. Maybe you should add some more. Worthless cunt or stupid whore would fit perfectly as well."', ')`, s));
           }
         }
       }

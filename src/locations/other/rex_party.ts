@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -178,7 +178,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   if (String((s as any).locArgs?.[1] ?? '') === 'RexRoom') {
     scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_party_home_1_` + (Math.floor(Math.random() * 5) + 1) + '.jpg"></center>');
     scene.text('After a while, everyone gets up to go dance and drink. Only a few <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027party_girls\u0027); return false;">girls</a> are left in the room, but they are fun to hang out and gossip with.');
-    scene.text('iif(party_girls_talk >= 2, \'You <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027talk\u0027); return false;">chat</a> and gossip with them. One of the girls pulls out some marijuana and invites all of you to <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027smoke\u0027); return false;">have a smoke</a>.\', \'You <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027talk\u0027); return false;">chat</a> and gossip with them.\')');
+    scene.text(qspEval(`iif(party_girls_talk >= 2, 'You <a href="#" onclick="window.__gameStore.getState().doGoto(u0027rex_party_smallEventsu0027, u0027talku0027); return false;">chat</a> and gossip with them. One of the girls pulls out some marijuana and invites all of you to <a href="#" onclick="window.__gameStore.getState().doGoto(u0027rex_party_smallEventsu0027, u0027smokeu0027); return false;">have a smoke</a>.', 'You <a href="#" onclick="window.__gameStore.getState().doGoto(u0027rex_party_smallEventsu0027, u0027talku0027); return false;">chat</a> and gossip with them.')`, s));
     if (((s as any).pcs_mood ?? 0) === 100  &&  ((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).girls_smoke ?? 0) > 1) {
       scene.text('All the girls are in a good mood, and several of them excitedly pull you with them to have some <a href="#" onclick="window.__gameStore.getState().doGoto(\u0027rex_party_smallEvents\u0027, \u0027fun\u0027); return false;">fun</a>.');
     }

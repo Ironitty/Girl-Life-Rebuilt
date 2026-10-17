@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -265,7 +265,7 @@ function enterFirstCreampieReflect(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['creampie_orgasm_count'] > 0) {
       scene.text('Sure, you came when it happened, but now with the benefit of hindsight and post-nut clarity, ' + ((((st as any).cum_loc ?? 0)?.['vagina'] > 0) ? ('the sensation of his cum leaking out of you gives you shivers. ') : ('the memory of his cum leaking out of you gives you shivers. ')) + 'All <i>sticky</i> and <i>slimy</i>. You shudder just thinking about it.');
     } else {
-      scene.text('iif(cum_loc[\'vagina\'] > 0, \'You grimace as you feel another glob of the slimy white stuff ooze out of your snatch and can\'t help shudder at the sensation.\', \'You briefly flashback to the sensation of his slimy semen oozing out of your snatch and can\'t help but shudder. \')');
+      scene.text(qspEval(`iif(cum_loc['vagina'] > 0, 'You grimace as you feel another glob of the slimy white stuff ooze out of your snatch and can't help shudder at the sensation.', 'You briefly flashback to the sensation of his slimy semen oozing out of your snatch and can't help but shudder. ')`, s));
       qspGoto(st, 'sex_ev_reflection', 'top_menu');
     }
   } },
@@ -308,7 +308,7 @@ function enterGeneralCreampieReflect(s: GameState, scene: SceneBuilder): void {
     if (((st as any).sex_ev ?? 0)?.['creampie_orgasm_count'] > 0) {
       scene.text('Sure, you came when it happened, but now with the benefit of hindsight and post-nut clarity, ' + ((((st as any).cum_loc ?? 0)?.['vagina'] > 0) ? ('the sensation of his cum leaking out of you gives you shivers. ') : ('the memory of his cum leaking out of you gives you shivers. ')) + 'All <i>sticky</i> and <i>slimy</i>. You shudder just thinking about it.');
     } else {
-      scene.text('iif(cum_loc[\'vagina\'] > 0, \'You grimace as you feel another glob of the slimy white stuff ooze out of your snatch and can\'t help shudder at the sensation.\', \'You briefly flashback to the sensation of his slimy semen oozing out of your snatch and can\'t help but shudder. \')');
+      scene.text(qspEval(`iif(cum_loc['vagina'] > 0, 'You grimace as you feel another glob of the slimy white stuff ooze out of your snatch and can't help shudder at the sensation.', 'You briefly flashback to the sensation of his slimy semen oozing out of your snatch and can't help but shudder. ')`, s));
       qspGoto(st, 'sex_ev_reflection', 'top_menu');
     }
   } },

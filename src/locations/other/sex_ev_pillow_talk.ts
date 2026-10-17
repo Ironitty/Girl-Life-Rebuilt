@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -1320,11 +1320,11 @@ function enterWishNoCondoms2(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_bc_promise ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0)  ||  ((s as any).npc_bc_promise ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0) - 1) {
         scene.actions([
           { label: 'Give me some time (laugh)', handler: (st: GameState) => {
-    scene.text('iif(npc_bc_promise[$npcID] = daystart, \'"Yeah, maybe <i>later</i>," you giggle. "I only just told you today. Give me a few days at least."\', \'"Yeah, maybe in a few days," you giggle. "I only just told you <i>yesterday!</i> Give me a little time."\')');
+    scene.text(qspEval(`iif(npc_bc_promise[$npcID] = daystart, '"Yeah, maybe <i>later</i>," you giggle. "I only just told you today. Give me a few days at least."', '"Yeah, maybe in a few days," you giggle. "I only just told you <i>yesterday!</i> Give me a little time."')`, s));
     qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
   } },
           { label: 'Give me some time (annoyed)', handler: (st: GameState) => {
-    scene.text('iif(npc_bc_promise[$npcID] = daystart, \'"Yeah, maybe <i>later</i>," you scowl. "I only just told you <i>today</i>. At least give me a few days before you start hounding me. Sheesh."\', \'"Yeah, maybe <i>later</i>," you scowl. "I only just told you <i>yesterday</i>. At least give me a few days before you start hounding me. Sheesh."\')');
+    scene.text(qspEval(`iif(npc_bc_promise[$npcID] = daystart, '"Yeah, maybe <i>later</i>," you scowl. "I only just told you <i>today</i>. At least give me a few days before you start hounding me. Sheesh."', '"Yeah, maybe <i>later</i>," you scowl. "I only just told you <i>yesterday</i>. At least give me a few days before you start hounding me. Sheesh."')`, s));
     qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
   } },
         ]);
@@ -1341,7 +1341,7 @@ function enterWishNoCondoms2(s: GameState, scene: SceneBuilder): void {
     scene.text(String(qspFunc(s, 'sex_ev', 'bed_room') || ''));
     scene.text('You stop to consider the question.');
     scene.text('<i>Is</i> this a good idea?');
-    scene.text('iif(age < 20, \'Forgetfulness could be the difference between a happy sex life and becoming a teen mom. And it\'s a lot harder to forget to put on a condom.\', \'Forgetfulness could be the difference between a happy sex life and suddenly finding yourself a mom. And it\'s a lot harder to forget to put on a condom.\')');
+    scene.text(qspEval(`iif(age < 20, 'Forgetfulness could be the difference between a happy sex life and becoming a teen mom. And it's a lot harder to forget to put on a condom.', 'Forgetfulness could be the difference between a happy sex life and suddenly finding yourself a mom. And it's a lot harder to forget to put on a condom.')`, s));
     scene.actions([
       { label: 'Maybe stick to condoms', handler: (st: GameState) => {
     ((st as any).npc_bc_promise = (st as any).npc_bc_promise ?? {})[String((st as any).npcID ?? 0)] = 0;
@@ -1353,7 +1353,7 @@ function enterWishNoCondoms2(s: GameState, scene: SceneBuilder): void {
       { label: 'No, you\'ll follow through', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk2.jpg');
     scene.text(`"No," you shake your head and look into ${((st as any).npcdesc ?? '')}'s eyes. "I'll be good, I promise. I won't mess up with my future on the line."`);
-    scene.text('iif(npc_childfree[$npcID] = 0, \'He stares back at you, looking concerned but doesn\'t say anything further and lets the matter drop.\', \'"It\'s not just your future on the line you know..." he replies, looking serious.\')');
+    scene.text(qspEval(`iif(npc_childfree[$npcID] = 0, 'He stares back at you, looking concerned but doesn't say anything further and lets the matter drop.', '"It's not just your future on the line you know..." he replies, looking serious.')`, s));
     qspGoto(st, 'sex_ev_pillow_talk', 'topic_route');
   } },
     ]);
@@ -2256,7 +2256,7 @@ function enterSexMess(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((st as any).sex_ev ?? 0)?.['bed_choice'] === 'anya_bed') {
-      scene.text(`iif(sisterQW['sex_bed_count'] = 1, '"My sister is gonna kill me for fucking a guy in her bed," you smile ruefully at ${((st as any).npcdesc ?? '')}.', '"My sister is gonna kill me for fucking another guy in her bed," you smile ruefully at ${((st as any).npcdesc ?? '')}.')`);
+      scene.text(qspEval(`iif(sisterQW['sex_bed_count'] = 1, 1, 0)`, s) ? `"My sister is gonna kill me for fucking a guy in her bed," you smile ruefully at ${((st as any).npcdesc ?? '')}.` : `"My sister is gonna kill me for fucking another guy in her bed," you smile ruefully at ${((st as any).npcdesc ?? '')}.`);
     }
     if (((st as any).sex_ev ?? 0)?.['mess_act'] === 'A real mess for the maids') {
       ((st as any).sex_ev = (st as any).sex_ev ?? {})['mess_for_maid_talk'] = 1;

@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import {qspCall, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -1524,45 +1524,45 @@ function enterAlbAskBodyCount1(s: GameState, scene: SceneBuilder): void {
 function enterAlbAskBodyCount2(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_body_count = (((s as any).stat ?? {})?.['male_sexual_partners'] ?? 0) + (((s as any).stat ?? {})?.['female_sexual_partners'] ?? 0) + (((s as any).stat ?? {})?.['herm_sexual_partners'] ?? 0);
   if (((s as any).temp_body_count ?? 0) <= 5) {
-    scene.text(`iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "Only ${((s as any).temp_body_count ?? '')}."', '"Only..." You hold up ${((s as any).temp_body_count ?? '')} fingers on your hand.')`);
+    scene.text(qspEval(`iif(npc_had_sex['A23'], 1, 0)`, s) ? `"Well, including you..." you start teasingly. "Only ${((s as any).temp_body_count ?? '')}."` : `"Only..." You hold up ${((s as any).temp_body_count ?? '')} fingers on your hand.`);
     scene.text('"Really??" She seems rather surprised.');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountFew(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).temp_body_count ?? 0) <= 10) {
-      scene.text(`iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I've slept with ${((s as any).temp_body_count ?? '')} people."', '"Only a few," you tell her. "I've slept with ${((s as any).temp_body_count ?? '')} people."')`);
+      scene.text(qspEval(`iif(npc_had_sex['A23'], 1, 0)`, s) ? `"Well, including you..." you start teasingly. "I've slept with ${((s as any).temp_body_count ?? '')} people."` : `"Only a few," you tell her. "I've slept with ${((s as any).temp_body_count ?? '')} people."`);
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountFew(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).temp_body_count ?? 0) <= 15) {
-        scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve probably fucked about a dozen people."\', \'"I\'ve probably fucked about a dozen people," you admit freely.\')');
+        scene.text(qspEval(`iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I've probably fucked about a dozen people."', '"I've probably fucked about a dozen people," you admit freely.')`, s));
         scene.text('"Those are rookie numbers," she smirks. "You gotta up your game, girl."');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountFew(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).temp_body_count ?? 0) <= 20) {
-          scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve fucked more than a dozen people. Maybe high teens?"\', \'"I\'ve fucked more than a dozen people," you admit freely. "Maybe high teens?"\')');
+          scene.text(qspEval(`iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I've fucked more than a dozen people. Maybe high teens?"', '"I've fucked more than a dozen people," you admit freely. "Maybe high teens?"')`, s));
           scene.text('"You\'re practically a prude!" she grins. ');
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountFew(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).temp_body_count ?? 0) <= 25) {
-            scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve probably fucked about a couple dozen."\', \'"I\'ve probably fucked about a couple dozen," you admit freely.\')');
+            scene.text(qspEval(`iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I've probably fucked about a couple dozen."', '"I've probably fucked about a couple dozen," you admit freely.')`, s));
             scene.text('"Not bad," she smirks, looking impressed.');
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountDozens(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).temp_body_count ?? 0) <= 50) {
-              scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve fucked a few dozen. Maybe two or three."\', \'"I\'ve fucked a few dozen. Maybe two or three," you admit freely.\')');
+              scene.text(qspEval(`iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I've fucked a few dozen. Maybe two or three."', '"I've fucked a few dozen. Maybe two or three," you admit freely.')`, s));
               scene.text('"Not bad," she smirks, looking impressed.');
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountDozens(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).temp_body_count ?? 0) <= 100) {
-                scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve fucked a few dozen people. At least fifty."\', \'"I\'ve fucked a few dozen people," you admit freely. "At least fifty."\')');
+                scene.text(qspEval(`iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I've fucked a few dozen people. At least fifty."', '"I've fucked a few dozen people," you admit freely. "At least fifty."')`, s));
                 scene.text('"Fifty? Damn!" she smirks and looks you up and down, seemingly impressed. It\'s hard not to notice how her eyes linger briefly between your legs. "That\'s a hefty number."');
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountDozens(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 if (((s as any).temp_body_count ?? 0) <= 200) {
-                  scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve probably fucked about a hundred people."\', \'"I\'ve probably fucked about a hundred people," you admit freely.\')');
+                  scene.text(qspEval(`iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I've probably fucked about a hundred people."', '"I've probably fucked about a hundred people," you admit freely.')`, s));
                   scene.text('Her jaw drops. "<i>A hundred</i>? I was getting pimped out for <i>years</i> and I haven\'t fucked that many people!"');
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountHundreds(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
-                  scene.text('iif(npc_had_sex[\'A23\'], \'"Well, including you..." you start teasingly. "I\'ve fucked hundreds of people."\', \'"I\'ve fucked hundreds of people," you admit freely.\')');
+                  scene.text(qspEval(`iif(npc_had_sex['A23'], '"Well, including you..." you start teasingly. "I've fucked hundreds of people."', '"I've fucked hundreds of people," you admit freely.')`, s));
                   scene.text('Her jaw drops. "<i>Hundreds?</i>"');
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlbAskBodyCountHundreds(s, scene); (s as any).locArgs = __savedLocArgs; }
                 }

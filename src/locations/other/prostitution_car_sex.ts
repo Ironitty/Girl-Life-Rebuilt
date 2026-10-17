@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -30,7 +30,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'prostitution_functions', 'remove_condom');
       scene.text(`You take your condom and put it on his ${((s as any).dick ?? '')}cm dick.`);
     }
-    scene.text('iif(rand(1, 10) < 6, \'"Don\'t keep me waiting,\', \'"Get to work,\')+iif(rand(1, 10) < 4, \' whore\', \' girl\')+\'," he says and you obediently start to suck him off.\'');
+    scene.text(qspEval(`iif(rand(1, 10) < 6, '"Don't keep me waiting,', '"Get to work,')+iif(rand(1, 10) < 4, ' whore', ' girl')+'," he says and you obediently start to suck him off.'`, s));
   } else {
     if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob'  &&  ((s as any).prostitute ?? 0)?.['scene_repeat'] === 1) {
       scene.text('You\'re giving it your best. Switching up your routine, sometimes you only tease the head of his dick, lick his balls or deepthroat him as he praises your effort, but as time moves on he doesn\'t seem to be close to shooting his load.');
@@ -410,7 +410,7 @@ function enterCumshot(s: GameState, scene: SceneBuilder): void {
             if (((s as any).prostitute ?? 0)?.['client_creampie'] === 1  &&  ((s as any).prostitute_client_cumshot ?? 0) !== 'Inside') {
               scene.text('He' + ((((s as any).prostitute ?? 0)?.['scene_repeat'] === 0) ? (' ') : (' finally ')) + ' stops and pulls out, but only for a little while. He pushes himself back in, but something feels different. He cums before you can say anything, cock still buried deep in your pussy and without a condom. He groans and shoots his cum deep inside you. "Take it, bitch!" He screams.');
               scene.text('"What\'s wrong with you?" You scream while he slips out of your pussy. "You stupid son of a…"');
-              scene.text('iif($prostitute_brand[\'text_pubic\'] = \'cumslut\', \'"Stop complaining cumslut," he taunts you with your own tattoo. "We both know you want it."\', \'"Hahaha… what\'s the problem \'mom\'?" He laughs and get\'s dressed.\')');
+              scene.text(qspEval(`iif($prostitute_brand['text_pubic'] = 'cumslut', '"Stop complaining cumslut," he taunts you with your own tattoo. "We both know you want it."', '"Hahaha… what's the problem 'mom'?" He laughs and get's dressed.')`, s));
             } else {
               scene.text('He' + ((((s as any).prostitute ?? 0)?.['scene_repeat'] === 0) ? (' ') : (' finally ')) + 'moans and you feel the warmth of his cum filling your pussy. With one last moan, he shoots the rest of his load inside you. "Fuck, that was good' + (((Math.floor(Math.random() * 10) + 1) < 4) ? (' whore') : ('')) + '," he sighs while zipping up.');
             }
@@ -441,7 +441,7 @@ function enterCumshot(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).prostitute ?? 0)?.['client_creampie'] === 1  &&  ((s as any).prostitute_client_cumshot ?? 0) !== 'Inside') {
                   scene.text('For several more minutes he pounds your ass until he finally stops' + ((((s as any).prostitute_client_condom ?? 0) === 'Yes') ? ('and pulls out for a second before he pushes back inside.') : (', cock still buried deep in your ass.')) + ' He groans and you can feel spurts of warm cum fill you.');
                   scene.text('"What\'s wrong with you?" You scream while he slips out of your abused hole.');
-                  scene.text('iif($prostitute_brand[\'text_pubic\'] = \'cumslut\', \'"Stop complaining cumslut," he taunts you with your own tattoo. "We both know you want it."\', \'"Shut up! It\'s not like I could knock you up, slut." He gives your ass a hard slap before zipping himself up.\')');
+                  scene.text(qspEval(`iif($prostitute_brand['text_pubic'] = 'cumslut', '"Stop complaining cumslut," he taunts you with your own tattoo. "We both know you want it."', '"Shut up! It's not like I could knock you up, slut." He gives your ass a hard slap before zipping himself up.')`, s));
                 } else {
                   scene.text('He' + ((((s as any).prostitute ?? 0)?.['scene_repeat'] === 0) ? (' ') : (' finally ')) + 'moans and you feel the warmth of his cum filling your ass. With one last moan, he shoots the rest of his load deep inside your bowls. "God, yes take it' + (((Math.floor(Math.random() * 10) + 1) < 5) ? (' whore') : (' bitch')) + '," he sighs.');
                   scene.text('"That was great, thanks for that," he adds.');
@@ -846,7 +846,7 @@ function enterRegularVaginal(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).prostitute ?? 0)?.['scene_repeat'] === 2) {
         scene.img('images/shared/prostitution/car/regular/sex/main_pussy6.mp4');
-        scene.text('iif(rand(1, 10) < 4, \'You can\'t remember that he ever showed such stamina, but today \', \'It\'s always the same with him. His stamina shows no bounds and \')+\' he can\'t seem to get enough of you. It takes him several more minutes until he finally seems close to the finish line.\'');
+        scene.text(qspEval(`iif(rand(1, 10) < 4, 'You can't remember that he ever showed such stamina, but today ', 'It's always the same with him. His stamina shows no bounds and ')+' he can't seem to get enough of you. It takes him several more minutes until he finally seems close to the finish line.'`, s));
       }
     }
   }

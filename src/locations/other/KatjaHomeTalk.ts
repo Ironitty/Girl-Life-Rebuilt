@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -564,7 +564,7 @@ function enterKatjaknows(s: GameState, scene: SceneBuilder): void {
                 } else {
                   (s as any).minut = ((s as any).minut ?? 0) + 10;
                   scene.text('"So, who\'s the baby-daddy?" she teases.');
-                  scene.text(`iif( ($wombthfath = ' or $wombthfathID = 'unknown'), '"I don't know who the father is "', '"It looks like I got knocked up by ${((s as any).wombthfath ?? '')}"')`);
+                  scene.text(qspEval(`iif(($wombthfath = ' or $wombthfathID = 'unknown'), 1, 0)`, s) ? `"I don't know who the father is "` : `"It looks like I got knocked up by ${((s as any).wombthfath ?? '')}"`);
                   scene.text('"I hope they know how lucky they are," she says while clearly blushing.');
                 }
               }

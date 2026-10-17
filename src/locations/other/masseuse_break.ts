@@ -221,7 +221,7 @@ function enterLeiFunTalk(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).masseuse ?? 0)?.['lei_talk'] === 5) {
               if (((s as any).month ?? 0) >= 10  ||  ((s as any).month ?? 0) <= 3) {
-                break;
+                continue;
               }
               scene.text('"Went to the beach with some friends last weekend. That was pretty cool."');
               scene.text('"Wow! Where\'d you go? Out of town?"');
@@ -243,8 +243,9 @@ function enterLeiFunTalk(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeiTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
+    break;
   }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeiTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 

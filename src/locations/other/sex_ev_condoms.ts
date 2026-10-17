@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
+import {qspCall, qspFunc, dynamicGoto, qspGoto, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -635,7 +635,7 @@ function enterNpcOutOfCondoms(s: GameState, scene: SceneBuilder): void {
       { label: 'Use one of your condoms', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_stats', 'pc_condom_stats');
     scene.img('images/shared/sex/misc/condom_put.jpg');
-    scene.text('iif(mc_inventory[\'normal_condoms\'] = 1, \'"That\'s okay, I\'ve got one."\', \'"That\'s okay, I\'ve got some."\')');
+    scene.text(qspEval(`iif(mc_inventory['normal_condoms'] = 1, '"That's okay, I've got one."', '"That's okay, I've got some."')`, s));
     scene.text('You reach into your bag and pull out a condom, rolling it onto his cock.');
     qspGoto(st, 'sex_ev_sex', 'position_choose');
   } },
@@ -643,7 +643,7 @@ function enterNpcOutOfCondoms(s: GameState, scene: SceneBuilder): void {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['using_pc_condoms'] = 1;
     qspCall(st, 'sex_ev_stats', 'pc_condom_stats');
     scene.img('images/shared/sex/misc/condom_mouth.mp4');
-    scene.text('iif(mc_inventory[\'normal_condoms\'] = 1, \'"That\'s okay, I\'ve got one."\', \'"That\'s okay, I\'ve got some."\')');
+    scene.text(qspEval(`iif(mc_inventory['normal_condoms'] = 1, '"That's okay, I've got one."', '"That's okay, I've got some."')`, s));
     scene.text('You reach into your bag and pull out a condom, rolling it onto his cock with your mouth.');
     qspGoto(st, 'sex_ev_sex', 'position_choose');
   } },
@@ -2039,7 +2039,7 @@ function enterTempDisableCondoms(s: GameState, scene: SceneBuilder): void {
       { label: 'Let\'s skip the condom', handler: (st: GameState) => {
     ((st as any).sex_ev = (st as any).sex_ev ?? {})['pc_skip_the_condom'] = 1;
     scene.text(String(qspFunc(s, 'sex_ev', 'bed_room') || ''));
-    scene.text('iif($sex_ev[\'type\'] ! \'hookup\', \'"Let\'s skip the condom today," you smile.\', \'"We don\'t need to use condoms," you smile.\')');
+    scene.text(qspEval(`iif($sex_ev['type'] ! 'hookup', '"Let's skip the condom today," you smile.', '"We don't need to use condoms," you smile.')`, s));
     if (((st as any).birth_control ?? 0)?.['think_safe'] === 1  &&  ((st as any).sex_ev ?? 0)?.['type'] === 'hookup') {
       scene.actions([
         { label: '"I\'m on birth control"', handler: (st: GameState) => {

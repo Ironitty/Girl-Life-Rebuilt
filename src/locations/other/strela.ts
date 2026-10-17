@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -77,7 +77,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/grounds/sex/vasfed1.jpg');
-    scene.text('iif(func(\'money\', \'can_afford\', 30000), \'Even though you have enough money to pay off Fedor\'s debt, you decide you\'d rather not step in.\', \'Even if you wanted to help, you know there\'s nothing you can do for Fedor.\') + \' He starts to cry even harder, but slowly crawls over to Vasily on his knees. Vasily\'s cock is already rock-hard, and Fedor reluctantly starts to suck on it, knowing this is his only way out.\'');
+    scene.text(qspEval(`iif(func('money', 'can_afford', 30000), 'Even though you have enough money to pay off Fedor's debt, you decide you'd rather not step in.', 'Even if you wanted to help, you know there's nothing you can do for Fedor.') + ' He starts to cry even harder, but slowly crawls over to Vasily on his knees. Vasily's cock is already rock-hard, and Fedor reluctantly starts to suck on it, knowing this is his only way out.'`, s));
     scene.text('Vasily laughs. "Careful. If I feel any teeth, I\'ll knock them out."');
     scene.text('One of the criminals who hadn\'t said anything so far shakes his head. "Fucking Vasily… What a nutbag! Never a dull moment with that guy."');
     scene.text('Vitek turns his head away in disgust while most of the students other than some of the gopniks have left by now. Dan pulls out his phone and starts filming, as do a few others. A few of the girls shout tips to Fedor on how to suck better.');

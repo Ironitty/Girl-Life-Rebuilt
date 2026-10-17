@@ -1413,3 +1413,212 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
     }
   }
 }
+
+type QspTok = { t: 'num' | 'str' | 'id' | 'op'; v: string | number };
+
+function qspTokenize(src: string): QspTok[] {
+  const toks: QspTok[] = [];
+  let i = 0;
+  while (i < src.length) {
+    const c = src[i];
+    if (c === ' ' || c === '\t' || c === '\n' || c === '\r') { i++; continue; }
+    if (c === "'" || c === '"') {
+      const q = c; let j = i + 1; let s = '';
+      for (;;) {
+        if (j >= src.length) { toks.push({ t: 'str', v: s }); i = j; break; }
+        if (src[j] === '\\' && j + 1 < src.length) { s += src[j + 1]; j += 2; continue; }
+        if (src[j] === q) {
+          let k = j + 1;
+          while (k < src.length && (src[k] === ' ' || src[k] === '\t')) k++;
+          const closes = k >= src.length || !/[a-zA-Z0-9_]/.test(src[k]);
+          if (closes) { toks.push({ t: 'str', v: s }); i = j + 1; break; }
+          s += q; j++; continue;
+        }
+        s += src[j]; j++;
+      }
+      continue;
+    }
+    if (/[0-9]/.test(c)) {
+      let j = i;
+      while (j < src.length && /[0-9.]/.test(src[j])) j++;
+      toks.push({ t: 'num', v: parseFloat(src.slice(i, j)) });
+      i = j;
+      continue;
+    }
+    if (/[a-zA-Z_$]/.test(c)) {
+      let j = i;
+      while (j < src.length && /[a-zA-Z0-9_$]/.test(src[j])) j++;
+      toks.push({ t: 'id', v: src.slice(i, j) });
+      i = j;
+      continue;
+    }
+    if (src.startsWith('<>', i)) { toks.push({ t: 'op', v: '<>' }); i += 2; continue; }
+    if (src.startsWith('<=', i)) { toks.push({ t: 'op', v: '<=' }); i += 2; continue; }
+    if (src.startsWith('>=', i)) { toks.push({ t: 'op', v: '>=' }); i += 2; continue; }
+    if ('=<>!+-*/(),.[]'.includes(c)) { toks.push({ t: 'op', v: c }); i++; continue; }
+    i++;
+  }
+  return toks;
+}
+
+function qspNum(v: unknown): number { return typeof v === 'number' ? v : (parseFloat(String(v ?? '')) || 0); }
+function qspStr(v: unknown): string { return String(v ?? ''); }
+function qspTruthy(v: unknown): boolean { if (typeof v === 'boolean') return v; return typeof v === 'string' ? v.length > 0 : qspNum(v) !== 0; }
+function qspAdd(a: unknown, b: unknown): unknown {
+  if (typeof a === 'string' || typeof b === 'string') return qspStr(a) + qspStr(b);
+  return qspNum(a) + qspNum(b);
+}
+function qspCompare(op: string, a: unknown, b: unknown): number {
+  const bothStr = typeof a === 'string' && typeof b === 'string';
+  const sa = qspStr(a), sb = qspStr(b), na = qspNum(a), nb = qspNum(b);
+  switch (op) {
+    case '=': return bothStr ? (sa === sb ? 1 : 0) : (na === nb ? 1 : 0);
+    case '<>':
+    case '!': return bothStr ? (sa !== sb ? 1 : 0) : (na !== nb ? 1 : 0);
+    case '<': return bothStr ? (sa < sb ? 1 : 0) : (na < nb ? 1 : 0);
+    case '>': return bothStr ? (sa > sb ? 1 : 0) : (na > nb ? 1 : 0);
+    case '<=': return bothStr ? (sa <= sb ? 1 : 0) : (na <= nb ? 1 : 0);
+    case '>=': return bothStr ? (sa >= sb ? 1 : 0) : (na >= nb ? 1 : 0);
+    default: return 0;
+  }
+}
+
+class QspParser {
+  private p = 0;
+  private toks: QspTok[];
+  private s: GameState;
+  constructor(toks: QspTok[], s: GameState) { this.toks = toks; this.s = s; }
+  private peek(): QspTok | undefined { return this.toks[this.p]; }
+  private next(): QspTok | undefined { return this.toks[this.p++]; }
+  private isOp(v: string): boolean { const t = this.peek(); return t?.t === 'op' && t.v === v; }
+  private eatOp(v: string): boolean { if (this.isOp(v)) { this.p++; return true; } return false; }
+  private isId(v: string): boolean { const t = this.peek(); return t?.t === 'id' && t.v === v; }
+
+  parse(): unknown { return this.parseOr(); }
+
+  private parseOr(): unknown {
+    let left = this.parseAnd();
+    while (this.isId('or')) { this.p++; const r = this.parseAnd(); left = (qspTruthy(left) || qspTruthy(r)) ? 1 : 0; }
+    return left;
+  }
+  private parseAnd(): unknown {
+    let left = this.parseNot();
+    while (this.isId('and')) { this.p++; const r = this.parseNot(); left = (qspTruthy(left) && qspTruthy(r)) ? 1 : 0; }
+    return left;
+  }
+  private parseNot(): unknown {
+    if (this.isId('not')) { this.p++; return qspTruthy(this.parseNot()) ? 0 : 1; }
+    return this.parseCmp();
+  }
+  private parseCmp(): unknown {
+    let left = this.parseAdd();
+    for (;;) {
+      const t = this.peek();
+      if (t?.t === 'op' && ['=', '<>', '!', '<', '>', '<=', '>='].includes(t.v as string)) {
+        this.p++;
+        const r = this.parseAdd();
+        left = qspCompare(t.v as string, left, r);
+      } else break;
+    }
+    return left;
+  }
+  private parseAdd(): unknown {
+    let left = this.parseMul();
+    for (;;) {
+      const t = this.peek();
+      if (t?.t === 'op' && (t.v === '+' || t.v === '-')) {
+        this.p++;
+        const r = this.parseMul();
+        left = t.v === '+' ? qspAdd(left, r) : qspNum(left) - qspNum(r);
+      } else break;
+    }
+    return left;
+  }
+  private parseMul(): unknown {
+    let left = this.parseUnary();
+    for (;;) {
+      const t = this.peek();
+      if (t?.t === 'op' && (t.v === '*' || t.v === '/')) {
+        this.p++;
+        const r = this.parseUnary();
+        left = t.v === '*' ? qspNum(left) * qspNum(r) : qspNum(left) / qspNum(r);
+      } else if (this.isId('mod')) {
+        this.p++;
+        const r = this.parseUnary();
+        left = qspNum(left) % qspNum(r);
+      } else break;
+    }
+    return left;
+  }
+  private parseUnary(): unknown {
+    if (this.eatOp('-')) return -qspNum(this.parseUnary());
+    return this.parsePrimary();
+  }
+  private parsePrimary(): unknown {
+    const t = this.next();
+    if (!t) return 0;
+    if (t.t === 'num') return t.v as number;
+    if (t.t === 'str') return t.v as string;
+    if (t.t === 'op' && t.v === '(') {
+      const v = this.parseOr();
+      this.eatOp(')');
+      return v;
+    }
+    if (t.t === 'id') {
+      const name = t.v as string;
+      if (name === 'iif') {
+        const c = this.parseOr();
+        this.eatOp(',');
+        const a = this.parseOr();
+        this.eatOp(',');
+        const b = this.parseOr();
+        this.eatOp(')');
+        return qspTruthy(c) ? a : b;
+      }
+      if (name === 'func') {
+        this.eatOp('(');
+        const args: unknown[] = [this.parseOr()];
+        this.eatOp(',');
+        args.push(this.parseOr());
+        while (this.eatOp(',')) args.push(this.parseOr());
+        this.eatOp(')');
+        return qspFunc(this.s, qspStr(args[0]), qspStr(args[1]), ...args.slice(2));
+      }
+      if (name === 'rand') {
+        this.eatOp('(');
+        const a = this.parseOr();
+        this.eatOp(',');
+        const b = this.parseOr();
+        this.eatOp(')');
+        const lo = Math.floor(qspNum(a)), hi = Math.floor(qspNum(b));
+        return lo + Math.floor(Math.random() * (hi - lo + 1));
+      }
+      let baseName = name.startsWith('$') ? name.slice(1) : name;
+      if (this.isOp('[')) {
+        this.p++;
+        const keyTok = this.next();
+        this.eatOp(']');
+        const key = keyTok?.t === 'str' ? (keyTok.v as string) : qspStr(keyTok?.v);
+        const base = (this.s as any)[baseName];
+        return base?.[key] ?? 0;
+      }
+      if (this.isOp('.')) {
+        this.p++;
+        const keyTok = this.next();
+        const key = keyTok?.t === 'id' ? (keyTok.v as string) : qspStr(keyTok?.v);
+        const base = (this.s as any)[baseName];
+        return base?.[key] ?? 0;
+      }
+      return (this.s as any)[baseName] ?? 0;
+    }
+    return 0;
+  }
+}
+
+export function qspEval(expr: string, s: GameState): string {
+  try {
+    return qspStr(new QspParser(qspTokenize(expr), s).parse());
+  } catch {
+    return expr;
+  }
+}

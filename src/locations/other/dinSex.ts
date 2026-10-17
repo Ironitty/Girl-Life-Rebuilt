@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import {qspCall, qspFunc, qspEval} from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -443,7 +443,7 @@ function enterAfterAnal(s: GameState, scene: SceneBuilder): void {
 function enterAnalsex(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
   scene.text(`${((s as any).boydesc ?? '')} fingers your anus, slowly pushing in before squeezing in a second one, `);
-  scene.text(`iif(pcs_ass < 10, 'when ${((s as any).xe ?? '')} tries inserting a third finger you groan in pain. ', '${((s as any).xe ?? '')} inserts a third finger, very slowly thrusting and wiggling to stretch your anus, ')`);
+  scene.text(qspEval(`iif(pcs_ass < 10, 1, 0)`, s) ? `when ${((s as any).xe ?? '')} tries inserting a third finger you groan in pain. ` : `${((s as any).xe ?? '')} inserts a third finger, very slowly thrusting and wiggling to stretch your anus, `);
   scene.text(`${((s as any).xe ?? '')} pulls ${((s as any).xyr ?? '')} fingers out of your ass and you feel ${((s as any).xyr ?? '')} ${((s as any).penis_desc ?? '')} pushing against your butthole. `);
   if (String((s as any).locArgs?.[1] ?? '') === '0') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
@@ -451,7 +451,7 @@ function enterAnalsex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));
   (s as any).grange = 0;
   qspFunc(s, 'get_hole_pain', ((s as any).pcs_ass ?? 0), ((s as any).anal_slip ?? 0), (((s as any).pain ?? 0)?.['asshole']), ((s as any).dick ?? 0), ((s as any).grange ?? 0), ((s as any).silavag ?? 0));
-  scene.text(`iif(arousalVars['girth_diff'] + arousalVars['length_diff'] >= 20, 'You scream and bite your lip from the sharp pain when ${((s as any).xe ?? '')} penetrates your ass, ', 'You moan when ${((s as any).xe ?? '')} penetrates your ass, ')`);
+  scene.text(qspEval(`iif(arousalVars['girth_diff'] + arousalVars['length_diff'] >= 20, 1, 0)`, s) ? `You scream and bite your lip from the sharp pain when ${((s as any).xe ?? '')} penetrates your ass, ` : `You moan when ${((s as any).xe ?? '')} penetrates your ass, `);
   scene.text(`${((s as any).xe ?? '')} stops for a moment, giving your ass time to adjust to ${((s as any).xyr ?? '')} cock in it. Then he starts to slowly move, pumping your anus. `);
   if (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff'] >= (Math.floor(Math.random() * 11) + 25)) {
     if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
